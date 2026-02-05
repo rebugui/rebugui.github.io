@@ -12,6 +12,8 @@ hasCJKLanguage = true
 
 theme = "hugo-theme-stack"
 
+enableGitInfo = true
+
 [pagination]
     pagerSize = 5
 
