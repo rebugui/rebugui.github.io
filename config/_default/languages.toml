@@ -1,0 +1,6 @@
+[ko]
+    languageName = "한국어"
+    title        = "코딩이 싫은 거북이"
+    weight       = 1
+    [ko.params.sidebar]
+        subtitle = "Clean, responsive Hugo theme"

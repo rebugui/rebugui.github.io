@@ -1,0 +1,21 @@
+baseURL = 'https://rebugui.github.io/'
+languageCode = 'ko-kr'
+title = '코딩이 싫은 거북이'
+theme = 'hugo-theme-stack'
+
+defaultContentLanguage = 'ko'
+hasCJKLanguage = true
+
+[pagination]
+    pagerSize = 5
+
+[permalinks]
+    post = '/:slug/'
+
+[taxonomies]
+    tag = 'tags'
+    category = 'categories'
+
+[goldmark]
+    [goldmark.renderer]
+        unsafe = true
