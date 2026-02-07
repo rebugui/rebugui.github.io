@@ -1,6 +1,6 @@
 ---
 title: "Claude Opus 4.6 Finds 500+ High-Severity Flaws Across Major Open-Source Libraries - The Hacker News"
-date: 2026-02-07T09:01:45+09:00
+date: 2026-02-07T11:11:06+09:00
 draft: false
 tags:
   - "DevSecOps"
@@ -63,12 +63,12 @@ graph LR
 
 아래는 변경된 파일들을 읽어 Claude에게 보안 분석을 요청하고 결과를 받아오는 간단한 Python 스크립트입니다.
 
-````python`
-
 import os
 import sys
 import anthropic
 import json
+
+````python`
 
 client = anthropic.Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY"))
 
