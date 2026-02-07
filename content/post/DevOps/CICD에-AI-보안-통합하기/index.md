@@ -1,6 +1,6 @@
 ---
 title: "CI/CD에 AI 보안 통합하기"
-date: 2026-02-06T09:29:47+09:00
+date: 2026-02-07T09:01:51+09:00
 draft: false
 tags:
   - "DevOps"
