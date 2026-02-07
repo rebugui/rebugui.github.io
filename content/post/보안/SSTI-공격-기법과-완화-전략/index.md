@@ -1,6 +1,6 @@
 ---
 title: "SSTI 공격 기법과 완화 전략"
-date: 2026-02-06T09:30:00+09:00
+date: 2026-02-07T09:02:04+09:00
 draft: false
 tags:
   - "Security"
