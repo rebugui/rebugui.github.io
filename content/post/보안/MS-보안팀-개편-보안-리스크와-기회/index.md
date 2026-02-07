@@ -1,6 +1,6 @@
 ---
 title: "MS 보안팀 개편: 보안 리스크와 기회"
-date: 2026-02-05T21:06:10+09:00
+date: 2026-02-07T09:01:06+09:00
 draft: false
 tags:
   - "Security"
