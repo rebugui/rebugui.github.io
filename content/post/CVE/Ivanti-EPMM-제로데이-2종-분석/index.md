@@ -1,6 +1,6 @@
 ---
 title: "Ivanti EPMM 제로데이 2종 분석"
-date: 2026-02-07T09:01:31+09:00
+date: 2026-02-07T11:10:58+09:00
 draft: false
 tags:
   - "CVE"
