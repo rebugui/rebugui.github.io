@@ -1,6 +1,6 @@
 ---
 title: "SolarWinds 신흥 취약점, 실제 공격 발생"
-date: 2026-02-05T18:19:19+09:00
+date: 2026-02-07T09:00:42+09:00
 draft: false
 tags:
   - "Exploit"
