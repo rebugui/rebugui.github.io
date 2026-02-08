@@ -1,6 +1,6 @@
 ---
 title: "🧪 파이프라인 테스트: Mermaid 다이어그램"
-date: 2026-02-08T13:43:26+09:00
+date: 2026-02-08T13:43:29+09:00
 draft: false
 tags:
   - "Test"
@@ -19,7 +19,7 @@ categories:
 
 아래 다이어그램은 전체 파이프라인의 흐름을 보여줍니다.
 
-```mermaid
+```javascript
 graph TD
     A[AI Writer] -->|Generate Markdown| B[Notion Publisher]
     B -->|Convert to Callout| C[Notion Database]
