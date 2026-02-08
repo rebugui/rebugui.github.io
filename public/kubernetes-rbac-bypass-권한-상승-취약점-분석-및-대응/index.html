@@ -406,50 +406,28 @@
 <h3 id="공격-시나리오-파드-생성-권한을-이용한-권한-상승">공격 시나리오: 파드 생성 권한을 이용한 권한 상승
 </h3><p>가장 대표적인 공격 벡터는 <strong>파드 생성 권한(<code>create pods</code>)의 악용</strong>입니다. 보통 개발자에게는 배포를 위해 파드 생성 권한을 부여합니다. 하지만 이 권한이 잘못 제어되면, 공격자는 악의적인 파드를 생성하여 시스템 레벨의 권한을 가진 ServiceAccount 토큰을 탈취할 수 있습니다.</p>
 <p>아래는 공격자가 제한된 권한으로 관리자 권한을 탈취하는 과정을 시각화한 것입니다.</p>
-<p>📊 <strong>Mermaid 다이어그램:</strong> 아래 코드는 블로그에서 자동으로 다이어그램으로 렌더링됩니다.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="nx">sequenceDiagram</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">participant</span> <span class="nx">Attacker</span> <span class="nx">as</span> <span class="nx">공격자</span> <span class="p">(</span><span class="nx">Dev</span> <span class="nx">Role</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">participant</span> <span class="nx">API</span> <span class="nx">as</span> <span class="nx">K8s</span> <span class="nx">API</span> <span class="nx">Server</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">participant</span> <span class="nx">Kubelet</span> <span class="nx">as</span> <span class="nx">Kubelet</span> <span class="p">(</span><span class="nx">Worker</span> <span class="nx">Node</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">participant</span> <span class="nx">MaliciousPod</span> <span class="nx">as</span> <span class="nx">악의적</span> <span class="nx">파드</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">participant</span> <span class="nx">AdminSA</span> <span class="nx">as</span> <span class="nx">Admin</span> <span class="nx">ServiceAccount</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nx">Attacker</span><span class="o">-&gt;&gt;</span><span class="nx">API</span><span class="o">:</span> <span class="mf">1.</span> <span class="nx">파드</span> <span class="nx">생성</span> <span class="nx">요청</span> <span class="p">(</span><span class="nx">spec</span><span class="p">.</span><span class="nx">serviceAccountName</span><span class="o">:</span> <span class="nx">admin</span><span class="o">-</span><span class="nx">sa</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">Note</span> <span class="nx">right</span> <span class="k">of</span> <span class="nx">Attacker</span><span class="o">:</span> <span class="nx">공격자는</span> <span class="s1">&#39;admin-sa&#39;</span><span class="nx">를</span><span class="o">&lt;</span><span class="nx">br</span><span class="o">/&gt;</span><span class="nx">지정하여</span> <span class="nx">파드</span> <span class="nx">생성</span> <span class="nx">시도</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">API</span><span class="o">-&gt;&gt;</span><span class="nx">API</span><span class="o">:</span> <span class="mf">2.</span> <span class="nx">RBAC</span> <span class="nx">검증</span> <span class="p">(</span><span class="nx">Attacker</span> <span class="nx">has</span> <span class="s1">&#39;create pods&#39;</span><span class="o">?</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">API</span><span class="o">--&gt;&gt;</span><span class="nx">Attacker</span><span class="o">:</span> <span class="mf">3.</span> <span class="nx">생성</span> <span class="nx">허용</span> <span class="p">(</span><span class="nx">Role</span> <span class="nx">Binding</span> <span class="nx">확인</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">API</span><span class="o">-&gt;&gt;</span><span class="nx">Kubelet</span><span class="o">:</span> <span class="mf">4.</span> <span class="nx">파드</span> <span class="nx">스케줄링</span> <span class="nx">및</span> <span class="nx">실행</span> <span class="nx">지시</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">Kubelet</span><span class="o">-&gt;&gt;</span><span class="nx">AdminSA</span><span class="o">:</span> <span class="mf">5.</span> <span class="nx">ServiceAccount</span> <span class="nx">토큰</span> <span class="nx">마운트</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">Kubelet</span><span class="o">-&gt;&gt;</span><span class="nx">MaliciousPod</span><span class="o">:</span> <span class="mf">6.</span> <span class="nx">파드</span> <span class="nx">실행</span> <span class="p">(</span><span class="err">/var/run/secrets/... 에 토큰 노출)</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">Attacker</span><span class="o">-&gt;&gt;</span><span class="nx">MaliciousPod</span><span class="o">:</span> <span class="mf">7.</span> <span class="nx">kubectl</span> <span class="nx">exec</span> <span class="nx">접속</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">Attacker</span><span class="o">-&gt;&gt;</span><span class="nx">AdminSA</span><span class="o">:</span> <span class="mf">8.</span> <span class="nx">토큰</span> <span class="nx">파일</span> <span class="nx">읽기</span> <span class="p">(</span><span class="nx">cat</span> <span class="nx">token</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">Attacker</span><span class="o">-&gt;&gt;</span><span class="nx">API</span><span class="o">:</span> <span class="mf">9.</span> <span class="nx">탈취한</span> <span class="nx">토큰으로</span> <span class="nx">관리자</span> <span class="nx">API</span> <span class="nx">호출</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">Note</span> <span class="nx">right</span> <span class="k">of</span> <span class="nx">Attacker</span><span class="o">:</span> <span class="nx">RBAC</span> <span class="nx">우회</span> <span class="nx">성공</span><span class="o">:&lt;</span><span class="nx">br</span><span class="o">/&gt;</span><span class="nx">이제</span> <span class="nx">공격자는</span> <span class="nx">Admin임</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>이 다이어그램에서 볼 수 있듯이, 공격자는 <code>admin-sa</code>를 직접 생성하거나 수정할 권한이 없습니다. 단지, <strong>이미 존재하는 권한 있는 ServiceAccount를 자신이 생성하는 파드에 참조(reference)할 수 있는지</strong>가 핵심입니다.</p>
+<pre class="mermaid">
+  sequenceDiagram
+    participant Attacker as 공격자 (Dev Role)
+    participant API as K8s API Server
+    participant Kubelet as Kubelet (Worker Node)
+    participant MaliciousPod as 악의적 파드
+    participant AdminSA as Admin ServiceAccount
+
+    Attacker-&gt;&gt;API: 1. 파드 생성 요청 (spec.serviceAccountName: admin-sa)
+    Note right of Attacker: 공격자는 &#39;admin-sa&#39;를&lt;br/&gt;지정하여 파드 생성 시도
+    API-&gt;&gt;API: 2. RBAC 검증 (Attacker has &#39;create pods&#39;?)
+    API--&gt;&gt;Attacker: 3. 생성 허용 (Role Binding 확인)
+    API-&gt;&gt;Kubelet: 4. 파드 스케줄링 및 실행 지시
+    Kubelet-&gt;&gt;AdminSA: 5. ServiceAccount 토큰 마운트
+    Kubelet-&gt;&gt;MaliciousPod: 6. 파드 실행 (/var/run/secrets/... 에 토큰 노출)
+    Attacker-&gt;&gt;MaliciousPod: 7. kubectl exec 접속
+    Attacker-&gt;&gt;AdminSA: 8. 토큰 파일 읽기 (cat token)
+    Attacker-&gt;&gt;API: 9. 탈취한 토큰으로 관리자 API 호출
+    Note right of Attacker: RBAC 우회 성공:&lt;br/&gt;이제 공격자는 Admin임
+</pre>
+
+<p>이 다이어그램에서 볼 수 있듯이, 공격자는 <code>admin-sa</code>를 직접 생성하거나 수정할 권한이 없습니다. 단지, <strong>이미 존재하는 권한 있는 ServiceAccount를 자신이 생성하는 파드에 참조(reference)할 수 있는지</strong>가 핵심입니다.</p>
 <h3 id="poc-proof-of-concept-코드">PoC (Proof of Concept) 코드
 </h3><p>다음은 공격자가 권한 상승을 위해 실행하는 악의적인 파드 매니페스트 예시입니다. 이 시나리오에서는 <code>cluster-admin</code> 권한을 가진 ServiceAccount가 <code>kube-system</code> 네임스페이스에 기본적으로 존재한다고 가정합니다.</p>
 <div class="highlight"><div class="chroma">
@@ -760,6 +738,66 @@
     }
 </script>
     
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11.12.2/+esm';
+
+    function initMermaid() {
+        const isDark = document.documentElement.dataset.scheme === 'dark';
+        const theme = isDark ? 'dark' : 'default';
+
+        console.log('Initializing Mermaid with theme:', theme);
+
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: theme,
+            logLevel: 'debug',
+            securityLevel: 'loose',
+            themeVariables: {
+                darkMode: isDark,
+                background: isDark ? '#1e1e1e' : '#ffffff',
+                primaryColor: isDark ? '#81D4FA' : '#E3F2FD',
+                primaryTextColor: isDark ? '#ECEFF1' : '#263238',
+                primaryBorderColor: isDark ? '#81D4FA' : '#0288D1',
+                lineColor: isDark ? '#81D4FA' : '#0288D1',
+                secondaryColor: isDark ? '#4FC3F7' : '#BBDEFB',
+                tertiaryColor: isDark ? '#29B6F6' : '#90CAF9',
+                fillType0: isDark ? '#81D4FA' : '#E3F2FD',
+                fillType1: isDark ? '#4FC3F7' : '#BBDEFB',
+                fillType2: isDark ? '#29B6F6' : '#90CAF9',
+                arrowheadColor: isDark ? '#81D4FA' : '#0288D1',
+                arrowColor: isDark ? '#81D4FA' : '#0288D1',
+                edgeLabelBackground: isDark ? '#263238' : '#ffffff',
+                fontFamily: 'arial',
+                fontSize: '16px'
+            }
+        });
+
+        
+        document.querySelectorAll('.mermaid').forEach((element) => {
+            element.removeAttribute('data-processed');
+        });
+        mermaid.init(undefined, document.querySelectorAll('.mermaid'));
+    }
+
+    
+    initMermaid();
+
+    
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'data-scheme') {
+                console.log('Theme changed to:', document.documentElement.dataset.scheme);
+                initMermaid();
+            }
+        });
+    });
+
+    observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['data-scheme']
+    });
+</script>
+
 
             </main>
         </div>

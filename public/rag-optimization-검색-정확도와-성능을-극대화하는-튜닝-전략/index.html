@@ -416,40 +416,20 @@
 <h3 id="2-공격-흐름-및-최적화-아키텍처">2. 공격 흐름 및 최적화 아키텍처
 </h3><p>RAG 시스템을 단순한 검색 도구가 아닌, 방어 체계의 일부로 격상하기 위해 우리는 **&ldquo;Hybrid Search&rdquo;**와 **&ldquo;Re-ranking&rdquo;**이라는 두 가지 강력한 무기를 도입해야 합니다.</p>
 <p>다음은 최적화된 RAG 파이프라인의 데이터 처리 흐름입니다.</p>
-<p>📊 <strong>Mermaid 다이어그램:</strong> 아래 코드는 블로그에서 자동으로 다이어그램으로 렌더링됩니다.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="nx">graph</span> <span class="nx">TD</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">User</span><span class="p">[</span><span class="nx">사용자</span> <span class="nx">질의</span><span class="p">]</span> <span class="o">--&gt;</span> <span class="nx">Query</span><span class="p">[</span><span class="nx">질의</span> <span class="nx">전처리</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">Query</span> <span class="o">--&gt;|</span><span class="nx">Dense</span> <span class="nx">Vector</span><span class="o">|</span> <span class="nx">VectorDB</span><span class="p">[</span><span class="nx">Vector</span> <span class="nx">Search</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">Query</span> <span class="o">--&gt;|</span><span class="nx">Sparse</span> <span class="nx">Vector</span><span class="o">|</span> <span class="nx">BM25</span><span class="p">[</span><span class="nx">Keyword</span> <span class="nx">Search</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">VectorDB</span> <span class="o">--&gt;</span> <span class="nx">Candidate1</span><span class="p">[</span><span class="nx">후보</span> <span class="nx">문서</span> <span class="nx">집합</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">BM25</span> <span class="o">--&gt;</span> <span class="nx">Candidate1</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">Candidate1</span> <span class="o">--&gt;</span> <span class="nx">ReRanker</span><span class="p">{</span><span class="nx">Cross</span><span class="o">-</span><span class="nx">Encoder</span> <span class="nx">Re</span><span class="o">-</span><span class="nx">ranking</span><span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">ReRanker</span> <span class="o">--&gt;</span> <span class="nx">TopK</span><span class="p">[</span><span class="nx">상위</span> <span class="nx">K개</span> <span class="nx">문서</span> <span class="nx">선정</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">TopK</span> <span class="o">--&gt;</span> <span class="nx">Context</span><span class="p">[</span><span class="nx">컨텍스트</span> <span class="nx">프롬프트</span> <span class="nx">구성</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">Context</span> <span class="o">--&gt;</span> <span class="nx">LLM</span><span class="p">[(</span><span class="nx">LLM</span> <span class="nx">답변</span> <span class="nx">생성</span><span class="p">)]</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="nx">style</span> <span class="nx">ReRanker</span> <span class="nx">fill</span><span class="o">:</span><span class="err">#</span><span class="nx">f9f</span><span class="p">,</span><span class="nx">stroke</span><span class="o">:</span><span class="err">#</span><span class="mi">333</span><span class="p">,</span><span class="nx">stroke</span><span class="o">-</span><span class="nx">width</span><span class="o">:</span><span class="mi">2</span><span class="nx">px</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">style</span> <span class="nx">TopK</span> <span class="nx">fill</span><span class="o">:</span><span class="err">#</span><span class="nx">bfb</span><span class="p">,</span><span class="nx">stroke</span><span class="o">:</span><span class="err">#</span><span class="mi">333</span><span class="p">,</span><span class="nx">stroke</span><span class="o">-</span><span class="nx">width</span><span class="o">:</span><span class="mi">2</span><span class="nx">px</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>이 아키텍처의 핵심은 두 가지 검색 엔진의 결과를 합쳐 후보군을 늘린 뒤(Candidate set), **Re-ranking 모델(Cross-Encoder)**을 통해 정밀도를 높이는 것입니다. 마치 보안 탐지 시스템에서 방화벽(1차 필터링)과 IDS/IPS(심분 분석)를 거치는 것과 유사한 원리입니다.</p>
+<pre class="mermaid">
+  graph TD
+    User[사용자 질의] --&gt; Query[질의 전처리]
+    Query --&gt;|Dense Vector| VectorDB[Vector Search]
+    Query --&gt;|Sparse Vector| BM25[Keyword Search]
+    VectorDB --&gt; Candidate1[후보 문서 집합]
+    BM25 --&gt; Candidate1
+    Candidate1 --&gt; ReRanker{Cross-Encoder Re-ranking}
+    ReRanker --&gt; TopK[상위 K개 문서 선정]
+    TopK --&gt; Context[컨텍스트 프롬프트 구성]
+    Context --&gt; LLM[(LLM 답변 생성)]
+</pre>
+
+<p>이 아키텍처의 핵심은 두 가지 검색 엔진의 결과를 합쳐 후보군을 늘린 뒤(Candidate set), **Re-ranking 모델(Cross-Encoder)**을 통해 정밀도를 높이는 것입니다. 마치 보안 탐지 시스템에서 방화벽(1차 필터링)과 IDS/IPS(심분 분석)를 거치는 것과 유사한 원리입니다.</p>
 <h3 id="3-전략-1-지능형-청킹chunking과-하이브리드-검색">3. 전략 1: 지능형 청킹(Chunking)과 하이브리드 검색
 </h3><p>단순히 500자 단위로 문서를 자르는 것은 위험합니다. 우리는 문서의 의미 단위(Structure-aware Chunking)를 파악해야 합니다. 또한, 벡터 검색의 &ldquo;퍼지(Fuzzy)&ldquo;한 특성을 보완하기 위해 키워드 검색(BM25)을 결합해야 합니다. 이를 <strong>Hybrid Search</strong>라고 합니다.</p>
 <p>아래는 <code>LangChain</code>을 활용하여 하이브리드 검색과 Re-ranking을 구현하는 PoC(개념 증명) 코드입니다.</p>
@@ -744,6 +724,66 @@
     }
 </script>
     
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11.12.2/+esm';
+
+    function initMermaid() {
+        const isDark = document.documentElement.dataset.scheme === 'dark';
+        const theme = isDark ? 'dark' : 'default';
+
+        console.log('Initializing Mermaid with theme:', theme);
+
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: theme,
+            logLevel: 'debug',
+            securityLevel: 'loose',
+            themeVariables: {
+                darkMode: isDark,
+                background: isDark ? '#1e1e1e' : '#ffffff',
+                primaryColor: isDark ? '#81D4FA' : '#E3F2FD',
+                primaryTextColor: isDark ? '#ECEFF1' : '#263238',
+                primaryBorderColor: isDark ? '#81D4FA' : '#0288D1',
+                lineColor: isDark ? '#81D4FA' : '#0288D1',
+                secondaryColor: isDark ? '#4FC3F7' : '#BBDEFB',
+                tertiaryColor: isDark ? '#29B6F6' : '#90CAF9',
+                fillType0: isDark ? '#81D4FA' : '#E3F2FD',
+                fillType1: isDark ? '#4FC3F7' : '#BBDEFB',
+                fillType2: isDark ? '#29B6F6' : '#90CAF9',
+                arrowheadColor: isDark ? '#81D4FA' : '#0288D1',
+                arrowColor: isDark ? '#81D4FA' : '#0288D1',
+                edgeLabelBackground: isDark ? '#263238' : '#ffffff',
+                fontFamily: 'arial',
+                fontSize: '16px'
+            }
+        });
+
+        
+        document.querySelectorAll('.mermaid').forEach((element) => {
+            element.removeAttribute('data-processed');
+        });
+        mermaid.init(undefined, document.querySelectorAll('.mermaid'));
+    }
+
+    
+    initMermaid();
+
+    
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'data-scheme') {
+                console.log('Theme changed to:', document.documentElement.dataset.scheme);
+                initMermaid();
+            }
+        });
+    });
+
+    observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['data-scheme']
+    });
+</script>
+
 
             </main>
         </div>
