@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="ko-kr" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="서론 &ldquo;우리 내부망의 방화벽 규칙을 위반하지 않고, 이 특정 CVE에 대한 패치를 적용할 수 있는가?&rdquo;\nSOC 보안 센터의 모니터링 화면 앞에서 주니어 분석가가 LLM 챗봇에게 던진 질문입니다. 챗봇은 즉시 &ldquo;네, 가능합니다&quot;라고 답변했고, 분석가는 그 조언을 신뢰하여 변경 작업을 수행했습니다. 결과는 어떨까요? 방화벽 규칙과 충돌하여 핵심 서비스가 마비되는 사고가 발생했습니다.\n">
+<title>RAG Optimization: 검색 정확도와 성능을 극대화하는 튜닝 전략</title>
+
+<link rel='canonical' href='http://localhost:1313/rag-optimization-%EA%B2%80%EC%83%89-%EC%A0%95%ED%99%95%EB%8F%84%EC%99%80-%EC%84%B1%EB%8A%A5%EC%9D%84-%EA%B7%B9%EB%8C%80%ED%99%94%ED%95%98%EB%8A%94-%ED%8A%9C%EB%8B%9D-%EC%A0%84%EB%9E%B5/'>
+
+<link rel="stylesheet" href="/scss/style.min.51098b80cc297c94c0f57786d4a04e7372774e5993b60facf53870128a79bf73.css"><meta property='og:title' content="RAG Optimization: 검색 정확도와 성능을 극대화하는 튜닝 전략">
+<meta property='og:description' content="서론 &ldquo;우리 내부망의 방화벽 규칙을 위반하지 않고, 이 특정 CVE에 대한 패치를 적용할 수 있는가?&rdquo;\nSOC 보안 센터의 모니터링 화면 앞에서 주니어 분석가가 LLM 챗봇에게 던진 질문입니다. 챗봇은 즉시 &ldquo;네, 가능합니다&quot;라고 답변했고, 분석가는 그 조언을 신뢰하여 변경 작업을 수행했습니다. 결과는 어떨까요? 방화벽 규칙과 충돌하여 핵심 서비스가 마비되는 사고가 발생했습니다.\n">
+<meta property='og:url' content='http://localhost:1313/rag-optimization-%EA%B2%80%EC%83%89-%EC%A0%95%ED%99%95%EB%8F%84%EC%99%80-%EC%84%B1%EB%8A%A5%EC%9D%84-%EA%B7%B9%EB%8C%80%ED%99%94%ED%95%98%EB%8A%94-%ED%8A%9C%EB%8B%9D-%EC%A0%84%EB%9E%B5/'>
+<meta property='og:site_name' content='코딩이 싫은 거북이'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='AI' /><meta property='article:tag' content='RAG' /><meta property='article:tag' content='LLM' /><meta property='article:tag' content='Optimization' /><meta property='article:tag' content='검색 엔진' /><meta property='article:published_time' content='2026-02-08T15:04:36&#43;09:00'/><meta property='article:modified_time' content='2026-02-08T15:04:36&#43;09:00'/>
+<meta name="twitter:title" content="RAG Optimization: 검색 정확도와 성능을 극대화하는 튜닝 전략">
+<meta name="twitter:description" content="서론 &ldquo;우리 내부망의 방화벽 규칙을 위반하지 않고, 이 특정 CVE에 대한 패치를 적용할 수 있는가?&rdquo;\nSOC 보안 센터의 모니터링 화면 앞에서 주니어 분석가가 LLM 챗봇에게 던진 질문입니다. 챗봇은 즉시 &ldquo;네, 가능합니다&quot;라고 답변했고, 분석가는 그 조언을 신뢰하여 변경 작업을 수행했습니다. 결과는 어떨까요? 방화벽 규칙과 충돌하여 핵심 서비스가 마비되는 사고가 발생했습니다.\n">
+    <link rel="shortcut icon" href="/img/avatar.png" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BDJ5ZPHH5Z"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-BDJ5ZPHH5Z');
+</script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7440869759073353"
+     crossorigin="anonymous"></script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="메뉴 여닫기">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        <figure class="site-avatar">
+                <a href="/">
+                    <img src="/img/avatar.png" 
+                        width="2048"
+                        height="2048"
+                        class="site-logo"
+                        loading="lazy"
+                        alt="Avatar">
+                </a>
+                
+                    <span class="emoji">🐢</span>
+                
+            </figure>
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">코딩이 싫은 거북이</a></h1>
+            <h2 class="site-description">Clean, responsive Hugo theme</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/rebugui'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/page/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/page/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/page/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/page/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>다크 모드</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">목차</h2>
+        
+        <div class="widget--toc">
+            <nav class="toc-nav" id="TableOfContents">
+                
+  <ol>
+    <li><a href="#서론">서론</a></li>
+    <li><a href="#본론">본론</a>
+      <ol>
+        <li><a href="#1-rag의-취약점-왜-검색이-실패하는가">1. RAG의 취약점: 왜 검색이 실패하는가?</a></li>
+        <li><a href="#2-공격-흐름-및-최적화-아키텍처">2. 공격 흐름 및 최적화 아키텍처</a></li>
+        <li><a href="#3-전략-1-지능형-청킹chunking과-하이브리드-검색">3. 전략 1: 지능형 청킹(Chunking)과 하이브리드 검색</a></li>
+        <li><a href="#4-검색-전략-비교-분석">4. 검색 전략 비교 분석</a></li>
+        <li><a href="#5-실무-적용-가이드-단계별-최적화-방어법">5. 실무 적용 가이드: 단계별 최적화 방어법</a>
+          <ol>
+            <li><a href="#1단계-데이터-사전-준비-data-hygiene">1단계: 데이터 사전 준비 (Data Hygiene)</a></li>
+            <li><a href="#2단계-하이브리드-검색-도입">2단계: 하이브리드 검색 도입</a></li>
+            <li><a href="#3단계-re-ranker-배포-핵심">3단계: Re-ranker 배포 (핵심)</a></li>
+            <li><a href="#4단계-평가-및-피드백-루프">4단계: 평가 및 피드백 루프</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#결론">결론</a>
+      <ol>
+        <li><a href="#참고자료">참고자료</a></li>
+      </ol>
+    </li>
+  </ol>
+
+            </nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            
+            
+            
+            <a href="/categories/ai/" style="background-color: hsl(167, 60%, 84%); color: hsl(167, 60%, 15%);">
+                AI
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/rag-optimization-%EA%B2%80%EC%83%89-%EC%A0%95%ED%99%95%EB%8F%84%EC%99%80-%EC%84%B1%EB%8A%A5%EC%9D%84-%EA%B7%B9%EB%8C%80%ED%99%94%ED%95%98%EB%8A%94-%ED%8A%9C%EB%8B%9D-%EC%A0%84%EB%9E%B5/">RAG Optimization: 검색 정확도와 성능을 극대화하는 튜닝 전략</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2026-02-08T15:04:36&#43;09:00'>2026년 2월 8일 일요일</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    8 분 정도
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    
+    <aside class="article-toc">
+        <details>
+            <summary>
+                <div class="article-toc-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg>
+                    <span>목차</span>
+                </div>
+            </summary>
+            <nav class="toc-nav">
+                
+  <ol>
+    <li><a href="#서론">서론</a></li>
+    <li><a href="#본론">본론</a>
+      <ol>
+        <li><a href="#1-rag의-취약점-왜-검색이-실패하는가">1. RAG의 취약점: 왜 검색이 실패하는가?</a></li>
+        <li><a href="#2-공격-흐름-및-최적화-아키텍처">2. 공격 흐름 및 최적화 아키텍처</a></li>
+        <li><a href="#3-전략-1-지능형-청킹chunking과-하이브리드-검색">3. 전략 1: 지능형 청킹(Chunking)과 하이브리드 검색</a></li>
+        <li><a href="#4-검색-전략-비교-분석">4. 검색 전략 비교 분석</a></li>
+        <li><a href="#5-실무-적용-가이드-단계별-최적화-방어법">5. 실무 적용 가이드: 단계별 최적화 방어법</a>
+          <ol>
+            <li><a href="#1단계-데이터-사전-준비-data-hygiene">1단계: 데이터 사전 준비 (Data Hygiene)</a></li>
+            <li><a href="#2단계-하이브리드-검색-도입">2단계: 하이브리드 검색 도입</a></li>
+            <li><a href="#3단계-re-ranker-배포-핵심">3단계: Re-ranker 배포 (핵심)</a></li>
+            <li><a href="#4단계-평가-및-피드백-루프">4단계: 평가 및 피드백 루프</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#결론">결론</a>
+      <ol>
+        <li><a href="#참고자료">참고자료</a></li>
+      </ol>
+    </li>
+  </ol>
+
+            </nav>
+        </details>
+    </aside>
+    
+
+    <section class="article-content">
+    
+    
+    <h2 id="서론">서론
+</h2><p>&ldquo;우리 내부망의 방화벽 규칙을 위반하지 않고, 이 특정 CVE에 대한 패치를 적용할 수 있는가?&rdquo;</p>
+<p>SOC 보안 센터의 모니터링 화면 앞에서 주니어 분석가가 LLM 챗봇에게 던진 질문입니다. 챗봇은 즉시 &ldquo;네, 가능합니다&quot;라고 답변했고, 분석가는 그 조언을 신뢰하여 변경 작업을 수행했습니다. 결과는 어떨까요? 방화벽 규칙과 충돌하여 핵심 서비스가 마비되는 사고가 발생했습니다.</p>
+<p>왜 이런 일이 일어났을까요? LLM이 멍청했기 때문일까요? 아닙니다. LLM에게 제공된 **검색된 컨텍스트(Retrieved Context)**가 불완전했기 때문입니다. 방화벽 정책 문서가 길이 제한으로 인해 잘려서 전달되었고, LLM은 눈앞에 보이는 정보만을 근거로 &ldquo;확신 있게&rdquo; 거짓말을 한 것입니다.</p>
+<p>이것이 단순한 &ldquo;성능 저하&rdquo; 문제가 아닙니다. 보안과 운영 안정성이 걸린 <strong>신뢰도의 문제</strong>입니다. RAG(Retrieval-Augmented Generation) 시스템을 구축할 때 단순히 &ldquo;동작하게&rdquo; 만드는 것은 시작에 불과합니다. 검색 정확도(Relevance)와 응답 신뢰도(Faithfulness)를 극대화하는 <strong>최적화(Optimization)</strong> 없이는 RAG는 &ldquo;정보를 쏘아붙이는 랜덤 박스&rdquo; 그 이상이 될 수 없습니다. 이 글에서는 보안 관점에서 RAG 시스템의 신뢰성을 담보하기 위한 구체적인 튜닝 전략을 다룹니다.</p>
+<blockquote>
+<p><strong>⚠️ 윤리적 경고</strong>: 본 문서에서 설명하는 기술과 코드는 RAG 시스템의 취약점을 분석하고 방어 태세를 강화하기 위한 목적으로 작성되었습니다. 악의적인 목적으로 시스템을 공략하거나 정보를 조작하는 데 사용해서는 안 됩니다.</p>
+</blockquote>
+<h2 id="본론">본론
+</h2><h3 id="1-rag의-취약점-왜-검색이-실패하는가">1. RAG의 취약점: 왜 검색이 실패하는가?
+</h3><p>RAG 시스템의 가장 큰 취약점은 **&ldquo;의미(Semantic)의 매칭 실패&rdquo;**와 **&ldquo;정보의 파편화&rdquo;**입니다.</p>
+<p>기본적인 RAG는 벡터 임베딩(Vector Embedding)을 기반으로 유사도 검색을 수행합니다. 하지만 이 방식은 치명적인 단점이 있습니다. 예를 들어, 공격자가 &ldquo;SQL Injection&rdquo; 대신 &ldquo;SQL 데이터 삽입 공격&quot;이라는 표현을 사용하거나, 특정 보안 장비의 모델명 대신 별칭을 사용하면 벡터 유사도가 급격히 떨어질 수 있습니다. 이를 <strong>&ldquo;어휘 불일치(Vocabulary Mismatch)&rdquo;</strong> 문제라고 합니다.</p>
+<p>또한, 문서를 무작위로 잘라서 저장하는(Fixed-size Chunking) 방식은 하나의 보안 정책이나 공격 기술 설명이 두 개의 청크에 걸쳐 쪼개질 경우, LLM이 맥락을 완전히 잃어버리게 만듭니다.</p>
+<h3 id="2-공격-흐름-및-최적화-아키텍처">2. 공격 흐름 및 최적화 아키텍처
+</h3><p>RAG 시스템을 단순한 검색 도구가 아닌, 방어 체계의 일부로 격상하기 위해 우리는 **&ldquo;Hybrid Search&rdquo;**와 **&ldquo;Re-ranking&rdquo;**이라는 두 가지 강력한 무기를 도입해야 합니다.</p>
+<p>다음은 최적화된 RAG 파이프라인의 데이터 처리 흐름입니다.</p>
+<p>📊 <strong>Mermaid 다이어그램:</strong> 아래 코드는 블로그에서 자동으로 다이어그램으로 렌더링됩니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="nx">graph</span> <span class="nx">TD</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">User</span><span class="p">[</span><span class="nx">사용자</span> <span class="nx">질의</span><span class="p">]</span> <span class="o">--&gt;</span> <span class="nx">Query</span><span class="p">[</span><span class="nx">질의</span> <span class="nx">전처리</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Query</span> <span class="o">--&gt;|</span><span class="nx">Dense</span> <span class="nx">Vector</span><span class="o">|</span> <span class="nx">VectorDB</span><span class="p">[</span><span class="nx">Vector</span> <span class="nx">Search</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Query</span> <span class="o">--&gt;|</span><span class="nx">Sparse</span> <span class="nx">Vector</span><span class="o">|</span> <span class="nx">BM25</span><span class="p">[</span><span class="nx">Keyword</span> <span class="nx">Search</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">VectorDB</span> <span class="o">--&gt;</span> <span class="nx">Candidate1</span><span class="p">[</span><span class="nx">후보</span> <span class="nx">문서</span> <span class="nx">집합</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">BM25</span> <span class="o">--&gt;</span> <span class="nx">Candidate1</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Candidate1</span> <span class="o">--&gt;</span> <span class="nx">ReRanker</span><span class="p">{</span><span class="nx">Cross</span><span class="o">-</span><span class="nx">Encoder</span> <span class="nx">Re</span><span class="o">-</span><span class="nx">ranking</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">ReRanker</span> <span class="o">--&gt;</span> <span class="nx">TopK</span><span class="p">[</span><span class="nx">상위</span> <span class="nx">K개</span> <span class="nx">문서</span> <span class="nx">선정</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">TopK</span> <span class="o">--&gt;</span> <span class="nx">Context</span><span class="p">[</span><span class="nx">컨텍스트</span> <span class="nx">프롬프트</span> <span class="nx">구성</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Context</span> <span class="o">--&gt;</span> <span class="nx">LLM</span><span class="p">[(</span><span class="nx">LLM</span> <span class="nx">답변</span> <span class="nx">생성</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="nx">style</span> <span class="nx">ReRanker</span> <span class="nx">fill</span><span class="o">:</span><span class="err">#</span><span class="nx">f9f</span><span class="p">,</span><span class="nx">stroke</span><span class="o">:</span><span class="err">#</span><span class="mi">333</span><span class="p">,</span><span class="nx">stroke</span><span class="o">-</span><span class="nx">width</span><span class="o">:</span><span class="mi">2</span><span class="nx">px</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">style</span> <span class="nx">TopK</span> <span class="nx">fill</span><span class="o">:</span><span class="err">#</span><span class="nx">bfb</span><span class="p">,</span><span class="nx">stroke</span><span class="o">:</span><span class="err">#</span><span class="mi">333</span><span class="p">,</span><span class="nx">stroke</span><span class="o">-</span><span class="nx">width</span><span class="o">:</span><span class="mi">2</span><span class="nx">px</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>이 아키텍처의 핵심은 두 가지 검색 엔진의 결과를 합쳐 후보군을 늘린 뒤(Candidate set), **Re-ranking 모델(Cross-Encoder)**을 통해 정밀도를 높이는 것입니다. 마치 보안 탐지 시스템에서 방화벽(1차 필터링)과 IDS/IPS(심분 분석)를 거치는 것과 유사한 원리입니다.</p>
+<h3 id="3-전략-1-지능형-청킹chunking과-하이브리드-검색">3. 전략 1: 지능형 청킹(Chunking)과 하이브리드 검색
+</h3><p>단순히 500자 단위로 문서를 자르는 것은 위험합니다. 우리는 문서의 의미 단위(Structure-aware Chunking)를 파악해야 합니다. 또한, 벡터 검색의 &ldquo;퍼지(Fuzzy)&ldquo;한 특성을 보완하기 위해 키워드 검색(BM25)을 결합해야 합니다. 이를 <strong>Hybrid Search</strong>라고 합니다.</p>
+<p>아래는 <code>LangChain</code>을 활용하여 하이브리드 검색과 Re-ranking을 구현하는 PoC(개념 증명) 코드입니다.</p>
+<blockquote>
+<p><strong>⚠️ 주의</strong>: 아래 코드는 학습 및 테스트 환경에서만 실행하세요. 프로덕션 환경 적용 전 반드시 검증이 필요합니다.</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">langchain_community.retrievers</span> <span class="kn">import</span> <span class="n">BM25Retriever</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">langchain_community.vectorstores</span> <span class="kn">import</span> <span class="n">FAISS</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">langchain_openai</span> <span class="kn">import</span> <span class="n">OpenAIEmbeddings</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">langchain.retrievers</span> <span class="kn">import</span> <span class="n">EnsembleRetriever</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">langchain.schema</span> <span class="kn">import</span> <span class="n">Document</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 1. 가상의 보안 가이드 문서 (실제 시나리오에서는 PDF/DB에서 로드)</span>
+</span></span><span class="line"><span class="cl"><span class="n">documents</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Document</span><span class="p">(</span><span class="n">page_content</span><span class="o">=</span><span class="s2">&#34;SQL Injection은 사용자 입력이 SQL 쿼리로 인식되어 발생하는 취약점입니다. 방어를 위해 입력 검증이 필수입니다.&#34;</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&#34;source&#34;</span><span class="p">:</span> <span class="s2">&#34;security_guide.pdf&#34;</span><span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Document</span><span class="p">(</span><span class="n">page_content</span><span class="o">=</span><span class="s2">&#34;XSS(Cross-Site Scripting)는 클라이언트 사이드 스크립트가 악의적으로 실행되는 공격입니다.&#34;</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&#34;source&#34;</span><span class="p">:</span> <span class="s2">&#34;security_guide.pdf&#34;</span><span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Document</span><span class="p">(</span><span class="n">page_content</span><span class="o">=</span><span class="s2">&#34;방화벽 규칙 변경 시 반드시 변경 관리 위원회의 승인을 받아야 합니다.&#34;</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&#34;source&#34;</span><span class="p">:</span> <span class="s2">&#34;policy.pdf&#34;</span><span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Document</span><span class="p">(</span><span class="n">page_content</span><span class="o">=</span><span class="s2">&#34;패치 관리: CVE-2024-1234는 긴급급으로 처리되어야 하며, 서비스 재기동이 필요합니다.&#34;</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&#34;source&#34;</span><span class="p">:</span> <span class="s2">&#34;patch_mngt.pdf&#34;</span><span class="p">}),</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 2. 벡터화 및 BM25 retriever 초기화</span>
+</span></span><span class="line"><span class="cl"><span class="n">embeddings</span> <span class="o">=</span> <span class="n">OpenAIEmbeddings</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">vectorstore</span> <span class="o">=</span> <span class="n">FAISS</span><span class="o">.</span><span class="n">from_documents</span><span class="p">(</span><span class="n">documents</span><span class="p">,</span> <span class="n">embeddings</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">vector_retriever</span> <span class="o">=</span> <span class="n">vectorstore</span><span class="o">.</span><span class="n">as_retriever</span><span class="p">(</span><span class="n">search_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&#34;k&#34;</span><span class="p">:</span> <span class="mi">5</span><span class="p">})</span> <span class="c1"># 1차 후보군 5개 추출</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">bm25_retriever</span> <span class="o">=</span> <span class="n">BM25Retriever</span><span class="o">.</span><span class="n">from_documents</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">bm25_retriever</span><span class="o">.</span><span class="n">k</span> <span class="o">=</span> <span class="mi">5</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 3. 하이브리드 리트리버 설정 (가중치 조절)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 0.5는 벡터와 키워드 검색의 중요도가 동일함을 의미합니다.</span>
+</span></span><span class="line"><span class="cl"><span class="n">ensemble_retriever</span> <span class="o">=</span> <span class="n">EnsembleRetriever</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">retrievers</span><span class="o">=</span><span class="p">[</span><span class="n">bm25_retriever</span><span class="p">,</span> <span class="n">vector_retriever</span><span class="p">],</span> <span class="n">weights</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 4. 질의 수행</span>
+</span></span><span class="line"><span class="cl"><span class="n">query</span> <span class="o">=</span> <span class="s2">&#34;보안 패치 승인 규칙은?&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">docs</span> <span class="o">=</span> <span class="n">ensemble_retriever</span><span class="o">.</span><span class="n">get_relevant_documents</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 5. Re-ranking 과정 (가상의 CoT: 여기서 별도의 Cross-Encoder 모델을 통해 점수를 재매깅함)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;--- 검색된 문서 (Re-ranking 전) ---&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">doc</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">docs</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">. </span><span class="si">{</span><span class="n">doc</span><span class="o">.</span><span class="n">page_content</span><span class="si">}</span><span class="s2"> (Source: </span><span class="si">{</span><span class="n">doc</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">)&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 실제 운영 시 여기서 &#39;Cohere Rerank&#39;나 &#39;BGE Reranker&#39; 등을 통해 최종 Top K를 선별합니다.</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>이 코드는 단순 검색을 넘어, 키워드(예: &ldquo;승인&rdquo;, &ldquo;규칙&rdquo;)와 의미(예: &ldquo;패치 프로세스&rdquo;)를 동시에 고려하여 문서를 찾아냅니다. 이는 공격자가 은어를 사용하거나 오타를 내더라도 검색 로버스트니스(Robustness)를 크게 높여줍니다.</p>
+<h3 id="4-검색-전략-비교-분석">4. 검색 전략 비교 분석
+</h3><p>어떤 검색 방식을 채택할지 결정할 때, 아래의 표를 참조하여 운영 환경에 맞는 최적의 조합을 선택해야 합니다.</p>
+<p>| 검색 전략 | 원리 (Mechanism) | 장점 (Pros) | 단점 (Cons) | 추천 상황 | | &mdash; | &mdash; | &mdash; | &mdash; | &mdash; | | <strong>Vector Search</strong> | Dense Embedding 유사도 계산 | 의미적 맥락 이해 (예: &ldquo;해킹&rdquo; vs &ldquo;공격&rdquo;) | 구체적인 키워드(모델명, CVE 번호) 검색 시 약함 | 일반적인 질의 응답, 요약 | | <strong>Keyword Search (BM25)</strong> | 단어 빈도 기반 정확 매칭 | 고유명사, 특정 용어 검색에 정확함 | 의미적 유의어(예: &ldquo;지갑&rdquo; vs &ldquo;비트코인&rdquo;) 처리 불가 | 로그 검색, 기술 매뉴얼 탐색 | | <strong>Hybrid Search</strong> | Vector + Keyword 가중 평균 | 정확도와 재현율(Recall)의 균형 | 리트리버 튜닝(Weight 설정)이 복잡함 | 대부분의 엔터프라이즈 RAG 시스템 | | <strong>Re-ranking</strong> | 검색된 후보군을 Deep Learning으로 재정렬 | 최종 결과물의 정밀도(Precision) 극대화 | 추가적인 Latency(지연 시간) 발생 | 높은 정확도가 요구되는 보안/법률 상담 |</p>
+<h3 id="5-실무-적용-가이드-단계별-최적화-방어법">5. 실무 적용 가이드: 단계별 최적화 방어법
+</h3><p>RAG 시스템의 성능을 극대화하기 위한 구체적인 단계별 가이드입니다.</p>
+<h4 id="1단계-데이터-사전-준비-data-hygiene">1단계: 데이터 사전 준비 (Data Hygiene)
+</h4><ul>
+<li>
+<p><strong>구조 파악</strong>: 마크다운 제목(<code>#</code>, <code>##</code>)이나 문단 단위로 문서를 분리합니다.</p>
+</li>
+<li>
+<p><strong>청킹 전략</strong>:</p>
+<ul>
+<li><code>RecursiveCharacterTextSplitter</code>를 활용하되, `separators=[&rdquo;</li>
+</ul>
+</li>
+</ul>
+<p>&ldquo;, &quot; &ldquo;, &quot; &ldquo;, &ldquo;&rdquo;]` 순서로 설정하여 문장을 중간에 끊는 위험을 최소화하세요.   - 청크 크기는 LLM의 컨텍스트 윈도우를 고려하여 512~1024 토큰 사이로 설정하는 것이 일반적입니다.</p>
+<h4 id="2단계-하이브리드-검색-도입">2단계: 하이브리드 검색 도입
+</h4><ul>
+<li>
+<p>기존 벡터 DB에 BM25 인덱스를 추가합니다. (예: Elasticsearch, Pinecone, Weaviate 등 최신 DB는 하이브리드 검색을 네이티브 지원합니다.)</p>
+</li>
+<li>
+<p>가중치(Weights) 테스트: 보안 로그 검색이 많다면 키워드 가중치를 0.7로 올리고, 일반적인 정책 질의가 많다면 벡터 가중치를 0.6으로 조정하며 A/B 테스트를 수행하세요.</p>
+</li>
+</ul>
+<h4 id="3단계-re-ranker-배포-핵심">3단계: Re-ranker 배포 (핵심)
+</h4><ul>
+<li>
+<p>검색된 Top 20개 문서를 Re-ranker 모델(예: <code>BAAI/bge-reranker-base</code>)에 통과시켜 최종 Top 5개만 추출합니다.</p>
+</li>
+<li>
+<p><strong>완화 조치</strong>: Re-ranker는 연산 비용이 비쌉니다. 캐싱 전략을 도입하여 동일한 질의에 대한 재연산을 방지하세요.</p>
+</li>
+</ul>
+<h4 id="4단계-평가-및-피드백-루프">4단계: 평가 및 피드백 루프
+</h4><ul>
+<li>RAGAS(RAG Assessment) 프레임워크를 사용하여 <code>Faithfulness</code>(답변이 검색된 문서에 기반하는가)와 <code>Answer Relevance</code> 지표를 모니터링하세요.</li>
+</ul>
+<h2 id="결론">결론
+</h2><p>RAG 시스템의 최적화는 기술적인 &ldquo;성능 튜닝&quot;을 넘어, 정보의 **&ldquo;무결성(Integrity)&rdquo;**을 지키는 방어 활동입니다. 단순히 벡터 데이터베이스를 구축하는 것으로는 LLM이 &ldquo;할루시네이션(Hallucination)&ldquo;이라는 보안 허점을 노출할 수 있습니다. 우리는 <strong>Hybrid Search</strong>로 검색의 &ldquo;망&quot;을 넓히고, <strong>Re-ranking</strong>으로 정확도의 &ldquo;창&quot;을 좁혀야 합니다.</p>
+<p>전문가로서의 조언을 덧붙입니다: RAG는 살아있는 유기체입니다. 새로운 공격 기법이나 보안 정책이 추가될 때마다 데이터베이스를 업데이트하고, Re-ranking 모델을 튜닝하는 지속적인 사후 관리(Post-management)가 없다면, 아무리 비싼 GPU와 LLM을 사용해도 &ldquo;쓰레기를 투입해 쓰레기를 출력(Garbage In, Garbage Out)&ldquo;하는 결과를 막을 수 없습니다.</p>
+<p>지금 당신의 RAG 파이프라인을 점검하세요. 단순한 검색 엔진이 아닌, 신뢰할 수 있는 보안 지식 파트너가 되어 있는지 확인하는 것이 필수적입니다.</p>
+<h3 id="참고자료">참고자료
+</h3><ul>
+<li>
+<p><a class="link" href="https://python.langchain.com/docs/modules/data_connection/retrievers/ensemble/"  target="_blank" rel="noopener"
+    >LangChain Documentation: Hybrid Search</a></p>
+</li>
+<li>
+<p><a class="link" href="https://docs.ragas.io/"  target="_blank" rel="noopener"
+    >RAGAS: Evaluation Framework for RAG</a></p>
+</li>
+<li>
+<p><a class="link" href="https://huggingface.co/BAAI/bge-reranker-base"  target="_blank" rel="noopener"
+    >BGE Re-ranker on Hugging Face</a></p>
+</li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/ai/">AI</a>
+        
+            <a href="/tags/rag/">RAG</a>
+        
+            <a href="/tags/llm/">LLM</a>
+        
+            <a href="/tags/optimization/">Optimization</a>
+        
+            <a href="/tags/%EA%B2%80%EC%83%89-%EC%97%94%EC%A7%84/">검색 엔진</a>
+        
+    </section>
+
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">관련 글</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/%EC%98%A4%ED%94%BC%EC%8A%A4-%EC%A0%9C%EB%A1%9C%EB%8D%B0%EC%9D%B4-ai%EB%A1%9C-%EC%84%A0%EC%A0%9C-%EB%B0%A9%EC%96%B4/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">오피스 제로데이, AI로 선제 방어</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/%EC%98%A4%ED%94%BC%EC%8A%A4-%EC%A0%9C%EB%A1%9C%EB%8D%B0%EC%9D%B4-%EA%B3%B5%EA%B2%A9-%EB%8C%80%EC%9D%91-ai/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">오피스 제로데이 공격 대응 AI</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/falcon-llm-vs-gpt-4-%EC%98%A4%ED%94%88%EC%86%8C%EC%8A%A4-%EB%AA%A8%EB%8D%B8%EC%9D%98-%EC%84%B1%EB%8A%A5-%EA%B2%80%EC%A6%9D%EA%B3%BC-%ED%95%9C%EA%B3%84-%EB%B6%84%EC%84%9D/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Falcon LLM vs GPT-4: 오픈소스 모델의 성능 검증과 한계 분석</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/%ED%81%AC%EB%A1%AC-%EC%A0%9C%EB%A1%9C%EB%8D%B0%EC%9D%B4-ml%EB%A1%9C-%EC%9E%A1%EB%8A%94%EB%8B%A4/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">크롬 제로데이, ML로 잡는다</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/%EB%B2%95%EC%A0%81-%EB%B6%84%EC%9F%81-%EC%86%8D-%EA%B5%AD%EA%B0%80%EC%95%88%EB%B3%B4-%EB%A6%AC%EC%8A%A4%ED%81%AC-nlp-%EA%B8%B0%EB%B0%98-%ED%83%90%EC%A7%80-%EB%AA%A8%EB%8D%B8/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">법적 분쟁 속 국가안보 리스크: NLP 기반 탐지 모델</h2>
+        </div>
+    </a>
+</article>
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025 - 
+        
+        2026 코딩이 싫은 거북이
+    </section>
+    
+    <section class="powerby">
+        <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>로 만듦 <br />
+        <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>의 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="4.0.0">Stack</a></b> 테마 사용 중
+    </section>
+</footer>
+
+
+    
+
+
+
+<script type="module">
+    import gallery from '\/ts\/gallery.js';
+
+    const articleContent = document.querySelector('.article-content');
+    const shouldLoad = articleContent && (articleContent.querySelectorAll('figure').length > 0 || articleContent.querySelectorAll('img.gallery-image').length > 0);
+    
+    if (shouldLoad) {
+        gallery(articleContent);
+
+        const PhotoSwipeLightbox = (await import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js")).default;
+        const styleHref = "https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.css";
+
+        const styleTag = document.createElement('link');
+        styleTag.rel = 'stylesheet';
+        styleTag.href = styleHref;
+        document.head.appendChild(styleTag);
+
+        const lightbox = new PhotoSwipeLightbox({
+            gallerySelector: '.article-content',
+            childSelector: 'figure a.image-link',
+            pswpModule: () => import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js")
+        });
+        lightbox.init();
+    }
+</script>
+    
+
+            </main>
+        </div>
+        <script type="text/javascript" src="/ts/main.387bdf6159ab34d0743ebd228aa9248d1ed2380fa5193ceff9ffdbf345b5309d.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
