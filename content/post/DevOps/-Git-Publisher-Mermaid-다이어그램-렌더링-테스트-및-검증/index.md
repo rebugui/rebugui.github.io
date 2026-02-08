@@ -36,7 +36,6 @@ Mermaid는 텍스트를 정의하여 다이어그램을 그리는 JavaScript 기
 
 다음은 이러한 공격이 Git Publisher 파이프라인을 통해 어떻게 전파되는지 보여주는 흐름도입니다.
 
-📊 **Mermaid 다이어그램:** 아래 코드는 블로그에서 자동으로 다이어그램으로 렌더링됩니다.
 
 ```mermaid
 graph LR
