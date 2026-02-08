@@ -1,6 +1,6 @@
 ---
 title: "🧪 파이프라인 테스트: Mermaid 다이어그램"
-date: 2026-02-08T13:34:38+09:00
+date: 2026-02-08T13:43:14+09:00
 draft: false
 tags:
   - "Test"
