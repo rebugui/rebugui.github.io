@@ -1,1316 +1,551 @@
-<!DOCTYPE html>
-<html lang="ko-kr" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="클라우드 리소스에 대한 백업 수행 여부 점검">
-<title>[2026 주요정보통신기반시설] CA-18 백업사용여부</title>
-
-<link rel='canonical' href='http://localhost:1313/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-18/'>
-
-<link rel="stylesheet" href="/scss/style.min.51098b80cc297c94c0f57786d4a04e7372774e5993b60facf53870128a79bf73.css"><meta property='og:title' content="[2026 주요정보통신기반시설] CA-18 백업사용여부">
-<meta property='og:description' content="클라우드 리소스에 대한 백업 수행 여부 점검">
-<meta property='og:url' content='http://localhost:1313/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-18/'>
-<meta property='og:site_name' content='코딩이 싫은 거북이'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='2026 주정통 가이드라인' /><meta property='article:tag' content='Cloud' /><meta property='article:published_time' content='2026-02-05T09:56:13&#43;09:00'/><meta property='article:modified_time' content='2026-02-05T09:56:13&#43;09:00'/>
-<meta name="twitter:title" content="[2026 주요정보통신기반시설] CA-18 백업사용여부">
-<meta name="twitter:description" content="클라우드 리소스에 대한 백업 수행 여부 점검">
-    <link rel="shortcut icon" href="/img/avatar.png" />
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-BDJ5ZPHH5Z"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-BDJ5ZPHH5Z');
-</script>
-
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7440869759073353"
-     crossorigin="anonymous"></script>
-
-    </head>
-    <body class="
-    article-page
-    ">
-    <script>
-        (function() {
-            const colorSchemeKey = 'StackColorScheme';
-            if(!localStorage.getItem(colorSchemeKey)){
-                localStorage.setItem(colorSchemeKey, "auto");
-            }
-        })();
-    </script><script>
-    (function() {
-        const colorSchemeKey = 'StackColorScheme';
-        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
-        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
-
-        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
-            
-
-            document.documentElement.dataset.scheme = 'dark';
-        } else {
-            document.documentElement.dataset.scheme = 'light';
-        }
-    })();
-</script>
-<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
-    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="메뉴 여닫기">
-        <span class="hamburger-box">
-            <span class="hamburger-inner"></span>
-        </span>
-    </button>
-
-    <header>
-        <figure class="site-avatar">
-                <a href="/">
-                    <img src="/img/avatar.png" 
-                        width="2048"
-                        height="2048"
-                        class="site-logo"
-                        loading="lazy"
-                        alt="Avatar">
-                </a>
-                
-                    <span class="emoji">🐢</span>
-                
-            </figure>
-        
-        
-        <div class="site-meta">
-            <h1 class="site-name"><a href="/">코딩이 싫은 거북이</a></h1>
-            <h2 class="site-description">Clean, responsive Hugo theme</h2>
-        </div>
-    </header><ol class="menu-social">
-            
-                <li>
-                    <a 
-                        href='https://github.com/rebugui'
-                        target="_blank"
-                        title="GitHub"
-                        rel="me"
-                    >
-                        
-                        
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
-</svg>
-
-
-
-                        
-                    </a>
-                </li>
-            
-        </ol><ol class="menu" id="main-menu">
-        
-        
-        
-        <li >
-            <a href='/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <polyline points="5 12 3 12 12 3 21 12 19 12" />
-  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
-  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
-</svg>
-
-
-
-                
-                <span>Home</span>
-            </a>
-        </li>
-        
-        
-        <li >
-            <a href='/page/about/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="12" cy="7" r="4" />
-  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
-</svg>
-
-
-
-                
-                <span>About</span>
-            </a>
-        </li>
-        
-        
-        <li >
-            <a href='/page/archives/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <rect x="3" y="4" width="18" height="4" rx="2" />
-  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
-  <line x1="10" y1="12" x2="14" y2="12" />
-</svg>
-
-
-
-                
-                <span>Archives</span>
-            </a>
-        </li>
-        
-        
-        <li >
-            <a href='/page/search/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="10" cy="10" r="7" />
-  <line x1="21" y1="21" x2="15" y2="15" />
-</svg>
-
-
-
-                
-                <span>Search</span>
-            </a>
-        </li>
-        
-        
-        <li >
-            <a href='/page/links/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
-  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
-</svg>
-
-
-
-                
-                <span>Links</span>
-            </a>
-        </li>
-        
-        <li class="menu-bottom-section">
-            <ol class="menu">
-
-                
-                    <li id="dark-mode-toggle">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="8" cy="12" r="2" />
-  <rect x="2" y="6" width="20" height="12" rx="6" />
-</svg>
-
-
-
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="16" cy="12" r="2" />
-  <rect x="2" y="6" width="20" height="12" rx="6" />
-</svg>
-
-
-
-                        <span>다크 모드</span>
-                    </li>
-                
-            </ol>
-        </li>
-    </ol>
-</aside>
-
-    <aside class="sidebar right-sidebar sticky">
-        
-            
-                
-    <section class="widget archives">
-        <div class="widget-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <line x1="5" y1="9" x2="19" y2="9" />
-  <line x1="5" y1="15" x2="19" y2="15" />
-  <line x1="11" y1="4" x2="7" y2="20" />
-  <line x1="17" y1="4" x2="13" y2="20" />
-</svg>
-
-
-
-        </div>
-        <h2 class="widget-title section-title">목차</h2>
-        
-        <div class="widget--toc">
-            <nav class="toc-nav" id="TableOfContents">
-                
-  <ol>
-    <li><a href="#가이드라인-원문">가이드라인 원문</a></li>
-    <li><a href="#상세-설명">상세 설명</a>
-      <ol>
-        <li><a href="#1-항목-개요">1. 항목 개요</a></li>
-        <li><a href="#2-왜-이-항목이-필요한가요">2. 왜 이 항목이 필요한가요?</a></li>
-        <li><a href="#3-점검-대상">3. 점검 대상</a></li>
-        <li><a href="#4-판단-기준">4. 판단 기준</a></li>
-        <li><a href="#5-점검-방법">5. 점검 방법</a>
-          <ol>
-            <li><a href="#step-1-ec2-인스턴스-백업-확인">Step 1: EC2 인스턴스 백업 확인</a></li>
-            <li><a href="#step-2-rds-백업-확인">Step 2: RDS 백업 확인</a></li>
-            <li><a href="#step-3-azure-vm-백업-확인">Step 3: Azure VM 백업 확인</a></li>
-          </ol>
-        </li>
-        <li><a href="#6-조치-방법">6. 조치 방법</a>
-          <ol>
-            <li><a href="#step-1-ec2-인스턴스-백업">Step 1: EC2 인스턴스 백업</a></li>
-            <li><a href="#step-2-dlm-data-lifecycle-manager-설정">Step 2: DLM (Data Lifecycle Manager) 설정</a></li>
-            <li><a href="#step-3-rds-자동-백업-설정">Step 3: RDS 자동 백업 설정</a></li>
-            <li><a href="#step-4-s3-버전-관리-및-중복-삭제">Step 4: S3 버전 관리 및 중복 삭제</a></li>
-            <li><a href="#step-5-azure-vm-백업">Step 5: Azure VM 백업</a></li>
-            <li><a href="#step-6-gcp-cloud-sql-백업">Step 6: GCP Cloud SQL 백업</a></li>
-          </ol>
-        </li>
-        <li><a href="#7-백업-전략">7. 백업 전략</a>
-          <ol>
-            <li><a href="#3-2-1-백업-규칙">3-2-1 백업 규칙</a></li>
-          </ol>
-        </li>
-        <li><a href="#8-복구-테스트-disaster-recovery-drill">8. 복구 테스트 (Disaster Recovery Drill)</a></li>
-        <li><a href="#9-백업-모니터링-및-알림">9. 백업 모니터링 및 알림</a></li>
-        <li><a href="#10-조치-시-주의사항">10. 조치 시 주의사항</a></li>
-        <li><a href="#11-참고-자료">11. 참고 자료</a></li>
-      </ol>
-    </li>
-    <li><a href="#요약">요약</a></li>
-  </ol>
-
-            </nav>
-        </div>
-    </section>
-
-            
-        
-    </aside>
-
-
-            <main class="main full-width">
-    <article class="main-article">
-    <header class="article-header">
-
-    <div class="article-details">
-    
-    <header class="article-category">
-        
-            
-            
-            
-            <a href="/categories/2026-%EC%A3%BC%EC%A0%95%ED%86%B5-%EA%B0%80%EC%9D%B4%EB%93%9C%EB%9D%BC%EC%9D%B8/" style="background-color: hsl(281, 60%, 84%); color: hsl(281, 60%, 15%);">
-                2026 주정통 가이드라인
-            </a>
-        
-    </header>
-    
-
-    <div class="article-title-wrapper">
-        <h2 class="article-title">
-            <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-18/">[2026 주요정보통신기반시설] CA-18 백업사용여부</a>
-        </h2>
-    
-        
-        <h3 class="article-subtitle">
-            클라우드 리소스에 대한 백업 수행 여부 점검
-        </h3>
-        
-    </div>
-
-    
-    
-    
-    
-    <footer class="article-time">
-        
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
-  <circle cx="18" cy="18" r="4" />
-  <path d="M15 3v4" />
-  <path d="M7 3v4" />
-  <path d="M3 11h16" />
-  <path d="M18 16.496v1.504l1 1" />
-</svg>
-                <time class="article-time--published" datetime='2026-02-05T09:56:13&#43;09:00'>2026년 2월 5일 목요일</time>
-            </div>
-        
-
-        
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="12" cy="12" r="9" />
-  <polyline points="12 7 12 12 15 15" />
-</svg>
-
-
-
-                <time class="article-time--reading">
-                    5 분 정도
-                </time>
-            </div>
-        
-    </footer>
-    
-
-    
-</div>
-
-</header>
-
-    
-    <aside class="article-toc">
-        <details>
-            <summary>
-                <div class="article-toc-title">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg>
-                    <span>목차</span>
-                </div>
-            </summary>
-            <nav class="toc-nav">
-                
-  <ol>
-    <li><a href="#가이드라인-원문">가이드라인 원문</a></li>
-    <li><a href="#상세-설명">상세 설명</a>
-      <ol>
-        <li><a href="#1-항목-개요">1. 항목 개요</a></li>
-        <li><a href="#2-왜-이-항목이-필요한가요">2. 왜 이 항목이 필요한가요?</a></li>
-        <li><a href="#3-점검-대상">3. 점검 대상</a></li>
-        <li><a href="#4-판단-기준">4. 판단 기준</a></li>
-        <li><a href="#5-점검-방법">5. 점검 방법</a>
-          <ol>
-            <li><a href="#step-1-ec2-인스턴스-백업-확인">Step 1: EC2 인스턴스 백업 확인</a></li>
-            <li><a href="#step-2-rds-백업-확인">Step 2: RDS 백업 확인</a></li>
-            <li><a href="#step-3-azure-vm-백업-확인">Step 3: Azure VM 백업 확인</a></li>
-          </ol>
-        </li>
-        <li><a href="#6-조치-방법">6. 조치 방법</a>
-          <ol>
-            <li><a href="#step-1-ec2-인스턴스-백업">Step 1: EC2 인스턴스 백업</a></li>
-            <li><a href="#step-2-dlm-data-lifecycle-manager-설정">Step 2: DLM (Data Lifecycle Manager) 설정</a></li>
-            <li><a href="#step-3-rds-자동-백업-설정">Step 3: RDS 자동 백업 설정</a></li>
-            <li><a href="#step-4-s3-버전-관리-및-중복-삭제">Step 4: S3 버전 관리 및 중복 삭제</a></li>
-            <li><a href="#step-5-azure-vm-백업">Step 5: Azure VM 백업</a></li>
-            <li><a href="#step-6-gcp-cloud-sql-백업">Step 6: GCP Cloud SQL 백업</a></li>
-          </ol>
-        </li>
-        <li><a href="#7-백업-전략">7. 백업 전략</a>
-          <ol>
-            <li><a href="#3-2-1-백업-규칙">3-2-1 백업 규칙</a></li>
-          </ol>
-        </li>
-        <li><a href="#8-복구-테스트-disaster-recovery-drill">8. 복구 테스트 (Disaster Recovery Drill)</a></li>
-        <li><a href="#9-백업-모니터링-및-알림">9. 백업 모니터링 및 알림</a></li>
-        <li><a href="#10-조치-시-주의사항">10. 조치 시 주의사항</a></li>
-        <li><a href="#11-참고-자료">11. 참고 자료</a></li>
-      </ol>
-    </li>
-    <li><a href="#요약">요약</a></li>
-  </ol>
-
-            </nav>
-        </details>
-    </aside>
-    
-
-    <section class="article-content">
-    
-    
-    <h1 id="ca-18-백업사용여부">CA-18 백업사용여부
-</h1><h2 id="가이드라인-원문">가이드라인 원문
-</h2><div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>항목</th>
-          <th>내용</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>항목코드</strong></td>
-          <td>CA-18</td>
-      </tr>
-      <tr>
-          <td><strong>점검내용</strong></td>
-          <td>클라우드 리소스에 대한 백업 수행 여부 점검</td>
-      </tr>
-      <tr>
-          <td><strong>점검대상</strong></td>
-          <td>클라우드 플랫폼</td>
-      </tr>
-      <tr>
-          <td><strong>판단기준</strong></td>
-          <td>양호: 클라우드 리소스를 기관 정책에 따라 주기적으로 백업이 수행된 경우</td>
-      </tr>
-      <tr>
-          <td><strong>판단기준</strong></td>
-          <td>취약: 클라우드 리소스를 기관 정책에 따라 주기적으로 백업이 수행되지 않은 경우</td>
-      </tr>
-      <tr>
-          <td><strong>조치방법</strong></td>
-          <td>클라우드 리소스를 주기적으로 백업 설정</td>
-      </tr>
-  </tbody>
-</table></div>
-<hr>
-<h2 id="상세-설명">상세 설명
-</h2><h3 id="1-항목-개요">1. 항목 개요
-</h3><p>클라우드 환경에서도 백업은 데이터 보호와 비즈니스 연속성의 핵심입니다. 인스턴스 장애, 데이터베이스 손상, 데이터 삭제, 리전 장애 등 다양한 시나리오에서 백업은 빠른 복구와 데이터 손실 방지를 위해 필수적입니다.</p>
-<h3 id="2-왜-이-항목이-필요한가요">2. 왜 이 항목이 필요한가요?
-</h3><p><strong>데이터 손실 시나리오:</strong></p>
-<ol>
-<li><strong>실수로 데이터 삭제</strong>: 관리자의 실수로 중요 데이터 삭제</li>
-<li><strong>악성코드 감염</strong>: 랜섬웨어로 데이터 암호화</li>
-<li><strong>하드웨어 장애</strong>: 스토리지 장애로 데이터 손실</li>
-<li><strong>리전 장애</strong>: 전체 리전의 가용성 저하 (AWS us-east-1 장애 등)</li>
-<li><strong>자연재해</strong>: 화재, 지진, 홍수 등 물리적 재해</li>
-</ol>
-<p><strong>실제 사례</strong></p>
-<ul>
-<li>2021년: 코드 삭제 실수로 백업이 없어 회사 폐업</li>
-<li>2017년: AWS S3 버킷 삭제 실수로 데이터 영구 손실</li>
-<li>2020년: 랜섬웨어 공격으로 백업 없이 전체 데이터 손실</li>
-</ul>
-<h3 id="3-점검-대상">3. 점검 대상
-</h3><ul>
-<li>EC2 인스턴스 / VM</li>
-<li>RDS, Cloud SQL, Azure SQL 등 데이터베이스</li>
-<li>EBS, Managed Disk 등 블록 스토리지</li>
-<li>S3, Blob Storage 등 오브젝트 스토리지</li>
-<li>VPC 구성</li>
-</ul>
-<h3 id="4-판단-기준">4. 판단 기준
-</h3><div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>구분</th>
-          <th>기준</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>양호</strong></td>
-          <td>주기적 자동 백업이 설정되고, 정기적으로 복구 테스트가 수행되는 경우</td>
-      </tr>
-      <tr>
-          <td><strong>취약</strong></td>
-          <td>백업이 설정되지 않았거나, 수동으로만 백업되는 경우</td>
-      </tr>
-  </tbody>
-</table></div>
-<h3 id="5-점검-방법">5. 점검 방법
-</h3><h4 id="step-1-ec2-인스턴스-백업-확인">Step 1: EC2 인스턴스 백업 확인
-</h4><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># AWS CLI 예시</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># AMI(인스턴스 이미지) 확인</span>
-</span></span><span class="line"><span class="cl">aws ec2 describe-images <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --owners self <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --query <span class="s2">&#34;Images[].{ImageId:ImageId,Name:Name,CreationDate:CreationDate}&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 스냅샷 확인</span>
-</span></span><span class="line"><span class="cl">aws ec2 describe-snapshots <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --owner-ids self <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --query <span class="s2">&#34;Snapshots[].{SnapshotId:SnapshotId,VolumeId:VolumeId,StartTime:StartTime}&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Lifecycle Manager 확인</span>
-</span></span><span class="line"><span class="cl">aws dlm describe-lifecycle-policies
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h4 id="step-2-rds-백업-확인">Step 2: RDS 백업 확인
-</h4><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># RDS 백업 보관 기간 확인</span>
-</span></span><span class="line"><span class="cl">aws rds describe-db-instances <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --query <span class="s2">&#34;DBInstances[].{DBInstanceIdentifier:DBInstanceIdentifier,BackupRetentionPeriod:BackupRetentionPeriod}&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># DB 스냅샷 확인</span>
-</span></span><span class="line"><span class="cl">aws rds describe-db-snapshots <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --snapshot-type manual <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --query <span class="s2">&#34;DBSnapshots[].{DBSnapshotIdentifier:DBSnapshotIdentifier,SnapshotCreateTime:SnapshotCreateTime}&#34;</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h4 id="step-3-azure-vm-백업-확인">Step 3: Azure VM 백업 확인
-</h4><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Azure CLI 예시</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># Recovery Services Vault 확인</span>
-</span></span><span class="line"><span class="cl">az backup vault list
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># VM 백업 작업 확인</span>
-</span></span><span class="line"><span class="cl">az backup job list --resource-group myresourcegroup --vault-name myvault
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="6-조치-방법">6. 조치 방법
-</h3><h4 id="step-1-ec2-인스턴스-백업">Step 1: EC2 인스턴스 백업
-</h4><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 수동 AMI 생성</span>
-</span></span><span class="line"><span class="cl">aws ec2 create-image <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --instance-id i-xxxxxxxx <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --name <span class="s2">&#34;my-instance-backup-</span><span class="k">$(</span>date +%Y%m%d<span class="k">)</span><span class="s2">&#34;</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --description <span class="s2">&#34;Daily backup of my instance&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># EBS 스냅샷 생성</span>
-</span></span><span class="line"><span class="cl">aws ec2 create-snapshot <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --volume-id vol-xxxxxxxx <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --description <span class="s2">&#34;Daily snapshot of root volume&#34;</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># AWS Backup을 통한 자동 백업</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 백업 계획 생성</span>
-</span></span><span class="line"><span class="cl">aws backup create-backup-plan <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --backup-plan <span class="s1">&#39;{
-</span></span></span><span class="line"><span class="cl"><span class="s1">    &#34;BackupPlan&#34;: {
-</span></span></span><span class="line"><span class="cl"><span class="s1">      &#34;BackupPlanName&#34;: &#34;EISBackupPlan&#34;,
-</span></span></span><span class="line"><span class="cl"><span class="s1">      &#34;Rules&#34;: [
-</span></span></span><span class="line"><span class="cl"><span class="s1">        {
-</span></span></span><span class="line"><span class="cl"><span class="s1">          &#34;RuleName&#34;: &#34;DailyBackups&#34;,
-</span></span></span><span class="line"><span class="cl"><span class="s1">          &#34;ScheduleExpression&#34;: &#34;cron(0 5 ? * * *)&#34;,
-</span></span></span><span class="line"><span class="cl"><span class="s1">          &#34;StartWindowMinutes&#34;: 60,
-</span></span></span><span class="line"><span class="cl"><span class="s1">          &#34;TargetBackupVault&#34;: &#34;Default&#34;,
-</span></span></span><span class="line"><span class="cl"><span class="s1">          &#34;Lifecycle&#34;: {
-</span></span></span><span class="line"><span class="cl"><span class="s1">            &#34;DeleteAfterDays&#34;: 35
-</span></span></span><span class="line"><span class="cl"><span class="s1">          }
-</span></span></span><span class="line"><span class="cl"><span class="s1">        },
-</span></span></span><span class="line"><span class="cl"><span class="s1">        {
-</span></span></span><span class="line"><span class="cl"><span class="s1">          &#34;RuleName&#34;: &#34;WeeklyBackups&#34;,
-</span></span></span><span class="line"><span class="cl"><span class="s1">          &#34;ScheduleExpression&#34;: &#34;cron(0 5 ? * 1 *)&#34;,
-</span></span></span><span class="line"><span class="cl"><span class="s1">          &#34;TargetBackupVault&#34;: &#34;Default&#34;,
-</span></span></span><span class="line"><span class="cl"><span class="s1">          &#34;Lifecycle&#34;: {
-</span></span></span><span class="line"><span class="cl"><span class="s1">            &#34;MoveToColdStorageAfterDays&#34;: 30,
-</span></span></span><span class="line"><span class="cl"><span class="s1">            &#34;DeleteAfterDays&#34;: 365
-</span></span></span><span class="line"><span class="cl"><span class="s1">          }
-</span></span></span><span class="line"><span class="cl"><span class="s1">        }
-</span></span></span><span class="line"><span class="cl"><span class="s1">      ]
-</span></span></span><span class="line"><span class="cl"><span class="s1">    }
-</span></span></span><span class="line"><span class="cl"><span class="s1">  }&#39;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 백업 계획에 리소스 태그 추가</span>
-</span></span><span class="line"><span class="cl">aws backup tag-resources <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --resource-arns arn:aws:ec2:ap-northeast-2:123456789012:instance/i-xxxxxxxx <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --tags <span class="nv">Backup</span><span class="o">=</span>Daily
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h4 id="step-2-dlm-data-lifecycle-manager-설정">Step 2: DLM (Data Lifecycle Manager) 설정
-</h4><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span><span class="lnt">46
-</span><span class="lnt">47
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># DLM 정책 생성 (EBS 스냅샷 자동화)</span>
-</span></span><span class="line"><span class="cl">aws dlm create-lifecycle-policy <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --description <span class="s2">&#34;Daily EBS snapshots&#34;</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --state ENABLED <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --execution-role-arn arn:aws:iam::123456789012:role/AWSDataLifecycleManagerDefaultRole <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --policy-details <span class="s1">&#39;{
-</span></span></span><span class="line"><span class="cl"><span class="s1">    &#34;ResourceTypes&#34;: [&#34;VOLUME&#34;],
-</span></span></span><span class="line"><span class="cl"><span class="s1">    &#34;TargetTags&#34;: [{&#34;Key&#34;: &#34;Backup&#34;, &#34;Value&#34;: &#34;Daily&#34;}],
-</span></span></span><span class="line"><span class="cl"><span class="s1">    &#34;Schedules&#34;: [{
-</span></span></span><span class="line"><span class="cl"><span class="s1">      &#34;Name&#34;: &#34;DailySnapshots&#34;,
-</span></span></span><span class="line"><span class="cl"><span class="s1">      &#34;CreateRule&#34;: {
-</span></span></span><span class="line"><span class="cl"><span class="s1">        &#34;Interval&#34;: 24,
-</span></span></span><span class="line"><span class="cl"><span class="s1">        &#34;IntervalUnit&#34;: &#34;HOURS&#34;,
-</span></span></span><span class="line"><span class="cl"><span class="s1">        &#34;Times&#34;: [&#34;05:00&#34;]
-</span></span></span><span class="line"><span class="cl"><span class="s1">      },
-</span></span></span><span class="line"><span class="cl"><span class="s1">      &#34;RetainRule&#34;: {
-</span></span></span><span class="line"><span class="cl"><span class="s1">        &#34;Count&#34;: 7
-</span></span></span><span class="line"><span class="cl"><span class="s1">      },
-</span></span></span><span class="line"><span class="cl"><span class="s1">      &#34;CopyTags&#34;: true
-</span></span></span><span class="line"><span class="cl"><span class="s1">    }]
-</span></span></span><span class="line"><span class="cl"><span class="s1">  }&#39;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># AMI 라이프사이클 정책</span>
-</span></span><span class="line"><span class="cl">aws dlm create-lifecycle-policy <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --description <span class="s2">&#34;Daily AMI backups&#34;</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --state ENABLED <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --execution-role-arn arn:aws:iam::123456789012:role/AWSDataLifecycleManagerDefaultRole <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --policy-details <span class="s1">&#39;{
-</span></span></span><span class="line"><span class="cl"><span class="s1">    &#34;ResourceTypes&#34;: [&#34;INSTANCE&#34;],
-</span></span></span><span class="line"><span class="cl"><span class="s1">    &#34;TargetTags&#34;: [{&#34;Key&#34;: &#34;Backup&#34;, &#34;Value&#34;: &#34;Daily&#34;}],
-</span></span></span><span class="line"><span class="cl"><span class="s1">    &#34;Schedules&#34;: [{
-</span></span></span><span class="line"><span class="cl"><span class="s1">      &#34;Name&#34;: &#34;DailyAMIs&#34;,
-</span></span></span><span class="line"><span class="cl"><span class="s1">      &#34;CreateRule&#34;: {
-</span></span></span><span class="line"><span class="cl"><span class="s1">        &#34;Interval&#34;: 24,
-</span></span></span><span class="line"><span class="cl"><span class="s1">        &#34;IntervalUnit&#34;: &#34;HOURS&#34;,
-</span></span></span><span class="line"><span class="cl"><span class="s1">        &#34;Times&#34;: [&#34;05:00&#34;]
-</span></span></span><span class="line"><span class="cl"><span class="s1">      },
-</span></span></span><span class="line"><span class="cl"><span class="s1">      &#34;RetainRule&#34;: {
-</span></span></span><span class="line"><span class="cl"><span class="s1">        &#34;Count&#34;: 7
-</span></span></span><span class="line"><span class="cl"><span class="s1">      },
-</span></span></span><span class="line"><span class="cl"><span class="s1">      &#34;FastRestoreRule&#34;: {
-</span></span></span><span class="line"><span class="cl"><span class="s1">        &#34;Count&#34;: 1,
-</span></span></span><span class="line"><span class="cl"><span class="s1">        &#34;Interval&#34;: 0,
-</span></span></span><span class="line"><span class="cl"><span class="s1">        &#34;IntervalUnit&#34;: &#34;HOURS&#34;
-</span></span></span><span class="line"><span class="cl"><span class="s1">      }
-</span></span></span><span class="line"><span class="cl"><span class="s1">    }]
-</span></span></span><span class="line"><span class="cl"><span class="s1">  }&#39;</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h4 id="step-3-rds-자동-백업-설정">Step 3: RDS 자동 백업 설정
-</h4><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># RDS 백업 보관 기간 설정 (1~35일)</span>
-</span></span><span class="line"><span class="cl">aws rds modify-db-instance <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --db-instance-identifier mydb <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --backup-retention-period <span class="m">7</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --backup-window <span class="s2">&#34;05:00-06:00&#34;</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --maintenance-window <span class="s2">&#34;Mon:06:00-Mon:07:00&#34;</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --apply-immediately
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># DB 스냅샷 생성</span>
-</span></span><span class="line"><span class="cl">aws rds create-db-snapshot <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --db-instance-identifier mydb <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --db-snapshot-identifier mydb-snapshot-<span class="k">$(</span>date +%Y%m%d<span class="k">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 최신 스냅샷에서 복구</span>
-</span></span><span class="line"><span class="cl">aws rds restore-db-instance-from-db-snapshot <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --db-instance-identifier mydb-restored <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --db-snapshot-identifier mydb-snapshot-20250120
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h4 id="step-4-s3-버전-관리-및-중복-삭제">Step 4: S3 버전 관리 및 중복 삭제
-</h4><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># S3 버전 관리 활성화</span>
-</span></span><span class="line"><span class="cl">aws s3api put-bucket-versioning <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --bucket my-bucket <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --versioning-configuration <span class="nv">Status</span><span class="o">=</span>Enabled
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># S3 객체 잠금 활성화 (WORM - Write Once Read Many)</span>
-</span></span><span class="line"><span class="cl">aws s3api put-object-lock-configuration <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --bucket my-bucket <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --object-lock-configuration <span class="s1">&#39;{
-</span></span></span><span class="line"><span class="cl"><span class="s1">    &#34;ObjectLockEnabled&#34;: &#34;Enabled&#34;,
-</span></span></span><span class="line"><span class="cl"><span class="s1">    &#34;Rule&#34;: {
-</span></span></span><span class="line"><span class="cl"><span class="s1">      &#34;DefaultRetention&#34;: {
-</span></span></span><span class="line"><span class="cl"><span class="s1">        &#34;Mode&#34;: &#34;GOVERNANCE&#34;,
-</span></span></span><span class="line"><span class="cl"><span class="s1">        &#34;Days&#34;: 30
-</span></span></span><span class="line"><span class="cl"><span class="s1">      }
-</span></span></span><span class="line"><span class="cl"><span class="s1">    }
-</span></span></span><span class="line"><span class="cl"><span class="s1">  }&#39;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 교차 리전 복제(CRR) 설정</span>
-</span></span><span class="line"><span class="cl">aws s3api put-bucket-replication <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --bucket source-bucket <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --replication-configuration file://replication-config.json
-</span></span></code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="c1">// replication-config.json
-</span></span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;Role&#34;</span><span class="p">:</span> <span class="s2">&#34;arn:aws:iam::123456789012:role/replication-role&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;Rules&#34;</span><span class="p">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Status&#34;</span><span class="p">:</span> <span class="s2">&#34;Enabled&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Priority&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Filter&#34;</span><span class="p">:</span> <span class="p">{},</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Destination&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nt">&#34;Bucket&#34;</span><span class="p">:</span> <span class="s2">&#34;arn:aws:s3:::destination-bucket&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">        <span class="nt">&#34;ReplicationTime&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">          <span class="nt">&#34;Status&#34;</span><span class="p">:</span> <span class="s2">&#34;Enabled&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">          <span class="nt">&#34;Time&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;Minutes&#34;</span><span class="p">:</span> <span class="mi">15</span>
-</span></span><span class="line"><span class="cl">          <span class="p">}</span>
-</span></span><span class="line"><span class="cl">        <span class="p">},</span>
-</span></span><span class="line"><span class="cl">        <span class="nt">&#34;Metrics&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">          <span class="nt">&#34;Status&#34;</span><span class="p">:</span> <span class="s2">&#34;Enabled&#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">},</span>
-</span></span><span class="line"><span class="cl">        <span class="nt">&#34;StorageClass&#34;</span><span class="p">:</span> <span class="s2">&#34;STANDARD&#34;</span>
-</span></span><span class="line"><span class="cl">      <span class="p">},</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;DeleteMarkerReplication&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nt">&#34;Status&#34;</span><span class="p">:</span> <span class="s2">&#34;Enabled&#34;</span>
-</span></span><span class="line"><span class="cl">      <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">  <span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h4 id="step-5-azure-vm-백업">Step 5: Azure VM 백업
-</h4><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Recovery Services Vault 생성</span>
-</span></span><span class="line"><span class="cl">az backup vault create <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --name myvault <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --resource-group myresourcegroup <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --location koreacentral
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># VM 백업 활성화</span>
-</span></span><span class="line"><span class="cl">az backup protection enable-for-vm <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --resource-group myresourcegroup <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --vault-name myvault <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --vm myvm <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --policy-name defaultpolicy
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 백업 정책 생성 (매일 백업, 30일 보관)</span>
-</span></span><span class="line"><span class="cl">az backup policy create <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --name mybackuppolicy <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --vault-name myvault <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --resource-group myresourcegroup <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --backup-management-type AzureIaasVM <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --policy-schedule <span class="s2">&#34;daily=5:00&#34;</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --retention-daily <span class="m">30</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --retention-weekly <span class="m">12</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --retention-monthly <span class="m">24</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --retention-yearly <span class="m">10</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h4 id="step-6-gcp-cloud-sql-백업">Step 6: GCP Cloud SQL 백업
-</h4><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 자동 백업 설정</span>
-</span></span><span class="line"><span class="cl">gcloud sql instances patch instance-name <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --backup-start-time 05:00 <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --backup-enabled
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 수동 백업 생성</span>
-</span></span><span class="line"><span class="cl">gcloud sql backups create backup-<span class="k">$(</span>date +%Y%m%d<span class="k">)</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --instance instance-name <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --description <span class="s2">&#34;Daily backup&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 백업에서 복구</span>
-</span></span><span class="line"><span class="cl">gcloud sql instances restore instance-name <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --backup-id backup-id
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="7-백업-전략">7. 백업 전략
-</h3><h4 id="3-2-1-백업-규칙">3-2-1 백업 규칙
-</h4><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">┌─────────────────────────────────────────────────────────────┐
-</span></span><span class="line"><span class="cl">│                    3-2-1 백업 규칙                          │
-</span></span><span class="line"><span class="cl">├─────────────────────────────────────────────────────────────┤
-</span></span><span class="line"><span class="cl">│                                                             │
-</span></span><span class="line"><span class="cl">│  3 - 데이터의 사본을 3개 유지                                 │
-</span></span><span class="line"><span class="cl">│  ↓                                                           │
-</span></span><span class="line"><span class="cl">│  1) 원본 데이터                                               │
-</span></span><span class="line"><span class="cl">│  2) 로컬 백업 (스냅샷)                                       │
-</span></span><span class="line"><span class="cl">│  3) 원격 백업 (다른 리전)                                     │
-</span></span><span class="line"><span class="cl">│                                                             │
-</span></span><span class="line"><span class="cl">│  2 - 2개의 다른 스토리지 미디어에 저장                         │
-</span></span><span class="line"><span class="cl">│  ↓                                                           │
-</span></span><span class="line"><span class="cl">│  1) 디스크 스토리지 (EBS, Managed Disk)                       │
-</span></span><span class="line"><span class="cl">│  2) 오브젝트 스토리지 (S3, Blob Storage)                     │
-</span></span><span class="line"><span class="cl">│                                                             │
-</span></span><span class="line"><span class="cl">│  1 - 1개의 사본은 오프사이트(다른 리전)에 저장                 │
-</span></span><span class="line"><span class="cl">│  ↓                                                           │
-</span></span><span class="line"><span class="cl">│  1) 교차 리전 복제(CRR), 리전 간 백업                          │
-</span></span><span class="line"><span class="cl">│                                                             │
-</span></span><span class="line"><span class="cl">└─────────────────────────────────────────────────────────────┘
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="8-복구-테스트-disaster-recovery-drill">8. 복구 테스트 (Disaster Recovery Drill)
-</h3><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 정기적인 복구 테스트 수행</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 1) 최신 스냅샷에서 새로운 볼륨 생성</span>
-</span></span><span class="line"><span class="cl">aws ec2 create-volume <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --snapshot-id snap-xxxxxxxx <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --availability-zone ap-northeast-2a
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 2) 테스트 인스턴스에 볼륨 연결</span>
-</span></span><span class="line"><span class="cl">aws ec2 attach-volume <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --volume-id vol-yyyyyyyy <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --instance-id i-test <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --device /dev/sdf
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 3) 데이터 무결성 확인</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 4) 테스트 리소스 삭제</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="9-백업-모니터링-및-알림">9. 백업 모니터링 및 알림
-</h3><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># CloudWatch 알람 생성</span>
-</span></span><span class="line"><span class="cl">aws cloudwatch put-metric-alarm <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --alarm-name <span class="s2">&#34;BackupFailure&#34;</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --alarm-description <span class="s2">&#34;Alert on backup failures&#34;</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --metric-name BackupJobStatus <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --namespace AWS/Backup <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --statistic Sum <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --period <span class="m">300</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --threshold <span class="m">1</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --comparison-operator GreaterThanOrEqualToThreshold <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --evaluation-periods <span class="m">1</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="10-조치-시-주의사항">10. 조치 시 주의사항
-</h3><div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>주의사항</th>
-          <th>설명</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>비용 관리</strong></td>
-          <td>불필요한 백업 삭제, 생명주기 정책으로 비용 최적화</td>
-      </tr>
-      <tr>
-          <td><strong>암호화</strong></td>
-          <td>백업 데이터도 암호화 필수</td>
-      </tr>
-      <tr>
-          <td><strong>복구 테스트</strong></td>
-          <td>정기적 복구 테스트로 백업 유효성 검증</td>
-      </tr>
-      <tr>
-          <td><strong>문서화</strong></td>
-          <td>복구 절차 문서화 및 운영자 교육</td>
-      </tr>
-      <tr>
-          <td><strong>격리</strong></td>
-          <td>백업 데이터는 프로덕션과 격리하여 보관</td>
-      </tr>
-  </tbody>
-</table></div>
-<h3 id="11-참고-자료">11. 참고 자료
-</h3><ul>
-<li><strong>AWS Backup Documentation</strong>: <a class="link" href="https://docs.aws.amazon.com/aws-backup/"  target="_blank" rel="noopener"
-    >https://docs.aws.amazon.com/aws-backup/</a></li>
-<li><strong>Azure Backup Documentation</strong>: <a class="link" href="https://docs.microsoft.com/azure/backup/"  target="_blank" rel="noopener"
-    >https://docs.microsoft.com/azure/backup/</a></li>
-<li><strong>GCP Backup and DR</strong>: <a class="link" href="https://cloud.google.com/backup-disaster-recovery"  target="_blank" rel="noopener"
-    >https://cloud.google.com/backup-disaster-recovery</a></li>
-</ul>
-<hr>
-<h2 id="요약">요약
-</h2><p><strong>백업사용여부</strong>는 클라우드 환경의 데이터 보호와 비즈니스 연속성을 위한 필수 항목입니다. AWS Backup, Azure Backup, Cloud SQL 백업 등 클라우드 제공사의 백업 서비스를 활용하여 자동화된 백업을 설정하세요. 3-2-1 백업 규칙을 준수하고 정기적으로 복구 테스트를 수행하여 백업의 유효성을 검증해야 합니다.</p>
-<p><strong>핵심 액션 아이템</strong></p>
-<ol>
-<li>EC2/VM 자동 백업 설정 (AMI, 스냅샷)</li>
-<li>RDS/Cloud SQL 자동 백업 활성화</li>
-<li>3-2-1 백업 규칙 준수 (3개 사본, 2개 미디어, 1개 오프사이트)</li>
-<li>교차 리전 복제로 재해 복구 강화</li>
-<li>분기별 복구 테스트 수행</li>
-</ol>
-
-</section>
-
-
-    <footer class="article-footer">
-    
-    <section class="article-tags">
-        
-            <a href="/tags/2026-%EC%A3%BC%EC%A0%95%ED%86%B5-%EA%B0%80%EC%9D%B4%EB%93%9C%EB%9D%BC%EC%9D%B8/">2026 주정통 가이드라인</a>
-        
-            <a href="/tags/cloud/">Cloud</a>
-        
-    </section>
-
-
-    </footer>
-
-
-    
-</article>
-
-    
-
-    
-
-<aside class="related-content--wrapper">
-    <h2 class="section-title">관련 글</h2>
-    <div class="related-content">
-        <div class="flex article-list--tile">
-            
-                
-<article class="">
-    <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-01/">
-        
-
-        <div class="article-details">
-            <h2 class="article-title">[2026 주요정보통신기반시설] CA-01 사용자계정관리</h2>
-        </div>
-    </a>
-</article>
-            
-                
-<article class="">
-    <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-02/">
-        
-
-        <div class="article-details">
-            <h2 class="article-title">[2026 주요정보통신기반시설] CA-02 사용자정책관리</h2>
-        </div>
-    </a>
-</article>
-            
-                
-<article class="">
-    <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-03/">
-        
-
-        <div class="article-details">
-            <h2 class="article-title">[2026 주요정보통신기반시설] CA-03 MFA(Multi-Factor Authentication)설정</h2>
-        </div>
-    </a>
-</article>
-            
-                
-<article class="">
-    <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-04/">
-        
-
-        <div class="article-details">
-            <h2 class="article-title">[2026 주요정보통신기반시설] CA-04 클라우드계정비밀번호정책관리</h2>
-        </div>
-    </a>
-</article>
-            
-                
-<article class="">
-    <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-05/">
-        
-
-        <div class="article-details">
-            <h2 class="article-title">[2026 주요정보통신기반시설] CA-05 인스턴스서비스정책관리</h2>
-        </div>
-    </a>
-</article>
-            
-        </div>
-    </div>
-</aside>
-
-     
-    
-        
-    
-
-    <footer class="site-footer">
-    <section class="copyright">
-        &copy; 
-        
-            2025 - 
-        
-        2026 코딩이 싫은 거북이
-    </section>
-    
-    <section class="powerby">
-        <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>로 만듦 <br />
-        <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>의 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="4.0.0">Stack</a></b> 테마 사용 중
-    </section>
-</footer>
-
-
-    
-
-
-
-<script type="module">
+<!doctype html><html lang=ko-kr dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="클라우드 리소스에 대한 백업 수행 여부 점검"><title>[2026 주요정보통신기반시설] CA-18 백업사용여부</title><link rel=canonical href=https://rebugui.github.io/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-18/><link rel=stylesheet href=/scss/style.min.51098b80cc297c94c0f57786d4a04e7372774e5993b60facf53870128a79bf73.css><meta property='og:title' content="[2026 주요정보통신기반시설] CA-18 백업사용여부"><meta property='og:description' content="클라우드 리소스에 대한 백업 수행 여부 점검"><meta property='og:url' content='https://rebugui.github.io/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-18/'><meta property='og:site_name' content='코딩이 싫은 거북이'><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='2026 주정통 가이드라인'><meta property='article:tag' content='Cloud'><meta property='article:published_time' content='2026-02-05T09:56:13+09:00'><meta property='article:modified_time' content='2026-02-05T09:56:13+09:00'><meta name=twitter:title content="[2026 주요정보통신기반시설] CA-18 백업사용여부"><meta name=twitter:description content="클라우드 리소스에 대한 백업 수행 여부 점검"><link rel="shortcut icon" href=/img/avatar.png><script async src="https://www.googletagmanager.com/gtag/js?id=G-BDJ5ZPHH5Z"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-BDJ5ZPHH5Z")</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7440869759073353" crossorigin=anonymous></script></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="메뉴 여닫기">
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar.png width=2048 height=2048 class=site-logo loading=lazy alt=Avatar>
+</a><span class=emoji>🐢</span></figure><div class=site-meta><h1 class=site-name><a href=/>코딩이 싫은 거북이</a></h1><h2 class=site-description>Clean, responsive Hugo theme</h2></div></header><ol class=menu-social><li><a href=https://github.com/rebugui target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>Home</span></a></li><li><a href=/page/about/><svg class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+<span>About</span></a></li><li><a href=/page/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>Archives</span></a></li><li><a href=/page/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>Search</span></a></li><li><a href=/page/links/><svg class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg>
+<span>Links</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>다크 모드</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">목차</h2><div class=widget--toc><nav class=toc-nav id=TableOfContents><ol><li><a href=#가이드라인-원문>가이드라인 원문</a></li><li><a href=#상세-설명>상세 설명</a><ol><li><a href=#1-항목-개요>1. 항목 개요</a></li><li><a href=#2-왜-이-항목이-필요한가요>2. 왜 이 항목이 필요한가요?</a></li><li><a href=#3-점검-대상>3. 점검 대상</a></li><li><a href=#4-판단-기준>4. 판단 기준</a></li><li><a href=#5-점검-방법>5. 점검 방법</a><ol><li><a href=#step-1-ec2-인스턴스-백업-확인>Step 1: EC2 인스턴스 백업 확인</a></li><li><a href=#step-2-rds-백업-확인>Step 2: RDS 백업 확인</a></li><li><a href=#step-3-azure-vm-백업-확인>Step 3: Azure VM 백업 확인</a></li></ol></li><li><a href=#6-조치-방법>6. 조치 방법</a><ol><li><a href=#step-1-ec2-인스턴스-백업>Step 1: EC2 인스턴스 백업</a></li><li><a href=#step-2-dlm-data-lifecycle-manager-설정>Step 2: DLM (Data Lifecycle Manager) 설정</a></li><li><a href=#step-3-rds-자동-백업-설정>Step 3: RDS 자동 백업 설정</a></li><li><a href=#step-4-s3-버전-관리-및-중복-삭제>Step 4: S3 버전 관리 및 중복 삭제</a></li><li><a href=#step-5-azure-vm-백업>Step 5: Azure VM 백업</a></li><li><a href=#step-6-gcp-cloud-sql-백업>Step 6: GCP Cloud SQL 백업</a></li></ol></li><li><a href=#7-백업-전략>7. 백업 전략</a><ol><li><a href=#3-2-1-백업-규칙>3-2-1 백업 규칙</a></li></ol></li><li><a href=#8-복구-테스트-disaster-recovery-drill>8. 복구 테스트 (Disaster Recovery Drill)</a></li><li><a href=#9-백업-모니터링-및-알림>9. 백업 모니터링 및 알림</a></li><li><a href=#10-조치-시-주의사항>10. 조치 시 주의사항</a></li><li><a href=#11-참고-자료>11. 참고 자료</a></li></ol></li><li><a href=#요약>요약</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/2026-%EC%A3%BC%EC%A0%95%ED%86%B5-%EA%B0%80%EC%9D%B4%EB%93%9C%EB%9D%BC%EC%9D%B8/ style=background-color:#dfbeef;color:#2f0f3d>2026 주정통 가이드라인</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-18/>[2026 주요정보통신기반시설] CA-18 백업사용여부</a></h2><h3 class=article-subtitle>클라우드 리소스에 대한 백업 수행 여부 점검</h3></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published datetime=2026-02-05T09:56:13+09:00>2026년 2월 5일 목요일</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>5 분 정도</time></div></footer></div></header><aside class=article-toc><details><summary><div class=article-toc-title><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6-6 6"/></svg>
+<span>목차</span></div></summary><nav class=toc-nav><ol><li><a href=#가이드라인-원문>가이드라인 원문</a></li><li><a href=#상세-설명>상세 설명</a><ol><li><a href=#1-항목-개요>1. 항목 개요</a></li><li><a href=#2-왜-이-항목이-필요한가요>2. 왜 이 항목이 필요한가요?</a></li><li><a href=#3-점검-대상>3. 점검 대상</a></li><li><a href=#4-판단-기준>4. 판단 기준</a></li><li><a href=#5-점검-방법>5. 점검 방법</a><ol><li><a href=#step-1-ec2-인스턴스-백업-확인>Step 1: EC2 인스턴스 백업 확인</a></li><li><a href=#step-2-rds-백업-확인>Step 2: RDS 백업 확인</a></li><li><a href=#step-3-azure-vm-백업-확인>Step 3: Azure VM 백업 확인</a></li></ol></li><li><a href=#6-조치-방법>6. 조치 방법</a><ol><li><a href=#step-1-ec2-인스턴스-백업>Step 1: EC2 인스턴스 백업</a></li><li><a href=#step-2-dlm-data-lifecycle-manager-설정>Step 2: DLM (Data Lifecycle Manager) 설정</a></li><li><a href=#step-3-rds-자동-백업-설정>Step 3: RDS 자동 백업 설정</a></li><li><a href=#step-4-s3-버전-관리-및-중복-삭제>Step 4: S3 버전 관리 및 중복 삭제</a></li><li><a href=#step-5-azure-vm-백업>Step 5: Azure VM 백업</a></li><li><a href=#step-6-gcp-cloud-sql-백업>Step 6: GCP Cloud SQL 백업</a></li></ol></li><li><a href=#7-백업-전략>7. 백업 전략</a><ol><li><a href=#3-2-1-백업-규칙>3-2-1 백업 규칙</a></li></ol></li><li><a href=#8-복구-테스트-disaster-recovery-drill>8. 복구 테스트 (Disaster Recovery Drill)</a></li><li><a href=#9-백업-모니터링-및-알림>9. 백업 모니터링 및 알림</a></li><li><a href=#10-조치-시-주의사항>10. 조치 시 주의사항</a></li><li><a href=#11-참고-자료>11. 참고 자료</a></li></ol></li><li><a href=#요약>요약</a></li></ol></nav></details></aside><section class=article-content><h1 id=ca-18-백업사용여부>CA-18 백업사용여부</h1><h2 id=가이드라인-원문>가이드라인 원문</h2><div class=table-wrapper><table><thead><tr><th>항목</th><th>내용</th></tr></thead><tbody><tr><td><strong>항목코드</strong></td><td>CA-18</td></tr><tr><td><strong>점검내용</strong></td><td>클라우드 리소스에 대한 백업 수행 여부 점검</td></tr><tr><td><strong>점검대상</strong></td><td>클라우드 플랫폼</td></tr><tr><td><strong>판단기준</strong></td><td>양호: 클라우드 리소스를 기관 정책에 따라 주기적으로 백업이 수행된 경우</td></tr><tr><td><strong>판단기준</strong></td><td>취약: 클라우드 리소스를 기관 정책에 따라 주기적으로 백업이 수행되지 않은 경우</td></tr><tr><td><strong>조치방법</strong></td><td>클라우드 리소스를 주기적으로 백업 설정</td></tr></tbody></table></div><hr><h2 id=상세-설명>상세 설명</h2><h3 id=1-항목-개요>1. 항목 개요</h3><p>클라우드 환경에서도 백업은 데이터 보호와 비즈니스 연속성의 핵심입니다. 인스턴스 장애, 데이터베이스 손상, 데이터 삭제, 리전 장애 등 다양한 시나리오에서 백업은 빠른 복구와 데이터 손실 방지를 위해 필수적입니다.</p><h3 id=2-왜-이-항목이-필요한가요>2. 왜 이 항목이 필요한가요?</h3><p><strong>데이터 손실 시나리오:</strong></p><ol><li><strong>실수로 데이터 삭제</strong>: 관리자의 실수로 중요 데이터 삭제</li><li><strong>악성코드 감염</strong>: 랜섬웨어로 데이터 암호화</li><li><strong>하드웨어 장애</strong>: 스토리지 장애로 데이터 손실</li><li><strong>리전 장애</strong>: 전체 리전의 가용성 저하 (AWS us-east-1 장애 등)</li><li><strong>자연재해</strong>: 화재, 지진, 홍수 등 물리적 재해</li></ol><p><strong>실제 사례</strong></p><ul><li>2021년: 코드 삭제 실수로 백업이 없어 회사 폐업</li><li>2017년: AWS S3 버킷 삭제 실수로 데이터 영구 손실</li><li>2020년: 랜섬웨어 공격으로 백업 없이 전체 데이터 손실</li></ul><h3 id=3-점검-대상>3. 점검 대상</h3><ul><li>EC2 인스턴스 / VM</li><li>RDS, Cloud SQL, Azure SQL 등 데이터베이스</li><li>EBS, Managed Disk 등 블록 스토리지</li><li>S3, Blob Storage 등 오브젝트 스토리지</li><li>VPC 구성</li></ul><h3 id=4-판단-기준>4. 판단 기준</h3><div class=table-wrapper><table><thead><tr><th>구분</th><th>기준</th></tr></thead><tbody><tr><td><strong>양호</strong></td><td>주기적 자동 백업이 설정되고, 정기적으로 복구 테스트가 수행되는 경우</td></tr><tr><td><strong>취약</strong></td><td>백업이 설정되지 않았거나, 수동으로만 백업되는 경우</td></tr></tbody></table></div><h3 id=5-점검-방법>5. 점검 방법</h3><h4 id=step-1-ec2-인스턴스-백업-확인>Step 1: EC2 인스턴스 백업 확인</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># AWS CLI 예시</span>
+</span></span><span class=line><span class=cl><span class=c1># AMI(인스턴스 이미지) 확인</span>
+</span></span><span class=line><span class=cl>aws ec2 describe-images <span class=se>\
+</span></span></span><span class=line><span class=cl>  --owners self <span class=se>\
+</span></span></span><span class=line><span class=cl>  --query <span class=s2>&#34;Images[].{ImageId:ImageId,Name:Name,CreationDate:CreationDate}&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 스냅샷 확인</span>
+</span></span><span class=line><span class=cl>aws ec2 describe-snapshots <span class=se>\
+</span></span></span><span class=line><span class=cl>  --owner-ids self <span class=se>\
+</span></span></span><span class=line><span class=cl>  --query <span class=s2>&#34;Snapshots[].{SnapshotId:SnapshotId,VolumeId:VolumeId,StartTime:StartTime}&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Lifecycle Manager 확인</span>
+</span></span><span class=line><span class=cl>aws dlm describe-lifecycle-policies
+</span></span></code></pre></td></tr></table></div></div><h4 id=step-2-rds-백업-확인>Step 2: RDS 백업 확인</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># RDS 백업 보관 기간 확인</span>
+</span></span><span class=line><span class=cl>aws rds describe-db-instances <span class=se>\
+</span></span></span><span class=line><span class=cl>  --query <span class=s2>&#34;DBInstances[].{DBInstanceIdentifier:DBInstanceIdentifier,BackupRetentionPeriod:BackupRetentionPeriod}&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># DB 스냅샷 확인</span>
+</span></span><span class=line><span class=cl>aws rds describe-db-snapshots <span class=se>\
+</span></span></span><span class=line><span class=cl>  --snapshot-type manual <span class=se>\
+</span></span></span><span class=line><span class=cl>  --query <span class=s2>&#34;DBSnapshots[].{DBSnapshotIdentifier:DBSnapshotIdentifier,SnapshotCreateTime:SnapshotCreateTime}&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><h4 id=step-3-azure-vm-백업-확인>Step 3: Azure VM 백업 확인</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Azure CLI 예시</span>
+</span></span><span class=line><span class=cl><span class=c1># Recovery Services Vault 확인</span>
+</span></span><span class=line><span class=cl>az backup vault list
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># VM 백업 작업 확인</span>
+</span></span><span class=line><span class=cl>az backup job list --resource-group myresourcegroup --vault-name myvault
+</span></span></code></pre></td></tr></table></div></div><h3 id=6-조치-방법>6. 조치 방법</h3><h4 id=step-1-ec2-인스턴스-백업>Step 1: EC2 인스턴스 백업</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 수동 AMI 생성</span>
+</span></span><span class=line><span class=cl>aws ec2 create-image <span class=se>\
+</span></span></span><span class=line><span class=cl>  --instance-id i-xxxxxxxx <span class=se>\
+</span></span></span><span class=line><span class=cl>  --name <span class=s2>&#34;my-instance-backup-</span><span class=k>$(</span>date +%Y%m%d<span class=k>)</span><span class=s2>&#34;</span> <span class=se>\
+</span></span></span><span class=line><span class=cl>  --description <span class=s2>&#34;Daily backup of my instance&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># EBS 스냅샷 생성</span>
+</span></span><span class=line><span class=cl>aws ec2 create-snapshot <span class=se>\
+</span></span></span><span class=line><span class=cl>  --volume-id vol-xxxxxxxx <span class=se>\
+</span></span></span><span class=line><span class=cl>  --description <span class=s2>&#34;Daily snapshot of root volume&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># AWS Backup을 통한 자동 백업</span>
+</span></span><span class=line><span class=cl><span class=c1># 백업 계획 생성</span>
+</span></span><span class=line><span class=cl>aws backup create-backup-plan <span class=se>\
+</span></span></span><span class=line><span class=cl>  --backup-plan <span class=s1>&#39;{
+</span></span></span><span class=line><span class=cl><span class=s1>    &#34;BackupPlan&#34;: {
+</span></span></span><span class=line><span class=cl><span class=s1>      &#34;BackupPlanName&#34;: &#34;EISBackupPlan&#34;,
+</span></span></span><span class=line><span class=cl><span class=s1>      &#34;Rules&#34;: [
+</span></span></span><span class=line><span class=cl><span class=s1>        {
+</span></span></span><span class=line><span class=cl><span class=s1>          &#34;RuleName&#34;: &#34;DailyBackups&#34;,
+</span></span></span><span class=line><span class=cl><span class=s1>          &#34;ScheduleExpression&#34;: &#34;cron(0 5 ? * * *)&#34;,
+</span></span></span><span class=line><span class=cl><span class=s1>          &#34;StartWindowMinutes&#34;: 60,
+</span></span></span><span class=line><span class=cl><span class=s1>          &#34;TargetBackupVault&#34;: &#34;Default&#34;,
+</span></span></span><span class=line><span class=cl><span class=s1>          &#34;Lifecycle&#34;: {
+</span></span></span><span class=line><span class=cl><span class=s1>            &#34;DeleteAfterDays&#34;: 35
+</span></span></span><span class=line><span class=cl><span class=s1>          }
+</span></span></span><span class=line><span class=cl><span class=s1>        },
+</span></span></span><span class=line><span class=cl><span class=s1>        {
+</span></span></span><span class=line><span class=cl><span class=s1>          &#34;RuleName&#34;: &#34;WeeklyBackups&#34;,
+</span></span></span><span class=line><span class=cl><span class=s1>          &#34;ScheduleExpression&#34;: &#34;cron(0 5 ? * 1 *)&#34;,
+</span></span></span><span class=line><span class=cl><span class=s1>          &#34;TargetBackupVault&#34;: &#34;Default&#34;,
+</span></span></span><span class=line><span class=cl><span class=s1>          &#34;Lifecycle&#34;: {
+</span></span></span><span class=line><span class=cl><span class=s1>            &#34;MoveToColdStorageAfterDays&#34;: 30,
+</span></span></span><span class=line><span class=cl><span class=s1>            &#34;DeleteAfterDays&#34;: 365
+</span></span></span><span class=line><span class=cl><span class=s1>          }
+</span></span></span><span class=line><span class=cl><span class=s1>        }
+</span></span></span><span class=line><span class=cl><span class=s1>      ]
+</span></span></span><span class=line><span class=cl><span class=s1>    }
+</span></span></span><span class=line><span class=cl><span class=s1>  }&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 백업 계획에 리소스 태그 추가</span>
+</span></span><span class=line><span class=cl>aws backup tag-resources <span class=se>\
+</span></span></span><span class=line><span class=cl>  --resource-arns arn:aws:ec2:ap-northeast-2:123456789012:instance/i-xxxxxxxx <span class=se>\
+</span></span></span><span class=line><span class=cl>  --tags <span class=nv>Backup</span><span class=o>=</span>Daily
+</span></span></code></pre></td></tr></table></div></div><h4 id=step-2-dlm-data-lifecycle-manager-설정>Step 2: DLM (Data Lifecycle Manager) 설정</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># DLM 정책 생성 (EBS 스냅샷 자동화)</span>
+</span></span><span class=line><span class=cl>aws dlm create-lifecycle-policy <span class=se>\
+</span></span></span><span class=line><span class=cl>  --description <span class=s2>&#34;Daily EBS snapshots&#34;</span> <span class=se>\
+</span></span></span><span class=line><span class=cl>  --state ENABLED <span class=se>\
+</span></span></span><span class=line><span class=cl>  --execution-role-arn arn:aws:iam::123456789012:role/AWSDataLifecycleManagerDefaultRole <span class=se>\
+</span></span></span><span class=line><span class=cl>  --policy-details <span class=s1>&#39;{
+</span></span></span><span class=line><span class=cl><span class=s1>    &#34;ResourceTypes&#34;: [&#34;VOLUME&#34;],
+</span></span></span><span class=line><span class=cl><span class=s1>    &#34;TargetTags&#34;: [{&#34;Key&#34;: &#34;Backup&#34;, &#34;Value&#34;: &#34;Daily&#34;}],
+</span></span></span><span class=line><span class=cl><span class=s1>    &#34;Schedules&#34;: [{
+</span></span></span><span class=line><span class=cl><span class=s1>      &#34;Name&#34;: &#34;DailySnapshots&#34;,
+</span></span></span><span class=line><span class=cl><span class=s1>      &#34;CreateRule&#34;: {
+</span></span></span><span class=line><span class=cl><span class=s1>        &#34;Interval&#34;: 24,
+</span></span></span><span class=line><span class=cl><span class=s1>        &#34;IntervalUnit&#34;: &#34;HOURS&#34;,
+</span></span></span><span class=line><span class=cl><span class=s1>        &#34;Times&#34;: [&#34;05:00&#34;]
+</span></span></span><span class=line><span class=cl><span class=s1>      },
+</span></span></span><span class=line><span class=cl><span class=s1>      &#34;RetainRule&#34;: {
+</span></span></span><span class=line><span class=cl><span class=s1>        &#34;Count&#34;: 7
+</span></span></span><span class=line><span class=cl><span class=s1>      },
+</span></span></span><span class=line><span class=cl><span class=s1>      &#34;CopyTags&#34;: true
+</span></span></span><span class=line><span class=cl><span class=s1>    }]
+</span></span></span><span class=line><span class=cl><span class=s1>  }&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># AMI 라이프사이클 정책</span>
+</span></span><span class=line><span class=cl>aws dlm create-lifecycle-policy <span class=se>\
+</span></span></span><span class=line><span class=cl>  --description <span class=s2>&#34;Daily AMI backups&#34;</span> <span class=se>\
+</span></span></span><span class=line><span class=cl>  --state ENABLED <span class=se>\
+</span></span></span><span class=line><span class=cl>  --execution-role-arn arn:aws:iam::123456789012:role/AWSDataLifecycleManagerDefaultRole <span class=se>\
+</span></span></span><span class=line><span class=cl>  --policy-details <span class=s1>&#39;{
+</span></span></span><span class=line><span class=cl><span class=s1>    &#34;ResourceTypes&#34;: [&#34;INSTANCE&#34;],
+</span></span></span><span class=line><span class=cl><span class=s1>    &#34;TargetTags&#34;: [{&#34;Key&#34;: &#34;Backup&#34;, &#34;Value&#34;: &#34;Daily&#34;}],
+</span></span></span><span class=line><span class=cl><span class=s1>    &#34;Schedules&#34;: [{
+</span></span></span><span class=line><span class=cl><span class=s1>      &#34;Name&#34;: &#34;DailyAMIs&#34;,
+</span></span></span><span class=line><span class=cl><span class=s1>      &#34;CreateRule&#34;: {
+</span></span></span><span class=line><span class=cl><span class=s1>        &#34;Interval&#34;: 24,
+</span></span></span><span class=line><span class=cl><span class=s1>        &#34;IntervalUnit&#34;: &#34;HOURS&#34;,
+</span></span></span><span class=line><span class=cl><span class=s1>        &#34;Times&#34;: [&#34;05:00&#34;]
+</span></span></span><span class=line><span class=cl><span class=s1>      },
+</span></span></span><span class=line><span class=cl><span class=s1>      &#34;RetainRule&#34;: {
+</span></span></span><span class=line><span class=cl><span class=s1>        &#34;Count&#34;: 7
+</span></span></span><span class=line><span class=cl><span class=s1>      },
+</span></span></span><span class=line><span class=cl><span class=s1>      &#34;FastRestoreRule&#34;: {
+</span></span></span><span class=line><span class=cl><span class=s1>        &#34;Count&#34;: 1,
+</span></span></span><span class=line><span class=cl><span class=s1>        &#34;Interval&#34;: 0,
+</span></span></span><span class=line><span class=cl><span class=s1>        &#34;IntervalUnit&#34;: &#34;HOURS&#34;
+</span></span></span><span class=line><span class=cl><span class=s1>      }
+</span></span></span><span class=line><span class=cl><span class=s1>    }]
+</span></span></span><span class=line><span class=cl><span class=s1>  }&#39;</span>
+</span></span></code></pre></td></tr></table></div></div><h4 id=step-3-rds-자동-백업-설정>Step 3: RDS 자동 백업 설정</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># RDS 백업 보관 기간 설정 (1~35일)</span>
+</span></span><span class=line><span class=cl>aws rds modify-db-instance <span class=se>\
+</span></span></span><span class=line><span class=cl>  --db-instance-identifier mydb <span class=se>\
+</span></span></span><span class=line><span class=cl>  --backup-retention-period <span class=m>7</span> <span class=se>\
+</span></span></span><span class=line><span class=cl>  --backup-window <span class=s2>&#34;05:00-06:00&#34;</span> <span class=se>\
+</span></span></span><span class=line><span class=cl>  --maintenance-window <span class=s2>&#34;Mon:06:00-Mon:07:00&#34;</span> <span class=se>\
+</span></span></span><span class=line><span class=cl>  --apply-immediately
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># DB 스냅샷 생성</span>
+</span></span><span class=line><span class=cl>aws rds create-db-snapshot <span class=se>\
+</span></span></span><span class=line><span class=cl>  --db-instance-identifier mydb <span class=se>\
+</span></span></span><span class=line><span class=cl>  --db-snapshot-identifier mydb-snapshot-<span class=k>$(</span>date +%Y%m%d<span class=k>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 최신 스냅샷에서 복구</span>
+</span></span><span class=line><span class=cl>aws rds restore-db-instance-from-db-snapshot <span class=se>\
+</span></span></span><span class=line><span class=cl>  --db-instance-identifier mydb-restored <span class=se>\
+</span></span></span><span class=line><span class=cl>  --db-snapshot-identifier mydb-snapshot-20250120
+</span></span></code></pre></td></tr></table></div></div><h4 id=step-4-s3-버전-관리-및-중복-삭제>Step 4: S3 버전 관리 및 중복 삭제</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># S3 버전 관리 활성화</span>
+</span></span><span class=line><span class=cl>aws s3api put-bucket-versioning <span class=se>\
+</span></span></span><span class=line><span class=cl>  --bucket my-bucket <span class=se>\
+</span></span></span><span class=line><span class=cl>  --versioning-configuration <span class=nv>Status</span><span class=o>=</span>Enabled
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># S3 객체 잠금 활성화 (WORM - Write Once Read Many)</span>
+</span></span><span class=line><span class=cl>aws s3api put-object-lock-configuration <span class=se>\
+</span></span></span><span class=line><span class=cl>  --bucket my-bucket <span class=se>\
+</span></span></span><span class=line><span class=cl>  --object-lock-configuration <span class=s1>&#39;{
+</span></span></span><span class=line><span class=cl><span class=s1>    &#34;ObjectLockEnabled&#34;: &#34;Enabled&#34;,
+</span></span></span><span class=line><span class=cl><span class=s1>    &#34;Rule&#34;: {
+</span></span></span><span class=line><span class=cl><span class=s1>      &#34;DefaultRetention&#34;: {
+</span></span></span><span class=line><span class=cl><span class=s1>        &#34;Mode&#34;: &#34;GOVERNANCE&#34;,
+</span></span></span><span class=line><span class=cl><span class=s1>        &#34;Days&#34;: 30
+</span></span></span><span class=line><span class=cl><span class=s1>      }
+</span></span></span><span class=line><span class=cl><span class=s1>    }
+</span></span></span><span class=line><span class=cl><span class=s1>  }&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 교차 리전 복제(CRR) 설정</span>
+</span></span><span class=line><span class=cl>aws s3api put-bucket-replication <span class=se>\
+</span></span></span><span class=line><span class=cl>  --bucket source-bucket <span class=se>\
+</span></span></span><span class=line><span class=cl>  --replication-configuration file://replication-config.json
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=line><span class=cl><span class=c1>// replication-config.json
+</span></span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;Role&#34;</span><span class=p>:</span> <span class=s2>&#34;arn:aws:iam::123456789012:role/replication-role&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;Rules&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;Status&#34;</span><span class=p>:</span> <span class=s2>&#34;Enabled&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;Priority&#34;</span><span class=p>:</span> <span class=mi>1</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;Filter&#34;</span><span class=p>:</span> <span class=p>{},</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;Destination&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;Bucket&#34;</span><span class=p>:</span> <span class=s2>&#34;arn:aws:s3:::destination-bucket&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;ReplicationTime&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>          <span class=nt>&#34;Status&#34;</span><span class=p>:</span> <span class=s2>&#34;Enabled&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>          <span class=nt>&#34;Time&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;Minutes&#34;</span><span class=p>:</span> <span class=mi>15</span>
+</span></span><span class=line><span class=cl>          <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;Metrics&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>          <span class=nt>&#34;Status&#34;</span><span class=p>:</span> <span class=s2>&#34;Enabled&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;StorageClass&#34;</span><span class=p>:</span> <span class=s2>&#34;STANDARD&#34;</span>
+</span></span><span class=line><span class=cl>      <span class=p>},</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;DeleteMarkerReplication&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;Status&#34;</span><span class=p>:</span> <span class=s2>&#34;Enabled&#34;</span>
+</span></span><span class=line><span class=cl>      <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><h4 id=step-5-azure-vm-백업>Step 5: Azure VM 백업</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Recovery Services Vault 생성</span>
+</span></span><span class=line><span class=cl>az backup vault create <span class=se>\
+</span></span></span><span class=line><span class=cl>  --name myvault <span class=se>\
+</span></span></span><span class=line><span class=cl>  --resource-group myresourcegroup <span class=se>\
+</span></span></span><span class=line><span class=cl>  --location koreacentral
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># VM 백업 활성화</span>
+</span></span><span class=line><span class=cl>az backup protection enable-for-vm <span class=se>\
+</span></span></span><span class=line><span class=cl>  --resource-group myresourcegroup <span class=se>\
+</span></span></span><span class=line><span class=cl>  --vault-name myvault <span class=se>\
+</span></span></span><span class=line><span class=cl>  --vm myvm <span class=se>\
+</span></span></span><span class=line><span class=cl>  --policy-name defaultpolicy
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 백업 정책 생성 (매일 백업, 30일 보관)</span>
+</span></span><span class=line><span class=cl>az backup policy create <span class=se>\
+</span></span></span><span class=line><span class=cl>  --name mybackuppolicy <span class=se>\
+</span></span></span><span class=line><span class=cl>  --vault-name myvault <span class=se>\
+</span></span></span><span class=line><span class=cl>  --resource-group myresourcegroup <span class=se>\
+</span></span></span><span class=line><span class=cl>  --backup-management-type AzureIaasVM <span class=se>\
+</span></span></span><span class=line><span class=cl>  --policy-schedule <span class=s2>&#34;daily=5:00&#34;</span> <span class=se>\
+</span></span></span><span class=line><span class=cl>  --retention-daily <span class=m>30</span> <span class=se>\
+</span></span></span><span class=line><span class=cl>  --retention-weekly <span class=m>12</span> <span class=se>\
+</span></span></span><span class=line><span class=cl>  --retention-monthly <span class=m>24</span> <span class=se>\
+</span></span></span><span class=line><span class=cl>  --retention-yearly <span class=m>10</span>
+</span></span></code></pre></td></tr></table></div></div><h4 id=step-6-gcp-cloud-sql-백업>Step 6: GCP Cloud SQL 백업</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 자동 백업 설정</span>
+</span></span><span class=line><span class=cl>gcloud sql instances patch instance-name <span class=se>\
+</span></span></span><span class=line><span class=cl>  --backup-start-time 05:00 <span class=se>\
+</span></span></span><span class=line><span class=cl>  --backup-enabled
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 수동 백업 생성</span>
+</span></span><span class=line><span class=cl>gcloud sql backups create backup-<span class=k>$(</span>date +%Y%m%d<span class=k>)</span> <span class=se>\
+</span></span></span><span class=line><span class=cl>  --instance instance-name <span class=se>\
+</span></span></span><span class=line><span class=cl>  --description <span class=s2>&#34;Daily backup&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 백업에서 복구</span>
+</span></span><span class=line><span class=cl>gcloud sql instances restore instance-name <span class=se>\
+</span></span></span><span class=line><span class=cl>  --backup-id backup-id
+</span></span></code></pre></td></tr></table></div></div><h3 id=7-백업-전략>7. 백업 전략</h3><h4 id=3-2-1-백업-규칙>3-2-1 백업 규칙</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>┌─────────────────────────────────────────────────────────────┐
+</span></span><span class=line><span class=cl>│                    3-2-1 백업 규칙                          │
+</span></span><span class=line><span class=cl>├─────────────────────────────────────────────────────────────┤
+</span></span><span class=line><span class=cl>│                                                             │
+</span></span><span class=line><span class=cl>│  3 - 데이터의 사본을 3개 유지                                 │
+</span></span><span class=line><span class=cl>│  ↓                                                           │
+</span></span><span class=line><span class=cl>│  1) 원본 데이터                                               │
+</span></span><span class=line><span class=cl>│  2) 로컬 백업 (스냅샷)                                       │
+</span></span><span class=line><span class=cl>│  3) 원격 백업 (다른 리전)                                     │
+</span></span><span class=line><span class=cl>│                                                             │
+</span></span><span class=line><span class=cl>│  2 - 2개의 다른 스토리지 미디어에 저장                         │
+</span></span><span class=line><span class=cl>│  ↓                                                           │
+</span></span><span class=line><span class=cl>│  1) 디스크 스토리지 (EBS, Managed Disk)                       │
+</span></span><span class=line><span class=cl>│  2) 오브젝트 스토리지 (S3, Blob Storage)                     │
+</span></span><span class=line><span class=cl>│                                                             │
+</span></span><span class=line><span class=cl>│  1 - 1개의 사본은 오프사이트(다른 리전)에 저장                 │
+</span></span><span class=line><span class=cl>│  ↓                                                           │
+</span></span><span class=line><span class=cl>│  1) 교차 리전 복제(CRR), 리전 간 백업                          │
+</span></span><span class=line><span class=cl>│                                                             │
+</span></span><span class=line><span class=cl>└─────────────────────────────────────────────────────────────┘
+</span></span></code></pre></td></tr></table></div></div><h3 id=8-복구-테스트-disaster-recovery-drill>8. 복구 테스트 (Disaster Recovery Drill)</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 정기적인 복구 테스트 수행</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 1) 최신 스냅샷에서 새로운 볼륨 생성</span>
+</span></span><span class=line><span class=cl>aws ec2 create-volume <span class=se>\
+</span></span></span><span class=line><span class=cl>  --snapshot-id snap-xxxxxxxx <span class=se>\
+</span></span></span><span class=line><span class=cl>  --availability-zone ap-northeast-2a
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 2) 테스트 인스턴스에 볼륨 연결</span>
+</span></span><span class=line><span class=cl>aws ec2 attach-volume <span class=se>\
+</span></span></span><span class=line><span class=cl>  --volume-id vol-yyyyyyyy <span class=se>\
+</span></span></span><span class=line><span class=cl>  --instance-id i-test <span class=se>\
+</span></span></span><span class=line><span class=cl>  --device /dev/sdf
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 3) 데이터 무결성 확인</span>
+</span></span><span class=line><span class=cl><span class=c1># 4) 테스트 리소스 삭제</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=9-백업-모니터링-및-알림>9. 백업 모니터링 및 알림</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># CloudWatch 알람 생성</span>
+</span></span><span class=line><span class=cl>aws cloudwatch put-metric-alarm <span class=se>\
+</span></span></span><span class=line><span class=cl>  --alarm-name <span class=s2>&#34;BackupFailure&#34;</span> <span class=se>\
+</span></span></span><span class=line><span class=cl>  --alarm-description <span class=s2>&#34;Alert on backup failures&#34;</span> <span class=se>\
+</span></span></span><span class=line><span class=cl>  --metric-name BackupJobStatus <span class=se>\
+</span></span></span><span class=line><span class=cl>  --namespace AWS/Backup <span class=se>\
+</span></span></span><span class=line><span class=cl>  --statistic Sum <span class=se>\
+</span></span></span><span class=line><span class=cl>  --period <span class=m>300</span> <span class=se>\
+</span></span></span><span class=line><span class=cl>  --threshold <span class=m>1</span> <span class=se>\
+</span></span></span><span class=line><span class=cl>  --comparison-operator GreaterThanOrEqualToThreshold <span class=se>\
+</span></span></span><span class=line><span class=cl>  --evaluation-periods <span class=m>1</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=10-조치-시-주의사항>10. 조치 시 주의사항</h3><div class=table-wrapper><table><thead><tr><th>주의사항</th><th>설명</th></tr></thead><tbody><tr><td><strong>비용 관리</strong></td><td>불필요한 백업 삭제, 생명주기 정책으로 비용 최적화</td></tr><tr><td><strong>암호화</strong></td><td>백업 데이터도 암호화 필수</td></tr><tr><td><strong>복구 테스트</strong></td><td>정기적 복구 테스트로 백업 유효성 검증</td></tr><tr><td><strong>문서화</strong></td><td>복구 절차 문서화 및 운영자 교육</td></tr><tr><td><strong>격리</strong></td><td>백업 데이터는 프로덕션과 격리하여 보관</td></tr></tbody></table></div><h3 id=11-참고-자료>11. 참고 자료</h3><ul><li><strong>AWS Backup Documentation</strong>: <a class=link href=https://docs.aws.amazon.com/aws-backup/ target=_blank rel=noopener>https://docs.aws.amazon.com/aws-backup/</a></li><li><strong>Azure Backup Documentation</strong>: <a class=link href=https://docs.microsoft.com/azure/backup/ target=_blank rel=noopener>https://docs.microsoft.com/azure/backup/</a></li><li><strong>GCP Backup and DR</strong>: <a class=link href=https://cloud.google.com/backup-disaster-recovery target=_blank rel=noopener>https://cloud.google.com/backup-disaster-recovery</a></li></ul><hr><h2 id=요약>요약</h2><p><strong>백업사용여부</strong>는 클라우드 환경의 데이터 보호와 비즈니스 연속성을 위한 필수 항목입니다. AWS Backup, Azure Backup, Cloud SQL 백업 등 클라우드 제공사의 백업 서비스를 활용하여 자동화된 백업을 설정하세요. 3-2-1 백업 규칙을 준수하고 정기적으로 복구 테스트를 수행하여 백업의 유효성을 검증해야 합니다.</p><p><strong>핵심 액션 아이템</strong></p><ol><li>EC2/VM 자동 백업 설정 (AMI, 스냅샷)</li><li>RDS/Cloud SQL 자동 백업 활성화</li><li>3-2-1 백업 규칙 준수 (3개 사본, 2개 미디어, 1개 오프사이트)</li><li>교차 리전 복제로 재해 복구 강화</li><li>분기별 복구 테스트 수행</li></ol></section><footer class=article-footer><section class=article-tags><a href=/tags/2026-%EC%A3%BC%EC%A0%95%ED%86%B5-%EA%B0%80%EC%9D%B4%EB%93%9C%EB%9D%BC%EC%9D%B8/>2026 주정통 가이드라인</a>
+<a href=/tags/cloud/>Cloud</a></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>관련 글</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-01/><div class=article-details><h2 class=article-title>[2026 주요정보통신기반시설] CA-01 사용자계정관리</h2></div></a></article><article><a href=/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-02/><div class=article-details><h2 class=article-title>[2026 주요정보통신기반시설] CA-02 사용자정책관리</h2></div></a></article><article><a href=/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-03/><div class=article-details><h2 class=article-title>[2026 주요정보통신기반시설] CA-03 MFA(Multi-Factor Authentication)설정</h2></div></a></article><article><a href=/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-04/><div class=article-details><h2 class=article-title>[2026 주요정보통신기반시설] CA-04 클라우드계정비밀번호정책관리</h2></div></a></article><article><a href=/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-05/><div class=article-details><h2 class=article-title>[2026 주요정보통신기반시설] CA-05 인스턴스서비스정책관리</h2></div></a></article></div></div></aside><footer class=site-footer><section class=copyright>&copy;
+2025 -
+2026 코딩이 싫은 거북이</section><section class=powerby><a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a>로 만듦<br><a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>의 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=4.0.0>Stack</a></b> 테마 사용 중</section></footer><script type=module>
     import gallery from '\/ts\/gallery.js';
 
     const articleContent = document.querySelector('.article-content');
@@ -1334,23 +569,4 @@
         });
         lightbox.init();
     }
-</script>
-    
-
-            </main>
-        </div>
-        <script type="text/javascript" src="/ts/main.387bdf6159ab34d0743ebd228aa9248d1ed2380fa5193ceff9ffdbf345b5309d.js" defer></script>
-<script>
-    (function () {
-        const customFont = document.createElement('link');
-        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
-
-        customFont.type = "text/css";
-        customFont.rel = "stylesheet";
-
-        document.head.appendChild(customFont);
-    }());
-</script>
-
-    </body>
-</html>
+</script></main></div><script type=text/javascript src=/ts/main.acaf849f2b273f6a8368a58b001f336738d0c948d92e79b116467d0c7515f932.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>

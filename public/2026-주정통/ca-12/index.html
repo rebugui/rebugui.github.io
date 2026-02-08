@@ -1,1125 +1,335 @@
-<!DOCTYPE html>
-<html lang="ko-kr" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="클라우드 시스템 간 암호화 통신 여부 점검">
-<title>[2026 주요정보통신기반시설] CA-12 통신구간암호화설정</title>
-
-<link rel='canonical' href='http://localhost:1313/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-12/'>
-
-<link rel="stylesheet" href="/scss/style.min.51098b80cc297c94c0f57786d4a04e7372774e5993b60facf53870128a79bf73.css"><meta property='og:title' content="[2026 주요정보통신기반시설] CA-12 통신구간암호화설정">
-<meta property='og:description' content="클라우드 시스템 간 암호화 통신 여부 점검">
-<meta property='og:url' content='http://localhost:1313/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-12/'>
-<meta property='og:site_name' content='코딩이 싫은 거북이'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='2026 주정통 가이드라인' /><meta property='article:tag' content='Cloud' /><meta property='article:published_time' content='2026-02-05T09:56:13&#43;09:00'/><meta property='article:modified_time' content='2026-02-05T09:56:13&#43;09:00'/>
-<meta name="twitter:title" content="[2026 주요정보통신기반시설] CA-12 통신구간암호화설정">
-<meta name="twitter:description" content="클라우드 시스템 간 암호화 통신 여부 점검">
-    <link rel="shortcut icon" href="/img/avatar.png" />
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-BDJ5ZPHH5Z"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-BDJ5ZPHH5Z');
-</script>
-
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7440869759073353"
-     crossorigin="anonymous"></script>
-
-    </head>
-    <body class="
-    article-page
-    ">
-    <script>
-        (function() {
-            const colorSchemeKey = 'StackColorScheme';
-            if(!localStorage.getItem(colorSchemeKey)){
-                localStorage.setItem(colorSchemeKey, "auto");
-            }
-        })();
-    </script><script>
-    (function() {
-        const colorSchemeKey = 'StackColorScheme';
-        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
-        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
-
-        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
-            
-
-            document.documentElement.dataset.scheme = 'dark';
-        } else {
-            document.documentElement.dataset.scheme = 'light';
-        }
-    })();
-</script>
-<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
-    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="메뉴 여닫기">
-        <span class="hamburger-box">
-            <span class="hamburger-inner"></span>
-        </span>
-    </button>
-
-    <header>
-        <figure class="site-avatar">
-                <a href="/">
-                    <img src="/img/avatar.png" 
-                        width="2048"
-                        height="2048"
-                        class="site-logo"
-                        loading="lazy"
-                        alt="Avatar">
-                </a>
-                
-                    <span class="emoji">🐢</span>
-                
-            </figure>
-        
-        
-        <div class="site-meta">
-            <h1 class="site-name"><a href="/">코딩이 싫은 거북이</a></h1>
-            <h2 class="site-description">Clean, responsive Hugo theme</h2>
-        </div>
-    </header><ol class="menu-social">
-            
-                <li>
-                    <a 
-                        href='https://github.com/rebugui'
-                        target="_blank"
-                        title="GitHub"
-                        rel="me"
-                    >
-                        
-                        
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
-</svg>
-
-
-
-                        
-                    </a>
-                </li>
-            
-        </ol><ol class="menu" id="main-menu">
-        
-        
-        
-        <li >
-            <a href='/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <polyline points="5 12 3 12 12 3 21 12 19 12" />
-  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
-  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
-</svg>
-
-
-
-                
-                <span>Home</span>
-            </a>
-        </li>
-        
-        
-        <li >
-            <a href='/page/about/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="12" cy="7" r="4" />
-  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
-</svg>
-
-
-
-                
-                <span>About</span>
-            </a>
-        </li>
-        
-        
-        <li >
-            <a href='/page/archives/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <rect x="3" y="4" width="18" height="4" rx="2" />
-  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
-  <line x1="10" y1="12" x2="14" y2="12" />
-</svg>
-
-
-
-                
-                <span>Archives</span>
-            </a>
-        </li>
-        
-        
-        <li >
-            <a href='/page/search/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="10" cy="10" r="7" />
-  <line x1="21" y1="21" x2="15" y2="15" />
-</svg>
-
-
-
-                
-                <span>Search</span>
-            </a>
-        </li>
-        
-        
-        <li >
-            <a href='/page/links/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
-  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
-</svg>
-
-
-
-                
-                <span>Links</span>
-            </a>
-        </li>
-        
-        <li class="menu-bottom-section">
-            <ol class="menu">
-
-                
-                    <li id="dark-mode-toggle">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="8" cy="12" r="2" />
-  <rect x="2" y="6" width="20" height="12" rx="6" />
-</svg>
-
-
-
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="16" cy="12" r="2" />
-  <rect x="2" y="6" width="20" height="12" rx="6" />
-</svg>
-
-
-
-                        <span>다크 모드</span>
-                    </li>
-                
-            </ol>
-        </li>
-    </ol>
-</aside>
-
-    <aside class="sidebar right-sidebar sticky">
-        
-            
-                
-    <section class="widget archives">
-        <div class="widget-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <line x1="5" y1="9" x2="19" y2="9" />
-  <line x1="5" y1="15" x2="19" y2="15" />
-  <line x1="11" y1="4" x2="7" y2="20" />
-  <line x1="17" y1="4" x2="13" y2="20" />
-</svg>
-
-
-
-        </div>
-        <h2 class="widget-title section-title">목차</h2>
-        
-        <div class="widget--toc">
-            <nav class="toc-nav" id="TableOfContents">
-                
-  <ol>
-    <li><a href="#가이드라인-원문">가이드라인 원문</a></li>
-    <li><a href="#상세-설명">상세 설명</a>
-      <ol>
-        <li><a href="#1-항목-개요">1. 항목 개요</a></li>
-        <li><a href="#2-왜-이-항목이-필요한가요">2. 왜 이 항목이 필요한가요?</a></li>
-        <li><a href="#3-점검-대상">3. 점검 대상</a></li>
-        <li><a href="#4-판단-기준">4. 판단 기준</a></li>
-        <li><a href="#5-점검-방법">5. 점검 방법</a>
-          <ol>
-            <li><a href="#step-1-웹-서버-httpstls-설정-확인">Step 1: 웹 서버 HTTPS/TLS 설정 확인</a></li>
-            <li><a href="#step-2-데이터베이스-연결-암호화-확인">Step 2: 데이터베이스 연결 암호화 확인</a></li>
-            <li><a href="#step-3-로드-밸런서-암호화-설정-확인">Step 3: 로드 밸런서 암호화 설정 확인</a></li>
-          </ol>
-        </li>
-        <li><a href="#6-조치-방법">6. 조치 방법</a>
-          <ol>
-            <li><a href="#step-1-httpstls-설정">Step 1: HTTPS/TLS 설정</a></li>
-            <li><a href="#step-2-데이터베이스-연결-암호화">Step 2: 데이터베이스 연결 암호화</a></li>
-            <li><a href="#step-3-로드-밸런서-https-설정">Step 3: 로드 밸런서 HTTPS 설정</a></li>
-            <li><a href="#step-4-sshrdp-암호화">Step 4: SSH/RDP 암호화</a></li>
-            <li><a href="#step-5-vpc-피어링-암호화">Step 5: VPC 피어링 암호화</a></li>
-            <li><a href="#step-6-vpn-연결-암호화">Step 6: VPN 연결 암호화</a></li>
-          </ol>
-        </li>
-        <li><a href="#7-암호화-강도-권고사항">7. 암호화 강도 권고사항</a></li>
-        <li><a href="#8-조치-시-주의사항">8. 조치 시 주의사항</a></li>
-        <li><a href="#9-참고-자료">9. 참고 자료</a></li>
-      </ol>
-    </li>
-    <li><a href="#요약">요약</a></li>
-  </ol>
-
-            </nav>
-        </div>
-    </section>
-
-            
-        
-    </aside>
-
-
-            <main class="main full-width">
-    <article class="main-article">
-    <header class="article-header">
-
-    <div class="article-details">
-    
-    <header class="article-category">
-        
-            
-            
-            
-            <a href="/categories/2026-%EC%A3%BC%EC%A0%95%ED%86%B5-%EA%B0%80%EC%9D%B4%EB%93%9C%EB%9D%BC%EC%9D%B8/" style="background-color: hsl(281, 60%, 84%); color: hsl(281, 60%, 15%);">
-                2026 주정통 가이드라인
-            </a>
-        
-    </header>
-    
-
-    <div class="article-title-wrapper">
-        <h2 class="article-title">
-            <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-12/">[2026 주요정보통신기반시설] CA-12 통신구간암호화설정</a>
-        </h2>
-    
-        
-        <h3 class="article-subtitle">
-            클라우드 시스템 간 암호화 통신 여부 점검
-        </h3>
-        
-    </div>
-
-    
-    
-    
-    
-    <footer class="article-time">
-        
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
-  <circle cx="18" cy="18" r="4" />
-  <path d="M15 3v4" />
-  <path d="M7 3v4" />
-  <path d="M3 11h16" />
-  <path d="M18 16.496v1.504l1 1" />
-</svg>
-                <time class="article-time--published" datetime='2026-02-05T09:56:13&#43;09:00'>2026년 2월 5일 목요일</time>
-            </div>
-        
-
-        
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="12" cy="12" r="9" />
-  <polyline points="12 7 12 12 15 15" />
-</svg>
-
-
-
-                <time class="article-time--reading">
-                    4 분 정도
-                </time>
-            </div>
-        
-    </footer>
-    
-
-    
-</div>
-
-</header>
-
-    
-    <aside class="article-toc">
-        <details>
-            <summary>
-                <div class="article-toc-title">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg>
-                    <span>목차</span>
-                </div>
-            </summary>
-            <nav class="toc-nav">
-                
-  <ol>
-    <li><a href="#가이드라인-원문">가이드라인 원문</a></li>
-    <li><a href="#상세-설명">상세 설명</a>
-      <ol>
-        <li><a href="#1-항목-개요">1. 항목 개요</a></li>
-        <li><a href="#2-왜-이-항목이-필요한가요">2. 왜 이 항목이 필요한가요?</a></li>
-        <li><a href="#3-점검-대상">3. 점검 대상</a></li>
-        <li><a href="#4-판단-기준">4. 판단 기준</a></li>
-        <li><a href="#5-점검-방법">5. 점검 방법</a>
-          <ol>
-            <li><a href="#step-1-웹-서버-httpstls-설정-확인">Step 1: 웹 서버 HTTPS/TLS 설정 확인</a></li>
-            <li><a href="#step-2-데이터베이스-연결-암호화-확인">Step 2: 데이터베이스 연결 암호화 확인</a></li>
-            <li><a href="#step-3-로드-밸런서-암호화-설정-확인">Step 3: 로드 밸런서 암호화 설정 확인</a></li>
-          </ol>
-        </li>
-        <li><a href="#6-조치-방법">6. 조치 방법</a>
-          <ol>
-            <li><a href="#step-1-httpstls-설정">Step 1: HTTPS/TLS 설정</a></li>
-            <li><a href="#step-2-데이터베이스-연결-암호화">Step 2: 데이터베이스 연결 암호화</a></li>
-            <li><a href="#step-3-로드-밸런서-https-설정">Step 3: 로드 밸런서 HTTPS 설정</a></li>
-            <li><a href="#step-4-sshrdp-암호화">Step 4: SSH/RDP 암호화</a></li>
-            <li><a href="#step-5-vpc-피어링-암호화">Step 5: VPC 피어링 암호화</a></li>
-            <li><a href="#step-6-vpn-연결-암호화">Step 6: VPN 연결 암호화</a></li>
-          </ol>
-        </li>
-        <li><a href="#7-암호화-강도-권고사항">7. 암호화 강도 권고사항</a></li>
-        <li><a href="#8-조치-시-주의사항">8. 조치 시 주의사항</a></li>
-        <li><a href="#9-참고-자료">9. 참고 자료</a></li>
-      </ol>
-    </li>
-    <li><a href="#요약">요약</a></li>
-  </ol>
-
-            </nav>
-        </details>
-    </aside>
-    
-
-    <section class="article-content">
-    
-    
-    <h1 id="ca-12-통신구간암호화설정">CA-12 통신구간암호화설정
-</h1><h2 id="가이드라인-원문">가이드라인 원문
-</h2><div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>항목</th>
-          <th>내용</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>항목코드</strong></td>
-          <td>CA-12</td>
-      </tr>
-      <tr>
-          <td><strong>점검내용</strong></td>
-          <td>클라우드 시스템 간 암호화 통신 여부 점검</td>
-      </tr>
-      <tr>
-          <td><strong>점검대상</strong></td>
-          <td>클라우드 플랫폼</td>
-      </tr>
-      <tr>
-          <td><strong>판단기준</strong></td>
-          <td>양호: 클라우드 리소스 통신 구간에 암호화가 적용된 경우</td>
-      </tr>
-      <tr>
-          <td><strong>판단기준</strong></td>
-          <td>취약: 클라우드 리소스 통신 구간에 암호화가 적용되지 않은 경우</td>
-      </tr>
-      <tr>
-          <td><strong>조치방법</strong></td>
-          <td>클라우드 리소스 통신하는 주요 구간은 암호화된 통신 수단 설정</td>
-      </tr>
-  </tbody>
-</table></div>
-<hr>
-<h2 id="상세-설명">상세 설명
-</h2><h3 id="1-항목-개요">1. 항목 개요
-</h3><p>클라우드 환경에서 데이터는 다양한 통신 구간을 이동합니다. 사용자에서 웹 서버, 웹 서버에서 데이터베이스, 마이크로서비스 간 통신, 외부 API 연동 등 모든 구간에서 암호화되지 않은 통신은 중간자 공격(Man-in-the-Middle Attack), 패킷 스니핑, 데이터 탈취 등의 위협에 노출됩니다.</p>
-<h3 id="2-왜-이-항목이-필요한가요">2. 왜 이 항목이 필요한가요?
-</h3><p><strong>보안 위협 시나리오:</strong></p>
-<ol>
-<li><strong>패킷 스니핑</strong>: 공격자가 네트워크 트래픽을 가로채어 민감 데이터 탈취</li>
-<li><strong>중간자 공격</strong>: 통신 경로에 개입하여 데이터 변조 및 전송</li>
-<li><strong>세션 하이재킹</strong>: 암호화되지 않은 세션 쿠키 탈취</li>
-<li><strong>크리덼셜 유출</strong>: 데이터베이스 접속 정보가 평문으로 전송되어 유출</li>
-</ol>
-<p><strong>실제 사례</strong></p>
-<ul>
-<li>2018년: 호텔 WiFi 네트워크에서 암호화되지 않은 통신을 스니핑하여 고객 정보 대규모 유출</li>
-<li>클라우드 환경에서 데이터베이스 연결이 암호화되지 않아 접속 정보 유출</li>
-</ul>
-<h3 id="3-점검-대상">3. 점검 대상
-</h3><ul>
-<li>웹 서버 ↔ 데이터베이스 간 통신</li>
-<li>마이크로서비스 간 통신</li>
-<li>로드 밸런서 ↔ 웹 서버 간 통신</li>
-<li>원격 접속 (SSH, RDP)</li>
-<li>API Gateway ↔ 백엔드 서비스 간 통신</li>
-<li>VPC 간 통신</li>
-<li>온프레미스 ↔ 클라우드 간 통신</li>
-</ul>
-<h3 id="4-판단-기준">4. 판단 기준
-</h3><div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>구분</th>
-          <th>기준</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>양호</strong></td>
-          <td>모든 통신 구간에 적절한 암호화가 적용된 경우</td>
-      </tr>
-      <tr>
-          <td><strong>취약</strong></td>
-          <td>하나 이상의 통신 구간에 암호화가 적용되지 않은 경우</td>
-      </tr>
-  </tbody>
-</table></div>
-<h3 id="5-점검-방법">5. 점검 방법
-</h3><h4 id="step-1-웹-서버-httpstls-설정-확인">Step 1: 웹 서버 HTTPS/TLS 설정 확인
-</h4><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 웹 서버 SSL/TLS 인증서 확인</span>
-</span></span><span class="line"><span class="cl">openssl s_client -connect example.com:443 -servername example.com
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># SSL Labs 평가</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># https://www.ssllabs.com/ssltest/</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># TLS 버전 및 암호화 스위트 확인</span>
-</span></span><span class="line"><span class="cl">nmap --script ssl-enum-ciphers -p <span class="m">443</span> example.com
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h4 id="step-2-데이터베이스-연결-암호화-확인">Step 2: 데이터베이스 연결 암호화 확인
-</h4><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># MySQL - SSL 연결 확인</span>
-</span></span><span class="line"><span class="cl">mysql -h db.example.com -u username -p --ssl --ssl-mode<span class="o">=</span>REQUIRED
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># MySQL 서버 SSL 설정 확인</span>
-</span></span><span class="line"><span class="cl">mysql -e <span class="s2">&#34;SHOW VARIABLES LIKE &#39;%ssl%&#39;;&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># PostgreSQL - SSL 연결 확인</span>
-</span></span><span class="line"><span class="cl">psql <span class="s2">&#34;host=db.example.com user=username dbname=mydb sslmode=require&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># PostgreSQL SSL 설정 확인</span>
-</span></span><span class="line"><span class="cl">psql -c <span class="s2">&#34;SHOW ssl;&#34;</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h4 id="step-3-로드-밸런서-암호화-설정-확인">Step 3: 로드 밸런서 암호화 설정 확인
-</h4><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># AWS - ALB/ELB 리스너 확인</span>
-</span></span><span class="line"><span class="cl">aws elbv2 describe-listeners --load-balancer-arn lb-arn
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># SSL/TLS 정책 확인</span>
-</span></span><span class="line"><span class="cl">aws elbv2 describe-listeners --load-balancer-arn lb-arn <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --query <span class="s2">&#34;Listeners[?Protocol==&#39;HTTPS&#39;].{Protocol:Protocol,SslPolicy:SslPolicy}&#34;</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="6-조치-방법">6. 조치 방법
-</h3><h4 id="step-1-httpstls-설정">Step 1: HTTPS/TLS 설정
-</h4><p><strong>Apache HTTP Server:</strong></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-apache" data-lang="apache"><span class="line"><span class="cl"><span class="c"># /etc/httpd/conf.d/ssl.conf</span>
-</span></span><span class="line"><span class="cl"><span class="nt">&lt;VirtualHost</span> <span class="s">_default_:443</span><span class="nt">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">ServerName</span> example.com
-</span></span><span class="line"><span class="cl">    <span class="nb">DocumentRoot</span> <span class="sx">/var/www/html</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c"># SSL 엔진 활성화</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">SSLEngine</span> <span class="k">on</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c"># 인증서 경로</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">SSLCertificateFile</span> <span class="sx">/etc/pki/tls/certs/example.com.crt</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">SSLCertificateKeyFile</span> <span class="sx">/etc/pki/tls/private/example.com.key</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">SSLCertificateChainFile</span> <span class="sx">/etc/pki/tls/certs/example.com-chain.crt</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c"># 보안 강화 (TLS 1.2 이상만 허용)</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">SSLProtocol</span> <span class="k">all</span> -SSLv2 -SSLv3 -TLSv1 -TLSv1.1
-</span></span><span class="line"><span class="cl">    <span class="nb">SSLCipherSuite</span> HIGH:!aNULL:!MD5
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c"># HSTS 활성화</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">Header</span> always set Strict-Transport-Security <span class="s2">&#34;max-age=31536000; includeSubDomains&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nt">&lt;/VirtualHost&gt;</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><strong>Nginx:</strong></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="c1"># /etc/nginx/conf.d/ssl.conf
-</span></span></span><span class="line"><span class="cl"><span class="k">server</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kn">listen</span> <span class="mi">443</span> <span class="s">ssl</span> <span class="s">http2</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="kn">server_name</span> <span class="s">example.com</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1"># 인증서 경로
-</span></span></span><span class="line"><span class="cl">    <span class="kn">ssl_certificate</span> <span class="s">/etc/nginx/ssl/example.com.crt</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="kn">ssl_certificate_key</span> <span class="s">/etc/nginx/ssl/example.com.key</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1"># 보안 강화
-</span></span></span><span class="line"><span class="cl">    <span class="kn">ssl_protocols</span> <span class="s">TLSv1.2</span> <span class="s">TLSv1.3</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="kn">ssl_ciphers</span> <span class="s">HIGH:!aNULL:!MD5</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="kn">ssl_prefer_server_ciphers</span> <span class="no">on</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1"># SSL 세션 캐시
-</span></span></span><span class="line"><span class="cl">    <span class="kn">ssl_session_cache</span> <span class="s">shared:SSL:10m</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="kn">ssl_session_timeout</span> <span class="mi">10m</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1"># HSTS 활성화
-</span></span></span><span class="line"><span class="cl">    <span class="kn">add_header</span> <span class="s">Strict-Transport-Security</span> <span class="s">&#34;max-age=31536000</span><span class="p">;</span> <span class="kn">includeSubDomains&#34;</span> <span class="s">always</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="kn">location</span> <span class="s">/</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="kn">root</span> <span class="s">/var/www/html</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># HTTP를 HTTPS로 리디렉션
-</span></span></span><span class="line"><span class="cl"><span class="k">server</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="kn">server_name</span> <span class="s">example.com</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="kn">return</span> <span class="mi">301</span> <span class="s">https://</span><span class="nv">$server_name$request_uri</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h4 id="step-2-데이터베이스-연결-암호화">Step 2: 데이터베이스 연결 암호화
-</h4><p><strong>MySQL/MariaDB:</strong></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="c1"># /etc/my.cnf.d/server.cnf</span>
-</span></span><span class="line"><span class="cl"><span class="k">[mysqld]</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># SSL 활성화</span>
-</span></span><span class="line"><span class="cl"><span class="na">require-secure-transport</span><span class="o">=</span><span class="s">ON</span>
-</span></span><span class="line"><span class="cl"><span class="na">ssl-ca</span><span class="o">=</span><span class="s">/etc/mysql/ssl/ca-cert.pem</span>
-</span></span><span class="line"><span class="cl"><span class="na">ssl-cert</span><span class="o">=</span><span class="s">/etc/mysql/ssl/server-cert.pem</span>
-</span></span><span class="line"><span class="cl"><span class="na">ssl-key</span><span class="o">=</span><span class="s">/etc/mysql/ssl/server-key.pem</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 강력한 암호화만 허용</span>
-</span></span><span class="line"><span class="cl"><span class="na">tls-version</span><span class="o">=</span><span class="s">TLSv1.2,TLSv1.3</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># MySQL 클라이언트 SSL 강제 연결</span>
-</span></span><span class="line"><span class="cl">mysql -h db.example.com -u username -p --ssl-mode<span class="o">=</span>REQUIRED
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><strong>PostgreSQL:</strong></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="c1"># /var/lib/pgsql/data/postgresql.conf</span>
-</span></span><span class="line"><span class="cl"><span class="na">ssl</span> <span class="o">=</span> <span class="s">on</span>
-</span></span><span class="line"><span class="cl"><span class="na">ssl_cert_file</span> <span class="o">=</span> <span class="s">&#39;server.crt&#39;</span>
-</span></span><span class="line"><span class="cl"><span class="na">ssl_key_file</span> <span class="o">=</span> <span class="s">&#39;server.key&#39;</span>
-</span></span><span class="line"><span class="cl"><span class="na">ssl_ca_file</span> <span class="o">=</span> <span class="s">&#39;ca.crt&#39;</span>
-</span></span><span class="line"><span class="cl"><span class="na">ssl_ciphers</span> <span class="o">=</span> <span class="s">&#39;HIGH:!aNULL&#39;</span>
-</span></span><span class="line"><span class="cl"><span class="na">ssl_min_protocol_version</span> <span class="o">=</span> <span class="s">&#39;TLSv1.2&#39;</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="c1"># /var/lib/pgsql/data/pg_hba.conf</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># SSL 연결만 허용</span>
-</span></span><span class="line"><span class="cl"><span class="na">hostssl all all 0.0.0.0/0 md5</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h4 id="step-3-로드-밸런서-https-설정">Step 3: 로드 밸런서 HTTPS 설정
-</h4><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># AWS - ALB HTTPS 리스너 생성</span>
-</span></span><span class="line"><span class="cl">aws elbv2 create-listener <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --load-balancer-arn arn:aws:elasticloadbalancing:region:account-id:loadbalancer/app/mylb/1234567890123456 <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --protocol HTTPS <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --port <span class="m">443</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --ssl-policy ELBSecurityPolicy-TLS-1-2-2017-01 <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --certificates <span class="nv">CertificateArn</span><span class="o">=</span>arn:aws:acm:region:account-id:certificate/certificate-id
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># HTTP를 HTTPS로 리디렉션</span>
-</span></span><span class="line"><span class="cl">aws elbv2 create-listener <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --load-balancer-arn arn:aws:elasticloadbalancing:region:account-id:loadbalancer/app/mylb/1234567890123456 <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --protocol HTTP <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --port <span class="m">80</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --default-actions <span class="nv">Type</span><span class="o">=</span>redirect,Config<span class="o">=</span><span class="s2">&#34;{\&#34;Protocol\&#34;:\&#34;HTTPS\&#34;,\&#34;Port\&#34;:\&#34;443\&#34;,\&#34;StatusCode\&#34;:\&#34;HTTP_301\&#34;}&#34;</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h4 id="step-4-sshrdp-암호화">Step 4: SSH/RDP 암호화
-</h4><p><strong>SSH 강화 설정:</strong></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># /etc/ssh/sshd_config</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 프로토콜 버전 2만 사용</span>
-</span></span><span class="line"><span class="cl">Protocol <span class="m">2</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 약한 암호화 알고리즘 제거</span>
-</span></span><span class="line"><span class="cl">Ciphers aes256-gcm@openssh.com,chacha20-poly1305@openssh.com,aes256-ctr
-</span></span><span class="line"><span class="cl">MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 키 교환 알고리즘</span>
-</span></span><span class="line"><span class="cl">KexAlgorithms curve25519-sha256,curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 로그인 재시도 제한</span>
-</span></span><span class="line"><span class="cl">MaxAuthTries <span class="m">3</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 루트 로그인 비활성화</span>
-</span></span><span class="line"><span class="cl">PermitRootLogin no
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 암호 인증 비활성화 (키 기반 인증만)</span>
-</span></span><span class="line"><span class="cl">PasswordAuthentication no
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><strong>RDP 암호화 강화:</strong></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="c"># PowerShell - RDP TLS 1.2 강제</span>
-</span></span><span class="line"><span class="cl"><span class="nb">Set-ItemProperty</span> <span class="n">-Path</span> <span class="s1">&#39;HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp&#39;</span> <span class="n">-Name</span> <span class="s1">&#39;SecurityLayer&#39;</span> <span class="n">-Value</span> <span class="mf">2</span>
-</span></span><span class="line"><span class="cl"><span class="nb">Set-ItemProperty</span> <span class="n">-Path</span> <span class="s1">&#39;HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp&#39;</span> <span class="n">-Name</span> <span class="s1">&#39;UserAuthentication&#39;</span> <span class="n">-Value</span> <span class="mf">1</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c"># RDP 암호화 수준 설정</span>
-</span></span><span class="line"><span class="cl"><span class="nb">Set-ItemProperty</span> <span class="n">-Path</span> <span class="s1">&#39;HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp&#39;</span> <span class="n">-Name</span> <span class="s1">&#39;MinEncryptionLevel&#39;</span> <span class="n">-Value</span> <span class="mf">4</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h4 id="step-5-vpc-피어링-암호화">Step 5: VPC 피어링 암호화
-</h4><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># AWS - 암호화된 VPC 피어링 연결 생성</span>
-</span></span><span class="line"><span class="cl">aws ec2 create-vpc-peering-connection <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --vpc-id vpc-aaaaaaaa <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --peer-vpc-id vpc-bbbbbbbb <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --peer-region ap-northeast-2
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># AWS Transit Gateway를 통한 암호화된 연결</span>
-</span></span><span class="line"><span class="cl">aws ec2 create-transit-gateway <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --description <span class="s2">&#34;Encrypted transit gateway&#34;</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --options <span class="nv">AmazonSideAsn</span><span class="o">=</span>64512,AutoAcceptSharedAttachments<span class="o">=</span>enable,DefaultRouteTableAssociation<span class="o">=</span>enable,DefaultRouteTablePropagation<span class="o">=</span>enable,VpnEcmpSupport<span class="o">=</span>enable,DnsSupport<span class="o">=</span><span class="nb">enable</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h4 id="step-6-vpn-연결-암호화">Step 6: VPN 연결 암호화
-</h4><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># AWS - Site-to-Site VPN 생성 (IPsec IKEv2)</span>
-</span></span><span class="line"><span class="cl">aws ec2 create-vpn-connection <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --type ipsec.1 <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --customer-gateway-id cgw-xxxxxxxx <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --vpn-gateway-id vgw-xxxxxxxx <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --vpn-connection-options <span class="s2">&#34;TunnelOptions=[{TunnelInsideCidr=169.254.1.0/30},{TunnelInsideCidr=169.254.2.0/30}]&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># IKEv2, 강력한 암호화 사용 (기본값)</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># Phase 1: IKE SA Encryption: AES256, SHA256, DH Group 14</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># Phase 2: IPsec SA Encryption: AES256, SHA256, DH Group 14</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="7-암호화-강도-권고사항">7. 암호화 강도 권고사항
-</h3><div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>구분</th>
-          <th>권고사항</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>블록 암호 알고리즘</strong></td>
-          <td>SEED, ARIA, AES (키 길이 128bits 이상)</td>
-      </tr>
-      <tr>
-          <td><strong>공개키 암호 알고리즘</strong></td>
-          <td>RSA (키 길이 2048bits 이상), ECDSA</td>
-      </tr>
-      <tr>
-          <td><strong>해시 알고리즘</strong></td>
-          <td>SHA-256 이상</td>
-      </tr>
-      <tr>
-          <td><strong>TLS 버전</strong></td>
-          <td>TLS 1.2 이상 (TLS 1.3 권장)</td>
-      </tr>
-      <tr>
-          <td><strong>키 교환</strong></td>
-          <td>ECDHE, DHE (Perfect Forward Secrecy 제공)</td>
-      </tr>
-      <tr>
-          <td><strong>암호화 스위트</strong></td>
-          <td>HIGH:!aNULL:!MD5:!3DES</td>
-      </tr>
-  </tbody>
-</table></div>
-<h3 id="8-조치-시-주의사항">8. 조치 시 주의사항
-</h3><div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>주의사항</th>
-          <th>설명</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>성능 영향</strong></td>
-          <td>암호화는 CPU 사용량 증가, 일반적으로 1-5% 성능 저하</td>
-      </tr>
-      <tr>
-          <td><strong>인증서 관리</strong></td>
-          <td>만료 전 인증서 갱신, ACM 활용 권장</td>
-      </tr>
-      <tr>
-          <td><strong>호환성 확인</strong></td>
-          <td>레거시 클라이언트와의 호환성 확인 필요</td>
-      </tr>
-      <tr>
-          <td><strong>HSTS 주의</strong></td>
-          <td>한 번 활성화하면 되돌리기 어려움, 테스트 후 적용</td>
-      </tr>
-      <tr>
-          <td><strong>모니터링</strong></td>
-          <td>SSL/TLS 연결 실패 모니터링</td>
-      </tr>
-  </tbody>
-</table></div>
-<h3 id="9-참고-자료">9. 참고 자료
-</h3><ul>
-<li><strong>Mozilla SSL Configuration Generator</strong>: <a class="link" href="https://ssl-config.mozilla.org/"  target="_blank" rel="noopener"
-    >https://ssl-config.mozilla.org/</a></li>
-<li><strong>OWASP TLS Cheat Sheet</strong>: <a class="link" href="https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Protection_Cheat_Sheet.html"  target="_blank" rel="noopener"
-    >https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Protection_Cheat_Sheet.html</a></li>
-<li><strong>AWS SSL/TLS Best Practices</strong>: <a class="link" href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/secure-connections-supported-protocols-ciphers.html"  target="_blank" rel="noopener"
-    >https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/secure-connections-supported-protocols-ciphers.html</a></li>
-</ul>
-<hr>
-<h2 id="요약">요약
-</h2><p><strong>통신구간암호화설정</strong>은 클라우드 환경의 모든 네트워크 통신을 보호하는 필수 항목입니다. HTTPS/TLS, 데이터베이스 SSL, VPN, SSH 등 모든 통신 경로에서 암호화를 적용하여 중간자 공격, 패킷 스니핑, 데이터 유출 등의 위협으로부터 데이터를 보호해야 합니다. 최신 TLS 1.2 이상을 사용하고 강력한 암호화 알고리즘을 적용하세요.</p>
-<p><strong>핵심 액션 아이템</strong></p>
-<ol>
-<li>웹 서버 HTTPS/TLS 강제 적용 (HTTP → HTTPS 리디렉션)</li>
-<li>데이터베이스 연결 SSL/TLS 활성화</li>
-<li>로드 밸런서 HTTPS 리스너 설정</li>
-<li>SSH/RDP 보안 설정 강화</li>
-<li>VPN/Transit Gateway를 통한 안전한 VPC 연결</li>
-</ol>
-
-</section>
-
-
-    <footer class="article-footer">
-    
-    <section class="article-tags">
-        
-            <a href="/tags/2026-%EC%A3%BC%EC%A0%95%ED%86%B5-%EA%B0%80%EC%9D%B4%EB%93%9C%EB%9D%BC%EC%9D%B8/">2026 주정통 가이드라인</a>
-        
-            <a href="/tags/cloud/">Cloud</a>
-        
-    </section>
-
-
-    </footer>
-
-
-    
-</article>
-
-    
-
-    
-
-<aside class="related-content--wrapper">
-    <h2 class="section-title">관련 글</h2>
-    <div class="related-content">
-        <div class="flex article-list--tile">
-            
-                
-<article class="">
-    <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-01/">
-        
-
-        <div class="article-details">
-            <h2 class="article-title">[2026 주요정보통신기반시설] CA-01 사용자계정관리</h2>
-        </div>
-    </a>
-</article>
-            
-                
-<article class="">
-    <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-02/">
-        
-
-        <div class="article-details">
-            <h2 class="article-title">[2026 주요정보통신기반시설] CA-02 사용자정책관리</h2>
-        </div>
-    </a>
-</article>
-            
-                
-<article class="">
-    <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-03/">
-        
-
-        <div class="article-details">
-            <h2 class="article-title">[2026 주요정보통신기반시설] CA-03 MFA(Multi-Factor Authentication)설정</h2>
-        </div>
-    </a>
-</article>
-            
-                
-<article class="">
-    <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-04/">
-        
-
-        <div class="article-details">
-            <h2 class="article-title">[2026 주요정보통신기반시설] CA-04 클라우드계정비밀번호정책관리</h2>
-        </div>
-    </a>
-</article>
-            
-                
-<article class="">
-    <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-05/">
-        
-
-        <div class="article-details">
-            <h2 class="article-title">[2026 주요정보통신기반시설] CA-05 인스턴스서비스정책관리</h2>
-        </div>
-    </a>
-</article>
-            
-        </div>
-    </div>
-</aside>
-
-     
-    
-        
-    
-
-    <footer class="site-footer">
-    <section class="copyright">
-        &copy; 
-        
-            2025 - 
-        
-        2026 코딩이 싫은 거북이
-    </section>
-    
-    <section class="powerby">
-        <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>로 만듦 <br />
-        <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>의 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="4.0.0">Stack</a></b> 테마 사용 중
-    </section>
-</footer>
-
-
-    
-
-
-
-<script type="module">
+<!doctype html><html lang=ko-kr dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="클라우드 시스템 간 암호화 통신 여부 점검"><title>[2026 주요정보통신기반시설] CA-12 통신구간암호화설정</title><link rel=canonical href=https://rebugui.github.io/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-12/><link rel=stylesheet href=/scss/style.min.51098b80cc297c94c0f57786d4a04e7372774e5993b60facf53870128a79bf73.css><meta property='og:title' content="[2026 주요정보통신기반시설] CA-12 통신구간암호화설정"><meta property='og:description' content="클라우드 시스템 간 암호화 통신 여부 점검"><meta property='og:url' content='https://rebugui.github.io/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-12/'><meta property='og:site_name' content='코딩이 싫은 거북이'><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='2026 주정통 가이드라인'><meta property='article:tag' content='Cloud'><meta property='article:published_time' content='2026-02-05T09:56:13+09:00'><meta property='article:modified_time' content='2026-02-05T09:56:13+09:00'><meta name=twitter:title content="[2026 주요정보통신기반시설] CA-12 통신구간암호화설정"><meta name=twitter:description content="클라우드 시스템 간 암호화 통신 여부 점검"><link rel="shortcut icon" href=/img/avatar.png><script async src="https://www.googletagmanager.com/gtag/js?id=G-BDJ5ZPHH5Z"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-BDJ5ZPHH5Z")</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7440869759073353" crossorigin=anonymous></script></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="메뉴 여닫기">
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar.png width=2048 height=2048 class=site-logo loading=lazy alt=Avatar>
+</a><span class=emoji>🐢</span></figure><div class=site-meta><h1 class=site-name><a href=/>코딩이 싫은 거북이</a></h1><h2 class=site-description>Clean, responsive Hugo theme</h2></div></header><ol class=menu-social><li><a href=https://github.com/rebugui target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>Home</span></a></li><li><a href=/page/about/><svg class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+<span>About</span></a></li><li><a href=/page/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>Archives</span></a></li><li><a href=/page/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>Search</span></a></li><li><a href=/page/links/><svg class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg>
+<span>Links</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>다크 모드</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">목차</h2><div class=widget--toc><nav class=toc-nav id=TableOfContents><ol><li><a href=#가이드라인-원문>가이드라인 원문</a></li><li><a href=#상세-설명>상세 설명</a><ol><li><a href=#1-항목-개요>1. 항목 개요</a></li><li><a href=#2-왜-이-항목이-필요한가요>2. 왜 이 항목이 필요한가요?</a></li><li><a href=#3-점검-대상>3. 점검 대상</a></li><li><a href=#4-판단-기준>4. 판단 기준</a></li><li><a href=#5-점검-방법>5. 점검 방법</a><ol><li><a href=#step-1-웹-서버-httpstls-설정-확인>Step 1: 웹 서버 HTTPS/TLS 설정 확인</a></li><li><a href=#step-2-데이터베이스-연결-암호화-확인>Step 2: 데이터베이스 연결 암호화 확인</a></li><li><a href=#step-3-로드-밸런서-암호화-설정-확인>Step 3: 로드 밸런서 암호화 설정 확인</a></li></ol></li><li><a href=#6-조치-방법>6. 조치 방법</a><ol><li><a href=#step-1-httpstls-설정>Step 1: HTTPS/TLS 설정</a></li><li><a href=#step-2-데이터베이스-연결-암호화>Step 2: 데이터베이스 연결 암호화</a></li><li><a href=#step-3-로드-밸런서-https-설정>Step 3: 로드 밸런서 HTTPS 설정</a></li><li><a href=#step-4-sshrdp-암호화>Step 4: SSH/RDP 암호화</a></li><li><a href=#step-5-vpc-피어링-암호화>Step 5: VPC 피어링 암호화</a></li><li><a href=#step-6-vpn-연결-암호화>Step 6: VPN 연결 암호화</a></li></ol></li><li><a href=#7-암호화-강도-권고사항>7. 암호화 강도 권고사항</a></li><li><a href=#8-조치-시-주의사항>8. 조치 시 주의사항</a></li><li><a href=#9-참고-자료>9. 참고 자료</a></li></ol></li><li><a href=#요약>요약</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/2026-%EC%A3%BC%EC%A0%95%ED%86%B5-%EA%B0%80%EC%9D%B4%EB%93%9C%EB%9D%BC%EC%9D%B8/ style=background-color:#dfbeef;color:#2f0f3d>2026 주정통 가이드라인</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-12/>[2026 주요정보통신기반시설] CA-12 통신구간암호화설정</a></h2><h3 class=article-subtitle>클라우드 시스템 간 암호화 통신 여부 점검</h3></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published datetime=2026-02-05T09:56:13+09:00>2026년 2월 5일 목요일</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>4 분 정도</time></div></footer></div></header><aside class=article-toc><details><summary><div class=article-toc-title><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6-6 6"/></svg>
+<span>목차</span></div></summary><nav class=toc-nav><ol><li><a href=#가이드라인-원문>가이드라인 원문</a></li><li><a href=#상세-설명>상세 설명</a><ol><li><a href=#1-항목-개요>1. 항목 개요</a></li><li><a href=#2-왜-이-항목이-필요한가요>2. 왜 이 항목이 필요한가요?</a></li><li><a href=#3-점검-대상>3. 점검 대상</a></li><li><a href=#4-판단-기준>4. 판단 기준</a></li><li><a href=#5-점검-방법>5. 점검 방법</a><ol><li><a href=#step-1-웹-서버-httpstls-설정-확인>Step 1: 웹 서버 HTTPS/TLS 설정 확인</a></li><li><a href=#step-2-데이터베이스-연결-암호화-확인>Step 2: 데이터베이스 연결 암호화 확인</a></li><li><a href=#step-3-로드-밸런서-암호화-설정-확인>Step 3: 로드 밸런서 암호화 설정 확인</a></li></ol></li><li><a href=#6-조치-방법>6. 조치 방법</a><ol><li><a href=#step-1-httpstls-설정>Step 1: HTTPS/TLS 설정</a></li><li><a href=#step-2-데이터베이스-연결-암호화>Step 2: 데이터베이스 연결 암호화</a></li><li><a href=#step-3-로드-밸런서-https-설정>Step 3: 로드 밸런서 HTTPS 설정</a></li><li><a href=#step-4-sshrdp-암호화>Step 4: SSH/RDP 암호화</a></li><li><a href=#step-5-vpc-피어링-암호화>Step 5: VPC 피어링 암호화</a></li><li><a href=#step-6-vpn-연결-암호화>Step 6: VPN 연결 암호화</a></li></ol></li><li><a href=#7-암호화-강도-권고사항>7. 암호화 강도 권고사항</a></li><li><a href=#8-조치-시-주의사항>8. 조치 시 주의사항</a></li><li><a href=#9-참고-자료>9. 참고 자료</a></li></ol></li><li><a href=#요약>요약</a></li></ol></nav></details></aside><section class=article-content><h1 id=ca-12-통신구간암호화설정>CA-12 통신구간암호화설정</h1><h2 id=가이드라인-원문>가이드라인 원문</h2><div class=table-wrapper><table><thead><tr><th>항목</th><th>내용</th></tr></thead><tbody><tr><td><strong>항목코드</strong></td><td>CA-12</td></tr><tr><td><strong>점검내용</strong></td><td>클라우드 시스템 간 암호화 통신 여부 점검</td></tr><tr><td><strong>점검대상</strong></td><td>클라우드 플랫폼</td></tr><tr><td><strong>판단기준</strong></td><td>양호: 클라우드 리소스 통신 구간에 암호화가 적용된 경우</td></tr><tr><td><strong>판단기준</strong></td><td>취약: 클라우드 리소스 통신 구간에 암호화가 적용되지 않은 경우</td></tr><tr><td><strong>조치방법</strong></td><td>클라우드 리소스 통신하는 주요 구간은 암호화된 통신 수단 설정</td></tr></tbody></table></div><hr><h2 id=상세-설명>상세 설명</h2><h3 id=1-항목-개요>1. 항목 개요</h3><p>클라우드 환경에서 데이터는 다양한 통신 구간을 이동합니다. 사용자에서 웹 서버, 웹 서버에서 데이터베이스, 마이크로서비스 간 통신, 외부 API 연동 등 모든 구간에서 암호화되지 않은 통신은 중간자 공격(Man-in-the-Middle Attack), 패킷 스니핑, 데이터 탈취 등의 위협에 노출됩니다.</p><h3 id=2-왜-이-항목이-필요한가요>2. 왜 이 항목이 필요한가요?</h3><p><strong>보안 위협 시나리오:</strong></p><ol><li><strong>패킷 스니핑</strong>: 공격자가 네트워크 트래픽을 가로채어 민감 데이터 탈취</li><li><strong>중간자 공격</strong>: 통신 경로에 개입하여 데이터 변조 및 전송</li><li><strong>세션 하이재킹</strong>: 암호화되지 않은 세션 쿠키 탈취</li><li><strong>크리덼셜 유출</strong>: 데이터베이스 접속 정보가 평문으로 전송되어 유출</li></ol><p><strong>실제 사례</strong></p><ul><li>2018년: 호텔 WiFi 네트워크에서 암호화되지 않은 통신을 스니핑하여 고객 정보 대규모 유출</li><li>클라우드 환경에서 데이터베이스 연결이 암호화되지 않아 접속 정보 유출</li></ul><h3 id=3-점검-대상>3. 점검 대상</h3><ul><li>웹 서버 ↔ 데이터베이스 간 통신</li><li>마이크로서비스 간 통신</li><li>로드 밸런서 ↔ 웹 서버 간 통신</li><li>원격 접속 (SSH, RDP)</li><li>API Gateway ↔ 백엔드 서비스 간 통신</li><li>VPC 간 통신</li><li>온프레미스 ↔ 클라우드 간 통신</li></ul><h3 id=4-판단-기준>4. 판단 기준</h3><div class=table-wrapper><table><thead><tr><th>구분</th><th>기준</th></tr></thead><tbody><tr><td><strong>양호</strong></td><td>모든 통신 구간에 적절한 암호화가 적용된 경우</td></tr><tr><td><strong>취약</strong></td><td>하나 이상의 통신 구간에 암호화가 적용되지 않은 경우</td></tr></tbody></table></div><h3 id=5-점검-방법>5. 점검 방법</h3><h4 id=step-1-웹-서버-httpstls-설정-확인>Step 1: 웹 서버 HTTPS/TLS 설정 확인</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 웹 서버 SSL/TLS 인증서 확인</span>
+</span></span><span class=line><span class=cl>openssl s_client -connect example.com:443 -servername example.com
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># SSL Labs 평가</span>
+</span></span><span class=line><span class=cl><span class=c1># https://www.ssllabs.com/ssltest/</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># TLS 버전 및 암호화 스위트 확인</span>
+</span></span><span class=line><span class=cl>nmap --script ssl-enum-ciphers -p <span class=m>443</span> example.com
+</span></span></code></pre></td></tr></table></div></div><h4 id=step-2-데이터베이스-연결-암호화-확인>Step 2: 데이터베이스 연결 암호화 확인</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># MySQL - SSL 연결 확인</span>
+</span></span><span class=line><span class=cl>mysql -h db.example.com -u username -p --ssl --ssl-mode<span class=o>=</span>REQUIRED
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># MySQL 서버 SSL 설정 확인</span>
+</span></span><span class=line><span class=cl>mysql -e <span class=s2>&#34;SHOW VARIABLES LIKE &#39;%ssl%&#39;;&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># PostgreSQL - SSL 연결 확인</span>
+</span></span><span class=line><span class=cl>psql <span class=s2>&#34;host=db.example.com user=username dbname=mydb sslmode=require&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># PostgreSQL SSL 설정 확인</span>
+</span></span><span class=line><span class=cl>psql -c <span class=s2>&#34;SHOW ssl;&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><h4 id=step-3-로드-밸런서-암호화-설정-확인>Step 3: 로드 밸런서 암호화 설정 확인</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># AWS - ALB/ELB 리스너 확인</span>
+</span></span><span class=line><span class=cl>aws elbv2 describe-listeners --load-balancer-arn lb-arn
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># SSL/TLS 정책 확인</span>
+</span></span><span class=line><span class=cl>aws elbv2 describe-listeners --load-balancer-arn lb-arn <span class=se>\
+</span></span></span><span class=line><span class=cl>  --query <span class=s2>&#34;Listeners[?Protocol==&#39;HTTPS&#39;].{Protocol:Protocol,SslPolicy:SslPolicy}&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=6-조치-방법>6. 조치 방법</h3><h4 id=step-1-httpstls-설정>Step 1: HTTPS/TLS 설정</h4><p><strong>Apache HTTP Server:</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-apache data-lang=apache><span class=line><span class=cl><span class=c># /etc/httpd/conf.d/ssl.conf</span>
+</span></span><span class=line><span class=cl><span class=nt>&lt;VirtualHost</span> <span class=s>_default_:443</span><span class=nt>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=nb>ServerName</span> example.com
+</span></span><span class=line><span class=cl>    <span class=nb>DocumentRoot</span> <span class=sx>/var/www/html</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c># SSL 엔진 활성화</span>
+</span></span><span class=line><span class=cl>    <span class=nb>SSLEngine</span> <span class=k>on</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c># 인증서 경로</span>
+</span></span><span class=line><span class=cl>    <span class=nb>SSLCertificateFile</span> <span class=sx>/etc/pki/tls/certs/example.com.crt</span>
+</span></span><span class=line><span class=cl>    <span class=nb>SSLCertificateKeyFile</span> <span class=sx>/etc/pki/tls/private/example.com.key</span>
+</span></span><span class=line><span class=cl>    <span class=nb>SSLCertificateChainFile</span> <span class=sx>/etc/pki/tls/certs/example.com-chain.crt</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c># 보안 강화 (TLS 1.2 이상만 허용)</span>
+</span></span><span class=line><span class=cl>    <span class=nb>SSLProtocol</span> <span class=k>all</span> -SSLv2 -SSLv3 -TLSv1 -TLSv1.1
+</span></span><span class=line><span class=cl>    <span class=nb>SSLCipherSuite</span> HIGH:!aNULL:!MD5
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c># HSTS 활성화</span>
+</span></span><span class=line><span class=cl>    <span class=nb>Header</span> always set Strict-Transport-Security <span class=s2>&#34;max-age=31536000; includeSubDomains&#34;</span>
+</span></span><span class=line><span class=cl><span class=nt>&lt;/VirtualHost&gt;</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>Nginx:</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-nginx data-lang=nginx><span class=line><span class=cl><span class=c1># /etc/nginx/conf.d/ssl.conf
+</span></span></span><span class=line><span class=cl><span class=k>server</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kn>listen</span> <span class=mi>443</span> <span class=s>ssl</span> <span class=s>http2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=kn>server_name</span> <span class=s>example.com</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1># 인증서 경로
+</span></span></span><span class=line><span class=cl>    <span class=kn>ssl_certificate</span> <span class=s>/etc/nginx/ssl/example.com.crt</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=kn>ssl_certificate_key</span> <span class=s>/etc/nginx/ssl/example.com.key</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1># 보안 강화
+</span></span></span><span class=line><span class=cl>    <span class=kn>ssl_protocols</span> <span class=s>TLSv1.2</span> <span class=s>TLSv1.3</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=kn>ssl_ciphers</span> <span class=s>HIGH:!aNULL:!MD5</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=kn>ssl_prefer_server_ciphers</span> <span class=no>on</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1># SSL 세션 캐시
+</span></span></span><span class=line><span class=cl>    <span class=kn>ssl_session_cache</span> <span class=s>shared:SSL:10m</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=kn>ssl_session_timeout</span> <span class=mi>10m</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1># HSTS 활성화
+</span></span></span><span class=line><span class=cl>    <span class=kn>add_header</span> <span class=s>Strict-Transport-Security</span> <span class=s>&#34;max-age=31536000</span><span class=p>;</span> <span class=kn>includeSubDomains&#34;</span> <span class=s>always</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=kn>location</span> <span class=s>/</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=kn>root</span> <span class=s>/var/www/html</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># HTTP를 HTTPS로 리디렉션
+</span></span></span><span class=line><span class=cl><span class=k>server</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kn>listen</span> <span class=mi>80</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=kn>server_name</span> <span class=s>example.com</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=kn>return</span> <span class=mi>301</span> <span class=s>https://</span><span class=nv>$server_name$request_uri</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><h4 id=step-2-데이터베이스-연결-암호화>Step 2: 데이터베이스 연결 암호화</h4><p><strong>MySQL/MariaDB:</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-ini data-lang=ini><span class=line><span class=cl><span class=c1># /etc/my.cnf.d/server.cnf</span>
+</span></span><span class=line><span class=cl><span class=k>[mysqld]</span>
+</span></span><span class=line><span class=cl><span class=c1># SSL 활성화</span>
+</span></span><span class=line><span class=cl><span class=na>require-secure-transport</span><span class=o>=</span><span class=s>ON</span>
+</span></span><span class=line><span class=cl><span class=na>ssl-ca</span><span class=o>=</span><span class=s>/etc/mysql/ssl/ca-cert.pem</span>
+</span></span><span class=line><span class=cl><span class=na>ssl-cert</span><span class=o>=</span><span class=s>/etc/mysql/ssl/server-cert.pem</span>
+</span></span><span class=line><span class=cl><span class=na>ssl-key</span><span class=o>=</span><span class=s>/etc/mysql/ssl/server-key.pem</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 강력한 암호화만 허용</span>
+</span></span><span class=line><span class=cl><span class=na>tls-version</span><span class=o>=</span><span class=s>TLSv1.2,TLSv1.3</span>
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># MySQL 클라이언트 SSL 강제 연결</span>
+</span></span><span class=line><span class=cl>mysql -h db.example.com -u username -p --ssl-mode<span class=o>=</span>REQUIRED
+</span></span></code></pre></td></tr></table></div></div><p><strong>PostgreSQL:</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-ini data-lang=ini><span class=line><span class=cl><span class=c1># /var/lib/pgsql/data/postgresql.conf</span>
+</span></span><span class=line><span class=cl><span class=na>ssl</span> <span class=o>=</span> <span class=s>on</span>
+</span></span><span class=line><span class=cl><span class=na>ssl_cert_file</span> <span class=o>=</span> <span class=s>&#39;server.crt&#39;</span>
+</span></span><span class=line><span class=cl><span class=na>ssl_key_file</span> <span class=o>=</span> <span class=s>&#39;server.key&#39;</span>
+</span></span><span class=line><span class=cl><span class=na>ssl_ca_file</span> <span class=o>=</span> <span class=s>&#39;ca.crt&#39;</span>
+</span></span><span class=line><span class=cl><span class=na>ssl_ciphers</span> <span class=o>=</span> <span class=s>&#39;HIGH:!aNULL&#39;</span>
+</span></span><span class=line><span class=cl><span class=na>ssl_min_protocol_version</span> <span class=o>=</span> <span class=s>&#39;TLSv1.2&#39;</span>
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-ini data-lang=ini><span class=line><span class=cl><span class=c1># /var/lib/pgsql/data/pg_hba.conf</span>
+</span></span><span class=line><span class=cl><span class=c1># SSL 연결만 허용</span>
+</span></span><span class=line><span class=cl><span class=na>hostssl all all 0.0.0.0/0 md5</span>
+</span></span></code></pre></td></tr></table></div></div><h4 id=step-3-로드-밸런서-https-설정>Step 3: 로드 밸런서 HTTPS 설정</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># AWS - ALB HTTPS 리스너 생성</span>
+</span></span><span class=line><span class=cl>aws elbv2 create-listener <span class=se>\
+</span></span></span><span class=line><span class=cl>  --load-balancer-arn arn:aws:elasticloadbalancing:region:account-id:loadbalancer/app/mylb/1234567890123456 <span class=se>\
+</span></span></span><span class=line><span class=cl>  --protocol HTTPS <span class=se>\
+</span></span></span><span class=line><span class=cl>  --port <span class=m>443</span> <span class=se>\
+</span></span></span><span class=line><span class=cl>  --ssl-policy ELBSecurityPolicy-TLS-1-2-2017-01 <span class=se>\
+</span></span></span><span class=line><span class=cl>  --certificates <span class=nv>CertificateArn</span><span class=o>=</span>arn:aws:acm:region:account-id:certificate/certificate-id
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># HTTP를 HTTPS로 리디렉션</span>
+</span></span><span class=line><span class=cl>aws elbv2 create-listener <span class=se>\
+</span></span></span><span class=line><span class=cl>  --load-balancer-arn arn:aws:elasticloadbalancing:region:account-id:loadbalancer/app/mylb/1234567890123456 <span class=se>\
+</span></span></span><span class=line><span class=cl>  --protocol HTTP <span class=se>\
+</span></span></span><span class=line><span class=cl>  --port <span class=m>80</span> <span class=se>\
+</span></span></span><span class=line><span class=cl>  --default-actions <span class=nv>Type</span><span class=o>=</span>redirect,Config<span class=o>=</span><span class=s2>&#34;{\&#34;Protocol\&#34;:\&#34;HTTPS\&#34;,\&#34;Port\&#34;:\&#34;443\&#34;,\&#34;StatusCode\&#34;:\&#34;HTTP_301\&#34;}&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><h4 id=step-4-sshrdp-암호화>Step 4: SSH/RDP 암호화</h4><p><strong>SSH 강화 설정:</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># /etc/ssh/sshd_config</span>
+</span></span><span class=line><span class=cl><span class=c1># 프로토콜 버전 2만 사용</span>
+</span></span><span class=line><span class=cl>Protocol <span class=m>2</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 약한 암호화 알고리즘 제거</span>
+</span></span><span class=line><span class=cl>Ciphers aes256-gcm@openssh.com,chacha20-poly1305@openssh.com,aes256-ctr
+</span></span><span class=line><span class=cl>MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 키 교환 알고리즘</span>
+</span></span><span class=line><span class=cl>KexAlgorithms curve25519-sha256,curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 로그인 재시도 제한</span>
+</span></span><span class=line><span class=cl>MaxAuthTries <span class=m>3</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 루트 로그인 비활성화</span>
+</span></span><span class=line><span class=cl>PermitRootLogin no
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 암호 인증 비활성화 (키 기반 인증만)</span>
+</span></span><span class=line><span class=cl>PasswordAuthentication no
+</span></span></code></pre></td></tr></table></div></div><p><strong>RDP 암호화 강화:</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-powershell data-lang=powershell><span class=line><span class=cl><span class=c># PowerShell - RDP TLS 1.2 강제</span>
+</span></span><span class=line><span class=cl><span class=nb>Set-ItemProperty</span> <span class=n>-Path</span> <span class=s1>&#39;HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp&#39;</span> <span class=n>-Name</span> <span class=s1>&#39;SecurityLayer&#39;</span> <span class=n>-Value</span> <span class=mf>2</span>
+</span></span><span class=line><span class=cl><span class=nb>Set-ItemProperty</span> <span class=n>-Path</span> <span class=s1>&#39;HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp&#39;</span> <span class=n>-Name</span> <span class=s1>&#39;UserAuthentication&#39;</span> <span class=n>-Value</span> <span class=mf>1</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c># RDP 암호화 수준 설정</span>
+</span></span><span class=line><span class=cl><span class=nb>Set-ItemProperty</span> <span class=n>-Path</span> <span class=s1>&#39;HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp&#39;</span> <span class=n>-Name</span> <span class=s1>&#39;MinEncryptionLevel&#39;</span> <span class=n>-Value</span> <span class=mf>4</span>
+</span></span></code></pre></td></tr></table></div></div><h4 id=step-5-vpc-피어링-암호화>Step 5: VPC 피어링 암호화</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># AWS - 암호화된 VPC 피어링 연결 생성</span>
+</span></span><span class=line><span class=cl>aws ec2 create-vpc-peering-connection <span class=se>\
+</span></span></span><span class=line><span class=cl>  --vpc-id vpc-aaaaaaaa <span class=se>\
+</span></span></span><span class=line><span class=cl>  --peer-vpc-id vpc-bbbbbbbb <span class=se>\
+</span></span></span><span class=line><span class=cl>  --peer-region ap-northeast-2
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># AWS Transit Gateway를 통한 암호화된 연결</span>
+</span></span><span class=line><span class=cl>aws ec2 create-transit-gateway <span class=se>\
+</span></span></span><span class=line><span class=cl>  --description <span class=s2>&#34;Encrypted transit gateway&#34;</span> <span class=se>\
+</span></span></span><span class=line><span class=cl>  --options <span class=nv>AmazonSideAsn</span><span class=o>=</span>64512,AutoAcceptSharedAttachments<span class=o>=</span>enable,DefaultRouteTableAssociation<span class=o>=</span>enable,DefaultRouteTablePropagation<span class=o>=</span>enable,VpnEcmpSupport<span class=o>=</span>enable,DnsSupport<span class=o>=</span><span class=nb>enable</span>
+</span></span></code></pre></td></tr></table></div></div><h4 id=step-6-vpn-연결-암호화>Step 6: VPN 연결 암호화</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># AWS - Site-to-Site VPN 생성 (IPsec IKEv2)</span>
+</span></span><span class=line><span class=cl>aws ec2 create-vpn-connection <span class=se>\
+</span></span></span><span class=line><span class=cl>  --type ipsec.1 <span class=se>\
+</span></span></span><span class=line><span class=cl>  --customer-gateway-id cgw-xxxxxxxx <span class=se>\
+</span></span></span><span class=line><span class=cl>  --vpn-gateway-id vgw-xxxxxxxx <span class=se>\
+</span></span></span><span class=line><span class=cl>  --vpn-connection-options <span class=s2>&#34;TunnelOptions=[{TunnelInsideCidr=169.254.1.0/30},{TunnelInsideCidr=169.254.2.0/30}]&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># IKEv2, 강력한 암호화 사용 (기본값)</span>
+</span></span><span class=line><span class=cl><span class=c1># Phase 1: IKE SA Encryption: AES256, SHA256, DH Group 14</span>
+</span></span><span class=line><span class=cl><span class=c1># Phase 2: IPsec SA Encryption: AES256, SHA256, DH Group 14</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=7-암호화-강도-권고사항>7. 암호화 강도 권고사항</h3><div class=table-wrapper><table><thead><tr><th>구분</th><th>권고사항</th></tr></thead><tbody><tr><td><strong>블록 암호 알고리즘</strong></td><td>SEED, ARIA, AES (키 길이 128bits 이상)</td></tr><tr><td><strong>공개키 암호 알고리즘</strong></td><td>RSA (키 길이 2048bits 이상), ECDSA</td></tr><tr><td><strong>해시 알고리즘</strong></td><td>SHA-256 이상</td></tr><tr><td><strong>TLS 버전</strong></td><td>TLS 1.2 이상 (TLS 1.3 권장)</td></tr><tr><td><strong>키 교환</strong></td><td>ECDHE, DHE (Perfect Forward Secrecy 제공)</td></tr><tr><td><strong>암호화 스위트</strong></td><td>HIGH:!aNULL:!MD5:!3DES</td></tr></tbody></table></div><h3 id=8-조치-시-주의사항>8. 조치 시 주의사항</h3><div class=table-wrapper><table><thead><tr><th>주의사항</th><th>설명</th></tr></thead><tbody><tr><td><strong>성능 영향</strong></td><td>암호화는 CPU 사용량 증가, 일반적으로 1-5% 성능 저하</td></tr><tr><td><strong>인증서 관리</strong></td><td>만료 전 인증서 갱신, ACM 활용 권장</td></tr><tr><td><strong>호환성 확인</strong></td><td>레거시 클라이언트와의 호환성 확인 필요</td></tr><tr><td><strong>HSTS 주의</strong></td><td>한 번 활성화하면 되돌리기 어려움, 테스트 후 적용</td></tr><tr><td><strong>모니터링</strong></td><td>SSL/TLS 연결 실패 모니터링</td></tr></tbody></table></div><h3 id=9-참고-자료>9. 참고 자료</h3><ul><li><strong>Mozilla SSL Configuration Generator</strong>: <a class=link href=https://ssl-config.mozilla.org/ target=_blank rel=noopener>https://ssl-config.mozilla.org/</a></li><li><strong>OWASP TLS Cheat Sheet</strong>: <a class=link href=https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Protection_Cheat_Sheet.html target=_blank rel=noopener>https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Protection_Cheat_Sheet.html</a></li><li><strong>AWS SSL/TLS Best Practices</strong>: <a class=link href=https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/secure-connections-supported-protocols-ciphers.html target=_blank rel=noopener>https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/secure-connections-supported-protocols-ciphers.html</a></li></ul><hr><h2 id=요약>요약</h2><p><strong>통신구간암호화설정</strong>은 클라우드 환경의 모든 네트워크 통신을 보호하는 필수 항목입니다. HTTPS/TLS, 데이터베이스 SSL, VPN, SSH 등 모든 통신 경로에서 암호화를 적용하여 중간자 공격, 패킷 스니핑, 데이터 유출 등의 위협으로부터 데이터를 보호해야 합니다. 최신 TLS 1.2 이상을 사용하고 강력한 암호화 알고리즘을 적용하세요.</p><p><strong>핵심 액션 아이템</strong></p><ol><li>웹 서버 HTTPS/TLS 강제 적용 (HTTP → HTTPS 리디렉션)</li><li>데이터베이스 연결 SSL/TLS 활성화</li><li>로드 밸런서 HTTPS 리스너 설정</li><li>SSH/RDP 보안 설정 강화</li><li>VPN/Transit Gateway를 통한 안전한 VPC 연결</li></ol></section><footer class=article-footer><section class=article-tags><a href=/tags/2026-%EC%A3%BC%EC%A0%95%ED%86%B5-%EA%B0%80%EC%9D%B4%EB%93%9C%EB%9D%BC%EC%9D%B8/>2026 주정통 가이드라인</a>
+<a href=/tags/cloud/>Cloud</a></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>관련 글</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-01/><div class=article-details><h2 class=article-title>[2026 주요정보통신기반시설] CA-01 사용자계정관리</h2></div></a></article><article><a href=/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-02/><div class=article-details><h2 class=article-title>[2026 주요정보통신기반시설] CA-02 사용자정책관리</h2></div></a></article><article><a href=/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-03/><div class=article-details><h2 class=article-title>[2026 주요정보통신기반시설] CA-03 MFA(Multi-Factor Authentication)설정</h2></div></a></article><article><a href=/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-04/><div class=article-details><h2 class=article-title>[2026 주요정보통신기반시설] CA-04 클라우드계정비밀번호정책관리</h2></div></a></article><article><a href=/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-05/><div class=article-details><h2 class=article-title>[2026 주요정보통신기반시설] CA-05 인스턴스서비스정책관리</h2></div></a></article></div></div></aside><footer class=site-footer><section class=copyright>&copy;
+2025 -
+2026 코딩이 싫은 거북이</section><section class=powerby><a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a>로 만듦<br><a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>의 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=4.0.0>Stack</a></b> 테마 사용 중</section></footer><script type=module>
     import gallery from '\/ts\/gallery.js';
 
     const articleContent = document.querySelector('.article-content');
@@ -1143,23 +353,4 @@
         });
         lightbox.init();
     }
-</script>
-    
-
-            </main>
-        </div>
-        <script type="text/javascript" src="/ts/main.387bdf6159ab34d0743ebd228aa9248d1ed2380fa5193ceff9ffdbf345b5309d.js" defer></script>
-<script>
-    (function () {
-        const customFont = document.createElement('link');
-        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
-
-        customFont.type = "text/css";
-        customFont.rel = "stylesheet";
-
-        document.head.appendChild(customFont);
-    }());
-</script>
-
-    </body>
-</html>
+</script></main></div><script type=text/javascript src=/ts/main.acaf849f2b273f6a8368a58b001f336738d0c948d92e79b116467d0c7515f932.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>

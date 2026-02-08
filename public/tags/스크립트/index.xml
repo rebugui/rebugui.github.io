@@ -1,15 +1,94 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-    <channel>
-        <title>스크립트 on 코딩이 싫은 거북이</title>
-        <link>http://localhost:1313/tags/%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/</link>
-        <description>Recent content in 스크립트 on 코딩이 싫은 거북이</description>
-        <generator>Hugo -- gohugo.io</generator>
-        <language>ko-kr</language>
-        <lastBuildDate>Thu, 05 Feb 2026 14:35:32 +0900</lastBuildDate><atom:link href="http://localhost:1313/tags/%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/index.xml" rel="self" type="application/rss+xml" /><item>
-            <title>[Open Source] KISA 주요정보통신기반시설 기술적 취약점 진단 자동화 스크립트 (2026 가이드라인 대응)</title>
-            <link>http://localhost:1313/open-source-kisa-%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4-%EA%B8%B0%EC%88%A0%EC%A0%81-%EC%B7%A8%EC%95%BD%EC%A0%90-%EC%A7%84%EB%8B%A8-%EC%9E%90%EB%8F%99%ED%99%94-%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-2026-%EA%B0%80%EC%9D%B4%EB%93%9C%EB%9D%BC%EC%9D%B8-%EB%8C%80%EC%9D%91/</link>
-            <pubDate>Thu, 05 Feb 2026 14:35:32 +0900</pubDate>
-            <guid>http://localhost:1313/open-source-kisa-%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4-%EA%B8%B0%EC%88%A0%EC%A0%81-%EC%B7%A8%EC%95%BD%EC%A0%90-%EC%A7%84%EB%8B%A8-%EC%9E%90%EB%8F%99%ED%99%94-%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-2026-%EA%B0%80%EC%9D%B4%EB%93%9C%EB%9D%BC%EC%9D%B8-%EB%8C%80%EC%9D%91/</guid>
-            <description>&lt;h2 id=&#34;-개요&#34;&gt;📋 개요&#xA;&lt;/h2&gt;&lt;p&gt;주요정보통신기반시설(CIIP)의 기술적 취약점 분석·평가 업무를 수행하며, 기존 진단 스크립트들의 유지보수 한계를 극복하고자 직접 개발한 &lt;strong&gt;KISA-CIIP-2026&lt;/strong&gt; 프로젝트를 소개합니다.&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;GitHub 저장소:&lt;/strong&gt; &lt;a class=&#34;link&#34; href=&#34;https://github.com/rebugui/KISA-CIIP-2026&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;&#xA;    &gt;https://github.com/rebugui/KISA-CIIP-2026&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;-1-제작-배경-왜-모듈화인가&#34;&gt;🎯 1. 제작 배경: &amp;ldquo;왜 모듈화인가?&amp;rdquo;&#xA;&lt;/h2&gt;&lt;p&gt;기존에 배포되던 진단 스크립트들은 보통 수천 줄에 달하는 &lt;strong&gt;단일 파일(Monolithic)&lt;/strong&gt; 구조로 되어 있었습니다. 이러한 &amp;lsquo;스파게티 코드&amp;rsquo; 방식은 특정 항목을 수정하기 어렵고, 환경 변화에 유연하게 대응하지 못하는 치명적인 단점이 있습니다.&lt;/p&gt;&#xA;&lt;p&gt;저는 이를 해결하기 위해 &lt;strong&gt;공통 함수 라이브러리&lt;/strong&gt;와 &lt;strong&gt;항목별 독립 모듈&lt;/strong&gt; 체계를 적용하여, 누구나 구조를 한눈에 파악하고 필요에 따라 확장할 수 있는 프레임워크를 설계했습니다.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;-2-프로젝트-핵심-설계&#34;&gt;🏗️ 2. 프로젝트 핵심 설계&#xA;&lt;/h2&gt;&lt;h3 id=&#34;공통-함수-라이브러리-lib&#34;&gt;공통 함수 라이브러리 (&lt;code&gt;lib/&lt;/code&gt;)&#xA;&lt;/h3&gt;&lt;p&gt;타임아웃 처리, 명령어 화이트리스트, 결과 포맷팅(JSON/TXT) 등 핵심 로직을 단일화하여 시스템 안정성을 높였습니다.&lt;/p&gt;&#xA;&lt;h3 id=&#34;항목별-독립-모듈&#34;&gt;항목별 독립 모듈&#xA;&lt;/h3&gt;&lt;p&gt;671개의 KISA 점검 항목을 개별 파일로 분리했습니다. 특정 로직을 수정해도 전체 시스템에 영향을 주지 않아 유지보수가 매우 간편합니다.&lt;/p&gt;&#xA;&lt;h3 id=&#34;구조화된-리포트&#34;&gt;구조화된 리포트&#xA;&lt;/h3&gt;&lt;p&gt;진단 결과를 JSON 포맷으로도 제공하여, 추후 대시보드 연동이나 데이터 통계 분석이 용이합니다.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;-3-저작권-및-사용-안내&#34;&gt;⚖️ 3. 저작권 및 사용 안내&#xA;&lt;/h2&gt;&lt;p&gt;본 프로젝트는 보안 실무자들의 업무 효율화를 위해 공개된 오픈소스입니다. 사용 시 아래 사항을 반드시 준수해 주시기 바랍니다.&lt;/p&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;항목&lt;/th&gt;&#xA;          &lt;th&gt;내용&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;재사용 권한&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;본 소스 코드는 자유롭게 복제, 수정 및 재사용이 가능합니다.&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;출처 기입&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;소스 코드를 활용하거나 재배포할 경우, &lt;strong&gt;원작자(rebugui)의 출처(GitHub 링크)를 명확히 기입&lt;/strong&gt;해야 하며, 소스 내 포함된 카피라이트 문구를 삭제하지 않고 유지해야 합니다.&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;상업적 이용&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;본 프로젝트를 상업적 목적으로 활용하거나 재배포할 경우 제작자와 사전 협의를 권장합니다.&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;-4-중요-주의사항-및-면책-조항&#34;&gt;⚠️ 4. 중요 주의사항 및 면책 조항&#xA;&lt;/h2&gt;&lt;h3 id=&#34;샘플-및-참조용-권장&#34;&gt;샘플 및 참조용 권장&#xA;&lt;/h3&gt;&lt;p&gt;현재 프로젝트는 전체적인 프레임워크 구축에 집중된 상태로, &lt;strong&gt;완전한 완성 단계가 아닙니다.&lt;/strong&gt; 본 소스를 참고하여 각 기관의 환경에 맞게 &lt;strong&gt;재구현하거나 샘플 가이드로 활용&lt;/strong&gt;하시는 것을 강력히 권장합니다.&lt;/p&gt;&#xA;&lt;h3 id=&#34;검증-단계&#34;&gt;검증 단계&#xA;&lt;/h3&gt;&lt;p&gt;모든 항목에 대한 세부 검증(Verification)이 진행 중입니다. 실제 운영 시스템에 적용하기 전, 반드시 테스트 환경에서 로직을 충분히 검토하시기 바랍니다.&lt;/p&gt;&#xA;&lt;h3 id=&#34;책임-제한&#34;&gt;책임 제한&#xA;&lt;/h3&gt;&lt;p&gt;본 스크립트 사용으로 인해 발생하는 시스템 성능 저하, 서비스 장애, 데이터 손실 등 어떠한 기술적/법적 문제에 대해서도 &lt;strong&gt;제작자는 책임을 지지 않습니다.&lt;/strong&gt; 모든 사용 책임은 사용자 본인에게 있습니다.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;-5-피드백을-기다립니다&#34;&gt;💬 5. 피드백을 기다립니다!&#xA;&lt;/h2&gt;&lt;p&gt;671개의 방대한 항목을 혼자서 완벽히 검증하기에는 한계가 있습니다. 현업 보안 담당자분들의 소중한 피드백이 이 프로젝트를 완성하는 데 큰 힘이 됩니다.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;특정 OS/미들웨어 버전에서의 로직 오류 제보&lt;/li&gt;&#xA;&lt;li&gt;KISA 가이드라인 판정 기준에 대한 개선 의견&lt;/li&gt;&#xA;&lt;li&gt;효율적인 점검 명령어 제안 및 버그 제보&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;**&lt;a class=&#34;link&#34; href=&#34;https://github.com/rebugui/KISA-CIIP-2026/issues&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;&#xA;    &gt;GitHub Issue&lt;/a&gt;**를 통해 가감 없는 의견을 남겨주세요!&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;-6-프로젝트-실행-방법&#34;&gt;🚀 6. 프로젝트 실행 방법&#xA;&lt;/h2&gt;&lt;h3 id=&#34;지원-범위&#34;&gt;지원 범위&#xA;&lt;/h3&gt;&lt;p&gt;Unix/Linux(7종), Windows Server, DBMS(4종), Web/WAS(4종), Windows PC&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;&#xA;&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11&#xA;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&#xA;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 1. 저장소 복제&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git clone https://github.com/rebugui/KISA-CIIP-2026.git&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; KISA-CIIP-2026&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 2. 실행 권한 부여&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;chmod +x lib/*.sh&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;chmod +x 01.Unix서버/Debian/*.sh&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 3. 진단 수행&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; 01.Unix서버/Debian&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;./01.Unix서버_Debian_run_all.sh&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&#xA;&lt;/div&gt;&#xA;&lt;/div&gt;&lt;hr&gt;&#xA;</description>
-        </item></channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>스크립트 on 코딩이 싫은 거북이</title><link>https://rebugui.github.io/tags/%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/</link><description>Recent content in 스크립트 on 코딩이 싫은 거북이</description><generator>Hugo -- gohugo.io</generator><language>ko-kr</language><lastBuildDate>Thu, 05 Feb 2026 14:35:32 +0900</lastBuildDate><atom:link href="https://rebugui.github.io/tags/%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/index.xml" rel="self" type="application/rss+xml"/><item><title>[Open Source] KISA 주요정보통신기반시설 기술적 취약점 진단 자동화 스크립트 (2026 가이드라인 대응)</title><link>https://rebugui.github.io/open-source-kisa-%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4-%EA%B8%B0%EC%88%A0%EC%A0%81-%EC%B7%A8%EC%95%BD%EC%A0%90-%EC%A7%84%EB%8B%A8-%EC%9E%90%EB%8F%99%ED%99%94-%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-2026-%EA%B0%80%EC%9D%B4%EB%93%9C%EB%9D%BC%EC%9D%B8-%EB%8C%80%EC%9D%91/</link><pubDate>Thu, 05 Feb 2026 14:35:32 +0900</pubDate><guid>https://rebugui.github.io/open-source-kisa-%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4-%EA%B8%B0%EC%88%A0%EC%A0%81-%EC%B7%A8%EC%95%BD%EC%A0%90-%EC%A7%84%EB%8B%A8-%EC%9E%90%EB%8F%99%ED%99%94-%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-2026-%EA%B0%80%EC%9D%B4%EB%93%9C%EB%9D%BC%EC%9D%B8-%EB%8C%80%EC%9D%91/</guid><description>&lt;h2 id="-개요"&gt;📋 개요
+&lt;/h2&gt;&lt;p&gt;주요정보통신기반시설(CIIP)의 기술적 취약점 분석·평가 업무를 수행하며, 기존 진단 스크립트들의 유지보수 한계를 극복하고자 직접 개발한 &lt;strong&gt;KISA-CIIP-2026&lt;/strong&gt; 프로젝트를 소개합니다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;GitHub 저장소:&lt;/strong&gt; &lt;a class="link" href="https://github.com/rebugui/KISA-CIIP-2026" target="_blank" rel="noopener"
+ &gt;https://github.com/rebugui/KISA-CIIP-2026&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id="-1-제작-배경-왜-모듈화인가"&gt;🎯 1. 제작 배경: &amp;ldquo;왜 모듈화인가?&amp;rdquo;
+&lt;/h2&gt;&lt;p&gt;기존에 배포되던 진단 스크립트들은 보통 수천 줄에 달하는 &lt;strong&gt;단일 파일(Monolithic)&lt;/strong&gt; 구조로 되어 있었습니다. 이러한 &amp;lsquo;스파게티 코드&amp;rsquo; 방식은 특정 항목을 수정하기 어렵고, 환경 변화에 유연하게 대응하지 못하는 치명적인 단점이 있습니다.&lt;/p&gt;
+&lt;p&gt;저는 이를 해결하기 위해 &lt;strong&gt;공통 함수 라이브러리&lt;/strong&gt;와 &lt;strong&gt;항목별 독립 모듈&lt;/strong&gt; 체계를 적용하여, 누구나 구조를 한눈에 파악하고 필요에 따라 확장할 수 있는 프레임워크를 설계했습니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="-2-프로젝트-핵심-설계"&gt;🏗️ 2. 프로젝트 핵심 설계
+&lt;/h2&gt;&lt;h3 id="공통-함수-라이브러리-lib"&gt;공통 함수 라이브러리 (&lt;code&gt;lib/&lt;/code&gt;)
+&lt;/h3&gt;&lt;p&gt;타임아웃 처리, 명령어 화이트리스트, 결과 포맷팅(JSON/TXT) 등 핵심 로직을 단일화하여 시스템 안정성을 높였습니다.&lt;/p&gt;
+&lt;h3 id="항목별-독립-모듈"&gt;항목별 독립 모듈
+&lt;/h3&gt;&lt;p&gt;671개의 KISA 점검 항목을 개별 파일로 분리했습니다. 특정 로직을 수정해도 전체 시스템에 영향을 주지 않아 유지보수가 매우 간편합니다.&lt;/p&gt;
+&lt;h3 id="구조화된-리포트"&gt;구조화된 리포트
+&lt;/h3&gt;&lt;p&gt;진단 결과를 JSON 포맷으로도 제공하여, 추후 대시보드 연동이나 데이터 통계 분석이 용이합니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="-3-저작권-및-사용-안내"&gt;⚖️ 3. 저작권 및 사용 안내
+&lt;/h2&gt;&lt;p&gt;본 프로젝트는 보안 실무자들의 업무 효율화를 위해 공개된 오픈소스입니다. 사용 시 아래 사항을 반드시 준수해 주시기 바랍니다.&lt;/p&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;항목&lt;/th&gt;
+ &lt;th&gt;내용&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;재사용 권한&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;본 소스 코드는 자유롭게 복제, 수정 및 재사용이 가능합니다.&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;출처 기입&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;소스 코드를 활용하거나 재배포할 경우, &lt;strong&gt;원작자(rebugui)의 출처(GitHub 링크)를 명확히 기입&lt;/strong&gt;해야 하며, 소스 내 포함된 카피라이트 문구를 삭제하지 않고 유지해야 합니다.&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;상업적 이용&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;본 프로젝트를 상업적 목적으로 활용하거나 재배포할 경우 제작자와 사전 협의를 권장합니다.&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id="-4-중요-주의사항-및-면책-조항"&gt;⚠️ 4. 중요 주의사항 및 면책 조항
+&lt;/h2&gt;&lt;h3 id="샘플-및-참조용-권장"&gt;샘플 및 참조용 권장
+&lt;/h3&gt;&lt;p&gt;현재 프로젝트는 전체적인 프레임워크 구축에 집중된 상태로, &lt;strong&gt;완전한 완성 단계가 아닙니다.&lt;/strong&gt; 본 소스를 참고하여 각 기관의 환경에 맞게 &lt;strong&gt;재구현하거나 샘플 가이드로 활용&lt;/strong&gt;하시는 것을 강력히 권장합니다.&lt;/p&gt;
+&lt;h3 id="검증-단계"&gt;검증 단계
+&lt;/h3&gt;&lt;p&gt;모든 항목에 대한 세부 검증(Verification)이 진행 중입니다. 실제 운영 시스템에 적용하기 전, 반드시 테스트 환경에서 로직을 충분히 검토하시기 바랍니다.&lt;/p&gt;
+&lt;h3 id="책임-제한"&gt;책임 제한
+&lt;/h3&gt;&lt;p&gt;본 스크립트 사용으로 인해 발생하는 시스템 성능 저하, 서비스 장애, 데이터 손실 등 어떠한 기술적/법적 문제에 대해서도 &lt;strong&gt;제작자는 책임을 지지 않습니다.&lt;/strong&gt; 모든 사용 책임은 사용자 본인에게 있습니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="-5-피드백을-기다립니다"&gt;💬 5. 피드백을 기다립니다!
+&lt;/h2&gt;&lt;p&gt;671개의 방대한 항목을 혼자서 완벽히 검증하기에는 한계가 있습니다. 현업 보안 담당자분들의 소중한 피드백이 이 프로젝트를 완성하는 데 큰 힘이 됩니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;특정 OS/미들웨어 버전에서의 로직 오류 제보&lt;/li&gt;
+&lt;li&gt;KISA 가이드라인 판정 기준에 대한 개선 의견&lt;/li&gt;
+&lt;li&gt;효율적인 점검 명령어 제안 및 버그 제보&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;**&lt;a class="link" href="https://github.com/rebugui/KISA-CIIP-2026/issues" target="_blank" rel="noopener"
+ &gt;GitHub Issue&lt;/a&gt;**를 통해 가감 없는 의견을 남겨주세요!&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="-6-프로젝트-실행-방법"&gt;🚀 6. 프로젝트 실행 방법
+&lt;/h2&gt;&lt;h3 id="지원-범위"&gt;지원 범위
+&lt;/h3&gt;&lt;p&gt;Unix/Linux(7종), Windows Server, DBMS(4종), Web/WAS(4종), Windows PC&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 1. 저장소 복제&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;git clone https://github.com/rebugui/KISA-CIIP-2026.git
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; KISA-CIIP-2026
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 2. 실행 권한 부여&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;chmod +x lib/*.sh
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;chmod +x 01.Unix서버/Debian/*.sh
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 3. 진단 수행&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; 01.Unix서버/Debian
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./01.Unix서버_Debian_run_all.sh
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;</description></item></channel></rss>

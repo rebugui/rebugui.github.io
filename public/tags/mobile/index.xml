@@ -1,33 +1,466 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-    <channel>
-        <title>Mobile on 코딩이 싫은 거북이</title>
-        <link>http://localhost:1313/tags/mobile/</link>
-        <description>Recent content in Mobile on 코딩이 싫은 거북이</description>
-        <generator>Hugo -- gohugo.io</generator>
-        <language>ko-kr</language>
-        <lastBuildDate>Thu, 05 Feb 2026 09:56:13 +0900</lastBuildDate><atom:link href="http://localhost:1313/tags/mobile/index.xml" rel="self" type="application/rss+xml" /><item>
-            <title>[2026 주요정보통신기반시설] M-01 이동통신망 엣지네트워크 운영시 인터넷 연결 등을 고려한 보안기술 적용</title>
-            <link>http://localhost:1313/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/m-01/</link>
-            <pubDate>Thu, 05 Feb 2026 09:56:13 +0900</pubDate>
-            <guid>http://localhost:1313/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/m-01/</guid>
-            <description>&lt;h1 id=&#34;m-01-이동통신망-엣지네트워크-운영시-인터넷-연결-등을-고려한-보안기술-적용&#34;&gt;M-01 이동통신망 엣지네트워크 운영시 인터넷 연결 등을 고려한 보안기술 적용&#xA;&lt;/h1&gt;&lt;h2 id=&#34;가이드라인-원문&#34;&gt;가이드라인 원문&#xA;&lt;/h2&gt;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;항목&lt;/th&gt;&#xA;          &lt;th&gt;내용&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;항목코드&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;M-01&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;점검내용&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;이동통신망 관리네트워크에 보안기술을 사용한 안전 분리 운영 여부 점검&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;점검대상&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;이동통신망 엣지 네트워크&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;양호기준&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;관리네트워크와 사용자 트래픽 네트워크가 보안기술을 사용하여 안전하게 분리되어 운영되는 경우&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;취약기준&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;관리네트워크와 사용자 트래픽 네트워크가 분리되지 않거나 보안기술이 적용되지 않는 경우&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;조치방법&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;1인 1계정 원칙 준수, 다중 인증(Token 포함) 구현, 네트워크 완전 분리, 논리적 네트워크 분리 기술 적용&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;상세-설명&#34;&gt;상세 설명&#xA;&lt;/h2&gt;&lt;h3 id=&#34;1-판단-기준&#34;&gt;1. 판단 기준&#xA;&lt;/h3&gt;&lt;h4 id=&#34;기본-판단-기준&#34;&gt;기본 판단 기준&#xA;&lt;/h4&gt;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;양호&lt;/strong&gt;: 관리네트워크와 사용자 트래픽 네트워크가 보안기술을 사용하여 안전하게 분리되어 운영되는 경우&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;취약&lt;/strong&gt;: 관리네트워크와 사용자 트래픽 네트워크가 분리되지 않거나 보안기술이 적용되지 않는 경우&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h4 id=&#34;경계-케이스-edge-case-처리-방법&#34;&gt;경계 케이스 (Edge Case) 처리 방법&#xA;&lt;/h4&gt;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;물리적 분리만 있는 경우&lt;/strong&gt;: 보안 기술 미적용 → 부분적 보안, 개선 권고&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;논리적 분리만 있는 경우&lt;/strong&gt;: 물리적 분리 어려운 환경 → 보안 기술 적용 시 양호로 판단 가능&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;일부 트래픽만 분리&lt;/strong&gt;: 관리 트래픽만 분리된 경우 → 부분적 보안, 개선 권고&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h4 id=&#34;권장-설정값&#34;&gt;권장 설정값&#xA;&lt;/h4&gt;&lt;ul&gt;&#xA;&lt;li&gt;네트워크 분리: 물리적 분리 권장 (불가능 시 논리적 분리)&lt;/li&gt;&#xA;&lt;li&gt;다중 인증: 최소 2-factor 인증&lt;/li&gt;&#xA;&lt;li&gt;1인 1계정: 개별 계정 발급 및 추적성 확보&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;2-점검-방법&#34;&gt;2. 점검 방법&#xA;&lt;/h3&gt;&lt;h4 id=&#34;점검-절차&#34;&gt;점검 절차&#xA;&lt;/h4&gt;&lt;ol&gt;&#xA;&lt;li&gt;네트워크 구성 확인: 관리네트워크와 트래픽 네트워크 분리 여부 확인&lt;/li&gt;&#xA;&lt;li&gt;보안 기술 적용 확인: 방화벽, VPN, 세그먼테이션 등 보안 기술 확인&lt;/li&gt;&#xA;&lt;li&gt;인증 체계 확인: 다중 인증, 1인 1계정 준수 여부 확인&lt;/li&gt;&#xA;&lt;li&gt;접근 제어 확인: 네트워크 접근 제어 정책 확인&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h4 id=&#34;점검-항목&#34;&gt;점검 항목&#xA;&lt;/h4&gt;&lt;ul&gt;&#xA;&lt;li&gt;관리네트워크와 트래픽 네트워크 분리 여부&lt;/li&gt;&#xA;&lt;li&gt;방화벽 및 보안 장비 설치 여부&lt;/li&gt;&#xA;&lt;li&gt;다중 인증 구현 여부&lt;/li&gt;&#xA;&lt;li&gt;1인 1계정 원칙 준수 여부&lt;/li&gt;&#xA;&lt;li&gt;네트워크 접근 제어 정책 수립 여부&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;3-조치-방법&#34;&gt;3. 조치 방법&#xA;&lt;/h3&gt;&lt;h4 id=&#34;1인-1계정-원칙-준수&#34;&gt;1인 1계정 원칙 준수&#xA;&lt;/h4&gt;&lt;ol&gt;&#xA;&lt;li&gt;&lt;strong&gt;개별 계정 발급&lt;/strong&gt;: 관리자별 개별 계정 발급&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;계정 관리&lt;/strong&gt;: 계정 생성, 변경, 삭제 프로세스 수립&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;접속 로그&lt;/strong&gt;: 계정별 접속 로그 기록 및 관리&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;정기 검토&lt;/strong&gt;: 퇴사자, 휴직자 계정 정기 검토 및 삭제&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h4 id=&#34;다중-인증token-포함-구현&#34;&gt;다중 인증(Token 포함) 구현&#xA;&lt;/h4&gt;&lt;ol&gt;&#xA;&lt;li&gt;&lt;strong&gt;인증 체계 구축&lt;/strong&gt;: ID/Password + Token/SMS/생체인증 등&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Token 발급&lt;/strong&gt;: 보안 Token 발급 및 관리&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;인증 서버&lt;/strong&gt;: 다중 인증 서버 구축&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;만료 정책&lt;/strong&gt;: Token 및 인증 만료 정책 수립&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h4 id=&#34;네트워크-완전-분리&#34;&gt;네트워크 완전 분리&#xA;&lt;/h4&gt;&lt;ol&gt;&#xA;&lt;li&gt;&lt;strong&gt;물리적 분리&lt;/strong&gt;: 관리용 장비와 트래픽용 장비 물리적 분리&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;별도 망 구성&lt;/strong&gt;: 관리망과 운영망 별도 구성&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;케이블 분리&lt;/strong&gt;: 물리적 케이블 및 포트 분리&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;VLAN 구성&lt;/strong&gt;: 불가능 시 VLAN으로 논리적 분리&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h4 id=&#34;논리적-네트워크-분리-기술-적용&#34;&gt;논리적 네트워크 분리 기술 적용&#xA;&lt;/h4&gt;&lt;ol&gt;&#xA;&lt;li&gt;&lt;strong&gt;세그먼테이션&lt;/strong&gt;: 네트워크 세그먼트별 접근 제어&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;방화벽&lt;/strong&gt;: 관리용/트래픽용 방화벽 분리 설치&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;VPN&lt;/strong&gt;: 관리자 접속 시 VPN 강제 적용&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;ACL&lt;/strong&gt;: 네트워크 접근 제어 목록(ACL) 적용&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h3 id=&#34;4-참고-자료&#34;&gt;4. 참고 자료&#xA;&lt;/h3&gt;&lt;ul&gt;&#xA;&lt;li&gt;3GPP TS 33.210: 3G security; Network domain security; IP network layer security&lt;/li&gt;&#xA;&lt;li&gt;3GPP TS 33.401: 3GPP System access security&lt;/li&gt;&#xA;&lt;li&gt;ETSI GS NFV-SEC 013: Security; Security Architecture for Virtualization&lt;/li&gt;&#xA;&lt;li&gt;NIST SP 800-41: Guidelines on Firewalls and Firewall Policy&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;5-스크립트&#34;&gt;5. 스크립트&#xA;&lt;/h3&gt;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://rebugui.tistory.com/1192&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;&#xA;    &gt;취약점 점검 스크립트&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;이 스크립트는 KISA 주요정보통신기반시설 기술적 취약점 분석·평가 가이드라인(2026)을 준수하여 제작된 자동 점검 도구입니다. 복잡한 단일 파일 방식이 아닌 모듈화된 구조로 설계되어 유지보수가 쉽고 확장이 용이합니다.&lt;/li&gt;&#xA;&lt;li&gt;다양한 환경에서 테스트를 진행했으나, 혹시 점검 로직에 이슈가 발견되거나 개선이 필요한 경우 적극적인 제보를 부탁드립니다.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;</description>
-        </item><item>
-            <title>[2026 주요정보통신기반시설] M-02 이동통신망에서 가상화 기술 적용 시 계정관리, 이상징후탐지 등 보안설정 또는 기술 적용</title>
-            <link>http://localhost:1313/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/m-02/</link>
-            <pubDate>Thu, 05 Feb 2026 09:56:13 +0900</pubDate>
-            <guid>http://localhost:1313/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/m-02/</guid>
-            <description>&lt;h1 id=&#34;m-02-이동통신망에서-가상화-기술-적용-시-계정관리-이상징후탐지-등-보안설정-또는-기술-적용&#34;&gt;M-02 이동통신망에서 가상화 기술 적용 시 계정관리, 이상징후탐지 등 보안설정 또는 기술 적용&#xA;&lt;/h1&gt;&lt;h2 id=&#34;가이드라인-원문&#34;&gt;가이드라인 원문&#xA;&lt;/h2&gt;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;항목&lt;/th&gt;&#xA;          &lt;th&gt;내용&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;항목코드&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;M-02&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;점검내용&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;물리적 계층, 가상화 계층, 애플리케이션 계층 등의 수직적 계층에 적합한 보안기술 적용 여부 점검&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;점검대상&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;이동통신망 가상화 장비 (NFV, SDN 등)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;양호기준&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;3GPP 표준의 필수 보안 설정이 적용되고, 계층별 접근 통제 정책이 수립되어 운영되는 경우&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;취약기준&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;계층별 보안 설정이 미흡하거나 접근 통제 정책이 수립되지 않은 경우&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;조치방법&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;3GPP 표준 보안 설정 적용, 계층별 권한 관리, 이상징후 탐지 및 알림 시스템 구축, SDN/NFV 보안 통합&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;상세-설명&#34;&gt;상세 설명&#xA;&lt;/h2&gt;&lt;h3 id=&#34;1-판단-기준&#34;&gt;1. 판단 기준&#xA;&lt;/h3&gt;&lt;h4 id=&#34;기본-판단-기준&#34;&gt;기본 판단 기준&#xA;&lt;/h4&gt;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;양호&lt;/strong&gt;: 3GPP 표준의 필수 보안 설정이 적용되고, 계층별 접근 통제 정책이 수립되어 운영되는 경우&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;취약&lt;/strong&gt;: 계층별 보안 설정이 미흡하거나 접근 통제 정책이 수립되지 않은 경우&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h4 id=&#34;경계-케이스-edge-case-처리-방법&#34;&gt;경계 케이스 (Edge Case) 처리 방법&#xA;&lt;/h4&gt;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;부분 적용&lt;/strong&gt;: 일부 계층에만 보안 설정이 적용된 경우 → 취약으로 판단&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;정책 수립 미준수&lt;/strong&gt;: 정책은 수립되었으나 실제 운영에 적용되지 않은 경우 → 취약으로 판단&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;3GPP 표준 미준수&lt;/strong&gt;: 타 표준을 따르나 3GPP와 상충되는 경우 → 보안 요건 충족 시 양호로 판단 가능&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h4 id=&#34;권장-설정값&#34;&gt;권장 설정값&#xA;&lt;/h4&gt;&lt;ul&gt;&#xA;&lt;li&gt;3GPP TS 33.531 (Security aspects of Virtual Network Platforms)&lt;/li&gt;&#xA;&lt;li&gt;3GPP TS 32.541 (Telecommunication management; Security Assurance)&lt;/li&gt;&#xA;&lt;li&gt;계층별 최소 권한 원칙 적용&lt;/li&gt;&#xA;&lt;li&gt;이상징후 탐지 임계값: 업무 특성에 맞는 맞춤 설정&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;2-점검-방법&#34;&gt;2. 점검 방법&#xA;&lt;/h3&gt;&lt;h4 id=&#34;점검-절차&#34;&gt;점검 절차&#xA;&lt;/h4&gt;&lt;ol&gt;&#xA;&lt;li&gt;문서 검토: 보안 정책, 접근 통제 정책, 계층별 보안 설정 문서 확인&lt;/li&gt;&#xA;&lt;li&gt;설정 검증: NFV/SDN 장비의 실제 보안 설정 확인&lt;/li&gt;&#xA;&lt;li&gt;운영 확인: 보안 정책의 실제 운영 여부 점검&lt;/li&gt;&#xA;&lt;li&gt;로그 분석: 이상징후 탐지 시스템의 운영 현황 확인&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h4 id=&#34;점검-항목&#34;&gt;점검 항목&#xA;&lt;/h4&gt;&lt;ul&gt;&#xA;&lt;li&gt;물리적 계층 보안: 하드웨어 보안, 물리적 접근 통제&lt;/li&gt;&#xA;&lt;li&gt;가상화 계층 보안: 하이퍼바이저 보안, 가상머신 격리&lt;/li&gt;&#xA;&lt;li&gt;애플리케이션 계층 보안: VNF 보안, 컨테이너 보안&lt;/li&gt;&#xA;&lt;li&gt;관리 계층 보안: MANO 보안, Orchestrator 보안&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;3-조치-방법&#34;&gt;3. 조치 방법&#xA;&lt;/h3&gt;&lt;h4 id=&#34;3gpp-표준-보안-설정-적용&#34;&gt;3GPP 표준 보안 설정 적용&#xA;&lt;/h4&gt;&lt;ol&gt;&#xA;&lt;li&gt;&lt;strong&gt;보안 요구사항 식별&lt;/strong&gt;: 3GPP TS 33.531 기반 보안 요구사항 도출&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;보안 설정 적용&lt;/strong&gt;: NFVI, VNF, MANO 각 컴포넌트별 보안 설정 적용&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;검증&lt;/strong&gt;: 보안 설정 적용 후 테스트 및 검증&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h4 id=&#34;계층별-권한-관리&#34;&gt;계층별 권한 관리&#xA;&lt;/h4&gt;&lt;ol&gt;&#xA;&lt;li&gt;&lt;strong&gt;역할 정의&lt;/strong&gt;: 계층별 관리자 역할 및 권한 정의&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;접근 통제&lt;/strong&gt;: 계층별 접근 통제 정책 수립 및 적용&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;권한 검토&lt;/strong&gt;: 정기적 권한 검토 및 불필요 권한 제거&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h4 id=&#34;이상징후-탐지-및-알림-시스템-구축&#34;&gt;이상징후 탐지 및 알림 시스템 구축&#xA;&lt;/h4&gt;&lt;ol&gt;&#xA;&lt;li&gt;&lt;strong&gt;탐지 항목 설정&lt;/strong&gt;: 리소스 사용량, 네트워크 트래픽, 접속 패턴 등&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;임계값 설정&lt;/strong&gt;: 업무 특성에 맞는 탐지 임계값 설정&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;알림 설정&lt;/strong&gt;: 이상징후 발생 시 실시간 알림 시스템 구축&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h4 id=&#34;sdnnfv-보안-통합&#34;&gt;SDN/NFV 보안 통합&#xA;&lt;/h4&gt;&lt;ol&gt;&#xA;&lt;li&gt;&lt;strong&gt;보안 아키텍처 설계&lt;/strong&gt;: SDN 컨트롤러, NFV Orchestrator 보안 통합&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;세그먼테이션&lt;/strong&gt;: 관리 트래픽과 데이터 트래픽 분리&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;암호화&lt;/strong&gt;: 관리 인터페이스 암호화 적용&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h3 id=&#34;4-참고-자료&#34;&gt;4. 참고 자료&#xA;&lt;/h3&gt;&lt;ul&gt;&#xA;&lt;li&gt;3GPP TS 33.531: Security aspects of Virtual Network Platforms&lt;/li&gt;&#xA;&lt;li&gt;3GPP TS 32.541: Telecommunication management; Security Assurance&lt;/li&gt;&#xA;&lt;li&gt;ETSI GS NFV-SEC: Network Functions Virtualisation Security&lt;/li&gt;&#xA;&lt;li&gt;NIST SP 800-37: Risk Management Framework&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;5-스크립트&#34;&gt;5. 스크립트&#xA;&lt;/h3&gt;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://rebugui.tistory.com/1192&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;&#xA;    &gt;취약점 점검 스크립트&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;이 스크립트는 KISA 주요정보통신기반시설 기술적 취약점 분석·평가 가이드라인(2026)을 준수하여 제작된 자동 점검 도구입니다. 복잡한 단일 파일 방식이 아닌 모듈화된 구조로 설계되어 유지보수가 쉽고 확장이 용이합니다.&lt;/li&gt;&#xA;&lt;li&gt;다양한 환경에서 테스트를 진행했으나, 혹시 점검 로직에 이슈가 발견되거나 개선이 필요한 경우 적극적인 제보를 부탁드립니다.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;</description>
-        </item><item>
-            <title>[2026 주요정보통신기반시설] M-03 이동통신망 장비 및 SW 제조사 등과 보안정책을 마련하여 운영</title>
-            <link>http://localhost:1313/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/m-03/</link>
-            <pubDate>Thu, 05 Feb 2026 09:56:13 +0900</pubDate>
-            <guid>http://localhost:1313/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/m-03/</guid>
-            <description>&lt;h1 id=&#34;m-03-이동통신망-장비-및-sw-제조사-등과-보안정책을-마련하여-운영&#34;&gt;M-03 이동통신망 장비 및 SW 제조사 등과 보안정책을 마련하여 운영&#xA;&lt;/h1&gt;&lt;h2 id=&#34;가이드라인-원문&#34;&gt;가이드라인 원문&#xA;&lt;/h2&gt;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;항목&lt;/th&gt;&#xA;          &lt;th&gt;내용&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;항목코드&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;M-03&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;점검내용&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;일정 수준의 보안 요구 수준 및 운영 계획과 수명 주기를 반영한 보안정책 운영 여부 점검&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;점검대상&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;이동통신망 장비 및 소프트웨어&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;양호기준&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;제조사와 협력하여 보안정책이 수립되고, SLA에 보안 요구사항이 포함되며, 주기적 보안 검증이 수행되는 경우&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;취약기준&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;보안정책이 수립되지 않거나, SLA에 보안 요구사항이 미포함되거나, 보안 검증이 수행되지 않는 경우&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;조치방법&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;종단 네트워크 보안 설계, SLA에 보안 수준 정의, 보안 표준안 수립, 보안 사전 테스트 및 검증 수행&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;상세-설명&#34;&gt;상세 설명&#xA;&lt;/h2&gt;&lt;h3 id=&#34;1-판단-기준&#34;&gt;1. 판단 기준&#xA;&lt;/h3&gt;&lt;h4 id=&#34;기본-판단-기준&#34;&gt;기본 판단 기준&#xA;&lt;/h4&gt;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;양호&lt;/strong&gt;: 제조사와 협력하여 보안정책이 수립되고, SLA에 보안 요구사항이 포함되며, 주기적 보안 검증이 수행되는 경우&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;취약&lt;/strong&gt;: 보안정책이 수립되지 않거나, SLA에 보안 요구사항이 미포함되거나, 보안 검증이 수행되지 않는 경우&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h4 id=&#34;경계-케이스-edge-case-처리-방법&#34;&gt;경계 케이스 (Edge Case) 처리 방법&#xA;&lt;/h4&gt;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;보안정책 수립만 있는 경우&lt;/strong&gt;: SLA에 미포함 → 취약으로 판단&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;SLA 미포함 but 검증 수행&lt;/strong&gt;: 부분적 보안 → 개선 권고&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;검증 주기 미준수&lt;/strong&gt;: 검증은 수행하나 주기적이지 않은 경우 → 개선 권고&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h4 id=&#34;권장-설정값&#34;&gt;권장 설정값&#xA;&lt;/h4&gt;&lt;ul&gt;&#xA;&lt;li&gt;보안 검증 주기: 최소 연 1회&lt;/li&gt;&#xA;&lt;li&gt;보안 패치 적용: 심각 취약점 30일 이내&lt;/li&gt;&#xA;&lt;li&gt;SLA 보안 수준: 업무 특성에 맞는 맞춤 정의&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;2-점검-방법&#34;&gt;2. 점검 방법&#xA;&lt;/h3&gt;&lt;h4 id=&#34;점검-절차&#34;&gt;점검 절차&#xA;&lt;/h4&gt;&lt;ol&gt;&#xA;&lt;li&gt;문서 검토: 보안 정책, SLA 계약서, 보안 검증 보고서 확인&lt;/li&gt;&#xA;&lt;li&gt;제조사 협력 현황: 보안 협력 체계, 커뮤니케이션 채널 확인&lt;/li&gt;&#xA;&lt;li&gt;보안 요구사항 확인: SLA 내 보안 요구사항 포함 여부 확인&lt;/li&gt;&#xA;&lt;li&gt;검증 이력 확인: 주기적 보안 검증 수행 이력 확인&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h4 id=&#34;점검-항목&#34;&gt;점검 항목&#xA;&lt;/h4&gt;&lt;ul&gt;&#xA;&lt;li&gt;보안 정책 수립 여부&lt;/li&gt;&#xA;&lt;li&gt;제조사와의 보안 협력 체계&lt;/li&gt;&#xA;&lt;li&gt;SLA 내 보안 요구사항 포함 여부&lt;/li&gt;&#xA;&lt;li&gt;주기적 보안 검증 수행 여부&lt;/li&gt;&#xA;&lt;li&gt;보안 취약점 대응 프로세스&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;3-조치-방법&#34;&gt;3. 조치 방법&#xA;&lt;/h3&gt;&lt;h4 id=&#34;종단-네트워크-보안-설계&#34;&gt;종단 네트워크 보안 설계&#xA;&lt;/h4&gt;&lt;ol&gt;&#xA;&lt;li&gt;&lt;strong&gt;위협 분석&lt;/strong&gt;: 종단 네트워크 위협 모델 수립&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;보안 요구사항 도출&lt;/strong&gt;: 위협 기반 보안 요구사항 정의&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;보안 아키텍처 설계&lt;/strong&gt;: 종단 간 보안 아키텍처 수립&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;검증&lt;/strong&gt;: 보안 설계 검증 및 개선&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h4 id=&#34;sla에-보안-수준-정의&#34;&gt;SLA에 보안 수준 정의&#xA;&lt;/h4&gt;&lt;ol&gt;&#xA;&lt;li&gt;&lt;strong&gt;보안 메트릭 정의&lt;/strong&gt;: 가용성, 무결성, 기밀성 등 보안 메트릭 정의&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;서비스 수준 설정&lt;/strong&gt;: 보안 관련 서비스 수준 설정&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;페널티 정의&lt;/strong&gt;: 보안 SLA 미준수 시 페널티 정의&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;모니터링&lt;/strong&gt;: 보안 SLA 준수 여부 모니터링&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h4 id=&#34;보안-표준안-수립&#34;&gt;보안 표준안 수립&#xA;&lt;/h4&gt;&lt;ol&gt;&#xA;&lt;li&gt;&lt;strong&gt;표준 분석&lt;/strong&gt;: 국제 표준(3GPP, ETSI, NIST 등) 분석&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;사내 표준 수립&lt;/strong&gt;: 업무 특성에 맞는 보안 표준안 수립&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;제조사 협의&lt;/strong&gt;: 제조사와 보안 표준 협의&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;표준 적용&lt;/strong&gt;: 수립된 표준안 적용 및 관리&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h4 id=&#34;보안-사전-테스트-및-검증-수행&#34;&gt;보안 사전 테스트 및 검증 수행&#xA;&lt;/h4&gt;&lt;ol&gt;&#xA;&lt;li&gt;&lt;strong&gt;테스트 계획 수립&lt;/strong&gt;: 보안 테스트 시나리오 및 계획 수립&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;테스트 환경 구축&lt;/strong&gt;: 별도 테스트 환경 구축&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;보안 테스트 수행&lt;/strong&gt;: 취약점 진단, 침투 테스트 등 수행&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;결과 보고&lt;/strong&gt;: 테스트 결과 보고 및 개선 조치 수립&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h3 id=&#34;4-참고-자료&#34;&gt;4. 참고 자료&#xA;&lt;/h3&gt;&lt;ul&gt;&#xA;&lt;li&gt;3GPP TS 33.102: Security architecture and procedures&lt;/li&gt;&#xA;&lt;li&gt;ETSI GS NFV-SEC 004: Security and Protection; Networking Attributes&lt;/li&gt;&#xA;&lt;li&gt;NIST SP 800-53: Security and Privacy Controls for Information Systems&lt;/li&gt;&#xA;&lt;li&gt;ISO/IEC 27036: Information security for supplier relationships&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;5-스크립트&#34;&gt;5. 스크립트&#xA;&lt;/h3&gt;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://rebugui.tistory.com/1192&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;&#xA;    &gt;취약점 점검 스크립트&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;이 스크립트는 KISA 주요정보통신기반시설 기술적 취약점 분석·평가 가이드라인(2026)을 준수하여 제작된 자동 점검 도구입니다. 복잡한 단일 파일 방식이 아닌 모듈화된 구조로 설계되어 유지보수가 쉽고 확장이 용이합니다.&lt;/li&gt;&#xA;&lt;li&gt;다양한 환경에서 테스트를 진행했으나, 혹시 점검 로직에 이슈가 발견되거나 개선이 필요한 경우 적극적인 제보를 부탁드립니다.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;</description>
-        </item><item>
-            <title>[2026 주요정보통신기반시설] M-04 이동통신망 장비 구축과 네트워크 설계 시 보안 내재화 수행</title>
-            <link>http://localhost:1313/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/m-04/</link>
-            <pubDate>Thu, 05 Feb 2026 09:56:13 +0900</pubDate>
-            <guid>http://localhost:1313/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/m-04/</guid>
-            <description>&lt;h1 id=&#34;m-04-이동통신망-장비-구축과-네트워크-설계-시-보안-내재화-수행&#34;&gt;M-04 이동통신망 장비 구축과 네트워크 설계 시 보안 내재화 수행&#xA;&lt;/h1&gt;&lt;h2 id=&#34;가이드라인-원문&#34;&gt;가이드라인 원문&#xA;&lt;/h2&gt;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;항목&lt;/th&gt;&#xA;          &lt;th&gt;내용&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;항목코드&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;M-04&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;점검내용&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;보안담당자 지정 및 보안업무 인력이 개통 운영 참여 여부 점검&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;점검대상&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;이동통신망 장비 구축 및 네트워크 설계&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;양호기준&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;보안담당자가 지정되고, 장비 도입 전부터 개통·운영까지 전 단계에 참여하며, 국제표준 보안 요건을 준수하는 경우&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;취약기준&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;보안담당자가 지정되지 않거나, 장비 구축 단계에 참여하지 않거나, 보안 검증이 수행되지 않는 경우&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;조치방법&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;보안담당자 지정 및 역할 정의, 생애주기별 보안 참여, 국제표준 보안 요건 준수, 종단 간 보안 관점 적용&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;상세-설명&#34;&gt;상세 설명&#xA;&lt;/h2&gt;&lt;h3 id=&#34;1-판단-기준&#34;&gt;1. 판단 기준&#xA;&lt;/h3&gt;&lt;h4 id=&#34;기본-판단-기준&#34;&gt;기본 판단 기준&#xA;&lt;/h4&gt;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;양호&lt;/strong&gt;: 보안담당자가 지정되고, 장비 도입 전부터 개통·운영까지 전 단계에 참여하며, 국제표준 보안 요건을 준수하는 경우&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;취약&lt;/strong&gt;: 보안담당자가 지정되지 않거나, 장비 구축 단계에 참여하지 않거나, 보안 검증이 수행되지 않는 경우&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h4 id=&#34;경계-케이스-edge-case-처리-방법&#34;&gt;경계 케이스 (Edge Case) 처리 방법&#xA;&lt;/h4&gt;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;보안담당자 지정만 있는 경우&lt;/strong&gt;: 실제 참여하지 않음 → 취약으로 판단&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;일부 단계 참여&lt;/strong&gt;: 개통 단계에만 참여 → 부분적 보안, 개선 권고&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;국제표준 미준수&lt;/strong&gt;: 자체 표준을 따르나 보안 요건 충족 → 양호로 판단 가능&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h4 id=&#34;권장-설정값&#34;&gt;권장 설정값&#xA;&lt;/h4&gt;&lt;ul&gt;&#xA;&lt;li&gt;보안담당자: 전담 인력 1인 이상&lt;/li&gt;&#xA;&lt;li&gt;참여 단계: 요구사항 분석부터 운영 전체&lt;/li&gt;&#xA;&lt;li&gt;국제표준: 3GPP, ETSI, NIST 등 준수&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;2-점검-방법&#34;&gt;2. 점검 방법&#xA;&lt;/h3&gt;&lt;h4 id=&#34;점검-절차&#34;&gt;점검 절차&#xA;&lt;/h4&gt;&lt;ol&gt;&#xA;&lt;li&gt;인력 확인: 보안담당자 지정 여부 및 역할 확인&lt;/li&gt;&#xA;&lt;li&gt;참여 이력 확인: 장비 생애주기별 보안 참여 이력 확인&lt;/li&gt;&#xA;&lt;li&gt;보안 요건 준수 확인: 국제표준 보안 요건 준수 여부 확인&lt;/li&gt;&#xA;&lt;li&gt;문서 검토: 보안 검증 보고서, 참여 기록 등 문서 확인&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h4 id=&#34;점검-항목&#34;&gt;점검 항목&#xA;&lt;/h4&gt;&lt;ul&gt;&#xA;&lt;li&gt;보안담당자 지정 여부&lt;/li&gt;&#xA;&lt;li&gt;장비 생애주기별 참여 여부&lt;/li&gt;&#xA;&lt;li&gt;국제표준 보안 요건 준수 여부&lt;/li&gt;&#xA;&lt;li&gt;보안 검증 수행 이력&lt;/li&gt;&#xA;&lt;li&gt;종단 간 보안 관점 적용 여부&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;3-조치-방법&#34;&gt;3. 조치 방법&#xA;&lt;/h3&gt;&lt;h4 id=&#34;보안담당자-지정-및-역할-정의&#34;&gt;보안담당자 지정 및 역할 정의&#xA;&lt;/h4&gt;&lt;ol&gt;&#xA;&lt;li&gt;&lt;strong&gt;보안담당자 선정&lt;/strong&gt;: 보안 전문 인력 선정&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;역할 정의&lt;/strong&gt;: 생애주기별 보안담당자 역할 정의&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;권한 부여&lt;/strong&gt;: 보안 관련 의사결정 권한 부여&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;교육&lt;/strong&gt;: 보안담당자 교육 및 훈련&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h4 id=&#34;생애주기별-보안-참여&#34;&gt;생애주기별 보안 참여&#xA;&lt;/h4&gt;&lt;ol&gt;&#xA;&lt;li&gt;&lt;strong&gt;요구사항 분석 단계&lt;/strong&gt;: 보안 요구사항 도출 참여&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;설계 단계&lt;/strong&gt;: 보안 아키텍처 설계 참여&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;구매 단계&lt;/strong&gt;: 보안 요건 포함 여부 검토&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;개통 단계&lt;/strong&gt;: 보안 설정 검증 참여&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;운영 단계&lt;/strong&gt;: 보안 모니터링 및 개선 참여&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h4 id=&#34;국제표준-보안-요건-준수&#34;&gt;국제표준 보안 요건 준수&#xA;&lt;/h4&gt;&lt;ol&gt;&#xA;&lt;li&gt;&lt;strong&gt;표준 분석&lt;/strong&gt;: 3GPP, ETSI, NIST 등 국제표준 분석&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;요구사항 도출&lt;/strong&gt;: 표준 기반 보안 요구사항 도출&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;적용 계획 수립&lt;/strong&gt;: 보안 요건 적용 계획 수립&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;준수 검증&lt;/strong&gt;: 보안 요건 준수 여부 검증&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h4 id=&#34;종단-간-보안-관점-적용&#34;&gt;종단 간 보안 관점 적용&#xA;&lt;/h4&gt;&lt;ol&gt;&#xA;&lt;li&gt;&lt;strong&gt;종단 분석&lt;/strong&gt;: 단말부터 코어까지 종단 보안 분석&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;보안 체계 수립&lt;/strong&gt;: 종단 간 보안 체계 수립&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;연계 검증&lt;/strong&gt;: 각 구간별 보안 연계 검증&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;통합 관리&lt;/strong&gt;: 종단 보안 통합 관리&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h3 id=&#34;4-참고-자료&#34;&gt;4. 참고 자료&#xA;&lt;/h3&gt;&lt;ul&gt;&#xA;&lt;li&gt;3GPP TR 33.844: Study on Security of Virtual Network Management&lt;/li&gt;&#xA;&lt;li&gt;ETSI GS NFV-SEC 009: Security; Security Architecture for Management&lt;/li&gt;&#xA;&lt;li&gt;NIST SP 800-160: Systems Security Engineering&lt;/li&gt;&#xA;&lt;li&gt;ISO/IEC 15288: Systems and software engineering&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;5-스크립트&#34;&gt;5. 스크립트&#xA;&lt;/h3&gt;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://rebugui.tistory.com/1192&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;&#xA;    &gt;취약점 점검 스크립트&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;이 스크립트는 KISA 주요정보통신기반시설 기술적 취약점 분석·평가 가이드라인(2026)을 준수하여 제작된 자동 점검 도구입니다. 복잡한 단일 파일 방식이 아닌 모듈화된 구조로 설계되어 유지보수가 쉽고 확장이 용이합니다.&lt;/li&gt;&#xA;&lt;li&gt;다양한 환경에서 테스트를 진행했으나, 혹시 점검 로직에 이슈가 발견되거나 개선이 필요한 경우 적극적인 제보를 부탁드립니다.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;</description>
-        </item></channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Mobile on 코딩이 싫은 거북이</title><link>https://rebugui.github.io/tags/mobile/</link><description>Recent content in Mobile on 코딩이 싫은 거북이</description><generator>Hugo -- gohugo.io</generator><language>ko-kr</language><lastBuildDate>Thu, 05 Feb 2026 09:56:13 +0900</lastBuildDate><atom:link href="https://rebugui.github.io/tags/mobile/index.xml" rel="self" type="application/rss+xml"/><item><title>[2026 주요정보통신기반시설] M-01 이동통신망 엣지네트워크 운영시 인터넷 연결 등을 고려한 보안기술 적용</title><link>https://rebugui.github.io/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/m-01/</link><pubDate>Thu, 05 Feb 2026 09:56:13 +0900</pubDate><guid>https://rebugui.github.io/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/m-01/</guid><description>&lt;h1 id="m-01-이동통신망-엣지네트워크-운영시-인터넷-연결-등을-고려한-보안기술-적용"&gt;M-01 이동통신망 엣지네트워크 운영시 인터넷 연결 등을 고려한 보안기술 적용
+&lt;/h1&gt;&lt;h2 id="가이드라인-원문"&gt;가이드라인 원문
+&lt;/h2&gt;&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;항목&lt;/th&gt;
+ &lt;th&gt;내용&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;항목코드&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;M-01&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;점검내용&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;이동통신망 관리네트워크에 보안기술을 사용한 안전 분리 운영 여부 점검&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;점검대상&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;이동통신망 엣지 네트워크&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;양호기준&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;관리네트워크와 사용자 트래픽 네트워크가 보안기술을 사용하여 안전하게 분리되어 운영되는 경우&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;취약기준&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;관리네트워크와 사용자 트래픽 네트워크가 분리되지 않거나 보안기술이 적용되지 않는 경우&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;조치방법&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;1인 1계정 원칙 준수, 다중 인증(Token 포함) 구현, 네트워크 완전 분리, 논리적 네트워크 분리 기술 적용&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id="상세-설명"&gt;상세 설명
+&lt;/h2&gt;&lt;h3 id="1-판단-기준"&gt;1. 판단 기준
+&lt;/h3&gt;&lt;h4 id="기본-판단-기준"&gt;기본 판단 기준
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;양호&lt;/strong&gt;: 관리네트워크와 사용자 트래픽 네트워크가 보안기술을 사용하여 안전하게 분리되어 운영되는 경우&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;취약&lt;/strong&gt;: 관리네트워크와 사용자 트래픽 네트워크가 분리되지 않거나 보안기술이 적용되지 않는 경우&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="경계-케이스-edge-case-처리-방법"&gt;경계 케이스 (Edge Case) 처리 방법
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;물리적 분리만 있는 경우&lt;/strong&gt;: 보안 기술 미적용 → 부분적 보안, 개선 권고&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;논리적 분리만 있는 경우&lt;/strong&gt;: 물리적 분리 어려운 환경 → 보안 기술 적용 시 양호로 판단 가능&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;일부 트래픽만 분리&lt;/strong&gt;: 관리 트래픽만 분리된 경우 → 부분적 보안, 개선 권고&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="권장-설정값"&gt;권장 설정값
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;네트워크 분리: 물리적 분리 권장 (불가능 시 논리적 분리)&lt;/li&gt;
+&lt;li&gt;다중 인증: 최소 2-factor 인증&lt;/li&gt;
+&lt;li&gt;1인 1계정: 개별 계정 발급 및 추적성 확보&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="2-점검-방법"&gt;2. 점검 방법
+&lt;/h3&gt;&lt;h4 id="점검-절차"&gt;점검 절차
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;네트워크 구성 확인: 관리네트워크와 트래픽 네트워크 분리 여부 확인&lt;/li&gt;
+&lt;li&gt;보안 기술 적용 확인: 방화벽, VPN, 세그먼테이션 등 보안 기술 확인&lt;/li&gt;
+&lt;li&gt;인증 체계 확인: 다중 인증, 1인 1계정 준수 여부 확인&lt;/li&gt;
+&lt;li&gt;접근 제어 확인: 네트워크 접근 제어 정책 확인&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id="점검-항목"&gt;점검 항목
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;관리네트워크와 트래픽 네트워크 분리 여부&lt;/li&gt;
+&lt;li&gt;방화벽 및 보안 장비 설치 여부&lt;/li&gt;
+&lt;li&gt;다중 인증 구현 여부&lt;/li&gt;
+&lt;li&gt;1인 1계정 원칙 준수 여부&lt;/li&gt;
+&lt;li&gt;네트워크 접근 제어 정책 수립 여부&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="3-조치-방법"&gt;3. 조치 방법
+&lt;/h3&gt;&lt;h4 id="1인-1계정-원칙-준수"&gt;1인 1계정 원칙 준수
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;개별 계정 발급&lt;/strong&gt;: 관리자별 개별 계정 발급&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;계정 관리&lt;/strong&gt;: 계정 생성, 변경, 삭제 프로세스 수립&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;접속 로그&lt;/strong&gt;: 계정별 접속 로그 기록 및 관리&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;정기 검토&lt;/strong&gt;: 퇴사자, 휴직자 계정 정기 검토 및 삭제&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id="다중-인증token-포함-구현"&gt;다중 인증(Token 포함) 구현
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;인증 체계 구축&lt;/strong&gt;: ID/Password + Token/SMS/생체인증 등&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Token 발급&lt;/strong&gt;: 보안 Token 발급 및 관리&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;인증 서버&lt;/strong&gt;: 다중 인증 서버 구축&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;만료 정책&lt;/strong&gt;: Token 및 인증 만료 정책 수립&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id="네트워크-완전-분리"&gt;네트워크 완전 분리
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;물리적 분리&lt;/strong&gt;: 관리용 장비와 트래픽용 장비 물리적 분리&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;별도 망 구성&lt;/strong&gt;: 관리망과 운영망 별도 구성&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;케이블 분리&lt;/strong&gt;: 물리적 케이블 및 포트 분리&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;VLAN 구성&lt;/strong&gt;: 불가능 시 VLAN으로 논리적 분리&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id="논리적-네트워크-분리-기술-적용"&gt;논리적 네트워크 분리 기술 적용
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;세그먼테이션&lt;/strong&gt;: 네트워크 세그먼트별 접근 제어&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;방화벽&lt;/strong&gt;: 관리용/트래픽용 방화벽 분리 설치&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;VPN&lt;/strong&gt;: 관리자 접속 시 VPN 강제 적용&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ACL&lt;/strong&gt;: 네트워크 접근 제어 목록(ACL) 적용&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="4-참고-자료"&gt;4. 참고 자료
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;3GPP TS 33.210: 3G security; Network domain security; IP network layer security&lt;/li&gt;
+&lt;li&gt;3GPP TS 33.401: 3GPP System access security&lt;/li&gt;
+&lt;li&gt;ETSI GS NFV-SEC 013: Security; Security Architecture for Virtualization&lt;/li&gt;
+&lt;li&gt;NIST SP 800-41: Guidelines on Firewalls and Firewall Policy&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="5-스크립트"&gt;5. 스크립트
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://rebugui.tistory.com/1192" target="_blank" rel="noopener"
+ &gt;취약점 점검 스크립트&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;이 스크립트는 KISA 주요정보통신기반시설 기술적 취약점 분석·평가 가이드라인(2026)을 준수하여 제작된 자동 점검 도구입니다. 복잡한 단일 파일 방식이 아닌 모듈화된 구조로 설계되어 유지보수가 쉽고 확장이 용이합니다.&lt;/li&gt;
+&lt;li&gt;다양한 환경에서 테스트를 진행했으나, 혹시 점검 로직에 이슈가 발견되거나 개선이 필요한 경우 적극적인 제보를 부탁드립니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>[2026 주요정보통신기반시설] M-02 이동통신망에서 가상화 기술 적용 시 계정관리, 이상징후탐지 등 보안설정 또는 기술 적용</title><link>https://rebugui.github.io/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/m-02/</link><pubDate>Thu, 05 Feb 2026 09:56:13 +0900</pubDate><guid>https://rebugui.github.io/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/m-02/</guid><description>&lt;h1 id="m-02-이동통신망에서-가상화-기술-적용-시-계정관리-이상징후탐지-등-보안설정-또는-기술-적용"&gt;M-02 이동통신망에서 가상화 기술 적용 시 계정관리, 이상징후탐지 등 보안설정 또는 기술 적용
+&lt;/h1&gt;&lt;h2 id="가이드라인-원문"&gt;가이드라인 원문
+&lt;/h2&gt;&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;항목&lt;/th&gt;
+ &lt;th&gt;내용&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;항목코드&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;M-02&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;점검내용&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;물리적 계층, 가상화 계층, 애플리케이션 계층 등의 수직적 계층에 적합한 보안기술 적용 여부 점검&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;점검대상&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;이동통신망 가상화 장비 (NFV, SDN 등)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;양호기준&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;3GPP 표준의 필수 보안 설정이 적용되고, 계층별 접근 통제 정책이 수립되어 운영되는 경우&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;취약기준&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;계층별 보안 설정이 미흡하거나 접근 통제 정책이 수립되지 않은 경우&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;조치방법&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;3GPP 표준 보안 설정 적용, 계층별 권한 관리, 이상징후 탐지 및 알림 시스템 구축, SDN/NFV 보안 통합&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id="상세-설명"&gt;상세 설명
+&lt;/h2&gt;&lt;h3 id="1-판단-기준"&gt;1. 판단 기준
+&lt;/h3&gt;&lt;h4 id="기본-판단-기준"&gt;기본 판단 기준
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;양호&lt;/strong&gt;: 3GPP 표준의 필수 보안 설정이 적용되고, 계층별 접근 통제 정책이 수립되어 운영되는 경우&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;취약&lt;/strong&gt;: 계층별 보안 설정이 미흡하거나 접근 통제 정책이 수립되지 않은 경우&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="경계-케이스-edge-case-처리-방법"&gt;경계 케이스 (Edge Case) 처리 방법
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;부분 적용&lt;/strong&gt;: 일부 계층에만 보안 설정이 적용된 경우 → 취약으로 판단&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;정책 수립 미준수&lt;/strong&gt;: 정책은 수립되었으나 실제 운영에 적용되지 않은 경우 → 취약으로 판단&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;3GPP 표준 미준수&lt;/strong&gt;: 타 표준을 따르나 3GPP와 상충되는 경우 → 보안 요건 충족 시 양호로 판단 가능&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="권장-설정값"&gt;권장 설정값
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;3GPP TS 33.531 (Security aspects of Virtual Network Platforms)&lt;/li&gt;
+&lt;li&gt;3GPP TS 32.541 (Telecommunication management; Security Assurance)&lt;/li&gt;
+&lt;li&gt;계층별 최소 권한 원칙 적용&lt;/li&gt;
+&lt;li&gt;이상징후 탐지 임계값: 업무 특성에 맞는 맞춤 설정&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="2-점검-방법"&gt;2. 점검 방법
+&lt;/h3&gt;&lt;h4 id="점검-절차"&gt;점검 절차
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;문서 검토: 보안 정책, 접근 통제 정책, 계층별 보안 설정 문서 확인&lt;/li&gt;
+&lt;li&gt;설정 검증: NFV/SDN 장비의 실제 보안 설정 확인&lt;/li&gt;
+&lt;li&gt;운영 확인: 보안 정책의 실제 운영 여부 점검&lt;/li&gt;
+&lt;li&gt;로그 분석: 이상징후 탐지 시스템의 운영 현황 확인&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id="점검-항목"&gt;점검 항목
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;물리적 계층 보안: 하드웨어 보안, 물리적 접근 통제&lt;/li&gt;
+&lt;li&gt;가상화 계층 보안: 하이퍼바이저 보안, 가상머신 격리&lt;/li&gt;
+&lt;li&gt;애플리케이션 계층 보안: VNF 보안, 컨테이너 보안&lt;/li&gt;
+&lt;li&gt;관리 계층 보안: MANO 보안, Orchestrator 보안&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="3-조치-방법"&gt;3. 조치 방법
+&lt;/h3&gt;&lt;h4 id="3gpp-표준-보안-설정-적용"&gt;3GPP 표준 보안 설정 적용
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;보안 요구사항 식별&lt;/strong&gt;: 3GPP TS 33.531 기반 보안 요구사항 도출&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;보안 설정 적용&lt;/strong&gt;: NFVI, VNF, MANO 각 컴포넌트별 보안 설정 적용&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;검증&lt;/strong&gt;: 보안 설정 적용 후 테스트 및 검증&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id="계층별-권한-관리"&gt;계층별 권한 관리
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;역할 정의&lt;/strong&gt;: 계층별 관리자 역할 및 권한 정의&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;접근 통제&lt;/strong&gt;: 계층별 접근 통제 정책 수립 및 적용&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;권한 검토&lt;/strong&gt;: 정기적 권한 검토 및 불필요 권한 제거&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id="이상징후-탐지-및-알림-시스템-구축"&gt;이상징후 탐지 및 알림 시스템 구축
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;탐지 항목 설정&lt;/strong&gt;: 리소스 사용량, 네트워크 트래픽, 접속 패턴 등&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;임계값 설정&lt;/strong&gt;: 업무 특성에 맞는 탐지 임계값 설정&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;알림 설정&lt;/strong&gt;: 이상징후 발생 시 실시간 알림 시스템 구축&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id="sdnnfv-보안-통합"&gt;SDN/NFV 보안 통합
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;보안 아키텍처 설계&lt;/strong&gt;: SDN 컨트롤러, NFV Orchestrator 보안 통합&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;세그먼테이션&lt;/strong&gt;: 관리 트래픽과 데이터 트래픽 분리&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;암호화&lt;/strong&gt;: 관리 인터페이스 암호화 적용&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="4-참고-자료"&gt;4. 참고 자료
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;3GPP TS 33.531: Security aspects of Virtual Network Platforms&lt;/li&gt;
+&lt;li&gt;3GPP TS 32.541: Telecommunication management; Security Assurance&lt;/li&gt;
+&lt;li&gt;ETSI GS NFV-SEC: Network Functions Virtualisation Security&lt;/li&gt;
+&lt;li&gt;NIST SP 800-37: Risk Management Framework&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="5-스크립트"&gt;5. 스크립트
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://rebugui.tistory.com/1192" target="_blank" rel="noopener"
+ &gt;취약점 점검 스크립트&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;이 스크립트는 KISA 주요정보통신기반시설 기술적 취약점 분석·평가 가이드라인(2026)을 준수하여 제작된 자동 점검 도구입니다. 복잡한 단일 파일 방식이 아닌 모듈화된 구조로 설계되어 유지보수가 쉽고 확장이 용이합니다.&lt;/li&gt;
+&lt;li&gt;다양한 환경에서 테스트를 진행했으나, 혹시 점검 로직에 이슈가 발견되거나 개선이 필요한 경우 적극적인 제보를 부탁드립니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>[2026 주요정보통신기반시설] M-03 이동통신망 장비 및 SW 제조사 등과 보안정책을 마련하여 운영</title><link>https://rebugui.github.io/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/m-03/</link><pubDate>Thu, 05 Feb 2026 09:56:13 +0900</pubDate><guid>https://rebugui.github.io/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/m-03/</guid><description>&lt;h1 id="m-03-이동통신망-장비-및-sw-제조사-등과-보안정책을-마련하여-운영"&gt;M-03 이동통신망 장비 및 SW 제조사 등과 보안정책을 마련하여 운영
+&lt;/h1&gt;&lt;h2 id="가이드라인-원문"&gt;가이드라인 원문
+&lt;/h2&gt;&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;항목&lt;/th&gt;
+ &lt;th&gt;내용&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;항목코드&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;M-03&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;점검내용&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;일정 수준의 보안 요구 수준 및 운영 계획과 수명 주기를 반영한 보안정책 운영 여부 점검&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;점검대상&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;이동통신망 장비 및 소프트웨어&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;양호기준&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;제조사와 협력하여 보안정책이 수립되고, SLA에 보안 요구사항이 포함되며, 주기적 보안 검증이 수행되는 경우&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;취약기준&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;보안정책이 수립되지 않거나, SLA에 보안 요구사항이 미포함되거나, 보안 검증이 수행되지 않는 경우&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;조치방법&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;종단 네트워크 보안 설계, SLA에 보안 수준 정의, 보안 표준안 수립, 보안 사전 테스트 및 검증 수행&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id="상세-설명"&gt;상세 설명
+&lt;/h2&gt;&lt;h3 id="1-판단-기준"&gt;1. 판단 기준
+&lt;/h3&gt;&lt;h4 id="기본-판단-기준"&gt;기본 판단 기준
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;양호&lt;/strong&gt;: 제조사와 협력하여 보안정책이 수립되고, SLA에 보안 요구사항이 포함되며, 주기적 보안 검증이 수행되는 경우&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;취약&lt;/strong&gt;: 보안정책이 수립되지 않거나, SLA에 보안 요구사항이 미포함되거나, 보안 검증이 수행되지 않는 경우&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="경계-케이스-edge-case-처리-방법"&gt;경계 케이스 (Edge Case) 처리 방법
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;보안정책 수립만 있는 경우&lt;/strong&gt;: SLA에 미포함 → 취약으로 판단&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SLA 미포함 but 검증 수행&lt;/strong&gt;: 부분적 보안 → 개선 권고&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;검증 주기 미준수&lt;/strong&gt;: 검증은 수행하나 주기적이지 않은 경우 → 개선 권고&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="권장-설정값"&gt;권장 설정값
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;보안 검증 주기: 최소 연 1회&lt;/li&gt;
+&lt;li&gt;보안 패치 적용: 심각 취약점 30일 이내&lt;/li&gt;
+&lt;li&gt;SLA 보안 수준: 업무 특성에 맞는 맞춤 정의&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="2-점검-방법"&gt;2. 점검 방법
+&lt;/h3&gt;&lt;h4 id="점검-절차"&gt;점검 절차
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;문서 검토: 보안 정책, SLA 계약서, 보안 검증 보고서 확인&lt;/li&gt;
+&lt;li&gt;제조사 협력 현황: 보안 협력 체계, 커뮤니케이션 채널 확인&lt;/li&gt;
+&lt;li&gt;보안 요구사항 확인: SLA 내 보안 요구사항 포함 여부 확인&lt;/li&gt;
+&lt;li&gt;검증 이력 확인: 주기적 보안 검증 수행 이력 확인&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id="점검-항목"&gt;점검 항목
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;보안 정책 수립 여부&lt;/li&gt;
+&lt;li&gt;제조사와의 보안 협력 체계&lt;/li&gt;
+&lt;li&gt;SLA 내 보안 요구사항 포함 여부&lt;/li&gt;
+&lt;li&gt;주기적 보안 검증 수행 여부&lt;/li&gt;
+&lt;li&gt;보안 취약점 대응 프로세스&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="3-조치-방법"&gt;3. 조치 방법
+&lt;/h3&gt;&lt;h4 id="종단-네트워크-보안-설계"&gt;종단 네트워크 보안 설계
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;위협 분석&lt;/strong&gt;: 종단 네트워크 위협 모델 수립&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;보안 요구사항 도출&lt;/strong&gt;: 위협 기반 보안 요구사항 정의&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;보안 아키텍처 설계&lt;/strong&gt;: 종단 간 보안 아키텍처 수립&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;검증&lt;/strong&gt;: 보안 설계 검증 및 개선&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id="sla에-보안-수준-정의"&gt;SLA에 보안 수준 정의
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;보안 메트릭 정의&lt;/strong&gt;: 가용성, 무결성, 기밀성 등 보안 메트릭 정의&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;서비스 수준 설정&lt;/strong&gt;: 보안 관련 서비스 수준 설정&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;페널티 정의&lt;/strong&gt;: 보안 SLA 미준수 시 페널티 정의&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;모니터링&lt;/strong&gt;: 보안 SLA 준수 여부 모니터링&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id="보안-표준안-수립"&gt;보안 표준안 수립
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;표준 분석&lt;/strong&gt;: 국제 표준(3GPP, ETSI, NIST 등) 분석&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;사내 표준 수립&lt;/strong&gt;: 업무 특성에 맞는 보안 표준안 수립&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;제조사 협의&lt;/strong&gt;: 제조사와 보안 표준 협의&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;표준 적용&lt;/strong&gt;: 수립된 표준안 적용 및 관리&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id="보안-사전-테스트-및-검증-수행"&gt;보안 사전 테스트 및 검증 수행
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;테스트 계획 수립&lt;/strong&gt;: 보안 테스트 시나리오 및 계획 수립&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;테스트 환경 구축&lt;/strong&gt;: 별도 테스트 환경 구축&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;보안 테스트 수행&lt;/strong&gt;: 취약점 진단, 침투 테스트 등 수행&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;결과 보고&lt;/strong&gt;: 테스트 결과 보고 및 개선 조치 수립&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="4-참고-자료"&gt;4. 참고 자료
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;3GPP TS 33.102: Security architecture and procedures&lt;/li&gt;
+&lt;li&gt;ETSI GS NFV-SEC 004: Security and Protection; Networking Attributes&lt;/li&gt;
+&lt;li&gt;NIST SP 800-53: Security and Privacy Controls for Information Systems&lt;/li&gt;
+&lt;li&gt;ISO/IEC 27036: Information security for supplier relationships&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="5-스크립트"&gt;5. 스크립트
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://rebugui.tistory.com/1192" target="_blank" rel="noopener"
+ &gt;취약점 점검 스크립트&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;이 스크립트는 KISA 주요정보통신기반시설 기술적 취약점 분석·평가 가이드라인(2026)을 준수하여 제작된 자동 점검 도구입니다. 복잡한 단일 파일 방식이 아닌 모듈화된 구조로 설계되어 유지보수가 쉽고 확장이 용이합니다.&lt;/li&gt;
+&lt;li&gt;다양한 환경에서 테스트를 진행했으나, 혹시 점검 로직에 이슈가 발견되거나 개선이 필요한 경우 적극적인 제보를 부탁드립니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>[2026 주요정보통신기반시설] M-04 이동통신망 장비 구축과 네트워크 설계 시 보안 내재화 수행</title><link>https://rebugui.github.io/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/m-04/</link><pubDate>Thu, 05 Feb 2026 09:56:13 +0900</pubDate><guid>https://rebugui.github.io/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/m-04/</guid><description>&lt;h1 id="m-04-이동통신망-장비-구축과-네트워크-설계-시-보안-내재화-수행"&gt;M-04 이동통신망 장비 구축과 네트워크 설계 시 보안 내재화 수행
+&lt;/h1&gt;&lt;h2 id="가이드라인-원문"&gt;가이드라인 원문
+&lt;/h2&gt;&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;항목&lt;/th&gt;
+ &lt;th&gt;내용&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;항목코드&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;M-04&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;점검내용&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;보안담당자 지정 및 보안업무 인력이 개통 운영 참여 여부 점검&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;점검대상&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;이동통신망 장비 구축 및 네트워크 설계&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;양호기준&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;보안담당자가 지정되고, 장비 도입 전부터 개통·운영까지 전 단계에 참여하며, 국제표준 보안 요건을 준수하는 경우&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;취약기준&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;보안담당자가 지정되지 않거나, 장비 구축 단계에 참여하지 않거나, 보안 검증이 수행되지 않는 경우&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;조치방법&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;보안담당자 지정 및 역할 정의, 생애주기별 보안 참여, 국제표준 보안 요건 준수, 종단 간 보안 관점 적용&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id="상세-설명"&gt;상세 설명
+&lt;/h2&gt;&lt;h3 id="1-판단-기준"&gt;1. 판단 기준
+&lt;/h3&gt;&lt;h4 id="기본-판단-기준"&gt;기본 판단 기준
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;양호&lt;/strong&gt;: 보안담당자가 지정되고, 장비 도입 전부터 개통·운영까지 전 단계에 참여하며, 국제표준 보안 요건을 준수하는 경우&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;취약&lt;/strong&gt;: 보안담당자가 지정되지 않거나, 장비 구축 단계에 참여하지 않거나, 보안 검증이 수행되지 않는 경우&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="경계-케이스-edge-case-처리-방법"&gt;경계 케이스 (Edge Case) 처리 방법
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;보안담당자 지정만 있는 경우&lt;/strong&gt;: 실제 참여하지 않음 → 취약으로 판단&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;일부 단계 참여&lt;/strong&gt;: 개통 단계에만 참여 → 부분적 보안, 개선 권고&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;국제표준 미준수&lt;/strong&gt;: 자체 표준을 따르나 보안 요건 충족 → 양호로 판단 가능&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="권장-설정값"&gt;권장 설정값
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;보안담당자: 전담 인력 1인 이상&lt;/li&gt;
+&lt;li&gt;참여 단계: 요구사항 분석부터 운영 전체&lt;/li&gt;
+&lt;li&gt;국제표준: 3GPP, ETSI, NIST 등 준수&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="2-점검-방법"&gt;2. 점검 방법
+&lt;/h3&gt;&lt;h4 id="점검-절차"&gt;점검 절차
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;인력 확인: 보안담당자 지정 여부 및 역할 확인&lt;/li&gt;
+&lt;li&gt;참여 이력 확인: 장비 생애주기별 보안 참여 이력 확인&lt;/li&gt;
+&lt;li&gt;보안 요건 준수 확인: 국제표준 보안 요건 준수 여부 확인&lt;/li&gt;
+&lt;li&gt;문서 검토: 보안 검증 보고서, 참여 기록 등 문서 확인&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id="점검-항목"&gt;점검 항목
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;보안담당자 지정 여부&lt;/li&gt;
+&lt;li&gt;장비 생애주기별 참여 여부&lt;/li&gt;
+&lt;li&gt;국제표준 보안 요건 준수 여부&lt;/li&gt;
+&lt;li&gt;보안 검증 수행 이력&lt;/li&gt;
+&lt;li&gt;종단 간 보안 관점 적용 여부&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="3-조치-방법"&gt;3. 조치 방법
+&lt;/h3&gt;&lt;h4 id="보안담당자-지정-및-역할-정의"&gt;보안담당자 지정 및 역할 정의
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;보안담당자 선정&lt;/strong&gt;: 보안 전문 인력 선정&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;역할 정의&lt;/strong&gt;: 생애주기별 보안담당자 역할 정의&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;권한 부여&lt;/strong&gt;: 보안 관련 의사결정 권한 부여&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;교육&lt;/strong&gt;: 보안담당자 교육 및 훈련&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id="생애주기별-보안-참여"&gt;생애주기별 보안 참여
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;요구사항 분석 단계&lt;/strong&gt;: 보안 요구사항 도출 참여&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;설계 단계&lt;/strong&gt;: 보안 아키텍처 설계 참여&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;구매 단계&lt;/strong&gt;: 보안 요건 포함 여부 검토&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;개통 단계&lt;/strong&gt;: 보안 설정 검증 참여&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;운영 단계&lt;/strong&gt;: 보안 모니터링 및 개선 참여&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id="국제표준-보안-요건-준수"&gt;국제표준 보안 요건 준수
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;표준 분석&lt;/strong&gt;: 3GPP, ETSI, NIST 등 국제표준 분석&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;요구사항 도출&lt;/strong&gt;: 표준 기반 보안 요구사항 도출&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;적용 계획 수립&lt;/strong&gt;: 보안 요건 적용 계획 수립&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;준수 검증&lt;/strong&gt;: 보안 요건 준수 여부 검증&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id="종단-간-보안-관점-적용"&gt;종단 간 보안 관점 적용
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;종단 분석&lt;/strong&gt;: 단말부터 코어까지 종단 보안 분석&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;보안 체계 수립&lt;/strong&gt;: 종단 간 보안 체계 수립&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;연계 검증&lt;/strong&gt;: 각 구간별 보안 연계 검증&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;통합 관리&lt;/strong&gt;: 종단 보안 통합 관리&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="4-참고-자료"&gt;4. 참고 자료
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;3GPP TR 33.844: Study on Security of Virtual Network Management&lt;/li&gt;
+&lt;li&gt;ETSI GS NFV-SEC 009: Security; Security Architecture for Management&lt;/li&gt;
+&lt;li&gt;NIST SP 800-160: Systems Security Engineering&lt;/li&gt;
+&lt;li&gt;ISO/IEC 15288: Systems and software engineering&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="5-스크립트"&gt;5. 스크립트
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://rebugui.tistory.com/1192" target="_blank" rel="noopener"
+ &gt;취약점 점검 스크립트&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;이 스크립트는 KISA 주요정보통신기반시설 기술적 취약점 분석·평가 가이드라인(2026)을 준수하여 제작된 자동 점검 도구입니다. 복잡한 단일 파일 방식이 아닌 모듈화된 구조로 설계되어 유지보수가 쉽고 확장이 용이합니다.&lt;/li&gt;
+&lt;li&gt;다양한 환경에서 테스트를 진행했으나, 혹시 점검 로직에 이슈가 발견되거나 개선이 필요한 경우 적극적인 제보를 부탁드립니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description></item></channel></rss>
