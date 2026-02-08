@@ -34,6 +34,7 @@ LiteBox는 단순한 런타임이 아닌, 애플리케이션 코드와 링크되
 
 공격자가 웹 서비스 내부에서 코드 실행 권한을 얻었다고 가정해 봅시다.
 
+```mermaid
 graph TD
     subgraph "Traditional Container (Shared Kernel)"
         A[Attacker] -->|Exploit Syscall| B[Host Kernel]
@@ -49,6 +50,7 @@ graph TD
         style E fill:#ccffcc,stroke:#00ff00
         style F fill:#ffffcc,stroke:#ffcc00
     end
+```
 
 **기존 환경:** 공격자는 수백 개의 시스템 콜(`open`, `write`, `ioctl` 등)을 통해 직접 호스트 커널과 소통할 수 있습니다. 하나의 취약점만 터지면 호스트 권한을 탈취할 수 있습니다.
 
@@ -66,6 +68,7 @@ LiteBox 환경에서 실행되는 애플리케이션은 호스트의 파일 시�
 
 아래는 개념 증명(PoC)을 위해 작성한 Rust 코드 스니펫입니다. 이 코드는 일반적인 환경에서는 파일 시스템에 접근하겠지만, LiteBox의 정책(Policy)에 의해 차단될 수 있는 시나리오를 보여줍니다.
 
+```rust
 // LiteBox PoC: Attempting to access a sensitive file
 // 이 코드는 LiteBox 내부의 샌드박스 메커니즘을 테스트하기 위한 예제입니다.
 
@@ -74,7 +77,7 @@ use std::path::Path;
 
 fn attempt_unauthorized_access() {
     let target_path = Path::new("/etc/shadow");
-    
+
     match fs::read_to_string(target_path) {
         Ok(content) => {
             // 이 코드 경로는 LiteBox의 보안 정책이 올바르게 적용되었다면
@@ -91,10 +94,11 @@ fn attempt_unauthorized_access() {
 fn main() {
     // LiteBox 라이브러리 초기화 (가상의 API)
     // litebox::init_policy(SandboxPolicy::Strict);
-    
+
     println!("LiteBox Sandbox Test Starting...");
     attempt_unauthorized_access();
 }
+```
 
 위 코드를 일반 리눅스 컨테이너에서 실행하면 `Capability`가 충분할 경우 파일을 읽어옵니다. 하지만 LiteBox 내에서는 파일 시스템 접근을 위한 호스트 인터페이스가 차단되어 있거나, 가상의 파일 시스템만 제공되므로 `Access denied` 또는 `No such file or directory` 오류가 발생하며 공격이 차단됩니다.
 
@@ -102,7 +106,13 @@ fn main() {
 
 LiteBox가 기존 솔루션과 비교하여 어느 지점에 위치하는지 명확히 이해해야 합니다.
 
-| 특징 | 기존 Docker/Container | 전용 가상머신 (VM) | LiteBox (Library OS) | | :--- | :---: | :---: | :---: | | **커널 공유** | 공유 (Yes) | 독립 (No) | 선택 가능 (LibOS 또는 Guest) | | **격리 레벨** | 프로세스 레벨 | 하드웨어/OS 레벨 | **Application/OS 경계** | | **공격 표면** | 큼 (Large - 전체 Syscall) | 작음 (Small - Virtio 드라이버) | **매우 작음 (Minimal - 선택적 Hypercall)** | | **성능 오버헤드** | 낮음 (Native에 근접) | 높음 (Hypervisor 비용) | **중간~낮음 (Rust 최적화)** | | **주요 용도** | 일반 서비스 배포 | 완전한 격리 필요 시 | **보안이 중요한 멀티테넌트 서비스** |
+| 특징 | 기존 Docker/Container | 전용 가상머신 (VM) | LiteBox (Library OS) |
+| :--- | :---: | :---: | :---: |
+| **커널 공유** | 공유 (Yes) | 독립 (No) | 선택 가능 (LibOS 또는 Guest) |
+| **격리 레벨** | 프로세스 레벨 | 하드웨어/OS 레벨 | **Application/OS 경계** |
+| **공격 표면** | 큼 (Large - 전체 Syscall) | 작음 (Small - Virtio 드라이버) | **매우 작음 (Minimal - 선택적 Hypercall)** |
+| **성능 오버헤드** | 낮음 (Native에 근접) | 높음 (Hypervisor 비용) | **중간~낮음 (Rust 최적화)** |
+| **주요 용도** | 일반 서비스 배포 | 완전한 격리 필요 시 | **보안이 중요한 멀티테넌트 서비스** |
 
 LiteBox는 VM의 보안성과 컨테이너의 가볍다는 장점을 취하려는 하이브리드 접근 방식입니다.
 
@@ -112,6 +122,7 @@ LiteBox는 VM의 보안성과 컨테이너의 가볍다는 장점을 취하려�
 
 #### 1. 사전 요구사항 및 환경 설정 LiteBox는 현재 실험적 단계이며 Linux 및 Hyper-V 환경을 지원합니다. Rust 툴체인이 필수적입니다.
 
+```bash
 # Rust 툴체인 설치
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
@@ -119,24 +130,24 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 git clone https://github.com/microsoft/LiteBox.git
 cd LiteBox
 cargo build --release
+```
 
 #### 2. 샌드박스 정책 수립 어떤 리소스를 애플리케이션에 노출할지 정의해야 합니다. "기본 거부(Deny by Default)" 원칙을 따르야 합니다.
 
 - **네트워크:** Outbound만 허용, Inbound 차단
-
 - **파일 시스템:** 읽기 전용 볼륨만 마운트
-
 - **프로세스:** `fork()` 또는 `exec()` 계열 호출 제한
 
 #### 3. 워크로드 패키징 애플리케이션을 LiteBox 라이브러리와 링크하여 실행 파일을 생성합니다.
 
+```bash
 # 예시: 웹 애플리케이션을 LiteBox 환경에서 빌드
 cargo build --target x86_64-unknown-linux-gnu --release
+```
 
 #### 4. 실행 및 모니터링 LiteBox 위에서 애플리케이션을 실행합니다. 호스트 인터페이스를 통과하는 요청은 로깅되어야 합니다.
 
 - **체크포인트:** 애플리케이션이 예상치 못한 `syscall`을 호출하여 크래시가 발생하는지 확인합니다.
-
 - **로그 분석:** 호스트로 전달되는 Hypercall 로그를 분석하여 의심스러운 행위 탐지.
 
 ## 결론
@@ -150,7 +161,5 @@ LiteBox는 "보안은 기능이 아니라 구조적 특성이다"라는 명제�
 ### 참고자료
 
 - [LiteBox GitHub Repository](https://github.com/microsoft/LiteBox) (공식 저장소)
-
 - [The Rust Programming Language](https://www.rust-lang.org/)
-
 - [Drawbridge: Portable Library OS](https://www.microsoft.com/research/project/drawbridge/) (MS의 선행 연구)

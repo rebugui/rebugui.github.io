@@ -30,8 +30,7 @@ Microsoft는 전 세계 IT 인프라의 핵심이자, 동시에 가장 강력한
 
 다음은 조직 개편 시 발생할 수 있는 보안 공격 흐름을 시각화한 다이어그램입니다.
 
-````mermaid`
-
+```mermaid
 graph TD
     A[조직 개편 시작] --> B[인력 이동 및 퇴사]
     B --> C{액세스 권한 관리}
@@ -42,8 +41,7 @@ graph TD
     F --> G[인증 정보 도용 Credential Theft]
     G --> H[API 호출 및 액세스 토큰 획득]
     H --> I[권한 상승 & 데이터 유출 Lateral Movement]
-
-`````
+```
 
 위 다이어그램과 같이, 조직 변화는 사람(People), 프로세스(Process), 기술(Technology)의 삼각구조에서 '프로세스'의 붕괴를 유발하여 기술적 취약점을 야기합니다.
 
@@ -55,8 +53,7 @@ graph TD
 
 **공격자가 사용할 수 있는 PowerShell 스크립트 예시:**
 
-````powershell`
-
+```powershell
 # 공격 시나리오: 유출된 Client Secret을 이용한 데이터 추출
 
 # 1. 획득한 Tenant ID와 Application ID (OSINT 또는 유출된 정보 기반)
@@ -89,7 +86,6 @@ Write-Host "총 탈취된 사용자 수: $($Users.value.Count)"
 foreach ($user in $Users.value) {
     Write-Host "유저: $($user.displayName) - $($user.userPrincipalName)"
 }
-
-`````
+```
 
 이 시나리오에서 공격자는 **"개편 중인 팀은 만료된 API Key를 회수하지 못할 것이다"**라는 가정 하에 공격을 수행합니다. 만약 해당 Service Principal에 `User.Read.All`과 같은 높은

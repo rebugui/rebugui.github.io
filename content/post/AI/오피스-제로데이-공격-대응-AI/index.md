@@ -24,7 +24,7 @@ Microsoft가 발표한 긴급 Office 보안 패치 사태는 제로데이 취약
 
 ## 관련 연구 (Related Work)
 
-제로데이 공격 탐지를 위한 기존 연구들은 크게 정적 분석(Static Analysis)과 동적 분석(Dynamic Analysis)으로 나뉩니다. 전통적인 정적 분석 기법은 휴리스틱(Heuristic) 규칙을 사용하여 악의적인 매크로 코드를 식별하려 시도합니다. Ravindran 등(2020)은 Random Forest를 활용하여 VBA(Visual Basic for Applications) 코드의 오피소스(OpCode) 시퀀스를 분석하는 모델을 제안했습니다. 그러나 이러한 접근법은 난독화(Obfuscation) 기법에 취약하며, 새로운 형태의 취약점에는 대응하지 못한다는 근본적인 한계가 있습니다.
+제로데이 공격 탐지를 위한 기존 연구들은 크게 정적 분석(Static Analysis)과 동적 분석(Dynamic Analysis)으로 나뉩니다. 전통적인 정적 분석 기법은 휴리스틱(Heuristic) 규칙을 사용하여 악의적인 매크로 코드를 식별하려 시도합니다. Ravindran 등(2020)은 Random Forest를 활용하여 VBA(Visual Basic for Applications) 코드의 오픈소스(OpCode) 시퀀스를 분석하는 모델을 제안했습니다. 그러나 이러한 접근법은 난독화(Obfuscation) 기법에 취약하며, 새로운 형태의 취약점에는 대응하지 못한다는 근본적인 한계가 있습니다.
 
 동적 분석 측면에서는 샌드박스(Sandbox) 환경에서 문서를 실행하여 시스템 콜이나 네트워크 트래픽을 모니터링하는 연구가 활발히 진행되었습니다. 최근 딥러닝 기반의 LSTM(Long Short-Term Memory)이나 Transformer 모델을 시스템 호출 로그에 적용하여 이상 징후를 포착하려는 시도들이 있었습니다. 본 연구는 기존 연구가 단일 문맥(코드 또는 행위)에만 집중했다는 점에 착안하여, 문서의 내부 구조(NLP 기반)와 실행 시스템 호출 그래프(Graph Neural Network)를 결합한 멀티모달(Multimodal) 탐지 기법을 제안한다는 점에서 차별성을 가집니다.
 
@@ -34,8 +34,7 @@ Microsoft가 발표한 긴급 Office 보안 패치 사태는 제로데이 취약
 
 먼저, 텍스트 인코더는 사전 학습된 BERT 모델을 Fine-tuning하여 VBA 코드 내의 숨겨진 의도와 악성 키워드 조합을 추출합니다. 동시에 행동 인코더는 문서가 샌드박스 내에서 실행될 때 생성되는 시스템 호출(System Call) 시퀀스를 Transformer 모델에 입력하여 악성 행위의 패턴을 학습합니다. 이 두 임베딩 벡터는 결합(Fusion)되어 오토인코더(Autoencoder) 구조로 입력됩니다. 오토인코더는 정상적인 문서의 데이터로만 학습되므로, 악성 문서(제로데이 공격 포함)가 입력될 경우 재구성 오차(Reconstruction Error)가 크게 발생합니다. 이 임계값을 초과하는 경우 즉시 문서 실행을 차단합니다.
 
-````python`
-
+```python
 # 기술 예시 1: 오토인코더 기반 이상 탐지 모델 구조 (PyTorch)
 
 import torch
@@ -64,13 +63,11 @@ class AnomalyDetector(nn.Module):
 # 손실 함수는 재구성 오차(MSE)를 사용하며, 테스트 시 오차가 크면 악성으로 간주
 
 criterion = nn.MSELoss()
-
-`````
+```
 
 다음은 제안하는 시스템의 전체 데이터 플로우를 나타낸 다이어그램입니다.
 
-````mermaid`
-
+```mermaid
 graph TD
     A[Office File Input] --> B{Static Analysis Engine}
     A --> C{Dynamic Analysis Sandbox}
@@ -88,8 +85,7 @@ graph TD
 
     F -- Score < Threshold --> G[Allow Execution]
     F -- Score >= Threshold --> H[Block & Alert Admin]
-
-`````
+```
 
 ## 실험 및 결과 (Experiments & Results)
 
@@ -111,5 +107,4 @@ graph TD
 
 - [Microsoft releases urgent Office patch. Russian-state hackers pounce. - Ars Technica](https://news.google.com/rss/articles/CBMisgFBVV95cUxNeUc5dVk2eTI0eWVNWExhMkVsdUJyUEZDQy1STC1Sa0RuVERmZUJJSFBYazN2NXF1RG1pVlFXcEYzcVJtYnR1d1NPRGpndVZtNmJLWmlWUVFDOWZGbW9scGZrdWFVaGpQYjhadWhTY2p5VGxBNFhRTl9HZWVoZjBLNUdpLVlrTEJ3QTRULUxxVDhUMlpwMXFnWGcwVkcxSnhhZ251LVRsT1Zrc1ZtZUZoelJ3?oc=5)
 - [VirusTotal Datasets](https://www.virustotal.com/)
-
 ---

@@ -36,6 +36,7 @@ categories:
 
 다음은 공격자가 웹 셸 획득 후 Root 권한을 탈취하기까지의 전체 공격 흐름입니다.
 
+```mermaid
 graph TD
     A[Initial Access] -->|Web Shell / Vulnerable App| B[Low Priv Shell]
     B --> C[Reconnaissance]
@@ -48,6 +49,7 @@ graph TD
     I --> J[Root Shell Spawn]
     J --> K[Install Rootkit / Persistence]
     K --> L[Lateral Movement]
+```
 
 ### 3. 취약점 악용 메커니즘 상세 분석
 
@@ -55,12 +57,19 @@ graph TD
 
 1.  **객체 할당 및 해제**: 취약한 커널 오브젝트를 생성한 뒤 이를 해제합니다. 이때 커널 메모리 힙(Kmalloc)에 '구멍(Hole)'이 생깁니다. 2.  **힙 스프레이 (Heap Spray)**: 공격자는 이 구멍에 자신의 가짜 `cred` 구조체가 들어갈 수 있도록, 동일한 크기의 사용자 공간 데이터를 커널 공간으로 강제 주입합니다. 3.  **UAF 트리거**: 해제된 오브젝트를 다시 참조하는 코드 경로를 실행합니다. 커널은 이제 해제된 주소 대신 공격자가 심어둔 가짜 데이터를 읽게 됩니다.
 
-| 공격 단계 | 커널 상태 | 공격자의 목표 | | :--- | :--- | :--- | | **Initialization** | 정상 상태 | 대상 커널 버전 및 KASLR 주소 유출 | | **Preparation** | 할당/해제 반복 | 힙 구조를 조작하여 가짜 객체 배치 준비 | | **Exploitation** | UAF 발생 | `current->cred` 포인터를 가짜 구조체로 변조 | | **Privilege Swap** | 권한 변경 | `uid=0`, `gid=0`으로 설정된 메모리 읽기 | | **Execution** | Root 권한 획득 | Root 셸 실행 또는 후행 악성 코드 실행 |
+| 공격 단계 | 커널 상태 | 공격자의 목표 |
+| :--- | :--- | :--- |
+| **Initialization** | 정상 상태 | 대상 커널 버전 및 KASLR 주소 유출 |
+| **Preparation** | 할당/해제 반복 | 힙 구조를 조작하여 가짜 객체 배치 준비 |
+| **Exploitation** | UAF 발생 | `current->cred` 포인터를 가짜 구조체로 변조 |
+| **Privilege Swap** | 권한 변경 | `uid=0`, `gid=0`으로 설정된 메모리 읽기 |
+| **Execution** | Root 권한 획득 | Root 셸 실행 또는 후행 악성 코드 실행 |
 
 ### 4. PoC (Proof of Concept) 코드 분석
 
 아래 코드는 실제 공격 코드의 축약된 개념 버전입니다. 실제 악용 코드는 메모리 주소 계산과 스프레이 기법이 매우 복잡하지만, 핵심 로직은 다음과 같습니다.
 
+```c
 /*
  * [학습 목적] Linux Kernel Privilege Escalation Concept
  * 실제 시스템에서 실행하지 마십시오.
@@ -92,17 +101,15 @@ size_t prepare_kernel_cred_addr = 0;
 
 // 권한 상승을 위한 제어 흐름 변경 (ROP 시뮬레이션)
 void escalate_privileges() {
-    printf("[*] Triggering payload to overwrite credentials...
-");
-    
+    printf("[*] Triggering payload to overwrite credentials...\n");
+
     // 공격자는 여기서 ROP(Return Oriented Programming) 체인을 사용하여
     // commit_creds(prepare_kernel_cred(0))를 호출합니다.
-    
+
     struct cred *current_cred = NULL; // 실제로는 current_task->cred를 얻어야 함
-    
+
     if (current_cred) {
-        printf("[*] Overwriting struct cred at %p
-", (void*)current_cred);
+        printf("[*] Overwriting struct cred at %p\n", (void*)current_cred);
         // 메모리 보호 우회 및 직접 쓰기 시도 (개념적 표현)
         // current_cred->uid = 0;
         // current_cred->gid = 0;
@@ -111,37 +118,32 @@ void escalate_privileges() {
 }
 
 int main(int argc, char **argv) {
-    printf("=== CentOS 9 LPE Exploit Concept ===
-");
-    printf("Current UID: %d (Target: 0)
-", getuid());
+    printf("=== CentOS 9 LPE Exploit Concept ===\n");
+    printf("Current UID: %d (Target: 0)\n", getuid());
 
     if (getuid() != 0) {
-        printf("[*] Starting exploit...
-");
-        
+        printf("[*] Starting exploit...\n");
+
         // 1. 정보 수집 (Information Disclosure)
         // 2. 힙 조작 (Heap Feng Shui)
         // 3. 취약점 트리거 (Triggering the UAF)
-        
+
         escalate_privileges();
-        
+
         // 4. 권한 확인 및 셸 획득 시도
         if (getuid() == 0) {
-            printf("[+] Success! Root privileges obtained.
-");
+            printf("[+] Success! Root privileges obtained.\n");
             system("/bin/sh");
         } else {
-            printf("[-] Failed. Exploit did not work on this kernel version.
-");
+            printf("[-] Failed. Exploit did not work on this kernel version.\n");
         }
     } else {
-        printf("[!] Already running as root.
-");
+        printf("[!] Already running as root.\n");
     }
 
     return 0;
 }
+```
 
 이 코드는 단순히 논리를 보여주는 것이며, 실제 익스플로잇은 커널의 `kmalloc` 슬래버(Slab allocator)의 특성을 이용하여 매우 정교하게 메모리를 겹치게 만듭니다.
 
@@ -151,44 +153,54 @@ int main(int argc, char **argv) {
 
 #### 단계 1: 패치 및 업데이트 (가장 우선순위) 취약점이 공개되었다면 벤더(Red Hat, CentOS)가 제공하는 보안 패치를 즉시 적용해야 합니다.
 
+```bash
 # CentOS 9 / RHEL 9 시스템 업데이트
 sudo dnf clean all
 sudo dnf update kernel -y
 
 # 업데이트 후 재부팅 필수 (커널 업데이트이므로)
 sudo reboot
+```
 
 #### 단계 2: 커널 하드닝 (Kernel Hardening) 패치를 적용하기 전, 혹은 패치 후 추가적인 보안 계층을 적용합니다.
 
 **1. Kptr_restrict 활성화** 커널 포인터 주소 유출을 방지하여 KASLR 우회를 어렵게 만듭니다.
 
+```bash
 # /etc/sysctl.d/99-security.conf 파일 생성 또는 수정
 echo "kernel.kptr_restrict = 1" | sudo tee -a /etc/sysctl.d/99-security.conf
 sudo sysctl -p /etc/sysctl.d/99-security.conf
+```
 
 **2. dmesg 제한** 일반 유저가 커널 로그를 읽지 못하게 하여 정보 유출 차단.
 
+```bash
 echo "kernel.dmesg_restrict = 1" | sudo tee -a /etc/sysctl.d/99-security.conf
+```
 
 #### 단계 3: SELinux 강화 많은 관리자가 편의를 위해 SELinux를 끄지만, LPE 공격에 대해서는 SELinux가 마지막 방어선이 될 수 있습니다. 반드시 `Enforcing` 모드인지 확인하세요.
 
+```bash
 # 상태 확인
 sestatus
 
 # 만약 Disabled나 Permissive라면 Enforcing으로 변경
 # 설정 파일 수정: /etc/selinux/config
 # SELINUX=enforcing
+```
 
 ### 6. 탐지 로직 (Detection Rule)
 
 공격이 시도되는지 확인하기 위해 Auditd 규칙을 추가할 수 있습니다. 비정상적인 권한 상승 시도를 감지하는 규칙 예시입니다.
 
+```bash
 # /etc/audit/rules.d/priv-escalation.rules
 -a always,exit -F arch=b64 -S execve -C uid!=euid -F key=priv_esc
 -a always,exit -F arch=b64 -S execve -C gid!=egid -F key=priv_esc
 
 # 규칙 적용
 sudo augenrules --load
+```
 
 ---
 
@@ -203,9 +215,6 @@ CentOS 9에서 발견된 이번 권한 상승 취약점은 "클라우드 보안�
 ### 참고자료
 
 - [Red Hat Security Advisory](https://access.redhat.com/security/)
-
 - [MITRE ATT&CK: Privilege Escalation (T1068)](https://attack.mitre.org/techniques/T1068/)
-
 - [Linux Kernel Documentation](https://www.kernel.org/doc/html/latest/)
-
 - [CentOS Stream 9 Release Notes](https://docs.centos.org/)

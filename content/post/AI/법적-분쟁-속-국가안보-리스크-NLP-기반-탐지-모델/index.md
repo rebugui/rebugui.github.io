@@ -36,8 +36,7 @@ categories:
 2.  **엔티티 추출 및 연결 (Entity Extraction & Linking)**: Named Entity Recognition(NER)를 통해 인물, 장소, 날짜를 추출하고, 이를 공공 데이터베이스와 연결하여 속성을 확장합니다. (예: "Trump Ballroom" -> "Mar-a-Lago" -> "Presidential Records Site")
 3.  **리스크 점수화 (Risk Scoring)**: 추출된 엔티티와 문맥 벡터를 바탕으로 Softmax 분류기를 거쳐 [Low, Medium, High, Critical]의 위험 등급을 부여합니다.
 
-````mermaid`
-
+```mermaid
 graph TD
     A[Input Data] --> B[Text Preprocessing]
     B --> C[Legal-BERT Encoder]
@@ -48,8 +47,7 @@ graph TD
     D --> H[Risk Classifier]
     G --> H
     H --> I[National Security Risk Score]
-
-`````
+```
 
 기술적으로는 PyTorch와 HuggingFace Transformers 라이브러리를 활용하여 구현하며, 기존의 일반 BERT 모델보다 법률 용어에 대한 이해도를 높이기 위해 Domain-Adaptive Pretraining(DAPT)을 수행합니다.
 
@@ -73,5 +71,4 @@ graph TD
 
 - [Hugging Face Transformers Documentation](https://huggingface.co/docs/transformers/index)
 - [ABC News - DOJ raises 'national security' concerns](https://abcnews.go.com/US/doj-raises-national-security-concerns-legal-fight-trump/story?id=117000000)
-
 ---

@@ -32,8 +32,7 @@ Opus 4.6와 같은 최신 AI 모델을 CI/CD 파이프라인의 보안 단계에
 
 다음은 제안하는 CI/CD 파이프라인에 AI 보안 검사 단계를 통합한 흐름도입니다.
 
-````mermaid`
-
+```mermaid
 graph TD
     A[Developer Push Code] --> B[CI Pipeline Trigger]
     B --> C[Build & Unit Test]
@@ -46,8 +45,7 @@ graph TD
     H -- Yes --> I[Block Deploy & Notify]
     H -- No --> J[Docker Build & Push]
     J --> K[Deploy to Staging/Prod]
-
-`````
+```
 
 ### 사용 도구 및 기술
 
@@ -64,8 +62,7 @@ graph TD
 
 먼저, 분석할 코드를 AI 모델에 전달하고 결과를 SARIF 형식으로 변환하는 Python 스크립트를 작성합니다. (실제 환경에서는 AI API 호출 로직이 포함되어야 합니다.)
 
-````python`
-
+```python
 import json
 import sys
 
@@ -114,15 +111,13 @@ if __name__ == "__main__":
         json.dump(generate_sarif(ai_findings), f)
 
     print("AI Scan complete. Results saved to ai-scan-results.sarif")
-
-`````
+```
 
 ### 2. GitHub Actions 워크플로우 구성 (`.github/workflows/security-scan.yml`)
 
 다음은 파이썬 스크립트를 실행하고, 그 결과를 GitHub Security에 업로드하는 YAML 설정입니다.
 
-````yaml`
-
+```yaml
 name: AI Security Scan
 
 on:
@@ -165,8 +160,7 @@ jobs:
       with:
         sarif_file: ai-scan-results.sarif
         category: ai-scan
-
-`````
+```
 
 ### 3. 실행 및 확인
 
@@ -200,5 +194,4 @@ jobs:
 - [Anthropic Claude Opus 4.6 소개 (Axios)](https://www.axios.com/2026/02/05/anthropic-claude-opus-46-software-hunting)
 - [GitHub Security - SARIF 지원](https://docs.github.com/en/code-security/code-scanning/integrating-with-code-scanning/sarif-support-for-code-scanning)
 - [OWASP Top 10](https://owasp.org/www-project-top-ten/)
-
 ---

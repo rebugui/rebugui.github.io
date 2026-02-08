@@ -30,8 +30,7 @@ categories:
 
 아래는 유출된 SSN이 실제 공격에 악용되는 과정을 시각화한 흐름도입니다.
 
-````mermaid`
-
+```mermaid
 graph LR
     A[데이터 유출 사고 발생] --> B[다크 웹 시장에서 PII 판매]
     B --> C{공격자의 획득}
@@ -47,8 +46,7 @@ graph LR
     end
 
     G & H & I & J --> K[영구적 피해 및<br>국가 안보 위협]
-
-`````
+```
 
 ## 실제 공격 예시 (Attack Example)
 
@@ -56,8 +54,7 @@ graph LR
 
 다음은 공격자가 유출된 `ssn_leaks.csv` 파일과 `rockyou.txt`와 같은 비밀번호 목록을 결합하여 특정 금융 사이트의 로그인을 시도하는 간단한 Python PoC(개념 증명) 스크립트 예시입니다. (※ 실제 공격을 방조하기 위함이 아닌, 방어론적 관점에서의 작성입니다.)
 
-````python`
-
+```python
 import requests
 import csv
 
@@ -101,8 +98,7 @@ def save_hijacked_session(email, cookies):
 if __name__ == "__main__":
     print("[*] Starting Credential Stuffing with leaked PII...")
     brute_force_with_ssn()
-
-`````
+```
 
 이 코드는 공격자가 **PII 스피어 피싱(PII Spear Phishing)**에 들어가기 전 단계인 자동화된 인증 우회 과정을 보여줍니다. SSN과 같은 강력한 식별자가 노출되면, 위와 같은 스크립트는 매우 높은 확률로 계정 장악에 성공하게 됩니다.
 

@@ -40,8 +40,7 @@ Microsoft가 발표한 긴급 보안 패치와 그 직후 러시아 국가 지�
 
 모델의 핵심은 Transformer Encoder 블록입니다. Multi-Head Attention 계층은 특정 시스템 콜이 전후 맥락과 어떤 관계를 맺고 있는지 학습합니다. 예를 들어, `CreateFile` 후 `WriteFile`이 호출되는 것은 정상이지만, 문서 열기 immediately `RegOpenKey`를 통해 특정 레지스트리의 쉘을 실행하려는 시도는 비정상으로 간주될 수 있습니다. 마지막으로 Feed-Forward Network를 거쳐 각 타임스텝마다 재구성 오차(Reconstruction Error)를 계산합니다. 이 오차가 임계값을 초과하면 공격으로 탐지합니다.
 
-````python`
-
+```python
 # PyTorch를 이용한 간단한 Transformer 블록 구현 예시
 
 import torch
@@ -62,13 +61,11 @@ class SystemCallTransformer(nn.Module):
         output = self.transformer_encoder(src)
         output = self.fc(output)
         return output
-
-`````
+```
 
 ### 아키텍처 다이어그램
 
-````mermaid`
-
+```mermaid
 graph TD
     A[Raw System Calls] --> B[Tokenization & Embedding]
     B --> C[Positional Encoding]
@@ -81,8 +78,7 @@ graph TD
     H --> I{Threshold Check}
     I -->|High Score| J[Alert: Zero-Day Attack]
     I -->|Low Score| K[Normal Operation]
-
-`````
+```
 
 ## 실험 및 결과 (Experiments & Results)
 

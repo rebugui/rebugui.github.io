@@ -30,8 +30,7 @@ categories:
 
 다음은 공급망 취약점을 이용한 위협 흐름을 시각화한 다이어그램입니다.
 
-````mermaid`
-
+```mermaid
 graph TD
     A[정부 정책 변경] -->|신규 벤더 선정| B(공급망 생태계 변화)
     B -->|소프트웨어 업데이트| C[연방 기관 시스템]
@@ -41,8 +40,7 @@ graph TD
     C -->|악성 모듈 로드| G{제로 트러스트 검증}
     G -->|검증 실패/우회| H[내부 네트워크 횡적 이동]
     H --> I[기밀 데이터 유출]
-
-`````
+```
 
 ## 실제 공격 예시 (Attack Example)
 
@@ -52,8 +50,7 @@ graph TD
 
 **PoC (Proof of Concept) - 악성 setup.py**:
 
-````python`
-
+```python
 from setuptools import setup
 import os
 import requests

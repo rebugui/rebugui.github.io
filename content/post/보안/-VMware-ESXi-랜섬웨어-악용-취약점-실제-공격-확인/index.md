@@ -32,21 +32,26 @@ categories:
 
 공격자는 어떻게 이 취약점을 이용해 전체 시스템을 암호화할까요? 다음은 실제 현장에서 발생할 수 있는 공격 흐름도입니다.
 
+```mermaid
 graph LR
     A[Reconnaissance<br>스캔 및 탐색] -->|포트 443/SLP 스캔| B[Exploitation<br>인증 우회 취약점 공격]
     B --> C[Privilege Escalation<br>루트 권한 획득]
     C --> D[Persistence<br>백도어 설치 및 SSH 활성화]
     D --> E[Execution<br>ESXiArgs 랜섬웨어 실행]
     E --> F[Impact<br>VM 암호화 및 서비스 중단]
-    
-    style F fill:#ffcccc,stroke:#ff0000,stroke-width:2px
 
-1.  **Reconnaissance (정찰)**: 공격자는 인터넷에 노출된 ESXi 관리 포트(기본 443)나 OpenSLP 포트(427)를 스캔하여 취약한 버전의 ESXi를 찾아냅니다. 2.  **Exploitation (공격)**: 발견된 취약점을 통해 악성 HTTP 요청이나 특정 패킷을 전송하여, 인증 과정을 우회하고 `root` 권한을 탈취합니다. 3.  **Execution (실행)**: 공격자는 ESXi의 SSH 셸에 접근하거나 원격 명령 실행 기능을 사용하여, `.vmx` 파일과 `.vmdk` 파일(가상 머신 설정 및 디스크)을 암호화하는 악성 스크립트를 실행합니다.
+    style F fill:#ffcccc,stroke:#ff0000,stroke-width:2px
+```
+
+1. **Reconnaissance (정찰)**: 공격자는 인터넷에 노출된 ESXi 관리 포트(기본 443)나 OpenSLP 포트(427)를 스캔하여 취약한 버전의 ESXi를 찾아냅니다.
+2. **Exploitation (공격)**: 발견된 취약점을 통해 악성 HTTP 요청이나 특정 패킷을 전송하여, 인증 과정을 우회하고 `root` 권한을 탈취합니다.
+3. **Execution (실행)**: 공격자는 ESXi의 SSH 셸에 접근하거나 원격 명령 실행 기능을 사용하여, `.vmx` 파일과 `.vmdk` 파일(가상 머신 설정 및 디스크)을 암호화하는 악성 스크립트를 실행합니다.
 
 ### 3. 취약점 진단 PoC (개념 증명) 코드
 
 방어자의 관점에서 시스템이 취약한지 확인하기 위해, 아래와 같은 Python 스크립트로 사전 점검(PoC)을 수행할 수 있습니다. 이 코드는 익명의 공격 도구가 아닌, 관리자가 자사 시스템의 상태를 진단하기 위한 **Scanner**의 형태입니다.
 
+```python
 #!/usr/bin/env python3
 import requests
 import sys
@@ -61,17 +66,17 @@ def check_esxi_vulnerability(target_ip):
     실제 공격을 수행하지 않으며, 응답 코드를 분석합니다.
     """
     print(f"[*] Checking target: {target_ip}")
-    
+
     # 취약점 확인을 위한 엔드포인트 (예시)
     # 실제 환경에서는 해당 CVE에 맞는 특정 URI와 패이로드가 필요합니다.
     # 여기서는 설명을 위해 일반적인 구조를 보여줍니다.
     test_url = f"https://{target_ip}/sdk/vimService"
-    
+
     headers = {
         "User-Agent": "ESXi-Scanner/1.0 (Security Audit)",
         "Content-Type": "text/xml"
     }
-    
+
     # 인증 우회 시나리오를 시뮬레이션하는 테스트 데이터
     # 실제 악성 코드가 아닌 구조적 검증용 더미 데이터입니다.
     payload = """<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
@@ -83,14 +88,14 @@ def check_esxi_vulnerability(target_ip):
 
     try:
         response = requests.post(test_url, data=payload, headers=headers, verify=False, timeout=5)
-        
+
         # 200 OK 응답이지만 인증 없이 접근 가능한 경우 등을 분석
         if response.status_code == 200 and "vim25" in response.text:
             print(f"[!] WARNING: Target {target_ip} responded to unauthenticated request.")
             print("[!] Further investigation required to confirm specific CVE version.")
         else:
             print(f"[+] Target {target_ip} seems to enforce authentication or is not vulnerable to this specific check.")
-            
+
     except requests.exceptions.RequestException as e:
         print(f"[-] Connection error to {target_ip}: {e}")
 
@@ -98,9 +103,10 @@ if __name__ == "__main__":
     if len(sys.argv) < 2:
         print("Usage: python3 esxi_check.py <TARGET_IP>")
         sys.exit(1)
-    
+
     target = sys.argv[1]
     check_esxi_vulnerability(target)
+```
 
 이 코드는 단순히 ESXi의 서비스 응답을 확인하는 수준의 안전한 예시이나, 실제 공격에서는 이러한 인증 우회 로직을 통해 랜섬웨어 바이너리를 업로드하는 명령어를 삽입하게 됩니다.
 
@@ -108,7 +114,12 @@ if __name__ == "__main__":
 
 공격이 발생했을 때 시스템 로그에서 어떤 변화가 관찰되는지, 그리고 어떻게 대응해야 하는지 비교해 보겠습니다.
 
-| 구분 | 정상(Normal) 상태 | 침해(Compromised) 징후 | 즉시 조치(Action) | | :--- | :--- | :--- | :--- | | **ESXi Shell** | 비활성화되거나, 특정 관리자만 접근 | 알 수 없는 IP에서 SSH 활성화 및 로그인 기록 | SSH 서비스 즉시 중지 및 계정 로그아웃 | | **파일 시스템** | `.vmx`, `.vmdk` 파일 원본 유지 | 모든 `.vmdk` 파일과 함께 `.args`, `.enc` 파일 생성 | ESXi 호스트 네트워크 분리(Network Isolation) | | **로그 (Hostd)** | 일반적인 API 요청 및 관리자 로그인 | 인증 우관련 의심 로그 다수 발생, `vim-cmd` 비정상 실행 | 로그 백업 및 포렌식 분석 시작 | | **성능** | 안정적인 CPU 및 메모리 사용량 | 암호화 연산으로 인한 CPU 급격한 스파이크 | 영향 받은 호스트 전원 차단 |
+| 구분 | 정상(Normal) 상태 | 침해(Compromised) 징후 | 즉시 조치(Action) |
+| :--- | :--- | :--- | :--- |
+| **ESXi Shell** | 비활성화되거나, 특정 관리자만 접근 | 알 수 없는 IP에서 SSH 활성화 및 로그인 기록 | SSH 서비스 즉시 중지 및 계정 로그아웃 |
+| **파일 시스템** | `.vmx`, `.vmdk` 파일 원본 유지 | 모든 `.vmdk` 파일과 함께 `.args`, `.enc` 파일 생성 | ESXi 호스트 네트워크 분리(Network Isolation) |
+| **로그 (Hostd)** | 일반적인 API 요청 및 관리자 로그인 | 인증 우관련 의심 로그 다수 발생, `vim-cmd` 비정상 실행 | 로그 백업 및 포렌식 분석 시작 |
+| **성능** | 안정적인 CPU 및 메모리 사용량 | 암호화 연산으로 인한 CPU 급격한 스파이크 | 영향 받은 호스트 전원 차단 |
 
 ## 실무 적용 가이드: 방어와 완화 조치
 
@@ -116,7 +127,14 @@ if __name__ == "__main__":
 
 ### Step 1: 즉시 확인 (Immediate Check)
 
-1.  **버전 확인**: ESXi 호스트의 버전이 취약점(CVE-2024-37085 포함 해당되는 버전)에 해당하는지 확인합니다.     ```bash     # ESXi Shell에서 실행     vmware -vl     ``` 2.  **패치 적용**: VMware에 제공된 최신 패치(ESXi70U3-xxxxx 등)로 즉시 업데이트를 진행합니다. ESXi 호스트를 VUM(vCenter Update Manager)을 통해 패치하거나, ISO 이미지로 부팅하여 업데이트합니다.
+1. **버전 확인**: ESXi 호스트의 버전이 취약점(CVE-2024-37085 포함 해당되는 버전)에 해당하는지 확인합니다.
+
+```bash
+# ESXi Shell에서 실행
+vmware -vl
+```
+
+2. **패치 적용**: VMware에 제공된 최신 패치(ESXi70U3-xxxxx 등)로 즉시 업데이트를 진행합니다. ESXi 호스트를 VUM(vCenter Update Manager)을 통해 패치하거나, ISO 이미지로 부팅하여 업데이트합니다.
 
 ### Step 2: 네트워크 경계 강화 (Network Segmentation)
 

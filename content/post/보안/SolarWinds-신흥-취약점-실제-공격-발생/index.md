@@ -30,16 +30,14 @@ SolarWinds Orion 플랫폼과 같은 네트워크 모니터링 도구는 IT 인�
 
 아래는 공격자가 SolarWinds 취약점을 이용해 내부 네트워크로 침투하는 과정을 시각화한 다이어그램입니다.
 
-````mermaid`
-
+```mermaid
 graph LR
     A[공격자] -->|1. 취약점 스캔 및 탐지| B(SolarWinds Web Console)
     B -->|2. 악의적인 API 요청 전송| C{취약점 트리거}
     C -->|인증 우회 및 RCE| D[시스템 권한 획득]
     D -->|3. 백도어 설치| E[웹 셸/백도어]
     E -->|4. 횡적 이동 및 데이터 유출| F[내부 네트워크 자산]
-
-`````
+```
 
 ## 실제 공격 예시 (Attack Example)
 
@@ -47,14 +45,12 @@ graph LR
 
 다음은 가상의 시나리오를 바탕으로 한 공격 코드의 개념적 예시입니다. (※ 실제 공격 코드는 교육 목적이 아닌 한 공유하지 않으며, 여기서는 방어를 위한 이해를 돕기 위해 구조만 설명합니다.)
 
-````python`
-
+```python
 import requests
 
 target_url = "https://[target-solarwinds-host]:17778/SolarWinds/InformationService/v3/Json/Query"
 
 # 악의적인 JSON 페이로드 (역직렬화 공격 유발)
-
 payload = {
     "query": "SELECT Payload FROM EXEC('cmd.exe /c whoami')"
 }
@@ -76,8 +72,7 @@ try:
 
 except Exception as e:
     print(f"[!] 오류 발생: {e}")
-
-`````
+```
 
 위 예시처럼 공격자는 복잡한 인증 과정 없이 특정 API 쿼리를 통해 시스템 명령어를 삽입할 수 있습니다. 실제 공격에서는 `whoami` 대신 `powershell`을 이용해 맬웨어를 다운로드하거나 방화벽 규칙을 해제하는 등 지속적인 액세스를 위한 백도어를 구축합니다.
 
@@ -91,4 +86,19 @@ SolarWinds 취약점으로 인한 피해를 방지하기 위해선 즉각적인 
 
 2.  **장기적 보안 전략**:
     *   **최소 권한 원칙 (PoLP)**: SolarWinds 서비스가 도메인 관리자와 같은 과도한 권한으로 실행되지 않도록 서비스 계정 권한을 제한하십시오.
-    *   **네트워크 분할 (Segment
+    *   **네트워크 분할 (Segmentation)**: 관리 도구가 운영되는 네트워크를 일반 사용자 네트워크와 분리하여, 공격자가 침투하더라도 횡적 이동을 제한하십시오.
+    *   **모니터링 강화**: SolarWinds API 엔드포인트에 대한 비정상적인 요청 patterns을 탐지하는 SIEM 규칙을 배포하십시오.
+
+## 보안 시사점 (Security Implications)
+
+SolarWinds 사건은 단일 제품의 취약점을 넘어, 전체 공급망 보안의 취약성을 상기시킵니다. 2020년 Sunburst 공격이 정상적인 업데이트 배포 과정을 악용했다면, 이번 공격은 인터넷에 노출된 관리 인터페이스의 취약점을 직접 공격하고 있습니다. 이는 관리자 계정의 보안과 네트워크 경계 보안의 중요성을 재확인합니다.
+
+보안 전문가로서 우리는 모든 관리 도구를 인터넷 망에서 격리하고, 다중 요소 인증(MFA)과 제로 트러스트 접근 제어를 도입해야 합니다. 또한, 제로데이 취약점에 대비하여 방어적 프로그래밍(Defensive Programming)과 침투 탐지 시스템(IPS)의 상시 점검이 필요합니다.
+
+## 참고자료
+
+- [New SolarWinds vulnerability under active attack - SecurityWeek](https://www.securityweek.com/new-solarwinds-vulnerability-under-active-attack/)
+- [CISA Emergency Directives for SolarWinds Orion](https://www.cisa.gov/news-events/news/solarwinds-orion-related-security-requirements)
+- [OWASP Insecure Deserialization](https://owasp.org/www-community/vulnerabilities/Insecure_Deserialization)
+
+---

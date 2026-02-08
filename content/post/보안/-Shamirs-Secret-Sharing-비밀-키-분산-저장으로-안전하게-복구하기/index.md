@@ -40,6 +40,7 @@ categories:
 
 이 시나리오를 시스템 아키텍처 관점에서 시각화하면 다음과 같습니다. 단일 실패 지점(SPOF)을 제거하고, 신뢰 계층을 분산하는 구조입니다.
 
+```mermaid
 graph TD
     A[Master Secret Key] --> B[Shamir's Algorithm Engine]
     B -->|Generate| C[Share 1]
@@ -54,15 +55,16 @@ graph TD
     F --> K[Trustee D]
     G --> L[Trustee E]
 
-    subgraph Recovery Process [Threshold: 3/5]
+    subgraph Recovery_Process [Threshold: 3/5]
         H -.-> M[Combine Engine]
         I -.-> M
         J -.-> M
         K -.->|Offline/Compromised| N[Not Required]
         L -.->|Offline/Compromised| N
     end
-    
+
     M -->|Lagrange Interpolation| O[Recovered Master Key]
+```
 
 이 다이어그램은 실제 운영 환경에서의 흐름을 보여줍니다. Trustee D나 E가 연락이 되지 않거나 타협당했더라도, A, B, C만 안전하면 시스템은 복구됩니다. 이는 **"단일 신뢰 포인트(Trusted Party)가 없는 암호화 시스템"**을 구축하는 핵심입니다.
 
@@ -70,7 +72,12 @@ graph TD
 
 단순히 파일을 압축해서 암호를 나누거나, XOR 연산으로 쪼개는 방법도 있지만, 샤미어 방식이 가지는 이점은 명확합니다. 특히 Key Recovery 시나리오에서의 효율성은 압도적입니다.
 
-| 비교 항목 | 단순 분할 (XOR/Bitwise) | Shamir's Secret Sharing (SSS) | | :--- | :--- | :--- | | **보안성** | 일부 조각이 유출되면 정보가 일부 노출될 수 있음 | $k-1$개의 조각으로는 **전혀 정보가 유출되지 않음** | | **유연성** | 분할한 모든 조각이 필요 ($n/n$) | $n$개 중 $k$개만 모으면 복구 가능 ($k/n$) | | **확장성** | 조각을 추가하려면 처음부터 다시 분배해야 함 | 수학적으로 새로운 조각을 쉽게 생성 및 추가 가능 | | **키 관리** | 관리자가 모든 조각을 합치려면 전체 필요 | 손실된 조각이 있어도 지정된 인원만 모으면 됨 |
+| 비교 항목 | 단순 분할 (XOR/Bitwise) | Shamir's Secret Sharing (SSS) |
+| :--- | :--- | :--- |
+| **보안성** | 일부 조각이 유출되면 정보가 일부 노출될 수 있음 | $k-1$개의 조각으로는 **전혀 정보가 유출되지 않음** |
+| **유연성** | 분할한 모든 조각이 필요 ($n/n$) | $n$개 중 $k$개만 모으면 복구 가능 ($k/n$) |
+| **확장성** | 조각을 추가하려면 처음부터 다시 분배해야 함 | 수학적으로 새로운 조각을 쉽게 생성 및 추가 가능 |
+| **키 관리** | 관리자가 모든 조각을 합치려면 전체 필요 | 손실된 조각이 있어도 지정된 인원만 모으면 됨 |
 
 ### 실전 적용: Step-by-Step 가이드
 
@@ -80,6 +87,7 @@ graph TD
 
 이 코드는 `secrets` 모듈을 사용하여 랜덤 계수를 생성하고, 라그랑주 보간법(Lagrange Interpolation)을 통해 상수항(비밀)을 복구합니다.
 
+```python
 import random
 from functools import reduce
 
@@ -111,7 +119,7 @@ def split_secret(secret, total_shares, threshold, prime=2**127-1):
 
     # 다항식 계수 생성: coeff[0] = secret
     coeff = [secret] + [random.randint(0, prime - 1) for _ in range(threshold - 1)]
-    
+
     shares = []
     for i in range(1, total_shares + 1):
         x = i
@@ -121,7 +129,7 @@ def split_secret(secret, total_shares, threshold, prime=2**127-1):
             y += coeff[j] * (x ** j)
         y %= prime
         shares.append((x, y))
-    
+
     return shares
 
 # 2. 라그랑주 보간법을 통한 복구 (Combine)
@@ -131,7 +139,7 @@ def recover_secret(shares, prime=2**127-1):
     """
     if len(shares) < 2:
         raise ValueError("Not enough shares to recover")
-    
+
     # 라그랑주 보간법 공식
     # L(0) = sum(y_i * l_i(0))
     def lagrange_interpolate(x, x_s, y_s):
@@ -152,16 +160,16 @@ def recover_secret(shares, prime=2**127-1):
 
     x_s = [s[0] for s in shares]
     y_s = [s[1] for s in shares]
-    
+
     return lagrange_interpolate(0, x_s, y_s)
 
 # --- 실행 예시 ---
 if __name__ == "__main__":
     # 시나리오: 비밀 키 (예: 123456789)
     MY_SECRET_KEY = 123456789
-    
+
     print(f"1. 원본 비밀 키: {MY_SECRET_KEY}")
-    
+
     # 설정: 5명에게 나눠주고, 3명만 모으면 복구 가능 (3, 5)
     SHARES = split_secret(MY_SECRET_KEY, total_shares=5, threshold=3)
     print(f"2. 생성된 조각들 (Shares):")
@@ -170,19 +178,28 @@ if __name__ == "__main__":
 
     # 공격 시뮬레이션: 친구 2명만 모임 (실패해야 함)
     # recover_secret(SHARES[:2])를 하면 복구 불가능하거나 엉뚱한 값이 나옴
-    
+
     # 복구 시뮬레이션: 친구 1, 3, 5가 모임 (성공해야 함)
     subset_shares = [SHARES[0], SHARES[2], SHARES[4]]
     recovered_key = recover_secret(subset_shares)
-    
+
     print(f"3. 복구된 비밀 키: {recovered_key}")
     print(f"4. 복구 성공 여부: {'✅ SUCCESS' if recovered_key == MY_SECRET_KEY else '❌ FAIL'}")
+```
 
 #### 2. 현장 적용 시나리오
 
 이제 이 로직을 실제 보안 설계에 적용하는 방법입니다.
 
-1.  **준비 (Setup)**: 관리자는 오프라인 환경(폐쇄망)의 안전한 머신에서 위 스크립트나 CLI 툴(`ssss`)을 사용해 마스터 키를 $n$개로 쪼갭니다. 2.  **분배 (Distribute)**:     *   친구 A에게는 조각 1 (USB 저장)     *   친구 B에게는 조각 2 (종이 출력물)     *   친구 C에게는 QR 코드 암호화된 조각 3 전송     *   ... 3.  **비상 상황 (Incident Response)**: 당신이 사고를 당하거나 비밀번호를 잊었습니다. 4.  **복구 (Recovery)**: 친구 3명에게 연락하여 조각을 전달받습니다. 5.  **재조립 (Combine)**: 복구 툴에 3개의 조각을 입력하여 마스터 키를 복구하고 시스템을 잠금 해제합니다.
+1. **준비 (Setup)**: 관리자는 오프라인 환경(폐쇄망)의 안전한 머신에서 위 스크립트나 CLI 툴(`ssss`)을 사용해 마스터 키를 $n$개로 쪼갭니다.
+2. **분배 (Distribute)**:
+    *   친구 A에게는 조각 1 (USB 저장)
+    *   친구 B에게는 조각 2 (종이 출력물)
+    *   친구 C에게는 QR 코드 암호화된 조각 3 전송
+    *   ...
+3. **비상 상황 (Incident Response)**: 당신이 사고를 당하거나 비밀번호를 잊었습니다.
+4. **복구 (Recovery)**: 친구 3명에게 연락하여 조각을 전달받습니다.
+5. **재조립 (Combine)**: 복구 툴에 3개의 조각을 입력하여 마스터 키를 복구하고 시스템을 잠금 해제합니다.
 
 ### 방어 가이드 및 완화 조치
 

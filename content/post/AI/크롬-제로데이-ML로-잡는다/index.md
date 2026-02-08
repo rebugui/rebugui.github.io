@@ -42,8 +42,7 @@ categories:
 
 생성된 입력이 브라우저에 주입되는 동안, 시스템 콜의 빈도와 메모리 할당 패턴을 추출합니다. 정상적인 브라우징 패턴과 달리 메모리 corruption이 발생할 경우, 특정 API 호출 순서나 힙 영역의 접근 패턴에 돌이킬 수 없는 변화가 발생합니다. 이를 LSTM(Long Short-Term Memory) 네트워크를 통해 시계열 데이터로 학습하여 비정상 상태를 실시간으로 감지합니다.
 
-````mermaid`
-
+```mermaid
 graph TD
     A[RL Agent] -->|Generates Input| B[Chrome Browser Engine]
     B -->|State Feedback| A
@@ -54,8 +53,7 @@ graph TD
     E -- Low --> G[Normal Execution]
     style A fill:#f9f,stroke:#333,stroke-width:2px
     style D fill:#bbf,stroke:#333,stroke-width:2px
-
-`````
+```
 
 ### 기술적 세부사항
 
@@ -94,5 +92,4 @@ LSTM 모델의 입력으로는 시스템 콜의 트레이스(`syscall_trace`)와
 
 - [Chrome Vulnerabilities Allow Code Execution, Browser Crashes - TechRepublic](https://www.techrepublic.com/article/chrome-vulnerabilities-allow-code-execution-browser-crashes/)
 - [Chrome Security](https://www.google.com/about/appsecurity/chrome/)
-
 ---

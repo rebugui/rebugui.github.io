@@ -28,8 +28,7 @@ categories:
 
 제안하는 아키텍처는 개발자가 Pull Request를 생성하거나 코드를 Push할 때 트리거됩니다. 기존의 Linter 및 기본 SCA 도구가 통과된 후, 변경된 코드의 Diff나 주요 의존성 파일이 Anthropic API(Claude Opus 4.6)로 전송됩니다. AI는 해당 코드를 분석하여 잠재적인 보안 위협을 식별하고, 그 결과를 GitHub PR Comment나 CI Log의 형태로 즉시 피드백합니다. 이를 통해 "Shift Left" 전략을 실현하고, 배포 직전에 발생할 수 있는 보안 리스크를 개발 단계에서 미리 제거할 수 있습니다.
 
-````mermaid`
-
+```mermaid
 graph LR
     A[Developer Push Code] --> B[CI/CD Trigger]
     B --> C[Build & Unit Test]
@@ -42,8 +41,7 @@ graph LR
     I --> J{Critical Flaws?}
     J -- Yes --> K[PR Comment & Alert]
     J -- No --> L[Deploy to Staging]
-
-`````
+```
 
 사용하는 주요 도구는 다음과 같습니다:
 - **CI/CD**: GitHub Actions (또는 GitLab CI, Jenkins)
@@ -63,12 +61,11 @@ graph LR
 
 아래는 변경된 파일들을 읽어 Claude에게 보안 분석을 요청하고 결과를 받아오는 간단한 Python 스크립트입니다.
 
+```python
 import os
 import sys
 import anthropic
 import json
-
-````python`
 
 client = anthropic.Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY"))
 
@@ -113,15 +110,13 @@ if __name__ == "__main__":
     # 심각한 취약점이 발견되면 비정상 종료 (예시)
     if "High Severity" in result:
         sys.exit(1)
-
-`````
+```
 
 ### 3. GitHub Actions 워크플로우 구성 (.github/workflows/ai-security.yml)
 
 이 워크플로우는 Pull Request 생성 시 자동으로 실행되며, AI 스캐너를 Docker 컨테이너 내에서 실행하여 환경을 격리합니다.
 
-````yaml`
-
+```yaml
 name: AI Security Scan
 
 on:
@@ -186,8 +181,7 @@ jobs:
               repo: context.repo.repo,
               body: `### 🤖 AI Security Scanner Report\n\n${report}`
             });
-
-`````
+```
 
 ### 4. 실행
 

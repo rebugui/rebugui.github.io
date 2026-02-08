@@ -30,8 +30,7 @@ AI 기반 사이버 공격의 핵심은 **'Hyper-Personalization(초개인화)'*
 
 아래 다이어그램은 AI 기반 공격이 슈퍼볼 인프라에 침투하는 전형적인 시나리오를 시각화한 것입니다.
 
-````mermaid`
-
+```mermaid
 graph TD
     A[OSINT 수집: 타겟 정보 분석] -->|AI 데이터 분석| B(공격 전략 수립)
     B --> C[LLM 기반 피싱 메일 생성]
@@ -43,8 +42,7 @@ graph TD
     G --> H[내부 네트워크 침투]
     H --> I[티켓 시스템/결제망 장악]
     I --> J[데이터 유출 및 서비스 마비]
-
-`````
+```
 
 이러한 공격 루트는 전통적인 방화벽이나 침입 탐지 시스템(IDS)이 감지하기 어렵습니다. 왜냐하면 공격의 소스가 정상적인 사용자의 계정으로부터 오거나, 겉보기에는 합법적인 비즈니스 메일로 위장되어 있기 때문입니다. AI는 공격 코드의 난독화까지 자동화하여 시그니처 기반 탐지를 우회합니다.
 
@@ -56,8 +54,7 @@ graph TD
 
 다음은 공격자가 사용할 수 있는 간단한 AI 기반 피싱 메일 생성 스크립트의 개념적 예시(PoC)입니다.
 
-````python`
-
+```python
 import openai
 
 def generate_phishing_email(target_name, target_role, context):
@@ -80,15 +77,13 @@ def generate_phishing_email(target_name, target_role, context):
     return response.choices[0].message.content
 
 # Example Execution
-
 phishing_content = generate_phishing_email(
     "John Doe",
     "System Admin",
     "Critical vulnerability found in the payment gateway API"
 )
 print(phishing_content)
-
-`````
+```
 
 이 코드는 LLM을 활용하여 맞춤형 이메일을 생성합니다. 실제 공격에서는 이렇게 생성된 텍스트가 훨씬 더 정교한 C2(Command & Control) 서버와 결합하게 됩니다. 사용자가 첨부된 스크립트(악성코드)를 실행하면, 백도어가 설치되어 공격자는 내부 네트워크로 횡적 이동(Lateral Movement)을 시작할 수 있습니다.
 
@@ -106,7 +101,7 @@ print(phishing_content)
     딥페이크 영상이나 음성으로부터 조직을 보호하기 위해, 공식적으로 배포되는 중요 커뮤니케이션에는 암호화된 디지털 서명이나 워터마킹을 포함해야 합니다. 직원들은 중요한 지시가 있을 때, 이를 통해 진위 여부를 2차적으로 확인하는 프로세스를 교육받아야 합니다.
 
 4.  **적대적 AI 훈련 (Adversarial AI Training)**:
-    보안 팀은 AI 모델 자체가 가질 수 있는 취약점(프롬프트 인젝션, 데이터 중독 등)을 이해하고, 이를 방어하는 �드 팀(Red Team) 운영을 통해 시스템의 견고성을 지속적으로 테스트해야 합니다.
+    보안 팀은 AI 모델 자체가 가질 수 있는 취약점(프롬프트 인젝션, 데이터 중독 등)을 이해하고, 이를 방어하는 레드 팀(Red Team) 운영을 통해 시스템의 견고성을 지속적으로 테스트해야 합니다.
 
 ## 보안 시사점: 전문가의 시각
 

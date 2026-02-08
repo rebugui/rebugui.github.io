@@ -36,11 +36,12 @@ Ingress-Nginx 컨트롤러의 핵심 기능은 `Ingress` 리소스를 감시하�
 
 아래 다이어그램은 권한이 제한된 공격자가 어떻게 클러스터 관리자 권한을 탈취하는지 보여줍니다.
 
+```mermaid
 graph LR
     subgraph "Attacker Workspace"
         A[Attacker] -->|Generate Malicious YAML| B[K8s User Account<br/>(Dev Privileges)]
     end
-    
+
     subgraph "Kubernetes Cluster"
         B -->|kubectl apply -f| C[API Server]
         C -->|Update Ingress| D[Ingress-Nginx Controller]
@@ -48,8 +49,9 @@ graph LR
         E -->|Reload Nginx| F[Worker Process]
         F -->|Execute Lua/System Command| G[Reverse Shell<br/>Root Privilege]
     end
-    
+
     G -.->|Data Exfiltration| H[C2 Server]
+```
 
 ### 기술적 심층 분석 및 PoC
 
@@ -59,6 +61,7 @@ Ingress-Nginx는 `OpenResty`를 기반으로 하므로 Lua 스크립트 실행�
 
 아래 예시는 공격자가 외부 서버(`192.168.1.100`)로 역접속을 시도하는 악의적인 Ingress 매니페스트입니다.
 
+```yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -94,6 +97,7 @@ spec:
             name: legitimate-service
             port:
               number: 80
+```
 
 이 YAML이 클러스터에 적용되는 순간, `exploit.example.com`으로 들어오는 요청을 처리하는 과정에서 Ingress 컨트롤러는 `192.168.1.100:4444`로 TCP 연결을 시도합니다. 이를 통해 공격자는 컨트롤러 파드의 네트워크 네임스페이스에 진입할 수 있으며, 컨테이너의 권한(종종 `root` 또는 고권한)을 탈취하게 됩니다.
 
@@ -101,7 +105,11 @@ spec:
 
 Ingress-Nginx를 배포할 때 기본값으로 제공되는 설정은 편의성을 위해 보안을 희생하는 경우가 많습니다. 아래 표는 위험 요소를 비교합니다.
 
-| 설정 항목 | 취약한 설정 (Default/Legacy) | 안전한 설정 (Hardened) | 비고 | | :--- | :--- | :--- | :--- | | **Snippet 허용** | `allow-snippet-annotations: true` (또는 기본값) | `allow-snippet-annotations: false` | Annotation을 통한 설정 삽입을 원천 차단해야 함 | | **컨트롤러 권한** | `ClusterAdmin` 또는 너무 과한 RBAC | 최소 권한의 ServiceAccount | Ingress 생성/조회 권한만 필요함 | | **NetworkPolicy** | 없음 (Open) | Egress 트래픽 제한 | 공격자가 C2 서버로 연결하는 것을 차단 |
+| 설정 항목 | 취약한 설정 (Default/Legacy) | 안전한 설정 (Hardened) | 비고 |
+| :--- | :--- | :--- | :--- |
+| **Snippet 허용** | `allow-snippet-annotations: true` (또는 기본값) | `allow-snippet-annotations: false` | Annotation을 통한 설정 삽입을 원천 차단해야 함 |
+| **컨트롤러 권한** | `ClusterAdmin` 또는 너무 과한 RBAC | 최소 권한의 ServiceAccount | Ingress 생성/조회 권한만 필요함 |
+| **NetworkPolicy** | 없음 (Open) | Egress 트래픽 제한 | 공격자가 C2 서버로 연결하는 것을 차단 |
 
 ---
 
@@ -117,7 +125,11 @@ Ingress-Nginx를 배포할 때 기본값으로 제공되는 설정은 편의성�
 
 - **Snippet 기능 차단**: Helm 차트 업그레이드 시 `controller.allowSnippetAnnotations` 값을 `false`로 명시하여 설정합니다.
 
-    ```bash     helm upgrade ingress-nginx ingress-nginx/ingress-nginx \       --set controller.allowSnippetAnnotations=false \       --reuse-values     ```
+```bash
+helm upgrade ingress-nginx ingress-nginx/ingress-nginx \
+  --set controller.allowSnippetAnnotations=false \
+  --reuse-values
+```
 
 - **RBAC 감사**: Ingress 리소스를 생성/수정할 수 있는 주체를 관리자와 신뢰할 수 있는 CI/CD 시스템으로만 제한하세요. 단순 개발자에게는 `NetworkPolicy` 등으로 제한된 권한만 부여해야 합니다.
 
@@ -127,9 +139,20 @@ Ingress-Nginx를 배포할 때 기본값으로 제공되는 설정은 편의성�
 
 - **OPA/Gatekeeper 정책 적용**: 클러스터 내에서 `Ingress` 리소스 생성 시 특정 Annotation이 포함되어 있으면 이를 거부하는 정책을 강제합니다.
 
-    **OPA Rego 예시 (Snippet 금지):**     ```rego     package k8sdeny
+**OPA Rego 예시 (Snippet 금지):**
 
-    deny[msg] {         input.kind == "Ingress"         # metadata.annotations의 키에 snippet이 포함된 경우 차단         some key         input.metadata.annotations[key]         contains(key, "snippet")         msg := sprintf("Snippet annotation '%s' is not allowed for security reasons.", [key])     }     ```
+```rego
+package k8sdeny
+
+deny[msg] {
+    input.kind == "Ingress"
+    # metadata.annotations의 키에 snippet이 포함된 경우 차단
+    some key
+    input.metadata.annotations[key]
+    contains(key, "snippet")
+    msg := sprintf("Snippet annotation '%s' is not allowed for security reasons.", [key])
+}
+```
 
 - **NetworkPolicy 구현**: Ingress-Nginx 컨트롤러 파드에서 나가는 Egress 트래픽을 차단하세요. 웹 서버는 외부로 나가는 연결이 필요 없는 경우가 많습니다(K8s API 서버 통신 제외). 공격자가 역접속(Reverse Shell)을 시도하더라도 목적지로 패킷이 나가지 못하게 막아야 합니다.
 
