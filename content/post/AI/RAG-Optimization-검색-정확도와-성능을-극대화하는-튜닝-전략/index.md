@@ -40,9 +40,7 @@ RAG 시스템을 단순한 검색 도구가 아닌, 방어 체계의 일부로 �
 
 다음은 최적화된 RAG 파이프라인의 데이터 처리 흐름입니다.
 
-📊 **Mermaid 다이어그램:** 아래 코드는 블로그에서 자동으로 다이어그램으로 렌더링됩니다.
-
-```javascript
+```mermaid
 graph TD
     User[사용자 질의] --> Query[질의 전처리]
     Query -->|Dense Vector| VectorDB[Vector Search]
@@ -53,9 +51,6 @@ graph TD
     ReRanker --> TopK[상위 K개 문서 선정]
     TopK --> Context[컨텍스트 프롬프트 구성]
     Context --> LLM[(LLM 답변 생성)]
-    
-    style ReRanker fill:#f9f,stroke:#333,stroke-width:2px
-    style TopK fill:#bfb,stroke:#333,stroke-width:2px
 ```
 
 이 아키텍처의 핵심은 두 가지 검색 엔진의 결과를 합쳐 후보군을 늘린 뒤(Candidate set), **Re-ranking 모델(Cross-Encoder)**을 통해 정밀도를 높이는 것입니다. 마치 보안 탐지 시스템에서 방화벽(1차 필터링)과 IDS/IPS(심분 분석)를 거치는 것과 유사한 원리입니다.

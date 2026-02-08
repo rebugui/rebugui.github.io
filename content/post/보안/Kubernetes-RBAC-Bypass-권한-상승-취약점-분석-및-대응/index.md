@@ -36,9 +36,7 @@ categories:
 
 아래는 공격자가 제한된 권한으로 관리자 권한을 탈취하는 과정을 시각화한 것입니다.
 
-📊 **Mermaid 다이어그램:** 아래 코드는 블로그에서 자동으로 다이어그램으로 렌더링됩니다.
-
-```javascript
+```mermaid
 sequenceDiagram
     participant Attacker as 공격자 (Dev Role)
     participant API as K8s API Server
