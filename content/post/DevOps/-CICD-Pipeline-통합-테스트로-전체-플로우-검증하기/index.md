@@ -26,7 +26,7 @@ categories:
 
 통합 테스트는 모듈 개별 기능이 아닌, 모듈 간의 인터페이스와 상호작용을 검증하는 테스트입니다. CI/CD 파이프라인 관점에서 볼 때, 이는 단위 테스트 직후 혹은 배포 전 단계에서 운영 환경과 유사한 "에페머랄(Ephemeral)"한 환경을 구성하여 실제 연동을 수행하는 단계를 의미합니다.
 
-```javascript
+```mermaid
 graph LR
     A[Git Push] --> B[CI Build]
     B --> C[Unit Tests]
