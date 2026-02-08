@@ -5,7 +5,193 @@
         <description>Recent content in Tags on 코딩이 싫은 거북이</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>ko-kr</language>
-        <lastBuildDate>Sun, 08 Feb 2026 15:03:52 +0900</lastBuildDate><atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 08 Feb 2026 16:13:54 +0900</lastBuildDate><atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+            <title>Mermaid</title>
+            <link>http://localhost:1313/tags/mermaid/</link>
+            <pubDate>Sun, 08 Feb 2026 16:13:54 +0900</pubDate>
+            <guid>http://localhost:1313/tags/mermaid/</guid>
+            <description></description>
+        </item><item>
+            <title>Pipeline</title>
+            <link>http://localhost:1313/tags/pipeline/</link>
+            <pubDate>Sun, 08 Feb 2026 16:13:54 +0900</pubDate>
+            <guid>http://localhost:1313/tags/pipeline/</guid>
+            <description></description>
+        </item><item>
+            <title>Test</title>
+            <link>http://localhost:1313/tags/test/</link>
+            <pubDate>Sun, 08 Feb 2026 16:13:54 +0900</pubDate>
+            <guid>http://localhost:1313/tags/test/</guid>
+            <description></description>
+        </item><item>
+            <title>자동화</title>
+            <link>http://localhost:1313/tags/%EC%9E%90%EB%8F%99%ED%99%94/</link>
+            <pubDate>Sun, 08 Feb 2026 16:13:54 +0900</pubDate>
+            <guid>http://localhost:1313/tags/%EC%9E%90%EB%8F%99%ED%99%94/</guid>
+            <description></description>
+        </item><item>
+            <title>Automation</title>
+            <link>http://localhost:1313/tags/automation/</link>
+            <pubDate>Sun, 08 Feb 2026 15:49:05 +0900</pubDate>
+            <guid>http://localhost:1313/tags/automation/</guid>
+            <description></description>
+        </item><item>
+            <title>CI/CD</title>
+            <link>http://localhost:1313/tags/ci/cd/</link>
+            <pubDate>Sun, 08 Feb 2026 15:49:05 +0900</pubDate>
+            <guid>http://localhost:1313/tags/ci/cd/</guid>
+            <description></description>
+        </item><item>
+            <title>DevOps</title>
+            <link>http://localhost:1313/tags/devops/</link>
+            <pubDate>Sun, 08 Feb 2026 15:49:05 +0900</pubDate>
+            <guid>http://localhost:1313/tags/devops/</guid>
+            <description></description>
+        </item><item>
+            <title>Intelligence Agent</title>
+            <link>http://localhost:1313/tags/intelligence-agent/</link>
+            <pubDate>Sun, 08 Feb 2026 15:49:05 +0900</pubDate>
+            <guid>http://localhost:1313/tags/intelligence-agent/</guid>
+            <description></description>
+        </item><item>
+            <title>LLM</title>
+            <link>http://localhost:1313/tags/llm/</link>
+            <pubDate>Sun, 08 Feb 2026 15:49:05 +0900</pubDate>
+            <guid>http://localhost:1313/tags/llm/</guid>
+            <description></description>
+        </item><item>
+            <title>Documentation</title>
+            <link>http://localhost:1313/tags/documentation/</link>
+            <pubDate>Sun, 08 Feb 2026 15:32:44 +0900</pubDate>
+            <guid>http://localhost:1313/tags/documentation/</guid>
+            <description></description>
+        </item><item>
+            <title>Integration Test</title>
+            <link>http://localhost:1313/tags/integration-test/</link>
+            <pubDate>Sun, 08 Feb 2026 15:24:58 +0900</pubDate>
+            <guid>http://localhost:1313/tags/integration-test/</guid>
+            <description></description>
+        </item><item>
+            <title>배포 자동화</title>
+            <link>http://localhost:1313/tags/%EB%B0%B0%ED%8F%AC-%EC%9E%90%EB%8F%99%ED%99%94/</link>
+            <pubDate>Sun, 08 Feb 2026 15:24:58 +0900</pubDate>
+            <guid>http://localhost:1313/tags/%EB%B0%B0%ED%8F%AC-%EC%9E%90%EB%8F%99%ED%99%94/</guid>
+            <description></description>
+        </item><item>
+            <title>Git</title>
+            <link>http://localhost:1313/tags/git/</link>
+            <pubDate>Sun, 08 Feb 2026 15:17:58 +0900</pubDate>
+            <guid>http://localhost:1313/tags/git/</guid>
+            <description></description>
+        </item><item>
+            <title>블로그 운영</title>
+            <link>http://localhost:1313/tags/%EB%B8%94%EB%A1%9C%EA%B7%B8-%EC%9A%B4%EC%98%81/</link>
+            <pubDate>Sun, 08 Feb 2026 15:17:58 +0900</pubDate>
+            <guid>http://localhost:1313/tags/%EB%B8%94%EB%A1%9C%EA%B7%B8-%EC%9A%B4%EC%98%81/</guid>
+            <description></description>
+        </item><item>
+            <title>Kubernetes</title>
+            <link>http://localhost:1313/tags/kubernetes/</link>
+            <pubDate>Sun, 08 Feb 2026 15:04:48 +0900</pubDate>
+            <guid>http://localhost:1313/tags/kubernetes/</guid>
+            <description></description>
+        </item><item>
+            <title>Privilege Escalation</title>
+            <link>http://localhost:1313/tags/privilege-escalation/</link>
+            <pubDate>Sun, 08 Feb 2026 15:04:48 +0900</pubDate>
+            <guid>http://localhost:1313/tags/privilege-escalation/</guid>
+            <description></description>
+        </item><item>
+            <title>RBAC</title>
+            <link>http://localhost:1313/tags/rbac/</link>
+            <pubDate>Sun, 08 Feb 2026 15:04:48 +0900</pubDate>
+            <guid>http://localhost:1313/tags/rbac/</guid>
+            <description></description>
+        </item><item>
+            <title>Security</title>
+            <link>http://localhost:1313/tags/security/</link>
+            <pubDate>Sun, 08 Feb 2026 15:04:48 +0900</pubDate>
+            <guid>http://localhost:1313/tags/security/</guid>
+            <description></description>
+        </item><item>
+            <title>취약점</title>
+            <link>http://localhost:1313/tags/%EC%B7%A8%EC%95%BD%EC%A0%90/</link>
+            <pubDate>Sun, 08 Feb 2026 15:04:48 +0900</pubDate>
+            <guid>http://localhost:1313/tags/%EC%B7%A8%EC%95%BD%EC%A0%90/</guid>
+            <description></description>
+        </item><item>
+            <title>AI</title>
+            <link>http://localhost:1313/tags/ai/</link>
+            <pubDate>Sun, 08 Feb 2026 15:04:36 +0900</pubDate>
+            <guid>http://localhost:1313/tags/ai/</guid>
+            <description></description>
+        </item><item>
+            <title>Optimization</title>
+            <link>http://localhost:1313/tags/optimization/</link>
+            <pubDate>Sun, 08 Feb 2026 15:04:36 +0900</pubDate>
+            <guid>http://localhost:1313/tags/optimization/</guid>
+            <description></description>
+        </item><item>
+            <title>RAG</title>
+            <link>http://localhost:1313/tags/rag/</link>
+            <pubDate>Sun, 08 Feb 2026 15:04:36 +0900</pubDate>
+            <guid>http://localhost:1313/tags/rag/</guid>
+            <description></description>
+        </item><item>
+            <title>검색 엔진</title>
+            <link>http://localhost:1313/tags/%EA%B2%80%EC%83%89-%EC%97%94%EC%A7%84/</link>
+            <pubDate>Sun, 08 Feb 2026 15:04:36 +0900</pubDate>
+            <guid>http://localhost:1313/tags/%EA%B2%80%EC%83%89-%EC%97%94%EC%A7%84/</guid>
+            <description></description>
+        </item><item>
+            <title>Benchmark</title>
+            <link>http://localhost:1313/tags/benchmark/</link>
+            <pubDate>Sun, 08 Feb 2026 15:04:22 +0900</pubDate>
+            <guid>http://localhost:1313/tags/benchmark/</guid>
+            <description></description>
+        </item><item>
+            <title>Falcon</title>
+            <link>http://localhost:1313/tags/falcon/</link>
+            <pubDate>Sun, 08 Feb 2026 15:04:22 +0900</pubDate>
+            <guid>http://localhost:1313/tags/falcon/</guid>
+            <description></description>
+        </item><item>
+            <title>GPT-4</title>
+            <link>http://localhost:1313/tags/gpt-4/</link>
+            <pubDate>Sun, 08 Feb 2026 15:04:22 +0900</pubDate>
+            <guid>http://localhost:1313/tags/gpt-4/</guid>
+            <description></description>
+        </item><item>
+            <title>오픈소스</title>
+            <link>http://localhost:1313/tags/%EC%98%A4%ED%94%88%EC%86%8C%EC%8A%A4/</link>
+            <pubDate>Sun, 08 Feb 2026 15:04:22 +0900</pubDate>
+            <guid>http://localhost:1313/tags/%EC%98%A4%ED%94%88%EC%86%8C%EC%8A%A4/</guid>
+            <description></description>
+        </item><item>
+            <title>Cgroups V2</title>
+            <link>http://localhost:1313/tags/cgroups-v2/</link>
+            <pubDate>Sun, 08 Feb 2026 15:04:11 +0900</pubDate>
+            <guid>http://localhost:1313/tags/cgroups-v2/</guid>
+            <description></description>
+        </item><item>
+            <title>Container</title>
+            <link>http://localhost:1313/tags/container/</link>
+            <pubDate>Sun, 08 Feb 2026 15:04:11 +0900</pubDate>
+            <guid>http://localhost:1313/tags/container/</guid>
+            <description></description>
+        </item><item>
+            <title>CVE-2025-23456</title>
+            <link>http://localhost:1313/tags/cve-2025-23456/</link>
+            <pubDate>Sun, 08 Feb 2026 15:04:11 +0900</pubDate>
+            <guid>http://localhost:1313/tags/cve-2025-23456/</guid>
+            <description></description>
+        </item><item>
+            <title>Linux</title>
+            <link>http://localhost:1313/tags/linux/</link>
+            <pubDate>Sun, 08 Feb 2026 15:04:11 +0900</pubDate>
+            <guid>http://localhost:1313/tags/linux/</guid>
+            <description></description>
+        </item><item>
             <title>Apache Struts</title>
             <link>http://localhost:1313/tags/apache-struts/</link>
             <pubDate>Sun, 08 Feb 2026 15:03:52 +0900</pubDate>
@@ -24,12 +210,6 @@
             <guid>http://localhost:1313/tags/rce/</guid>
             <description></description>
         </item><item>
-            <title>Security</title>
-            <link>http://localhost:1313/tags/security/</link>
-            <pubDate>Sun, 08 Feb 2026 15:03:52 +0900</pubDate>
-            <guid>http://localhost:1313/tags/security/</guid>
-            <description></description>
-        </item><item>
             <title>보안 취약점</title>
             <link>http://localhost:1313/tags/%EB%B3%B4%EC%95%88-%EC%B7%A8%EC%95%BD%EC%A0%90/</link>
             <pubDate>Sun, 08 Feb 2026 15:03:52 +0900</pubDate>
@@ -42,22 +222,10 @@
             <guid>http://localhost:1313/tags/centos-9/</guid>
             <description></description>
         </item><item>
-            <title>Linux</title>
-            <link>http://localhost:1313/tags/linux/</link>
-            <pubDate>Sun, 08 Feb 2026 12:57:32 +0900</pubDate>
-            <guid>http://localhost:1313/tags/linux/</guid>
-            <description></description>
-        </item><item>
             <title>PoC</title>
             <link>http://localhost:1313/tags/poc/</link>
             <pubDate>Sun, 08 Feb 2026 12:57:32 +0900</pubDate>
             <guid>http://localhost:1313/tags/poc/</guid>
-            <description></description>
-        </item><item>
-            <title>Privilege Escalation</title>
-            <link>http://localhost:1313/tags/privilege-escalation/</link>
-            <pubDate>Sun, 08 Feb 2026 12:57:32 +0900</pubDate>
-            <guid>http://localhost:1313/tags/privilege-escalation/</guid>
             <description></description>
         </item><item>
             <title>Library OS</title>
@@ -94,18 +262,6 @@
             <link>http://localhost:1313/tags/ingress-nginx/</link>
             <pubDate>Sun, 08 Feb 2026 12:57:21 +0900</pubDate>
             <guid>http://localhost:1313/tags/ingress-nginx/</guid>
-            <description></description>
-        </item><item>
-            <title>Kubernetes</title>
-            <link>http://localhost:1313/tags/kubernetes/</link>
-            <pubDate>Sun, 08 Feb 2026 12:57:21 +0900</pubDate>
-            <guid>http://localhost:1313/tags/kubernetes/</guid>
-            <description></description>
-        </item><item>
-            <title>취약점</title>
-            <link>http://localhost:1313/tags/%EC%B7%A8%EC%95%BD%EC%A0%90/</link>
-            <pubDate>Sun, 08 Feb 2026 12:57:21 +0900</pubDate>
-            <guid>http://localhost:1313/tags/%EC%B7%A8%EC%95%BD%EC%A0%90/</guid>
             <description></description>
         </item><item>
             <title>CISA</title>
@@ -160,12 +316,6 @@
             <link>http://localhost:1313/tags/%EB%B3%B4%EC%95%88-%EB%B6%84%EC%84%9D/</link>
             <pubDate>Sun, 08 Feb 2026 12:56:50 +0900</pubDate>
             <guid>http://localhost:1313/tags/%EB%B3%B4%EC%95%88-%EB%B6%84%EC%84%9D/</guid>
-            <description></description>
-        </item><item>
-            <title>AI</title>
-            <link>http://localhost:1313/tags/ai/</link>
-            <pubDate>Sat, 07 Feb 2026 11:11:30 +0900</pubDate>
-            <guid>http://localhost:1313/tags/ai/</guid>
             <description></description>
         </item><item>
             <title>Chrome</title>
@@ -234,18 +384,6 @@
             <guid>http://localhost:1313/tags/ssn/</guid>
             <description></description>
         </item><item>
-            <title>Automation</title>
-            <link>http://localhost:1313/tags/automation/</link>
-            <pubDate>Sat, 07 Feb 2026 11:11:06 +0900</pubDate>
-            <guid>http://localhost:1313/tags/automation/</guid>
-            <description></description>
-        </item><item>
-            <title>CI/CD</title>
-            <link>http://localhost:1313/tags/ci/cd/</link>
-            <pubDate>Sat, 07 Feb 2026 11:11:06 +0900</pubDate>
-            <guid>http://localhost:1313/tags/ci/cd/</guid>
-            <description></description>
-        </item><item>
             <title>DevSecOps</title>
             <link>http://localhost:1313/tags/devsecops/</link>
             <pubDate>Sat, 07 Feb 2026 11:11:06 +0900</pubDate>
@@ -300,12 +438,6 @@
             <guid>http://localhost:1313/tags/webhacking/</guid>
             <description></description>
         </item><item>
-            <title>DevOps</title>
-            <link>http://localhost:1313/tags/devops/</link>
-            <pubDate>Sat, 07 Feb 2026 09:01:51 +0900</pubDate>
-            <guid>http://localhost:1313/tags/devops/</guid>
-            <description></description>
-        </item><item>
             <title>BERT</title>
             <link>http://localhost:1313/tags/bert/</link>
             <pubDate>Sat, 07 Feb 2026 09:01:25 +0900</pubDate>
@@ -322,12 +454,6 @@
             <link>http://localhost:1313/tags/nlp/</link>
             <pubDate>Sat, 07 Feb 2026 09:01:25 +0900</pubDate>
             <guid>http://localhost:1313/tags/nlp/</guid>
-            <description></description>
-        </item><item>
-            <title>LLM</title>
-            <link>http://localhost:1313/tags/llm/</link>
-            <pubDate>Sat, 07 Feb 2026 09:00:56 +0900</pubDate>
-            <guid>http://localhost:1313/tags/llm/</guid>
             <description></description>
         </item><item>
             <title>Neural Network</title>
@@ -364,12 +490,6 @@
             <link>http://localhost:1313/tags/%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/</link>
             <pubDate>Thu, 05 Feb 2026 14:35:32 +0900</pubDate>
             <guid>http://localhost:1313/tags/%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/</guid>
-            <description></description>
-        </item><item>
-            <title>자동화</title>
-            <link>http://localhost:1313/tags/%EC%9E%90%EB%8F%99%ED%99%94/</link>
-            <pubDate>Thu, 05 Feb 2026 14:35:32 +0900</pubDate>
-            <guid>http://localhost:1313/tags/%EC%9E%90%EB%8F%99%ED%99%94/</guid>
             <description></description>
         </item><item>
             <title>취약점 진단</title>
@@ -484,24 +604,6 @@
             <link>http://localhost:1313/tags/themes/</link>
             <pubDate>Sun, 25 Jan 2026 00:00:00 +0000</pubDate>
             <guid>http://localhost:1313/tags/themes/</guid>
-            <description></description>
-        </item><item>
-            <title>Mermaid</title>
-            <link>http://localhost:1313/tags/mermaid/</link>
-            <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-            <guid>http://localhost:1313/tags/mermaid/</guid>
-            <description></description>
-        </item><item>
-            <title>Pipeline</title>
-            <link>http://localhost:1313/tags/pipeline/</link>
-            <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-            <guid>http://localhost:1313/tags/pipeline/</guid>
-            <description></description>
-        </item><item>
-            <title>Test</title>
-            <link>http://localhost:1313/tags/test/</link>
-            <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-            <guid>http://localhost:1313/tags/test/</guid>
             <description></description>
         </item><item>
             <title>隐私</title>

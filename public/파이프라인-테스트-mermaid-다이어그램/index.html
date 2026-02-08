@@ -10,7 +10,7 @@
 <meta property='og:description' content="서론 이 글은 인텔리전스 에이전트 파이프라인의 Mermaid 다이어그램 변환 기능을 테스트하기 위해 생성되었습니다.\n파이프라인 아키텍처 아래 다이어그램은 전체 파이프라인의 흐름을 보여줍니다.\n">
 <meta property='og:url' content='http://localhost:1313/%ED%8C%8C%EC%9D%B4%ED%94%84%EB%9D%BC%EC%9D%B8-%ED%85%8C%EC%8A%A4%ED%8A%B8-mermaid-%EB%8B%A4%EC%9D%B4%EC%96%B4%EA%B7%B8%EB%9E%A8/'>
 <meta property='og:site_name' content='코딩이 싫은 거북이'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Test' /><meta property='article:tag' content='Mermaid' /><meta property='article:tag' content='Pipeline' /><meta property='article:tag' content='자동화' /><meta property='article:published_time' content='2026-02-08T13:43:33&#43;09:00'/><meta property='article:modified_time' content='2026-02-08T13:43:33&#43;09:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Test' /><meta property='article:tag' content='Mermaid' /><meta property='article:tag' content='Pipeline' /><meta property='article:tag' content='자동화' /><meta property='article:published_time' content='2026-02-08T16:13:54&#43;09:00'/><meta property='article:modified_time' content='2026-02-08T16:13:54&#43;09:00'/>
 <meta name="twitter:title" content="🧪 파이프라인 테스트: Mermaid 다이어그램">
 <meta name="twitter:description" content="서론 이 글은 인텔리전스 에이전트 파이프라인의 Mermaid 다이어그램 변환 기능을 테스트하기 위해 생성되었습니다.\n파이프라인 아키텍처 아래 다이어그램은 전체 파이프라인의 흐름을 보여줍니다.\n">
     <link rel="shortcut icon" href="/img/avatar.png" />
@@ -310,7 +310,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published" datetime='2026-02-08T13:43:33&#43;09:00'>2026년 2월 8일 일요일</time>
+                <time class="article-time--published" datetime='2026-02-08T16:13:54&#43;09:00'>2026년 2월 8일 일요일</time>
             </div>
         
 
@@ -369,11 +369,19 @@
 <pre class="mermaid">
   graph TD
     A[AI Writer] --&gt;|Generate Markdown| B[Notion Publisher]
-    B --&gt;|Convert to Code Block| C[Notion Database]
+    B --&gt;|Convert to Callout| C[Notion Database]
     C --&gt;|Export| D[Git Publisher]
-    D --&gt;|Detect Mermaid Keywords| E[Git Repository]
+    D --&gt;|Convert to Mermaid| E[Git Repository]
     E --&gt;|Build| F[Hugo Blog]
-    F --&gt;|Render Diagram| G[Published Blog]
+    F --&gt;|Render| G[Published Blog]
+
+    style A fill:#e1f5ff
+    style B fill:#fff4e1
+    style C fill:#f0e1ff
+    style D fill:#fff4e1
+    style E fill:#e1ffe1
+    style F fill:#ffe1f0
+    style G fill:#e1ffe1
 </pre>
 
 <h2 id="테스트-코드-예시">테스트 코드 예시
@@ -452,6 +460,39 @@
             
                 
 <article class="">
+    <a href="/kubernetes-rbac-bypass-%EA%B6%8C%ED%95%9C-%EC%83%81%EC%8A%B9-%EC%B7%A8%EC%95%BD%EC%A0%90-%EB%B6%84%EC%84%9D-%EB%B0%8F-%EB%8C%80%EC%9D%91/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Kubernetes RBAC Bypass: 권한 상승 취약점 분석 및 대응</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/cgroups-v2-cve-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%ED%83%88%EC%B6%9C-%EA%B3%B5%EA%B2%A9-%EC%9B%90%EC%9D%B8%EA%B3%BC-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">cgroups v2 CVE: 컨테이너 탈출 공격 원인과 대응 방안</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/cve-2025-12345-apache-struts-zero-day-rce-%EC%8B%AC%EC%B8%B5-%EB%B6%84%EC%84%9D/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">CVE-2025-12345: Apache Struts Zero-Day RCE 심층 분석</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
     <a href="/centos-9-root-escalation-%EA%B6%8C%ED%95%9C-%EC%83%81%EC%8A%B9-%EC%B7%A8%EC%95%BD%EC%A0%90-%EB%B6%84%EC%84%9D/">
         
 
@@ -468,39 +509,6 @@
 
         <div class="article-details">
             <h2 class="article-title">🔒 LiteBox: Rust 기반 라이브러리 OS로 공격 표면 최소화</h2>
-        </div>
-    </a>
-</article>
-            
-                
-<article class="">
-    <a href="/ingress-nginx-rce-%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4-%ED%81%B4%EB%9F%AC%EC%8A%A4%ED%84%B0-%EC%BD%94%EB%93%9C-%EC%8B%A4%ED%96%89-%EC%B7%A8%EC%95%BD%EC%A0%90/">
-        
-
-        <div class="article-details">
-            <h2 class="article-title">🔒 Ingress-Nginx RCE: 쿠버네티스 클러스터 코드 실행 취약점</h2>
-        </div>
-    </a>
-</article>
-            
-                
-<article class="">
-    <a href="/vmware-esxi-%EB%9E%9C%EC%84%AC%EC%9B%A8%EC%96%B4-%EC%95%85%EC%9A%A9-%EC%B7%A8%EC%95%BD%EC%A0%90-%EC%8B%A4%EC%A0%9C-%EA%B3%B5%EA%B2%A9-%ED%99%95%EC%9D%B8/">
-        
-
-        <div class="article-details">
-            <h2 class="article-title">🚨 VMware ESXi: 랜섬웨어 악용 취약점 실제 공격 확인</h2>
-        </div>
-    </a>
-</article>
-            
-                
-<article class="">
-    <a href="/shamirs-secret-sharing-%EB%B9%84%EB%B0%80-%ED%82%A4-%EB%B6%84%EC%82%B0-%EC%A0%80%EC%9E%A5%EC%9C%BC%EB%A1%9C-%EC%95%88%EC%A0%84%ED%95%98%EA%B2%8C-%EB%B3%B5%EA%B5%AC%ED%95%98%EA%B8%B0/">
-        
-
-        <div class="article-details">
-            <h2 class="article-title">🔑 Shamir&#39;s Secret Sharing: 비밀 키 분산 저장으로 안전하게 복구하기</h2>
         </div>
     </a>
 </article>
