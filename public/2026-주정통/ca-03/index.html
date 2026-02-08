@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="ko-kr" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="2차 인증을 통해 사용자 계정의 보안을 강화 여부 점검">
+<title>[2026 주요정보통신기반시설] CA-03 MFA(Multi-Factor Authentication)설정</title>
+
+<link rel='canonical' href='http://localhost:1313/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-03/'>
+
+<link rel="stylesheet" href="/scss/style.min.51098b80cc297c94c0f57786d4a04e7372774e5993b60facf53870128a79bf73.css"><meta property='og:title' content="[2026 주요정보통신기반시설] CA-03 MFA(Multi-Factor Authentication)설정">
+<meta property='og:description' content="2차 인증을 통해 사용자 계정의 보안을 강화 여부 점검">
+<meta property='og:url' content='http://localhost:1313/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-03/'>
+<meta property='og:site_name' content='코딩이 싫은 거북이'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='2026 주정통 가이드라인' /><meta property='article:tag' content='Cloud' /><meta property='article:published_time' content='2026-02-05T09:56:13&#43;09:00'/><meta property='article:modified_time' content='2026-02-05T09:56:13&#43;09:00'/>
+<meta name="twitter:title" content="[2026 주요정보통신기반시설] CA-03 MFA(Multi-Factor Authentication)설정">
+<meta name="twitter:description" content="2차 인증을 통해 사용자 계정의 보안을 강화 여부 점검">
+    <link rel="shortcut icon" href="/img/avatar.png" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BDJ5ZPHH5Z"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-BDJ5ZPHH5Z');
+</script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7440869759073353"
+     crossorigin="anonymous"></script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="메뉴 여닫기">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        <figure class="site-avatar">
+                <a href="/">
+                    <img src="/img/avatar.png" 
+                        width="2048"
+                        height="2048"
+                        class="site-logo"
+                        loading="lazy"
+                        alt="Avatar">
+                </a>
+                
+                    <span class="emoji">🐢</span>
+                
+            </figure>
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">코딩이 싫은 거북이</a></h1>
+            <h2 class="site-description">Clean, responsive Hugo theme</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/rebugui'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/page/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/page/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/page/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/page/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>다크 모드</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">목차</h2>
+        
+        <div class="widget--toc">
+            <nav class="toc-nav" id="TableOfContents">
+                
+  <ol>
+    <li><a href="#가이드라인-원문">가이드라인 원문</a></li>
+    <li><a href="#상세-설명">상세 설명</a>
+      <ol>
+        <li><a href="#1-항목-개요">1. 항목 개요</a></li>
+        <li><a href="#2-왜-이-항목이-필요한가요">2. 왜 이 항목이 필요한가요?</a></li>
+        <li><a href="#3-점검-대상">3. 점검 대상</a></li>
+        <li><a href="#4-판단-기준">4. 판단 기준</a></li>
+        <li><a href="#5-점검-방법">5. 점검 방법</a>
+          <ol>
+            <li><a href="#step-1-mfa-설정-현황-확인">Step 1: MFA 설정 현황 확인</a></li>
+            <li><a href="#step-2-각-계정별-mfa-설정-여부-확인">Step 2: 각 계정별 MFA 설정 여부 확인</a></li>
+          </ol>
+        </li>
+        <li><a href="#6-조치-방법">6. 조치 방법</a>
+          <ol>
+            <li><a href="#step-1-2차-인증-설정">Step 1: 2차 인증 설정</a></li>
+            <li><a href="#step-2-모든-관리자-계정에-mfa-필수-적용">Step 2: 모든 관리자 계정에 MFA 필수 적용</a></li>
+            <li><a href="#step-3-정기적인-mfa-설정-검토">Step 3: 정기적인 MFA 설정 검토</a></li>
+          </ol>
+        </li>
+        <li><a href="#7-조치-시-주의사항">7. 조치 시 주의사항</a></li>
+        <li><a href="#8-참고-자료">8. 참고 자료</a></li>
+      </ol>
+    </li>
+    <li><a href="#요약">요약</a></li>
+  </ol>
+
+            </nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            
+            
+            
+            <a href="/categories/2026-%EC%A3%BC%EC%A0%95%ED%86%B5-%EA%B0%80%EC%9D%B4%EB%93%9C%EB%9D%BC%EC%9D%B8/" style="background-color: hsl(281, 60%, 84%); color: hsl(281, 60%, 15%);">
+                2026 주정통 가이드라인
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-03/">[2026 주요정보통신기반시설] CA-03 MFA(Multi-Factor Authentication)설정</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            2차 인증을 통해 사용자 계정의 보안을 강화 여부 점검
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2026-02-05T09:56:13&#43;09:00'>2026년 2월 5일 목요일</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    4 분 정도
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    
+    <aside class="article-toc">
+        <details>
+            <summary>
+                <div class="article-toc-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg>
+                    <span>목차</span>
+                </div>
+            </summary>
+            <nav class="toc-nav">
+                
+  <ol>
+    <li><a href="#가이드라인-원문">가이드라인 원문</a></li>
+    <li><a href="#상세-설명">상세 설명</a>
+      <ol>
+        <li><a href="#1-항목-개요">1. 항목 개요</a></li>
+        <li><a href="#2-왜-이-항목이-필요한가요">2. 왜 이 항목이 필요한가요?</a></li>
+        <li><a href="#3-점검-대상">3. 점검 대상</a></li>
+        <li><a href="#4-판단-기준">4. 판단 기준</a></li>
+        <li><a href="#5-점검-방법">5. 점검 방법</a>
+          <ol>
+            <li><a href="#step-1-mfa-설정-현황-확인">Step 1: MFA 설정 현황 확인</a></li>
+            <li><a href="#step-2-각-계정별-mfa-설정-여부-확인">Step 2: 각 계정별 MFA 설정 여부 확인</a></li>
+          </ol>
+        </li>
+        <li><a href="#6-조치-방법">6. 조치 방법</a>
+          <ol>
+            <li><a href="#step-1-2차-인증-설정">Step 1: 2차 인증 설정</a></li>
+            <li><a href="#step-2-모든-관리자-계정에-mfa-필수-적용">Step 2: 모든 관리자 계정에 MFA 필수 적용</a></li>
+            <li><a href="#step-3-정기적인-mfa-설정-검토">Step 3: 정기적인 MFA 설정 검토</a></li>
+          </ol>
+        </li>
+        <li><a href="#7-조치-시-주의사항">7. 조치 시 주의사항</a></li>
+        <li><a href="#8-참고-자료">8. 참고 자료</a></li>
+      </ol>
+    </li>
+    <li><a href="#요약">요약</a></li>
+  </ol>
+
+            </nav>
+        </details>
+    </aside>
+    
+
+    <section class="article-content">
+    
+    
+    <h1 id="ca-03-mfamulti-factor-authentication설정">CA-03 MFA(Multi-Factor Authentication)설정
+</h1><h2 id="가이드라인-원문">가이드라인 원문
+</h2><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>항목</th>
+          <th>내용</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>항목코드</strong></td>
+          <td>CA-03</td>
+      </tr>
+      <tr>
+          <td><strong>점검내용</strong></td>
+          <td>2차 인증을 통해 사용자 계정의 보안을 강화 여부 점검</td>
+      </tr>
+      <tr>
+          <td><strong>점검대상</strong></td>
+          <td>클라우드 플랫폼</td>
+      </tr>
+      <tr>
+          <td><strong>판단기준</strong></td>
+          <td>양호: 각 계정별 2차 인증이 설정된 경우</td>
+      </tr>
+      <tr>
+          <td><strong>판단기준</strong></td>
+          <td>취약: 각 계정별 2차 인증이 설정되지 않은 경우</td>
+      </tr>
+      <tr>
+          <td><strong>조치방법</strong></td>
+          <td>인증번호, OTP 등을 통한 2차 인증 설정</td>
+      </tr>
+  </tbody>
+</table></div>
+<hr>
+<h2 id="상세-설명">상세 설명
+</h2><h3 id="1-항목-개요">1. 항목 개요
+</h3><p>**MFA(Multi-Factor Authentication, 다중 인증)**은 사용자 인증 시 두 가지 이상의 인증 요소를 요구하는 보안 방식입니다. 비밀번호(1차 인증)만으로는 충분하지 않기 때문에, 추가적인 인증 수단(2차 인증)을 통해 계정 보안을 강화합니다.</p>
+<h3 id="2-왜-이-항목이-필요한가요">2. 왜 이 항목이 필요한가요?
+</h3><p><strong>비밀번호만으로는 부족합니다</strong></p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>공격 유형</th>
+          <th>설명</th>
+          <th>위험도</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>무차별 대입 공격</strong></td>
+          <td>모든 가능한 비밀번호 조합을 시도</td>
+          <td>상</td>
+      </tr>
+      <tr>
+          <td><strong>사전 공격</strong></td>
+          <td>자주 사용되는 비밀번호 목록으로 시도</td>
+          <td>상</td>
+      </tr>
+      <tr>
+          <td><strong>피싱</strong></td>
+          <td>가짜 로그인 페이지로 비밀번호 탈취</td>
+          <td>상</td>
+      </tr>
+      <tr>
+          <td><strong>키로깅</strong></td>
+          <td>키보드 입력 정보를 몰래 수집</td>
+          <td>중</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><strong>MFA의 보안 효과</strong></p>
+<ul>
+<li>비밀번호가 탈취되어도 2차 인증이 없으면 접근 불가</li>
+<li>해커가 물리적인 2차 인증 수단을 가질 확률은 극히 낮음</li>
+<li>99.9% 이상의 자동화된 공격 차단 가능</li>
+</ul>
+<p><strong>실제 사례</strong>
+Microsoft에 따르면 MFA를 활성화하면 계정 탈취 위험이 <strong>99.9% 감소</strong>한다고 합니다.</p>
+<h3 id="3-점검-대상">3. 점검 대상
+</h3><ul>
+<li>모든 클라우드 관리 콘솔 접근 계정 (특히 관리자 권한 계정)</li>
+<li>IAM 사용자 계정</li>
+<li>루트(최상위 관리자) 계정</li>
+</ul>
+<h3 id="4-판단-기준">4. 판단 기준
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>구분</th>
+          <th>기준</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>양호</strong></td>
+          <td>각 계정별 2차 인증이 설정된 경우</td>
+      </tr>
+      <tr>
+          <td><strong>취약</strong></td>
+          <td>각 계정별 2차 인증이 설정되지 않은 경우</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="5-점검-방법">5. 점검 방법
+</h3><h4 id="step-1-mfa-설정-현황-확인">Step 1: MFA 설정 현황 확인
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># AWS에서 MFA 설정 현황 확인</span>
+</span></span><span class="line"><span class="cl">aws iam list-virtual-mfa-devices
+</span></span><span class="line"><span class="cl">aws iam get-account-summary <span class="p">|</span> grep mfa
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Azure에서 MFA 설정 확인</span>
+</span></span><span class="line"><span class="cl">az ad user show --user-id user@domain.com --query <span class="s1">&#39;[id,displayName,strongAuthenticationDetail]&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="step-2-각-계정별-mfa-설정-여부-확인">Step 2: 각 계정별 MFA 설정 여부 확인
+</h4><p>클라우드 콘솔에서 다음 내용을 확인합니다:</p>
+<ul>
+<li>IAM 사용자별 MFA 장치 할당 여부</li>
+<li>루트 계정 MFA 활성화 여부</li>
+<li>MFA 유형 (하드웨어 토큰, 소프트웨어 앱, SMS 등)</li>
+</ul>
+<h3 id="6-조치-방법">6. 조치 방법
+</h3><h4 id="step-1-2차-인증-설정">Step 1: 2차 인증 설정
+</h4><p><strong>MFA 인증 요소 3가지 유형</strong></p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>유형</th>
+          <th>예시</th>
+          <th>설명</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>지식(Knowledge)</strong></td>
+          <td>비밀번호, PIN</td>
+          <td>사용자가 아는 것</td>
+      </tr>
+      <tr>
+          <td><strong>소유(Possession)</strong></td>
+          <td>OTP 앱, 하드웨어 토큰, SMS</td>
+          <td>사용자가 가진 것</td>
+      </tr>
+      <tr>
+          <td><strong>속성(Inherence)</strong></td>
+          <td>지문, 얼굴인식, 홍채인식</td>
+          <td>사용자의 고유한 특성</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><strong>MFA 설정 방법별 비교</strong></p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>방법</th>
+          <th>장점</th>
+          <th>단점</th>
+          <th>보안성</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>OTP 앱</strong></td>
+          <td></td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>(Google Authenticator 등)</td>
+          <td>- 네트워크 불필요<br>- 무료<br>- 쉬운 설정</td>
+          <td>- 기기 분실 시 문제</td>
+          <td>높음</td>
+      </tr>
+      <tr>
+          <td><strong>SMS 인증</strong></td>
+          <td>- 설정 쉬움<br>- 별도 앱 불필요</td>
+          <td>- SMS 가로채기 가능<br>- 신호 수신 불가 지역 있음</td>
+          <td>중간</td>
+      </tr>
+      <tr>
+          <td><strong>하드웨어 토큰</strong></td>
+          <td>- 보안성 최고<br>- 물리적 분리</td>
+          <td>- 비용 발생<br>- 분실 시 복구 어려움</td>
+          <td>최상</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><strong>AWS CLI에서 MFA 설정 예시</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 1. 가상 MFA 장치 생성</span>
+</span></span><span class="line"><span class="cl">aws iam create-virtual-mfa-device --virtual-mfa-device-name AdminMFADevice
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 2. 사용자에게 MFA 장치 할당</span>
+</span></span><span class="line"><span class="cl">aws iam enable-mfa-device --user-name admin-user --serial-number arn:aws:iam::123456789012:mfa/AdminMFADevice --authentication-code1 <span class="m">123456</span> --authentication-code2 <span class="m">789012</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Azure Portal에서 MFA 설정</strong></p>
+<ol>
+<li>Azure Portal 접속 → Azure Active Directory</li>
+<li>사용자 선택 → 다단계 인증</li>
+<li>다단계 인증 사용 → 설정</li>
+<li>인증 방법 선택 (전화, SMS, 모바일 앱 등)</li>
+</ol>
+<h4 id="step-2-모든-관리자-계정에-mfa-필수-적용">Step 2: 모든 관리자 계정에 MFA 필수 적용
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># AWS IAM 정책: MFA 없이 콘솔 접근 차단</span><span class="w">
+</span></span></span><span class="line"><span class="cl">{<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">&#34;Version&#34;: </span><span class="s2">&#34;2012-10-17&#34;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">&#34;Statement&#34;: </span><span class="p">[</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>{<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">&#34;Sid&#34;: </span><span class="s2">&#34;BlockConsoleAccessWithoutMFA&#34;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">&#34;Effect&#34;: </span><span class="s2">&#34;Deny&#34;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">&#34;Action&#34;: </span><span class="s2">&#34;*&#34;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">&#34;Resource&#34;: </span><span class="s2">&#34;*&#34;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">&#34;Condition&#34;: </span>{<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">&#34;Bool&#34;: </span>{<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">&#34;aws:MultiFactorAuthPresent&#34;: </span><span class="s2">&#34;false&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>}<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>}<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>}<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl">}<span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="step-3-정기적인-mfa-설정-검토">Step 3: 정기적인 MFA 설정 검토
+</h4><ul>
+<li>분기별 MFA 설정 현황 확인</li>
+<li>신규 계정 생성 시 MFA 설정 강제</li>
+<li>MFA 장치 분실/교체 프로시저 마련</li>
+</ul>
+<h3 id="7-조치-시-주의사항">7. 조치 시 주의사항
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>주의사항</th>
+          <th>설명</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>관리자 계정 우선 적용</strong></td>
+          <td>관리자 권한 계정부터 MFA 설정 (최우선)</td>
+      </tr>
+      <tr>
+          <td><strong>복구 코드 보관</strong></td>
+          <td>OTP 앱 초기화 시 사용할 복구 코드 안전하게 보관</td>
+      </tr>
+      <tr>
+          <td><strong>기기 변경 프로시저</strong></td>
+          <td>MFA 기기 분실/교체 시 접속 복구 절차 마련</td>
+      </tr>
+      <tr>
+          <td><strong>사용자 교육</strong></td>
+          <td>MFA 사용법, 복구 방법 등 사용자 교육 실시</td>
+      </tr>
+      <tr>
+          <td><strong>여러 MFA 방법 혼용</strong></td>
+          <td>주 MFA + 백업 MFA (예: OTP 앱 + SMS) 설정 권장</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="8-참고-자료">8. 참고 자료
+</h3><ul>
+<li><strong>NIST SP 800-63B</strong>: Digital Identity Guidelines</li>
+<li><strong>CIS Controls</strong>: 16.12 (Use Multi-Factor Authentication for All Accounts)</li>
+<li><strong>AWS IAM Best Practices</strong>: Use MFA for the AWS account root user and IAM users</li>
+<li><strong>Microsoft Security</strong>: Multi-factor authentication</li>
+</ul>
+<hr>
+<h2 id="요약">요약
+</h2><p><strong>MFA 설정</strong>은 클라우드 계정 보안을 위한 가장 효과적인 조치입니다. 비밀번호만으로는 충분하지 않으며, 2차 인증을 통해 계정 탈취 위험을 99.9% 이상 감소시킬 수 있습니다. 특히 관리자 권한을 가진 계정에는 MFA가 필수적이며, 가능한 한 보안성이 높은 OTP 앱이나 하드웨어 토큰을 사용하는 것이 좋습니다.</p>
+<p><strong>핵심 액션 아이템</strong></p>
+<ol>
+<li>루트 계정 및 모든 관리자 계정에 MHA 필수 설정</li>
+<li>일반 사용자 계정에도 MFA 적용 권장</li>
+<li>OTP 앱 기반 MFA 사용 (SMS보다 보안성 높음)</li>
+<li>MFA 복구 코드 안전하게 보관</li>
+<li>정기적인 MFA 설정 현황 검토</li>
+</ol>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/2026-%EC%A3%BC%EC%A0%95%ED%86%B5-%EA%B0%80%EC%9D%B4%EB%93%9C%EB%9D%BC%EC%9D%B8/">2026 주정통 가이드라인</a>
+        
+            <a href="/tags/cloud/">Cloud</a>
+        
+    </section>
+
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">관련 글</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-01/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[2026 주요정보통신기반시설] CA-01 사용자계정관리</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-02/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[2026 주요정보통신기반시설] CA-02 사용자정책관리</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-04/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[2026 주요정보통신기반시설] CA-04 클라우드계정비밀번호정책관리</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-05/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[2026 주요정보통신기반시설] CA-05 인스턴스서비스정책관리</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-06/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[2026 주요정보통신기반시설] CA-06 네트워크서비스정책관리</h2>
+        </div>
+    </a>
+</article>
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025 - 
+        
+        2026 코딩이 싫은 거북이
+    </section>
+    
+    <section class="powerby">
+        <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>로 만듦 <br />
+        <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>의 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="4.0.0">Stack</a></b> 테마 사용 중
+    </section>
+</footer>
+
+
+    
+
+
+
+<script type="module">
+    import gallery from '\/ts\/gallery.js';
+
+    const articleContent = document.querySelector('.article-content');
+    const shouldLoad = articleContent && (articleContent.querySelectorAll('figure').length > 0 || articleContent.querySelectorAll('img.gallery-image').length > 0);
+    
+    if (shouldLoad) {
+        gallery(articleContent);
+
+        const PhotoSwipeLightbox = (await import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js")).default;
+        const styleHref = "https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.css";
+
+        const styleTag = document.createElement('link');
+        styleTag.rel = 'stylesheet';
+        styleTag.href = styleHref;
+        document.head.appendChild(styleTag);
+
+        const lightbox = new PhotoSwipeLightbox({
+            gallerySelector: '.article-content',
+            childSelector: 'figure a.image-link',
+            pswpModule: () => import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js")
+        });
+        lightbox.init();
+    }
+</script>
+    
+
+            </main>
+        </div>
+        <script type="text/javascript" src="/ts/main.387bdf6159ab34d0743ebd228aa9248d1ed2380fa5193ceff9ffdbf345b5309d.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

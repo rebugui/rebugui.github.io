@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="ko-kr" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="SNMP Community String이 유추하기 어렵게 설정되어 있는지 점검">
+<title>[2026 주요정보통신기반시설] S-22 SNMP Community String 복잡성 설정</title>
+
+<link rel='canonical' href='http://localhost:1313/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/s-22/'>
+
+<link rel="stylesheet" href="/scss/style.min.51098b80cc297c94c0f57786d4a04e7372774e5993b60facf53870128a79bf73.css"><meta property='og:title' content="[2026 주요정보통신기반시설] S-22 SNMP Community String 복잡성 설정">
+<meta property='og:description' content="SNMP Community String이 유추하기 어렵게 설정되어 있는지 점검">
+<meta property='og:url' content='http://localhost:1313/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/s-22/'>
+<meta property='og:site_name' content='코딩이 싫은 거북이'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='2026 주정통 가이드라인' /><meta property='article:tag' content='Security' /><meta property='article:published_time' content='2026-02-05T09:56:12&#43;09:00'/><meta property='article:modified_time' content='2026-02-05T09:56:12&#43;09:00'/>
+<meta name="twitter:title" content="[2026 주요정보통신기반시설] S-22 SNMP Community String 복잡성 설정">
+<meta name="twitter:description" content="SNMP Community String이 유추하기 어렵게 설정되어 있는지 점검">
+    <link rel="shortcut icon" href="/img/avatar.png" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BDJ5ZPHH5Z"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-BDJ5ZPHH5Z');
+</script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7440869759073353"
+     crossorigin="anonymous"></script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="메뉴 여닫기">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        <figure class="site-avatar">
+                <a href="/">
+                    <img src="/img/avatar.png" 
+                        width="2048"
+                        height="2048"
+                        class="site-logo"
+                        loading="lazy"
+                        alt="Avatar">
+                </a>
+                
+                    <span class="emoji">🐢</span>
+                
+            </figure>
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">코딩이 싫은 거북이</a></h1>
+            <h2 class="site-description">Clean, responsive Hugo theme</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/rebugui'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/page/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/page/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/page/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/page/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>다크 모드</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">목차</h2>
+        
+        <div class="widget--toc">
+            <nav class="toc-nav" id="TableOfContents">
+                
+  <ol>
+    <li><a href="#가이드라인-원문">가이드라인 원문</a></li>
+    <li><a href="#상세-설명">상세 설명</a>
+      <ol>
+        <li><a href="#1-판단-기준">1. 판단 기준</a>
+          <ol>
+            <li><a href="#기본-판단-기준">기본 판단 기준</a></li>
+            <li><a href="#경계-케이스-edge-case-처리-방법">경계 케이스 (Edge Case) 처리 방법</a></li>
+            <li><a href="#권장-설정값">권장 설정값</a></li>
+          </ol>
+        </li>
+        <li><a href="#2-점검-방법">2. 점검 방법</a></li>
+        <li><a href="#3-조치-방법">3. 조치 방법</a></li>
+        <li><a href="#4-참고-자료">4. 참고 자료</a></li>
+        <li><a href="#5-스크립트">5. 스크립트</a></li>
+      </ol>
+    </li>
+  </ol>
+
+            </nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            
+            
+            
+            <a href="/categories/2026-%EC%A3%BC%EC%A0%95%ED%86%B5-%EA%B0%80%EC%9D%B4%EB%93%9C%EB%9D%BC%EC%9D%B8/" style="background-color: hsl(281, 60%, 84%); color: hsl(281, 60%, 15%);">
+                2026 주정통 가이드라인
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/s-22/">[2026 주요정보통신기반시설] S-22 SNMP Community String 복잡성 설정</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            SNMP Community String이 유추하기 어렵게 설정되어 있는지 점검
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2026-02-05T09:56:12&#43;09:00'>2026년 2월 5일 목요일</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    4 분 정도
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    
+    <aside class="article-toc">
+        <details>
+            <summary>
+                <div class="article-toc-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg>
+                    <span>목차</span>
+                </div>
+            </summary>
+            <nav class="toc-nav">
+                
+  <ol>
+    <li><a href="#가이드라인-원문">가이드라인 원문</a></li>
+    <li><a href="#상세-설명">상세 설명</a>
+      <ol>
+        <li><a href="#1-판단-기준">1. 판단 기준</a>
+          <ol>
+            <li><a href="#기본-판단-기준">기본 판단 기준</a></li>
+            <li><a href="#경계-케이스-edge-case-처리-방법">경계 케이스 (Edge Case) 처리 방법</a></li>
+            <li><a href="#권장-설정값">권장 설정값</a></li>
+          </ol>
+        </li>
+        <li><a href="#2-점검-방법">2. 점검 방법</a></li>
+        <li><a href="#3-조치-방법">3. 조치 방법</a></li>
+        <li><a href="#4-참고-자료">4. 참고 자료</a></li>
+        <li><a href="#5-스크립트">5. 스크립트</a></li>
+      </ol>
+    </li>
+  </ol>
+
+            </nav>
+        </details>
+    </aside>
+    
+
+    <section class="article-content">
+    
+    
+    <h1 id="s-22-snmp-community-string-복잡성-설정">S-22 SNMP Community String 복잡성 설정
+</h1><h2 id="가이드라인-원문">가이드라인 원문
+</h2><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>항목</th>
+          <th>내용</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>항목코드</strong></td>
+          <td>S-22</td>
+      </tr>
+      <tr>
+          <td><strong>점검내용</strong></td>
+          <td>SNMP Community String이 유추하기 어렵게 설정되어 있는지 점검</td>
+      </tr>
+      <tr>
+          <td><strong>점검대상</strong></td>
+          <td>방화벽, VPN, IDS, IPS, Anti-DDoS, 웹방화벽 등</td>
+      </tr>
+      <tr>
+          <td><strong>양호기준</strong></td>
+          <td>SNMP 서비스를 사용하지 않거나, 유추하기 어려운 Community String을 설정한 경우</td>
+      </tr>
+      <tr>
+          <td><strong>취약기준</strong></td>
+          <td>Community String을 기본값으로 사용하고 있거나, 유추하기 쉬운 Community String을 설정한 경우</td>
+      </tr>
+      <tr>
+          <td><strong>조치방법</strong></td>
+          <td>유추하기 어려운 Community String을 설정</td>
+      </tr>
+  </tbody>
+</table></div>
+<hr>
+<h2 id="상세-설명">상세 설명
+</h2><h3 id="1-판단-기준">1. 판단 기준
+</h3><h4 id="기본-판단-기준">기본 판단 기준
+</h4><p><strong>양호</strong></p>
+<ul>
+<li>SNMP 서비스를 사용하지 않거나, 유추하기 어려운 Community String을 설정한 경우</li>
+<li>Community String이 12자 이상이고 복잡한 경우</li>
+</ul>
+<p><strong>취약</strong></p>
+<ul>
+<li>Community String을 기본값으로 사용하고 있거나, 유추하기 쉬운 Community String을 설정한 경우</li>
+<li>기본값(public, private) 사용</li>
+</ul>
+<h4 id="경계-케이스-edge-case-처리-방법">경계 케이스 (Edge Case) 처리 방법
+</h4><ol>
+<li>
+<p><strong>SNMPv3 사용 환경</strong></p>
+<ul>
+<li>Community String 미사용</li>
+<li>사용자 인증 기반</li>
+</ul>
+</li>
+<li>
+<p><strong>레거시 장비</strong></p>
+<ul>
+<li>장비가 긴 Community String 지원 제한</li>
+<li>최대한 복잡하게 설정</li>
+</ul>
+</li>
+</ol>
+<h4 id="권장-설정값">권장 설정값
+</h4><ul>
+<li>최소 길이: 12자 이상 (권장 16자)</li>
+<li>복잡성: 영문 대소문자, 숫자, 특수문자 조합</li>
+<li>예시: K9$xP2@mQ5#vL</li>
+</ul>
+<h3 id="2-점검-방법">2. 점검 방법
+</h3><p><strong>Step 1) 보안 장비의 SNMP 설정 메뉴에서 Community String 확인</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Cisco ASA</span>
+</span></span><span class="line"><span class="cl">show running-config <span class="p">|</span> include snmp-server community
+</span></span><span class="line"><span class="cl"><span class="c1"># snmp-server community public RO    ← 취약 (기본값)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># snmp-server community private RW   ← 취약 (기본값)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Palo Alto Firewall</span>
+</span></span><span class="line"><span class="cl">show config <span class="p">|</span> match community
+</span></span><span class="line"><span class="cl"><span class="c1"># ↑ Community String 확인</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Web 방화벽</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># System &gt; Configuration &gt; SNMP</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Community String: ******** (표시됨)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Step 2) 취약한 Community String 확인</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 취약한 예시</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># - public (RO 기본값)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># - private (RW 기본값)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># - admin</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># - password</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># - cisco</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># - companyname</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># - 1234</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># - test</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># - 약한 패턴 (단순 반복 등)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="3-조치-방법">3. 조치 방법
+</h3><p><strong>Step 1) 보안 장비는 SNMP 취약성이 존재하므로 누구나 추측하기 어렵고 의미가 없는 문자열, 영문자 혼합으로 변경</strong></p>
+<p><strong>강력한 Community String 설정:</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 1. 기존 설정 제거</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Cisco ASA</span>
+</span></span><span class="line"><span class="cl">no snmp-server community public
+</span></span><span class="line"><span class="cl">no snmp-server community private
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 2. 강력한 Community String 설정</span>
+</span></span><span class="line"><span class="cl">snmp-server community K9<span class="nv">$xP2</span>@mQ5#vL7!n RO
+</span></span><span class="line"><span class="cl">snmp-server community R8<span class="p">&amp;</span>wQ9@zP3#mK6<span class="nv">$n</span> RW  ← RW는 정말 필요한 경우만
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 3. 특정 IP만 접속 허용</span>
+</span></span><span class="line"><span class="cl">snmp-server host inside 192.168.1.10 K9<span class="nv">$xP2</span>@mQ5#vL7!n
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 4. 확인</span>
+</span></span><span class="line"><span class="cl">show running-config <span class="p">|</span> include snmp-server community
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Palo Alto Firewall Community String 변경:</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 1. Web GUI 설정</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Device &gt; Setup &gt; Management &gt; SNMP</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 2. Community String 변경</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># - Old: public</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># - New: Xn8$vQ2@pM5#kL9!z</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 3. SNMPv3 설정 (더 나은 선택)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># - User: admin</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># - Authentication Protocol: SHA</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># - Auth Password: (강력한 비밀번호)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># - Privacy Protocol: AES</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># - Priv Password: (강력한 비밀번호)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 4. 커밋</span>
+</span></span><span class="line"><span class="cl">commit
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Step 2) SNMPv3로의 업그레이드</strong></p>
+<p><strong>SNMPv3 사용 권장:</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># SNMPv3 장점</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># - 암호화 지원 (Privacy)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># - 인증 지원 (Authentication)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># - Community String 미사용</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># - 높은 보안성</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Cisco ASA SNMPv3 설정</span>
+</span></span><span class="line"><span class="cl">snmp-server group SNMPv3-GROUP v3 priv
+</span></span><span class="line"><span class="cl">snmp-server user admin SNMPv3-GROUP v3 auth sha AuthP@ssw0rd123 priv aes <span class="m">128</span> PrivP@ssw0rd123
+</span></span><span class="line"><span class="cl">snmp-server host inside 192.168.1.10 informs version <span class="m">3</span> priv admin
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Palo Alto Firewall SNMPv3 설정</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Device &gt; Setup &gt; Management &gt; SNMP</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># - SNMP Version: v3</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># - User: snmpadmin</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># - Auth Password: (강력한 비밀번호)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># - Priv Password: (강력한 비밀번호)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="4-참고-자료">4. 참고 자료
+</h3><p><strong>강력한 Community String 작성 가이드</strong></p>
+<p><strong>복잡성 요구사항:</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 1. 최소 길이: 12자 이상 (권장 16자 이상)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 2. 문자 종류: 3가지 이상 혼합</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#    - 영문 대문자 (A-Z)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#    - 영문 소문자 (a-z)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#    - 숫자 (0-9)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#    - 특수문자 (!@#$%^&amp;* 등)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 3. 예측 불가: 의미 없는 난수 조합</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 4. 유일성: 다른 시스템과 중복 금지</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>좋은 예시:</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 강력한 Community String</span>
+</span></span><span class="line"><span class="cl">K9<span class="nv">$xP2</span>@mQ5#vL7!n
+</span></span><span class="line"><span class="cl">Xn8<span class="nv">$vQ2</span>@pM5#kL9!zR3
+</span></span><span class="line"><span class="cl">Rw9<span class="p">&amp;</span>kQ3@zM7#pJ6!xN2
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 특징</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># - 16자 이상</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># - 영문 대소문자, 숫자, 특수문자 혼합</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># - 의미 없는 난수</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># - 유추 불가</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>나쁜 예시:</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 취약한 Community String</span>
+</span></span><span class="line"><span class="cl">public          ← 기본값
+</span></span><span class="line"><span class="cl">private         ← 기본값
+</span></span><span class="line"><span class="cl">admin           ← 유추 쉬움
+</span></span><span class="line"><span class="cl">password        ← 유추 쉬움
+</span></span><span class="line"><span class="cl">cisco123        ← 회사명 + 숫자
+</span></span><span class="line"><span class="cl">test2024        ← 의미 있는 단어
+</span></span><span class="line"><span class="cl">abc123          ← 너무 짧음
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>추가 보안 조치</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 1. 접근 제어</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># - 특정 IP만 허용</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># - 관리 네트워크만 접속 허용</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># - ACL 적용</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 2. RO 권한만 사용</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># - RW는 정말 필요한 경우만</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># - 가능한 RO만 사용</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 3. SNMPv3로 마이그레이션</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># - 장기적으로 v3로 전환</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># - 점진적 마이그레이션</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 4. 정기 변경</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># - Community String 주기적 변경</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># - 6개월~1년 주기</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>주의사항</strong></p>
+<ul>
+<li>일반적인 경우 영향이 없습니다.</li>
+<li><strong>영향도 확인</strong>: Community String 변경 시 NMS 등 연동 시스템에 영향을 미칩니다.</li>
+<li><strong>변경 전 협의</strong>: NMS 관리자와 변경 일정을 협의하세요.</li>
+<li><strong>동시 변경</strong>: 모든 장비의 Community String을 동시에 변경하세요.</li>
+<li><strong>백업</strong>: 변경 전 설정을 백업하세요.</li>
+<li><strong>테스트</strong>: 변경 후 SNMP 동작을 테스트하세요.</li>
+<li><strong>SNMPv3 고려</strong>: 새로운 구축은 SNMPv3를 사용하세요.</li>
+</ul>
+<h3 id="5-스크립트">5. 스크립트
+</h3><ul>
+<li><a class="link" href="https://rebugui.tistory.com/1192"  target="_blank" rel="noopener"
+    >취약점 점검 스크립트</a>
+<ul>
+<li>이 스크립트는 KISA 주요정보통신기반시설 기술적 취약점 분석·평가 가이드라인(2026)을 준수하여 제작된 자동 점검 도구입니다. 복잡한 단일 파일 방식이 아닌 모듈화된 구조로 설계되어 유지보수가 쉽고 확장이 용이합니다.</li>
+<li>다양한 환경에서 테스트를 진행했으나, 혹시 점검 로직에 이슈가 발견되거나 개선이 필요한 경우 적극적인 제보를 부탁드립니다.</li>
+</ul>
+</li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/2026-%EC%A3%BC%EC%A0%95%ED%86%B5-%EA%B0%80%EC%9D%B4%EB%93%9C%EB%9D%BC%EC%9D%B8/">2026 주정통 가이드라인</a>
+        
+            <a href="/tags/security/">Security</a>
+        
+    </section>
+
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">관련 글</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/s-03/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[2026 주요정보통신기반시설] S-03 보안장비 계정별 권한 설정</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/s-05/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[2026 주요정보통신기반시설] S-05 계정잠금 임계값 설정</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/s-12/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[2026 주요정보통신기반시설] S-12 보안장비 정책 백업 설정</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/s-15/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[2026 주요정보통신기반시설] S-15 정책 관리</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/s-17/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[2026 주요정보통신기반시설] S-17 DMZ 설정</h2>
+        </div>
+    </a>
+</article>
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025 - 
+        
+        2026 코딩이 싫은 거북이
+    </section>
+    
+    <section class="powerby">
+        <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>로 만듦 <br />
+        <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>의 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="4.0.0">Stack</a></b> 테마 사용 중
+    </section>
+</footer>
+
+
+    
+
+
+
+<script type="module">
+    import gallery from '\/ts\/gallery.js';
+
+    const articleContent = document.querySelector('.article-content');
+    const shouldLoad = articleContent && (articleContent.querySelectorAll('figure').length > 0 || articleContent.querySelectorAll('img.gallery-image').length > 0);
+    
+    if (shouldLoad) {
+        gallery(articleContent);
+
+        const PhotoSwipeLightbox = (await import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js")).default;
+        const styleHref = "https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.css";
+
+        const styleTag = document.createElement('link');
+        styleTag.rel = 'stylesheet';
+        styleTag.href = styleHref;
+        document.head.appendChild(styleTag);
+
+        const lightbox = new PhotoSwipeLightbox({
+            gallerySelector: '.article-content',
+            childSelector: 'figure a.image-link',
+            pswpModule: () => import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js")
+        });
+        lightbox.init();
+    }
+</script>
+    
+
+            </main>
+        </div>
+        <script type="text/javascript" src="/ts/main.387bdf6159ab34d0743ebd228aa9248d1ed2380fa5193ceff9ffdbf345b5309d.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

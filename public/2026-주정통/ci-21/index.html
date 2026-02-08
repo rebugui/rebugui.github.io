@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="ko-kr" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="PUT,DELETE,TRACE등불필요한HTTP메소드의악용여부확인">
+<title>[2026 주요정보통신기반시설] CI-21 불필요한Method악용(Unnecessary HTTP Methods)</title>
+
+<link rel='canonical' href='http://localhost:1313/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ci-21/'>
+
+<link rel="stylesheet" href="/scss/style.min.51098b80cc297c94c0f57786d4a04e7372774e5993b60facf53870128a79bf73.css"><meta property='og:title' content="[2026 주요정보통신기반시설] CI-21 불필요한Method악용(Unnecessary HTTP Methods)">
+<meta property='og:description' content="PUT,DELETE,TRACE등불필요한HTTP메소드의악용여부확인">
+<meta property='og:url' content='http://localhost:1313/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ci-21/'>
+<meta property='og:site_name' content='코딩이 싫은 거북이'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='2026 주정통 가이드라인' /><meta property='article:tag' content='Web' /><meta property='article:published_time' content='2026-02-05T09:56:13&#43;09:00'/><meta property='article:modified_time' content='2026-02-05T09:56:13&#43;09:00'/>
+<meta name="twitter:title" content="[2026 주요정보통신기반시설] CI-21 불필요한Method악용(Unnecessary HTTP Methods)">
+<meta name="twitter:description" content="PUT,DELETE,TRACE등불필요한HTTP메소드의악용여부확인">
+    <link rel="shortcut icon" href="/img/avatar.png" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BDJ5ZPHH5Z"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-BDJ5ZPHH5Z');
+</script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7440869759073353"
+     crossorigin="anonymous"></script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="메뉴 여닫기">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        <figure class="site-avatar">
+                <a href="/">
+                    <img src="/img/avatar.png" 
+                        width="2048"
+                        height="2048"
+                        class="site-logo"
+                        loading="lazy"
+                        alt="Avatar">
+                </a>
+                
+                    <span class="emoji">🐢</span>
+                
+            </figure>
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">코딩이 싫은 거북이</a></h1>
+            <h2 class="site-description">Clean, responsive Hugo theme</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/rebugui'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/page/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/page/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/page/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/page/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>다크 모드</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">목차</h2>
+        
+        <div class="widget--toc">
+            <nav class="toc-nav" id="TableOfContents">
+                
+  <ol>
+    <li><a href="#가이드라인-원문">가이드라인 원문</a></li>
+    <li><a href="#상세-설명">상세 설명</a>
+      <ol>
+        <li><a href="#1-판단-기준">1. 판단 기준</a>
+          <ol>
+            <li><a href="#기본-판단-기준">기본 판단 기준</a></li>
+            <li><a href="#경계-케이스-edge-case-처리-방법">경계 케이스 (Edge Case) 처리 방법</a></li>
+            <li><a href="#권장-설정값">권장 설정값</a></li>
+          </ol>
+        </li>
+        <li><a href="#2-점검-방법">2. 점검 방법</a>
+          <ol>
+            <li><a href="#step-1-put-메소드-테스트">Step 1: PUT 메소드 테스트</a></li>
+            <li><a href="#step-2-delete-메소드-테스트">Step 2: DELETE 메소드 테스트</a></li>
+            <li><a href="#step-3-trace-메소드-테스트">Step 3: TRACE 메소드 테스트</a></li>
+          </ol>
+        </li>
+        <li><a href="#3-조치-방법">3. 조치 방법</a>
+          <ol>
+            <li><a href="#1-apache-서버">1. Apache 서버</a></li>
+            <li><a href="#2-nginx-서버">2. Nginx 서버</a></li>
+            <li><a href="#3-tomcat-서버">3. Tomcat 서버</a></li>
+            <li><a href="#4-iis-서버">4. IIS 서버</a></li>
+            <li><a href="#5-애플리케이션-레벨-제한">5. 애플리케이션 레벨 제한</a></li>
+          </ol>
+        </li>
+        <li><a href="#4-참고-자료">4. 참고 자료</a></li>
+        <li><a href="#5-스크립트">5. 스크립트</a></li>
+      </ol>
+    </li>
+  </ol>
+
+            </nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            
+            
+            
+            <a href="/categories/2026-%EC%A3%BC%EC%A0%95%ED%86%B5-%EA%B0%80%EC%9D%B4%EB%93%9C%EB%9D%BC%EC%9D%B8/" style="background-color: hsl(281, 60%, 84%); color: hsl(281, 60%, 15%);">
+                2026 주정통 가이드라인
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ci-21/">[2026 주요정보통신기반시설] CI-21 불필요한Method악용(Unnecessary HTTP Methods)</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            PUT,DELETE,TRACE등불필요한HTTP메소드의악용여부확인
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2026-02-05T09:56:13&#43;09:00'>2026년 2월 5일 목요일</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    4 분 정도
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    
+    <aside class="article-toc">
+        <details>
+            <summary>
+                <div class="article-toc-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg>
+                    <span>목차</span>
+                </div>
+            </summary>
+            <nav class="toc-nav">
+                
+  <ol>
+    <li><a href="#가이드라인-원문">가이드라인 원문</a></li>
+    <li><a href="#상세-설명">상세 설명</a>
+      <ol>
+        <li><a href="#1-판단-기준">1. 판단 기준</a>
+          <ol>
+            <li><a href="#기본-판단-기준">기본 판단 기준</a></li>
+            <li><a href="#경계-케이스-edge-case-처리-방법">경계 케이스 (Edge Case) 처리 방법</a></li>
+            <li><a href="#권장-설정값">권장 설정값</a></li>
+          </ol>
+        </li>
+        <li><a href="#2-점검-방법">2. 점검 방법</a>
+          <ol>
+            <li><a href="#step-1-put-메소드-테스트">Step 1: PUT 메소드 테스트</a></li>
+            <li><a href="#step-2-delete-메소드-테스트">Step 2: DELETE 메소드 테스트</a></li>
+            <li><a href="#step-3-trace-메소드-테스트">Step 3: TRACE 메소드 테스트</a></li>
+          </ol>
+        </li>
+        <li><a href="#3-조치-방법">3. 조치 방법</a>
+          <ol>
+            <li><a href="#1-apache-서버">1. Apache 서버</a></li>
+            <li><a href="#2-nginx-서버">2. Nginx 서버</a></li>
+            <li><a href="#3-tomcat-서버">3. Tomcat 서버</a></li>
+            <li><a href="#4-iis-서버">4. IIS 서버</a></li>
+            <li><a href="#5-애플리케이션-레벨-제한">5. 애플리케이션 레벨 제한</a></li>
+          </ol>
+        </li>
+        <li><a href="#4-참고-자료">4. 참고 자료</a></li>
+        <li><a href="#5-스크립트">5. 스크립트</a></li>
+      </ol>
+    </li>
+  </ol>
+
+            </nav>
+        </details>
+    </aside>
+    
+
+    <section class="article-content">
+    
+    
+    <h1 id="불필요한method악용unnecessary-http-methods">불필요한Method악용(Unnecessary HTTP Methods)
+</h1><h2 id="가이드라인-원문">가이드라인 원문
+</h2><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>항목</th>
+          <th>내용</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>항목코드</strong></td>
+          <td>CI-21</td>
+      </tr>
+      <tr>
+          <td><strong>점검내용</strong></td>
+          <td>PUT,DELETE,TRACE등불필요한HTTP메소드의악용여부확인</td>
+      </tr>
+      <tr>
+          <td><strong>점검대상</strong></td>
+          <td>웹 애플리케이션 서버</td>
+      </tr>
+      <tr>
+          <td><strong>양호기준</strong></td>
+          <td>웹 애플리케이션에 불필요한 메소드(PUT, DELETE, TRACE, CONNECT 등)로 변조한 요청 패킷전송시해당메소드를통하여임의의행위로부터악용이제한되는경우</td>
+      </tr>
+      <tr>
+          <td><strong>취약기준</strong></td>
+          <td>웹 애플리케이션에 불필요한 메소드(PUT, DELETE, TRACE, CONNECT 등)로 변조한 요청 패킷전송시해당메소드를통하여임의의행위에대한악용이가능한경우</td>
+      </tr>
+      <tr>
+          <td><strong>조치방법</strong></td>
+          <td>WEB/WAS의설정파일을변경하여불필요한메소드의사용을제한</td>
+      </tr>
+  </tbody>
+</table></div>
+<hr>
+<h2 id="상세-설명">상세 설명
+</h2><h3 id="1-판단-기준">1. 판단 기준
+</h3><h4 id="기본-판단-기준">기본 판단 기준
+</h4><ul>
+<li><strong>양호</strong>: 웹 애플리케이션에 불필요한 메소드(PUT, DELETE, TRACE, CONNECT 등)로 변조한 요청 패킷 전송 시 해당 메소드를 통하여 임의의 행위로부터 악용이 제한되는 경우</li>
+<li><strong>취약</strong>: 웹 애플리케이션에 불필요한 메소드(PUT, DELETE, TRACE, CONNECT 등)로 변조한 요청 패킷 전송 시 해당 메소드를 통하여 임의의 행위에 대한 악용이 가능한 경우</li>
+</ul>
+<h4 id="경계-케이스-edge-case-처리-방법">경계 케이스 (Edge Case) 처리 방법
+</h4><ul>
+<li>일반적인 경우 영향 없음</li>
+<li>RESTful API에서 PUT, DELETE를 사용하는 경우 괜찮음</li>
+<li>단, WebDAV는 비활성화 권장</li>
+</ul>
+<h4 id="권장-설정값">권장 설정값
+</h4><ul>
+<li>TRACE 메소드: 반드시 비활성화</li>
+<li>WebDAV (PUT, DELETE): 필요한 경우에만 사용</li>
+<li>CONNECT: 비활성화 권장</li>
+</ul>
+<h3 id="2-점검-방법">2. 점검 방법
+</h3><h4 id="step-1-put-메소드-테스트">Step 1: PUT 메소드 테스트
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">PUT 메소드를 사용하여 악성 파일(Server Side Script, 악성 스크립트 등) 생성 시도
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="step-2-delete-메소드-테스트">Step 2: DELETE 메소드 테스트
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">DELETE 메소드를 사용하여 서버에 저장된 임의의 데이터 삭제 가능
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="step-3-trace-메소드-테스트">Step 3: TRACE 메소드 테스트
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">TRACE 메소드를 사용하여 쿠키 탈취 가능 여부 확인
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="3-조치-방법">3. 조치 방법
+</h3><h4 id="1-apache-서버">1. Apache 서버
+</h4><p><strong>WebDAV 비활성화:</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># WebDAV 모듈 비활성화</span>
+</span></span><span class="line"><span class="cl">sudo a2dismod dav
+</span></span><span class="line"><span class="cl">sudo a2dismod dav_fs
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>PUT, DELETE 메소드 제한:</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-apache" data-lang="apache"><span class="line"><span class="cl"><span class="nt">&lt;Directory</span> <span class="s">&#34;/var/www/html&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">Dav</span> <span class="k">Off</span>  # WebDAV 비활성화
+</span></span><span class="line"><span class="cl">    <span class="nb">Options</span> FollowSymLinks
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c"># PUT, DELETE 메소드 사용 금지</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;LimitExcept</span> <span class="s">GET POST OPTIONS</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">Order</span> Allow,Deny
+</span></span><span class="line"><span class="cl">        <span class="nb">Deny</span> from <span class="k">all</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/LimitExcept&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/Directory&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>TRACE 메소드 비활성화:</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-apache" data-lang="apache"><span class="line"><span class="cl"><span class="c"># /etc/apache2/apache2.conf 또는 httpd.conf</span>
+</span></span><span class="line"><span class="cl"><span class="nb">TraceEnable</span> <span class="k">Off</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>CONNECT 메소드 비활성화:</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-apache" data-lang="apache"><span class="line"><span class="cl"><span class="nt">&lt;IfModule</span> <span class="s">mod_rewrite.c</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">RewriteEngine</span> <span class="k">On</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">RewriteCond</span> %{REQUEST_METHOD} ^CONNECT
+</span></span><span class="line"><span class="cl">    <span class="nb">RewriteRule</span> .* - [F]
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/IfModule&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="2-nginx-서버">2. Nginx 서버
+</h4><p><strong>WebDAV 비활성화:</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">location</span> <span class="s">/dav/</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># dav_methods 지시어 제거
+</span></span></span><span class="line"><span class="cl">    <span class="c1"># dav_methods PUT DELETE MKCOL COPY MOVE;
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>TRACE 메소드 비활성화:</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="c1"># Nginx 0.5.17 이후 버전은 기본적으로 TRACE 비활성화
+</span></span></span><span class="line"><span class="cl"><span class="c1"># 명시적으로 설정하려면:
+</span></span></span><span class="line"><span class="cl"><span class="k">server</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">if</span> <span class="s">(</span><span class="nv">$request_method</span> <span class="p">=</span> <span class="s">TRACE)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">return</span> <span class="mi">405</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="3-tomcat-서버">3. Tomcat 서버
+</h4><p><strong>WebDAV 비활성화:</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="c">&lt;!-- server.xml 또는 context.xml --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!-- webdav 서블릿 제거 또는 readonly 설정 --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;servlet&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;servlet-name&gt;</span>webdav<span class="nt">&lt;/servlet-name&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;servlet-class&gt;</span>org.apache.catalina.servlets.WebdavServlet<span class="nt">&lt;/servlet-class&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;init-param&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;param-name&gt;</span>readonly<span class="nt">&lt;/param-name&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;param-value&gt;</span>true<span class="nt">&lt;/param-value&gt;</span>  <span class="c">&lt;!-- 쓰기 권한 제거 --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/init-param&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/servlet&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>TRACE 메소드 비활성화:</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="c">&lt;!-- server.xml --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;Connector</span> <span class="na">port=</span><span class="s">&#34;8080&#34;</span> <span class="na">protocol=</span><span class="s">&#34;HTTP/1.1&#34;</span>
+</span></span><span class="line"><span class="cl">           <span class="na">connectionTimeout=</span><span class="s">&#34;20000&#34;</span>
+</span></span><span class="line"><span class="cl">           <span class="na">redirectPort=</span><span class="s">&#34;8443&#34;</span>
+</span></span><span class="line"><span class="cl">           <span class="na">allowTrace=</span><span class="s">&#34;false&#34;</span> <span class="nt">/&gt;</span>  <span class="c">&lt;!-- 설정 제거 또는 false로 설정 --&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="4-iis-서버">4. IIS 서버
+</h4><p><strong>IIS 6.0 이하:</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1. 레지스트리 편집기 열기
+</span></span><span class="line"><span class="cl">2. HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\W3SVC\Parameters
+</span></span><span class="line"><span class="cl">3. 새 DWORD 값: DisableWebDAV = 1
+</span></span><span class="line"><span class="cl">4. IIS 재시작
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>IIS 7.0 이상:</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1. IIS 관리자 실행
+</span></span><span class="line"><span class="cl">2. 요청 필터링 → HTTP 동사 → 동사 거부
+</span></span><span class="line"><span class="cl">3. TRACE 추가
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">또는 WebDAV 역할 서비스 비활성화
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="5-애플리케이션-레벨-제한">5. 애플리케이션 레벨 제한
+</h4><p><strong>Spring Boot 예시:</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Configuration</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">WebSecurityConfig</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Bean</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">FilterRegistrationBean</span><span class="o">&lt;</span><span class="n">MethodFilter</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">methodFilter</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">FilterRegistrationBean</span><span class="o">&lt;</span><span class="n">MethodFilter</span><span class="o">&gt;</span><span class="w"> </span><span class="n">registration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FilterRegistrationBean</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">registration</span><span class="p">.</span><span class="na">setFilter</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">MethodFilter</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">registration</span><span class="p">.</span><span class="na">addUrlPatterns</span><span class="p">(</span><span class="s">&#34;/*&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">registration</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MethodFilter</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Filter</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ALLOWED_METHODS</span><span class="w"> </span><span class="o">=</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Set</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">&#34;GET&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;POST&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;HEAD&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;OPTIONS&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">doFilter</span><span class="p">(</span><span class="n">ServletRequest</span><span class="w"> </span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">ServletResponse</span><span class="w"> </span><span class="n">response</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                        </span><span class="n">FilterChain</span><span class="w"> </span><span class="n">chain</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="p">,</span><span class="w"> </span><span class="n">ServletException</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">HttpServletRequest</span><span class="w"> </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">HttpServletRequest</span><span class="p">)</span><span class="w"> </span><span class="n">request</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">req</span><span class="p">.</span><span class="na">getMethod</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">ALLOWED_METHODS</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">method</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">((</span><span class="n">HttpServletResponse</span><span class="p">)</span><span class="w"> </span><span class="n">response</span><span class="p">).</span><span class="na">sendError</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">HttpServletResponse</span><span class="p">.</span><span class="na">SC_METHOD_NOT_ALLOWED</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="s">&#34;Method Not Allowed&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">return</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">chain</span><span class="p">.</span><span class="na">doFilter</span><span class="p">(</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="4-참고-자료">4. 참고 자료
+</h3><p><strong>HTTP 메소드:</strong></p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>메소드</th>
+          <th>용도</th>
+          <th>위험성</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>GET</td>
+          <td>리소스 조회</td>
+          <td>안전함</td>
+      </tr>
+      <tr>
+          <td>POST</td>
+          <td>리소스 생성</td>
+          <td>안전함</td>
+      </tr>
+      <tr>
+          <td>HEAD</td>
+          <td>헤더만 조회</td>
+          <td>안전함</td>
+      </tr>
+      <tr>
+          <td>OPTIONS</td>
+          <td>통신 옵션 확인</td>
+          <td>안전함</td>
+      </tr>
+      <tr>
+          <td>PUT</td>
+          <td>리소스 업데이트/생성</td>
+          <td>파일 업로드 가능</td>
+      </tr>
+      <tr>
+          <td>DELETE</td>
+          <td>리소스 삭제</td>
+          <td>데이터 삭제 가능</td>
+      </tr>
+      <tr>
+          <td>TRACE</td>
+          <td>요청 반향</td>
+          <td>쿠키 탈취 가능</td>
+      </tr>
+      <tr>
+          <td>CONNECT</td>
+          <td>프록시 터널</td>
+          <td>프록시 악용 가능</td>
+      </tr>
+      <tr>
+          <td>PATCH</td>
+          <td>부분 업데이트</td>
+          <td>일부 공격 가능</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><strong>XST (Cross-Site Tracing) 공격:</strong></p>
+<ul>
+<li>TRACE 메소드를 악용</li>
+<li>HttpOnly 쿠키 탈취 가능</li>
+<li>모든 최신 브라우저에서 TRACE 비활성화됨</li>
+</ul>
+<p><strong>RESTful API 사용 시:</strong></p>
+<ul>
+<li>PUT, DELETE를 사용해도 됨</li>
+<li>하지만 인증과 권한 검증 필수</li>
+<li>입력값 검증 필수</li>
+</ul>
+<p><strong>WebDAV 사용 시:</strong></p>
+<ul>
+<li>망 분리된 내부망에서만 사용</li>
+<li>적절한 인증 절차 필요</li>
+<li>쓰기 권한 최소화</li>
+</ul>
+<h3 id="5-스크립트">5. 스크립트
+</h3><ul>
+<li><a class="link" href="https://rebugui.tistory.com/1192"  target="_blank" rel="noopener"
+    >취약점 점검 스크립트</a>
+<ul>
+<li>이 스크립트는 KISA 주요정보통신기반시설 기술적 취약점 분석·평가 가이드라인(2026)을 준수하여 제작된 자동 점검 도구입니다. 복잡한 단일 파일 방식이 아닌 모듈화된 구조로 설계되어 유지보수가 쉽고 확장이 용이합니다.</li>
+<li>다양한 환경에서 테스트를 진행했으나, 혹시 점검 로직에 이슈가 발견되거나 개선이 필요한 경우 적극적인 제보를 부탁드립니다.</li>
+</ul>
+</li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/2026-%EC%A3%BC%EC%A0%95%ED%86%B5-%EA%B0%80%EC%9D%B4%EB%93%9C%EB%9D%BC%EC%9D%B8/">2026 주정통 가이드라인</a>
+        
+            <a href="/tags/web/">Web</a>
+        
+    </section>
+
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">관련 글</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ci-01/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[2026 주요정보통신기반시설] CI-01 코드인젝션(Code Injection)</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ci-02/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[2026 주요정보통신기반시설] CI-02 SQL 인젝션(SQL Injection)</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ci-03/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[2026 주요정보통신기반시설] CI-03 디렉터리인덱싱(Directory Indexing)</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ci-04/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[2026 주요정보통신기반시설] CI-04 에러페이지적용미흡(Inadequate Error Handling)</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ci-05/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[2026 주요정보통신기반시설] CI-05 정보누출(Information Disclosure)</h2>
+        </div>
+    </a>
+</article>
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025 - 
+        
+        2026 코딩이 싫은 거북이
+    </section>
+    
+    <section class="powerby">
+        <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>로 만듦 <br />
+        <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>의 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="4.0.0">Stack</a></b> 테마 사용 중
+    </section>
+</footer>
+
+
+    
+
+
+
+<script type="module">
+    import gallery from '\/ts\/gallery.js';
+
+    const articleContent = document.querySelector('.article-content');
+    const shouldLoad = articleContent && (articleContent.querySelectorAll('figure').length > 0 || articleContent.querySelectorAll('img.gallery-image').length > 0);
+    
+    if (shouldLoad) {
+        gallery(articleContent);
+
+        const PhotoSwipeLightbox = (await import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js")).default;
+        const styleHref = "https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.css";
+
+        const styleTag = document.createElement('link');
+        styleTag.rel = 'stylesheet';
+        styleTag.href = styleHref;
+        document.head.appendChild(styleTag);
+
+        const lightbox = new PhotoSwipeLightbox({
+            gallerySelector: '.article-content',
+            childSelector: 'figure a.image-link',
+            pswpModule: () => import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js")
+        });
+        lightbox.init();
+    }
+</script>
+    
+
+            </main>
+        </div>
+        <script type="text/javascript" src="/ts/main.387bdf6159ab34d0743ebd228aa9248d1ed2380fa5193ceff9ffdbf345b5309d.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="ko-kr" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="코어덤프수집기능활성화여부점검">
+<title>[2026 주요정보통신기반시설] HV-17 코어 덤프 수집 기능 활성화</title>
+
+<link rel='canonical' href='http://localhost:1313/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/hv-17/'>
+
+<link rel="stylesheet" href="/scss/style.min.51098b80cc297c94c0f57786d4a04e7372774e5993b60facf53870128a79bf73.css"><meta property='og:title' content="[2026 주요정보통신기반시설] HV-17 코어 덤프 수집 기능 활성화">
+<meta property='og:description' content="코어덤프수집기능활성화여부점검">
+<meta property='og:url' content='http://localhost:1313/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/hv-17/'>
+<meta property='og:site_name' content='코딩이 싫은 거북이'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='2026 주정통 가이드라인' /><meta property='article:tag' content='Virtualization' /><meta property='article:published_time' content='2026-02-05T09:56:13&#43;09:00'/><meta property='article:modified_time' content='2026-02-05T09:56:13&#43;09:00'/>
+<meta name="twitter:title" content="[2026 주요정보통신기반시설] HV-17 코어 덤프 수집 기능 활성화">
+<meta name="twitter:description" content="코어덤프수집기능활성화여부점검">
+    <link rel="shortcut icon" href="/img/avatar.png" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BDJ5ZPHH5Z"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-BDJ5ZPHH5Z');
+</script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7440869759073353"
+     crossorigin="anonymous"></script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="메뉴 여닫기">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        <figure class="site-avatar">
+                <a href="/">
+                    <img src="/img/avatar.png" 
+                        width="2048"
+                        height="2048"
+                        class="site-logo"
+                        loading="lazy"
+                        alt="Avatar">
+                </a>
+                
+                    <span class="emoji">🐢</span>
+                
+            </figure>
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">코딩이 싫은 거북이</a></h1>
+            <h2 class="site-description">Clean, responsive Hugo theme</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/rebugui'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/page/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/page/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/page/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/page/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>다크 모드</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">목차</h2>
+        
+        <div class="widget--toc">
+            <nav class="toc-nav" id="TableOfContents">
+                
+  <ol>
+    <li><a href="#가이드라인-원문">가이드라인 원문</a></li>
+    <li><a href="#상세-설명">상세 설명</a>
+      <ol>
+        <li><a href="#1-항목-개요">1. 항목 개요</a></li>
+        <li><a href="#2-왜-이-항목이-필요한가요">2. 왜 이 항목이 필요한가요?</a></li>
+        <li><a href="#3-점검-대상">3. 점검 대상</a></li>
+        <li><a href="#4-판단-기준">4. 판단 기준</a></li>
+        <li><a href="#5-점검-방법">5. 점검 방법</a>
+          <ol>
+            <li><a href="#vmware-esxi">VMware ESXi</a></li>
+          </ol>
+        </li>
+        <li><a href="#6-조치-방법">6. 조치 방법</a>
+          <ol>
+            <li><a href="#vmware-esxi-1">VMware ESXi</a></li>
+          </ol>
+        </li>
+        <li><a href="#7-vsphere-network-dump-collector-설정">7. vSphere Network Dump Collector 설정</a></li>
+        <li><a href="#8-코어-덤프-파일-구조">8. 코어 덤프 파일 구조</a></li>
+        <li><a href="#9-대체-코어-덤프-방법">9. 대체 코어 덤프 방법</a></li>
+        <li><a href="#10-코어-덤프-분석">10. 코어 덤프 분석</a></li>
+        <li><a href="#11-스토리지-계획">11. 스토리지 계획</a></li>
+        <li><a href="#12-모니터링">12. 모니터링</a></li>
+        <li><a href="#13-주의사항">13. 주의사항</a></li>
+        <li><a href="#14-테스트-및-검증">14. 테스트 및 검증</a></li>
+      </ol>
+    </li>
+    <li><a href="#요약">요약</a></li>
+  </ol>
+
+            </nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            
+            
+            
+            <a href="/categories/2026-%EC%A3%BC%EC%A0%95%ED%86%B5-%EA%B0%80%EC%9D%B4%EB%93%9C%EB%9D%BC%EC%9D%B8/" style="background-color: hsl(281, 60%, 84%); color: hsl(281, 60%, 15%);">
+                2026 주정통 가이드라인
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/hv-17/">[2026 주요정보통신기반시설] HV-17 코어 덤프 수집 기능 활성화</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            코어덤프수집기능활성화여부점검
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2026-02-05T09:56:13&#43;09:00'>2026년 2월 5일 목요일</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    4 분 정도
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    
+    <aside class="article-toc">
+        <details>
+            <summary>
+                <div class="article-toc-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg>
+                    <span>목차</span>
+                </div>
+            </summary>
+            <nav class="toc-nav">
+                
+  <ol>
+    <li><a href="#가이드라인-원문">가이드라인 원문</a></li>
+    <li><a href="#상세-설명">상세 설명</a>
+      <ol>
+        <li><a href="#1-항목-개요">1. 항목 개요</a></li>
+        <li><a href="#2-왜-이-항목이-필요한가요">2. 왜 이 항목이 필요한가요?</a></li>
+        <li><a href="#3-점검-대상">3. 점검 대상</a></li>
+        <li><a href="#4-판단-기준">4. 판단 기준</a></li>
+        <li><a href="#5-점검-방법">5. 점검 방법</a>
+          <ol>
+            <li><a href="#vmware-esxi">VMware ESXi</a></li>
+          </ol>
+        </li>
+        <li><a href="#6-조치-방법">6. 조치 방법</a>
+          <ol>
+            <li><a href="#vmware-esxi-1">VMware ESXi</a></li>
+          </ol>
+        </li>
+        <li><a href="#7-vsphere-network-dump-collector-설정">7. vSphere Network Dump Collector 설정</a></li>
+        <li><a href="#8-코어-덤프-파일-구조">8. 코어 덤프 파일 구조</a></li>
+        <li><a href="#9-대체-코어-덤프-방법">9. 대체 코어 덤프 방법</a></li>
+        <li><a href="#10-코어-덤프-분석">10. 코어 덤프 분석</a></li>
+        <li><a href="#11-스토리지-계획">11. 스토리지 계획</a></li>
+        <li><a href="#12-모니터링">12. 모니터링</a></li>
+        <li><a href="#13-주의사항">13. 주의사항</a></li>
+        <li><a href="#14-테스트-및-검증">14. 테스트 및 검증</a></li>
+      </ol>
+    </li>
+    <li><a href="#요약">요약</a></li>
+  </ol>
+
+            </nav>
+        </details>
+    </aside>
+    
+
+    <section class="article-content">
+    
+    
+    <h1 id="hv-17-코어-덤프-수집-기능-활성화">HV-17 코어 덤프 수집 기능 활성화
+</h1><h2 id="가이드라인-원문">가이드라인 원문
+</h2><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>항목</th>
+          <th>내용</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>항목코드</strong></td>
+          <td>HV-17</td>
+      </tr>
+      <tr>
+          <td><strong>점검내용</strong></td>
+          <td>코어덤프수집기능활성화여부점검</td>
+      </tr>
+      <tr>
+          <td><strong>점검대상</strong></td>
+          <td>VMware ESXi 등</td>
+      </tr>
+      <tr>
+          <td><strong>판단기준</strong></td>
+          <td>양호: 코어덤프수집기능이활성화(true)된경우</td>
+      </tr>
+      <tr>
+          <td><strong>판단기준</strong></td>
+          <td>취약: 코어덤프수집기능이비활성화(false)된경우</td>
+      </tr>
+      <tr>
+          <td><strong>조치방법</strong></td>
+          <td>코어덤프수집기능활성화적용</td>
+      </tr>
+  </tbody>
+</table></div>
+<hr>
+<h2 id="상세-설명">상세 설명
+</h2><h3 id="1-항목-개요">1. 항목 개요
+</h3><p>코어 덤프(Core Dump)는 시스템에 심각한 오류(Panic/Blue Screen)가 발생했을 때, 메모리 내용을 디스크 또는 네트워크로 전송하여 저장하는 기능입니다. 이 덤프 파일을 통해 장애 발생 원인을 분석하고 재발 방지 대책을 수립할 수 있습니다.</p>
+<p>VMware ESXi의 <strong>vSphere Network Dump Collector</strong>는 ESXi 호스트가 패닉(PSOD - Purple Screen of Death) 발생 시, VMKernel 메모리 내용을 네트워크로 전송하여 저장하는 서비스입니다.</p>
+<h3 id="2-왜-이-항목이-필요한가요">2. 왜 이 항목이 필요한가요?
+</h3><p><strong>코어 덤프의 중요성:</strong></p>
+<ol>
+<li>
+<p><strong>장애 원인 파악</strong></p>
+<ul>
+<li>커널 패닉 원인 분석</li>
+<li>메모리 덤프를 통한 문제점 식별</li>
+<li>버그 리포트 작성</li>
+</ul>
+</li>
+<li>
+<p><strong>재발 방지</strong></p>
+<ul>
+<li>근본 원인 해결</li>
+<li>패치 적용 전략 수립</li>
+<li>설정 변경 결정</li>
+</ul>
+</li>
+<li>
+<p><strong>지원 티켓 처리</strong></p>
+<ul>
+<li>VMware 지원팀에 덤프 파일 제공</li>
+<li>빠른 문제 해결</li>
+<li>다운타임 최소화</li>
+</ul>
+</li>
+</ol>
+<p><strong>위험 시나리오:</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ESXi 호스트 → PSOD (Purple Screen of Death) 발생
+</span></span><span class="line"><span class="cl">→ 관리자가 강제 재부팅
+</span></span><span class="line"><span class="cl">→ 장애 원인 미확인
+</span></span><span class="line"><span class="cl">→ 동일 장애 재발
+</span></span><span class="line"><span class="cl">→ 서비스 장애 시간 증가
+</span></span><span class="line"><span class="cl">→ 비즈니스 손실 확대
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>실제 사례:</strong></p>
+<ul>
+<li>HBA 드라이버 버그로 반복적 PSOD 발생</li>
+<li>코어 덤프 분석으로 특정 드라이버 버전 확인</li>
+<li>패치 적용 후 문제 해결</li>
+</ul>
+<h3 id="3-점검-대상">3. 점검 대상
+</h3><ul>
+<li>VMware ESXi</li>
+</ul>
+<h3 id="4-판단-기준">4. 판단 기준
+</h3><ul>
+<li><strong>양호</strong>: 코어 덤프 수집 기능이 활성화(true)된 경우</li>
+<li><strong>취약</strong>: 코어 덤프 수집 기능이 비활성화(false)된 경우</li>
+</ul>
+<h3 id="5-점검-방법">5. 점검 방법
+</h3><h4 id="vmware-esxi">VMware ESXi
+</h4><ol>
+<li>
+<p>SSH로 ESXi 접속</p>
+</li>
+<li>
+<p>코어 덤프 상태 확인:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">esxcli system coredump network get
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<p><strong>양호 출력 예:</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">   Enable: true
+</span></span><span class="line"><span class="cl">   ServerPort: 6500
+</span></span><span class="line"><span class="cl">   ServerIP: 192.168.1.10
+</span></span><span class="line"><span class="cl">   NetworkInterface: vmk0
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>취약 출력 예:</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">   Enable: false
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>코어 덤프 정책 확인:
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">esxcli system coredump network check
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h3 id="6-조치-방법">6. 조치 방법
+</h3><h4 id="vmware-esxi-1">VMware ESXi
+</h4><p><strong>1) 코어 덤프 네트워크 서버 설정</strong></p>
+<ol>
+<li>
+<p>SSH로 ESXi 접속</p>
+</li>
+<li>
+<p>VMKernel 네트워크 인터페이스 확인:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">esxcli network ip connection list <span class="p">|</span> grep vmk
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>네트워크 코어 덤프 설정:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">esxcli system coredump network <span class="nb">set</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">    --interface-name vmk0 <span class="se">\
+</span></span></span><span class="line"><span class="cl">    --server-ipv4 192.168.1.10 <span class="se">\
+</span></span></span><span class="line"><span class="cl">    --server-port <span class="m">6500</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>설정 예시:</strong></p>
+<ul>
+<li><code>--interface-name</code>: VMKernel 인터페이스명 (예: vmk0)</li>
+<li><code>--server-ipv4</code>: 코어 덤프 서버 IP</li>
+<li><code>--server-port</code>: 코어 덤프 서버 포트 (기본 6500)</li>
+</ul>
+</li>
+</ol>
+<p><strong>2) 네트워크 코어 덤프 활성화</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 네트워크 코어 덤프 활성화</span>
+</span></span><span class="line"><span class="cl">esxcli system coredump network <span class="nb">set</span> --enable <span class="nb">true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 설정 확인</span>
+</span></span><span class="line"><span class="cl">esxcli system coredump network get
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>3) 코어 덤프 정책 확인</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 코어 덤프가 정상적으로 구성되었는지 확인</span>
+</span></span><span class="line"><span class="cl">esxcli system coredump network check
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="7-vsphere-network-dump-collector-설정">7. vSphere Network Dump Collector 설정
+</h3><p><strong>vSphere Network Dump Collector</strong>는 VMware가 제공하는 별도의 서비스로, ESXi 호스트의 코어 덤프를 받아서 저장합니다.</p>
+<p><strong>1) vSphere Network Dump Collector 설치</strong></p>
+<p>vCenter Server와 함께 제공되는 별도 설치 파일:</p>
+<ul>
+<li>Windows: <code>VMware-vSphere-Dump-Collector-x.x.x-xxxxxxx.exe</code></li>
+<li>Linux (vCenter Appliance): 번들로 포함</li>
+</ul>
+<p><strong>2) Dump Collector 서버 설정</strong></p>
+<ol>
+<li>
+<p>설치 후 Dump Collector 서비스 시작</p>
+</li>
+<li>
+<p>포트 설정 (기본: 6500)</p>
+</li>
+<li>
+<p>로그 저장 디렉터리 확인</p>
+</li>
+</ol>
+<p><strong>3) 방화벽 설정</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># ESXi 방화벽에서 코어 덤프 포트 허용</span>
+</span></span><span class="line"><span class="cl">esxcli network firewall ruleset <span class="nb">set</span> --ruleset-id vmkdump --enabled <span class="nb">true</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="8-코어-덤프-파일-구조">8. 코어 덤프 파일 구조
+</h3><p><strong>Dump Collector 서버 저장 경로:</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">C:\ProgramData\VMware\vCenterServer\data\vmkdumps\
+</span></span><span class="line"><span class="cl">├── esxi-host-1-20250120-143502.dmp
+</span></span><span class="line"><span class="cl">├── esxi-host-2-20250120-150821.dmp
+</span></span><span class="line"><span class="cl">└── esxi-host-3-20250120-161234.dmp
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>파일 크기:</strong></p>
+<ul>
+<li>일반적으로 1~4 GB</li>
+<li>메모리 크기에 비례</li>
+</ul>
+<h3 id="9-대체-코어-덤프-방법">9. 대체 코어 덤프 방법
+</h3><p>네트워크 코어 덤프 외에도 다음 방법을 사용할 수 있습니다.</p>
+<p><strong>1) 디스크 코어 덤프</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 기존 코어 덤프 파티션 확인</span>
+</span></span><span class="line"><span class="cl">esxcli system coredump partition list
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 새로운 코어 덤프 파티션 설정</span>
+</span></span><span class="line"><span class="cl">esxcli system coredump partition <span class="nb">set</span> --enable <span class="nb">true</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">    --smart-array yes <span class="se">\
+</span></span></span><span class="line"><span class="cl">    --partition-number <span class="m">1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>2) ESXi 설치 시 자동 생성</strong></p>
+<p>ESXi를 설치할 때 자동으로 코어 덤프 파티션이 생성됩니다 (기본 2.5 GB).</p>
+<h3 id="10-코어-덤프-분석">10. 코어 덤프 분석
+</h3><p><strong>1) VMware Go to Damkern</strong></p>
+<p>VMware가 제공하는 코어 덤프 분석 도구:</p>
+<ul>
+<li>VMKernel 스택 트레이스 분석</li>
+<li>장애 원인 식별</li>
+<li>제품 지원팀에 파일 전송</li>
+</ul>
+<p><strong>2) KB 문서 조회</strong></p>
+<p>코어 덤프 에러 코드로 VMware KB 검색:</p>
+<ul>
+<li>예: <code>PSOD error 0x1</code>, <code>Purple Screen</code></li>
+<li>VMware Knowledge Base: <a class="link" href="https://kb.vmware.com/"  target="_blank" rel="noopener"
+    >https://kb.vmware.com/</a></li>
+</ul>
+<p><strong>3) VMware 지센터 티켓</strong></p>
+<p>덤프 파일을 첨부하여 지원 티켓 생성:</p>
+<ul>
+<li>최대 2 GB 파일 업로드 가능</li>
+<li>보안 FTP를 통해 전송</li>
+</ul>
+<h3 id="11-스토리지-계획">11. 스토리지 계획
+</h3><p><strong>권장 사항:</strong></p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>호스트 수</th>
+          <th>권장 스토리지</th>
+          <th>설명</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1~10</td>
+          <td>50 GB</td>
+          <td>소규모 환경</td>
+      </tr>
+      <tr>
+          <td>11~50</td>
+          <td>200 GB</td>
+          <td>중규모 환경</td>
+      </tr>
+      <tr>
+          <td>51+</td>
+          <td>500 GB+</td>
+          <td>대규모 환경</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><strong>고려사항:</strong></p>
+<ul>
+<li>각 덤프 파일: 1~4 GB</li>
+<li>동시 장애 대비</li>
+<li>30일 보관 (정책에 따라)</li>
+</ul>
+<h3 id="12-모니터링">12. 모니터링
+</h3><p><strong>1) 코어 덤프 로그 확인</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 코어 덤프 이벤트 로그</span>
+</span></span><span class="line"><span class="cl">grep <span class="s2">&#34;coredump&#34;</span> /var/log/vmkernel.log
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Dump Collector 서버 로그</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># C:\ProgramData\VMware\vCenterServer\logs\vmkdump\</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>2) 디스크 공간 모니터링</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Windows Dump Collector</span>
+</span></span><span class="line"><span class="cl">dir <span class="s2">&#34;C:\ProgramData\VMware\vCenterServer\data\vmkdumps\&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2"># PowerShell
+</span></span></span><span class="line"><span class="cl"><span class="s2">Get-ChildItem &#34;</span>C:<span class="se">\P</span>rogramData<span class="se">\V</span>Mware<span class="se">\v</span>CenterServer<span class="se">\d</span>ata<span class="se">\v</span>mkdumps<span class="se">\&#34;</span> <span class="p">|</span> Measure-Object -Property Length -Sum
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>3) 자동화된 정리</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="c"># PowerShell 스크립트: 30일 이상된 덤프 삭제</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$path</span> <span class="p">=</span> <span class="s2">&#34;C:\ProgramData\VMware\vCenterServer\data\vmkdumps\&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Get-ChildItem</span> <span class="nv">$path</span> <span class="n">-Filter</span> <span class="s2">&#34;*.dmp&#34;</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$_</span><span class="p">.</span><span class="py">LastWriteTime</span> <span class="o">-lt</span> <span class="p">(</span><span class="nb">Get-Date</span><span class="p">).</span><span class="py">AddDays</span><span class="p">(</span><span class="mf">-30</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="p">|</span> <span class="nb">Remove-Item</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="13-주의사항">13. 주의사항
+</h3><ul>
+<li>네트워크 코어 덤프는 <strong>별도의 Dump Collector 서버</strong> 필요</li>
+<li>Dump Collector 서버는 <strong>높은 대역폭</strong> 필요 (1~4 GB 전송)</li>
+<li>코어 덤프 파일에는 <strong>민감한 정보</strong> 포함 가능 (메모리 내용)</li>
+<li><strong>접근 제어</strong> 및 <strong>암호화</strong> 필요</li>
+<li>정기적 <strong>백업 후 삭제</strong>로 스토리지 관리</li>
+<li>테스트를 위해 <strong>의도적 PSOD</strong>는 운영 환경에서 비권장</li>
+</ul>
+<h3 id="14-테스트-및-검증">14. 테스트 및 검증
+</h3><p><strong>비운영 환경에서 테스트:</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># ESXi 테스트 모드에서 PSOD 발생</span>
+</span></span><span class="line"><span class="cl">vsish -e <span class="nb">set</span> /reliability/crashMe <span class="m">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 주의: 운영 환경에서 절대 실행 금지</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="요약">요약
+</h2><p>VMware ESXi의 <strong>코어 덤프 수집 기능</strong>은 시스템 장애(PSOD) 발생 시 원인을 파악하는 필수 기능입니다. 반드시 <strong>vSphere Network Dump Collector</strong> 또는 <strong>디스크 코어 덤프</strong>를 활성화해야 합니다. Dump Collector 서버는 충분한 **스토리지(최소 50 GB)**와 <strong>높은 네트워크 대역폭</strong>을 확보해야 합니다. 코어 덤프 파일은 <strong>보안에 주의</strong>하여 관리해야 합니다.</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/2026-%EC%A3%BC%EC%A0%95%ED%86%B5-%EA%B0%80%EC%9D%B4%EB%93%9C%EB%9D%BC%EC%9D%B8/">2026 주정통 가이드라인</a>
+        
+            <a href="/tags/virtualization/">Virtualization</a>
+        
+    </section>
+
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">관련 글</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/hv-01/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[2026 주요정보통신기반시설] HV-01 가상화장비 &gt; 1. 계정관리</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/hv-02/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[2026 주요정보통신기반시설] HV-02 가상화장비 &gt; 1. 계정관리</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/hv-03/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[2026 주요정보통신기반시설] HV-03 가상화장비 &gt; 1. 계정관리</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/hv-04/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[2026 주요정보통신기반시설] HV-04 가상화장비 &gt; 1. 계정관리</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/hv-05/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[2026 주요정보통신기반시설] HV-05 가상화장비 사용자 인증 강화</h2>
+        </div>
+    </a>
+</article>
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025 - 
+        
+        2026 코딩이 싫은 거북이
+    </section>
+    
+    <section class="powerby">
+        <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>로 만듦 <br />
+        <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>의 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="4.0.0">Stack</a></b> 테마 사용 중
+    </section>
+</footer>
+
+
+    
+
+
+
+<script type="module">
+    import gallery from '\/ts\/gallery.js';
+
+    const articleContent = document.querySelector('.article-content');
+    const shouldLoad = articleContent && (articleContent.querySelectorAll('figure').length > 0 || articleContent.querySelectorAll('img.gallery-image').length > 0);
+    
+    if (shouldLoad) {
+        gallery(articleContent);
+
+        const PhotoSwipeLightbox = (await import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js")).default;
+        const styleHref = "https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.css";
+
+        const styleTag = document.createElement('link');
+        styleTag.rel = 'stylesheet';
+        styleTag.href = styleHref;
+        document.head.appendChild(styleTag);
+
+        const lightbox = new PhotoSwipeLightbox({
+            gallerySelector: '.article-content',
+            childSelector: 'figure a.image-link',
+            pswpModule: () => import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js")
+        });
+        lightbox.init();
+    }
+</script>
+    
+
+            </main>
+        </div>
+        <script type="text/javascript" src="/ts/main.387bdf6159ab34d0743ebd228aa9248d1ed2380fa5193ceff9ffdbf345b5309d.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

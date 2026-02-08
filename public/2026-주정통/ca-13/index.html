@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="ko-kr" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="사용자 계정 로깅 설정 여부 점검">
+<title>[2026 주요정보통신기반시설] CA-13 클라우드서비스사용자계정로깅설정</title>
+
+<link rel='canonical' href='http://localhost:1313/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-13/'>
+
+<link rel="stylesheet" href="/scss/style.min.51098b80cc297c94c0f57786d4a04e7372774e5993b60facf53870128a79bf73.css"><meta property='og:title' content="[2026 주요정보통신기반시설] CA-13 클라우드서비스사용자계정로깅설정">
+<meta property='og:description' content="사용자 계정 로깅 설정 여부 점검">
+<meta property='og:url' content='http://localhost:1313/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-13/'>
+<meta property='og:site_name' content='코딩이 싫은 거북이'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='2026 주정통 가이드라인' /><meta property='article:tag' content='Cloud' /><meta property='article:published_time' content='2026-02-05T09:56:13&#43;09:00'/><meta property='article:modified_time' content='2026-02-05T09:56:13&#43;09:00'/>
+<meta name="twitter:title" content="[2026 주요정보통신기반시설] CA-13 클라우드서비스사용자계정로깅설정">
+<meta name="twitter:description" content="사용자 계정 로깅 설정 여부 점검">
+    <link rel="shortcut icon" href="/img/avatar.png" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BDJ5ZPHH5Z"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-BDJ5ZPHH5Z');
+</script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7440869759073353"
+     crossorigin="anonymous"></script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="메뉴 여닫기">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        <figure class="site-avatar">
+                <a href="/">
+                    <img src="/img/avatar.png" 
+                        width="2048"
+                        height="2048"
+                        class="site-logo"
+                        loading="lazy"
+                        alt="Avatar">
+                </a>
+                
+                    <span class="emoji">🐢</span>
+                
+            </figure>
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">코딩이 싫은 거북이</a></h1>
+            <h2 class="site-description">Clean, responsive Hugo theme</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/rebugui'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/page/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/page/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/page/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/page/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>다크 모드</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">목차</h2>
+        
+        <div class="widget--toc">
+            <nav class="toc-nav" id="TableOfContents">
+                
+  <ol>
+    <li><a href="#가이드라인-원문">가이드라인 원문</a></li>
+    <li><a href="#상세-설명">상세 설명</a>
+      <ol>
+        <li><a href="#1-항목-개요">1. 항목 개요</a></li>
+        <li><a href="#2-왜-이-항목이-필요한가요">2. 왜 이 항목이 필요한가요?</a></li>
+        <li><a href="#3-점검-대상">3. 점검 대상</a></li>
+        <li><a href="#4-판단-기준">4. 판단 기준</a></li>
+        <li><a href="#5-점검-방법">5. 점검 방법</a>
+          <ol>
+            <li><a href="#step-1-aws-cloudtrail-설정-확인">Step 1: AWS CloudTrail 설정 확인</a></li>
+            <li><a href="#step-2-azure-activity-logs-확인">Step 2: Azure Activity Logs 확인</a></li>
+            <li><a href="#step-3-gcp-cloud-audit-logs-확인">Step 3: GCP Cloud Audit Logs 확인</a></li>
+          </ol>
+        </li>
+        <li><a href="#6-조치-방법">6. 조치 방법</a>
+          <ol>
+            <li><a href="#step-1-aws-cloudtrail-설정">Step 1: AWS CloudTrail 설정</a></li>
+            <li><a href="#step-2-cloudtrail-데이터-이벤트-로깅">Step 2: CloudTrail 데이터 이벤트 로깅</a></li>
+            <li><a href="#step-3-azure-monitor-diagnostic-settings-설정">Step 3: Azure Monitor Diagnostic Settings 설정</a></li>
+            <li><a href="#step-4-gcp-cloud-audit-logs-설정">Step 4: GCP Cloud Audit Logs 설정</a></li>
+          </ol>
+        </li>
+        <li><a href="#7-로그-분석-및-알림-설정">7. 로그 분석 및 알림 설정</a>
+          <ol>
+            <li><a href="#aws-cloudwatch-logs를-통한-분석">AWS CloudWatch Logs를 통한 분석</a></li>
+            <li><a href="#cloudwatch-logs-insights-쿼리-예시">CloudWatch Logs Insights 쿼리 예시</a></li>
+          </ol>
+        </li>
+        <li><a href="#8-로그-보관-기간-설정">8. 로그 보관 기간 설정</a></li>
+        <li><a href="#9-조치-시-주의사항">9. 조치 시 주의사항</a></li>
+        <li><a href="#10-참고-자료">10. 참고 자료</a></li>
+      </ol>
+    </li>
+    <li><a href="#요약">요약</a></li>
+  </ol>
+
+            </nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            
+            
+            
+            <a href="/categories/2026-%EC%A3%BC%EC%A0%95%ED%86%B5-%EA%B0%80%EC%9D%B4%EB%93%9C%EB%9D%BC%EC%9D%B8/" style="background-color: hsl(281, 60%, 84%); color: hsl(281, 60%, 15%);">
+                2026 주정통 가이드라인
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-13/">[2026 주요정보통신기반시설] CA-13 클라우드서비스사용자계정로깅설정</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            사용자 계정 로깅 설정 여부 점검
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2026-02-05T09:56:13&#43;09:00'>2026년 2월 5일 목요일</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    5 분 정도
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    
+    <aside class="article-toc">
+        <details>
+            <summary>
+                <div class="article-toc-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg>
+                    <span>목차</span>
+                </div>
+            </summary>
+            <nav class="toc-nav">
+                
+  <ol>
+    <li><a href="#가이드라인-원문">가이드라인 원문</a></li>
+    <li><a href="#상세-설명">상세 설명</a>
+      <ol>
+        <li><a href="#1-항목-개요">1. 항목 개요</a></li>
+        <li><a href="#2-왜-이-항목이-필요한가요">2. 왜 이 항목이 필요한가요?</a></li>
+        <li><a href="#3-점검-대상">3. 점검 대상</a></li>
+        <li><a href="#4-판단-기준">4. 판단 기준</a></li>
+        <li><a href="#5-점검-방법">5. 점검 방법</a>
+          <ol>
+            <li><a href="#step-1-aws-cloudtrail-설정-확인">Step 1: AWS CloudTrail 설정 확인</a></li>
+            <li><a href="#step-2-azure-activity-logs-확인">Step 2: Azure Activity Logs 확인</a></li>
+            <li><a href="#step-3-gcp-cloud-audit-logs-확인">Step 3: GCP Cloud Audit Logs 확인</a></li>
+          </ol>
+        </li>
+        <li><a href="#6-조치-방법">6. 조치 방법</a>
+          <ol>
+            <li><a href="#step-1-aws-cloudtrail-설정">Step 1: AWS CloudTrail 설정</a></li>
+            <li><a href="#step-2-cloudtrail-데이터-이벤트-로깅">Step 2: CloudTrail 데이터 이벤트 로깅</a></li>
+            <li><a href="#step-3-azure-monitor-diagnostic-settings-설정">Step 3: Azure Monitor Diagnostic Settings 설정</a></li>
+            <li><a href="#step-4-gcp-cloud-audit-logs-설정">Step 4: GCP Cloud Audit Logs 설정</a></li>
+          </ol>
+        </li>
+        <li><a href="#7-로그-분석-및-알림-설정">7. 로그 분석 및 알림 설정</a>
+          <ol>
+            <li><a href="#aws-cloudwatch-logs를-통한-분석">AWS CloudWatch Logs를 통한 분석</a></li>
+            <li><a href="#cloudwatch-logs-insights-쿼리-예시">CloudWatch Logs Insights 쿼리 예시</a></li>
+          </ol>
+        </li>
+        <li><a href="#8-로그-보관-기간-설정">8. 로그 보관 기간 설정</a></li>
+        <li><a href="#9-조치-시-주의사항">9. 조치 시 주의사항</a></li>
+        <li><a href="#10-참고-자료">10. 참고 자료</a></li>
+      </ol>
+    </li>
+    <li><a href="#요약">요약</a></li>
+  </ol>
+
+            </nav>
+        </details>
+    </aside>
+    
+
+    <section class="article-content">
+    
+    
+    <h1 id="ca-13-클라우드서비스사용자계정로깅설정">CA-13 클라우드서비스사용자계정로깅설정
+</h1><h2 id="가이드라인-원문">가이드라인 원문
+</h2><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>항목</th>
+          <th>내용</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>항목코드</strong></td>
+          <td>CA-13</td>
+      </tr>
+      <tr>
+          <td><strong>점검내용</strong></td>
+          <td>사용자 계정 로깅 설정 여부 점검</td>
+      </tr>
+      <tr>
+          <td><strong>점검대상</strong></td>
+          <td>클라우드 플랫폼</td>
+      </tr>
+      <tr>
+          <td><strong>판단기준</strong></td>
+          <td>양호: 사용자 계정 로깅 설정이 기관 정책에 따라 설정된 경우</td>
+      </tr>
+      <tr>
+          <td><strong>판단기준</strong></td>
+          <td>취약: 사용자 계정 로깅 설정이 기관 정책에 따라 설정되지 않은 경우</td>
+      </tr>
+      <tr>
+          <td><strong>조치방법</strong></td>
+          <td>사용자 계정 로깅 설정</td>
+      </tr>
+  </tbody>
+</table></div>
+<hr>
+<h2 id="상세-설명">상세 설명
+</h2><h3 id="1-항목-개요">1. 항목 개요
+</h3><p>클라우드 환경에서 사용자 계정 활동 로깅(CloudTrail, Audit Logs 등)은 보안 모니터링의 핵심입니다. 누가, 언제, 어디서, 어떤 작업을 수행했는지에 대한 기록은 보안 사고 조사, 규정 준수, 이상 징후 탐지에 필수적입니다.</p>
+<h3 id="2-왜-이-항목이-필요한가요">2. 왜 이 항목이 필요한가요?
+</h3><p><strong>보안 위협 시나리오:</strong></p>
+<ol>
+<li><strong>비인가 접근 탐지</strong>: 이상한 지역/시간대에서의 로그인 시도 감지</li>
+<li><strong>권한 남용 확인</strong>: 관리자 권한의 부적절한 사용 감지</li>
+<li><strong>사고 조사</strong>: 침해사고 발생 시 공격 경로와 영향 범위 분석</li>
+<li><strong>규정 준수</strong>: 개인정보보호법, 금융규정 등에서 로그 기록 의무화</li>
+</ol>
+<p><strong>실제 사례</strong></p>
+<ul>
+<li>2019년: 캡틴 컴퓨터(Capital One) 데이터 유출 사고 시 CloudTrail 로그를 통해 공격자의 활동 추적</li>
+<li>AWS 관리자 계정 탈취 사고 시 로그 분석을 통해 피해 범위 확인</li>
+</ul>
+<h3 id="3-점검-대상">3. 점검 대상
+</h3><ul>
+<li>모든 클라우드 플랫폼 (AWS, Azure, GCP, Naver Cloud, Kakao Cloud 등)</li>
+<li>관리자 콘솔 접속 로그</li>
+<li>API 호출 로그</li>
+<li>리소스 변경 로그</li>
+<li>인증/인가 로그</li>
+</ul>
+<h3 id="4-판단-기준">4. 판단 기준
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>구분</th>
+          <th>기준</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>양호</strong></td>
+          <td>사용자 계정 로깅이 기관 정책(보관 기간, 로그 수준 등)에 따라 설정된 경우</td>
+      </tr>
+      <tr>
+          <td><strong>취약</strong></td>
+          <td>사용자 계정 로깅이 비활성화되거나 기관 정책에 맞지 않게 설정된 경우</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="5-점검-방법">5. 점검 방법
+</h3><h4 id="step-1-aws-cloudtrail-설정-확인">Step 1: AWS CloudTrail 설정 확인
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># AWS CLI 예시</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># CloudTrail 트레일 확인</span>
+</span></span><span class="line"><span class="cl">aws cloudtrail describe-trails
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 모든 리전에 로깅되는지 확인</span>
+</span></span><span class="line"><span class="cl">aws cloudtrail describe-trails <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --query <span class="s2">&#34;trailList[?IsMultiRegionTrail==`true`].{Name:Name,S3BucketName:S3BucketName,IsMultiRegionTrail:IsMultiRegionTrail}&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 로그 파일 검증 활성화 확인</span>
+</span></span><span class="line"><span class="cl">aws cloudtrail describe-trails <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --query <span class="s2">&#34;trailList[?LogFileValidationEnabled==`true`]&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># CloudTrail 로그 암호화 확인</span>
+</span></span><span class="line"><span class="cl">aws cloudtrail describe-trails <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --query <span class="s2">&#34;trailList[].{Name:Name,KmsKeyId:KmsKeyId}&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="step-2-azure-activity-logs-확인">Step 2: Azure Activity Logs 확인
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Azure CLI 예시</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Activity Log 확인</span>
+</span></span><span class="line"><span class="cl">az monitor activity-log list
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Log Analytics Workspace에 연결 확인</span>
+</span></span><span class="line"><span class="cl">az monitor log-analytics workspace list
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 진단 설정 확인</span>
+</span></span><span class="line"><span class="cl">az monitor diagnostic-settings list
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="step-3-gcp-cloud-audit-logs-확인">Step 3: GCP Cloud Audit Logs 확인
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># GCP CLI 예시</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 감사 로그 활성화 확인</span>
+</span></span><span class="line"><span class="cl">gcloud logging buckets list
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 로그 싱크 설정 확인</span>
+</span></span><span class="line"><span class="cl">gcloud logging sinks list
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Admin Activity, Data Access 로그 확인</span>
+</span></span><span class="line"><span class="cl">gcloud logging <span class="nb">read</span> <span class="s2">&#34;logName=cloudaudit.googleapis.com%2Factivity&#34;</span> --limit <span class="m">5</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="6-조치-방법">6. 조치 방법
+</h3><h4 id="step-1-aws-cloudtrail-설정">Step 1: AWS CloudTrail 설정
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># S3 버킷 생성 (로그 저장용)</span>
+</span></span><span class="line"><span class="cl">aws s3api create-bucket <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --bucket my-cloudtrail-logs-123456789012 <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --region ap-northeast-2
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 버킷 정책 설정 (CloudTrail만 쓰기 가능)</span>
+</span></span><span class="line"><span class="cl">aws s3api put-bucket-policy <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --bucket my-cloudtrail-logs-123456789012 <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --policy file://bucket-policy.json
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="c1">// bucket-policy.json
+</span></span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;Version&#34;</span><span class="p">:</span> <span class="s2">&#34;2012-10-17&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;Statement&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Sid&#34;</span><span class="p">:</span> <span class="s2">&#34;AWSCloudTrailAclCheck&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Effect&#34;</span><span class="p">:</span> <span class="s2">&#34;Allow&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Principal&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;Service&#34;</span><span class="p">:</span> <span class="s2">&#34;cloudtrail.amazonaws.com&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Action&#34;</span><span class="p">:</span> <span class="s2">&#34;s3:GetBucketAcl&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Resource&#34;</span><span class="p">:</span> <span class="s2">&#34;arn:aws:s3:::my-cloudtrail-logs-123456789012&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Sid&#34;</span><span class="p">:</span> <span class="s2">&#34;AWSCloudTrailWrite&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Effect&#34;</span><span class="p">:</span> <span class="s2">&#34;Allow&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Principal&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;Service&#34;</span><span class="p">:</span> <span class="s2">&#34;cloudtrail.amazonaws.com&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Action&#34;</span><span class="p">:</span> <span class="s2">&#34;s3:PutObject&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Resource&#34;</span><span class="p">:</span> <span class="s2">&#34;arn:aws:s3:::my-cloudtrail-logs-123456789012/AWSLogs/123456789012/*&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Condition&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;StringEquals&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;s3:x-amz-acl&#34;</span><span class="p">:</span> <span class="s2">&#34;bucket-owner-full-control&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># CloudTrail 트레일 생성 (모든 리전 로깅)</span>
+</span></span><span class="line"><span class="cl">aws cloudtrail create-trail <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --name my-trail <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --s3-bucket-name my-cloudtrail-logs-123456789012 <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --include-global-service-events <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --is-multi-region-trail
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 로그 파일 검증 활성화</span>
+</span></span><span class="line"><span class="cl">aws cloudtrail update-trail <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --name my-trail <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --enable-log-file-validation
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># CloudTrail 로그 암호화 활성화</span>
+</span></span><span class="line"><span class="cl">aws cloudtrail update-trail <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --name my-trail <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --kms-key-id arn:aws:kms:ap-northeast-2:123456789012:key/12345678-1234-1234-1234-123456789012
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 트레일 시작 로깅</span>
+</span></span><span class="line"><span class="cl">aws cloudtrail start-logging --name my-trail
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="step-2-cloudtrail-데이터-이벤트-로깅">Step 2: CloudTrail 데이터 이벤트 로깅
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># S3 객체 수준 API 호출 로깅</span>
+</span></span><span class="line"><span class="cl">aws cloudtrail put-event-selectors <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --trail-name my-trail <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --event-selectors <span class="s1">&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">  [
+</span></span></span><span class="line"><span class="cl"><span class="s1">    {
+</span></span></span><span class="line"><span class="cl"><span class="s1">      &#34;ReadWriteType&#34;: &#34;All&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s1">      &#34;IncludeManagementEvents&#34;: true,
+</span></span></span><span class="line"><span class="cl"><span class="s1">      &#34;DataResources&#34;: [
+</span></span></span><span class="line"><span class="cl"><span class="s1">        {
+</span></span></span><span class="line"><span class="cl"><span class="s1">          &#34;Type&#34;: &#34;AWS::S3::Object&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s1">          &#34;Values&#34;: [&#34;arn:aws:s3:::my-bucket/&#34;]
+</span></span></span><span class="line"><span class="cl"><span class="s1">        }
+</span></span></span><span class="line"><span class="cl"><span class="s1">      ]
+</span></span></span><span class="line"><span class="cl"><span class="s1">    }
+</span></span></span><span class="line"><span class="cl"><span class="s1">  ]
+</span></span></span><span class="line"><span class="cl"><span class="s1">&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Lambda 함수 호출 로깅</span>
+</span></span><span class="line"><span class="cl">aws cloudtrail put-event-selectors <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --trail-name my-trail <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --event-selectors <span class="s1">&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">  [
+</span></span></span><span class="line"><span class="cl"><span class="s1">    {
+</span></span></span><span class="line"><span class="cl"><span class="s1">      &#34;ReadWriteType&#34;: &#34;All&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s1">      &#34;IncludeManagementEvents&#34;: true,
+</span></span></span><span class="line"><span class="cl"><span class="s1">      &#34;DataResources&#34;: [
+</span></span></span><span class="line"><span class="cl"><span class="s1">        {
+</span></span></span><span class="line"><span class="cl"><span class="s1">          &#34;Type&#34;: &#34;AWS::Lambda::Function&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s1">          &#34;Values&#34;: [&#34;arn:aws:lambda:ap-northeast-2:123456789012:function:*&#34;]
+</span></span></span><span class="line"><span class="cl"><span class="s1">        }
+</span></span></span><span class="line"><span class="cl"><span class="s1">      ]
+</span></span></span><span class="line"><span class="cl"><span class="s1">    }
+</span></span></span><span class="line"><span class="cl"><span class="s1">  ]
+</span></span></span><span class="line"><span class="cl"><span class="s1">&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="step-3-azure-monitor-diagnostic-settings-설정">Step 3: Azure Monitor Diagnostic Settings 설정
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Log Analytics Workspace 생성</span>
+</span></span><span class="line"><span class="cl">az monitor log-analytics workspace create <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --resource-group myResourceGroup <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --workspace-name myWorkspace <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --location koreacentral
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Activity Log를 Log Analytics로 전송</span>
+</span></span><span class="line"><span class="cl">az monitor diagnostic-settings create <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --name myDiagnosticSettings <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --resource /subscriptions/subscription-id <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --workspace myWorkspace <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --logs <span class="s1">&#39;[
+</span></span></span><span class="line"><span class="cl"><span class="s1">    {&#34;category&#34;: &#34;AuditLogs&#34;, &#34;enabled&#34;: true},
+</span></span></span><span class="line"><span class="cl"><span class="s1">    {&#34;category&#34;: &#34;SignInLogs&#34;, &#34;enabled&#34;: true}
+</span></span></span><span class="line"><span class="cl"><span class="s1">  ]&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="step-4-gcp-cloud-audit-logs-설정">Step 4: GCP Cloud Audit Logs 설정
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 로그 싱크 생성 (Pub/Sub을 통한 실간 전송)</span>
+</span></span><span class="line"><span class="cl">gcloud logging sinks create my-sink <span class="se">\
+</span></span></span><span class="line"><span class="cl">  pubsub.googleapis.com/projects/my-project/topics/my-topic <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --log-filter<span class="o">=</span><span class="s1">&#39;logName=&#34;cloudaudit.googleapis.com/activity&#34; OR logName=&#34;cloudaudit.googleapis.com/data_access&#34;&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 로그 라우터 싱크 생성 (Cloud Storage)</span>
+</span></span><span class="line"><span class="cl">gcloud logging sinks create my-storage-sink <span class="se">\
+</span></span></span><span class="line"><span class="cl">  storage.googleapis.com/my-bucket <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --log-filter<span class="o">=</span><span class="s1">&#39;logName=&#34;cloudaudit.googleapis.com/*&#34;&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --include-children
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># BigQuery로 로그 내보내기</span>
+</span></span><span class="line"><span class="cl">gcloud logging sinks create my-bq-sink <span class="se">\
+</span></span></span><span class="line"><span class="cl">  bigquery.googleapis.com/projects/my-project/datasets/my_dataset <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --log-filter<span class="o">=</span><span class="s1">&#39;logName=&#34;cloudaudit.googleapis.com/activity&#34;&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="7-로그-분석-및-알림-설정">7. 로그 분석 및 알림 설정
+</h3><h4 id="aws-cloudwatch-logs를-통한-분석">AWS CloudWatch Logs를 통한 분석
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># CloudTrail을 CloudWatch Logs로 전송</span>
+</span></span><span class="line"><span class="cl">aws cloudtrail create-trail <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --name my-trail-cw <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --s3-bucket-name my-cloudtrail-logs-123456789012 <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --cloud-watch-logs-log-group-name CloudTrail/APIActivity <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --cloud-watch-logs-role-arn arn:aws:iam::123456789012:role/CloudTrail_CloudWatchLogs_Role
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 의심스러운 활동 알람 생성</span>
+</span></span><span class="line"><span class="cl">aws cloudwatch put-metric-alarm <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --alarm-name <span class="s2">&#34;UnauthorizedAPIAttempt&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --alarm-description <span class="s2">&#34;Alert on Unauthorized API attempts&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --metric-name UnauthorizedOperation <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --namespace AWS/CloudTrail <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --statistic Sum <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --period <span class="m">300</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --threshold <span class="m">5</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --comparison-operator GreaterThanThreshold <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --evaluation-periods <span class="m">1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="cloudwatch-logs-insights-쿼리-예시">CloudWatch Logs Insights 쿼리 예시
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 관리자 계정의 API 호출 현황
+</span></span><span class="line"><span class="cl">fields @timestamp, userIdentity.principalId, eventName, sourceIPAddress
+</span></span><span class="line"><span class="cl">| filter userIdentity.type = &#39;IAMUser&#39; and userIdentity.principalId like &#39;%admin%&#39;
+</span></span><span class="line"><span class="cl">| sort @timestamp desc
+</span></span><span class="line"><span class="cl">| limit 100
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 특정 IP에서의 의심스러운 활동
+</span></span><span class="line"><span class="cl">fields @timestamp, userIdentity.principalId, eventName, sourceIPAddress, userAgent
+</span></span><span class="line"><span class="cl">| filter sourceIPAddress not like &#39;203.0.113.%&#39;
+</span></span><span class="line"><span class="cl">| sort @timestamp desc
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 보안 그룹 변경 활동
+</span></span><span class="line"><span class="cl">fields @timestamp, userIdentity.principalId, eventName, requestParameters
+</span></span><span class="line"><span class="cl">| filter eventName like /AuthorizeSecurityGroup/ or eventName like /RevokeSecurityGroup/
+</span></span><span class="line"><span class="cl">| sort @timestamp desc
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="8-로그-보관-기간-설정">8. 로그 보관 기간 설정
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># CloudWatch Logs 보관 기간 설정 (90일)</span>
+</span></span><span class="line"><span class="cl">aws logs put-retention-policy <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --log-group-name CloudTrail/APIActivity <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --retention-in-days <span class="m">90</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># S3 버킷 수명 주기 정책 설정</span>
+</span></span><span class="line"><span class="cl">aws s3api put-bucket-lifecycle-configuration <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --bucket my-cloudtrail-logs-123456789012 <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --lifecycle-configuration <span class="s1">&#39;{
+</span></span></span><span class="line"><span class="cl"><span class="s1">    &#34;Rules&#34;: [
+</span></span></span><span class="line"><span class="cl"><span class="s1">      {
+</span></span></span><span class="line"><span class="cl"><span class="s1">        &#34;Id&#34;: &#34;CloudTrailLogs&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s1">        &#34;Status&#34;: &#34;Enabled&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s1">        &#34;Prefix&#34;: &#34;AWSLogs/&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s1">        &#34;Transitions&#34;: [
+</span></span></span><span class="line"><span class="cl"><span class="s1">          {
+</span></span></span><span class="line"><span class="cl"><span class="s1">            &#34;Days&#34;: 30,
+</span></span></span><span class="line"><span class="cl"><span class="s1">            &#34;StorageClass&#34;: &#34;STANDARD_IA&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s1">          },
+</span></span></span><span class="line"><span class="cl"><span class="s1">          {
+</span></span></span><span class="line"><span class="cl"><span class="s1">            &#34;Days&#34;: 90,
+</span></span></span><span class="line"><span class="cl"><span class="s1">            &#34;StorageClass&#34;: &#34;GLACIER&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s1">          },
+</span></span></span><span class="line"><span class="cl"><span class="s1">          {
+</span></span></span><span class="line"><span class="cl"><span class="s1">            &#34;Days&#34;: 365,
+</span></span></span><span class="line"><span class="cl"><span class="s1">            &#34;StorageClass&#34;: &#34;DEEP_ARCHIVE&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s1">          }
+</span></span></span><span class="line"><span class="cl"><span class="s1">        ],
+</span></span></span><span class="line"><span class="cl"><span class="s1">        &#34;Expiration&#34;: {
+</span></span></span><span class="line"><span class="cl"><span class="s1">          &#34;Days&#34;: 2555  # 7년
+</span></span></span><span class="line"><span class="cl"><span class="s1">        }
+</span></span></span><span class="line"><span class="cl"><span class="s1">      }
+</span></span></span><span class="line"><span class="cl"><span class="s1">    ]
+</span></span></span><span class="line"><span class="cl"><span class="s1">  }&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="9-조치-시-주의사항">9. 조치 시 주의사항
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>주의사항</th>
+          <th>설명</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>저장소 비용</strong></td>
+          <td>로그 데이터가 많으므로 비용 최적화 필요 (Life Cycle Policy)</td>
+      </tr>
+      <tr>
+          <td><strong>개인정보 보호</strong></td>
+          <td>로그에 포함된 개인정보 마스킹 처리 고려</td>
+      </tr>
+      <tr>
+          <td><strong>로그 무결성</strong></td>
+          <td>로그 파일 검증 활성화, WORM(Write Once Read Many) 스토리지 사용</td>
+      </tr>
+      <tr>
+          <td><strong>접근 통제</strong></td>
+          <td>로그 접근 권한을 최소화 (보안팀, 감사팀만 접근)</td>
+      </tr>
+      <tr>
+          <td><strong>정기적 검토</strong></td>
+          <td>분기별 로그 수집 및 보관 정책 검토</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="10-참고-자료">10. 참고 자료
+</h3><ul>
+<li><strong>AWS CloudTrail Documentation</strong>: <a class="link" href="https://docs.aws.amazon.com/cloudtrail/"  target="_blank" rel="noopener"
+    >https://docs.aws.amazon.com/cloudtrail/</a></li>
+<li><strong>Azure Monitor Documentation</strong>: <a class="link" href="https://docs.microsoft.com/azure/azure-monitor/"  target="_blank" rel="noopener"
+    >https://docs.microsoft.com/azure/azure-monitor/</a></li>
+<li><strong>GCP Cloud Audit Logs</strong>: <a class="link" href="https://cloud.google.com/logging/docs/audit/"  target="_blank" rel="noopener"
+    >https://cloud.google.com/logging/docs/audit/</a></li>
+<li><strong>NIST SP 800-92</strong>: Guide to Computer Security Log Management</li>
+</ul>
+<hr>
+<h2 id="요약">요약
+</h2><p><strong>클라우드서비스사용자계정로깅설정</strong>은 클라우드 보안의 눈과 귀와 같습니다. 모든 관리자 활동, API 호출, 리소스 변경을 로깅하여 보안 사고를 탐지하고 조사할 수 있어야 합니다. CloudTrail, Azure Monitor, Cloud Audit Logs 등 클라우드 제공사의 로깅 서비스를 활성화하고, 로그를 안전하게 보관하며 정기적으로 분석하여 이상 징후를 조기에 발견하세요.</p>
+<p><strong>핵심 액션 아이템</strong></p>
+<ol>
+<li>모든 리전에 대해 CloudTrail/감사 로그 활성화</li>
+<li>로그 파일 검증 및 암호화 활성화</li>
+<li>관리 이벤트뿐만 아니라 데이터 이벤트도 로깅</li>
+<li>CloudWatch Logs/Log Analytics로 중앙 집중화</li>
+<li>로그 보관 기간 설정 (최소 90일, 권장 1년 이상)</li>
+<li>이상 징후 알림 설정</li>
+</ol>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/2026-%EC%A3%BC%EC%A0%95%ED%86%B5-%EA%B0%80%EC%9D%B4%EB%93%9C%EB%9D%BC%EC%9D%B8/">2026 주정통 가이드라인</a>
+        
+            <a href="/tags/cloud/">Cloud</a>
+        
+    </section>
+
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">관련 글</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-01/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[2026 주요정보통신기반시설] CA-01 사용자계정관리</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-02/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[2026 주요정보통신기반시설] CA-02 사용자정책관리</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-03/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[2026 주요정보통신기반시설] CA-03 MFA(Multi-Factor Authentication)설정</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-04/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[2026 주요정보통신기반시설] CA-04 클라우드계정비밀번호정책관리</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/ca-05/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[2026 주요정보통신기반시설] CA-05 인스턴스서비스정책관리</h2>
+        </div>
+    </a>
+</article>
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025 - 
+        
+        2026 코딩이 싫은 거북이
+    </section>
+    
+    <section class="powerby">
+        <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>로 만듦 <br />
+        <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>의 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="4.0.0">Stack</a></b> 테마 사용 중
+    </section>
+</footer>
+
+
+    
+
+
+
+<script type="module">
+    import gallery from '\/ts\/gallery.js';
+
+    const articleContent = document.querySelector('.article-content');
+    const shouldLoad = articleContent && (articleContent.querySelectorAll('figure').length > 0 || articleContent.querySelectorAll('img.gallery-image').length > 0);
+    
+    if (shouldLoad) {
+        gallery(articleContent);
+
+        const PhotoSwipeLightbox = (await import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js")).default;
+        const styleHref = "https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.css";
+
+        const styleTag = document.createElement('link');
+        styleTag.rel = 'stylesheet';
+        styleTag.href = styleHref;
+        document.head.appendChild(styleTag);
+
+        const lightbox = new PhotoSwipeLightbox({
+            gallerySelector: '.article-content',
+            childSelector: 'figure a.image-link',
+            pswpModule: () => import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js")
+        });
+        lightbox.init();
+    }
+</script>
+    
+
+            </main>
+        </div>
+        <script type="text/javascript" src="/ts/main.387bdf6159ab34d0743ebd228aa9248d1ed2380fa5193ceff9ffdbf345b5309d.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

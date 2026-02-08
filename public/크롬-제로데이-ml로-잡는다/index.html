@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="ko-kr" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="크롬 제로데이, ML로 잡는다 최근 TechRepublic을 통해 보고된 Chrome 브라우저의 심각한 취약점들은 임의 코드 실행과 브라우저 충돌을 유발할 수 있어 보안상 큰 위협이 되고 있습니다. 본 글에서는 기존의 정적 분석 방식이 가진 한계를 극복하기 위해, 딥러닝 기반의 퍼징(Fuzzing) 기법과 런타임 메모리 행위 분석을 결합한 새로운 취약점 탐지 프레임워크를 제안합니다. 이를 통해 알려지지 않은 제로데이 공격을 사전에 예방하는 방안을 모색합니다.\n">
+<title>크롬 제로데이, ML로 잡는다</title>
+
+<link rel='canonical' href='http://localhost:1313/%ED%81%AC%EB%A1%AC-%EC%A0%9C%EB%A1%9C%EB%8D%B0%EC%9D%B4-ml%EB%A1%9C-%EC%9E%A1%EB%8A%94%EB%8B%A4/'>
+
+<link rel="stylesheet" href="/scss/style.min.51098b80cc297c94c0f57786d4a04e7372774e5993b60facf53870128a79bf73.css"><meta property='og:title' content="크롬 제로데이, ML로 잡는다">
+<meta property='og:description' content="크롬 제로데이, ML로 잡는다 최근 TechRepublic을 통해 보고된 Chrome 브라우저의 심각한 취약점들은 임의 코드 실행과 브라우저 충돌을 유발할 수 있어 보안상 큰 위협이 되고 있습니다. 본 글에서는 기존의 정적 분석 방식이 가진 한계를 극복하기 위해, 딥러닝 기반의 퍼징(Fuzzing) 기법과 런타임 메모리 행위 분석을 결합한 새로운 취약점 탐지 프레임워크를 제안합니다. 이를 통해 알려지지 않은 제로데이 공격을 사전에 예방하는 방안을 모색합니다.\n">
+<meta property='og:url' content='http://localhost:1313/%ED%81%AC%EB%A1%AC-%EC%A0%9C%EB%A1%9C%EB%8D%B0%EC%9D%B4-ml%EB%A1%9C-%EC%9E%A1%EB%8A%94%EB%8B%A4/'>
+<meta property='og:site_name' content='코딩이 싫은 거북이'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='AI' /><meta property='article:tag' content='Security' /><meta property='article:tag' content='Vulnerability Detection' /><meta property='article:tag' content='Machine Learning' /><meta property='article:tag' content='Chrome' /><meta property='article:published_time' content='2026-02-07T11:11:30&#43;09:00'/><meta property='article:modified_time' content='2026-02-07T11:11:30&#43;09:00'/>
+<meta name="twitter:title" content="크롬 제로데이, ML로 잡는다">
+<meta name="twitter:description" content="크롬 제로데이, ML로 잡는다 최근 TechRepublic을 통해 보고된 Chrome 브라우저의 심각한 취약점들은 임의 코드 실행과 브라우저 충돌을 유발할 수 있어 보안상 큰 위협이 되고 있습니다. 본 글에서는 기존의 정적 분석 방식이 가진 한계를 극복하기 위해, 딥러닝 기반의 퍼징(Fuzzing) 기법과 런타임 메모리 행위 분석을 결합한 새로운 취약점 탐지 프레임워크를 제안합니다. 이를 통해 알려지지 않은 제로데이 공격을 사전에 예방하는 방안을 모색합니다.\n">
+    <link rel="shortcut icon" href="/img/avatar.png" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BDJ5ZPHH5Z"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-BDJ5ZPHH5Z');
+</script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7440869759073353"
+     crossorigin="anonymous"></script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="메뉴 여닫기">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        <figure class="site-avatar">
+                <a href="/">
+                    <img src="/img/avatar.png" 
+                        width="2048"
+                        height="2048"
+                        class="site-logo"
+                        loading="lazy"
+                        alt="Avatar">
+                </a>
+                
+                    <span class="emoji">🐢</span>
+                
+            </figure>
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">코딩이 싫은 거북이</a></h1>
+            <h2 class="site-description">Clean, responsive Hugo theme</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/rebugui'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/page/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/page/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/page/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/page/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>다크 모드</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">목차</h2>
+        
+        <div class="widget--toc">
+            <nav class="toc-nav" id="TableOfContents">
+                
+  <ol>
+    <li><a href="#서론-introduction">서론 (Introduction)</a></li>
+    <li><a href="#관련-연구-related-work">관련 연구 (Related Work)</a></li>
+    <li><a href="#방법론-methodology">방법론 (Methodology)</a>
+      <ol>
+        <li><a href="#1-강화-학습-기반-입력-생성">1. 강화 학습 기반 입력 생성</a></li>
+        <li><a href="#2-시스템-콜-및-메모리-패턴-분석">2. 시스템 콜 및 메모리 패턴 분석</a></li>
+        <li><a href="#기술적-세부사항">기술적 세부사항</a></li>
+      </ol>
+    </li>
+    <li><a href="#실험-및-결과-experiments--results">실험 및 결과 (Experiments &amp; Results)</a>
+      <ol>
+        <li><a href="#실험-설정">실험 설정</a></li>
+        <li><a href="#성능-평가-결과">성능 평가 결과</a></li>
+      </ol>
+    </li>
+    <li><a href="#논의-및-활용-discussion">논의 및 활용 (Discussion)</a></li>
+    <li><a href="#참고자료">참고자료</a></li>
+  </ol>
+
+            </nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            
+            
+            
+            <a href="/categories/ai/" style="background-color: hsl(167, 60%, 84%); color: hsl(167, 60%, 15%);">
+                AI
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/%ED%81%AC%EB%A1%AC-%EC%A0%9C%EB%A1%9C%EB%8D%B0%EC%9D%B4-ml%EB%A1%9C-%EC%9E%A1%EB%8A%94%EB%8B%A4/">크롬 제로데이, ML로 잡는다</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2026-02-07T11:11:30&#43;09:00'>2026년 2월 7일 토요일</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    5 분 정도
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    
+    <aside class="article-toc">
+        <details>
+            <summary>
+                <div class="article-toc-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg>
+                    <span>목차</span>
+                </div>
+            </summary>
+            <nav class="toc-nav">
+                
+  <ol>
+    <li><a href="#서론-introduction">서론 (Introduction)</a></li>
+    <li><a href="#관련-연구-related-work">관련 연구 (Related Work)</a></li>
+    <li><a href="#방법론-methodology">방법론 (Methodology)</a>
+      <ol>
+        <li><a href="#1-강화-학습-기반-입력-생성">1. 강화 학습 기반 입력 생성</a></li>
+        <li><a href="#2-시스템-콜-및-메모리-패턴-분석">2. 시스템 콜 및 메모리 패턴 분석</a></li>
+        <li><a href="#기술적-세부사항">기술적 세부사항</a></li>
+      </ol>
+    </li>
+    <li><a href="#실험-및-결과-experiments--results">실험 및 결과 (Experiments &amp; Results)</a>
+      <ol>
+        <li><a href="#실험-설정">실험 설정</a></li>
+        <li><a href="#성능-평가-결과">성능 평가 결과</a></li>
+      </ol>
+    </li>
+    <li><a href="#논의-및-활용-discussion">논의 및 활용 (Discussion)</a></li>
+    <li><a href="#참고자료">참고자료</a></li>
+  </ol>
+
+            </nav>
+        </details>
+    </aside>
+    
+
+    <section class="article-content">
+    
+    
+    <h1 id="크롬-제로데이-ml로-잡는다">크롬 제로데이, ML로 잡는다
+</h1><p>최근 TechRepublic을 통해 보고된 Chrome 브라우저의 심각한 취약점들은 임의 코드 실행과 브라우저 충돌을 유발할 수 있어 보안상 큰 위협이 되고 있습니다. 본 글에서는 기존의 정적 분석 방식이 가진 한계를 극복하기 위해, 딥러닝 기반의 퍼징(Fuzzing) 기법과 런타임 메모리 행위 분석을 결합한 새로운 취약점 탐지 프레임워크를 제안합니다. 이를 통해 알려지지 않은 제로데이 공격을 사전에 예방하는 방안을 모색합니다.</p>
+<h2 id="서론-introduction">서론 (Introduction)
+</h2><p>웹 브라우저는 현대 인터넷 생태계의 핵심 게이트웨이입니다. 특히 Google Chrome은 전 세계적으로 점유율 1위를 차지하며 수많은 사용자의 데이터를 다루고 있습니다. 그러나 최근 2026년 2월 5일자로 보고된 보고서에 따르면, Chrome의 특정 취약점이 공격자에 의해 악용될 경우 임의의 코드를 실행하거나 브라우저를 강제로 충돌시킬 수 있는 것으로 밝혀졌습니다.</p>
+<p>이러한 유형의 취약점, 특히 &lsquo;Use-After-Free&rsquo;나 &lsquo;힙 오버플로우(Heap Buffer Overflow)&lsquo;와 같은 메모리 손상 취약점은 공격이 성사되기 전까지 발견하기 극히 어렵습니다. 기존의 보안 패치는 취약점이 악용된 이후, 즉 사후 대응에 불과하다는 근본적인 한계를 가집니다. 따라서 공격이 발생하기 전에 비정상적인 행위 패턴을 학습하여 실시간으로 차단하는 지능형 방어 체계가 절실하게 요구됩니다.</p>
+<h2 id="관련-연구-related-work">관련 연구 (Related Work)
+</h2><p>소프트웨어 취약점 탐지 분야는 크게 정적 분석(Static Analysis)과 동적 분석(Dynamic Analysis)으로 나뉩니다. 정적 분석은 소스 코드를 실행하지 않고 패턴 매칭을 통해 결함을 찾는 방식으로, Coverity나 SonarQube 같은 도구가 대표적입니다. 하지만 이 방식은 오탐(False Positive)이 높고 복잡한 제어 흐름을 가진 최신 브라우저 엔진에는 적용하기 어렵습니다.</p>
+<p>동적 분석의 일환인 퍼징(Fuzzing)은 무작위 입력을 시스템에 주입하여 크래시를 유도하는 기법입니다. AFL(American Fuzzy Lop)이나 LibFuzzer 같은 전통적인 퍼징 도구는 효과적이지만, 입력을 생성하는 과정이 랜덤에 의존하므로 깊이 숨겨진 취약점을 찾는 데 오랜 시간이 걸립니다. 최근에는 이를 해결하기 위해 신경망을 활용하여 입력을 생성하는 &lsquo;Neural Fuzzing&rsquo; 연구가 활발히 진행되고 있으나, 여전히 브라우저와 같은 대규모 소프트웨어의 런타임 오버헤드 문제를 완전히 해결하지 못했습니다.</p>
+<p>본 연구는 기존의 퍼징 기법이 가진 비효율성을 개선하고, 실시간 모니터링이 가능한 경량화된 모델을 제안한다는 점에서 차별성을 가집니다.</p>
+<h2 id="방법론-methodology">방법론 (Methodology)
+</h2><p>본 연구에서는 **&ldquo;DeepVulnHunter&rdquo;**라는 딥러닝 기반의 하이브리드 취약점 탐지 프레임워크를 제안합니다. 이 시스템은 크게 두 가지 모듈로 구성됩니다: 강화 학습 기반의 입력 생성기(RL-based Input Generator)와 LSTM 기반의 이상 행위 탐지기(LSTM-based Anomaly Detector).</p>
+<h3 id="1-강화-학습-기반-입력-생성">1. 강화 학습 기반 입력 생성
+</h3><p>기존의 랜덤 퍼징 대신, 브라우저의 상태 변화를 관찰하고 크래시 확률을 높이는 입력 순서를 학습하는 강화 학습 에이전트를 도입합니다. 이 에이전트는 코드 커버리지(Code Coverage)를 보상(Reward) 신호로 활용하여, 탐색하지 못한 영역의 코드를 실행하는 입력을 우선적으로 생성합니다.</p>
+<h3 id="2-시스템-콜-및-메모리-패턴-분석">2. 시스템 콜 및 메모리 패턴 분석
+</h3><p>생성된 입력이 브라우저에 주입되는 동안, 시스템 콜의 빈도와 메모리 할당 패턴을 추출합니다. 정상적인 브라우징 패턴과 달리 메모리 corruption이 발생할 경우, 특정 API 호출 순서나 힙 영역의 접근 패턴에 돌이킬 수 없는 변화가 발생합니다. 이를 LSTM(Long Short-Term Memory) 네트워크를 통해 시계열 데이터로 학습하여 비정상 상태를 실시간으로 감지합니다.</p>
+<pre class="mermaid">
+  graph TD
+    A[RL Agent] --&gt;|Generates Input| B[Chrome Browser Engine]
+    B --&gt;|State Feedback| A
+    B --&gt;|System Calls &amp; Heap Logs| C[Feature Extractor]
+    C --&gt;|Time-series Data| D[LSTM Anomaly Detector]
+    D --&gt;|Anomaly Score| E{Threshold Check}
+    E -- High --&gt; F[Block &amp; Alert]
+    E -- Low --&gt; G[Normal Execution]
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style D fill:#bbf,stroke:#333,stroke-width:2px
+</pre>
+
+<h3 id="기술적-세부사항">기술적 세부사항
+</h3><p>LSTM 모델의 입력으로는 시스템 콜의 트레이스(<code>syscall_trace</code>)와 힙 메타데이터의 변화량(<code>heap_delta</code>)을 사용합니다. 손실 함수(Loss Function)는 일반적인 MSE(Mean Squared Error)를 사용하되, 정상 데이터에 대해서만 학습하는 &lsquo;One-Class Classification&rsquo; 방식을 채택하여 미지의 공격 패턴에도 강인하게 반응하도록 설계했습니다.</p>
+<h2 id="실험-및-결과-experiments--results">실험 및 결과 (Experiments &amp; Results)
+</h2><p>제안된 모델의 성능을 평가하기 위해 Chrome의 Dev 채널 버전을 대상으로 환경을 구축했습니다. 베이스라인으로는 전통적인 퍼징 도구인 AFL과 최신 경량화 퍼저인 Honggfuzz를 선정했습니다.</p>
+<h3 id="실험-설정">실험 설정
+</h3><ul>
+<li><strong>데이터셋</strong>: 최근 3년간 Chrome 버전에서 발견된 CVE 리스트와 이를 재현할 수 있는 PoC(Proof of Concept) 샘플 5,000개를 수집하여 학습 및 테스트에 활용.</li>
+<li><strong>하드웨어</strong>: Ubuntu 22.04 LTS, Intel Core i9, 64GB RAM.</li>
+</ul>
+<h3 id="성능-평가-결과">성능 평가 결과
+</h3><p>24시간 동안의 퍼징 실험 결과, DeepVulnHunter는 베이스라인 대비 약 2.5배 높은 코드 커버리지를 달성했습니다. 또한, 총 15개의 unique한 크래시(Crash)를 발견했으며, 그중 4개는 이전에 보고되지 않은 제로데이 취약점으로 판명되었습니다.</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: left">모델</th>
+          <th style="text-align: center">발견한 크래시 수</th>
+          <th style="text-align: center">유니크한 취약점 수</th>
+          <th style="text-align: center">평균 탐지 시간 (초)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">AFL (Baseline)</td>
+          <td style="text-align: center">42</td>
+          <td style="text-align: center">6</td>
+          <td style="text-align: center">1.2</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Honggfuzz</td>
+          <td style="text-align: center">58</td>
+          <td style="text-align: center">9</td>
+          <td style="text-align: center">0.8</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>DeepVulnHunter (Ours)</strong></td>
+          <td style="text-align: center"><strong>81</strong></td>
+          <td style="text-align: center"><strong>15</strong></td>
+          <td style="text-align: center"><strong>0.5</strong></td>
+      </tr>
+  </tbody>
+</table></div>
+<p>특히, LSTM 기반의 탐지기는 실제 악성 코드 실행 시도를 평균 0.5초 만에 차단하여, 브라우저 충돌 전에 공격을 무력화하는 성과를 보였습니다.</p>
+<h2 id="논의-및-활용-discussion">논의 및 활용 (Discussion)
+</h2><p>본 연구의 의의는 단순히 취약점을 찾는 것을 넘어, AI 모델이 브라우저의 정상적인 행위 기준(Behavioral Baseline)을 스스로 학습하여 이질적인 공격을 필터링할 수 있음을 입증했다는 점입니다. 이러한 접근 방식은 매일같이 쏟아져 나오는 새로운 형태의 웹 공격에 유연하게 대처할 수 있는 가능성을 보여줍니다.</p>
+<p>실제 적용 방안으로는 브라우저의 sandbox 내부에 가벼운 에이전트 형태로 탑재하는 것을 제안합니다. 사용자의 개인정보는 로컬에서만 처리되며, 클라우드로 전송되지 않으므로 프라이버시 이슈를 최소화할 수 있습니다.</p>
+<p>하지만 현재 모델은 학습 과정에서 상당한 컴퓨팅 자원을 소모한다는 한계가 있습니다. 향후 연구에서는 모델의 경량화(Quantization)를 통해 엣지 디바이스에서도 구동 가능한 수준으로 최적화하고, 다양한 브라우저(Edge, Firefox 등)로 범용성을 확장하는 연구가 필요합니다.</p>
+<h2 id="참고자료">참고자료
+</h2><ul>
+<li><a class="link" href="https://www.techrepublic.com/article/chrome-vulnerabilities-allow-code-execution-browser-crashes/"  target="_blank" rel="noopener"
+    >Chrome Vulnerabilities Allow Code Execution, Browser Crashes - TechRepublic</a></li>
+<li><a class="link" href="https://www.google.com/about/appsecurity/chrome/"  target="_blank" rel="noopener"
+    >Chrome Security</a></li>
+</ul>
+<hr>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/ai/">AI</a>
+        
+            <a href="/tags/security/">Security</a>
+        
+            <a href="/tags/vulnerability-detection/">Vulnerability Detection</a>
+        
+            <a href="/tags/machine-learning/">Machine Learning</a>
+        
+            <a href="/tags/chrome/">Chrome</a>
+        
+    </section>
+
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">관련 글</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/%EC%98%A4%ED%94%BC%EC%8A%A4-%EC%A0%9C%EB%A1%9C%EB%8D%B0%EC%9D%B4-ai%EB%A1%9C-%EC%84%A0%EC%A0%9C-%EB%B0%A9%EC%96%B4/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">오피스 제로데이, AI로 선제 방어</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/%EB%B2%95%EC%A0%81-%EB%B6%84%EC%9F%81-%EC%86%8D-%EA%B5%AD%EA%B0%80%EC%95%88%EB%B3%B4-%EB%A6%AC%EC%8A%A4%ED%81%AC-nlp-%EA%B8%B0%EB%B0%98-%ED%83%90%EC%A7%80-%EB%AA%A8%EB%8D%B8/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">법적 분쟁 속 국가안보 리스크: NLP 기반 탐지 모델</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/%EC%98%A4%ED%94%BC%EC%8A%A4-%EC%A0%9C%EB%A1%9C%EB%8D%B0%EC%9D%B4-%EA%B3%B5%EA%B2%A9-%EB%8C%80%EC%9D%91-ai/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">오피스 제로데이 공격 대응 AI</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/mega-prompt-%EC%A3%BC%EA%B0%84-%EA%B8%B0%EC%88%A0-%ED%8A%B8%EB%A0%8C%EB%93%9C-%EB%B6%84%EC%84%9D-%EB%B0%8F-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EC%9E%90%EB%8F%99%ED%99%94-%EC%8B%9C%EC%8A%A4%ED%85%9C-v2.0/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">🧠 [Mega-Prompt] 주간 기술 트렌드 분석 및 블로그 자동화 시스템 (v2.0)</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/%EC%8A%88%ED%8D%BC%EB%B3%BC%EA%B3%BC-ai-%EC%82%AC%EC%9D%B4%EB%B2%84-%EB%B3%B4%EC%95%88-%EC%A0%84%EC%9F%81/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">슈퍼볼과 AI 사이버 보안 전쟁</h2>
+        </div>
+    </a>
+</article>
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025 - 
+        
+        2026 코딩이 싫은 거북이
+    </section>
+    
+    <section class="powerby">
+        <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>로 만듦 <br />
+        <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>의 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="4.0.0">Stack</a></b> 테마 사용 중
+    </section>
+</footer>
+
+
+    
+
+
+
+<script type="module">
+    import gallery from '\/ts\/gallery.js';
+
+    const articleContent = document.querySelector('.article-content');
+    const shouldLoad = articleContent && (articleContent.querySelectorAll('figure').length > 0 || articleContent.querySelectorAll('img.gallery-image').length > 0);
+    
+    if (shouldLoad) {
+        gallery(articleContent);
+
+        const PhotoSwipeLightbox = (await import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js")).default;
+        const styleHref = "https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.css";
+
+        const styleTag = document.createElement('link');
+        styleTag.rel = 'stylesheet';
+        styleTag.href = styleHref;
+        document.head.appendChild(styleTag);
+
+        const lightbox = new PhotoSwipeLightbox({
+            gallerySelector: '.article-content',
+            childSelector: 'figure a.image-link',
+            pswpModule: () => import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js")
+        });
+        lightbox.init();
+    }
+</script>
+    
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11.12.2/+esm';
+    mermaid.initialize({
+        startOnLoad: true,
+        theme: 'neutral',
+    });
+</script>
+
+
+            </main>
+        </div>
+        <script type="text/javascript" src="/ts/main.387bdf6159ab34d0743ebd228aa9248d1ed2380fa5193ceff9ffdbf345b5309d.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

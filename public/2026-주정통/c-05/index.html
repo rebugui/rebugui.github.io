@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="ko-kr" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="제어시스템(HMI, DCS 등)에서사용하고있는계정에대해용도에맞는최소권한부여여부점검">
+<title>[2026 주요정보통신기반시설] C-05 제어시스템 계정에 대해 관리, 운영, 유지보수 등 용도에 맞는 최소 권한 부여</title>
+
+<link rel='canonical' href='http://localhost:1313/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/c-05/'>
+
+<link rel="stylesheet" href="/scss/style.min.51098b80cc297c94c0f57786d4a04e7372774e5993b60facf53870128a79bf73.css"><meta property='og:title' content="[2026 주요정보통신기반시설] C-05 제어시스템 계정에 대해 관리, 운영, 유지보수 등 용도에 맞는 최소 권한 부여">
+<meta property='og:description' content="제어시스템(HMI, DCS 등)에서사용하고있는계정에대해용도에맞는최소권한부여여부점검">
+<meta property='og:url' content='http://localhost:1313/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/c-05/'>
+<meta property='og:site_name' content='코딩이 싫은 거북이'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='2026 주정통 가이드라인' /><meta property='article:tag' content='Control' /><meta property='article:published_time' content='2026-02-05T09:56:13&#43;09:00'/><meta property='article:modified_time' content='2026-02-05T09:56:13&#43;09:00'/>
+<meta name="twitter:title" content="[2026 주요정보통신기반시설] C-05 제어시스템 계정에 대해 관리, 운영, 유지보수 등 용도에 맞는 최소 권한 부여">
+<meta name="twitter:description" content="제어시스템(HMI, DCS 등)에서사용하고있는계정에대해용도에맞는최소권한부여여부점검">
+    <link rel="shortcut icon" href="/img/avatar.png" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BDJ5ZPHH5Z"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-BDJ5ZPHH5Z');
+</script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7440869759073353"
+     crossorigin="anonymous"></script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="메뉴 여닫기">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        <figure class="site-avatar">
+                <a href="/">
+                    <img src="/img/avatar.png" 
+                        width="2048"
+                        height="2048"
+                        class="site-logo"
+                        loading="lazy"
+                        alt="Avatar">
+                </a>
+                
+                    <span class="emoji">🐢</span>
+                
+            </figure>
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">코딩이 싫은 거북이</a></h1>
+            <h2 class="site-description">Clean, responsive Hugo theme</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/rebugui'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/page/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/page/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/page/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/page/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>다크 모드</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">목차</h2>
+        
+        <div class="widget--toc">
+            <nav class="toc-nav" id="TableOfContents">
+                
+  <ol>
+    <li><a href="#가이드라인-원문">가이드라인 원문</a></li>
+    <li><a href="#상세-설명">상세 설명</a>
+      <ol>
+        <li><a href="#1-항목-개요">1. 항목 개요</a></li>
+        <li><a href="#2-왜-이-항목이-필요한가요">2. 왜 이 항목이 필요한가요?</a></li>
+        <li><a href="#3-점검-대상">3. 점검 대상</a></li>
+        <li><a href="#4-판단-기준">4. 판단 기준</a></li>
+        <li><a href="#5-점검-방법">5. 점검 방법</a>
+          <ol>
+            <li><a href="#공통-점검-절차">공통 점검 절차</a></li>
+          </ol>
+        </li>
+        <li><a href="#6-조치-방법">6. 조치 방법</a>
+          <ol>
+            <li><a href="#용도별-권한-분리-설정">용도별 권한 분리 설정</a></li>
+          </ol>
+        </li>
+        <li><a href="#7-조치-시-주의사항">7. 조치 시 주의사항</a></li>
+        <li><a href="#8-참고-자료">8. 참고 자료</a></li>
+      </ol>
+    </li>
+    <li><a href="#요약">요약</a></li>
+  </ol>
+
+            </nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            
+            
+            
+            <a href="/categories/2026-%EC%A3%BC%EC%A0%95%ED%86%B5-%EA%B0%80%EC%9D%B4%EB%93%9C%EB%9D%BC%EC%9D%B8/" style="background-color: hsl(281, 60%, 84%); color: hsl(281, 60%, 15%);">
+                2026 주정통 가이드라인
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/c-05/">[2026 주요정보통신기반시설] C-05 제어시스템 계정에 대해 관리, 운영, 유지보수 등 용도에 맞는 최소 권한 부여</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            제어시스템(HMI, DCS 등)에서사용하고있는계정에대해용도에맞는최소권한부여여부점검
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2026-02-05T09:56:13&#43;09:00'>2026년 2월 5일 목요일</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    3 분 정도
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    
+    <aside class="article-toc">
+        <details>
+            <summary>
+                <div class="article-toc-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg>
+                    <span>목차</span>
+                </div>
+            </summary>
+            <nav class="toc-nav">
+                
+  <ol>
+    <li><a href="#가이드라인-원문">가이드라인 원문</a></li>
+    <li><a href="#상세-설명">상세 설명</a>
+      <ol>
+        <li><a href="#1-항목-개요">1. 항목 개요</a></li>
+        <li><a href="#2-왜-이-항목이-필요한가요">2. 왜 이 항목이 필요한가요?</a></li>
+        <li><a href="#3-점검-대상">3. 점검 대상</a></li>
+        <li><a href="#4-판단-기준">4. 판단 기준</a></li>
+        <li><a href="#5-점검-방법">5. 점검 방법</a>
+          <ol>
+            <li><a href="#공통-점검-절차">공통 점검 절차</a></li>
+          </ol>
+        </li>
+        <li><a href="#6-조치-방법">6. 조치 방법</a>
+          <ol>
+            <li><a href="#용도별-권한-분리-설정">용도별 권한 분리 설정</a></li>
+          </ol>
+        </li>
+        <li><a href="#7-조치-시-주의사항">7. 조치 시 주의사항</a></li>
+        <li><a href="#8-참고-자료">8. 참고 자료</a></li>
+      </ol>
+    </li>
+    <li><a href="#요약">요약</a></li>
+  </ol>
+
+            </nav>
+        </details>
+    </aside>
+    
+
+    <section class="article-content">
+    
+    
+    <h1 id="c-05-제어시스템-계정에-대해-관리-운영-유지보수-등-용도에-맞는-최소-권한-부여">C-05 제어시스템 계정에 대해 관리, 운영, 유지보수 등 용도에 맞는 최소 권한 부여
+</h1><h2 id="가이드라인-원문">가이드라인 원문
+</h2><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>항목</th>
+          <th>내용</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>항목코드</strong></td>
+          <td>C-05</td>
+      </tr>
+      <tr>
+          <td><strong>점검내용</strong></td>
+          <td>제어시스템(HMI, DCS 등)에서사용하고있는계정에대해용도에맞는최소권한부여여부점검</td>
+      </tr>
+  </tbody>
+</table></div>
+<hr>
+<h2 id="상세-설명">상세 설명
+</h2><h3 id="1-항목-개요">1. 항목 개요
+</h3><p>제어시스템에서 사용하는 계정에 관리, 운영, 유지보수 등 용도에 맞는 최소 권한만 부여하는 것은 불필요한 권한으로 인한 보안 위협을 최소화하는 핵심 보안 원칙입니다.</p>
+<p>최소 권한 원칙(Principle of Least Privilege)은 사용자가 자신의 업무를 수행하는 데 필요한 최소한의 권한만 부여하고, 그 이상의 권한은 제한하는 보안 개념입니다. 제어시스템 환경에서는 이 원칙이 특히 중요하며, 각 계정별로 권한을 세분화하여 부여할 수 있는 기능을 제공합니다.</p>
+<h3 id="2-왜-이-항목이-필요한가요">2. 왜 이 항목이 필요한가요?
+</h3><p>이 항목은 제어시스템 계정에 용도에 맞는 최소 권한만 부여하여 불필요한 권한으로 발생하는 업무 사고를 차단하기 위함입니다.</p>
+<p><strong>보안 위협 시나리오:</strong></p>
+<ol>
+<li>
+<p><strong>불필요한 권한 할당에 따른 악의적인 공격</strong></p>
+<ul>
+<li>운영용 계정에 관리자 권한이 부여된 경우, 해당 계정 탈취 시 시스템 전체 장악 가능</li>
+<li>공격자가 과도한 권한을 가진 계정을 탈취하여 제어설비 오작동 유발</li>
+</ul>
+</li>
+<li>
+<p><strong>잘못된 운전 조작 사고</strong></p>
+<ul>
+<li>유지보수용 계정에 운전 권한까지 부여된 경우 실수로 잘못된 명령 실행 가능</li>
+<li>권한이 과다하게 부여된 계정 사용 중 실수로 중요 설정 변경으로 인한 시스템 오작동 발생</li>
+</ul>
+</li>
+<li>
+<p><strong>권한 남용</strong></p>
+<ul>
+<li>관리 권한을 가진 사용자가 권한을 남용하여 부적절한 시스템 조작</li>
+<li>업무 범위를 벗어난 불필요한 설정 변경 및 데이터 접근</li>
+</ul>
+</li>
+</ol>
+<h3 id="3-점검-대상">3. 점검 대상
+</h3><ul>
+<li>HMI (Human Machine Interface)</li>
+<li>DCS (Distributed Control System)</li>
+<li>PLC (Programmable Logic Controller)</li>
+<li>EWS (Engineering Workstation)</li>
+<li>OWS (Operator Workstation)</li>
+<li>기타 계정 접근이 요구되는 제어시스템 구성요소 전체</li>
+</ul>
+<h3 id="4-판단-기준">4. 판단 기준
+</h3><ul>
+<li><strong>양호</strong>: 계정에 따라 각 용도에 맞는 최소한의 권한을 부여하여 사용하고 있는 경우</li>
+<li><strong>취약</strong>: 계정에 따라 각 용도에 맞지 않는 권한이 부여되어 사용하고 있는 경우</li>
+</ul>
+<h3 id="5-점검-방법">5. 점검 방법
+</h3><h4 id="공통-점검-절차">공통 점검 절차
+</h4><p><strong>Step 1) 용도별 계정 권한 확인</strong></p>
+<p>용도별 계정으로 기기에 접근하는 경우, 용도에 맞도록 권한이 분리되고 있는지 확인합니다.</p>
+<ul>
+<li>관리 용도의 계정, 운영 용도의 계정, 유지보수 용도의 계정에 따라 각각 권한을 다르게 부여하고 있어야 함</li>
+<li>단, 점검 대상의 필요성 또는 환경에 따라 용도별 구분이 없는 경우 예외로 허용 가능
+<ul>
+<li>예시: 관리자 1명이 운영을 동시에 하며 다른 사용자가 없는 경우</li>
+</ul>
+</li>
+</ul>
+<p><strong>제어시스템 기기의 계정 관리 기능 확인:</strong></p>
+<ul>
+<li>제어시스템 기기에서는 계정 관리 기능에서 계정별 권한을 분리하여 할당할 수 있는 기능을 제공</li>
+<li>이를 활용하여 용도별 권한을 분리하여 사용 가능</li>
+</ul>
+<h3 id="6-조치-방법">6. 조치 방법
+</h3><h4 id="용도별-권한-분리-설정">용도별 권한 분리 설정
+</h4><ol>
+<li>
+<p><strong>권한 분리 기능 활성화</strong></p>
+<ul>
+<li>제어시스템의 계정 관리 기능에서 계정별 권한 분리 설정 활성화</li>
+<li>각 제조사별 매뉴얼 참조 또는 기술 지원팀 문의</li>
+</ul>
+</li>
+<li>
+<p><strong>용도별 권한 정의</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[권한 분리 예시]
+</span></span><span class="line"><span class="cl">- 관리용 계정: 시스템 설정, 계정 관리, 권한 변경 등 관리자 기능만 허용
+</span></span><span class="line"><span class="cl">- 운영용 계정: 모니터링, 일반 운전 명령 등 운영자 기능만 허용
+</span></span><span class="line"><span class="cl">- 유지보수용 계정: 장비 점검, 설정 확인 등 유지보수 기능만 허용
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>권한 할당 및 검증</strong></p>
+<ul>
+<li>각 계정에 정의된 권한 할당</li>
+<li>할당된 권한이 정상적으로 동작하는지 검증</li>
+</ul>
+</li>
+</ol>
+<h3 id="7-조치-시-주의사항">7. 조치 시 주의사항
+</h3><ul>
+<li>일부 제어시스템 설정에 따라 접속 오류 발생 가능</li>
+<li>권한 변경 후 반드시 각 계정으로 정상 접속 가능한지 확인</li>
+<li>기존 업무에 영향이 없도록 충분한 테스트 후 적용</li>
+<li>1인 다역 환경(관리자가 운영까지 담당하는 경우)에서는 예외적 허용 가능</li>
+<li>PLC, DCS 등의 제어 H/W와 EWS, OWS 등의 제어 S/W는 제조사별로 설정 방법이 상이하므로 해당 매뉴얼 참조</li>
+</ul>
+<h3 id="8-참고-자료">8. 참고 자료
+</h3><ul>
+<li>NIST SP 800-82: Guide to Industrial Control Systems Security</li>
+<li>IEC 62443: Industrial Communication Networks - Network and System Security</li>
+</ul>
+<h2 id="요약">요약
+</h2><p>제어시스템 계정에 관리, 운영, 유지보수 등 용도에 맞는 최소 권한만 부여하여 불필요한 권한으로 인한 보안 위협과 업무 사고를 방지해야 합니다.</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/2026-%EC%A3%BC%EC%A0%95%ED%86%B5-%EA%B0%80%EC%9D%B4%EB%93%9C%EB%9D%BC%EC%9D%B8/">2026 주정통 가이드라인</a>
+        
+            <a href="/tags/control/">Control</a>
+        
+    </section>
+
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">관련 글</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/c-01/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[2026 주요정보통신기반시설] C-01 계정기능이 있는 제어시스템 구성요소에 대해 계정을 안전하게 설정하여 사용</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/c-02/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[2026 주요정보통신기반시설] C-02 제어시스템 계정의 로그인/로그아웃, 사용명령 등 사용기록을 저장</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/c-03/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[2026 주요정보통신기반시설] C-03 제어시스템 계정 입력 시 비밀번호 마스킹 처리, 입력값 에러 발생 시 제공 정보 제한 수행</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/c-04/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[2026 주요정보통신기반시설] C-04 제어시스템 계정을 관리, 운영, 유지보수 등 용도에 따라 분리하고 운용</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/2026-%EC%A3%BC%EC%A0%95%ED%86%B5/c-06/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[2026 주요정보통신기반시설] C-06 제어시스템 운전원별 유일 계정 부여 또는 시간별 사용자 기록 유지</h2>
+        </div>
+    </a>
+</article>
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025 - 
+        
+        2026 코딩이 싫은 거북이
+    </section>
+    
+    <section class="powerby">
+        <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>로 만듦 <br />
+        <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>의 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="4.0.0">Stack</a></b> 테마 사용 중
+    </section>
+</footer>
+
+
+    
+
+
+
+<script type="module">
+    import gallery from '\/ts\/gallery.js';
+
+    const articleContent = document.querySelector('.article-content');
+    const shouldLoad = articleContent && (articleContent.querySelectorAll('figure').length > 0 || articleContent.querySelectorAll('img.gallery-image').length > 0);
+    
+    if (shouldLoad) {
+        gallery(articleContent);
+
+        const PhotoSwipeLightbox = (await import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js")).default;
+        const styleHref = "https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.css";
+
+        const styleTag = document.createElement('link');
+        styleTag.rel = 'stylesheet';
+        styleTag.href = styleHref;
+        document.head.appendChild(styleTag);
+
+        const lightbox = new PhotoSwipeLightbox({
+            gallerySelector: '.article-content',
+            childSelector: 'figure a.image-link',
+            pswpModule: () => import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js")
+        });
+        lightbox.init();
+    }
+</script>
+    
+
+            </main>
+        </div>
+        <script type="text/javascript" src="/ts/main.387bdf6159ab34d0743ebd228aa9248d1ed2380fa5193ceff9ffdbf345b5309d.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
