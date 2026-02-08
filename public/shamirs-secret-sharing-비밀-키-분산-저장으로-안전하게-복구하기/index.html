@@ -877,9 +877,61 @@ $$f(x) = S + a_1x + a_2x^2 + ... + a_{k-1}x^{k-1}$$<p>여기서 $k$는 **임계�
     
 <script type="module">
     import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11.12.2/+esm';
-    mermaid.initialize({
-        startOnLoad: true,
-        theme: 'neutral',
+
+    function initMermaid() {
+        const isDark = document.documentElement.dataset.scheme === 'dark';
+        const theme = isDark ? 'dark' : 'default';
+
+        console.log('Initializing Mermaid with theme:', theme);
+
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: theme,
+            logLevel: 'debug',
+            securityLevel: 'loose',
+            themeVariables: {
+                darkMode: isDark,
+                background: isDark ? '#1e1e1e' : '#ffffff',
+                primaryColor: isDark ? '#81D4FA' : '#E3F2FD',
+                primaryTextColor: isDark ? '#ECEFF1' : '#263238',
+                primaryBorderColor: isDark ? '#81D4FA' : '#0288D1',
+                lineColor: isDark ? '#81D4FA' : '#0288D1',
+                secondaryColor: isDark ? '#4FC3F7' : '#BBDEFB',
+                tertiaryColor: isDark ? '#29B6F6' : '#90CAF9',
+                fillType0: isDark ? '#81D4FA' : '#E3F2FD',
+                fillType1: isDark ? '#4FC3F7' : '#BBDEFB',
+                fillType2: isDark ? '#29B6F6' : '#90CAF9',
+                arrowheadColor: isDark ? '#81D4FA' : '#0288D1',
+                arrowColor: isDark ? '#81D4FA' : '#0288D1',
+                edgeLabelBackground: isDark ? '#263238' : '#ffffff',
+                fontFamily: 'arial',
+                fontSize: '16px'
+            }
+        });
+
+        
+        document.querySelectorAll('.mermaid').forEach((element) => {
+            element.removeAttribute('data-processed');
+        });
+        mermaid.init(undefined, document.querySelectorAll('.mermaid'));
+    }
+
+    
+    initMermaid();
+
+    
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'data-scheme') {
+                console.log('Theme changed to:', document.documentElement.dataset.scheme);
+                initMermaid();
+            }
+        });
+    });
+
+    observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['data-scheme']
     });
 </script>
 
