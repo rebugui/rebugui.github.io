@@ -32,7 +32,7 @@ VS Code의 Agent Definition은 사용자가 정의한 목적을 달성하기 위
 
 아래 다이어그램은 정상적인 흐름과 공격자가 우회하는 흐름을 비교한 것입니다.
 
-```javascript
+```mermaid
 graph TD
     subgraph Normal_Flow["정상적인 요청 흐름"]
         User1[사용자] -->|요청| Agent1[Main Agent]
@@ -50,17 +50,6 @@ graph TD
         Sub2 -->|결과 반환| Agent2
         Agent2 -->|결과 반환| User2
     end
-
-    style User1 fill:#f9f,stroke:#333,stroke-width:2px
-    style Agent1 fill:#f9f,stroke:#333,stroke-width:2px
-    style Sub1 fill:#f9f,stroke:#333,stroke-width:2px
-    style Billing1 fill:#bbf,stroke:#333,stroke-width:2px
-    style API1 fill:#f9f,stroke:#333,stroke-width:2px
-    
-    style User2 fill:#fbb,stroke:#333,stroke-width:2px
-    style Agent2 fill:#fbb,stroke:#333,stroke-width:2px
-    style Sub2 fill:#fbb,stroke:#333,stroke-width:2px
-    style API2 fill:#f9f,stroke:#333,stroke-width:2px
 ```
 
 위 다이어그램에서 `Vulnerable Subagent`는 독립적으로 존재하는 컴포넌트로, 보안 설계 상 `Billing Service`를 거치지 않고 직접 `LLM API`와 통신할 수 있는 권한을 가지고 있거나, 혹은 그 권한이 상속되는 취약점을 가지고 있습니다.

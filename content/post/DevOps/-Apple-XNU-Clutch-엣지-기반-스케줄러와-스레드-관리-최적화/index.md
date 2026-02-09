@@ -32,33 +32,21 @@ Clutch Scheduler는 스레드를 **Clutch(클러치)**라는 논리적 그룹으
 
 아래 다이어그램은 Clutch Scheduler가 루트(Root)에서부터 최종 스레드(Thread)를 선택하기까지의 계층적 의사결정 과정을 시각화한 것입니다. 파란색으로 강조된 부분이 스케줄러의 핵심 로직인 'Edge 비교 및 선택' 단계입니다.
 
-```javascript
+```mermaid
 graph TD
-    Root["Root Scheduler"] -> Evaluate["Evaluate Edges"]
+    Root["Root Scheduler"] --> Evaluate["Evaluate Edges"]
     Evaluate --> Clutch1["Clutch A: Interactive"]
     Evaluate --> Clutch2["Clutch B: Background"]
     Evaluate --> Clutch3["Clutch C: Daemons"]
 
     Clutch1 --> BucketA1["Bucket: Priority 0-20"]
     Clutch1 --> BucketA2["Bucket: Priority 21-40"]
-    
+
     Clutch2 --> BucketB1["Bucket: Priority 0-20"]
-    
+
     BucketA1 --> Thread1["Thread: UI Rendering"]
     BucketA2 --> Thread2["Thread: User Input"]
     BucketB1 --> Thread3["Thread: File Indexing"]
-
-    style Root fill:#f9f,stroke:#333,stroke-width:2px
-    style Evaluate fill:#bbf,stroke:#333,stroke-width:2px
-    style Clutch1 fill:#f9f,stroke:#333,stroke-width:2px
-    style Clutch2 fill:#f9f,stroke:#333,stroke-width:2px
-    style Clutch3 fill:#f9f,stroke:#333,stroke-width:2px
-    style BucketA1 fill:#f9f,stroke:#333,stroke-width:2px
-    style BucketA2 fill:#f9f,stroke:#333,stroke-width:2px
-    style BucketB1 fill:#f9f,stroke:#333,stroke-width:2px
-    style Thread1 fill:#f9f,stroke:#333,stroke-width:2px
-    style Thread2 fill:#f9f,stroke:#333,stroke-width:2px
-    style Thread3 fill:#f9f,stroke:#333,stroke-width:2px
 ```
 
 이 구조에서 스케줄러는 최상위 레벨에서 `Clutch A`, `Clutch B`, `Clutch C`의 Edge 점수를 비교합니다. 예를 들어, 사용자가 터치스크린을 조작하는 순간 `Interactive` Clutch의 Edge 점수가 급격히 상승하여 선택됩니다. 이후 내부의 Bucket을 순회하며 가장 높은 우선순위의 스레드를 꺼내 실행합니다.
