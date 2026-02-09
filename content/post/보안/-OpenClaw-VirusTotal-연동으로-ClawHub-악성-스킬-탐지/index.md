@@ -30,7 +30,7 @@ OpenClaw는 VirusTotal API를 활용하여 스킬 파일의 해시(Hash)를 검�
 
 이 시스템의 핵심은 파일 업로드 흐름 사이에 VirusTotal 스캐닝 프로세스를 삽입하는 것입니다. 아래 다이어그램은 사용자가 스킬을 업로드할 때부터 검사가 완료되기까지의 보안 검증 흐름을 도식화한 것입니다.
 
-```javascript
+```mermaid
 graph TD
     User[사용자 / 공격자] -->|스킬 업로드| Upload{ClawHub Upload API}
     Upload -->|파일 추출| FileProcessor[파일 처리기]

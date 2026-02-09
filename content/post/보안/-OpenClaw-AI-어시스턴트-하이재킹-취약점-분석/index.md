@@ -32,7 +32,7 @@ categories:
 
 아래는 공격자가 이 취약점을 악용하여 타겟의 어시스턴트를 하이재킹하는 전체 과정을 시각화한 것입니다. 이 다이어그램은 인증 우회와 세션 탈취가 어떻게 연쇄적으로 일어나는지 보여줍니다.
 
-```javascript
+```mermaid
 graph TD
     Attacker[공격자] -->|1. 정상 로그인 및 JWT 획득| Auth[OpenClaw 인증 서버]
     TargetVictim[피해자 관리자] -->|2. 어시스턴트 세션 생성| Assistant[OpenClaw AI 어시스턴트 API]

@@ -30,7 +30,7 @@ CineGraphs 프로젝트는 이러한 딜레마를 해결하기 위해 탄생했�
 
 아래는 영화 분석 및 학습 데이터 생성 과정을 도식화한 아키텍처입니다.
 
-```javascript
+```mermaid
 graph TD
     Input[Raw Footage & Subtitles] --> Preprocess[Preprocessing Sync]
     Preprocess --> VLM[Qwen3-VL Analyzer]

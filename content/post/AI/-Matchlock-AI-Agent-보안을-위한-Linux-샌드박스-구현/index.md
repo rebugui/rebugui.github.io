@@ -30,7 +30,7 @@ Matchlock의 핵심은 Linux 커널 차원에서 제공하는 프리미티브(Pr
 
 다음은 Matchlock이 AI 에이전트의 명령을 실행하는 과정과 보안 메커니즘을 시각화한 것입니다.
 
-```javascript
+```mermaid
 graph TD
     User[사용자 또는 LLM Agent] -->|Command: rm -rf /data| AgentCore[Agent Core Wrapper]
 

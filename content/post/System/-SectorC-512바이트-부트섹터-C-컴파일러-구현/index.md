@@ -32,7 +32,7 @@ SectorC의 핵심은 x86 리얼 모드(Real Mode) 환경에서 512바이트라�
 
 아래 다이어그램은 이러한 극한의 컴파일 과정이 기존 방식과 어떻게 다른지 시각적으로 보여줍니다.
 
-```javascript
+```mermaid
 graph TD
     subgraph Traditional [일반적인 컴파일러]
         A1[Source Code] --> B1[Preprocessing]
