@@ -51,8 +51,6 @@ graph TD
     D -->|Anomaly Score| E{Threshold Check}
     E -- High --> F[Block & Alert]
     E -- Low --> G[Normal Execution]
-    style A fill:#f9f,stroke:#333,stroke-width:2px
-    style D fill:#bbf,stroke:#333,stroke-width:2px
 ```
 
 ### 기술적 세부사항

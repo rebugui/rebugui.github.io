@@ -49,8 +49,6 @@ graph TD
     J[제로 트러스트 & AI 기반 탐지] -->|대응| H
     end
 
-    style A fill:#f9f,stroke:#333,stroke-width:2px
-    style H fill:#bbf,stroke:#333,stroke-width:2px
 ```
 
 ## 실제 공격 예시 (Attack Example)

@@ -40,7 +40,6 @@ graph LR
     D --> E[Execution<br>ESXiArgs 랜섬웨어 실행]
     E --> F[Impact<br>VM 암호화 및 서비스 중단]
 
-    style F fill:#ffcccc,stroke:#ff0000,stroke-width:2px
 ```
 
 1. **Reconnaissance (정찰)**: 공격자는 인터넷에 노출된 ESXi 관리 포트(기본 443)나 OpenSLP 포트(427)를 스캔하여 취약한 버전의 ESXi를 찾아냅니다.

@@ -45,16 +45,6 @@ graph TD
     Quarantine -->|알림| AdminNotify[관리자 알림]
     DBStore -->|완료| Success[다운로드 가능 상태]
     
-    style User fill:#f9f,stroke:#333,stroke-width:2px
-    style Upload fill:#bbf,stroke:#333,stroke-width:2px
-    style FileProcessor fill:#f9f,stroke:#333,stroke-width:2px
-    style Hash fill:#f9f,stroke:#333,stroke-width:2px
-    style VTCheck fill:#bbf,stroke:#333,stroke-width:2px
-    style Decision fill:#f9f,stroke:#333,stroke-width:2px
-    style Quarantine fill:#fbb,stroke:#333,stroke-width:2px
-    style DBStore fill:#f9f,stroke:#333,stroke-width:2px
-    style AdminNotify fill:#f9f,stroke:#333,stroke-width:2px
-    style Success fill:#f9f,stroke:#333,stroke-width:2px
 ```
 
 위 흐름도에서 볼 수 있듯이, **VTCheck(VirusTotal API)**와 **Decision(악성 여부 판단)** 단계가 핵심입니다. 만약 악성 코드가 탐지되면 시스템은 즉시 해당 파일을 **Quarantine(격리)** 처리하여 유포를 차단합니다.

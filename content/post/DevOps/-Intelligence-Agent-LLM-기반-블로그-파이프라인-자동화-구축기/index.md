@@ -47,11 +47,6 @@ graph TD
         I --> J[Hugo Blog]
     end
     
-    style A fill:#e1f5ff
-    style C fill:#fff4e1
-    style E fill:#f0e1ff
-    style G fill:#ffe1f0
-    style J fill:#e1ffe1
 ```
 
 ### 1단계: 뉴스 수집 (News Collector)

@@ -39,7 +39,6 @@ graph TD
     subgraph "Traditional Container (Shared Kernel)"
         A[Attacker] -->|Exploit Syscall| B[Host Kernel]
         B -->|Compromise| C[Host Filesystem]
-        style B fill:#ffcccc,stroke:#ff0000
     end
 
     subgraph "LiteBox (Library OS)"
@@ -47,8 +46,6 @@ graph TD
         E -->|Filter/Deny| F{Host Interface Check}
         F -- Blocked --> G[Process Kill]
         F -- Allowed(Minimal) --> H[Host Hypervisor]
-        style E fill:#ccffcc,stroke:#00ff00
-        style F fill:#ffffcc,stroke:#ffcc00
     end
 ```
 

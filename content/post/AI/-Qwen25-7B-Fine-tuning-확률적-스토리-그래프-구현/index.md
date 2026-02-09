@@ -50,17 +50,6 @@ graph TD
     LoRA --> Infer[vLLM Inference Engine]
     Infer --> Output[Probabilistic Story Graph]
 
-    style Input fill:#f9f,stroke:#333,stroke-width:2px
-    style Preprocess fill:#f9f,stroke:#333,stroke-width:2px
-    style VLM fill:#bbf,stroke:#333,stroke-width:2px
-    style Beats fill:#f9f,stroke:#333,stroke-width:2px
-    style Relations fill:#f9f,stroke:#333,stroke-width:2px
-    style Themes fill:#f9f,stroke:#333,stroke-width:2px
-    style Dataset fill:#f9f,stroke:#333,stroke-width:2px
-    style Base fill:#f9f,stroke:#333,stroke-width:2px
-    style LoRA fill:#bbf,stroke:#333,stroke-width:2px
-    style Infer fill:#f9f,stroke:#333,stroke-width:2px
-    style Output fill:#bbf,stroke:#333,stroke-width:2px
 ```
 
 ### 2. 모델 아키텍처: Qwen2.5-7B와 LoRA의 조화

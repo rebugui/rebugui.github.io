@@ -28,13 +28,6 @@ graph TD
     E -->|Build| F[Hugo Blog]
     F -->|Render| G[Published Blog]
 
-    style A fill:#e1f5ff
-    style B fill:#fff4e1
-    style C fill:#f0e1ff
-    style D fill:#fff4e1
-    style E fill:#e1ffe1
-    style F fill:#ffe1f0
-    style G fill:#e1ffe1
 ```
 
 ## 테스트 코드 예시

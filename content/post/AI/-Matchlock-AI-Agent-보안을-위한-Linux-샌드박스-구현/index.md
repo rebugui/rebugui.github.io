@@ -54,16 +54,6 @@ graph TD
     AgentCore -->|8. Final Response| User
 
     %% 스타일 적용
-    style User fill:#f9f,stroke:#333,stroke-width:2px
-    style AgentCore fill:#f9f,stroke:#333,stroke-width:2px
-    style PolicyMgr fill:#bbf,stroke:#333,stroke-width:2px
-    style Matchlock fill:#bbf,stroke:#333,stroke-width:2px
-    style Unshare fill:#f9f,stroke:#333,stroke-width:2px
-    style Seccomp fill:#f9f,stroke:#333,stroke-width:2px
-    style IsolatedProc fill:#f9f,stroke:#333,stroke-width:2px
-    style HostFS fill:#f9f,stroke:#333,stroke-width:2px
-    style VirtualFS fill:#f9f,stroke:#333,stroke-width:2px
-    style HostSystem fill:#fff,stroke:#999,stroke-width:1px,stroke-dasharray: 5 5
 ```
 
 이 다이어그램에서 **Matchlock Sandbox Interface**와 **Policy Engine**이 강조된 파란색 노드입니다. 이는 보안을 적용하는 핵심 컴포넌트임을 의미합니다. 에이전트가 위험한 명령을 내리더라도, `Namespace` 격리와 `Seccomp` 필터링을 통해 호스트 시스템(Host OS Level)의 실제 자원에는 접근할 수 없게 됩니다.

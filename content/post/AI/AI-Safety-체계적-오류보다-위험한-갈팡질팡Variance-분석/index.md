@@ -43,7 +43,6 @@ graph TD
         SE_Target[True Goal]
         SE_Response[Model Response]
         SE_Target -- 일관된 편향 --> SE_Response
-        style SE_Response fill:#ffcccc,stroke:#333,stroke-width:2px
     end
 
     subgraph High_Variance [높은 분산 Vacillation]
@@ -57,8 +56,6 @@ graph TD
         HV_Target -.-> HV_Response2
         HV_Response3 -.-> HV_Target
         
-        style HV_Response2 fill:#ff6600,stroke:#333,stroke-width:2px
-        style HV_Response1 fill:#ccffcc,stroke:#333,stroke-width:2px
     end
 ```
 

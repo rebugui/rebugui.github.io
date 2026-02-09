@@ -46,9 +46,6 @@ graph LR
     E -->|Render Mermaid| F[Execute Malicious JS]
     F --> G[Session Hijacking]
     
-    style A fill:#f9f,stroke:#333,stroke-width:2px
-    style F fill:#f99,stroke:#333,stroke-width:2px
-    style G fill:#f00,stroke:#333,stroke-width:4px,color:#fff
 ```
 
 위 다이어그램이 정상적으로 렌더링된다면, 우리는 시각적으로 위협의 경로를 식별할 수 있습니다. 하지만 렌더링이 실패하거나 코드가 노출된다면, 그 자체로 정보 노출(Information Disclosure) 위험이 발생합니다.

@@ -50,19 +50,7 @@ graph TD
         C2 --> D2[x86-16 Machine Code]
     end
 
-    style A1 fill:#f9f,stroke:#333,stroke-width:2px
-    style B1 fill:#f9f,stroke:#333,stroke-width:2px
-    style C1 fill:#f9f,stroke:#333,stroke-width:2px
-    style D1 fill:#f9f,stroke:#333,stroke-width:2px
-    style E1 fill:#f9f,stroke:#333,stroke-width:2px
-    style F1 fill:#f9f,stroke:#333,stroke-width:2px
-    style G1 fill:#f9f,stroke:#333,stroke-width:2px
-    style H1 fill:#fbb,stroke:#333,stroke-width:2px
 
-    style A2 fill:#f9f,stroke:#333,stroke-width:2px
-    style B2 fill:#bbf,stroke:#333,stroke-width:2px
-    style C2 fill:#bbf,stroke:#333,stroke-width:2px
-    style D2 fill:#fbb,stroke:#333,stroke-width:2px
 ```
 
 이 다이어그램에서 볼 수 있듯이, SectorC는 중간 단계(AST 등) 없이 입력을 즉시 기계어(Danger Zone)로 변환합니다. 이는 메모리 공간을 획기적으로 아낄 수 있지만, 에러 처리나 복잡한 최적화가 불가능하다는 trade-off가 존재합니다.

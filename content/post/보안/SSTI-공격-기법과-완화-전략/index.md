@@ -37,8 +37,6 @@ graph TD
     E --> F[위험한 API 호출]
     F --> G[시스템 명령어 실행]
     G --> H[RCE 및 서버 탈취]
-    style A fill:#f9f,stroke:#333,stroke-width:2px
-    style H fill:#f66,stroke:#333,stroke-width:4px
 ```
 
 ## 실제 공격 예시 (Attack Example)

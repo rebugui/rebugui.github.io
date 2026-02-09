@@ -44,13 +44,6 @@ graph TD
     Assistant -.->|6. 세션 검증 로직 우회<br/>(소유권 확인 누락)| ValidationLogic[검증 로직]
     Assistant -->|7. 하이재킹 승인| HijackedSession[탈취된 세션]
 
-    style Attacker fill:#fbb,stroke:#333,stroke-width:2px
-    style TargetVictim fill:#f9f,stroke:#333,stroke-width:2px
-    style Auth fill:#bbf,stroke:#333,stroke-width:2px
-    style Assistant fill:#bbf,stroke:#333,stroke-width:2px
-    style VictimSession fill:#f9f,stroke:#333,stroke-width:2px
-    style ValidationLogic fill:#fbb,stroke:#333,stroke-width:2px
-    style HijackedSession fill:#fbb,stroke:#333,stroke-width:2px
 ```
 
 위 다이어그램에서 가장 취약한 지점은 '검증 로직' 단계입니다. 공격자는 자신의 자격 증명(JWT)은 유효하지만, 요청하고자 하는 자원(Session ID)에 대한 권한이 없음에도 불구하고 시스템이 이를 허용합니다.
