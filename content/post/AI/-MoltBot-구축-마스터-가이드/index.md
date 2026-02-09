@@ -81,6 +81,45 @@ cd openclaw
 sudo chown -R 1000:1000 ~/.openclaw
 ```
 
+#### 방법 D: Ollama 통합 (로컬 LLM) ⭐ **NEW**
+
+Ollama와 통합하여 완전히 로컬 환경에서 OpenClaw를 구동할 수 있습니다. 별도의 API 키 없이 로컬 LLM만으로도 강력한 자동화를 구현할 수 있습니다.
+
+```bash
+# 1. OpenClaw 설치
+npm install -g openclaw@latest
+
+# 2. Ollama 설치 (이미 설치되어 있다면 생략)
+# macOS
+brew install ollama
+
+# Linux
+curl -fsSL https://ollama.com/install.sh | sh
+
+# 3. OpenClaw 자동 설정 및 게이트웨이 시작
+ollama launch openclaw
+```
+
+<details>
+<summary>⚙️ 설정만 진행하려면 (게이트웨이 시작 없음)</summary>
+
+```bash
+ollama launch openclaw --config
+```
+
+이미 게이트웨이가 실행 중이라면 자동으로 재시작되지 않으며, 설정만 적용됩니다.
+
+</details>
+
+<Note>
+**중요**: OpenClaw는 **최소 64k 토큰**의 컨텍스트 윈도를 권장합니다. 긴 문서를 처리하거나 복잡한 작업을 수행할 때는 더 큰 컨텍스트가 필요할 수 있습니다.
+
+이전 명칭인 `Clawdbot`도 여전히 사용 가능합니다:
+```bash
+ollama launch clawdbot  # openclaw와 동일
+```
+</Note>
+
 ### 3. 초기 설정 및 온보딩 (Onboarding)
 
 설치 후 `onboard` 명령어를 통해 대화형으로 설정을 진행해야 합니다. 이 과정에서 데몬(백그라운드 서비스) 등록까지 한 번에 처리됩니다.
@@ -98,6 +137,18 @@ openclaw onboard --install-daemon
 - **Anthropic (권장)**: Claude 3.5 Sonnet 등 사용. API Key 입력
 - **OpenAI**: GPT-4o 사용
 - **Ollama (로컬)**: 로컬 LLM 사용 시 선택 (URL: `http://localhost:11434`)
+
+**Ollama 권장 모델 (로컬 LLM)**
+OpenClaw와 함께 사용하기에 최적화된 모델들입니다:
+
+| 모델 | 특징 | 용도 | VRAM 요구사양 |
+| :--- | :--- | :--- | :--- |
+| **qwen3-coder** | 코드 생성 최적화 | 코드 리뷰, 스크립트 작성 | 8GB+ |
+| **glm-4.7** | 중국어/영어 균형 | 일반 대화, 문서 작성 | 8GB+ |
+| **gpt-oss:20b** | 오픈소스 20B | 복잡한 추론, 분석 | 16GB+ |
+| **gpt-oss:120b** | 대형 오픈소스 | 최고 성능 작업 | 32GB+ |
+
+> **💡 팁**: 클라우드 모델도 사용 가능합니다. [ollama.com/search?c=cloud](https://ollama.com/search?c=cloud)에서 확인하세요.
 
 **Channels (채널 연동)**
 - 사용할 플랫폼 선택 (Telegram, Discord, Slack, Notion 등)
@@ -186,6 +237,62 @@ OpenClaw는 Notion을 단순 채널이 아닌 **확장 메모리(Extended Contex
 # 에이전트에게 자연어로 지시
 "이번 주 회의록 요약해서 노션 '주간보고' 페이지에 저장해줘"
 "노션에 있는 지난 분기 보고서에서 핵심 지표 3개 추출해줘"
+```
+
+### 7. Ollama 심화 설정 (로컬 LLM 최적화)
+
+Ollama와 통합하여 완전한 로컬 환경에서 OpenClaw를 운영하는 방법입니다.
+
+#### 7.1 모델 관리
+
+```bash
+# 사용 가능한 모델 목록 확인
+ollama list
+
+# 새 모델 다운로드 (예: qwen3-coder)
+ollama pull qwen3-coder
+
+# 모델 실행 테스트
+ollama run qwen3-coder
+```
+
+#### 7.2 OpenClaw + Ollama 아키텍처
+
+```mermaid
+graph LR
+    subgraph "Local Environment"
+        CLI[OpenClaw CLI]
+        UI[Control UI]
+        Gateway[OpenClaw Gateway]
+        Ollama[Ollama Server]
+    end
+
+    subgraph "Ollama Models"
+        Qwen[qwen3-coder]
+        GLM[glm-4.7]
+        GPT[gpt-oss:20b]
+    end
+
+    CLI --> Gateway
+    UI --> Gateway
+    Gateway <--> Ollama
+    Ollama <--> Qwen
+    Ollama <--> GLM
+    Ollama <--> GPT
+```
+
+#### 7.3 성능 최적화 팁
+
+| 설정 | 권장 값 | 설명 |
+| :--- | :--- | :--- |
+| **Context Window** | 64k+ | 긴 문서 처리 시 필요 |
+| **VRAM** | 8GB+ | qwen3-coder, glm-4.7 구동 |
+| **Threads** | 4~8 | CPU 코어 수에 맞춰 설정 |
+| **Batch Size** | 1~4 | 메모리에 따라 조정 |
+
+```bash
+# Ollama 서버 실행 시 환경 변수 설정
+OLLAMA_NUM_THREAD=8 ollama serve
 ```
 
 ### 7. 트러블슈팅 (FAQ)

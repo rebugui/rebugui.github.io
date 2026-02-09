@@ -1,20 +1,381 @@
-<!doctype html><html lang=ko-kr dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="MS 보안 총괄에 구글 클라우드 출신 낙점 Google Cloud의 고위 임원이 Microsoft의 보안 총괄으로 복귀하는 인사가 발표되었습니다. 이는 빅테크 기업 간 클라우드 보안 인재 영입 경쟁이 치열해지고 있음을 보여줍니다. Microsoft는 이번 인사를 통해 차세대 보안 아키텍처와 신원 관리 전략을 강화할 것으로 예상됩니다. 본 글에서는 이러한 리더십 변화가 의미하는 기술적 맥락과 클라우드 환경의 핵심 위협인 신원 연계(Identity Federation) 취약점을 심층 분석합니다.\n"><title>MS 보안 총괄에 구글 클라우드 출신 낙점</title><link rel=canonical href=https://rebugui.github.io/ms-%EB%B3%B4%EC%95%88-%EC%B4%9D%EA%B4%84%EC%97%90-%EA%B5%AC%EA%B8%80-%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%EC%B6%9C%EC%8B%A0-%EB%82%99%EC%A0%90/><link rel=stylesheet href=/scss/style.min.51098b80cc297c94c0f57786d4a04e7372774e5993b60facf53870128a79bf73.css><meta property='og:title' content="MS 보안 총괄에 구글 클라우드 출신 낙점"><meta property='og:description' content="MS 보안 총괄에 구글 클라우드 출신 낙점 Google Cloud의 고위 임원이 Microsoft의 보안 총괄으로 복귀하는 인사가 발표되었습니다. 이는 빅테크 기업 간 클라우드 보안 인재 영입 경쟁이 치열해지고 있음을 보여줍니다. Microsoft는 이번 인사를 통해 차세대 보안 아키텍처와 신원 관리 전략을 강화할 것으로 예상됩니다. 본 글에서는 이러한 리더십 변화가 의미하는 기술적 맥락과 클라우드 환경의 핵심 위협인 신원 연계(Identity Federation) 취약점을 심층 분석합니다.\n"><meta property='og:url' content='https://rebugui.github.io/ms-%EB%B3%B4%EC%95%88-%EC%B4%9D%EA%B4%84%EC%97%90-%EA%B5%AC%EA%B8%80-%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%EC%B6%9C%EC%8B%A0-%EB%82%99%EC%A0%90/'><meta property='og:site_name' content='코딩이 싫은 거북이'><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='Security'><meta property='article:tag' content='Cybersecurity'><meta property='article:tag' content='보안'><meta property='article:tag' content='취약점'><meta property='article:tag' content='웹 해킹'><meta property='article:published_time' content='2026-02-07T09:00:48+09:00'><meta property='article:modified_time' content='2026-02-07T09:00:48+09:00'><meta name=twitter:title content="MS 보안 총괄에 구글 클라우드 출신 낙점"><meta name=twitter:description content="MS 보안 총괄에 구글 클라우드 출신 낙점 Google Cloud의 고위 임원이 Microsoft의 보안 총괄으로 복귀하는 인사가 발표되었습니다. 이는 빅테크 기업 간 클라우드 보안 인재 영입 경쟁이 치열해지고 있음을 보여줍니다. Microsoft는 이번 인사를 통해 차세대 보안 아키텍처와 신원 관리 전략을 강화할 것으로 예상됩니다. 본 글에서는 이러한 리더십 변화가 의미하는 기술적 맥락과 클라우드 환경의 핵심 위협인 신원 연계(Identity Federation) 취약점을 심층 분석합니다.\n"><link rel="shortcut icon" href=/img/avatar.png><script async src="https://www.googletagmanager.com/gtag/js?id=G-BDJ5ZPHH5Z"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-BDJ5ZPHH5Z")</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7440869759073353" crossorigin=anonymous></script></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="메뉴 여닫기">
-<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar.png width=2048 height=2048 class=site-logo loading=lazy alt=Avatar>
-</a><span class=emoji>🐢</span></figure><div class=site-meta><h1 class=site-name><a href=/>코딩이 싫은 거북이</a></h1><h2 class=site-description>Clean, responsive Hugo theme</h2></div></header><ol class=menu-social><li><a href=https://github.com/rebugui target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
-<span>Home</span></a></li><li><a href=/page/about/><svg class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
-<span>About</span></a></li><li><a href=/page/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
-<span>Archives</span></a></li><li><a href=/page/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
-<span>Search</span></a></li><li><a href=/page/links/><svg class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg>
-<span>Links</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
-<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
-<span>다크 모드</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">목차</h2><div class=widget--toc><nav class=toc-nav id=TableOfContents><ol><li><a href=#개요-빅테크-보안-인재-전쟁과-그-의미>개요: 빅테크 보안 인재 전쟁과 그 의미</a></li><li><a href=#기술적-분석-클라우드-신원-연계federation의-위험성>기술적 분석: 클라우드 신원 연계(Federation)의 위험성</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/%EB%B3%B4%EC%95%88/ style=background-color:#beedef;color:#0f3c3d>보안</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/ms-%EB%B3%B4%EC%95%88-%EC%B4%9D%EA%B4%84%EC%97%90-%EA%B5%AC%EA%B8%80-%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%EC%B6%9C%EC%8B%A0-%EB%82%99%EC%A0%90/>MS 보안 총괄에 구글 클라우드 출신 낙점</a></h2></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
-<time class=article-time--published datetime=2026-02-07T09:00:48+09:00>2026년 2월 7일 토요일</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
-<time class=article-time--reading>4 분 정도</time></div></footer></div></header><aside class=article-toc><details><summary><div class=article-toc-title><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6-6 6"/></svg>
-<span>목차</span></div></summary><nav class=toc-nav><ol><li><a href=#개요-빅테크-보안-인재-전쟁과-그-의미>개요: 빅테크 보안 인재 전쟁과 그 의미</a></li><li><a href=#기술적-분석-클라우드-신원-연계federation의-위험성>기술적 분석: 클라우드 신원 연계(Federation)의 위험성</a></li></ol></nav></details></aside><section class=article-content><h1 id=ms-보안-총괄에-구글-클라우드-출신-낙점>MS 보안 총괄에 구글 클라우드 출신 낙점</h1><p>Google Cloud의 고위 임원이 Microsoft의 보안 총괄으로 복귀하는 인사가 발표되었습니다. 이는 빅테크 기업 간 클라우드 보안 인재 영입 경쟁이 치열해지고 있음을 보여줍니다. Microsoft는 이번 인사를 통해 차세대 보안 아키텍처와 신원 관리 전략을 강화할 것으로 예상됩니다. 본 글에서는 이러한 리더십 변화가 의미하는 기술적 맥락과 클라우드 환경의 핵심 위협인 신원 연계(Identity Federation) 취약점을 심층 분석합니다.</p><h2 id=개요-빅테크-보안-인재-전쟁과-그-의미>개요: 빅테크 보안 인재 전쟁과 그 의미</h2><p>최근 보안 업계의 가장 뜨거운 감자는 단순한 기술적 취약점이 아니라 &lsquo;사람&rsquo;입니다. Google Cloud의 핵심 인사였던 고위 임원이 Microsoft의 보안 총괄(Head of Security)직을 맡아 복귀한다는 소식은 단순한 이직을 넘어선 시사점을 담고 있습니다. Microsoft는 이미 Azure와 Entra ID(구 Azure AD)를 통해 강력한 보안 생태계를 구축했으나, 경쟁사인 Google Cloud의 고객 중심 전략과 기술적 노하우를 흡수하여 보안 영역에서의 격차를 더욱 벌리겠다는 야심을 내비치고 있습니다.</p><p>보안 전문가로서 이 소식은 클라우드 환경의 보안이 &lsquo;단순한 방화벽&rsquo;이나 &lsquo;엣지 보안&rsquo;을 넘어, **신원(Identity)**과 <strong>데이터 거버넌스</strong> 중심으로 재편되고 있음을 명확히 보여줍니다. 이번 인사는 Microsoft가 구글이 가진 애자일한 보안 문화와 클라우드 네이티브 보안 접근 방식을 자사의 거대한 엔터프라이즈 인프라에 통합하려는 시도로 해석됩니다. 우리는 이러한 거대 기업의 움직임 속에서, 개별 기업들이 준비해야 할 보안 전략의 변화를 읽어야 합니다.</p><h2 id=기술적-분석-클라우드-신원-연계federation의-위험성>기술적 분석: 클라우드 신원 연계(Federation)의 위험성</h2><p>이번 리더십 변화가 주목하는 분야 중 하나는 바로 **클라우드 신원 관리(IdM)**입니다. 현대의 클라우드 환경, 특히 Microsoft Azure와 Google Cloud가 혼재되어 있는 하이브리드 환경에서 가장 중요한 보안 요소는 &lsquo;경계&rsquo;가 아니라 &lsquo;누가인가&rsquo;입니다. 이때 핵심적으로 사용되는 기술이 **SAML(Security Assertion Markup Language)**이나 <strong>OIDC(OpenID Connect)</strong> 기반의 연계 서비스(Federation)입니다.</p><p>기술적으로 신원 연계는 서비스 제공자(SP)와 신원 제공자(IdP) 간의 신뢰 관계를 기반으로 작동합니다. 공격자는 이 신뢰 관계를 악용하여 <strong>&ldquo;혼동된 부하(Confused Deputy)&rdquo;</strong> 문제를 일으키거나, 서명되지 않은 취약한 SAML 어설션(Assertion)을 재전송(Replay)하여 인증을 우회하려 합니다. 특히, 여러 클라우드 환경을 통합 관리하는 시스템에서 IdP의 검증 로직이 느슨하거나, <code>Assertion</code>의 유효기간(<code>NotOnOrAfter</code>, <code>NotBefore</code>) 검증이 미흡할 경우 심각한 보안 구멍이 발생합니다.</p><p>Microsoft가 Google 클라우드의 전문가를 영입한 것은 바로 이러한 <strong>복잡한 멀티 클라우드 인증 환경</strong>에서 발생할 수 있는 보안 허점을 기술적으로 메우기 위함일 가능성이 높습니다. 공격자는 주로 XML 서명 검증을 우회하거나, SAML Response의 암호화 알고리즘을 취약한 것(예: SHA-1)으로 강제 변경시키는 방식을 시도합니다. 아래 다이어그램은 이러한 신원 연계 공격의 전형적인 흐름을 시각화한 것입니다.</p><p>````mermaid`</p><p>sequenceDiagram
+<!DOCTYPE html>
+<html lang="ko" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="MS 보안 총괄에 구글 클라우드 출신 낙점 Google Cloud의 고위 임원이 Microsoft의 보안 총괄으로 복귀하는 인사가 발표되었습니다. 이는 빅테크 기업 간 클라우드 보안 인재 영입 경쟁이 치열해지고 있음을 보여줍니다. Microsoft는 이번 인사를 통해 차세대 보안 아키텍처와 신원 관리 전략을 강화할 것으로 예상됩니다. 본 글에서는 이러한 리더십 변화가 의미하는 기술적 맥락과 클라우드 환경의 핵심 위협인 신원 연계(Identity Federation) 취약점을 심층 분석합니다.\n">
+<title>MS 보안 총괄에 구글 클라우드 출신 낙점</title>
+
+<link rel='canonical' href='http://localhost:1313/ms-%EB%B3%B4%EC%95%88-%EC%B4%9D%EA%B4%84%EC%97%90-%EA%B5%AC%EA%B8%80-%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%EC%B6%9C%EC%8B%A0-%EB%82%99%EC%A0%90/'>
+
+<link rel="stylesheet" href="/scss/style.min.51098b80cc297c94c0f57786d4a04e7372774e5993b60facf53870128a79bf73.css"><meta property='og:title' content="MS 보안 총괄에 구글 클라우드 출신 낙점">
+<meta property='og:description' content="MS 보안 총괄에 구글 클라우드 출신 낙점 Google Cloud의 고위 임원이 Microsoft의 보안 총괄으로 복귀하는 인사가 발표되었습니다. 이는 빅테크 기업 간 클라우드 보안 인재 영입 경쟁이 치열해지고 있음을 보여줍니다. Microsoft는 이번 인사를 통해 차세대 보안 아키텍처와 신원 관리 전략을 강화할 것으로 예상됩니다. 본 글에서는 이러한 리더십 변화가 의미하는 기술적 맥락과 클라우드 환경의 핵심 위협인 신원 연계(Identity Federation) 취약점을 심층 분석합니다.\n">
+<meta property='og:url' content='http://localhost:1313/ms-%EB%B3%B4%EC%95%88-%EC%B4%9D%EA%B4%84%EC%97%90-%EA%B5%AC%EA%B8%80-%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%EC%B6%9C%EC%8B%A0-%EB%82%99%EC%A0%90/'>
+<meta property='og:site_name' content='코딩이 싫은 거북이'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Security' /><meta property='article:tag' content='Cybersecurity' /><meta property='article:tag' content='보안' /><meta property='article:tag' content='취약점' /><meta property='article:tag' content='웹 해킹' /><meta property='article:published_time' content='2026-02-07T09:00:48&#43;09:00'/><meta property='article:modified_time' content='2026-02-07T09:00:48&#43;09:00'/>
+<meta name="twitter:title" content="MS 보안 총괄에 구글 클라우드 출신 낙점">
+<meta name="twitter:description" content="MS 보안 총괄에 구글 클라우드 출신 낙점 Google Cloud의 고위 임원이 Microsoft의 보안 총괄으로 복귀하는 인사가 발표되었습니다. 이는 빅테크 기업 간 클라우드 보안 인재 영입 경쟁이 치열해지고 있음을 보여줍니다. Microsoft는 이번 인사를 통해 차세대 보안 아키텍처와 신원 관리 전략을 강화할 것으로 예상됩니다. 본 글에서는 이러한 리더십 변화가 의미하는 기술적 맥락과 클라우드 환경의 핵심 위협인 신원 연계(Identity Federation) 취약점을 심층 분석합니다.\n">
+    <link rel="shortcut icon" href="/img/avatar.png" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BDJ5ZPHH5Z"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-BDJ5ZPHH5Z');
+</script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7440869759073353"
+     crossorigin="anonymous"></script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="메뉴 여닫기">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        <figure class="site-avatar">
+                <a href="/">
+                    <img src="/img/avatar.png" 
+                        width="2048"
+                        height="2048"
+                        class="site-logo"
+                        loading="lazy"
+                        alt="Avatar">
+                </a>
+                
+                    <span class="emoji">🐢</span>
+                
+            </figure>
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">코딩이 싫은 거북이</a></h1>
+            <h2 class="site-description">Clean, responsive Hugo theme</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/rebugui'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/page/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/page/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/page/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/page/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>다크 모드</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">목차</h2>
+        
+        <div class="widget--toc">
+            <nav class="toc-nav" id="TableOfContents">
+                
+  <ol>
+    <li><a href="#개요-빅테크-보안-인재-전쟁과-그-의미">개요: 빅테크 보안 인재 전쟁과 그 의미</a></li>
+    <li><a href="#기술적-분석-클라우드-신원-연계federation의-위험성">기술적 분석: 클라우드 신원 연계(Federation)의 위험성</a></li>
+  </ol>
+
+            </nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            
+            
+            
+            <a href="/categories/%EB%B3%B4%EC%95%88/" style="background-color: hsl(182, 60%, 84%); color: hsl(182, 60%, 15%);">
+                보안
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/ms-%EB%B3%B4%EC%95%88-%EC%B4%9D%EA%B4%84%EC%97%90-%EA%B5%AC%EA%B8%80-%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%EC%B6%9C%EC%8B%A0-%EB%82%99%EC%A0%90/">MS 보안 총괄에 구글 클라우드 출신 낙점</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2026-02-07T09:00:48&#43;09:00'>2026년 2월 7일 토요일</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    4 분 정도
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    
+    <aside class="article-toc">
+        <details>
+            <summary>
+                <div class="article-toc-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg>
+                    <span>목차</span>
+                </div>
+            </summary>
+            <nav class="toc-nav">
+                
+  <ol>
+    <li><a href="#개요-빅테크-보안-인재-전쟁과-그-의미">개요: 빅테크 보안 인재 전쟁과 그 의미</a></li>
+    <li><a href="#기술적-분석-클라우드-신원-연계federation의-위험성">기술적 분석: 클라우드 신원 연계(Federation)의 위험성</a></li>
+  </ol>
+
+            </nav>
+        </details>
+    </aside>
+    
+
+    <section class="article-content">
+    
+    
+    <h1 id="ms-보안-총괄에-구글-클라우드-출신-낙점">MS 보안 총괄에 구글 클라우드 출신 낙점
+</h1><p>Google Cloud의 고위 임원이 Microsoft의 보안 총괄으로 복귀하는 인사가 발표되었습니다. 이는 빅테크 기업 간 클라우드 보안 인재 영입 경쟁이 치열해지고 있음을 보여줍니다. Microsoft는 이번 인사를 통해 차세대 보안 아키텍처와 신원 관리 전략을 강화할 것으로 예상됩니다. 본 글에서는 이러한 리더십 변화가 의미하는 기술적 맥락과 클라우드 환경의 핵심 위협인 신원 연계(Identity Federation) 취약점을 심층 분석합니다.</p>
+<h2 id="개요-빅테크-보안-인재-전쟁과-그-의미">개요: 빅테크 보안 인재 전쟁과 그 의미
+</h2><p>최근 보안 업계의 가장 뜨거운 감자는 단순한 기술적 취약점이 아니라 &lsquo;사람&rsquo;입니다. Google Cloud의 핵심 인사였던 고위 임원이 Microsoft의 보안 총괄(Head of Security)직을 맡아 복귀한다는 소식은 단순한 이직을 넘어선 시사점을 담고 있습니다. Microsoft는 이미 Azure와 Entra ID(구 Azure AD)를 통해 강력한 보안 생태계를 구축했으나, 경쟁사인 Google Cloud의 고객 중심 전략과 기술적 노하우를 흡수하여 보안 영역에서의 격차를 더욱 벌리겠다는 야심을 내비치고 있습니다.</p>
+<p>보안 전문가로서 이 소식은 클라우드 환경의 보안이 &lsquo;단순한 방화벽&rsquo;이나 &lsquo;엣지 보안&rsquo;을 넘어, **신원(Identity)**과 <strong>데이터 거버넌스</strong> 중심으로 재편되고 있음을 명확히 보여줍니다. 이번 인사는 Microsoft가 구글이 가진 애자일한 보안 문화와 클라우드 네이티브 보안 접근 방식을 자사의 거대한 엔터프라이즈 인프라에 통합하려는 시도로 해석됩니다. 우리는 이러한 거대 기업의 움직임 속에서, 개별 기업들이 준비해야 할 보안 전략의 변화를 읽어야 합니다.</p>
+<h2 id="기술적-분석-클라우드-신원-연계federation의-위험성">기술적 분석: 클라우드 신원 연계(Federation)의 위험성
+</h2><p>이번 리더십 변화가 주목하는 분야 중 하나는 바로 **클라우드 신원 관리(IdM)**입니다. 현대의 클라우드 환경, 특히 Microsoft Azure와 Google Cloud가 혼재되어 있는 하이브리드 환경에서 가장 중요한 보안 요소는 &lsquo;경계&rsquo;가 아니라 &lsquo;누가인가&rsquo;입니다. 이때 핵심적으로 사용되는 기술이 **SAML(Security Assertion Markup Language)**이나 <strong>OIDC(OpenID Connect)</strong> 기반의 연계 서비스(Federation)입니다.</p>
+<p>기술적으로 신원 연계는 서비스 제공자(SP)와 신원 제공자(IdP) 간의 신뢰 관계를 기반으로 작동합니다. 공격자는 이 신뢰 관계를 악용하여 <strong>&ldquo;혼동된 부하(Confused Deputy)&rdquo;</strong> 문제를 일으키거나, 서명되지 않은 취약한 SAML 어설션(Assertion)을 재전송(Replay)하여 인증을 우회하려 합니다. 특히, 여러 클라우드 환경을 통합 관리하는 시스템에서 IdP의 검증 로직이 느슨하거나, <code>Assertion</code>의 유효기간(<code>NotOnOrAfter</code>, <code>NotBefore</code>) 검증이 미흡할 경우 심각한 보안 구멍이 발생합니다.</p>
+<p>Microsoft가 Google 클라우드의 전문가를 영입한 것은 바로 이러한 <strong>복잡한 멀티 클라우드 인증 환경</strong>에서 발생할 수 있는 보안 허점을 기술적으로 메우기 위함일 가능성이 높습니다. 공격자는 주로 XML 서명 검증을 우회하거나, SAML Response의 암호화 알고리즘을 취약한 것(예: SHA-1)으로 강제 변경시키는 방식을 시도합니다. 아래 다이어그램은 이러한 신원 연계 공격의 전형적인 흐름을 시각화한 것입니다.</p>
+<p>````mermaid`</p>
+<p>sequenceDiagram
 participant Attacker as 공격자
 participant User as 사용자 브라우저
 participant SP as 서비스 제공자 (Azure App)
-participant IdP as 신원 제공자 (IdP)</p><pre><code>Note over Attacker, SP: 1. 공격자는 사용자를 가장하여 SP에 접근 시도
+participant IdP as 신원 제공자 (IdP)</p>
+<pre><code>Note over Attacker, SP: 1. 공격자는 사용자를 가장하여 SP에 접근 시도
 Attacker-&gt;&gt;SP: 악성적인 SAML Request 전송 (Issuer 조작)
 
 Note over SP, IdP: 2. SP는 요청을 IdP로 리다이렉트
@@ -30,13 +391,128 @@ Attacker-&gt;&gt;SP: SAML Assertion (유효기간 우회 시도)
 alt 서명 검증 실패 시
     SP--&gt;&gt;Attacker: 접근 거부
 else 서명 검증 우회 성공 시 (�
-</code></pre></section><footer class=article-footer><section class=article-tags><a href=/tags/security/>Security</a>
-<a href=/tags/cybersecurity/>Cybersecurity</a>
-<a href=/tags/%EB%B3%B4%EC%95%88/>보안</a>
-<a href=/tags/%EC%B7%A8%EC%95%BD%EC%A0%90/>취약점</a>
-<a href=/tags/%EC%9B%B9-%ED%95%B4%ED%82%B9/>웹 해킹</a></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>관련 글</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/ssti-%EA%B3%B5%EA%B2%A9-%EA%B8%B0%EB%B2%95%EA%B3%BC-%EC%99%84%ED%99%94-%EC%A0%84%EB%9E%B5/><div class=article-details><h2 class=article-title>SSTI 공격 기법과 완화 전략</h2></div></a></article><article><a href=/%ED%8A%B8%EB%9F%BC%ED%94%84-%ED%96%89%EC%A0%95%EB%B6%80-%EB%B3%B4%EC%95%88-%EC%9D%98%EC%A0%9C%EC%99%80-%EA%B8%B0%EC%88%A0%EC%A0%81-%EC%9C%84%ED%98%91/><div class=article-details><h2 class=article-title>트럼프 행정부 보안 의제와 기술적 위협</h2></div></a></article><article><a href=/ms-%EB%B3%B4%EC%95%88%ED%8C%80-%EA%B0%9C%ED%8E%B8-%EB%B3%B4%EC%95%88-%EB%A6%AC%EC%8A%A4%ED%81%AC%EC%99%80-%EA%B8%B0%ED%9A%8C/><div class=article-details><h2 class=article-title>MS 보안팀 개편: 보안 리스크와 기회</h2></div></a></article><article><a href=/2026-%EB%B3%B4%EC%95%88-%EC%A0%95%EC%B1%85%EA%B3%BC-%EC%82%AC%EC%9D%B4%EB%B2%84-%EC%9C%84%ED%98%91%EC%9D%98-%EB%B3%80%ED%99%94/><div class=article-details><h2 class=article-title>2026 보안 정책과 사이버 위협의 변화</h2></div></a></article><article><a href=/%EC%8B%A0%EC%A0%95%EB%B6%80-%EB%B3%B4%EC%95%88-%EC%95%84%EC%A0%A0%EB%8B%A4%EC%99%80-%EA%B8%B0%EC%88%A0%EC%A0%81-%ED%95%A8%EC%9D%98/><div class=article-details><h2 class=article-title>신정부 보안 아젠다와 기술적 함의</h2></div></a></article></div></div></aside><footer class=site-footer><section class=copyright>&copy;
-2025 -
-2026 코딩이 싫은 거북이</section><section class=powerby><a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a>로 만듦<br><a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>의 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=4.0.0>Stack</a></b> 테마 사용 중</section></footer><script type=module>
+</code></pre>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/security/">Security</a>
+        
+            <a href="/tags/cybersecurity/">Cybersecurity</a>
+        
+            <a href="/tags/%EB%B3%B4%EC%95%88/">보안</a>
+        
+            <a href="/tags/%EC%B7%A8%EC%95%BD%EC%A0%90/">취약점</a>
+        
+            <a href="/tags/%EC%9B%B9-%ED%95%B4%ED%82%B9/">웹 해킹</a>
+        
+    </section>
+
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">관련 글</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/ssti-%EA%B3%B5%EA%B2%A9-%EA%B8%B0%EB%B2%95%EA%B3%BC-%EC%99%84%ED%99%94-%EC%A0%84%EB%9E%B5/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">SSTI 공격 기법과 완화 전략</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/%ED%8A%B8%EB%9F%BC%ED%94%84-%ED%96%89%EC%A0%95%EB%B6%80-%EB%B3%B4%EC%95%88-%EC%9D%98%EC%A0%9C%EC%99%80-%EA%B8%B0%EC%88%A0%EC%A0%81-%EC%9C%84%ED%98%91/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">트럼프 행정부 보안 의제와 기술적 위협</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/ms-%EB%B3%B4%EC%95%88%ED%8C%80-%EA%B0%9C%ED%8E%B8-%EB%B3%B4%EC%95%88-%EB%A6%AC%EC%8A%A4%ED%81%AC%EC%99%80-%EA%B8%B0%ED%9A%8C/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MS 보안팀 개편: 보안 리스크와 기회</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/2026-%EB%B3%B4%EC%95%88-%EC%A0%95%EC%B1%85%EA%B3%BC-%EC%82%AC%EC%9D%B4%EB%B2%84-%EC%9C%84%ED%98%91%EC%9D%98-%EB%B3%80%ED%99%94/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">2026 보안 정책과 사이버 위협의 변화</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/%EC%8B%A0%EC%A0%95%EB%B6%80-%EB%B3%B4%EC%95%88-%EC%95%84%EC%A0%A0%EB%8B%A4%EC%99%80-%EA%B8%B0%EC%88%A0%EC%A0%81-%ED%95%A8%EC%9D%98/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">신정부 보안 아젠다와 기술적 함의</h2>
+        </div>
+    </a>
+</article>
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025 - 
+        
+        2026 코딩이 싫은 거북이
+    </section>
+    
+    <section class="powerby">
+        <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>로 만듦 <br />
+        <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>의 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="4.0.0">Stack</a></b> 테마 사용 중
+    </section>
+</footer>
+
+
+    
+
+
+
+<script type="module">
     import gallery from '\/ts\/gallery.js';
 
     const articleContent = document.querySelector('.article-content');
@@ -60,4 +536,23 @@ else 서명 검증 우회 성공 시 (�
         });
         lightbox.init();
     }
-</script></main></div><script type=text/javascript src=/ts/main.acaf849f2b273f6a8368a58b001f336738d0c948d92e79b116467d0c7515f932.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>
+</script>
+    
+
+            </main>
+        </div>
+        <script type="text/javascript" src="/ts/main.387bdf6159ab34d0743ebd228aa9248d1ed2380fa5193ceff9ffdbf345b5309d.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

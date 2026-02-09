@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko-kr" dir="ltr">
+<html lang="ko" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="서론 금요일 오후 5시 30분, 평소와 다름없이 운영되던 금융권의 쿠버네티스 클러스터에서 사고 알림이 울렸습니다. 평소 개발 파드에만 접근이 가능하던 &lsquo;dev-a&rsquo; 계정이, 보안 정책상 철저히 격리되어 있던 &lsquo;production&rsquo; 네임스페이스의 데이터베이스 credential을 탈취한 것입니다. 초기 분석 결과, 해당 계정은 관리자 권한이 없었고, 일반적인 파드 조회 및 생성 권한만을 가지고 있었습니다. 하지만 공격자는 이 &ldquo;제한적인&rdquo; 권한을 이용해 RBAC(Role-Based Access Control)의 논리적 허점을 파고들었습니다.\n">
 <title>Kubernetes RBAC Bypass: 권한 상승 취약점 분석 및 대응</title>

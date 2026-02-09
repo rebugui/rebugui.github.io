@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko-kr" dir="ltr">
+<html lang="ko" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="서론 새벽 2시, 보안 운영 센터(SOC)의 모니터에 붉은색 경고灯이 깜빡이고 있습니다. 평소와 다름없는 자동화 배포 파이프라인이었지만, 이번에는 달랐습니다. 인기 있는 ClawHub 저장소에서 &ldquo;시스템 최적화&quot;라는 이름으로 업로드된 간단한 파이썬 스크립트가 실행되자마자 내부망의 민감한 데이터가 외부로 유출되기 시작한 것입니다. 개발자는 신뢰할 수 있는 커뮤니티라고 생각하여 코드 검증 없이 스크립트를 배포했습니다. 이것이 바로 현대적인 **공급망 공급망 공격(Supply Chain Attack)**의 현실입니다.\n">
 <title>🔒 OpenClaw: VirusTotal 연동으로 ClawHub 악성 스킬 탐지</title>
@@ -395,61 +395,34 @@
 <p>OpenClaw는 VirusTotal API를 활용하여 스킬 파일의 해시(Hash)를 검증하고, 70개 이상의 백신 엔진을 통해 분석된 결과를 기반으로 위험 여부를 판단합니다. 이 과정은 사용자에게 투명하게 진행되며, 악성으로 판명될 경우 즉시 격리됩니다.</p>
 <h3 id="virustotal-연동-아키텍처">VirusTotal 연동 아키텍처
 </h3><p>이 시스템의 핵심은 파일 업로드 흐름 사이에 VirusTotal 스캐닝 프로세스를 삽입하는 것입니다. 아래 다이어그램은 사용자가 스킬을 업로드할 때부터 검사가 완료되기까지의 보안 검증 흐름을 도식화한 것입니다.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="nx">graph</span> <span class="nx">TD</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">User</span><span class="p">[</span><span class="nx">사용자</span> <span class="o">/</span> <span class="nx">공격자</span><span class="p">]</span> <span class="o">--&gt;|</span><span class="nx">스킬</span> <span class="nx">업로드</span><span class="o">|</span> <span class="nx">Upload</span><span class="p">{</span><span class="nx">ClawHub</span> <span class="nx">Upload</span> <span class="nx">API</span><span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">Upload</span> <span class="o">--&gt;|</span><span class="nx">파일</span> <span class="nx">추출</span><span class="o">|</span> <span class="nx">FileProcessor</span><span class="p">[</span><span class="nx">파일</span> <span class="nx">처리기</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">FileProcessor</span> <span class="o">--&gt;|</span><span class="nx">SHA256</span> <span class="nx">계산</span><span class="o">|</span> <span class="nx">Hash</span><span class="p">[</span><span class="nx">파일</span> <span class="nx">해시값</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">Hash</span> <span class="o">--&gt;|</span><span class="nx">요청</span><span class="o">|</span> <span class="nx">VTCheck</span><span class="p">[</span><span class="nx">VirusTotal</span> <span class="nx">API</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="nx">VTCheck</span> <span class="o">--&gt;|</span><span class="nx">응답</span> <span class="nx">분석</span><span class="o">|</span> <span class="nx">Decision</span><span class="p">{</span><span class="nx">악성</span> <span class="nx">여부</span> <span class="nx">판단</span><span class="p">}</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="nx">Decision</span> <span class="o">--&gt;|</span><span class="nx">Positives</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">|</span> <span class="nx">Quarantine</span><span class="p">[</span><span class="nx">격리</span> <span class="nx">및</span> <span class="nx">차단</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">Decision</span> <span class="o">--&gt;|</span><span class="nx">Positives</span> <span class="o">=</span> <span class="mi">0</span><span class="o">|</span> <span class="nx">DBStore</span><span class="p">[</span><span class="nx">DB</span> <span class="nx">저장</span> <span class="nx">및</span> <span class="nx">배포</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="nx">Quarantine</span> <span class="o">--&gt;|</span><span class="nx">알림</span><span class="o">|</span> <span class="nx">AdminNotify</span><span class="p">[</span><span class="nx">관리자</span> <span class="nx">알림</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">DBStore</span> <span class="o">--&gt;|</span><span class="nx">완료</span><span class="o">|</span> <span class="nx">Success</span><span class="p">[</span><span class="nx">다운로드</span> <span class="nx">가능</span> <span class="nx">상태</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="nx">style</span> <span class="nx">User</span> <span class="nx">fill</span><span class="o">:</span><span class="err">#</span><span class="nx">f9f</span><span class="p">,</span><span class="nx">stroke</span><span class="o">:</span><span class="err">#</span><span class="mi">333</span><span class="p">,</span><span class="nx">stroke</span><span class="o">-</span><span class="nx">width</span><span class="o">:</span><span class="mi">2</span><span class="nx">px</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">style</span> <span class="nx">Upload</span> <span class="nx">fill</span><span class="o">:</span><span class="err">#</span><span class="nx">bbf</span><span class="p">,</span><span class="nx">stroke</span><span class="o">:</span><span class="err">#</span><span class="mi">333</span><span class="p">,</span><span class="nx">stroke</span><span class="o">-</span><span class="nx">width</span><span class="o">:</span><span class="mi">2</span><span class="nx">px</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">style</span> <span class="nx">FileProcessor</span> <span class="nx">fill</span><span class="o">:</span><span class="err">#</span><span class="nx">f9f</span><span class="p">,</span><span class="nx">stroke</span><span class="o">:</span><span class="err">#</span><span class="mi">333</span><span class="p">,</span><span class="nx">stroke</span><span class="o">-</span><span class="nx">width</span><span class="o">:</span><span class="mi">2</span><span class="nx">px</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">style</span> <span class="nx">Hash</span> <span class="nx">fill</span><span class="o">:</span><span class="err">#</span><span class="nx">f9f</span><span class="p">,</span><span class="nx">stroke</span><span class="o">:</span><span class="err">#</span><span class="mi">333</span><span class="p">,</span><span class="nx">stroke</span><span class="o">-</span><span class="nx">width</span><span class="o">:</span><span class="mi">2</span><span class="nx">px</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">style</span> <span class="nx">VTCheck</span> <span class="nx">fill</span><span class="o">:</span><span class="err">#</span><span class="nx">bbf</span><span class="p">,</span><span class="nx">stroke</span><span class="o">:</span><span class="err">#</span><span class="mi">333</span><span class="p">,</span><span class="nx">stroke</span><span class="o">-</span><span class="nx">width</span><span class="o">:</span><span class="mi">2</span><span class="nx">px</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">style</span> <span class="nx">Decision</span> <span class="nx">fill</span><span class="o">:</span><span class="err">#</span><span class="nx">f9f</span><span class="p">,</span><span class="nx">stroke</span><span class="o">:</span><span class="err">#</span><span class="mi">333</span><span class="p">,</span><span class="nx">stroke</span><span class="o">-</span><span class="nx">width</span><span class="o">:</span><span class="mi">2</span><span class="nx">px</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">style</span> <span class="nx">Quarantine</span> <span class="nx">fill</span><span class="o">:</span><span class="err">#</span><span class="nx">fbb</span><span class="p">,</span><span class="nx">stroke</span><span class="o">:</span><span class="err">#</span><span class="mi">333</span><span class="p">,</span><span class="nx">stroke</span><span class="o">-</span><span class="nx">width</span><span class="o">:</span><span class="mi">2</span><span class="nx">px</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">style</span> <span class="nx">DBStore</span> <span class="nx">fill</span><span class="o">:</span><span class="err">#</span><span class="nx">f9f</span><span class="p">,</span><span class="nx">stroke</span><span class="o">:</span><span class="err">#</span><span class="mi">333</span><span class="p">,</span><span class="nx">stroke</span><span class="o">-</span><span class="nx">width</span><span class="o">:</span><span class="mi">2</span><span class="nx">px</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">style</span> <span class="nx">AdminNotify</span> <span class="nx">fill</span><span class="o">:</span><span class="err">#</span><span class="nx">f9f</span><span class="p">,</span><span class="nx">stroke</span><span class="o">:</span><span class="err">#</span><span class="mi">333</span><span class="p">,</span><span class="nx">stroke</span><span class="o">-</span><span class="nx">width</span><span class="o">:</span><span class="mi">2</span><span class="nx">px</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">style</span> <span class="nx">Success</span> <span class="nx">fill</span><span class="o">:</span><span class="err">#</span><span class="nx">f9f</span><span class="p">,</span><span class="nx">stroke</span><span class="o">:</span><span class="err">#</span><span class="mi">333</span><span class="p">,</span><span class="nx">stroke</span><span class="o">-</span><span class="nx">width</span><span class="o">:</span><span class="mi">2</span><span class="nx">px</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>위 흐름도에서 볼 수 있듯이, **VTCheck(VirusTotal API)**와 <strong>Decision(악성 여부 판단)</strong> 단계가 핵심입니다. 만약 악성 코드가 탐지되면 시스템은 즉시 해당 파일을 <strong>Quarantine(격리)</strong> 처리하여 유포를 차단합니다.</p>
+<pre class="mermaid">
+  graph TD
+    User[사용자 / 공격자] --&gt;|스킬 업로드| Upload{ClawHub Upload API}
+    Upload --&gt;|파일 추출| FileProcessor[파일 처리기]
+    FileProcessor --&gt;|SHA256 계산| Hash[파일 해시값]
+    Hash --&gt;|요청| VTCheck[VirusTotal API]
+    
+    VTCheck --&gt;|응답 분석| Decision{악성 여부 판단}
+    
+    Decision --&gt;|Positives &gt; 0| Quarantine[격리 및 차단]
+    Decision --&gt;|Positives = 0| DBStore[DB 저장 및 배포]
+    
+    Quarantine --&gt;|알림| AdminNotify[관리자 알림]
+    DBStore --&gt;|완료| Success[다운로드 가능 상태]
+    
+    style User fill:#f9f,stroke:#333,stroke-width:2px
+    style Upload fill:#bbf,stroke:#333,stroke-width:2px
+    style FileProcessor fill:#f9f,stroke:#333,stroke-width:2px
+    style Hash fill:#f9f,stroke:#333,stroke-width:2px
+    style VTCheck fill:#bbf,stroke:#333,stroke-width:2px
+    style Decision fill:#f9f,stroke:#333,stroke-width:2px
+    style Quarantine fill:#fbb,stroke:#333,stroke-width:2px
+    style DBStore fill:#f9f,stroke:#333,stroke-width:2px
+    style AdminNotify fill:#f9f,stroke:#333,stroke-width:2px
+    style Success fill:#f9f,stroke:#333,stroke-width:2px
+</pre>
+
+<p>위 흐름도에서 볼 수 있듯이, **VTCheck(VirusTotal API)**와 <strong>Decision(악성 여부 판단)</strong> 단계가 핵심입니다. 만약 악성 코드가 탐지되면 시스템은 즉시 해당 파일을 <strong>Quarantine(격리)</strong> 처리하여 유포를 차단합니다.</p>
 <h3 id="기술적-구현-poc-코드-python">기술적 구현: PoC 코드 (Python)
 </h3><p>이 개념을 실제로 어떻게 구현할 수 있을까요? 아래는 VirusTotal API v3를 사용하여 업로드된 파일을 스캔하는 Python 예제 코드입니다. (※ 학습 및 방어 목적으로 작성되었습니다.)</p>
 <div class="highlight"><div class="chroma">
@@ -713,6 +686,28 @@
             
                 
 <article class="">
+    <a href="/openclaw-ai-%EC%96%B4%EC%8B%9C%EC%8A%A4%ED%84%B4%ED%8A%B8-%ED%95%98%EC%9D%B4%EC%9E%AC%ED%82%B9-%EC%B7%A8%EC%95%BD%EC%A0%90-%EB%B6%84%EC%84%9D/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">🚨 OpenClaw AI: 어시스턴트 하이재킹 취약점 분석</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/cve-2026-21509-microsoft-office-zero-day-%EA%B8%B4%EA%B8%89-%ED%8C%A8%EC%B9%98-%EB%B6%84%EC%84%9D/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">🚨 CVE-2026-21509: Microsoft Office Zero-Day 긴급 패치 분석</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
     <a href="/litebox-rust-%EA%B8%B0%EB%B0%98-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-os%EB%A1%9C-%EA%B3%B5%EA%B2%A9-%ED%91%9C%EB%A9%B4-%EC%B5%9C%EC%86%8C%ED%99%94/">
         
 
@@ -740,28 +735,6 @@
 
         <div class="article-details">
             <h2 class="article-title">🚨 VMware ESXi: 랜섬웨어 악용 취약점 실제 공격 확인</h2>
-        </div>
-    </a>
-</article>
-            
-                
-<article class="">
-    <a href="/shamirs-secret-sharing-%EB%B9%84%EB%B0%80-%ED%82%A4-%EB%B6%84%EC%82%B0-%EC%A0%80%EC%9E%A5%EC%9C%BC%EB%A1%9C-%EC%95%88%EC%A0%84%ED%95%98%EA%B2%8C-%EB%B3%B5%EA%B5%AC%ED%95%98%EA%B8%B0/">
-        
-
-        <div class="article-details">
-            <h2 class="article-title">🔑 Shamir&#39;s Secret Sharing: 비밀 키 분산 저장으로 안전하게 복구하기</h2>
-        </div>
-    </a>
-</article>
-            
-                
-<article class="">
-    <a href="/ssti-%EA%B3%B5%EA%B2%A9-%EA%B8%B0%EB%B2%95%EA%B3%BC-%EC%99%84%ED%99%94-%EC%A0%84%EB%9E%B5/">
-        
-
-        <div class="article-details">
-            <h2 class="article-title">SSTI 공격 기법과 완화 전략</h2>
         </div>
     </a>
 </article>
@@ -821,6 +794,66 @@
     }
 </script>
     
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11.12.2/+esm';
+
+    function initMermaid() {
+        const isDark = document.documentElement.dataset.scheme === 'dark';
+        const theme = isDark ? 'dark' : 'default';
+
+        console.log('Initializing Mermaid with theme:', theme);
+
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: theme,
+            logLevel: 'debug',
+            securityLevel: 'loose',
+            themeVariables: {
+                darkMode: isDark,
+                background: isDark ? '#1e1e1e' : '#ffffff',
+                primaryColor: isDark ? '#81D4FA' : '#E3F2FD',
+                primaryTextColor: isDark ? '#ECEFF1' : '#263238',
+                primaryBorderColor: isDark ? '#81D4FA' : '#0288D1',
+                lineColor: isDark ? '#81D4FA' : '#0288D1',
+                secondaryColor: isDark ? '#4FC3F7' : '#BBDEFB',
+                tertiaryColor: isDark ? '#29B6F6' : '#90CAF9',
+                fillType0: isDark ? '#81D4FA' : '#E3F2FD',
+                fillType1: isDark ? '#4FC3F7' : '#BBDEFB',
+                fillType2: isDark ? '#29B6F6' : '#90CAF9',
+                arrowheadColor: isDark ? '#81D4FA' : '#0288D1',
+                arrowColor: isDark ? '#81D4FA' : '#0288D1',
+                edgeLabelBackground: isDark ? '#263238' : '#ffffff',
+                fontFamily: 'arial',
+                fontSize: '16px'
+            }
+        });
+
+        
+        document.querySelectorAll('.mermaid').forEach((element) => {
+            element.removeAttribute('data-processed');
+        });
+        mermaid.init(undefined, document.querySelectorAll('.mermaid'));
+    }
+
+    
+    initMermaid();
+
+    
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'data-scheme') {
+                console.log('Theme changed to:', document.documentElement.dataset.scheme);
+                initMermaid();
+            }
+        });
+    });
+
+    observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['data-scheme']
+    });
+</script>
+
 
             </main>
         </div>

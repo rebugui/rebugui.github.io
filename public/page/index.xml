@@ -1,51 +1,33 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pages on 코딩이 싫은 거북이</title><link>https://rebugui.github.io/page/</link><description>Recent content in Pages on 코딩이 싫은 거북이</description><generator>Hugo -- gohugo.io</generator><language>ko-kr</language><lastBuildDate>Thu, 05 Feb 2026 13:03:23 +0900</lastBuildDate><atom:link href="https://rebugui.github.io/page/index.xml" rel="self" type="application/rss+xml"/><item><title>About</title><link>https://rebugui.github.io/page/about/</link><pubDate>Wed, 04 Feb 2026 00:00:00 +0000</pubDate><guid>https://rebugui.github.io/page/about/</guid><description>&lt;h2 id="who-is-this-for"&gt;Who is this for?
-&lt;/h2&gt;&lt;p&gt;이 공간은 **정보 보안(Information Security)**과 &lt;strong&gt;취약점 분석&lt;/strong&gt;에 대한 기술적 통찰을 공유하기 위해 만들어졌습니다. 단순히 체크리스트를 채우는 진단을 넘어, 논리적 흐름을 분석하고 자동화 도구를 개발하며 얻은 경험들을 기록합니다.&lt;/p&gt;
-&lt;h2 id="about-the-author"&gt;About the Author
-&lt;/h2&gt;&lt;p&gt;안녕하세요! 저는 &lt;strong&gt;보안 전문 기업&lt;/strong&gt;에서 취약점 진단 전문가로 활동하고 있는 Rebugui입니다. 현재 &lt;strong&gt;대학원&lt;/strong&gt;에서 석사 과정을 밟으며 인공지능과 보안의 접점을 탐구하고 있습니다.&lt;/p&gt;
-&lt;h3 id="my-journey"&gt;My Journey
-&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;공공기관 사이버안전센터&lt;/strong&gt;에서의 실무 경험을 시작으로, 다양한 환경의 취약점을 진단해 왔습니다. 특히 인증 로직의 허점을 파고드는 &lt;strong&gt;논리적 취약점 분석&lt;/strong&gt;에 강점이 있으며, 최근에는 보안 가이드라인에 기반한 진단 스크립트 제작 및 LLM을 활용한 보안 기술 최적화에 집중하고 있습니다.&lt;/p&gt;
-&lt;h3 id="skills"&gt;Skills
-&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Security&lt;/strong&gt;: 취약점 진단(Vulnerability Assessment), 모의해킹(Penetration Testing), 서버 보안 설정 점검&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Programming&lt;/strong&gt;: Python (진단 자동화 도구 및 인코더/디코더 개발)&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Research&lt;/strong&gt;: AI/LLM 보안, SW-AI 융합 보안 연구&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="contact-me"&gt;Contact Me
-&lt;/h2&gt;&lt;p&gt;기술적인 논의나 협업 제안은 언제든 환영합니다.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Email&lt;/strong&gt;: &lt;a class="link" href="mailto:uhyang03@gmail.com" &gt;uhyang03@gmail.com&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;GitHub&lt;/strong&gt;: &lt;a class="link" href="https://github.com/rebugui" target="_blank" rel="noopener"
- &gt;rebugui&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&amp;ldquo;보안은 단순한 체크리스트가 아니라, 공격자의 관점에서 논리를 재구성하는 과정입니다.&amp;rdquo;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;hr&gt;
-&lt;p&gt;&lt;em&gt;Last updated: 2026-02-04&lt;/em&gt;&lt;/p&gt;</description></item><item><title>Archives</title><link>https://rebugui.github.io/page/archives/</link><pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate><guid>https://rebugui.github.io/page/archives/</guid><description/></item><item><title>Links</title><link>https://rebugui.github.io/page/links/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rebugui.github.io/page/links/</guid><description>&lt;p&gt;To use this feature, add &lt;code&gt;links&lt;/code&gt; section to frontmatter.&lt;/p&gt;
-&lt;p&gt;This page&amp;rsquo;s frontmatter:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
-&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
-&lt;/span&gt;&lt;span class="lnt"&gt;2
-&lt;/span&gt;&lt;span class="lnt"&gt;3
-&lt;/span&gt;&lt;span class="lnt"&gt;4
-&lt;/span&gt;&lt;span class="lnt"&gt;5
-&lt;/span&gt;&lt;span class="lnt"&gt;6
-&lt;/span&gt;&lt;span class="lnt"&gt;7
-&lt;/span&gt;&lt;span class="lnt"&gt;8
-&lt;/span&gt;&lt;span class="lnt"&gt;9
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-yaml" data-lang="yaml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nt"&gt;links&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;- &lt;span class="nt"&gt;title&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;GitHub&lt;/span&gt;&lt;span class="w"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;description&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;GitHub is the world&amp;#39;s largest software development platform.&lt;/span&gt;&lt;span class="w"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;website&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;https://github.com&lt;/span&gt;&lt;span class="w"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;image&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png&lt;/span&gt;&lt;span class="w"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;- &lt;span class="nt"&gt;title&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;TypeScript&lt;/span&gt;&lt;span class="w"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;description&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.&lt;/span&gt;&lt;span class="w"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;website&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;https://www.typescriptlang.org&lt;/span&gt;&lt;span class="w"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;image&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;ts-logo-128.jpg&lt;/span&gt;&lt;span class="w"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;code&gt;image&lt;/code&gt; field accepts both local and external images.&lt;/p&gt;</description></item><item><title>Search</title><link>https://rebugui.github.io/page/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rebugui.github.io/page/search/</guid><description/></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Pages on 코딩이 싫은 거북이</title>
+        <link>http://localhost:1313/page/</link>
+        <description>Recent content in Pages on 코딩이 싫은 거북이</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>ko</language>
+        <lastBuildDate>Thu, 05 Feb 2026 13:03:23 +0900</lastBuildDate><atom:link href="http://localhost:1313/page/index.xml" rel="self" type="application/rss+xml" /><item>
+            <title>About</title>
+            <link>http://localhost:1313/page/about/</link>
+            <pubDate>Wed, 04 Feb 2026 00:00:00 +0000</pubDate>
+            <guid>http://localhost:1313/page/about/</guid>
+            <description>&lt;h2 id=&#34;who-is-this-for&#34;&gt;Who is this for?&#xA;&lt;/h2&gt;&lt;p&gt;이 공간은 **정보 보안(Information Security)**과 &lt;strong&gt;취약점 분석&lt;/strong&gt;에 대한 기술적 통찰을 공유하기 위해 만들어졌습니다. 단순히 체크리스트를 채우는 진단을 넘어, 논리적 흐름을 분석하고 자동화 도구를 개발하며 얻은 경험들을 기록합니다.&lt;/p&gt;&#xA;&lt;h2 id=&#34;about-the-author&#34;&gt;About the Author&#xA;&lt;/h2&gt;&lt;p&gt;안녕하세요! 저는 &lt;strong&gt;보안 전문 기업&lt;/strong&gt;에서 취약점 진단 전문가로 활동하고 있는 Rebugui입니다. 현재 &lt;strong&gt;대학원&lt;/strong&gt;에서 석사 과정을 밟으며 인공지능과 보안의 접점을 탐구하고 있습니다.&lt;/p&gt;&#xA;&lt;h3 id=&#34;my-journey&#34;&gt;My Journey&#xA;&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;공공기관 사이버안전센터&lt;/strong&gt;에서의 실무 경험을 시작으로, 다양한 환경의 취약점을 진단해 왔습니다. 특히 인증 로직의 허점을 파고드는 &lt;strong&gt;논리적 취약점 분석&lt;/strong&gt;에 강점이 있으며, 최근에는 보안 가이드라인에 기반한 진단 스크립트 제작 및 LLM을 활용한 보안 기술 최적화에 집중하고 있습니다.&lt;/p&gt;&#xA;&lt;h3 id=&#34;skills&#34;&gt;Skills&#xA;&lt;/h3&gt;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Security&lt;/strong&gt;: 취약점 진단(Vulnerability Assessment), 모의해킹(Penetration Testing), 서버 보안 설정 점검&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Programming&lt;/strong&gt;: Python (진단 자동화 도구 및 인코더/디코더 개발)&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Research&lt;/strong&gt;: AI/LLM 보안, SW-AI 융합 보안 연구&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;contact-me&#34;&gt;Contact Me&#xA;&lt;/h2&gt;&lt;p&gt;기술적인 논의나 협업 제안은 언제든 환영합니다.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Email&lt;/strong&gt;: &lt;a class=&#34;link&#34; href=&#34;mailto:uhyang03@gmail.com&#34; &gt;uhyang03@gmail.com&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;GitHub&lt;/strong&gt;: &lt;a class=&#34;link&#34; href=&#34;https://github.com/rebugui&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;&#xA;    &gt;rebugui&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&amp;ldquo;보안은 단순한 체크리스트가 아니라, 공격자의 관점에서 논리를 재구성하는 과정입니다.&amp;rdquo;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;&lt;em&gt;Last updated: 2026-02-04&lt;/em&gt;&lt;/p&gt;&#xA;</description>
+        </item><item>
+            <title>Archives</title>
+            <link>http://localhost:1313/page/archives/</link>
+            <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
+            <guid>http://localhost:1313/page/archives/</guid>
+            <description></description>
+        </item><item>
+            <title>Links</title>
+            <link>http://localhost:1313/page/links/</link>
+            <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+            <guid>http://localhost:1313/page/links/</guid>
+            <description>&lt;p&gt;To use this feature, add &lt;code&gt;links&lt;/code&gt; section to frontmatter.&lt;/p&gt;&#xA;&lt;p&gt;This page&amp;rsquo;s frontmatter:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;&#xA;&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9&#xA;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&#xA;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;links&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;- &lt;span class=&#34;nt&#34;&gt;title&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;GitHub&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;description&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;GitHub is the world&amp;#39;s largest software development platform.&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;website&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;https://github.com&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;image&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;- &lt;span class=&#34;nt&#34;&gt;title&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;TypeScript&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;description&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;website&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;https://www.typescriptlang.org&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;image&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;ts-logo-128.jpg&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&#xA;&lt;/div&gt;&#xA;&lt;/div&gt;&lt;p&gt;&lt;code&gt;image&lt;/code&gt; field accepts both local and external images.&lt;/p&gt;&#xA;</description>
+        </item><item>
+            <title>Search</title>
+            <link>http://localhost:1313/page/search/</link>
+            <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+            <guid>http://localhost:1313/page/search/</guid>
+            <description></description>
+        </item></channel>
+</rss>

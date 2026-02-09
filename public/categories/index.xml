@@ -1,1 +1,50 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Categories on 코딩이 싫은 거북이</title><link>https://rebugui.github.io/categories/</link><description>Recent content in Categories on 코딩이 싫은 거북이</description><generator>Hugo -- gohugo.io</generator><language>ko-kr</language><atom:link href="https://rebugui.github.io/categories/index.xml" rel="self" type="application/rss+xml"/><item><title>보안</title><link>https://rebugui.github.io/categories/%EB%B3%B4%EC%95%88/</link><pubDate>Sun, 08 Feb 2026 16:52:10 +0900</pubDate><guid>https://rebugui.github.io/categories/%EB%B3%B4%EC%95%88/</guid><description/></item><item><title>AI</title><link>https://rebugui.github.io/categories/ai/</link><pubDate>Sun, 08 Feb 2026 16:51:53 +0900</pubDate><guid>https://rebugui.github.io/categories/ai/</guid><description/></item><item><title>DevOps</title><link>https://rebugui.github.io/categories/devops/</link><pubDate>Sun, 08 Feb 2026 15:49:05 +0900</pubDate><guid>https://rebugui.github.io/categories/devops/</guid><description/></item><item><title>CVE</title><link>https://rebugui.github.io/categories/cve/</link><pubDate>Sat, 07 Feb 2026 11:10:58 +0900</pubDate><guid>https://rebugui.github.io/categories/cve/</guid><description/></item><item><title>2026 주정통 가이드라인</title><link>https://rebugui.github.io/categories/2026-%EC%A3%BC%EC%A0%95%ED%86%B5-%EA%B0%80%EC%9D%B4%EB%93%9C%EB%9D%BC%EC%9D%B8/</link><pubDate>Thu, 05 Feb 2026 14:35:32 +0900</pubDate><guid>https://rebugui.github.io/categories/2026-%EC%A3%BC%EC%A0%95%ED%86%B5-%EA%B0%80%EC%9D%B4%EB%93%9C%EB%9D%BC%EC%9D%B8/</guid><description/></item><item><title>Documentation</title><link>https://rebugui.github.io/categories/documentation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rebugui.github.io/categories/documentation/</guid><description>&lt;img src="https://rebugui.github.io/" alt="Featured image of post Documentation" /&gt;</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Categories on 코딩이 싫은 거북이</title>
+        <link>http://localhost:1313/categories/</link>
+        <description>Recent content in Categories on 코딩이 싫은 거북이</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>ko</language><atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+            <title>AI</title>
+            <link>http://localhost:1313/categories/ai/</link>
+            <pubDate>Mon, 09 Feb 2026 06:59:35 +0900</pubDate>
+            <guid>http://localhost:1313/categories/ai/</guid>
+            <description></description>
+        </item><item>
+            <title>보안</title>
+            <link>http://localhost:1313/categories/%EB%B3%B4%EC%95%88/</link>
+            <pubDate>Mon, 09 Feb 2026 06:59:27 +0900</pubDate>
+            <guid>http://localhost:1313/categories/%EB%B3%B4%EC%95%88/</guid>
+            <description></description>
+        </item><item>
+            <title>System</title>
+            <link>http://localhost:1313/categories/system/</link>
+            <pubDate>Mon, 09 Feb 2026 06:59:08 +0900</pubDate>
+            <guid>http://localhost:1313/categories/system/</guid>
+            <description></description>
+        </item><item>
+            <title>DevOps</title>
+            <link>http://localhost:1313/categories/devops/</link>
+            <pubDate>Sun, 08 Feb 2026 15:49:05 +0900</pubDate>
+            <guid>http://localhost:1313/categories/devops/</guid>
+            <description></description>
+        </item><item>
+            <title>CVE</title>
+            <link>http://localhost:1313/categories/cve/</link>
+            <pubDate>Sat, 07 Feb 2026 11:10:58 +0900</pubDate>
+            <guid>http://localhost:1313/categories/cve/</guid>
+            <description></description>
+        </item><item>
+            <title>2026 주정통 가이드라인</title>
+            <link>http://localhost:1313/categories/2026-%EC%A3%BC%EC%A0%95%ED%86%B5-%EA%B0%80%EC%9D%B4%EB%93%9C%EB%9D%BC%EC%9D%B8/</link>
+            <pubDate>Thu, 05 Feb 2026 14:35:32 +0900</pubDate>
+            <guid>http://localhost:1313/categories/2026-%EC%A3%BC%EC%A0%95%ED%86%B5-%EA%B0%80%EC%9D%B4%EB%93%9C%EB%9D%BC%EC%9D%B8/</guid>
+            <description></description>
+        </item><item>
+            <title>Documentation</title>
+            <link>http://localhost:1313/categories/documentation/</link>
+            <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+            <guid>http://localhost:1313/categories/documentation/</guid>
+            <description>&lt;img src=&#34;http://localhost:1313/&#34; alt=&#34;Featured image of post Documentation&#34; /&gt;</description>
+        </item></channel>
+</rss>

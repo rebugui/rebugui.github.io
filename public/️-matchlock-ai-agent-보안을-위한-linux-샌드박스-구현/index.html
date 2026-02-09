@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko-kr" dir="ltr">
+<html lang="ko" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="서론 최근 생성형 AI의 패러다임은 단순한 텍스트 생성을 넘어, 자율적으로 환경과 상호작용하는 **AI 에이전트(AI Agent)**로 빠르게 이동하고 있습니다. 이러한 에이전트는 웹 검색, 파일 시스템 관리, 코드 실행 등 복잡한 작업을 수행하기 위해 리눅스 터미널 명령어를 직접 호출하는 도구(Tool)를 통합하는 것이 일반적입니다. 그러나 이러한 능력은 칼날의 양날과 같습니다. 프롬프트 주입(Prompt Injection)이나 에이전트의 환각(Hallucination)으로 인해 rm -rf /와 같은 파괴적인 명령이나 민감한 데이터를 유출하는 스크립트가 실행될 경우, 호스트 시스템 전체가 위협받게 됩니다.\n">
 <title>🛡️ Matchlock: AI Agent 보안을 위한 Linux 샌드박스 구현</title>
@@ -333,7 +333,7 @@
 
 
                 <time class="article-time--reading">
-                    7 분 정도
+                    6 분 정도
                 </time>
             </div>
         
@@ -387,79 +387,43 @@
 <p>주요 메커니즘은 다음과 같습니다: 1.  <strong>User Namespace</strong>: 호스트의 root 사용자와 샌드박스 내부의 root 사용자를 분리하여, 샌드박스 내부에서 root 권한으로 명령을 실행하더라도 호스트 시스템에는 영향을 주지 않도록 합니다. 2.  <strong>Mount Namespace</strong>: 독립적인 파일 시스템 트리를 제공합니다. 호스트의 중요한 시스템 파일(<code>/etc</code>, <code>/home</code> 등)을 마운트에서 제외하고, 필요한 파일들만 읽기 전용(Read-only) 혹은 가상의 파일 시스템으로 제공합니다. 3.  <strong>Network Namespace</strong>: 기본적으로 네트워크 인터페이스를 격리하여 외부로의 직접적인 접속을 차단합니다. 4.  <strong>Seccomp (Secure Computing Mode)</strong>: 시스템 콜(System Call)을 필터링하여, <code>execve</code>, <code>fork</code> 이외의 잠재적으로 위험한 시스템 콜 호출을 차단합니다.</p>
 <h3 id="아키텍처-다이어그램">아키텍처 다이어그램
 </h3><p>다음은 Matchlock이 AI 에이전트의 명령을 실행하는 과정과 보안 메커니즘을 시각화한 것입니다.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="nx">graph</span> <span class="nx">TD</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">User</span><span class="p">[</span><span class="nx">사용자</span> <span class="nx">또는</span> <span class="nx">LLM</span> <span class="nx">Agent</span><span class="p">]</span> <span class="o">--&gt;|</span><span class="nx">Command</span><span class="o">:</span> <span class="nx">rm</span> <span class="o">-</span><span class="nx">rf</span> <span class="o">/</span><span class="nx">data</span><span class="o">|</span> <span class="nx">AgentCore</span><span class="p">[</span><span class="nx">Agent</span> <span class="nx">Core</span> <span class="nx">Wrapper</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nx">AgentCore</span> <span class="o">--&gt;|</span><span class="mf">1.</span> <span class="nx">Request</span> <span class="nx">Validation</span><span class="o">|</span> <span class="nx">PolicyMgr</span><span class="p">{</span><span class="nx">Policy</span> <span class="nx">Engine</span><span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">AgentCore</span> <span class="o">--&gt;|</span><span class="mf">2.</span> <span class="nx">Forward</span> <span class="nx">Command</span><span class="o">|</span> <span class="nx">Matchlock</span><span class="p">[</span><span class="nx">Matchlock</span> <span class="nx">Sandbox</span> <span class="nx">Interface</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nx">subgraph</span> <span class="nx">HostSystem</span> <span class="p">[</span><span class="nx">Host</span> <span class="nx">OS</span> <span class="nx">Level</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">Matchlock</span> <span class="o">--&gt;|</span><span class="mf">3.</span> <span class="nx">Clone</span> <span class="nx">Process</span><span class="o">|</span> <span class="nx">Unshare</span><span class="p">[</span><span class="nx">User</span> <span class="o">&amp;</span> <span class="nx">Mount</span> <span class="nx">Namespace</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">Unshare</span> <span class="o">--&gt;|</span><span class="mf">4.</span> <span class="nx">Apply</span> <span class="nx">Filters</span><span class="o">|</span> <span class="nx">Seccomp</span><span class="p">[</span><span class="nx">Seccomp</span> <span class="nx">Filter</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">Seccomp</span> <span class="o">--&gt;|</span><span class="mf">5.</span> <span class="nx">Exec</span> <span class="k">in</span> <span class="nx">Jail</span><span class="o">|</span> <span class="nx">IsolatedProc</span><span class="p">[</span><span class="nx">Isolated</span> <span class="nx">Process</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">        
-</span></span><span class="line"><span class="cl">        <span class="nx">HostFS</span><span class="p">[(</span><span class="nx">Host</span> <span class="nx">File</span> <span class="nx">System</span><span class="p">)]</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">VirtualFS</span><span class="p">[(</span><span class="nx">Virtual</span> <span class="o">/</span> <span class="nx">Overlay</span> <span class="nx">FS</span><span class="p">)]</span>
-</span></span><span class="line"><span class="cl">        
-</span></span><span class="line"><span class="cl">        <span class="nx">IsolatedProc</span> <span class="o">-</span><span class="p">.</span><span class="o">-&gt;|</span><span class="nx">Read</span> <span class="nx">Only</span><span class="o">|</span> <span class="nx">HostFS</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">IsolatedProc</span> <span class="o">--&gt;|</span><span class="nx">Read</span><span class="o">/</span><span class="nx">Write</span><span class="o">|</span> <span class="nx">VirtualFS</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">end</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nx">IsolatedProc</span> <span class="o">--&gt;|</span><span class="mf">6.</span> <span class="nx">Return</span> <span class="nx">Output</span><span class="o">|</span> <span class="nx">Matchlock</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">Matchlock</span> <span class="o">--&gt;|</span><span class="mf">7.</span> <span class="nx">Safe</span> <span class="nx">Result</span><span class="o">|</span> <span class="nx">AgentCore</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">AgentCore</span> <span class="o">--&gt;|</span><span class="mf">8.</span> <span class="nx">Final</span> <span class="nx">Response</span><span class="o">|</span> <span class="nx">User</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="o">%%</span> <span class="nx">스타일</span> <span class="nx">적용</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">style</span> <span class="nx">User</span> <span class="nx">fill</span><span class="o">:</span><span class="err">#</span><span class="nx">f9f</span><span class="p">,</span><span class="nx">stroke</span><span class="o">:</span><span class="err">#</span><span class="mi">333</span><span class="p">,</span><span class="nx">stroke</span><span class="o">-</span><span class="nx">width</span><span class="o">:</span><span class="mi">2</span><span class="nx">px</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">style</span> <span class="nx">AgentCore</span> <span class="nx">fill</span><span class="o">:</span><span class="err">#</span><span class="nx">f9f</span><span class="p">,</span><span class="nx">stroke</span><span class="o">:</span><span class="err">#</span><span class="mi">333</span><span class="p">,</span><span class="nx">stroke</span><span class="o">-</span><span class="nx">width</span><span class="o">:</span><span class="mi">2</span><span class="nx">px</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">style</span> <span class="nx">PolicyMgr</span> <span class="nx">fill</span><span class="o">:</span><span class="err">#</span><span class="nx">bbf</span><span class="p">,</span><span class="nx">stroke</span><span class="o">:</span><span class="err">#</span><span class="mi">333</span><span class="p">,</span><span class="nx">stroke</span><span class="o">-</span><span class="nx">width</span><span class="o">:</span><span class="mi">2</span><span class="nx">px</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">style</span> <span class="nx">Matchlock</span> <span class="nx">fill</span><span class="o">:</span><span class="err">#</span><span class="nx">bbf</span><span class="p">,</span><span class="nx">stroke</span><span class="o">:</span><span class="err">#</span><span class="mi">333</span><span class="p">,</span><span class="nx">stroke</span><span class="o">-</span><span class="nx">width</span><span class="o">:</span><span class="mi">2</span><span class="nx">px</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">style</span> <span class="nx">Unshare</span> <span class="nx">fill</span><span class="o">:</span><span class="err">#</span><span class="nx">f9f</span><span class="p">,</span><span class="nx">stroke</span><span class="o">:</span><span class="err">#</span><span class="mi">333</span><span class="p">,</span><span class="nx">stroke</span><span class="o">-</span><span class="nx">width</span><span class="o">:</span><span class="mi">2</span><span class="nx">px</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">style</span> <span class="nx">Seccomp</span> <span class="nx">fill</span><span class="o">:</span><span class="err">#</span><span class="nx">f9f</span><span class="p">,</span><span class="nx">stroke</span><span class="o">:</span><span class="err">#</span><span class="mi">333</span><span class="p">,</span><span class="nx">stroke</span><span class="o">-</span><span class="nx">width</span><span class="o">:</span><span class="mi">2</span><span class="nx">px</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">style</span> <span class="nx">IsolatedProc</span> <span class="nx">fill</span><span class="o">:</span><span class="err">#</span><span class="nx">f9f</span><span class="p">,</span><span class="nx">stroke</span><span class="o">:</span><span class="err">#</span><span class="mi">333</span><span class="p">,</span><span class="nx">stroke</span><span class="o">-</span><span class="nx">width</span><span class="o">:</span><span class="mi">2</span><span class="nx">px</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">style</span> <span class="nx">HostFS</span> <span class="nx">fill</span><span class="o">:</span><span class="err">#</span><span class="nx">f9f</span><span class="p">,</span><span class="nx">stroke</span><span class="o">:</span><span class="err">#</span><span class="mi">333</span><span class="p">,</span><span class="nx">stroke</span><span class="o">-</span><span class="nx">width</span><span class="o">:</span><span class="mi">2</span><span class="nx">px</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">style</span> <span class="nx">VirtualFS</span> <span class="nx">fill</span><span class="o">:</span><span class="err">#</span><span class="nx">f9f</span><span class="p">,</span><span class="nx">stroke</span><span class="o">:</span><span class="err">#</span><span class="mi">333</span><span class="p">,</span><span class="nx">stroke</span><span class="o">-</span><span class="nx">width</span><span class="o">:</span><span class="mi">2</span><span class="nx">px</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">style</span> <span class="nx">HostSystem</span> <span class="nx">fill</span><span class="o">:</span><span class="err">#</span><span class="nx">fff</span><span class="p">,</span><span class="nx">stroke</span><span class="o">:</span><span class="err">#</span><span class="mi">999</span><span class="p">,</span><span class="nx">stroke</span><span class="o">-</span><span class="nx">width</span><span class="o">:</span><span class="mi">1</span><span class="nx">px</span><span class="p">,</span><span class="nx">stroke</span><span class="o">-</span><span class="nx">dasharray</span><span class="o">:</span> <span class="mi">5</span> <span class="mi">5</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>이 다이어그램에서 <strong>Matchlock Sandbox Interface</strong>와 <strong>Policy Engine</strong>이 강조된 파란색 노드입니다. 이는 보안을 적용하는 핵심 컴포넌트임을 의미합니다. 에이전트가 위험한 명령을 내리더라도, <code>Namespace</code> 격리와 <code>Seccomp</code> 필터링을 통해 호스트 시스템(Host OS Level)의 실제 자원에는 접근할 수 없게 됩니다.</p>
+<pre class="mermaid">
+  graph TD
+    User[사용자 또는 LLM Agent] --&gt;|Command: rm -rf /data| AgentCore[Agent Core Wrapper]
+
+    AgentCore --&gt;|1. Request Validation| PolicyMgr{Policy Engine}
+    AgentCore --&gt;|2. Forward Command| Matchlock[Matchlock Sandbox Interface]
+
+    subgraph HostSystem [Host OS Level]
+        Matchlock --&gt;|3. Clone Process| Unshare[User &amp; Mount Namespace]
+        Unshare --&gt;|4. Apply Filters| Seccomp[Seccomp Filter]
+        Seccomp --&gt;|5. Exec in Jail| IsolatedProc[Isolated Process]
+        
+        HostFS[(Host File System)]
+        VirtualFS[(Virtual / Overlay FS)]
+        
+        IsolatedProc -.-&gt;|Read Only| HostFS
+        IsolatedProc --&gt;|Read/Write| VirtualFS
+    end
+
+    IsolatedProc --&gt;|6. Return Output| Matchlock
+    Matchlock --&gt;|7. Safe Result| AgentCore
+    AgentCore --&gt;|8. Final Response| User
+
+    %% 스타일 적용
+    style User fill:#f9f,stroke:#333,stroke-width:2px
+    style AgentCore fill:#f9f,stroke:#333,stroke-width:2px
+    style PolicyMgr fill:#bbf,stroke:#333,stroke-width:2px
+    style Matchlock fill:#bbf,stroke:#333,stroke-width:2px
+    style Unshare fill:#f9f,stroke:#333,stroke-width:2px
+    style Seccomp fill:#f9f,stroke:#333,stroke-width:2px
+    style IsolatedProc fill:#f9f,stroke:#333,stroke-width:2px
+    style HostFS fill:#f9f,stroke:#333,stroke-width:2px
+    style VirtualFS fill:#f9f,stroke:#333,stroke-width:2px
+    style HostSystem fill:#fff,stroke:#999,stroke-width:1px,stroke-dasharray: 5 5
+</pre>
+
+<p>이 다이어그램에서 <strong>Matchlock Sandbox Interface</strong>와 <strong>Policy Engine</strong>이 강조된 파란색 노드입니다. 이는 보안을 적용하는 핵심 컴포넌트임을 의미합니다. 에이전트가 위험한 명령을 내리더라도, <code>Namespace</code> 격리와 <code>Seccomp</code> 필터링을 통해 호스트 시스템(Host OS Level)의 실제 자원에는 접근할 수 없게 됩니다.</p>
 <h3 id="python-구현-예시">Python 구현 예시
 </h3><p>Matchlock은 Python 라이브러리로 쉽게 래핑하여 사용할 수 있습니다. 아래 코드는 에이전트가 실행하려는 셸 명령을 Matchlock 샌드박스 내에서 안전하게 실행하는 간단한 래퍼 클래스의 예시입니다.</p>
 <div class="highlight"><div class="chroma">
@@ -771,6 +735,66 @@
     }
 </script>
     
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11.12.2/+esm';
+
+    function initMermaid() {
+        const isDark = document.documentElement.dataset.scheme === 'dark';
+        const theme = isDark ? 'dark' : 'default';
+
+        console.log('Initializing Mermaid with theme:', theme);
+
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: theme,
+            logLevel: 'debug',
+            securityLevel: 'loose',
+            themeVariables: {
+                darkMode: isDark,
+                background: isDark ? '#1e1e1e' : '#ffffff',
+                primaryColor: isDark ? '#81D4FA' : '#E3F2FD',
+                primaryTextColor: isDark ? '#ECEFF1' : '#263238',
+                primaryBorderColor: isDark ? '#81D4FA' : '#0288D1',
+                lineColor: isDark ? '#81D4FA' : '#0288D1',
+                secondaryColor: isDark ? '#4FC3F7' : '#BBDEFB',
+                tertiaryColor: isDark ? '#29B6F6' : '#90CAF9',
+                fillType0: isDark ? '#81D4FA' : '#E3F2FD',
+                fillType1: isDark ? '#4FC3F7' : '#BBDEFB',
+                fillType2: isDark ? '#29B6F6' : '#90CAF9',
+                arrowheadColor: isDark ? '#81D4FA' : '#0288D1',
+                arrowColor: isDark ? '#81D4FA' : '#0288D1',
+                edgeLabelBackground: isDark ? '#263238' : '#ffffff',
+                fontFamily: 'arial',
+                fontSize: '16px'
+            }
+        });
+
+        
+        document.querySelectorAll('.mermaid').forEach((element) => {
+            element.removeAttribute('data-processed');
+        });
+        mermaid.init(undefined, document.querySelectorAll('.mermaid'));
+    }
+
+    
+    initMermaid();
+
+    
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'data-scheme') {
+                console.log('Theme changed to:', document.documentElement.dataset.scheme);
+                initMermaid();
+            }
+        });
+    });
+
+    observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['data-scheme']
+    });
+</script>
+
 
             </main>
         </div>
