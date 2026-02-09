@@ -31,7 +31,7 @@ GPT-4와 Falcon의 성능 격차를 이해하려면 두 모델의 근본적인 �
 다음은 두 모델의 추론 처리 과정에서의 메모리 접근 패턴과 흐름을 비교한 다이어그램입니다.
 
 
-```javascript
+```mermaid
 graph TD
     subgraph GPT4_Style ["GPT-4 Style (MoE & Standard Attention)"]
         G1[Input Tokens] --> G2[Router Layer]

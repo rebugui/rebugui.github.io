@@ -30,7 +30,7 @@ BeyondTrust와 같은 PAM(Privileged Access Management) 솔루션은 기업의 "
 
 이 과정을 시각화하면 다음과 같습니다.
 
-```javascript
+```mermaid
 graph LR
     A[Attacker] --> B[HTTP Request]
     B --> C[Web Interface]

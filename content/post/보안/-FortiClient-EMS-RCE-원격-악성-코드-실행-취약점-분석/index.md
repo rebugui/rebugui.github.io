@@ -32,7 +32,7 @@ FortiClient EMS는 수천 대의 엔드포인트를 중앙에서 제어합니다
 
 공격자는 방화벽 외부에서 EMS 서버로 접근을 시도합니다. EMS는 엔드포인트와 통신해야 하므로 특정 포트(예: 8013, TCP 443 등)가 인터넷 노출되어 있거나, 내부망에서 피벗(Pivot) 후 접근 가능한 상황을 가정합니다.
 
-```javascript
+```mermaid
 graph LR
     A[Attacker] -->|Malicious Packet| B[FortiClient EMS API]
     B -->|Insecure Deserialization| C[Java Runtime]

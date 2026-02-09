@@ -32,7 +32,7 @@ Vercel의 접근법은 아주 단순하지만 강력합니다. **"AI 에이전�
 
 다음은 이 처리 과정을 간소화한 흐름도입니다.
 
-```javascript
+```mermaid
 graph LR
     A[Client Request] --> B{User-Agent Check}
     B -->|Browser| C[Standard HTML]
