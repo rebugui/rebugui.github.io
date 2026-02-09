@@ -115,7 +115,11 @@ spec:
 
 모든 `create pods` 권한이 위험한 것은 아닙니다. 문제는 **어떤 ServiceAccount와 결합되어 있느냐**입니다. 아래 표는 권한 조합에 따른 위험도를 분석한 것입니다.
 
-| 권한 유형 | 허용된 동작 | 결합된 ServiceAccount | 위험도 | 이유 | | :--- | :--- | :--- | :--- | :--- | | **Safe** | `pods create` | `default` (별도 권한 없음) | 낮음 (Low) | 파드를 생성하더라도 해당 SA가 아무런 권한이 없으면 클러스터 리소스를 탈취할 수 없음 | | **Medium** | `pods create`, `pods exec` | `default` | 중간 (Medium) | 공격자가 파드 내부로 진입할 수 있으나, 클러스터 API는 호출 불가능. 컨테이너 escape 시도 가능 | | **Critical** | `pods create` | `admin` 또는 `cluster-admin` | **치명적 (Critical)** | **본 취약점 시나리오.** 파드 생성 즉시 관리자 토큰 획득 가능. RBAC 완전 우회 | | **High** | `deployments create` | *Any* | 높음 (High) | Deployment는 ReplicaSet을 생성하고, 이는 다시 Pod를 생성하므로 권한 상승 체인이 이어짐 |
+| 권한 유형 | 허용된 동작 | 결합된 ServiceAccount | 위험도 | 이유 | :--- | :--- | :--- | :--- | :--- 
+| **Safe** | `pods create` | `default` (별도 권한 없음) | 낮음 (Low) | 파드를 생성하더라도 해당 SA가 아무런 권한이 없으면 클러스터 리소스를 탈취할 수 없음 
+| **Medium** | `pods create`, `pods exec` | `default` | 중간 (Medium) | 공격자가 파드 내부로 진입할 수 있으나, 클러스터 API는 호출 불가능. 컨테이너 escape 시도 가능 
+| **Critical** | `pods create` | `admin` 또는 `cluster-admin` | **치명적 (Critical)** | **본 취약점 시나리오.** 파드 생성 즉시 관리자 토큰 획득 가능. RBAC 완전 우회 
+| **High** | `deployments create` | *Any* | 높음 (High) | Deployment는 ReplicaSet을 생성하고, 이는 다시 Pod를 생성하므로 권한 상승 체인이 이어짐 |
 
 ## 방어 가이드: 완화 및 대응 전략
 

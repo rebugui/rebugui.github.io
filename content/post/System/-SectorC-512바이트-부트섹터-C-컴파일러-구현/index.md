@@ -61,7 +61,10 @@ SectorC는 C 언어의 전체 기능을 지원하지는 않지만, 전역 변수
 
 다음은 일반적인 C 환경과 SectorC 환경의 차이를 보여주는 표입니다.
 
-| 특징 | GCC/Clang (Modern C) | SectorC (Restricted C) | | --- | --- | --- | | **아키텍처** | x86-64, ARM 등 다양 | x86-16 (Real Mode) | | **코드 크기** | ~100 MB | 512 Bytes | | **메모리 모델** | Protected/Long Mode | Real Mode (64KB Segment) | | **지원 타입** | int, float, struct, double 등 | int (2 bytes), char, pointer | | **최적화** | O1, O2, O3 등 고급 최적화 | 없음 (직접 매핑) |
+| 특징 | GCC/Clang (Modern C) | SectorC (Restricted C) | --- | --- | --- 
+| **아키텍처** | x86-64, ARM 등 다양 | x86-16 (Real Mode) | **코드 크기** | ~100 MB | 512 Bytes 
+| **메모리 모델** | Protected/Long Mode | Real Mode (64KB Segment) | **지원 타입** | int, float, struct, double 등 | int (2 bytes), char, pointer 
+| **최적화** | O1, O2, O3 등 고급 최적화 | 없음 (직접 매핑) |
 
 SectorC를 사용하여 작성한 간단한 코드 예시는 다음과 같습니다.
 

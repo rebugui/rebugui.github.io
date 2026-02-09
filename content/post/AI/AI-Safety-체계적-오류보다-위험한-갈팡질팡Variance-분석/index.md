@@ -138,7 +138,11 @@ print(f"Vacillation (Harmful) Rate: {result['vacillation_rate']:.2f}")
 
 이 문제를 해결하기 위해서는 단순한 RLHF(Reinforcement Learning from Human Feedback)를 넘어선 접근이 필요합니다.
 
-| 전략 (Strategy) | 주요 대상 (Target) | 메커니즘 (Mechanism) | 한계 (Limitation) | | :--- | :--- | :--- | :--- | | **RLHF / SFT** | 체계적 오류 (Bias) | 보상 모델(Reward Model)을 통해 올바른 방향으로 보상 주기 | 행동의 분산(Variance) 자체를 줄이지 못할 수 있음 | | **Ensembling** | 높은 분산 (Variance) | 여러 모델의 결과를 투표하거나 평균내어 노이즈 감소 | 추론 비용(Inference Cost)이 선형적으로 증가 | | **Temperature Scaling** | 높은 분산 (Variance) | Sampling Temperature를 0에 가깝게 설정하여 결정론적 출력 만들기 | 창의성이 저해되고, Greedy Decoding 자체의 국소 최적해 문제 지속 | | **Self-Consistency Check** | 높은 분산 (Variance) | 동일 입력에 대해 여러 추론 경로를 생성하고, 다수결로 최종 답 선정 | 지연 시간(Latency)이 크게 증가하여 실시간 서비스에 부적합할 수 있음 |
+| 전략 (Strategy) | 주요 대상 (Target) | 메커니즘 (Mechanism) | 한계 (Limitation) | :--- | :--- | :--- | :--- 
+| **RLHF / SFT** | 체계적 오류 (Bias) | 보상 모델(Reward Model)을 통해 올바른 방향으로 보상 주기 | 행동의 분산(Variance) 자체를 줄이지 못할 수 있음 
+| **Ensembling** | 높은 분산 (Variance) | 여러 모델의 결과를 투표하거나 평균내어 노이즈 감소 | 추론 비용(Inference Cost)이 선형적으로 증가 
+| **Temperature Scaling** | 높은 분산 (Variance) | Sampling Temperature를 0에 가깝게 설정하여 결정론적 출력 만들기 | 창의성이 저해되고, Greedy Decoding 자체의 국소 최적해 문제 지속 
+| **Self-Consistency Check** | 높은 분산 (Variance) | 동일 입력에 대해 여러 추론 경로를 생성하고, 다수결로 최종 답 선정 | 지연 시간(Latency)이 크게 증가하여 실시간 서비스에 부적합할 수 있음 |
 
 ### 5. Step-by-Step 가이드: 안정적인 추론 시스템 구축
 
