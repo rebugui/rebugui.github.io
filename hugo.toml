@@ -20,3 +20,9 @@ enableGitInfo = true
 [goldmark]
     [goldmark.renderer]
         unsafe = true
+
+[markup]
+    [highlight]
+        [languages]
+            [languages.mermaid]
+                disabled = true
