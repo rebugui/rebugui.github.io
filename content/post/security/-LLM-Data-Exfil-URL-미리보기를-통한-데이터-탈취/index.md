@@ -90,7 +90,13 @@ print(f"LLM Output: {response}")
 
 이 공격 기법은 기존의 LLM 보안 위협과는 뚜렷한 차이가 있습니다. 특히 **사용자 상호작용(User Interaction)**의 필요성 여부가 결정적인 차이점입니다.
 
-| 비교 항목 | 일반적인 Prompt Injection | URL 프리뷰 기반 데이터 탈취 | | :--- | :--- | :--- | | **핵심 메커니즘** | LLM이 악성 코드/텍스트 출력 | LLM이 데이터 포함 URL 생성 + 플랫폼 자동 요청 | | **사용자 클릭 필요성** | 필요 (링크 클릭, 코드 실행 등) | 불필요 (백그라운드 자동 크롤링) | | **탐지 난이도** | 중간 (피싱 URL 의심 가능) | 높음 (정상적인 링크 프리뷰처럼 보임) | | **주요 공격 대상** | 사용자 (Social Engineering) | LLM 호스팅 환경 및 메신저 인프라 | | **방어 기술** | Output Filtering, RLHF | Outbound Request Control, Network Sandboxing |
+| 비교 항목 | 일반적인 Prompt Injection | URL 프리뷰 기반 데이터 탈취
+|:--- | :--- | :---
+|**핵심 메커니즘** | LLM이 악성 코드/텍스트 출력 | LLM이 데이터 포함 URL 생성 + 플랫폼 자동 요청
+|**사용자 클릭 필요성** | 필요 (링크 클릭, 코드 실행 등) | 불필요 (백그라운드 자동 크롤링)
+|**탐지 난이도** | 중간 (피싱 URL 의심 가능) | 높음 (정상적인 링크 프리뷰처럼 보임)
+|**주요 공격 대상** | 사용자 (Social Engineering) | LLM 호스팅 환경 및 메신저 인프라
+|**방어 기술** | Output Filtering, RLHF | Outbound Request Control, Network Sandboxing |
 
 ### 실무 적용 가이드: 방어 전략
 

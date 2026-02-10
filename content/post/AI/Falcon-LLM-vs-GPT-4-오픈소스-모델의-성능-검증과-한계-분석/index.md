@@ -59,11 +59,12 @@ graph TD
 
 성능 검증은 주요 공개 벤치마크인 MMLU(일반 지능), HellaSwag(상식적 추론), HumanEval(코딩 능력)을 기준으로 수행되었습니다. 아래 표는 GPT-4와 Falcon-180B의 성능을 비교한 것입니다. (수치는 각 모델의 Technical Report 및 Hugging Face 리더보드 기반 추정치입니다.)
 
-| 벤치마크 (Benchmark) | GPT-4 (Closed) | Falcon-180B (Open) | 격차 (Gap) | 비고 | :--- | :---: | :---: | :---: | :--- 
-| **MMLU (5-shot)** | 86.4% | 80.5% | -5.9% | 복잡한 학술적 지식에서 GPT-4 우위 
-| **HellaSwag (10-shot)**| 95.3% | 91.2% | -4.1% | 일상 언어 이해도는 격차 축소 
-| **HumanEval (Python)** | 67.0% | 46.8% | -20.2% | 알고리즘적 코딩에서 GPT-4 압도적 우위 
-| **Inference Cost** | High ($/1k tokens) | Low (Self-hosted) | - | Falcon 비용 효율성 매우 높음 
+| 벤치마크 (Benchmark) | GPT-4 (Closed) | Falcon-180B (Open) | 격차 (Gap) | 비고 |
+| :--- | :---: | :---: | :---: | :--- |
+| **MMLU (5-shot)** | 86.4% | 80.5% | -5.9% | 복잡한 학술적 지식에서 GPT-4 우위 |
+| **HellaSwag (10-shot)**| 95.3% | 91.2% | -4.1% | 일상 언어 이해도는 격차 축소 |
+| **HumanEval (Python)** | 67.0% | 46.8% | -20.2% | 알고리즘적 코딩에서 GPT-4 압도적 우위 |
+| **Inference Cost** | High ($/1k tokens) | Low (Self-hosted) | - | Falcon 비용 효율성 매우 높음 |
 | **Context Window** | 32k / 128k | 2k (Base) ~ 8k | - | GPT-4의 롱컨텍스트 처리 능력 우수 |
 
 표에서 볼 수 있듯이, Falcon은 1,800억 개의 파라미터를 가진 오픈소스 모델임에도 불구하고 MMLU와 HellaSwag 등 일반적인 언어 이해 작업에서 GPT-4와 매우 근접한 성능(약 4~6% 이내의 격차)을 보여줍니다. 이는 "오픈소스는 성능이 떨어진다"는 통념을 깨는 중요한 증거입니다.

@@ -55,7 +55,13 @@ graph TD
 
 Clutch Scheduler가 기존 방식과 어떻게 다른지 명확히 이해하기 위해, macOS의 이전 방식과 주요 특징을 비교해 보겠습니다.
 
-| 특징 | 기존 스케줄러 (Traditional) | XNU Clutch Scheduler | | --- | --- | --- | | **기본 단위** | 개별 스레드 (Thread) | Clutch (그룹) 및 Bucket | | **우선순위** | 고정된 Static Priority 또는 Simple Decay | 계층적 우선순위 및 동적 Edge 계산 | | **코어 할당** | 주로 부하(Load) 기반 분배 | 성능 특성(QoS, Energy) 기반 지능형 할당 | | **반응성** | 선점(Preemption)에 의존 | 우선순위 계층구조를 통한 즉각적 그룹 선점 | | **전력 효율** | 유휴 상태(Idle) 진입 위주 | 워크로드 특성에 따른 E-core/P-core 적극적 분리 |
+| 특징 | 기존 스케줄러 (Traditional) | XNU Clutch Scheduler
+|--- | --- | ---
+|**기본 단위** | 개별 스레드 (Thread) | Clutch (그룹) 및 Bucket
+|**우선순위** | 고정된 Static Priority 또는 Simple Decay | 계층적 우선순위 및 동적 Edge 계산
+|**코어 할당** | 주로 부하(Load) 기반 분배 | 성능 특성(QoS, Energy) 기반 지능형 할당
+|**반응성** | 선점(Preemption)에 의존 | 우선순위 계층구조를 통한 즉각적 그룹 선점
+|**전력 효율** | 유휴 상태(Idle) 진입 위주 | 워크로드 특성에 따른 E-core/P-core 적극적 분리 |
 
 Clutch Scheduler는 특히 'Quality of Service(QoS)' 클래스를 반영하여 Edge를 계산합니다. 사용자 인터랙션과 직결된 작업은 높은 QoS를 부여받아 P-core로의 배치가 유리하게 계산되는 반면, 백그라운드 다운로드는 낮은 QoS로 인해 E-core에서 처리되도록 유도합니다.
 
