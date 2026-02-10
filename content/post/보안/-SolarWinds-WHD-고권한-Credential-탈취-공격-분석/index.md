@@ -30,7 +30,7 @@ SolarWinds WHD와 같은 헬프데스크 솔루션은 일반적으로 사용자 
 
 공격자의 목표는 WHD 자체를 파괴하는 것이 아니라, WHD가 가진 고권한 Credential을 탈취하여 네트워크 전체로 확산(Lateral Movement)하는 것입니다. 현재 관측되는 공격 시나리오는 다음과 같은 단계로 진행됩니다.
 
-```javascript
+```mermaid
 graph TD
     A[External Attacker] --> B[Reconnaissance]
     B --> C[Initial Access to WHD]

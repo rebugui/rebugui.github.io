@@ -32,7 +32,7 @@ Claw-Log의 핵심 차별점은 **Git Diff** 자체를 LLM의 입력으로 사�
 
 Claw-Log의 처리 과정은 크게 데이터 추출, 프롬프트 엔지니어링, 그리고 LLM 추론의 세 단계로 나뉩니다. 사용자가 CLI 명령어를 입력하면 시스템은 현재 브랜치의 변경 사항을 수집하고, 이를 사전에 정의된 프롬프트 템플릿에 주입하여 모델에 전송합니다.
 
-```javascript
+```mermaid
 graph LR
     A[User CLI Command] --> B[Git Repository]
     B --> C[Log & Diff Extraction]

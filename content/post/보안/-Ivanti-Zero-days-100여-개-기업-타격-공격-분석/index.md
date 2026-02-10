@@ -30,7 +30,7 @@ Ivanti Connect Secure(이전 Pulse Secure) 및 Policy Secure 제품에서 발견
 
 다음은 공격자가 네트워크에 진입한 후 수행하는 일반적인 공격 흐름도입니다.
 
-```javascript
+```mermaid
 graph LR
     A[공격자] --> B[정찰 및 취약점 스캔]
     B --> C[익스플로잇 전송]

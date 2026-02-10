@@ -28,7 +28,7 @@ URL 미리보기 기능은 사용자가 메시지에 URL을 붙여넣으면, 메
 
 이 과정을 시각화하면 다음과 같습니다.
 
-```javascript
+```mermaid
 graph TD
     A[Attacker] -->|Malicious Prompt Injection| B[LLM Agent]
     C[User] -->|Sensitive Context| B
