@@ -54,7 +54,32 @@ main,
 .gsc-comment-box-textarea {
   border-radius: 8px;
 }
-/* 상단 리액션 바 — 카드처럼 분리감 부여 */
+/* 상단: 반응 수 · 이모지 버튼을 한 줄로 깔끔하게 정렬 */
 .gsc-reactions {
-  padding-top: 8px;
+  display: flex !important;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  padding: 4px 0 16px;
+  border: none !important;
+}
+.gsc-reactions-count {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
+.gsc-reactions-menu,
+.gsc-direct-reaction-buttons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: nowrap;
+}
+/* 댓글 수 헤더도 한 줄 정렬 */
+.gsc-comments > .gsc-header,
+.gsc-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
 }
