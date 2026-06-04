@@ -4,6 +4,7 @@ favicon        = "/img/avatar.png"
 
 [footer]
     since = 2025
+    customText = '<a href="/page/privacy/">개인정보 처리방침</a>'
 
 [sidebar]
     emoji    = "🐢"
