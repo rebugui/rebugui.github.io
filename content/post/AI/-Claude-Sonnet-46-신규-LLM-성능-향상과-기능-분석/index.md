@@ -44,7 +44,12 @@ Claude Sonnet 4.6의 가장 큰 개선점은 소프트웨어 엔지니어링 태
 
 다음은 주요 벤치마크에서의 Claude 3.5 Sonnet과 4.6의 성능 비교 표입니다.
 
-| 평가 지표 (Metric) | Claude 3.5 Sonnet | Claude Sonnet 4.6 | 변화량 | | :--- | :---: | :---: | :---: | | SWE-bench Verified | 49.0% | 54.2% | +5.2% | | HumanEval (Python) | 92.0% | 94.5% | +2.5% | | Math Vista (Reasoning) | 58.1% | 63.8% | +5.7% | | MLU (General Knowledge) | 88.7% | 89.2% | +0.5% |
+| 평가 지표 (Metric) | Claude 3.5 Sonnet | Claude Sonnet 4.6 | 변화량 |
+| :--- | :---: | :---: | :---: |
+| SWE-bench Verified | 49.0% | 54.2% | +5.2% |
+| HumanEval (Python) | 92.0% | 94.5% | +2.5% |
+| Math Vista (Reasoning) | 58.1% | 63.8% | +5.7% |
+| MLU (General Knowledge) | 88.7% | 89.2% | +0.5% |
 
 위 표에서 알 수 있듯이, 코딩 및 수학적 추론과 관련된 지표에서는 큰 폭의 향상이 있었으나, 일반 상식 지식(GK) 영역에서는 미세한 개선만 이루어졌습니다. 이는 이번 업데이트가 '지식의 양'보다는 '지식의 활용 능력(Reasoning)'에 집중되었음을 시사합니다.
 
@@ -102,7 +107,10 @@ except anthropic.APIError as e:
 
 **Step-by-step 통합 가이드:**
 
-1.  **벤치마킹 및 A/B 테스트**: 기존 3.5 Sonnet과 4.6을 동시에 운영하며, 실제 트래픽에서의 응답 품질과 속도를 비교합니다. 2.  **라우팅 로직(Routing Logic) 구현**: 간단한 질의는 3.5 Sonnet(Haiku 등 가벼운 모델 포함)이 처리하고, 복잡한 코딩/추론 요청만 4.6으로 라우팅하는 모델 라우터(Model Router)를 구축하여 비용을 절감합니다. 3.  **안전성 평가(Safety Evaluation)**: System Card에 명시된 안전성 지표를 확인하여, 새로운 모델이 회사의 보안 정책(Jailbreak 방지, PII 필터링 등)을 준수하는지 검증합니다. 4.  **점진적 롤아웃(Gradual Rollout)**: 전체 사용자 대상이 아닌 내부 베타 테스터 그룹에게 먼저 배포하여 피드백을 수집합니다.
+1.  **벤치마킹 및 A/B 테스트**: 기존 3.5 Sonnet과 4.6을 동시에 운영하며, 실제 트래픽에서의 응답 품질과 속도를 비교합니다.
+2.  **라우팅 로직(Routing Logic) 구현**: 간단한 질의는 3.5 Sonnet(Haiku 등 가벼운 모델 포함)이 처리하고, 복잡한 코딩/추론 요청만 4.6으로 라우팅하는 모델 라우터(Model Router)를 구축하여 비용을 절감합니다.
+3.  **안전성 평가(Safety Evaluation)**: System Card에 명시된 안전성 지표를 확인하여, 새로운 모델이 회사의 보안 정책(Jailbreak 방지, PII 필터링 등)을 준수하는지 검증합니다.
+4.  **점진적 롤아웃(Gradual Rollout)**: 전체 사용자 대상이 아닌 내부 베타 테스터 그룹에게 먼저 배포하여 피드백을 수집합니다.
 
 이 과정을 통해 단순히 최신 모델을 사용하는 것을 넘어, 비용 대비 효율을 극대화하는 지능형 시스템을 구축할 수 있습니다.
 

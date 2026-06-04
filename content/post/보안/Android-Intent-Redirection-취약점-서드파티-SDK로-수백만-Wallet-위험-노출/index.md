@@ -66,7 +66,10 @@ graph TD
 
 **Step-by-step 공격 가이드 (방어 연구 목적)**:
 
-1.  **타겟 앱 분석**: APK를 디컴파일하여 `exported="false"`로 설정된 민감한 내부 Activity 식별 2.  **SDK 취약점 확인**: SDK가 외부 `Intent`의 `extra` 데이터를 내부 `Intent`로 전달하는지 분석 3.  **악성 Intent 생성**: 내부 Activity를 직접 가리키는 `Intent`를 `extra`에 포함하여 SDK Activity 호출 4.  **권한 도용**: SDK가 악성 `Intent`를 실행하면, 공격자는 타겟 앱의 권한으로 내부 Activity에 접근
+1.  **타겟 앱 분석**: APK를 디컴파일하여 `exported="false"`로 설정된 민감한 내부 Activity 식별
+2.  **SDK 취약점 확인**: SDK가 외부 `Intent`의 `extra` 데이터를 내부 `Intent`로 전달하는지 분석
+3.  **악성 Intent 생성**: 내부 Activity를 직접 가리키는 `Intent`를 `extra`에 포함하여 SDK Activity 호출
+4.  **권한 도용**: SDK가 악성 `Intent`를 실행하면, 공격자는 타겟 앱의 권한으로 내부 Activity에 접근
 
 ```java
 // PoC: 악성 앱의 공격 코드 (학습 목적)
@@ -98,7 +101,13 @@ public class MaliciousActivity extends Activity {
 
 ### 4. 위험도 평가 및 영향 범위
 
-| 평가 항목 | 내용 | | :--- | :--- | | **CVSS 점수** | 7.8 (High) | | **공격 복잡도** | 낮음 (로컬 앱 설치만 필요) | | **인증 필요** | 없음 | | **영향 범위** | 해당 SDK를 사용하는 모든 Wallet 앱 | | **잠재 피해** | 개인키 탈취, 자금 도난, 인증 우회 |
+| 평가 항목 | 내용 |
+| :--- | :--- |
+| **CVSS 점수** | 7.8 (High) |
+| **공격 복잡도** | 낮음 (로컬 앱 설치만 필요) |
+| **인증 필요** | 없음 |
+| **영향 범위** | 해당 SDK를 사용하는 모든 Wallet 앱 |
+| **잠재 피해** | 개인키 탈취, 자금 도난, 인증 우회 |
 
 ### 5. 완화 조치 및 방어 전략
 

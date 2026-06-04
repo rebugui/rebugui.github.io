@@ -48,7 +48,13 @@ graph TD
 
 다음은 일반적인 웹 취약점과 OpenClaw의 차이를 비교한 표입니다.
 
-| 비교 항목 | 기존 XSS (Cross-Site Scripting) | OpenClaw (AI Agent Hijacking) | | :--- | :--- | :--- | | **공격 대상** | 웹 브라우저를 사용하는 최종 사용자 | 웹 콘텐츠를 읽는 AI 에이전트 | | **실행 환경** | 사용자의 브라우저 클라이언트 (DOM) | AI 서버의 추론 엔진 (LLM Context) | | **주요 위협** | 세션 탈취, 쿠키 도용 | 에이전트 권한 남용, 비인가 명령 실행 | | **입력 지점** | URL 파라미터, HTTP 헤더 | 웹페이지 본문, 메타데이터, 주석 | | **방어 기제** | CSP (Content Security Policy), Sanitization | Sandboxing, Input Validation, Context Isolation |
+| 비교 항목 | 기존 XSS (Cross-Site Scripting) | OpenClaw (AI Agent Hijacking) |
+| :--- | :--- | :--- |
+| **공격 대상** | 웹 브라우저를 사용하는 최종 사용자 | 웹 콘텐츠를 읽는 AI 에이전트 |
+| **실행 환경** | 사용자의 브라우저 클라이언트 (DOM) | AI 서버의 추론 엔진 (LLM Context) |
+| **주요 위협** | 세션 탈취, 쿠키 도용 | 에이전트 권한 남용, 비인가 명령 실행 |
+| **입력 지점** | URL 파라미터, HTTP 헤더 | 웹페이지 본문, 메타데이터, 주석 |
+| **방어 기제** | CSP (Content Security Policy), Sanitization | Sandboxing, Input Validation, Context Isolation |
 
 ### 개념 증명(PoC) 시나리오
 
@@ -121,7 +127,10 @@ result = agent_parse_and_act(html_content)
 
 ### 단계별 공격 프로세스 (Step-by-Step)
 
-1.  **정찰 (Reconnaissance)**: 공격자는 타겟 AI 에이전트가 자주 방문하는 포럼, 뉴스 사이트, 혹은 문서 사이트를 식별합니다. 2.  **배포 (Deployment)**: 악성 프롬프트가 포함된 웹페이지를 생성하거나 기존 게시물에 댓글 형태로 주입합니다. 이때 사람에게는 자연스러운 글로 보이도록 위장합니다. 3.  **유인 (Enticement)**: AI 에이전트의 사용자가 해당 콘텐츠를 요청하도록 유도하거나, SEO를 통해 자연스럽게 노출될 때를 기다립니다. 4.  **주입 및 실행 (Injection & Execution)**: AI 에이전트가 웹사이트를 크롤링하고 내용을 파싱하는 순간, `context window` 내에 악성 지령이 포함됩니다. LLM은 이를 시스템 명령으로 인식하고 도구(Tool Use)를 악용하여 공격자의 명령을 수행합니다.
+1.  **정찰 (Reconnaissance)**: 공격자는 타겟 AI 에이전트가 자주 방문하는 포럼, 뉴스 사이트, 혹은 문서 사이트를 식별합니다.
+2.  **배포 (Deployment)**: 악성 프롬프트가 포함된 웹페이지를 생성하거나 기존 게시물에 댓글 형태로 주입합니다. 이때 사람에게는 자연스러운 글로 보이도록 위장합니다.
+3.  **유인 (Enticement)**: AI 에이전트의 사용자가 해당 콘텐츠를 요청하도록 유도하거나, SEO를 통해 자연스럽게 노출될 때를 기다립니다.
+4.  **주입 및 실행 (Injection & Execution)**: AI 에이전트가 웹사이트를 크롤링하고 내용을 파싱하는 순간, `context window` 내에 악성 지령이 포함됩니다. LLM은 이를 시스템 명령으로 인식하고 도구(Tool Use)를 악용하여 공격자의 명령을 수행합니다.
 
 ## 완화 조치 및 방어 전략
 

@@ -91,7 +91,12 @@ print(f"AI: {ai_chatbot_simulation(attack_prompt)}")
 
 기존의 보안 솔루션만으로는 AI 보안 위협을 완전히 차단하기 어렵습니다. 새로운 접근 방식이 필요합니다.
 
-| 비교 항목 | 전통적 보안 (Traditional Security) | AI 기반 보안 (AI-Native Security) | | :--- | :--- | :--- | | **주요 초점** | 네트워크 경계, 엔드포인트, 서버 | 모델 무결성, 프롬프트 입력/출력, 데이터 라인 | | **탐지 방식** | 시그니처 기반 (알려진 패턴 매칭) | 행동 기반 (Anomaly Detection), 어노테이션 분석 | | **대표 위협** | 랜섬웨어, DDoS, SQL 인젝션 | 모델 탈�(Model Poisoning), 프롬프트 인젝션, 회피 공격 | | **방어 도구** | 방화벽(FW), EDR, IPS/DPS | LLM 방화벽, AI 거버넌스 플랫폼, 복원력 테스트 |
+| 비교 항목 | 전통적 보안 (Traditional Security) | AI 기반 보안 (AI-Native Security) |
+| :--- | :--- | :--- |
+| **주요 초점** | 네트워크 경계, 엔드포인트, 서버 | 모델 무결성, 프롬프트 입력/출력, 데이터 라인 |
+| **탐지 방식** | 시그니처 기반 (알려진 패턴 매칭) | 행동 기반 (Anomaly Detection), 어노테이션 분석 |
+| **대표 위협** | 랜섬웨어, DDoS, SQL 인젝션 | 모델 탈�(Model Poisoning), 프롬프트 인젝션, 회피 공격 |
+| **방어 도구** | 방화벽(FW), EDR, IPS/DPS | LLM 방화벽, AI 거버넌스 플랫폼, 복원력 테스트 |
 
 ### 5. 단계별 방어 전략 가이드
 

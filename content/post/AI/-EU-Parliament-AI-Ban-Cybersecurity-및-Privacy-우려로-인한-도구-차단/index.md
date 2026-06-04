@@ -86,7 +86,13 @@ print(f"Sanitized: {sanitized_prompt}")
 
 EU 의회의 결정은 조직이 어떤 전략을 취해야 할지에 대한 기준점을 제공합니다. 아래 표는 공개된 API를 사용하는 방식과 사설 배포 방식의 보안 및 운영상의 차이를 비교한 것입니다.
 
-| 비교 항목 | Public API (OpenAI, Anthropic 등) | Private Deployment (Llama 3, Mistral 등) | | :--- | :--- | :--- | | **데이터 프라이버시** | 낮음 (ToS에 따라 데이터 학습 가능성 존재) | 높음 (완전한 데이터 주권 보장) | | **배포 비용** | 낮음 (종량제, 인프라 불필요) | 높음 (GPU 서버, 인프라 유지보수 비용) | | **보안 통제** | 제한적 (네트워크 수준의 통제만 가능) | 완전 (방화벽, VPC, On-Premise 구성) | | **모델 커스터마이징** | 제한적 (Fine-tuning 지원 비용/절차 복잡) | 자유로움 (RAG, LoRA 등 자체 파이프라인 구축) | | **규정 준수 (GDPR)** | 복잡 (데이터 처리 계약 DPA 필요) | 용이 (불러오기만 하면 되므로 리스크 최소화) |
+| 비교 항목 | Public API (OpenAI, Anthropic 등) | Private Deployment (Llama 3, Mistral 등) |
+| :--- | :--- | :--- |
+| **데이터 프라이버시** | 낮음 (ToS에 따라 데이터 학습 가능성 존재) | 높음 (완전한 데이터 주권 보장) |
+| **배포 비용** | 낮음 (종량제, 인프라 불필요) | 높음 (GPU 서버, 인프라 유지보수 비용) |
+| **보안 통제** | 제한적 (네트워크 수준의 통제만 가능) | 완전 (방화벽, VPC, On-Premise 구성) |
+| **모델 커스터마이징** | 제한적 (Fine-tuning 지원 비용/절차 복잡) | 자유로움 (RAG, LoRA 등 자체 파이프라인 구축) |
+| **규정 준수 (GDPR)** | 복잡 (데이터 처리 계약 DPA 필요) | 용이 (불러오기만 하면 되므로 리스크 최소화) |
 
 EU 의회와 같은 민감 기관은 표의 우측, 즉 **Private Deployment**로의 전환이 필수적입니다. 최근 Meta의 Llama 3나 Mistral AI의 모델과 같은 고성능 오픈 소스 모델 등장은 이러한 전환을 기술적으로 가능하게 만들고 있습니다. 이를 통해 기관은 외부에 데이터를 노출하지 않고도 GPT-4급의 성능을 내부 네트워크에서 구현할 수 있게 되었습니다.
 
@@ -94,7 +100,11 @@ EU 의회와 같은 민감 기관은 표의 우측, 즉 **Private Deployment**�
 
 단순히 차단하는 것만이 능사는 아닙니다. AI의 생산성을 포기하지 않으면서 보안을 확보하기 위해서는 다음과 같은 단계별 가이드를 따라야 합니다.
 
-1.  **Data Inventory & Classification**: 어떤 데이터가 AI 입력으로 사용 가능한지(Class 1), 기밀로 분류되어야 하는지(Class 3) 분류 체계를 마련합니다. 2.  **Policy Definition**: AI 사용 금지 정책(Acceptable Use Policy)을 수립합니다. 예를 들어, "공개된 개인 데이터를 입력하지 않는다", "코드를 그대로 붙여넣지 않는다"는 규칙을 정합니다. 3.  **Technical Guardrails Implementation**:     *   **DLP (Data Loss Prevention) 솔루션과의 연동**: AI 통신 패킷을 스캔하여 민감 정보 탐지.     *   **Self-hosted LLM 배포**: 오픈 소스 모델(vLLM, Text Generation Inference 등 활용)을 내부 서버에 구축. 4.  **Monitoring & Auditing**: AI 사용 로그를 기록하고 누가, 언제, 어떤 프롬프트를 사용했는지 감사합니다. 특이 징후(대량 데이터 전송 등)가 발생 시 자동으로 차단하는 SIEM(Security Information and Event Management) 시스템을 구축합니다. 5.  **Employee Education**: 'Shadow AI'(IT 부서 몰래 사용하는 개인 AI 도구) 방지를 위한 보안 교육 실시.
+1.  **Data Inventory & Classification**: 어떤 데이터가 AI 입력으로 사용 가능한지(Class 1), 기밀로 분류되어야 하는지(Class 3) 분류 체계를 마련합니다.
+2.  **Policy Definition**: AI 사용 금지 정책(Acceptable Use Policy)을 수립합니다. 예를 들어, "공개된 개인 데이터를 입력하지 않는다", "코드를 그대로 붙여넣지 않는다"는 규칙을 정합니다.
+3.  **Technical Guardrails Implementation**:     *   **DLP (Data Loss Prevention) 솔루션과의 연동**: AI 통신 패킷을 스캔하여 민감 정보 탐지.     *   **Self-hosted LLM 배포**: 오픈 소스 모델(vLLM, Text Generation Inference 등 활용)을 내부 서버에 구축.
+4.  **Monitoring & Auditing**: AI 사용 로그를 기록하고 누가, 언제, 어떤 프롬프트를 사용했는지 감사합니다. 특이 징후(대량 데이터 전송 등)가 발생 시 자동으로 차단하는 SIEM(Security Information and Event Management) 시스템을 구축합니다.
+5.  **Employee Education**: 'Shadow AI'(IT 부서 몰래 사용하는 개인 AI 도구) 방지를 위한 보안 교육 실시.
 
 ## 결론
 
@@ -104,7 +114,11 @@ EU 의회의 AI 도구 차단 결정은 생성형 AI 시대의 '보안 패러다
 
 ---
 
-**참고자료**: 1.  *EU Parliament blocks AI tools over cyber, privacy fears*, Politico (2024) 2.  Carlini, N., et al. "Secret sharer: Evaluating and testing unintended memorization in neural networks." USENIX Security (2019). 3.  *EU AI Act*: European Commission Official Website. 4.  Presidio Documentation: Microsoft Data Protection & De-identification tool.
+**참고자료**:
+1.  *EU Parliament blocks AI tools over cyber, privacy fears*, Politico (2024)
+2.  Carlini, N., et al. "Secret sharer: Evaluating and testing unintended memorization in neural networks." USENIX Security (2019).
+3.  *EU AI Act*: European Commission Official Website.
+4.  Presidio Documentation: Microsoft Data Protection & De-identification tool.
 
 ---
 

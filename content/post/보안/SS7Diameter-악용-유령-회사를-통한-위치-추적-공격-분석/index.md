@@ -44,13 +44,24 @@ graph TD
     B --> A
 ```
 
-1.  **Attacker System**: 공격자가 타겟의 전화번호를 입력하여 추적을 명령합니다. 2.  **Ghost Telecom Node**: 유령 통신 노드가 요청을 가로채거나 직접 생성하여 Global Roaming Hub로 전송합니다. 3.  **Global Roaming Hub**: 메시지의 발신자(Ghost Telecom)가 등록된 사업자이므로 이를 정상 라우팅하여 타겟의 소속국(HLR)으로 전달합니다. 4.  **Victims Home Network (HLR/HSS)**: 타겟의 현재 위치를 담당하는 교환국(MSC/VLR)에 위치 질의를 합니다. 5.  **Visited Network (MSC/VLR)**: 타겟 단말기가 접속된 기지국의 셀 ID(Global Cell ID)를 포함한 정보를 응답합니다. 6.  **Data Return**: 이 정보는 역순으로 전달되어 공격자에게 도달합니다. 공격자는 셀 ID를 지도 데이터와 매핑하여 실제 좌표를 복원합니다.
+1.  **Attacker System**: 공격자가 타겟의 전화번호를 입력하여 추적을 명령합니다.
+2.  **Ghost Telecom Node**: 유령 통신 노드가 요청을 가로채거나 직접 생성하여 Global Roaming Hub로 전송합니다.
+3.  **Global Roaming Hub**: 메시지의 발신자(Ghost Telecom)가 등록된 사업자이므로 이를 정상 라우팅하여 타겟의 소속국(HLR)으로 전달합니다.
+4.  **Victims Home Network (HLR/HSS)**: 타겟의 현재 위치를 담당하는 교환국(MSC/VLR)에 위치 질의를 합니다.
+5.  **Visited Network (MSC/VLR)**: 타겟 단말기가 접속된 기지국의 셀 ID(Global Cell ID)를 포함한 정보를 응답합니다.
+6.  **Data Return**: 이 정보는 역순으로 전달되어 공격자에게 도달합니다. 공격자는 셀 ID를 지도 데이터와 매핑하여 실제 좌표를 복원합니다.
 
 ### 3. 분석: SS7 대 Diameter 프로토콜
 
 과거의 감시 도구들이 주로 SS7에 집중했다면, 최근의 공격들은 4G/LTE 및 5G 네트워크에서 사용되는 Diameter 프로토콜로 확장되었습니다. 두 프로토콜의 차이와 악용 포인트를 비교하여 살펴보겠습니다.
 
-| 특성 | SS7 (2G/3G) | Diameter (4G/5G) | | :--- | :--- | :--- | | **기반 전송 계층** | SCCP/MTP (TDM 기반) | TCP/SCTP (IP 기반) | | **주요 악용 메시지** | `SRI_FOR_SM`, `ATI` | `Diameter-Location-Info`, `UDR` | | **신뢰 모델** | Global Title 기반의 오픈 트러스트 | Peer-to-Peer 인증 (TLS 등이 적용되나 설정 미흡) | | **추적 정확도** | 셀 ID (LAC + CI) 기반, 오차 범위 넓음 | 더 정밀한 TA (Tracking Area) 및 eNodeB 정보 가능 | | **탐지 난이도** | 상대적으로 낮음 (레거시 트래픽) | 높음 (대량의 정상 4G/5G 트래픽에 섞임) |
+| 특성 | SS7 (2G/3G) | Diameter (4G/5G) |
+| :--- | :--- | :--- |
+| **기반 전송 계층** | SCCP/MTP (TDM 기반) | TCP/SCTP (IP 기반) |
+| **주요 악용 메시지** | `SRI_FOR_SM`, `ATI` | `Diameter-Location-Info`, `UDR` |
+| **신뢰 모델** | Global Title 기반의 오픈 트러스트 | Peer-to-Peer 인증 (TLS 등이 적용되나 설정 미흡) |
+| **추적 정확도** | 셀 ID (LAC + CI) 기반, 오차 범위 넓음 | 더 정밀한 TA (Tracking Area) 및 eNodeB 정보 가능 |
+| **탐지 난이도** | 상대적으로 낮음 (레거시 트래픽) | 높음 (대량의 정상 4G/5G 트래픽에 섞임) |
 
 Diameter는 보안성을 강화하기 위해 IPsec이나 TLS를 사용할 수 있도록 설계되었으나, 실제 현장에서는 호환성 문제와 성능 이슈로 인해 암호화가 제대로 적용되지 않는 경우가 빈번합니다. 공격자는 이러한 설정 미흡(Configuration Gap)을 악용합니다.
 

@@ -100,7 +100,12 @@ for payload in xss_payloads:
 
 모든 렌더링 엔진이 위험한 것은 아닙니다. 안전한 구현과 위험한 구현의 차이를 명확히 이해해야 합니다.
 
-| 비교 항목 | 위험한 구현 (Vulnerable) | 안전한 구현 (Secure) | | :--- | :--- | :--- | | **데이터 처리** | `innerHTML`, `dangerouslySetInnerHTML` 사용 시 미정제 데이터 주입 | `innerText`, `textContent` 사용 또는 엄격한 Sanitizer 라이브러리 사용 | | **신뢰 모델** | 서버/AI 응답을 100% 신뢰하여 클라이언트 검증 생략 | Zero Trust: AI 출력 포함 모든 데이터를 잠재적 공격으로 간주 | | **이스케이프** | 특수 문자(`<`, `>`, `&`, `"`, `'`) 변환 없음 | HTML Entity로 변환 (`<` → `&lt;`) | | **CSP (Content Security Policy)** | 없거나 `unsafe-inline`, `unsafe-eval` 허용 | `script-src 'self'` 등 엄격한 정책 적용 및 nonce 사용 |
+| 비교 항목 | 위험한 구현 (Vulnerable) | 안전한 구현 (Secure) |
+| :--- | :--- | :--- |
+| **데이터 처리** | `innerHTML`, `dangerouslySetInnerHTML` 사용 시 미정제 데이터 주입 | `innerText`, `textContent` 사용 또는 엄격한 Sanitizer 라이브러리 사용 |
+| **신뢰 모델** | 서버/AI 응답을 100% 신뢰하여 클라이언트 검증 생략 | Zero Trust: AI 출력 포함 모든 데이터를 잠재적 공격으로 간주 |
+| **이스케이프** | 특수 문자(`<`, `>`, `&`, `"`, `'`) 변환 없음 | HTML Entity로 변환 (`<` → `&lt;`) |
+| **CSP (Content Security Policy)** | 없거나 `unsafe-inline`, `unsafe-eval` 허용 | `script-src 'self'` 등 엄격한 정책 적용 및 nonce 사용 |
 
 **Step-by-Step 완화 가이드 (Mitigation Guide)**
 

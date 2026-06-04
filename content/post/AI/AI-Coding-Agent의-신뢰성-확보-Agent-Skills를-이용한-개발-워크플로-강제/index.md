@@ -35,7 +35,10 @@ Agent Skills는 이러한 LLM의 한계를 극복하기 위해, 에이전트의 
 
 Agent Skills는 개발 프로세스의 필수 단계를 다음과 같이 순차적이며 강제적으로 포함시킵니다.
 
-1. **Specification Generation (명세 작성):** 사용자 요구사항을 명확하고 실행 가능한 기술적 명세서(User Story, Acceptance Criteria 등)로 변환합니다. 2. **Unit Test Generation (단위 테스트):** 명세서 기반으로, 해당 기능을 검증할 수 있는 테스트 케이스(Test Case)와 실제 코드를 생성하는 로직을 동시에 설계합니다. 3. **Code Implementation (코드 구현):** 명세와 테스트 케이스의 제약을 만족하는 코드를 작성합니다. 4. **Security/Boundary Review (경계 검토):** 생성된 코드를 정적 분석(Static Analysis)하거나, 알려진 취약점 패턴(OWASP Top 10 등)을 검토하는 과정을 거칩니다.
+1. **Specification Generation (명세 작성):** 사용자 요구사항을 명확하고 실행 가능한 기술적 명세서(User Story, Acceptance Criteria 등)로 변환합니다.
+2. **Unit Test Generation (단위 테스트):** 명세서 기반으로, 해당 기능을 검증할 수 있는 테스트 케이스(Test Case)와 실제 코드를 생성하는 로직을 동시에 설계합니다.
+3. **Code Implementation (코드 구현):** 명세와 테스트 케이스의 제약을 만족하는 코드를 작성합니다.
+4. **Security/Boundary Review (경계 검토):** 생성된 코드를 정적 분석(Static Analysis)하거나, 알려진 취약점 패턴(OWASP Top 10 등)을 검토하는 과정을 거칩니다.
 
 이 과정을 거치지 않은 코드는 '불완전한 초안'으로 간주되며, 검증 단계를 거친 코드는 '신뢰 가능한 PR(Pull Request) 후보'로 격상됩니다.
 
@@ -106,7 +109,14 @@ Agent Skills를 도입할 경우, AI 에이전트의 결과물 품질은 단순�
 
 다음 표는 Agent Skills 도입 전후의 결과물 품질 차이를 비교합니다.
 
-| 비교 항목 | 일반 LLM 기반 코드 생성 (Naive) | Agent Skills를 활용한 개발 워크플로 | | :--- | :--- | :--- | | **주요 산출물** | 코드 스니펫 (Code Snippet) | 개발 패키지 (Package Artifact) | | **핵심 제약** | 문법적 정확성 (Syntax Correctness) | 기능적, 보안적, 구조적 제약 (Functional, Security, Structural) | | **취약점 포착** | 매우 어려움 (Deep knowledge 필요) | **강제적 검토 단계**를 통해 높은 확률로 포착 | | **출력물의 신뢰도** | 낮음 (Debugging 필요) | 높음 (Testing/Review가 완료된 상태) | | **시간 복잡도 (T_Complexity)** | $O(L)$ (코드 길이) | $O(L \cdot K)$ (코드 길이 $\times$ 검증 스킬 개수) | | **적합한 환경** | 단순 스크립팅, 개념 증명(PoC) | 프로덕션 레벨의 핵심 모듈 개발 |
+| 비교 항목 | 일반 LLM 기반 코드 생성 (Naive) | Agent Skills를 활용한 개발 워크플로 |
+| :--- | :--- | :--- |
+| **주요 산출물** | 코드 스니펫 (Code Snippet) | 개발 패키지 (Package Artifact) |
+| **핵심 제약** | 문법적 정확성 (Syntax Correctness) | 기능적, 보안적, 구조적 제약 (Functional, Security, Structural) |
+| **취약점 포착** | 매우 어려움 (Deep knowledge 필요) | **강제적 검토 단계**를 통해 높은 확률로 포착 |
+| **출력물의 신뢰도** | 낮음 (Debugging 필요) | 높음 (Testing/Review가 완료된 상태) |
+| **시간 복잡도 (T_Complexity)** | $O(L)$ (코드 길이) | $O(L \cdot K)$ (코드 길이 $\times$ 검증 스킬 개수) |
+| **적합한 환경** | 단순 스크립팅, 개념 증명(PoC) | 프로덕션 레벨의 핵심 모듈 개발 |
 
 ### 5. 실무 적용 가이드: MLOps 파이프라인 통합
 

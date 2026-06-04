@@ -105,7 +105,13 @@ int main() {
 
 27년 전의 체르노빌과 최근의 보안 위협을 비교해 보면, 하드웨어를 노리는 전술은 계속 진화하고 있음을 알 수 있습니다.
 
-| 비교 항목 | Chernobyl Virus (1998) | Modern Firmware/UEFI Malware (e.g., LoJax, MosaicRegressor) | | :--- | :--- | :--- | | **공격 대상** | Legacy BIOS (Flash ROM) | UEFI (Unified Extensible Firmware Interface) / SPI Flash | | **감염 경로** | 실행 파일(PE) 감염 및 실행 | 네트워크 공격, 드라이버 취약점, 공급망 공급(Supply Chain) | | **지속성(Persistence)** | OS 레벨, 날짜 기반 트리거 | NVRAM(SPI Flash) 수정, OS 재설치 후에도 생존 | | **주요 목적** | 하드웨어 파괴 (Bricking) | 스파이 활동, 은밀한 지속성, 타겟 공격 | | **완화 난이도** | BIOS 칩 교체 또는 부트 블록 복구 | 펌웨어 서명 키 손상 시 복구 매우 어려움 |
+| 비교 항목 | Chernobyl Virus (1998) | Modern Firmware/UEFI Malware (e.g., LoJax, MosaicRegressor) |
+| :--- | :--- | :--- |
+| **공격 대상** | Legacy BIOS (Flash ROM) | UEFI (Unified Extensible Firmware Interface) / SPI Flash |
+| **감염 경로** | 실행 파일(PE) 감염 및 실행 | 네트워크 공격, 드라이버 취약점, 공급망 공급(Supply Chain) |
+| **지속성(Persistence)** | OS 레벨, 날짜 기반 트리거 | NVRAM(SPI Flash) 수정, OS 재설치 후에도 생존 |
+| **주요 목적** | 하드웨어 파괴 (Bricking) | 스파이 활동, 은밀한 지속성, 타겟 공격 |
+| **완화 난이도** | BIOS 칩 교체 또는 부트 블록 복구 | 펌웨어 서명 키 손상 시 복구 매우 어려움 |
 
 표에서 볼 수 있듯이, 현대의 공격은 파괴보다는 '은밀한 지속성'에 초점을 맞추고 있습니다. 하지만 공격의 핵심 레이어(Layer 0, Firmware)는 여전히 동일하며, 체르노빌은 이 레이어가 얼마나 취약한지를 처음으로 입증한 선구자입니다.
 

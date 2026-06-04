@@ -52,7 +52,13 @@ graph LR
 
 아래 표는 논문의 실험 결과를 바탕으로 사전 학습 모델과 사후 학습 모델의 특성을 비교한 것입니다. 이는 SAH가 실제로 어떻게 작동하는지를 직관적으로 보여줍니다.
 
-| 비교 항목 | Base Model (Pre-trained only) | Aligned Model (Post-trained) | | :--- | :--- | :--- | | **지식 소스 (Knowledge Source)** | 사전 학습 데이터 (Internet corpus 등) | 동일 (사전 학습 데이터) | | **지식 습득 여부** | 내재하고 있음 (Implicit) | 내재하고 있음 (Implicit) | | **Task Complexity (접근 난이도)** | 극도로 높음 (High) | 현저히 낮음 (Low) | | **필요 프로그램 크기** | 기가바이트 (GB) 수준 (거대한 few-shot 등) | 킬로바이트 (KB) 수준 (간단한 명령) | | **결론** | 지식은 있으나 꺼내 쓰기 어려움 | 지식에 즉시 접근 가능 (Superficial) |
+| 비교 항목 | Base Model (Pre-trained only) | Aligned Model (Post-trained) |
+| :--- | :--- | :--- |
+| **지식 소스 (Knowledge Source)** | 사전 학습 데이터 (Internet corpus 등) | 동일 (사전 학습 데이터) |
+| **지식 습득 여부** | 내재하고 있음 (Implicit) | 내재하고 있음 (Implicit) |
+| **Task Complexity (접근 난이도)** | 극도로 높음 (High) | 현저히 낮음 (Low) |
+| **필요 프로그램 크기** | 기가바이트 (GB) 수준 (거대한 few-shot 등) | 킬로바이트 (KB) 수준 (간단한 명령) |
+| **결론** | 지식은 있으나 꺼내 쓰기 어려움 | 지식에 즉시 접근 가능 (Superficial) |
 
 이 표에서 가장 중요한 인사이트는 **"지식은 이미 거기에 있다"**는 점입니다. 우리는 모델에게 새로운 것을 가르치는 것이 아니라, 복잡한 내부 회로를 적절히 자극하는 단축키(Alignment)를 만들어주고 있는 것입니다.
 

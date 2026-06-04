@@ -52,7 +52,14 @@ graph LR
 
 운영 환경에서 흔히 사용되는 도구들의 조합과 Django Control Room을 통합했을 때의 차이점을 분석해 보겠습니다. 보안 관점에서 볼 때, 관리해야 할 자격 증명(Credential)의 개수와 노출되는 네트워크 인터페이스의 개수가 줄어드는 것은 치명적인 차이입니다.
 
-| 비교 항목 | 기존 조합 (Flower + redis-cli + Swagger) | Django Control Room (통합형) | | :--- | :--- | :--- | | **인증 방식** | 각 도구별 Basic Auth / Token 별도 관리 | Django 통합 Session Based Auth | | **권한 관리** | 각각의 설정 파일에서 제어 (설정 복잡도 높음) | Django User/Group 시스템 활용 (미세한 권한 제어 가능) | | **네트워크 노출** | 여러 개의 포트 개방 (예: :5555, :8000) 필요 | Django 포트(:8000, :443) 하나만 개방 | | **SSL/TLS** | 각 도구별 Reverse Proxy 설정 필요 | Django 웹 서버 설정(Nginx 등)을 그대로 따름 | | **감사 로그** | 도구별로 로그 포맷이 다르고 통합 어려움 | Django의 통합 로깅 시스템에 자동 기록 | | **접근성** | 여러 탭/창 전환 (Context Switching) | Admin 내 하나의 사이드바에서 접근 |
+| 비교 항목 | 기존 조합 (Flower + redis-cli + Swagger) | Django Control Room (통합형) |
+| :--- | :--- | :--- |
+| **인증 방식** | 각 도구별 Basic Auth / Token 별도 관리 | Django 통합 Session Based Auth |
+| **권한 관리** | 각각의 설정 파일에서 제어 (설정 복잡도 높음) | Django User/Group 시스템 활용 (미세한 권한 제어 가능) |
+| **네트워크 노출** | 여러 개의 포트 개방 (예: :5555, :8000) 필요 | Django 포트(:8000, :443) 하나만 개방 |
+| **SSL/TLS** | 각 도구별 Reverse Proxy 설정 필요 | Django 웹 서버 설정(Nginx 등)을 그대로 따름 |
+| **감사 로그** | 도구별로 로그 포맷이 다르고 통합 어려움 | Django의 통합 로깅 시스템에 자동 기록 |
+| **접근성** | 여러 탭/창 전환 (Context Switching) | Admin 내 하나의 사이드바에서 접근 |
 
 ### 실무 적용 가이드: 설치부터 보안 설정까지
 

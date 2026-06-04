@@ -193,7 +193,7 @@ graph LR
         CLI[OpenClaw CLI]
         UI[Control UI - Port 18789]
         Core[OpenClaw Gateway]
-        DB[(Local State/Memory)]
+        DB["(Local State/Memory)"]
     end
 
     subgraph "External/Cloud"

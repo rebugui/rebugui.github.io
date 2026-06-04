@@ -117,7 +117,13 @@ if version:
 
 ### 종속성 위험 비교 분석
 
-| 위험 요소 | Before (계정 정상) | After (계정 종료) | 위험도 | | :--- | :--- | :--- | :--- | | 코드 서명 | EV 인증서로 서명 | 서명 불가 | CRITICAL | | 자동 업데이트 | Microsoft Store 통해 배포 | 배포 중단 | HIGH | | 취약점 패치 | 정기 업데이트 | 수동 확인 필요 | HIGH | | 사용자 신뢰 | 공식 채널 검증 | 타사 다운로드 위험 | CRITICAL | | 드라이버 서명 | WHQL 인증 | 만료 시 갱신 불가 | MEDIUM |
+| 위험 요소 | Before (계정 정상) | After (계정 종료) | 위험도 |
+| :--- | :--- | :--- | :--- |
+| 코드 서명 | EV 인증서로 서명 | 서명 불가 | CRITICAL |
+| 자동 업데이트 | Microsoft Store 통해 배포 | 배포 중단 | HIGH |
+| 취약점 패치 | 정기 업데이트 | 수동 확인 필요 | HIGH |
+| 사용자 신뢰 | 공식 채널 검증 | 타사 다운로드 위험 | CRITICAL |
+| 드라이버 서명 | WHQL 인증 | 만료 시 갱신 불가 | MEDIUM |
 
 ### Step-by-Step 대응 가이드
 
@@ -181,7 +187,9 @@ verify_veracrypt_integrity("VeraCrypt_Setup.exe", EXPECTED_HASH)
 
 기업 환경에서는 다음과 같은 조치가 필요합니다:
 
-1. **긴급 인벤토리 조사**: 모든 엔드포인트에서 VeraCrypt 설치 및 버전 확인 2. **대안 검토**: BitLocker, LUKS 등 OS 내장 암호화로 전환 평가 3. **정기 수동 점검**: GitHub Release 페이지 모니터링 자동화
+1. **긴급 인벤토리 조사**: 모든 엔드포인트에서 VeraCrypt 설치 및 버전 확인
+2. **대안 검토**: BitLocker, LUKS 등 OS 내장 암호화로 전환 평가
+3. **정기 수동 점검**: GitHub Release 페이지 모니터링 자동화
 
 ```python
 # 기업 환경 VeraCrypt 버전 일괄 확인 스크립트

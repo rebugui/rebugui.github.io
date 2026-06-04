@@ -51,7 +51,14 @@ graph LR
 
 로컬 AI 도구를 선택할 때는 성능과 호환성 사이의 트레이드오프를 고려해야 합니다. 다음은 전통적인 방식과 ggml 생태계를 비교한 표입니다.
 
-| 비교 항목 | Hugging Face Transformers (PyTorch) | llama.cpp (ggml/GGUF) | | :--- | :--- | :--- | | **주요 언어** | Python | C++ (Python 바인딩 제공) | | **모델 포맷** | Safetensors / .bin | GGUF | | **양자화 지원** | 제한적 (bitsandbytes 등 별도 라이브러리 필요) | 다양한 최적화 알고리즘 내장 (Q4_K_M, Q5_K_M 등) | | **메모리 요구량** | 높음 (모델 전체를 VRAM/RAM에 로드) | 낮음 (메모리 매핑 및 양자화 활용) | | **주요 타겟 하드웨어** | 서버급 GPU (NVIDIA A100/H100) | 소비자용 CPU, Apple Silicon, 저전력 GPU | | **부팅 속도 (Cold Start)** | 느림 (런타임 초기화 오버헤드) | 매우 빠름 (실행 파일 바로 실행) |
+| 비교 항목 | Hugging Face Transformers (PyTorch) | llama.cpp (ggml/GGUF) |
+| :--- | :--- | :--- |
+| **주요 언어** | Python | C++ (Python 바인딩 제공) |
+| **모델 포맷** | Safetensors / .bin | GGUF |
+| **양자화 지원** | 제한적 (bitsandbytes 등 별도 라이브러리 필요) | 다양한 최적화 알고리즘 내장 (Q4_K_M, Q5_K_M 등) |
+| **메모리 요구량** | 높음 (모델 전체를 VRAM/RAM에 로드) | 낮음 (메모리 매핑 및 양자화 활용) |
+| **주요 타겟 하드웨어** | 서버급 GPU (NVIDIA A100/H100) | 소비자용 CPU, Apple Silicon, 저전력 GPU |
+| **부팅 속도 (Cold Start)** | 느림 (런타임 초기화 오버헤드) | 매우 빠름 (실행 파일 바로 실행) |
 
 ### 4. 실무 적용 가이드: llama.cpp로 로컬 LLM 구축하기
 

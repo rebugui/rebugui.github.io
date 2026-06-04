@@ -84,7 +84,12 @@ print("Temp 2.0 (Creative/Risky):", sample_next_token(logits, temperature=2.0))
 ### 환각의 유형과 원인 분석
 
 모든 환현상이 동일하게 발생하는 것은 아닙니다. 최신 연구 논문들은 환현상을 크게 사실 기반(Factuality Hallucination)과 충실도 기반(Faithfulness Hallucination)으로 구분합니다. 아래 표는 각 유형의 특징을 비교합니다.
-| 구분 | 사실 기반 환각 (Fact Hallucination) | 충실도 기반 환각 (Faithfulness Hallucination) | | :--- | :--- | :--- | | **정의** | 모델의 내부 지식 혹은 외부 참조와 다르게, 사실이 아닌 내용을 생성함. | 사용자의 제약 조건(Instruction)이나 컨텍스트를 무시하고 내용을 생성함. | | **예시** | "지구는 평평하다"라고 주장하거나, 존재하지 않는 논문 인용. | "3줄로 요약해달라"는 요청을 무시하고 긴 글을 쓰거나, 특정 스타일 위반. | | **주요 원인** | 학습 데이터의 노이즈, 잘못된 연관성 학습, Parametric Memory 부재. | Attention 메커니즘의 실패, Long-Context 의존도 부족, Alignment 부재. | | **해결 방향** | RAG(검색 증강 생성), Knowledge Graph 활용. | Chain-of-Thought prompting, Fine-tuning with instruction data. |
+| 구분 | 사실 기반 환각 (Fact Hallucination) | 충실도 기반 환각 (Faithfulness Hallucination) |
+| :--- | :--- | :--- |
+| **정의** | 모델의 내부 지식 혹은 외부 참조와 다르게, 사실이 아닌 내용을 생성함. | 사용자의 제약 조건(Instruction)이나 컨텍스트를 무시하고 내용을 생성함. |
+| **예시** | "지구는 평평하다"라고 주장하거나, 존재하지 않는 논문 인용. | "3줄로 요약해달라"는 요청을 무시하고 긴 글을 쓰거나, 특정 스타일 위반. |
+| **주요 원인** | 학습 데이터의 노이즈, 잘못된 연관성 학습, Parametric Memory 부재. | Attention 메커니즘의 실패, Long-Context 의존도 부족, Alignment 부재. |
+| **해결 방향** | RAG(검색 증강 생성), Knowledge Graph 활용. | Chain-of-Thought prompting, Fine-tuning with instruction data. |
 
 ### 기술적 완화 전략: RAG와 Chain-of-Thought
 

@@ -45,7 +45,13 @@ graph TD
 
 Qwen3.6-Plus는 다양한 벤치마크에서 GPT-4급 성능을 보여준다. 특히 에이전트 관련 태스크에서 두드러진 성능을 기록했다.
 
-| 벤치마크 | 측정 영역 | GPT-4o | Claude 3.5 Sonnet | Qwen3.6-Plus | | :--- | :--- | :--- | :--- | :--- | | BFCL-v2 | Tool Calling | 71.2% | 68.4% | **74.1%** | | AgentBench | Multi-turn Agent | 82.3% | 79.6% | **83.7%** | | GSM8K | Math Reasoning | 92.0% | 88.7% | **91.4%** | | HumanEval | Code Generation | 90.2% | 92.0% | 89.6% | | MMLU-Pro | General Knowledge | 85.7% | 84.2% | **86.1%** |
+| 벤치마크 | 측정 영역 | GPT-4o | Claude 3.5 Sonnet | Qwen3.6-Plus |
+| :--- | :--- | :--- | :--- | :--- |
+| BFCL-v2 | Tool Calling | 71.2% | 68.4% | **74.1%** |
+| AgentBench | Multi-turn Agent | 82.3% | 79.6% | **83.7%** |
+| GSM8K | Math Reasoning | 92.0% | 88.7% | **91.4%** |
+| HumanEval | Code Generation | 90.2% | 92.0% | 89.6% |
+| MMLU-Pro | General Knowledge | 85.7% | 84.2% | **86.1%** |
 
 가장 주목할 점은 **BFCL-v2 (Berkeley Function Calling Leaderboard)** 결과다. Tool Calling 정확도에서 GPT-4o를 3%p 이상 앞서며, 이는 실제 에이전트 구현 시 얼마나 안정적으로 외부 도구를 호출할 수 있는지를 보여주는 핵심 지표다.
 
@@ -162,7 +168,10 @@ print(response)
 After getting the results, I will send an email to all active Engineering employees about tomorrow's meeting at 2pm.
 ```
 
-모델이 복잡한 사용자 요청을 분석하여: 1. 먼저 `search_database`를 호출해야 함을 인식 2. `filters` 파라미터 내에 중첩된 객체 구조를 정확히 구성 3. 이메일 발송이 검색 결과에 의존적임을 파악하고 적절한 순서 계획
+모델이 복잡한 사용자 요청을 분석하여:
+1. 먼저 `search_database`를 호출해야 함을 인식
+2. `filters` 파라미터 내에 중첩된 객체 구조를 정확히 구성
+3. 이메일 발송이 검색 결과에 의존적임을 파악하고 적절한 순서 계획
 
 ## 실제 에이전트 구현 가이드
 
@@ -488,7 +497,14 @@ for output in outputs:
 
 **프로덕션 체크리스트:**
 
-| 항목 | 권장 설정 | 비고 | | :--- | :--- | :--- | | 추론 엔진 | vLLM 0.6+ | PagedAttention으로 메모리 효율화 | | GPU 메모리 | A100 80GB × 2 | 또는 H100 80GB × 1 | | 최대 시퀀스 | 32K~128K | 사용 사례에 따라 조정 | | 배치 크기 | 동적 (vLLM 자동 관리) | 최대 처리량을 위해 | | 양자화 | AWQ/GPTQ 4bit | 메모리 제약 시 | | 모니터링 | Prometheus + Grafana | 토큰 처리량, 지연시간 추적 |
+| 항목 | 권장 설정 | 비고 |
+| :--- | :--- | :--- |
+| 추론 엔진 | vLLM 0.6+ | PagedAttention으로 메모리 효율화 |
+| GPU 메모리 | A100 80GB × 2 | 또는 H100 80GB × 1 |
+| 최대 시퀀스 | 32K~128K | 사용 사례에 따라 조정 |
+| 배치 크기 | 동적 (vLLM 자동 관리) | 최대 처리량을 위해 |
+| 양자화 | AWQ/GPTQ 4bit | 메모리 제약 시 |
+| 모니터링 | Prometheus + Grafana | 토큰 처리량, 지연시간 추적 |
 
 ## 결론
 
@@ -496,7 +512,10 @@ for output in outputs:
 
 Qwen3.6-Plus는 **실제 환경 에이전트 구현**이라는 구체적인 목표를 위해 설계된 모델이다. 주요 특징을 정리하면:
 
-1. **Tool Calling 정확도**: BFCL-v2에서 74.1%로 GPT-4o 대비 우수 2. **멀티턴 처리**: 128K 컨텍스트 윈도우로 긴 대화 유지 3. **추론 최적화**: 동적 경로 선택으로 효율적인 추론 4. **오픈소스**: Apache 2.0 라이선스로 상업적 활용 가능
+1. **Tool Calling 정확도**: BFCL-v2에서 74.1%로 GPT-4o 대비 우수
+2. **멀티턴 처리**: 128K 컨텍스트 윈도우로 긴 대화 유지
+3. **추론 최적화**: 동적 경로 선택으로 효율적인 추론
+4. **오픈소스**: Apache 2.0 라이선스로 상업적 활용 가능
 
 ### 전문가 인사이트
 

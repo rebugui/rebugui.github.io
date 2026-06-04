@@ -24,7 +24,11 @@ categories:
 
 Matchlock의 핵심은 Linux 커널 차원에서 제공하는 프리미티브(Primitive)들을 조합하여 에이전트를 위한 완벽한 격리 공간을 만드는 것입니다. 가상 머신(VM) 수준의 격리를 목표로 하는 것이 아니라, 프로세스 수준에서 빠르고 가볍게 실행 환경을 분리하는 것에 중점을 둡니다.
 
-주요 메커니즘은 다음과 같습니다: 1.  **User Namespace**: 호스트의 root 사용자와 샌드박스 내부의 root 사용자를 분리하여, 샌드박스 내부에서 root 권한으로 명령을 실행하더라도 호스트 시스템에는 영향을 주지 않도록 합니다. 2.  **Mount Namespace**: 독립적인 파일 시스템 트리를 제공합니다. 호스트의 중요한 시스템 파일(`/etc`, `/home` 등)을 마운트에서 제외하고, 필요한 파일들만 읽기 전용(Read-only) 혹은 가상의 파일 시스템으로 제공합니다. 3.  **Network Namespace**: 기본적으로 네트워크 인터페이스를 격리하여 외부로의 직접적인 접속을 차단합니다. 4.  **Seccomp (Secure Computing Mode)**: 시스템 콜(System Call)을 필터링하여, `execve`, `fork` 이외의 잠재적으로 위험한 시스템 콜 호출을 차단합니다.
+주요 메커니즘은 다음과 같습니다:
+1.  **User Namespace**: 호스트의 root 사용자와 샌드박스 내부의 root 사용자를 분리하여, 샌드박스 내부에서 root 권한으로 명령을 실행하더라도 호스트 시스템에는 영향을 주지 않도록 합니다.
+2.  **Mount Namespace**: 독립적인 파일 시스템 트리를 제공합니다. 호스트의 중요한 시스템 파일(`/etc`, `/home` 등)을 마운트에서 제외하고, 필요한 파일들만 읽기 전용(Read-only) 혹은 가상의 파일 시스템으로 제공합니다.
+3.  **Network Namespace**: 기본적으로 네트워크 인터페이스를 격리하여 외부로의 직접적인 접속을 차단합니다.
+4.  **Seccomp (Secure Computing Mode)**: 시스템 콜(System Call)을 필터링하여, `execve`, `fork` 이외의 잠재적으로 위험한 시스템 콜 호출을 차단합니다.
 
 ### 아키텍처 다이어그램
 
@@ -42,8 +46,8 @@ graph TD
         Unshare -->|4. Apply Filters| Seccomp[Seccomp Filter]
         Seccomp -->|5. Exec in Jail| IsolatedProc[Isolated Process]
         
-        HostFS[(Host File System)]
-        VirtualFS[(Virtual / Overlay FS)]
+        HostFS["(Host File System)"]
+        VirtualFS["(Virtual / Overlay FS)"]
         
         IsolatedProc -.->|Read Only| HostFS
         IsolatedProc -->|Read/Write| VirtualFS

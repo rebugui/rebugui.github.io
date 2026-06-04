@@ -35,10 +35,10 @@ graph LR
     A[공격자] -->|악의적인 YAML 생성| B[K8s API Server]
     B -->|Ingress 리소스 전달| C[Ingress-Nginx Controller]
     C -->|Annotation 파싱| D{Lua 코드 검증?}
-    D --|X (취약점 존재)|--> E[nginx.conf 생성 및 Lua 코드 삽입]
+    D -->|"X (취약점 존재)"| E[nginx.conf 생성 및 Lua 코드 삽입]
     E -->|Nginx Reload| F[Lua VM 실행]
     F -->|os.execute 등| G[Reverse Shell / 데이터 탈취]
-    D --|O (패치됨)|--> H[요청 거부 또는 무시]
+    D -->|"O (패치됨)"| H[요청 거부 또는 무시]
 ```
 
 ### 취약점 분석 및 공격 시나리오

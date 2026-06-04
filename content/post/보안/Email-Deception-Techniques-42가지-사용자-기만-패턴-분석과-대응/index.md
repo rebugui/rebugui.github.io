@@ -53,7 +53,12 @@ graph TD
 
 가장 기본적이지만 여전히 효과적인 기법이다. 사용자는 이메일 클라이언트에서 "보낸 사람" 필드를 주로 신뢰하는 경향이 있다.
 
-| 기법 | 메커니즘 | 탐지 난이도 | 실제 사용 빈도 | | :--- | :--- | :--- | :--- | | Display Name Spoofing | 표시 이름만 진짜처럼 설정 | 낮음 | 매우 높음 | | Look-alike Domain | `g00gle.com`, `arnazon.com` | 중간 | 높음 | | Subdomain Abuse | `paypal.attacker.com` | 중간 | 중간 | | RFC Non-compliant | 특수문자로 필터 우회 | 높음 | 낮음 |
+| 기법 | 메커니즘 | 탐지 난이도 | 실제 사용 빈도 |
+| :--- | :--- | :--- | :--- |
+| Display Name Spoofing | 표시 이름만 진짜처럼 설정 | 낮음 | 매우 높음 |
+| Look-alike Domain | `g00gle.com`, `arnazon.com` | 중간 | 높음 |
+| Subdomain Abuse | `paypal.attacker.com` | 중간 | 중간 |
+| RFC Non-compliant | 특수문자로 필터 우회 | 높음 | 낮음 |
 
 **PoC: 발신자 스푸핑 탐지 스크립트 (방어 목적)**
 
@@ -270,7 +275,13 @@ URL: {url}")
 
 첨부파일은 멀웨어 배포의 주요 벡터다. 연구에서는 다음과 같은 기법들이 식별되었다:
 
-| 기법 | 설명 | 예시 | | :--- | :--- | :--- | | Double Extension | 실제 확장자 숨기기 | `invoice.pdf.exe` | | Right-to-Left Override | 문자열 뒤집기 | `gpj.exe` → `exe.jpg`로 표시 | | MIME Mismatch | 확장자와 실제 타입 불일치 | `.jpg`지만 실행 코드 포함 | | Encrypted Archive | 검사 우회 | 암호 걸린 ZIP 파일 | | Macro Embedded | 문서 내 매크로 | `.docm`, `.xlsm` |
+| 기법 | 설명 | 예시 |
+| :--- | :--- | :--- |
+| Double Extension | 실제 확장자 숨기기 | `invoice.pdf.exe` |
+| Right-to-Left Override | 문자열 뒤집기 | `gpj.exe` → `exe.jpg`로 표시 |
+| MIME Mismatch | 확장자와 실제 타입 불일치 | `.jpg`지만 실행 코드 포함 |
+| Encrypted Archive | 검사 우회 | 암호 걸린 ZIP 파일 |
+| Macro Embedded | 문서 내 매크로 | `.docm`, `.xlsm` |
 
 ```javascript
 graph TD

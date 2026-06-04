@@ -45,7 +45,16 @@ graph TD
 
 현대 브라우저에서 수집할 수 있는 주요 속성들은 다음과 같다:
 
-| 속성 카테고리 | 수집 데이터 | 식별력 (Entropy) | | :--- | :--- | :--- | | Navigator | User Agent, Platform, Language | 중간 | | Screen | Resolution, Color Depth, Pixel Ratio | 높음 | | Canvas | 2D 렌더링 차이 | 매우 높음 | | WebGL | GPU Vendor, Renderer, Extensions | 매우 높음 | | Audio | AudioContext 샘플링 차이 | 높음 | | Fonts | 설치된 폰트 목록 | 높음 | | Timezone | Offset, TimeZone 이름 | 낮음 | | Hardware | CPU 코어 수, Memory | 중간 |
+| 속성 카테고리 | 수집 데이터 | 식별력 (Entropy) |
+| :--- | :--- | :--- |
+| Navigator | User Agent, Platform, Language | 중간 |
+| Screen | Resolution, Color Depth, Pixel Ratio | 높음 |
+| Canvas | 2D 렌더링 차이 | 매우 높음 |
+| WebGL | GPU Vendor, Renderer, Extensions | 매우 높음 |
+| Audio | AudioContext 샘플링 차이 | 높음 |
+| Fonts | 설치된 폰트 목록 | 높음 |
+| Timezone | Offset, TimeZone 이름 | 낮음 |
+| Hardware | CPU 코어 수, Memory | 중간 |
 
 Canvas Fingerprinting이 특히 흥미로운데, 동일한 이미지를 그려도 GPU와 드라이버에 따라 픽셀 단위의 미세한 차이가 발생한다. 이는 하드웨어 수준의 식별을 가능하게 한다.
 
@@ -267,7 +276,13 @@ def handler(request):
 
 **현재 탐지 방법의 한계:**
 
-| 방법 | 원리 | 한계점 | | :--- | :--- | :--- | | User Agent 검사 | 특정 문자열 탐지 | 쉽게 스푸핑 가능 | | Behavioral Analysis | 마우스/키보드 패턴 | Headless 모드에서 무력화 | | CAPTCHA | 인간 상호작용 검증 | 사용자 경험 저하 | | Request Rate Limiting | 요청 빈도 제한 | 정상 사용자도 차단 가능 | | TLS Fingerprinting | TLS 핸드셰이크 패턴 | 프록시/VPN 우회 가능 |
+| 방법 | 원리 | 한계점 |
+| :--- | :--- | :--- |
+| User Agent 검사 | 특정 문자열 탐지 | 쉽게 스푸핑 가능 |
+| Behavioral Analysis | 마우스/키보드 패턴 | Headless 모드에서 무력화 |
+| CAPTCHA | 인간 상호작용 검증 | 사용자 경험 저하 |
+| Request Rate Limiting | 요청 빈도 제한 | 정상 사용자도 차단 가능 |
+| TLS Fingerprinting | TLS 핸드셰이크 패턴 | 프록시/VPN 우회 가능 |
 
 필자의 실험적 접근법은 **다층적 신호 결합(Multi-signal Fusion)**이다. Fingerprint, 행동 패턴, 요청 특성을 종합해 확률적 점수를 계산한다. ML 모델을 학습시켜 분류할 수도 있지만, 정적 사이트에서는 경량화된 휴리스틱이 더 실용적이다.
 

@@ -38,7 +38,13 @@ AI 시대의 보안을 위해서는 AI 에이전트가 수행할 작업의 범�
 
 다음은 무제한 접근 권한 설정과 안전한 접근 권한 설정의 비교입니다.
 
-| 비교 항목 | 위험한 설정 (Vercel 사고 유형) | 안전한 설정 (Least Privilege) | | :--- | :--- | :--- | | **Google Drive Scope** | `.../auth/drive` (전체 파일 읽기/쓰기/삭제) | `.../auth/drive.readonly` (읽기 전용) 또는 `.../auth/drive.file` (단일 파일 접근) | | **Gmail Scope** | `.../auth.gmail.modify` (메일 수정/삭제 포함) | `.../auth.gmail.readonly` (메일 내용 확인만 가능) | | **토큰 유효 기간** | 무기한 혹은 장기간 (Refresh Token 무제한) | 짧은 Access Token + 명시적인 갱신 로직 | | **감사 로그** | AI 트래픽으로 인해 로그 묻힘 가능성 | 별도의 AI Activity ID 부여로 상세 추적 | | **영향 범위** | 전사적 데이터 유출 및 파손 가능 | 특정 프로젝트나 문서로 제한됨 |
+| 비교 항목 | 위험한 설정 (Vercel 사고 유형) | 안전한 설정 (Least Privilege) |
+| :--- | :--- | :--- |
+| **Google Drive Scope** | `.../auth/drive` (전체 파일 읽기/쓰기/삭제) | `.../auth/drive.readonly` (읽기 전용) 또는 `.../auth/drive.file` (단일 파일 접근) |
+| **Gmail Scope** | `.../auth.gmail.modify` (메일 수정/삭제 포함) | `.../auth.gmail.readonly` (메일 내용 확인만 가능) |
+| **토큰 유효 기간** | 무기한 혹은 장기간 (Refresh Token 무제한) | 짧은 Access Token + 명시적인 갱신 로직 |
+| **감사 로그** | AI 트래픽으로 인해 로그 묻힘 가능성 | 별도의 AI Activity ID 부여로 상세 추적 |
+| **영향 범위** | 전사적 데이터 유출 및 파손 가능 | 특정 프로젝트나 문서로 제한됨 |
 
 ### 3. 실무 구현: 파이썬을 이용한 안전한 OAuth 인증 가이드
 

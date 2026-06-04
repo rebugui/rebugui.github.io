@@ -38,7 +38,9 @@ graph TD
 
 연구진은 SAE 실패를 세 가지 요소로 분해했다:
 
-1. **Amortization 갭**: 고정 인코더 vs iterative inference 2. **Dictionary 품질**: 학습된 dictionary의 방향 정확도 3. **조합적 이동(Compositional Shift)**: OOD 일반화 능력
+1. **Amortization 갭**: 고정 인코더 vs iterative inference
+2. **Dictionary 품질**: 학습된 dictionary의 방향 정확도
+3. **조합적 이동(Compositional Shift)**: OOD 일반화 능력
 
 ```python
 import torch
@@ -146,7 +148,12 @@ zeros(batch_size, latent_dim, device=x.device)
 
 연구진의 실험은 놀라운 결과를 보여주었다. **SAE 학습 dictionary로 per-sample FISTA를 수행해도 갭이 해결되지 않는다.**
 
-| 방법 | In-distribution MSE | OOD Compositional MSE | Gap | | :--- | :--- | :--- | :--- | | SAE (Amortized) | 0.023 | 0.089 | 0.066 | | SAE Dictionary + FISTA | 0.021 | 0.082 | 0.061 | | Oracle Dictionary + FISTA | 0.019 | 0.024 | 0.005 | | Oracle Dictionary + SAE Encoder | 0.020 | 0.026 | 0.006 |
+| 방법 | In-distribution MSE | OOD Compositional MSE | Gap |
+| :--- | :--- | :--- | :--- |
+| SAE (Amortized) | 0.023 | 0.089 | 0.066 |
+| SAE Dictionary + FISTA | 0.021 | 0.082 | 0.061 |
+| Oracle Dictionary + FISTA | 0.019 | 0.024 | 0.005 |
+| Oracle Dictionary + SAE Encoder | 0.020 | 0.026 | 0.006 |
 
 **해석**:
 - SAE 인코더를 FISTA로 대체해도 OOD 성능이 거의 개선되지 않는다
@@ -271,7 +278,11 @@ graph TD
     D --> E[결론: Dictionary가 핵심 병목]
 ```
 
-| 모델 규모 | Training Samples | SAE OOD Error | Oracle OOD Error | Improvement | | :--- | :--- | :--- | :--- | :--- | | Small | 10K | 0.089 | 0.024 | 3.7x | | Medium | 100K | 0.072 | 0.021 | 3.4x | | Large | 1M | 0.065 | 0.019 | 3.4x |
+| 모델 규모 | Training Samples | SAE OOD Error | Oracle OOD Error | Improvement |
+| :--- | :--- | :--- | :--- | :--- |
+| Small | 10K | 0.089 | 0.024 | 3.7x |
+| Medium | 100K | 0.072 | 0.021 | 3.4x |
+| Large | 1M | 0.065 | 0.019 | 3.4x |
 
 **모든 규모에서 oracle dictionary가 문제를 해결한다.** 이는 "더 많은 데이터"나 "더 큰 모델"이 해답이 아님을 의미한다.
 

@@ -45,7 +45,13 @@ graph LR
 
 NSA 가이드를 도입하기 전에 우리의 현재 접근 방식이 어디에 있는지 점검해야 합니다.
 
-| 비교 항목 | 반응형 모니터링 (Reactive Monitoring) | 위협 헌팅 (Threat Hunting) | | :--- | :--- | :--- | | **시작점** | 알림(Alert) 발생 시 | 가설(Hypothesis) 기반의 의심 | | **데이터 대상** | 로그의 일부 or 경계 네트워크 | 전체 엔드포인트, 원격(Remote) 레지스트리 등 | | **탐지 대상** | 알려진 위협 (Known Threats) | 알려지지 않은 위협 (Unknown/Zero-day) | | **목표** | 발생한 사고의 처리 | 숨겨진 침해의 사전 발견 | | **핵심 도구** | SIEM, IPS/AV | EDR, AI/ML 분석, 스크립트 |
+| 비교 항목 | 반응형 모니터링 (Reactive Monitoring) | 위협 헌팅 (Threat Hunting) |
+| :--- | :--- | :--- |
+| **시작점** | 알림(Alert) 발생 시 | 가설(Hypothesis) 기반의 의심 |
+| **데이터 대상** | 로그의 일부 or 경계 네트워크 | 전체 엔드포인트, 원격(Remote) 레지스트리 등 |
+| **탐지 대상** | 알려진 위협 (Known Threats) | 알려지지 않은 위협 (Unknown/Zero-day) |
+| **목표** | 발생한 사고의 처리 | 숨겨진 침해의 사전 발견 |
+| **핵심 도구** | SIEM, IPS/AV | EDR, AI/ML 분석, 스크립트 |
 
 ### 실무 가이드: PowerShell 악용 탐지 (Step-by-Step)
 

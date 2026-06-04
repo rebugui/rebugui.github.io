@@ -42,7 +42,13 @@ graph TD
 
 이번 이슈를 명확히 이해하기 위해, 기존의 안정적인 구성과 업데이트 후 깨진 구성을 비교해 보겠습니다.
 
-| 구분 | 기존 구성 (Stable) | macOS 업데이트 후 (Broken) | | :--- | :--- | :--- | | **Resolver 파일** | `/etc/resolver/internal` 등의 설정이 macOS에 의해 정상 로드됨 | 설정 파일이 존재하나 무시되거나 우선순위가 밀림 | | **쿼리 경로** | App -> macOS -> dnsmasq(127.0.0.1:53) -> Docker | App -> macOS -> System DNS(8.8.8.8) -> NXDOMAIN | | **Port 53 상태** | `dnsmasq`가 Port 53을 Listen하고 있고 트래픽을 수신함 | `dnsmasq`가 Listen 중이나, 트래픽이 유입되지 않음 | | **도메인 예시** | `api.local.internal` -> 정상 접속 | `api.local.internal` -> 연결 거부 | | **복구 난이도** | `dnsmasq` 재시작으로 해결 가능 | 시스템 설정 변경 혹은 OS 다운그레이드 필요 |
+| 구분 | 기존 구성 (Stable) | macOS 업데이트 후 (Broken) |
+| :--- | :--- | :--- |
+| **Resolver 파일** | `/etc/resolver/internal` 등의 설정이 macOS에 의해 정상 로드됨 | 설정 파일이 존재하나 무시되거나 우선순위가 밀림 |
+| **쿼리 경로** | App -> macOS -> dnsmasq(127.0.0.1:53) -> Docker | App -> macOS -> System DNS(8.8.8.8) -> NXDOMAIN |
+| **Port 53 상태** | `dnsmasq`가 Port 53을 Listen하고 있고 트래픽을 수신함 | `dnsmasq`가 Listen 중이나, 트래픽이 유입되지 않음 |
+| **도메인 예시** | `api.local.internal` -> 정상 접속 | `api.local.internal` -> 연결 거부 |
+| **복구 난이도** | `dnsmasq` 재시작으로 해결 가능 | 시스템 설정 변경 혹은 OS 다운그레이드 필요 |
 
 ### 워크어라운드: 진단 및 대응 가이드
 
@@ -111,13 +117,18 @@ log-facility=/var/log/dnsmasq.log
 
 로컬 개발 환경이라지만 SRE 관점에서는 이를 "미니 운영 환경"으로 봐야 합니다. 이번 이슈를 계기로 다음과 같은 장기적인 대책을 고려해야 합니다.
 
-1.  **환경 격리**: macOS 네이티브 DNS 설정에 의존하지 않고, Vagrant나 VM(Ubuntu 등) 내부에 별도의 Dev 환경을 구축하여 호스트 OS의 영향을 덜 받게 합니다. 2.  **도메인 설계**: `.internal`이나 `.localhost` 같이 IANA나 OS 벤더가 예약해 둘 가능성이 높은 TLD 사용을 지양하고, 명확히 구분되는 가상 도메인(예: `.mycompany.dev`)을 사용합니다. 3.  **Infrastructure as Code (IaC)**: 이러한 DNS 설정 스크립트를 GitHub 등에 버전 관리하여, 문제 발생 시 팀원들이 즉시 동일한 복구 스크립트를 실행할 수 있도록 준비합니다.
+1.  **환경 격리**: macOS 네이티브 DNS 설정에 의존하지 않고, Vagrant나 VM(Ubuntu 등) 내부에 별도의 Dev 환경을 구축하여 호스트 OS의 영향을 덜 받게 합니다.
+2.  **도메인 설계**: `.internal`이나 `.localhost` 같이 IANA나 OS 벤더가 예약해 둘 가능성이 높은 TLD 사용을 지양하고, 명확히 구분되는 가상 도메인(예: `.mycompany.dev`)을 사용합니다.
+3.  **Infrastructure as Code (IaC)**: 이러한 DNS 설정 스크립트를 GitHub 등에 버전 관리하여, 문제 발생 시 팀원들이 즉시 동일한 복구 스크립트를 실행할 수 있도록 준비합니다.
 
 ## 결론
 
 macOS의 silent update는 개발자의 작업 공간을 순식간에 무력화할 수 있습니다. 이번 `dnsmasq` 및 Docker `.internal` 도메인 연결 실패 이슈는 단순한 버그를 넘어, 클라이언트 OS가 개발자의 커스터마이징을 얼마나 쉽게 깨뜨릴 수 있는지를 보여주는 사례입니다.
 
-핵심 요약은 다음과 같습니다: 1.  **진단**: `dig @127.0.0.1`과 `dig domain`의 결과가 다르다면 macOS 라우팅 문제입니다. 2.  **대응**: 현재로서는 OS 업데이트를 보류하는 것이 가장 안전한 해결책입니다. 3.  **완화**: `/etc/resolver` 설정 수정 및 네트워크 우회 설정을 시도해 볼 수 있습니다.
+핵심 요약은 다음과 같습니다:
+1.  **진단**: `dig @127.0.0.1`과 `dig domain`의 결과가 다르다면 macOS 라우팅 문제입니다.
+2.  **대응**: 현재로서는 OS 업데이트를 보류하는 것이 가장 안전한 해결책입니다.
+3.  **완화**: `/etc/resolver` 설정 수정 및 네트워크 우회 설정을 시도해 볼 수 있습니다.
 
 SRE 엔지니어로서 우리는 "작동하는 것"에 안주하지 않고, "왜 작동하지 않는가"를 파헤쳐 시스템의 불확실성을 제거해야 합니다. 로컬 환경의 안정성은 곧 배포의 신뢰도로 이어집니다.
 

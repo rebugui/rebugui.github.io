@@ -69,7 +69,13 @@ graph TD
 
 단순한 관찰 기반 해석과 인과적 개입 기반 해석의 차이를 명확히 이해해야 합니다. 아래 표는 두 접근 방식의 특성을 대조합니다.
 
-| 비교 항목 | 기존 관찰 기반 해석 (Observational) | 인과적 개입 해석 (Causal Intervention) | | :--- | :--- | :--- | | **핵심 질문** | 이 뉴런은 언제 활성화되는가? | 이 뉴런을 끄면 모델 성능이 어떻게 변하는가? | | **적용 기법** | Correlation Analysis, Probing Classifiers | Activation Patching, Ablation, Intervention | | **일반화 성능** | 낮음 (Dataset Bias에 취약) | 높음 (Invariant Structure 발견 가능) | | **검증 난이도** | 쉬움 (Forward Pass만 가능) | 어려움 (Hooking 및 Gradient 계산 필요) | | **Pearl의 계층** | Level 1 (Association) | Level 2 (Intervention) |
+| 비교 항목 | 기존 관찰 기반 해석 (Observational) | 인과적 개입 해석 (Causal Intervention) |
+| :--- | :--- | :--- |
+| **핵심 질문** | 이 뉴런은 언제 활성화되는가? | 이 뉴런을 끄면 모델 성능이 어떻게 변하는가? |
+| **적용 기법** | Correlation Analysis, Probing Classifiers | Activation Patching, Ablation, Intervention |
+| **일반화 성능** | 낮음 (Dataset Bias에 취약) | 높음 (Invariant Structure 발견 가능) |
+| **검증 난이도** | 쉬움 (Forward Pass만 가능) | 어려움 (Hooking 및 Gradient 계산 필요) |
+| **Pearl의 계층** | Level 1 (Association) | Level 2 (Intervention) |
 
 ### Causal Representation Learning (CRL)을 통한 실무 적용
 
@@ -77,7 +83,9 @@ graph TD
 
 이를 위해서는 **Step-by-step**으로 다음 프로세스를 수행해야 합니다.
 
-1.  **Structural Causal Model (SCM) 정의**: 모델의 레이어들 간의 의존 구조를 가설로 설정합니다. (예: Attention Layer -> MLP Layer -> Residual Stream) 2.  **Intervention Target 선정**: 개입할 특정 노드(뉴런, 헤드, 레이어)를 선택합니다. 3.  **Invariant Mechanism 검증**: 다양한 입력 분포(Intervention Distribution)에 대해 개입을 수행했을 때, 특정 변수의 효과가 일관되게 나타나는지 확인합니다.
+1.  **Structural Causal Model (SCM) 정의**: 모델의 레이어들 간의 의존 구조를 가설로 설정합니다. (예: Attention Layer -> MLP Layer -> Residual Stream)
+2.  **Intervention Target 선정**: 개입할 특정 노드(뉴런, 헤드, 레이어)를 선택합니다.
+3.  **Invariant Mechanism 검증**: 다양한 입력 분포(Intervention Distribution)에 대해 개입을 수행했을 때, 특정 변수의 효과가 일관되게 나타나는지 확인합니다.
 
 #### 코드 예시: PyTorch를 이용한 Activation Patching
 

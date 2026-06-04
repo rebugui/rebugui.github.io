@@ -68,7 +68,12 @@ graph LR
 
 다음 표는 모델 보안(Model Security)과 인프라 보안(Infrastructure Security)의 차이점을 명확히 보여줍니다.
 
-| 비교 항목 | 모델 보안 (Model Security) | 인프라 보안 (Infrastructure Security) | | :--- | :--- | :--- | | **주요 관심사** | 가중치 보안, 편향성, 환각 방지 | API 인증, 데이터 전송 암호화, 접근 제어 | | **공격 유형** | Jailbreaking, Adversarial Examples | API Injection, Data Exfiltration, DoS | | **대응 도구** | RLHF, Red Teaming, Guardrails | WAF, Zero Trust Network, Observability | | **Cisco 보고서의 포인트** | 상대적으로 양호 | 매우 취약 (Connective Tissue) |
+| 비교 항목 | 모델 보안 (Model Security) | 인프라 보안 (Infrastructure Security) |
+| :--- | :--- | :--- |
+| **주요 관심사** | 가중치 보안, 편향성, 환각 방지 | API 인증, 데이터 전송 암호화, 접근 제어 |
+| **공격 유형** | Jailbreaking, Adversarial Examples | API Injection, Data Exfiltration, DoS |
+| **대응 도구** | RLHF, Red Teaming, Guardrails | WAF, Zero Trust Network, Observability |
+| **Cisco 보고서의 포인트** | 상대적으로 양호 | 매우 취약 (Connective Tissue) |
 
 ### 3. 실무적 보안 강화 가이드 및 구현
 

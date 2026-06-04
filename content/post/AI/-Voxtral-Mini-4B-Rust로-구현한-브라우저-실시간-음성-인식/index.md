@@ -111,13 +111,22 @@ dummy_stream = [torch.randn(16000) for _ in range(10)]
 
 Rust로 작성된 Voxtral 모델을 브라우저에서 실행하기 위해 다음과 같은 단계를 거칩니다.
 
-1.  **모델 변환 (Model Conversion)**: Hugging Face 등에서 제공되는 Mistral의 원본 가중치를 `burn-import` 툴을 사용하여 Burn이 이해할 수 있는 형식으로 변환합니다. 이 과정에서 연산 그래프가 최적화됩니다. 2.  **Wasm 컴파일 (Compilation)**: `cargo build --target wasm32-unknown-unknown` 명령어를 사용하여 프로젝트를 WebAssembly 바이너리로 컴파일합니다. 이때 모델 가중치는 별도의 파일로 분리되거나, 필요에 따라 임베딩될 수 있습니다. 3.  **프론트엔드 연동 (Integration)**: JavaScript나 TypeScript 코드에서 `WebAssembly.instantiateStreaming` API를 사용하여 컴파일된 Wasm 파일을 비동기적으로 로드합니다. 4.  **오디오 파이프라인 구성**: `AudioContext`와 `ScriptProcessorNode` 또는 `AudioWorklet`을 사용하여 마이크 입력을 실시간으로 캡처하고, 이를 16kHz PCM 데이터로 변환한 후 Wasm 모듈로 전달합니다.
+1.  **모델 변환 (Model Conversion)**: Hugging Face 등에서 제공되는 Mistral의 원본 가중치를 `burn-import` 툴을 사용하여 Burn이 이해할 수 있는 형식으로 변환합니다. 이 과정에서 연산 그래프가 최적화됩니다.
+2.  **Wasm 컴파일 (Compilation)**: `cargo build --target wasm32-unknown-unknown` 명령어를 사용하여 프로젝트를 WebAssembly 바이너리로 컴파일합니다. 이때 모델 가중치는 별도의 파일로 분리되거나, 필요에 따라 임베딩될 수 있습니다.
+3.  **프론트엔드 연동 (Integration)**: JavaScript나 TypeScript 코드에서 `WebAssembly.instantiateStreaming` API를 사용하여 컴파일된 Wasm 파일을 비동기적으로 로드합니다.
+4.  **오디오 파이프라인 구성**: `AudioContext`와 `ScriptProcessorNode` 또는 `AudioWorklet`을 사용하여 마이크 입력을 실시간으로 캡처하고, 이를 16kHz PCM 데이터로 변환한 후 Wasm 모듈로 전달합니다.
 
 ## 성능 비교 및 특징
 
 기존의 서버 기반 솔루션과 Rust/Wasm 기반의 클라이언트 측 솔루션을 비교하면 다음과 같습니다.
 
-| 비교 항목 | 서버 기반 ASR (예: Whisper Cloud) | Rust/Wasm 기반 Voxtral (Browser) | | :--- | :--- | :--- | | **지연 시간 (Latency)** | 높음 (네트워크 전송 포함) | 낮음 (로컬 연산) | | **개인정보 보호** | 서버에 오디오 데이터 전송 필요 | 데이터가 기기 내부에서만 처리 | | **비용 구조** | 사용량에 따른 서버 비용 발생 | 사용자 디바이스 리소스 활용 (무료) | | **오프라인 지원** | 불가능 | 완전히 가능 (PWA 지원) | | **초기 로딩 속도** | 빠름 (요청 시) | 느림 (모델 다운로드 필요) |
+| 비교 항목 | 서버 기반 ASR (예: Whisper Cloud) | Rust/Wasm 기반 Voxtral (Browser) |
+| :--- | :--- | :--- |
+| **지연 시간 (Latency)** | 높음 (네트워크 전송 포함) | 낮음 (로컬 연산) |
+| **개인정보 보호** | 서버에 오디오 데이터 전송 필요 | 데이터가 기기 내부에서만 처리 |
+| **비용 구조** | 사용량에 따른 서버 비용 발생 | 사용자 디바이스 리소스 활용 (무료) |
+| **오프라인 지원** | 불가능 | 완전히 가능 (PWA 지원) |
+| **초기 로딩 속도** | 빠름 (요청 시) | 느림 (모델 다운로드 필요) |
 
 ## 결론
 

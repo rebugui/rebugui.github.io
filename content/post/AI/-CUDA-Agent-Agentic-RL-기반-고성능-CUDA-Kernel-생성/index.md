@@ -26,7 +26,10 @@ categories:
 
 CUDA Agent의 핵심 혁신은 LLM이 "CUDA 코드를 쓰는 것"에서 끝나는 것이 아니라, **"컴파일, 실행, 프로파일링을 통해 성능을 보상(Reward)으로 받고 정책을 업데이트하는 순환 과정"**을 거친다는 점입니다. 기존의 SFT(Supervised Fine-Tuning) 방식은 정답 코드(혹은 더 나은 코드)를 모방하게 하지만, 정답이 없는 최적화 문제에서는 한계가 명확합니다.
 
-이 시스템은 크게 세 가지 컴포넌트로 구성됩니다. 1.  **대규모 데이터 합성 파이프라인**: 고품질의 CUDA 코드 쌍(Naive vs Optimized)을 자동으로 생성하여 학습의 기초를 다집니다. 2.  **스킬 증강형 CUDA 환경**: 모델이 작성한 코드를 실제로 컴파일하고, Nsight Compute와 같은 프로파일러를 통해 실행 시간과 메트릭을 측정하여 정확한 보상 신호를 제공합니다. 3.  **에이전트 RL 알고리즘**: 불안정한 학습을 안정화시키면서 모델이 스스로 최적화 전략을 발견하도록 유도합니다.
+이 시스템은 크게 세 가지 컴포넌트로 구성됩니다.
+1.  **대규모 데이터 합성 파이프라인**: 고품질의 CUDA 코드 쌍(Naive vs Optimized)을 자동으로 생성하여 학습의 기초를 다집니다.
+2.  **스킬 증강형 CUDA 환경**: 모델이 작성한 코드를 실제로 컴파일하고, Nsight Compute와 같은 프로파일러를 통해 실행 시간과 메트릭을 측정하여 정확한 보상 신호를 제공합니다.
+3.  **에이전트 RL 알고리즘**: 불안정한 학습을 안정화시키면서 모델이 스스로 최적화 전략을 발견하도록 유도합니다.
 
 ### 시스템 아키텍처
 
@@ -121,7 +124,13 @@ print(f"Success: {success}, Reward: {reward:.4f}, Time: {exec_time:.6f}s")
 
 CUDA Agent는 업계 표준 벤치마크인 **KernelBench**에서 기존 방법들을 압도했습니다. KernelBench는 난이도에 따라 Level 1(단순)부터 Level 3(매우 복잡)까지 구분되어 있습니다. 아래 표는 CUDA Agent와 기존의 주요 방법들의 Geomean Speedup(기준 대비 빨라진 배수)을 비교한 것입니다.
 
-| 모델 / 방법 | KernelBench L1 | KernelBench L2 | KernelBench L3 | 특징 | | :--- | :--- | :--- | :--- | :--- | | **Torch.compile** (Baseline) | 1.0x | 1.0x | 1.0x | PyTorch 내장 컴파일러, 안정적이나 최적화 한계 존재 | | **Claude Opus 4.5** | 낮음 | 중간 | 낮음 | 최상용 SOTA LLM, 일반 코딩에 강력하나 CUDA 최적화 약함 | | **Gemini 3 Pro** | 낮음 | 중간 | 낮음 | 구글의 최신 모델, 코드 생성 능력은 우수하나 하드웨어 이해 부족 | | **기존 LLM + Refinement** | 1.2x | 1.1x | 0.9x | 반복적인 피드백으로 수정하나, 성능 향상에 한계 | | **CUDA Agent (Ours)** | **2.0x** | **2.0x** | **1.92x** | **RL 기반 자율 최적화, 전 수준에서 압도적 성능** |
+| 모델 / 방법 | KernelBench L1 | KernelBench L2 | KernelBench L3 | 특징 |
+| :--- | :--- | :--- | :--- | :--- |
+| **Torch.compile** (Baseline) | 1.0x | 1.0x | 1.0x | PyTorch 내장 컴파일러, 안정적이나 최적화 한계 존재 |
+| **Claude Opus 4.5** | 낮음 | 중간 | 낮음 | 최상용 SOTA LLM, 일반 코딩에 강력하나 CUDA 최적화 약함 |
+| **Gemini 3 Pro** | 낮음 | 중간 | 낮음 | 구글의 최신 모델, 코드 생성 능력은 우수하나 하드웨어 이해 부족 |
+| **기존 LLM + Refinement** | 1.2x | 1.1x | 0.9x | 반복적인 피드백으로 수정하나, 성능 향상에 한계 |
+| **CUDA Agent (Ours)** | **2.0x** | **2.0x** | **1.92x** | **RL 기반 자율 최적화, 전 수준에서 압도적 성능** |
 
 - **Level 1 & 2**: `torch.compile` 대비 **100% 더 빠른** 성능을 보여주며, 컴파일러가 놓치는 휴리스틱을 찾아냈습니다.
 
@@ -131,7 +140,11 @@ CUDA Agent는 업계 표준 벤치마크인 **KernelBench**에서 기존 방법�
 
 연구자들이 이 접근 방식을 실제 프로젝트에 적용하기 위해 고려해야 할 단계는 다음과 같습니다.
 
-1.  **정책 모델(Policy Model) 선정**: CUDA 문법에 대한 사전 지식이 있는 모델(예: CodeLlama, DeepSeek Coder)을 베이스로 선택합니다. 2.  **환경(Environment) 구축**:     *   NVIDIA Nsight Compute를 연동하여 FLOPs, Memory Bandwidth, L1/L2 Cache Hit Rate 등 하드웨어 카운터를 수집할 수 있는 래퍼를 만듭니다.     *   코드 수정마다 컴파일 시간이 소요되므로, 캐싱 전략을 수립합니다. 3.  **보상 함수 설계**:     *   단순히 실행 시간(Total Latency)만 줄이는 것이 아니라, `Latency + penalty_for_compilation_error + penalty_for_wrong_result` 형태로 설계하여 모델이 맹목으로 속도만 높이려다 결과를 틀리지 않도록 제약을 겁니다. 4.  **강화 학습(RL) 진행**:     *   PPO(Proximal Policy Optimization)나 REINFORCE 알고리즘을 사용하여, 높은 보상(빠른 커널)을 생성한 토큰 시퀀스의 확률을 높입니다. 5.  **평가 및 검증**:     *   학습된 모델이 생성한 커널의 정확성(NumPy/Torch 결과와의 일치 여부)을 100% 보장해야 합니다.
+1.  **정책 모델(Policy Model) 선정**: CUDA 문법에 대한 사전 지식이 있는 모델(예: CodeLlama, DeepSeek Coder)을 베이스로 선택합니다.
+2.  **환경(Environment) 구축**:     *   NVIDIA Nsight Compute를 연동하여 FLOPs, Memory Bandwidth, L1/L2 Cache Hit Rate 등 하드웨어 카운터를 수집할 수 있는 래퍼를 만듭니다.     *   코드 수정마다 컴파일 시간이 소요되므로, 캐싱 전략을 수립합니다.
+3.  **보상 함수 설계**:     *   단순히 실행 시간(Total Latency)만 줄이는 것이 아니라, `Latency + penalty_for_compilation_error + penalty_for_wrong_result` 형태로 설계하여 모델이 맹목으로 속도만 높이려다 결과를 틀리지 않도록 제약을 겁니다.
+4.  **강화 학습(RL) 진행**:     *   PPO(Proximal Policy Optimization)나 REINFORCE 알고리즘을 사용하여, 높은 보상(빠른 커널)을 생성한 토큰 시퀀스의 확률을 높입니다.
+5.  **평가 및 검증**:     *   학습된 모델이 생성한 커널의 정확성(NumPy/Torch 결과와의 일치 여부)을 100% 보장해야 합니다.
 
 ## 결론
 

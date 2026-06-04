@@ -45,7 +45,13 @@ graph TD
 
 연구자들이 Spatial Proteomics를 선택하는 이유는 명확합니다. 아래 표는 기존 단일 세포 RNA 시퀀싱과 공간 단백체학 기술의 차이점을 비교한 것입니다.
 
-| 비교 항목 | scRNA-seq (단일 세포 RNA 시퀀싱) | Spatial Proteomics (IMC/MIBI) | | :--- | :--- | :--- | | **측정 대상** | mRNA (전사체 수준) | Protein (번역체 수준) | | **공간 정보 보존** | ❌ 원래 위치 파괴됨 (Dissociated) | ✅ 조직 내 위치 정보 보존 | | **데이터 특성** | 유전자 발현 벡터 (High dropout) | 단백질 발현 벡터 (Clean signal) | | **세포 간 상호작용** | 추론(Inference)에 의존 | 직접 관찰 가능 | | **주요 활용 분야** | 새로운 세포 유형 발견 | Tissue Microenvironment 분석 |
+| 비교 항목 | scRNA-seq (단일 세포 RNA 시퀀싱) | Spatial Proteomics (IMC/MIBI) |
+| :--- | :--- | :--- |
+| **측정 대상** | mRNA (전사체 수준) | Protein (번역체 수준) |
+| **공간 정보 보존** | ❌ 원래 위치 파괴됨 (Dissociated) | ✅ 조직 내 위치 정보 보존 |
+| **데이터 특성** | 유전자 발현 벡터 (High dropout) | 단백질 발현 벡터 (Clean signal) |
+| **세포 간 상호작용** | 추론(Inference)에 의존 | 직접 관찰 가능 |
+| **주요 활용 분야** | 새로운 세포 유형 발견 | Tissue Microenvironment 분석 |
 
 ### Python을 활용한 공간 Zonation 분석 구현
 
@@ -115,7 +121,11 @@ print(adata.uns["moranI"].head())
 
 연구자는 다음과 같은 절차를 통해 조직 손상을 정량화합니다.
 
-1.  **ROI(Region of Interest) 정의**: 정상적인 간 소염 구조가 유지되는 영역과 섬유화(Fibrosis)나 괴사가 진행된 영역을 이미지 상에서 분할합니다. 2.  **공간 그래프 구축**: 세포 간의 물리적 거리를 기반으로 K-Nearest Neighbor 그래프를 생성합니다. 이는 세포 간 커뮤니케이션 네트워크를 의미합니다. 3.  **Zonation Score 계산**: Portal Triad에서 Central Vein으로 향하는 방향성에 따라 세포의 표현형이 점진적으로 변하는지 스코어링합니다 (예: Gradient Scoring). 4.  **이상치 탐지**: 정상 Zonation Gradient에서 벗어난 세포들을 이상치로 간주합니다. 예를 들어, 중심부에 있어야 할 세포가 말초부 특성을 보이는 경우입니다. 5.  **손상 정량화**: 정상적인 공간 질서를 잃은 비율을 백분율로 환산하여 조직 손상 지수(Damage Index)를 산출합니다.
+1.  **ROI(Region of Interest) 정의**: 정상적인 간 소염 구조가 유지되는 영역과 섬유화(Fibrosis)나 괴사가 진행된 영역을 이미지 상에서 분할합니다.
+2.  **공간 그래프 구축**: 세포 간의 물리적 거리를 기반으로 K-Nearest Neighbor 그래프를 생성합니다. 이는 세포 간 커뮤니케이션 네트워크를 의미합니다.
+3.  **Zonation Score 계산**: Portal Triad에서 Central Vein으로 향하는 방향성에 따라 세포의 표현형이 점진적으로 변하는지 스코어링합니다 (예: Gradient Scoring).
+4.  **이상치 탐지**: 정상 Zonation Gradient에서 벗어난 세포들을 이상치로 간주합니다. 예를 들어, 중심부에 있어야 할 세포가 말초부 특성을 보이는 경우입니다.
+5.  **손상 정량화**: 정상적인 공간 질서를 잃은 비율을 백분율로 환산하여 조직 손상 지수(Damage Index)를 산출합니다.
 
 이 방식은 단순히 "세포가 죽었는지"를 넘어, **"사회적 구조가 붕괴되었는지"**를 판단하기 때문에 질병의 조기 진단에 훨씬 강력한 도구가 됩니다.
 

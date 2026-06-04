@@ -57,7 +57,13 @@ graph LR
 
 기존의 Claude Cowork나 웹 기반 채팅 인터페이스와 비교했을 때, AionUi가 제공하는 차별점은 명확합니다. 특히 로컬 개발 환경과의 연결성에서 강력한 위력을 발휘합니다.
 
-| 비교 항목 | 웹 기반 LLM (ChatGPT/Claude Web) | Claude Cowork | AionUi | | :--- | :--- | :--- | :--- | | **호환성** | 모든 OS (브라우저) | 특정 IDE 주요 (VS Code) | Mac, Windows, Linux (Native) | | **CLI 통합** | 복사/붙여넣기 수동 | 코드 실행 가능 | 터미널 도구 자동 감지/제어 | | **멀티 에이전트** | 불가 (단일 모델) | 제한적 | 가능 (동시에 여러 툴 사용) | | **확장성** | API 키 입력 필요 | 플러그인 필요 | 로컬 바이너리 자동 인식 | | **설치형 여부** | SaaS (Cloud) | IDE Extension | Desktop App (Offline 가능) |
+| 비교 항목 | 웹 기반 LLM (ChatGPT/Claude Web) | Claude Cowork | AionUi |
+| :--- | :--- | :--- | :--- |
+| **호환성** | 모든 OS (브라우저) | 특정 IDE 주요 (VS Code) | Mac, Windows, Linux (Native) |
+| **CLI 통합** | 복사/붙여넣기 수동 | 코드 실행 가능 | 터미널 도구 자동 감지/제어 |
+| **멀티 에이전트** | 불가 (단일 모델) | 제한적 | 가능 (동시에 여러 툴 사용) |
+| **확장성** | API 키 입력 필요 | 플러그인 필요 | 로컬 바이너리 자동 인식 |
+| **설치형 여부** | SaaS (Cloud) | IDE Extension | Desktop App (Offline 가능) |
 
 AionUi는 `PATH` 환경 변수에 등록된 실행 파일들을 스캔하여, 지원하는 도구(Gemini CLI, Claude Code 등)가 있는지 확인합니다. 이 과정은 사용자의 개입 없이 백그라운드에서 자동으로 수행되므로, "설치하고 바로 사용"하는 경험을 제공합니다.
 

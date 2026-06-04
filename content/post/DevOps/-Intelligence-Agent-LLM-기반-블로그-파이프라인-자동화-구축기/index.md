@@ -197,9 +197,7 @@ if lang == 'mermaid':
 
 # Git Publisher
 if language == 'javascript' and is_mermaid(content):
-    return f"```mermaid
-{content}
-```
+    return f"
 
 ```text
 

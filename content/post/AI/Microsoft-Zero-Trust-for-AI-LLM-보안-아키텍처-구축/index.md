@@ -141,7 +141,13 @@ if __name__ == "__main__":
 
 기존의 애플리케이션 보안과 AI 보안의 차이를 명확히 이해하는 것이 중요합니다. 아래 표는 두 접근 방식의 주요 차이점을 비교한 것입니다.
 
-| 비교 항목 | 기존 애플리케이션 보안 | Zero Trust for AI | | :--- | :--- | :--- | | **주요 공격 벡터** | SQL Injection, XSS, DDoS | Prompt Injection, Jailbreaking, Training Data Poisoning | | **데이터 유형** | 구조적 데이터 (SQL, JSON) | 비구조적 자연어 (Text), 이미지, 임베딩 벡터 | | **검증 방식** | 패턴 매칭, 시그니처 기반 | 의미 기반 분석 (Semantic Analysis), 근거성 검증(Grounding) | | **신뢰 경계** | 네트워크 경계 (VPC, Firewall) | 추론 파이프라인 전체 (Input -> Model -> Output) | | **접근 제어** | 사용자 ID/Role 기반 | ID + 디바이스 + 데이터 민감도 + 모델 권한 (상호 검증) |
+| 비교 항목 | 기존 애플리케이션 보안 | Zero Trust for AI |
+| :--- | :--- | :--- |
+| **주요 공격 벡터** | SQL Injection, XSS, DDoS | Prompt Injection, Jailbreaking, Training Data Poisoning |
+| **데이터 유형** | 구조적 데이터 (SQL, JSON) | 비구조적 자연어 (Text), 이미지, 임베딩 벡터 |
+| **검증 방식** | 패턴 매칭, 시그니처 기반 | 의미 기반 분석 (Semantic Analysis), 근거성 검증(Grounding) |
+| **신뢰 경계** | 네트워크 경계 (VPC, Firewall) | 추론 파이프라인 전체 (Input -> Model -> Output) |
+| **접근 제어** | 사용자 ID/Role 기반 | ID + 디바이스 + 데이터 민감도 + 모델 권한 (상호 검증) |
 
 ## 결론
 

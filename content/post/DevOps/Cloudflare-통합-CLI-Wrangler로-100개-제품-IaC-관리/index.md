@@ -21,7 +21,12 @@ Cloudflare가 발표한 통합 CLI 프로젝트는 바로 이 문제를 해결�
 
 현재 Cloudflare 리소스를 코드로 관리하려면 여러 도구를 조합해야 합니다.
 
-| 관리 도구 | 관리 대상 | IaC 지원 | 한계점 | | :--- | :--- | :--- | :--- | | Wrangler | Workers, Pages, R2, KV | 부분적 | 제한된 리소스만 관리 | | Terraform Provider | DNS, WAF, LB 등 전반 | 전체 | HCL 학습 필요, 느린 실행 | | API 직접 호출 | 모든 리소스 | 커스텀 | 스크립트 유지보수 부담 | | Dashboard | 모든 리소스 | 없음 | 수동 조작, 감사 추적 어려움 |
+| 관리 도구 | 관리 대상 | IaC 지원 | 한계점 |
+| :--- | :--- | :--- | :--- |
+| Wrangler | Workers, Pages, R2, KV | 부분적 | 제한된 리소스만 관리 |
+| Terraform Provider | DNS, WAF, LB 등 전반 | 전체 | HCL 학습 필요, 느린 실행 |
+| API 직접 호출 | 모든 리소스 | 커스텀 | 스크립트 유지보수 부담 |
+| Dashboard | 모든 리소스 | 없음 | 수동 조작, 감사 추적 어려움 |
 
 각 도구는 자신만의 설정 파일 포맷, 인증 방식, 워크플로우를 요구합니다. DNS는 Terraform으로, Workers는 Wrangler로, 보안 정책은 API 스크립트로 관리하는 식이면, 인프라 전체 상태를 파악하기 어렵습니다.
 
@@ -326,7 +331,14 @@ jobs:
 
 통합 Wrangler CLI가 등장하면서 Terraform Cloudflare Provider와의 선택이 고민될 수 있습니다. 두 도구의 포지션을 비교해봅시다.
 
-| 비교 항목 | Terraform + Cloudflare Provider | Wrangler 통합 CLI | | :--- | :--- | :--- | | **학습 곡선** | 중간 (HCL 문법) | 낮음 (JavaScript/TypeScript 친화적) | | **실행 속도** | 느림 (Provider 다운로드, 상태 잠금) | 빠름 (경량 CLI) | | **상태 관리** | 외부 State 파일 (S3, Terraform Cloud) | 로컬 또는 Cloudflare 관리 | | **에코시스템 연동** | AWS, GCP 등 멀티클라우드 | Cloudflare 전용 | | **CI/CD 통합** | GitHub Actions, GitLab CI 지원 | 네이티브 Wrangler Actions | | **적합 시나리오** | 멀티클라우드, 기존 Terraform 코드베이스 | Cloudflare 중심, Edge-first 아키텍처 |
+| 비교 항목 | Terraform + Cloudflare Provider | Wrangler 통합 CLI |
+| :--- | :--- | :--- |
+| **학습 곡선** | 중간 (HCL 문법) | 낮음 (JavaScript/TypeScript 친화적) |
+| **실행 속도** | 느림 (Provider 다운로드, 상태 잠금) | 빠름 (경량 CLI) |
+| **상태 관리** | 외부 State 파일 (S3, Terraform Cloud) | 로컬 또는 Cloudflare 관리 |
+| **에코시스템 연동** | AWS, GCP 등 멀티클라우드 | Cloudflare 전용 |
+| **CI/CD 통합** | GitHub Actions, GitLab CI 지원 | 네이티브 Wrangler Actions |
+| **적합 시나리오** | 멀티클라우드, 기존 Terraform 코드베이스 | Cloudflare 중심, Edge-first 아키텍처 |
 
 **추천 전략**: Cloudflare를 주 인프라로 사용하는 스타트업이나 Edge-first 프로젝트는 Wrangler를, 멀티클라우드 환경에서 Cloudflare를 일부 사용하는 기업은 Terraform을 유지하는 것이 합리적입니다. 두 도구는 경쟁보다 보완 관계입니다.
 

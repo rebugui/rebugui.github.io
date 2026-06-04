@@ -51,7 +51,10 @@ graph TD
 
 핵심은 LLM이 코드를 "읽을 때" 수행하는 **다층 분석**이다:
 
-1. **구문 분석**: 코드의 AST(추상 구문 트리)를 이해 2. **데이터 흐름 추적**: 변수의 생명주기와 변환 추적 3. **제어 흐름 분석**: 모든 실행 경로의 가능성 열거 4. **의미적 추론**: 개발자의 의도 vs 실제 동작 간극 파악
+1. **구문 분석**: 코드의 AST(추상 구문 트리)를 이해
+2. **데이터 흐름 추적**: 변수의 생명주기와 변환 추적
+3. **제어 흐름 분석**: 모든 실행 경로의 가능성 열거
+4. **의미적 추론**: 개발자의 의도 vs 실제 동작 간극 파악
 
 ### 3. 소형 모델로 재현하기: 3.6B의 가능성
 
@@ -210,7 +213,13 @@ if __name__ == "__main__":
 
 소형 모델들이 보여준 성능은 인상적이다. 다음은 실제 벤치마크 결과다:
 
-| 모델 | 파라미터 | 메모리 요구사항 | 탐지율 (Critical) | 오탐률 | 추론 속도 | | :--- | :--- | :--- | :--- | :--- | :--- | | Claude Mythos (참조) | 미공개 | API | 94.2% | 8.1% | N/A | | CodeLlama-7B-SEC | 7B | 14GB | 67.3% | 22.4% | 1.2초/함수 | | SecurityFinetuned-3.6B | 3.6B | 8GB | 61.8% | 19.7% | 0.8초/함수 | | DeepSeek-Coder-1.3B-FT | 1.3B | 4GB | 48.5% | 31.2% | 0.4초/함수 | | Qwen2.5-Coder-5.1B | 5.1B | 12GB | 72.1% | 16.8% | 1.0초/함수 |
+| 모델 | 파라미터 | 메모리 요구사항 | 탐지율 (Critical) | 오탐률 | 추론 속도 |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Claude Mythos (참조) | 미공개 | API | 94.2% | 8.1% | N/A |
+| CodeLlama-7B-SEC | 7B | 14GB | 67.3% | 22.4% | 1.2초/함수 |
+| SecurityFinetuned-3.6B | 3.6B | 8GB | 61.8% | 19.7% | 0.8초/함수 |
+| DeepSeek-Coder-1.3B-FT | 1.3B | 4GB | 48.5% | 31.2% | 0.4초/함수 |
+| Qwen2.5-Coder-5.1B | 5.1B | 12GB | 72.1% | 16.8% | 1.0초/함수 |
 
 **핵심 인사이트**: 5.1B 모델이 7B 모델보다 높은 탐지율을 보인다. 파라미터 수보다 **학습 데이터의 품질**이 중요하다.
 
@@ -251,7 +260,11 @@ void process_network_packet(struct packet *pkt, size_t len) {
 
 모델이 이 취약점을 탐지하는 과정:
 
-1. `hdr->length`가 외부 입력임을 인식 (공격자 제어 가능) 2. `hdr->length < sizeof(struct header)`인 경우의 경로 분석 3. 정수 언더플로우로 `payload_size`가 `SIZE_MAX - sizeof(struct header) + hdr->length`가 됨 4. `payload_size > MAX_PAYLOAD` 체크를 우회할 수 있음을 발견 5. 결과적으로 힙 버퍼 오버플로우 발생
+1. `hdr->length`가 외부 입력임을 인식 (공격자 제어 가능)
+2. `hdr->length < sizeof(struct header)`인 경우의 경로 분석
+3. 정수 언더플로우로 `payload_size`가 `SIZE_MAX - sizeof(struct header) + hdr->length`가 됨
+4. `payload_size > MAX_PAYLOAD` 체크를 우회할 수 있음을 발견
+5. 결과적으로 힙 버퍼 오버플로우 발생
 
 ### 6. Step-by-Step: 나만의 취약점 탐지 시스템 구축
 

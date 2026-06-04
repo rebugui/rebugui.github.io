@@ -37,9 +37,9 @@ graph TD
     A[Developer Push Code] --> B[CI Pipeline Trigger]
     B --> C[Build & Unit Test]
     C --> D{Dependency Update?}
-    D -- Yes --> E[AI Security Scanner<br/>(Opus 4.6 Agent)]
-    D -- No --> F[Static Analysis (SAST)]
-    E --> G[Vulnerability Report<br/>(SARIF Format)]
+    D -- Yes --> E["AI Security Scanner<br/>(Opus 4.6 Agent)"]
+    D -- No --> F["Static Analysis (SAST)"]
+    E --> G["Vulnerability Report<br/>(SARIF Format)"]
     F --> G
     G --> H{Critical Flaws Found?}
     H -- Yes --> I[Block Deploy & Notify]

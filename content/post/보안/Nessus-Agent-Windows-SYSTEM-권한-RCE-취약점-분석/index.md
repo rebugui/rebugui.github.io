@@ -43,7 +43,13 @@ graph LR
 
 아래 표는 Nessus Agent가 정상적으로 작동할 때의 데이터 처리 과정과, 취약점이 악용될 때의 프로세스를 비교한 것입니다.
 
-| 구분 | 정상 작동 (Normal Operation) | 취약점 악용 (Exploitation) | | :--- | :--- | :--- | | **주체** | Tenable Nessus Server / Admin | 공격자 (Local User) | | **데이터 출처** | 신뢰할 수 있는 서버(Signed/Encrypted) | 변조된 로컬 파일 or 스푸핑된 패킷 | | **검증 프로세스** | 디지털 서명 및 무결성 검증 완료 | 검증 우회 또는 권한 설정 미흡으로 인한 우회 | | **실행 권한** | SYSTEM (Service Account) | SYSTEM (Service Account) | | **결과** | 정상 스캔 및 보고서 전송 | 악성 코드 실행 (Backdoor Installation) |
+| 구분 | 정상 작동 (Normal Operation) | 취약점 악용 (Exploitation) |
+| :--- | :--- | :--- |
+| **주체** | Tenable Nessus Server / Admin | 공격자 (Local User) |
+| **데이터 출처** | 신뢰할 수 있는 서버(Signed/Encrypted) | 변조된 로컬 파일 or 스푸핑된 패킷 |
+| **검증 프로세스** | 디지털 서명 및 무결성 검증 완료 | 검증 우회 또는 권한 설정 미흡으로 인한 우회 |
+| **실행 권한** | SYSTEM (Service Account) | SYSTEM (Service Account) |
+| **결과** | 정상 스캔 및 보고서 전송 | 악성 코드 실행 (Backdoor Installation) |
 
 ### PoC (Proof of Concept) 코드
 

@@ -139,7 +139,9 @@ if __name__ == "__main__":
 
 다음은 각 도구가 제공하는 지표의 차이점을 정리한 표입니다.
 
-| 비교 항목 | nvidia-smi (Legacy) | Utilyze (Modern) | | :--- | :--- | :--- | | **측정 대상** | 커널 실행 시간 (Time)
+| 비교 항목 | nvidia-smi (Legacy) | Utilyze (Modern) |
+| :--- | :--- | :--- |
+| **측정 대상** | 커널 실행 시간 (Time) |  |
 
 ---
 

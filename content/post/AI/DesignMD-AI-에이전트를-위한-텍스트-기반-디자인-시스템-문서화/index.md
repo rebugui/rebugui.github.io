@@ -44,7 +44,11 @@ Design.MD는 이 스펙트럼에서 마크다운이라는 중간 지점을 선�
 
 Design.MD는 크게 세 가지 섹션으로 구성된다:
 
-| 섹션 | 목적 | 예시 요소 | | :--- | :--- | :--- | | **Design Tokens** | 색상, 타이포그래피, 간격 등 기본 값 | `--primary: #3B82F6` | | **Components** | 재사용 가능한 UI 컴포넌트 정의 | Button, Card, Modal | | **Patterns** | 컴포넌트 조합 패턴 | Form Layout, Navigation |
+| 섹션 | 목적 | 예시 요소 |
+| :--- | :--- | :--- |
+| **Design Tokens** | 색상, 타이포그래피, 간격 등 기본 값 | `--primary: #3B82F6` |
+| **Components** | 재사용 가능한 UI 컴포넌트 정의 | Button, Card, Modal |
+| **Patterns** | 컴포넌트 조합 패턴 | Form Layout, Navigation |
 
 LLM이 Design.MD를 효과적으로 활용하려면 **구조적 일관성**이 필수적이다. 이는 프롬프트 엔지니어링의 원칙과 유사하다—명확한 구조와 반복 가능한 패턴이 모델의 이해도를 높인다.
 
@@ -397,7 +401,9 @@ class TestDesignCompliance:
 
 ### Design.MD vs 기존 방식 비교
 
-| 측면 | Figma Only | JSON Schema | Design.MD | | :--- | :--- | :--- | :--- | | AI 가독성 | 낮음 (이미지 기반
+| 측면 | Figma Only | JSON Schema | Design.MD |
+| :--- | :--- | :--- | :--- |
+| AI 가독성 | 낮음 (이미지 기반 |  |  |
 
 ---
 

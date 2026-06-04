@@ -21,7 +21,9 @@ RAG의 핵심은 "검색(Retrieval)"입니다. LLM이 사실에 기반한 답변
 
 Azure SQL의 네이티브 벡터 검색은 이 과정을 데이터베이스 계층으로 내렸습니다. 기술적으로 살펴보면 다음과 같은 메커니즘이 작동합니다.
 
-1.  **데이터 타입 지원**: `VECTOR(N)` 데이터 타입이 추가되어, N차원의 부동 소수점 배열(FP32 또는 FP16)을 테이블의 컬럼으로 직접 저장할 수 있습니다. 2.  **인덱싱 알고리즘**: 내부적으로 HNSW(Hierarchical Navigable Small World)와 같은 근사 최근접 이웃(Approximate Nearest Neighbor, ANN) 알고리즘을 구현하여, 수백만 개의 벡터라도 밀리초 단위로 검색합니다. 3.  **거리 함수**: `DOT_DISTANCE`, `EUCLIDEAN_DISTANCE`와 같은 내장 함수를 통해 SQL 쿼리문 안에서 바로 벡터 간의 유사도를 계산할 수 있습니다.
+1.  **데이터 타입 지원**: `VECTOR(N)` 데이터 타입이 추가되어, N차원의 부동 소수점 배열(FP32 또는 FP16)을 테이블의 컬럼으로 직접 저장할 수 있습니다.
+2.  **인덱싱 알고리즘**: 내부적으로 HNSW(Hierarchical Navigable Small World)와 같은 근사 최근접 이웃(Approximate Nearest Neighbor, ANN) 알고리즘을 구현하여, 수백만 개의 벡터라도 밀리초 단위로 검색합니다.
+3.  **거리 함수**: `DOT_DISTANCE`, `EUCLIDEAN_DISTANCE`와 같은 내장 함수를 통해 SQL 쿼리문 안에서 바로 벡터 간의 유사도를 계산할 수 있습니다.
 
 이 아키텍처의 가장 큰 장점은 **데이터 중복의 제거**입니다. 메타데이터(구조적 데이터)와 벡터 임베딩(비구조적 데이터)이 동일한 행(Row)에 존재하므로, 데이터 무결성이 자동으로 보장되며 관리 포인트가 줄어듭니다.
 
@@ -124,7 +126,13 @@ Metadata: {res.metadata}
 
 기존의 방식과 Azure SQL을 활용한 방식의 차이를 명확히 이해하는 것이 중요합니다. 아래 표는 두 접근 방식의 주요 차이점을 비교 분석한 것입니다.
 
-| 비교 항목 | 전용 Vector DB (Pinecone, Milvus 등) | Azure SQL Native Vector | | :--- | :--- | :--- | | **데이터 아키텍처** | Polyglot Persistence (데이터 분산 저장) | Unified Storage (단일 저장소) | | **데이터 동기화** | ETL 파이프라인 필수 (지연 발생 가능) | 실시간 트랜잭션 내 저장 (즉시 반영) | | **운영 복잡도** | DB 인프라 이중 관리 필요 | 기존 SQL DB 인프라 재활용 | | **확장성 (Scalability)** | 수십억 개 벡터 처리에 최적화 | 중소 규모 ~ 중대 규모에 적합 (Fabric으로 확장 가능) | | **주요 사용 사례** | 대규모 글로벌 서비스, 전용 AI 서비스 | 기업 내부 데이터, 하이브리드 검색 (RDB + Vector) |
+| 비교 항목 | 전용 Vector DB (Pinecone, Milvus 등) | Azure SQL Native Vector |
+| :--- | :--- | :--- |
+| **데이터 아키텍처** | Polyglot Persistence (데이터 분산 저장) | Unified Storage (단일 저장소) |
+| **데이터 동기화** | ETL 파이프라인 필수 (지연 발생 가능) | 실시간 트랜잭션 내 저장 (즉시 반영) |
+| **운영 복잡도** | DB 인프라 이중 관리 필요 | 기존 SQL DB 인프라 재활용 |
+| **확장성 (Scalability)** | 수십억 개 벡터 처리에 최적화 | 중소 규모 ~ 중대 규모에 적합 (Fabric으로 확장 가능) |
+| **주요 사용 사례** | 대규모 글로벌 서비스, 전용 AI 서비스 | 기업 내부 데이터, 하이브리드 검색 (RDB + Vector) |
 
 **실무 관점의 인사이트**: 기업의 B2E(Business-to-Employee) 서비스나 이미 방대한 메타데이터가 SQL에 존재하는 경우, 전용 Vector DB를 도입하는 것보다 Azure SQL의 기능을 활용하는 것이 훨씬 효율적일 수 있습니다. 특히 **하이브리드 검색(Hybrid Search)**이 필요한 시나리오에서 강력합니다. 예를 들어, "2023년에 판매된 `제품 A`의 `매뉴얼` 내용 중 `배터리 교체 방법`을 알려줘"와 같은 쿼리는 `WHERE year=2023 AND product='A'`(필터링)와 벡터 검색(매뉴얼 내용)이 결합되어야 합니다. Azure SQL은 이런 복합 조건 쿼리를 단일 쿼리문으로 최적화하여 처리할 수 있습니다.
 

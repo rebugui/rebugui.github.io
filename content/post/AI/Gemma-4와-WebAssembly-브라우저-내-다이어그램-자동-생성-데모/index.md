@@ -40,7 +40,11 @@ graph LR
     H --> I[Canvas Rendering]
 ```
 
-1.  **Tokenizer**: 사용자의 자연어 입력을 모델이 이해할 수 있는 토큰 ID 시퀀스로 변환합니다. 2.  **WebAssembly Runtime**: 브라우저 내에서 모델 연산을 수행하는 가상 머신 환경입니다. WebGPU를 통해 하드웨어 가속을 받습니다. 3.  **Gemma 4 Model**: 양자화된 가중치를 메모리에 탑재하고, 각 토큰 다음에 올 확률이 가장 높은 토큰을 예측(Autoregressive)합니다. 4.  **Parser**: 모델이 생성한 텍스트(JSON 형식)를 유효성 검사 후 자바스크립트 객체로 파싱합니다. 5.  **Canvas**: 파싱된 데이터를 기반으로 화면에 도형을 그립니다.
+1.  **Tokenizer**: 사용자의 자연어 입력을 모델이 이해할 수 있는 토큰 ID 시퀀스로 변환합니다.
+2.  **WebAssembly Runtime**: 브라우저 내에서 모델 연산을 수행하는 가상 머신 환경입니다. WebGPU를 통해 하드웨어 가속을 받습니다.
+3.  **Gemma 4 Model**: 양자화된 가중치를 메모리에 탑재하고, 각 토큰 다음에 올 확률이 가장 높은 토큰을 예측(Autoregressive)합니다.
+4.  **Parser**: 모델이 생성한 텍스트(JSON 형식)를 유효성 검사 후 자바스크립트 객체로 파싱합니다.
+5.  **Canvas**: 파싱된 데이터를 기반으로 화면에 도형을 그립니다.
 
 ### 모델 양자화 및 구현 예시
 
@@ -87,7 +91,10 @@ print(tokenizer.decode(outputs[0], skip_special_tokens=True))
 
 이 기술의 진정한 가치는 기존의 API 기반 서빙 방식과 비교했을 때 명확하게 드러납니다. 특히 다이어그램 생성과 같이 대화형이고 반응성이 중요한 웹 애플리케이션에서 그 장점이 극대화됩니다.
 
-| 비교 항목 | Server-side Inference (OpenAI/Anthropic API) | Client-side Inference (Gemma 4 + WASM) | | :--- | :--- | :--- | | **데이터 프라이버시** | 서버로 프롬프트 전송 필요 (보안 위험 가능성) | 모든 데이터 로컬 처리 (완전 보안) | | **네트워크 레
+| 비교 항목 | Server-side Inference (OpenAI/Anthropic API) | Client-side Inference (Gemma 4 + WASM) |
+| :--- | :--- | :--- |
+| **데이터 프라이버시** | 서버로 프롬프트 전송 필요 (보안 위험 가능성) | 모든 데이터 로컬 처리 (완전 보안) |
+| **네트워크 레 |  |  |
 
 ---
 

@@ -48,7 +48,14 @@ GoModel의 핵심 경쟁력 중 하나는 '효율적인 캐싱'입니다. LLM �
 
 아래는 GoModel와 현재 가장 널리 쓰이는 대안인 LiteLLM의 기술적 특징을 비교한 표입니다.
 
-| 비교 항목 | LiteLLM (Python) | GoModel (Go) | | :--- | :--- | :--- | | **기반 언어** | Python (3.8+) | Go (Golang) | | **Docker 이미지 크기** | ~746 MB | ~17 MB | | **의존성** | 무거운 PyTorch/TensorFlow 등 ML 라이브러리 필요 없음 (순수 Python이나 상대적으로 큼) | Go 표준 라이브러리 및 최소한의 외부 모듈 | | **성능 (Latency)** | GIL(Global Interpreter Lock)로 인한 동시성 제약 가능성 | Goroutine을 통한 높은 동시성 처리 성능 | | **설정 방식** | YAML/Config 파일 및 환경 변수 혼용 | 환경 변수 우선 (Environment Variable First) | | **시작 속도 (Startup)** | 상대적으로 느림 (Imports/Interpreter 초기화) | 매우 빠름 (Compiled Binary) |
+| 비교 항목 | LiteLLM (Python) | GoModel (Go) |
+| :--- | :--- | :--- |
+| **기반 언어** | Python (3.8+) | Go (Golang) |
+| **Docker 이미지 크기** | ~746 MB | ~17 MB |
+| **의존성** | 무거운 PyTorch/TensorFlow 등 ML 라이브러리 필요 없음 (순수 Python이나 상대적으로 큼) | Go 표준 라이브러리 및 최소한의 외부 모듈 |
+| **성능 (Latency)** | GIL(Global Interpreter Lock)로 인한 동시성 제약 가능성 | Goroutine을 통한 높은 동시성 처리 성능 |
+| **설정 방식** | YAML/Config 파일 및 환경 변수 혼용 | 환경 변수 우선 (Environment Variable First) |
+| **시작 속도 (Startup)** | 상대적으로 느림 (Imports/Interpreter 초기화) | 매우 빠름 (Compiled Binary) |
 
 ### 실무 적용 가이드: Docker를 활용한 GoModel 배포
 

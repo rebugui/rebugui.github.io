@@ -44,13 +44,21 @@ graph TD
     J --> L[Next Token]
 ```
 
-1.  **Draft Model**: 소형 모델이 후보 토큰 시퀀스를 생성합니다. 2.  **Feature Extraction**: 생성된 토큰의 소프트맥스 확률 분포에서 **Confidence (최대 확률값)**와 **Entropy (불확실성)**를 계산합니다. 3.  **SpecKV Controller (MLP)**: 이 값들과 현재 압축 레벨(Quantization Type)을 입력으로 받아, 기대 수락 토큰 수를 최대화하는 $\gamma$를 예측합니다. 4.  **Verification**: Target 모델이 결정된 $\gamma$ 만큼의 토큰을 검증합니다.
+1.  **Draft Model**: 소형 모델이 후보 토큰 시퀀스를 생성합니다.
+2.  **Feature Extraction**: 생성된 토큰의 소프트맥스 확률 분포에서 **Confidence (최대 확률값)**와 **Entropy (불확실성)**를 계산합니다.
+3.  **SpecKV Controller (MLP)**: 이 값들과 현재 압축 레벨(Quantization Type)을 입력으로 받아, 기대 수락 토큰 수를 최대화하는 $\gamma$를 예측합니다.
+4.  **Verification**: Target 모델이 결정된 $\gamma$ 만큼의 토큰을 검증합니다.
 
 ### 성능 비교: 고정 Gamma vs SpecKV
 
 SpecKV가 제공하는 유연성은 실제 성능 수치에서 명확하게 드러납니다. 아래 표는 다양한 압축 환경에서 SpecKV가 고정된 $\gamma=4$ 방식 대비 얼마나 더 효율적인지를 보여줍니다.
 
-| 비교 항목 | Fixed Gamma ($\gamma=4$) | SpecKV (Adaptive) | 성능 향상율 | | :--- | :--- | :--- | :--- | | **FP16 (High Precision)** | Baseline | +32% | 높은 신뢰도로 인해 $\gamma$를 6~8로 자동 증가 | | **INT8 (Medium Precision)** | Baseline | +48% | 균형적인 $\gamma$ 조절 (4~6) | | **NF4 (High Compression)** | Baseline | +56% | 낮은 신뢰도 반영하여 $\gamma$를 2~3으로 축소 | | **평균 오버헤드** | 0 ms | 0.34 ms | 전체 추론 시간의 0.5% 미만 |
+| 비교 항목 | Fixed Gamma ($\gamma=4$) | SpecKV (Adaptive) | 성능 향상율 |
+| :--- | :--- | :--- | :--- |
+| **FP16 (High Precision)** | Baseline | +32% | 높은 신뢰도로 인해 $\gamma$를 6~8로 자동 증가 |
+| **INT8 (Medium Precision)** | Baseline | +48% | 균형적인 $\gamma$ 조절 (4~6) |
+| **NF4 (High Compression)** | Baseline | +56% | 낮은 신뢰도 반영하여 $\gamma$를 2~3으로 축소 |
+| **평균 오버헤드** | 0 ms | 0.34 ms | 전체 추론 시간의 0.5% 미만 |
 
 이 결과는 통계적으로도 매우 유의미하며($p < 0.001$), 특히 압축률이 높아질수록 SpecKV의 효과가 극대화됨을 알 수 있습니다.
 

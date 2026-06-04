@@ -45,12 +45,18 @@ graph TD
 
 ## 테스트 결과
 
-| 항목 | 예상 | 실제 | 상태 | |:---|:---|:---|:---| | Mermaid 변환 | Callout → Mermaid | Callout → Mermaid | ✅ | | 코드 블록 | 정상 유지 | 정상 유지 | ✅ | | 테이블 | 정상 렌더링 | 정상 렌더링 | ✅ |
+| 항목 | 예상 | 실제 | 상태 |
+| :--- | :--- | :--- | :--- |
+| Mermaid 변환 | Callout → Mermaid | Callout → Mermaid | ✅ |
+| 코드 블록 | 정상 유지 | 정상 유지 | ✅ |
+| 테이블 | 정상 렌더링 | 정상 렌더링 | ✅ |
 
 ## 결론
 
 이 테스트는 다음을 검증합니다:
 
-1. ✅ AI Writer가 생성한 ```mermaid 블록이 Notion에 업로드될 때 Callout(📊)으로 변환됨 2. ✅ Git Publisher가 Notion에서 내려받을 때 Callout(📊)을 ```mermaid로 복원함 3. ✅ Hugo가 ```mermaid를 정상적으로 렌더링함
+1. ✅ AI Writer가 생성한 ```mermaid 블록이 Notion에 업로드될 때 Callout(📊)으로 변환됨
+2. ✅ Git Publisher가 Notion에서 내려받을 때 Callout(📊)을 ```mermaid로 복원함
+3. ✅ Hugo가 ```mermaid를 정상적으로 렌더링함
 
 파이프라인이 정상 작동합니다!

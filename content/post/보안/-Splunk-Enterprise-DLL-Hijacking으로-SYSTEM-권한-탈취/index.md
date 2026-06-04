@@ -40,7 +40,10 @@ graph LR
 
 상황을 가정해 봅시다. 공격자는 웹 쉘 업로드 등의 방법을 통해 타겟 서버에 일반 사용자(예: `IUSR`) 권한으로 진입했습니다. 이제 공격자의 목표는 `SYSTEM` 권한을 얻는 것입니다.
 
-1.  **정찰(Reconnaissance)**: 공격자는 Splunk이 설치된 경로와 관련 프로세스(`splunkd.exe`, `splunk-optimize.exe` 등)를 분석합니다. 이때 프로세스 모니터(Process Monitor)와 같은 도구를 사용하면, 어떤 DLL을 찾지 못해 `NAME NOT FOUND` 에러를 뱉는지 확인할 수 있습니다. 2.  **취약점 식별**: Splunk의 특정 기능(예: Python 스크립트 실행 또는 특정 모듈 로드)이 사용자가 쓰기 가능한 경로(예: `$SPLUNK_HOME\var\run\splunk\` 또는 임시 디렉터리)에서 DLL을 찾으려 시도함을 확인합니다. 3.  **익스플로잇(Exploitation)**: 공격자는 해당 경로에 자신의 코드가 담긴 DLL을 `suspicious.dll`이라는 이름으로 업로드합니다. 4.  **권한 상승**: Splunk 서비스가 재시작되거나 특정 스케줄링된 작업이 수행되어 DLL 로딩이 트리거되면, 악성 코드가 `SYSTEM` 권한으로 실행됩니다.
+1.  **정찰(Reconnaissance)**: 공격자는 Splunk이 설치된 경로와 관련 프로세스(`splunkd.exe`, `splunk-optimize.exe` 등)를 분석합니다. 이때 프로세스 모니터(Process Monitor)와 같은 도구를 사용하면, 어떤 DLL을 찾지 못해 `NAME NOT FOUND` 에러를 뱉는지 확인할 수 있습니다.
+2.  **취약점 식별**: Splunk의 특정 기능(예: Python 스크립트 실행 또는 특정 모듈 로드)이 사용자가 쓰기 가능한 경로(예: `$SPLUNK_HOME\var\run\splunk\` 또는 임시 디렉터리)에서 DLL을 찾으려 시도함을 확인합니다.
+3.  **익스플로잇(Exploitation)**: 공격자는 해당 경로에 자신의 코드가 담긴 DLL을 `suspicious.dll`이라는 이름으로 업로드합니다.
+4.  **권한 상승**: Splunk 서비스가 재시작되거나 특정 스케줄링된 작업이 수행되어 DLL 로딩이 트리거되면, 악성 코드가 `SYSTEM` 권한으로 실행됩니다.
 
 다음은 이러한 공격에 사용될 수 있는 개념 증명(PoC) DLL 코드의 예시입니다.
 
@@ -74,7 +77,14 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReser
 
 윈도우는 DLL 로드 시 안전 검색(Safe DLL Search Mode) 여부에 따라 다른 순서로 검색합니다. 아래 표는 각 모드의 검색 순서를 비교한 것입니다.
 
-| 검색 순서 | Safe DLL Search Mode (기본) | Directory Search Mode (취약) | | :--- | :--- | :--- | | 1순위 | 애플리케이션이 설치된 디렉터리 | 애플리케이션이 로드된 디렉터리 | | 2순위 | System32 디렉터리 | **현재 작업 디렉터리 (CWD)** | | 3순위 | 16비트 System 디렉터리 | System32 디렉터리 | | 4순위 | Windows 디렉터리 | Windows 디렉터리 | | 5순위 | 현재 작업 디렉터리 (CWD) | PATH 환경 변수 | | 6순위 | PATH 환경 변수 | - |
+| 검색 순서 | Safe DLL Search Mode (기본) | Directory Search Mode (취약) |
+| :--- | :--- | :--- |
+| 1순위 | 애플리케이션이 설치된 디렉터리 | 애플리케이션이 로드된 디렉터리 |
+| 2순위 | System32 디렉터리 | **현재 작업 디렉터리 (CWD)** |
+| 3순위 | 16비트 System 디렉터리 | System32 디렉터리 |
+| 4순위 | Windows 디렉터리 | Windows 디렉터리 |
+| 5순위 | 현재 작업 디렉터리 (CWD) | PATH 환경 변수 |
+| 6순위 | PATH 환경 변수 | - |
 
 공격자는 보통 "현재 작업 디렉터리(CWD)"나 PATH에 포함된 쓰기 권한이 있는 디렉터리를 노립니다. Splunk와 같은 서버 소프트웨어는 서비스로 실행되더라도, 특정 스크립트나 설정 파일을 처리하면서 CWD를 변경하는 경우가 많아 이 취약점에 노출될 수 있습니다.
 
@@ -84,7 +94,10 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReser
 
 이러한 권한 상승 취약점을 막기 위해서는 운영 레벨에서 다음과 같은 구체적인 조치가 필요합니다.
 
-1.  **소프트웨어 업데이트**: Splunk는 해당 취약점(CVE-2024-36991 등 관련 버전)을 수정한 패치를 릴리스했습니다. 즉시 최신 버전으로 업그레이드해야 합니다. 2.  **파일 시스템 권한 강화**: Splunk 설치 디렉터리 및 하위 폴더(특히 `bin`, `lib` 등)에 대해 일반 사용자의 쓰기 권한을 제거해야 합니다. `SYSTEM` 및 `Administrators` 그룹만 쓰기가 가능하도록 ACL(Access Control List)을 설정합니다.     ```powershell     # 예시: Splunk 설치 폴더의 권한 확인 및 수정 (관리자 권한 PowerShell)     $path = "C:\Program Files\Splunk"     icacls $path     # 불필요한 쓰기 권한 제거     # icacls $path /remove "Users" /T     ``` 3.  **DLL Search Order 모드 확인**: 레지스트리를 통해 시스템 전체의 Safe DLL Search Mode가 활성화되어 있는지 확인합니다.     *   경로: `HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager`     *   키 값: `SafeDllSearchMode` (1로 설정되어 있어야 함) 4.  **모니터링**: 특이한 프로세스 생성(`splunkd.exe`에 의한 `cmd.exe` 또는 `powershell.exe` 실행)을 감지하는 SIEM 룰을 추가합니다. Splunk 자신이 공격의 도구로 악용되는 것을 막기 위해서는 "Who's watching the watchers" 관점의 감시가 필요합니다.
+1.  **소프트웨어 업데이트**: Splunk는 해당 취약점(CVE-2024-36991 등 관련 버전)을 수정한 패치를 릴리스했습니다. 즉시 최신 버전으로 업그레이드해야 합니다.
+2.  **파일 시스템 권한 강화**: Splunk 설치 디렉터리 및 하위 폴더(특히 `bin`, `lib` 등)에 대해 일반 사용자의 쓰기 권한을 제거해야 합니다. `SYSTEM` 및 `Administrators` 그룹만 쓰기가 가능하도록 ACL(Access Control List)을 설정합니다.     ```powershell     # 예시: Splunk 설치 폴더의 권한 확인 및 수정 (관리자 권한 PowerShell)     $path = "C:\Program Files\Splunk"     icacls $path     # 불필요한 쓰기 권한 제거     # icacls $path /remove "Users" /T     ```
+3.  **DLL Search Order 모드 확인**: 레지스트리를 통해 시스템 전체의 Safe DLL Search Mode가 활성화되어 있는지 확인합니다.     *   경로: `HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager`     *   키 값: `SafeDllSearchMode` (1로 설정되어 있어야 함)
+4.  **모니터링**: 특이한 프로세스 생성(`splunkd.exe`에 의한 `cmd.exe` 또는 `powershell.exe` 실행)을 감지하는 SIEM 룰을 추가합니다. Splunk 자신이 공격의 도구로 악용되는 것을 막기 위해서는 "Who's watching the watchers" 관점의 감시가 필요합니다.
 
 ## 결론
 

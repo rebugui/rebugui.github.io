@@ -111,7 +111,13 @@ class LinearWithLoRA(nn.Module):
 
 아래는 기존 LoRA 접근법과 신호 처리 기반 최적화(SVD + Gauge-Invariant) 방식의 비교입니다.
 
-| 비교 항목 | 기존 LoRA (Random Init) | SP 기반 LoRA (SVD Init & Gauge Invariant) | | :--- | :--- | :--- | | **초기화 전략** | A: Gaussian, B: Zero | A/B: SVD of Initial Residual or Data Covariance | | **최적화 안정성** | 중간 (Gauge Degeneracy 발생 가능) | 높음 (Gauge 불변성 보장) | | **수렴 속도** | 상대적으로 느림 | 빠름 (Principal Direction 선행 학습) | | **메모리 사용량** | 동일 (Rank $r$에 의존) | 동일 (혹은 Cross-layer로 더 낮춤 가능) | | **서빙 비용** | $W + BA$ 합체 필요 | 동일하나, 더 낮은 Rank로 유사 성능 달성 가능 |
+| 비교 항목 | 기존 LoRA (Random Init) | SP 기반 LoRA (SVD Init & Gauge Invariant) |
+| :--- | :--- | :--- |
+| **초기화 전략** | A: Gaussian, B: Zero | A/B: SVD of Initial Residual or Data Covariance |
+| **최적화 안정성** | 중간 (Gauge Degeneracy 발생 가능) | 높음 (Gauge 불변성 보장) |
+| **수렴 속도** | 상대적으로 느림 | 빠름 (Principal Direction 선행 학습) |
+| **메모리 사용량** | 동일 (Rank $r$에 의존) | 동일 (혹은 Cross-layer로 더 낮춤 가능) |
+| **서빙 비용** | $W + BA$ 합체 필요 | 동일하나, 더 낮은 Rank로 유사 성능 달성 가능 |
 
 ### 4. Step-by-Step 가이드: 효율적인 LoRA 파인튜닝
 

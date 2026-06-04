@@ -90,11 +90,19 @@ if __name__ == "__main__":
 
 단순히 브라우저를 업데이트하는 것만으로는 완벽한 방어가 어려울 수 있습니다. 아래 표는 다층적 방어 전략을 구축하기 위한 통제 기법을 비교한 것입니다.
 
-| 방어 계층 (Defense Layer) | 통제 기법 (Control) | 효과성 (Effectiveness) | 구현 난이도 (Complexity) | | :--- | :--- | :--- | :--- | | **Endpoint** | Chrome 브라우저 자동 업데이트 강제 설정 | 높음 (High) | 낮음 (Low) | | **Network** | 웹 프록시/SWG를 통한 악성 도메인 차단 | 중간 (Medium) | 중간 (Medium) | | **Application** | Site Isolation 강화 및 확장 프로그램 제한 | 높음 (High) | 중간 (Medium) | | **User** | 피싱 교육 및 의심스러운 링크 클릭 자제 | 낮음 (Low) - Human Error | 높음 (High) |
+| 방어 계층 (Defense Layer) | 통제 기법 (Control) | 효과성 (Effectiveness) | 구현 난이도 (Complexity) |
+| :--- | :--- | :--- | :--- |
+| **Endpoint** | Chrome 브라우저 자동 업데이트 강제 설정 | 높음 (High) | 낮음 (Low) |
+| **Network** | 웹 프록시/SWG를 통한 악성 도메인 차단 | 중간 (Medium) | 중간 (Medium) |
+| **Application** | Site Isolation 강화 및 확장 프로그램 제한 | 높음 (High) | 중간 (Medium) |
+| **User** | 피싱 교육 및 의심스러운 링크 클릭 자제 | 낮음 (Low) - Human Error | 높음 (High) |
 
 ### 단계별 완화 조치 (Step-by-Step Mitigation)
 
-1.  **긴급 패치 적용**: 모든 사용자에게 Chrome 버전 `132.0.6834.100` (예시) 이상으로 업데이트를 지시합니다. `Settings > About Chrome`에서 업데이트를 확인할 수 있습니다. 2.  **그룹 정책(GPO) 강제 적용**: 엔터프라이즈 환경에서는 Chrome ADMX 템플릿을 사용하여 자동 업데이트를 강제하고, 구 버전 실행을 차단하는 정책을 배포합니다.     ```json     // 레지스트리 예시 (AutoUpdateCheckPeriodMinutes)     {       "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Google\Update": {         "AutoUpdateCheckPeriodMinutes": 1440       }     }     ``` 3.  **자바스크립트 제한(가능한 경우)**: 업무상 필수적이지 않은 사이트에 대해 NoScript나 유사한 확장 프로그램을 통해 자바스크립트 실행을 차단합니다. (이번 Zero-Day는 JS 엔진 결함이므로 매우 효과적이나, 사용자 경험 저하 우려 있음) 4.  **보안 솔루션 탐지 규칙 업데이트**: EDR(Endpoint Detection and Response) 및 네트워크 방화벽의 최신 시그니처를 업데이트하여 알려진 C2 서버와의 통신을 차단합니다.
+1.  **긴급 패치 적용**: 모든 사용자에게 Chrome 버전 `132.0.6834.100` (예시) 이상으로 업데이트를 지시합니다. `Settings > About Chrome`에서 업데이트를 확인할 수 있습니다.
+2.  **그룹 정책(GPO) 강제 적용**: 엔터프라이즈 환경에서는 Chrome ADMX 템플릿을 사용하여 자동 업데이트를 강제하고, 구 버전 실행을 차단하는 정책을 배포합니다.     ```json     // 레지스트리 예시 (AutoUpdateCheckPeriodMinutes)     {       "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Google\Update": {         "AutoUpdateCheckPeriodMinutes": 1440       }     }     ```
+3.  **자바스크립트 제한(가능한 경우)**: 업무상 필수적이지 않은 사이트에 대해 NoScript나 유사한 확장 프로그램을 통해 자바스크립트 실행을 차단합니다. (이번 Zero-Day는 JS 엔진 결함이므로 매우 효과적이나, 사용자 경험 저하 우려 있음)
+4.  **보안 솔루션 탐지 규칙 업데이트**: EDR(Endpoint Detection and Response) 및 네트워크 방화벽의 최신 시그니처를 업데이트하여 알려진 C2 서버와의 통신을 차단합니다.
 
 ## 결론
 

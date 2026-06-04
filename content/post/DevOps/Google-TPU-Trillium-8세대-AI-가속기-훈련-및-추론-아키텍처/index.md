@@ -27,7 +27,13 @@ Trillium은 **HBM3e(High Bandwidth Memory 3e)**를 채택하여 대역폭을 획
 
 Google은 이번 세대부터 훈련 전용 칩과 추론 전용 칩의 명확한 구분을 제시합니다. 이는 인프라 비용 효율화를 위해 매우 중요한 접근입니다.
 
-| 비교 항목 | TPU 8t (Training) | TPU 8i (Inference) | | :--- | :--- | :--- | | **주 목적** | 대규모 모델 사전 훈련 & 파인 튜닝 | 고밀도 추론 & low-latency 서빙 | | **메모리 (HBM)** | 초고용량 (파라미터 저장 최적화) | 고대역폭 (데이터 로딩 속도 최적화) | | **합성곱 성능** | 훈련 속도 위주의 MXU 구성 | 추론 처리량 위주의 구성 | | **주요 사용 사례** | Gemini 2.0 훈련, 기초 모델 베이스 | Chatbot, Code Assistant, Agents | | **SRE 관점** | 장기간 안정적인 전력/열 관리 필요 | 높은 요청 밀도(RPS) 처리 능력 중요 |
+| 비교 항목 | TPU 8t (Training) | TPU 8i (Inference) |
+| :--- | :--- | :--- |
+| **주 목적** | 대규모 모델 사전 훈련 & 파인 튜닝 | 고밀도 추론 & low-latency 서빙 |
+| **메모리 (HBM)** | 초고용량 (파라미터 저장 최적화) | 고대역폭 (데이터 로딩 속도 최적화) |
+| **합성곱 성능** | 훈련 속도 위주의 MXU 구성 | 추론 처리량 위주의 구성 |
+| **주요 사용 사례** | Gemini 2.0 훈련, 기초 모델 베이스 | Chatbot, Code Assistant, Agents |
+| **SRE 관점** | 장기간 안정적인 전력/열 관리 필요 | 높은 요청 밀도(RPS) 처리 능력 중요 |
 
 ### 3. TPU Pod 슬라이스 아키텍처 (Mermaid)
 
@@ -115,7 +121,10 @@ resource "google_tpu_node" "tpu_node" {
 
 **실행 및 검증 단계:**
 
-1.  **초기화**: `terraform init` 2.  **계획 검토**: `terraform plan` (TPU 리소스는 생성에 시간이 오래 걸리므로 plan 단계에서 설정을 면밀히 검토하세요.) 3.  **배포**: `terraform apply` 4.  **상태 확인**:     TPU 노드가 생성되면 SSH 접속하여 `top` 명령어나 TPU-specific 툴을 통해 칩 상태를 모니터링해야 합니다.
+1.  **초기화**: `terraform init`
+2.  **계획 검토**: `terraform plan` (TPU 리소스는 생성에 시간이 오래 걸리므로 plan 단계에서 설정을 면밀히 검토하세요.)
+3.  **배포**: `terraform apply`
+4.  **상태 확인**:     TPU 노드가 생성되면 SSH 접속하여 `top` 명령어나 TPU-specific 툴을 통해 칩 상태를 모니터링해야 합니다.
 
 ### 5. 운영 관점의 모니터링과 트러블슈팅
 

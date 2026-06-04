@@ -118,7 +118,13 @@ def test_skillify_calculation():
 
 기존의 대응 방식과 Skillify 방법론의 차이는 명확합니다. 단순한 수정(Mitigation)과 구조적 개선(Resolution)의 차이입니다.
 
-| 구분 | 기존의 Ad-hoc 대응 | Skillify 방법론 | | :--- | :--- | :--- | | **접근 방식** | 프롬프트에 예외 처리 규칙 추가 | 툴(Tool) 또는 Few-shot Example 추가 | | **수정 범위** | 증상(Symptom) 완화 | 근본 원인(Root Cause) 해결 | | **지속성** | 모델 버전 변경 시 재발 가능 | 구조적 코드로 인한 영구적 해결 | | **테스트** | 수동 확인 | 자동화된 회귀 테스트(Regression Test) 포함 | | **MLOps 관점** | 암묵적인 노우하우 (Tacit Knowledge) | 명시적인 데이터셋 및 아티팩트 (Explicit Asset) |
+| 구분 | 기존의 Ad-hoc 대응 | Skillify 방법론 |
+| :--- | :--- | :--- |
+| **접근 방식** | 프롬프트에 예외 처리 규칙 추가 | 툴(Tool) 또는 Few-shot Example 추가 |
+| **수정 범위** | 증상(Symptom) 완화 | 근본 원인(Root Cause) 해결 |
+| **지속성** | 모델 버전 변경 시 재발 가능 | 구조적 코드로 인한 영구적 해결 |
+| **테스트** | 수동 확인 | 자동화된 회귀 테스트(Regression Test) 포함 |
+| **MLOps 관점** | 암묵적인 노우하우 (Tacit Knowledge) | 명시적인 데이터셋 및 아티팩트 (Explicit Asset) |
 
 ### 5. 실무 적용을 위한 Step-by-Step 가이드
 

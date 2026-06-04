@@ -28,7 +28,12 @@ categories:
 
 예를 들어, 사용자가 본인 확인에 실패했음에도 에이전트가 이를 무시하고 다음 단계로 진행하는 '할루시네이션' 유형의 버그를 살펴보겠습니다.
 
-| 비교 항목 | 단일 턴 트레이싱 (기존 방식) | 세션 레벨 모니터링 (Cekura 방식) | | :--- | :--- | :--- | | **평가 단위** | 개별 질문 및 응답 (Prompt-Response) | 전체 대화 흐름 (Conversation Arc) | | **오류 감지** | 개별 응답의 품질, 지연 시간, 토큰 사용량 | 흐름 논리, 단계 누락, 상태 일관성 | | **위험 예시** | 적절한 질문인지 확인 (Address 확인 문장 OK) | 본인 확인 없이 진행했는지 확인 (Session Fail) | | **주요 도구** | Langfuse, LangSmith, Arize Phoenix | Simulation-based Test Suites, Session Judges |
+| 비교 항목 | 단일 턴 트레이싱 (기존 방식) | 세션 레벨 모니터링 (Cekura 방식) |
+| :--- | :--- | :--- |
+| **평가 단위** | 개별 질문 및 응답 (Prompt-Response) | 전체 대화 흐름 (Conversation Arc) |
+| **오류 감지** | 개별 응답의 품질, 지연 시간, 토큰 사용량 | 흐름 논리, 단계 누락, 상태 일관성 |
+| **위험 예시** | 적절한 질문인지 확인 (Address 확인 문장 OK) | 본인 확인 없이 진행했는지 확인 (Session Fail) |
+| **주요 도구** | Langfuse, LangSmith, Arize Phoenix | Simulation-based Test Suites, Session Judges |
 
 이러한 세션 레벨 평가를 가능하게 하기 위해서는 실제 사용자의 행동을 시뮬레이션할 수 있는 환경이 필수적입니다.
 

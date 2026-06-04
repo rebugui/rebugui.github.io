@@ -54,7 +54,12 @@ graph TD
 
 일반적인 딥러닝에서 손실은 선형이나 2차 함수로 감소하는 경향을 보입니다. 하지만 안전성 손실은 기하학적 구조의 날카로움(Sharpness)과 테스크 손실 곡률 간의 결합(Coupling)으로 인해 폭발적으로 증가합니다. 이는 훈련 시간이 조금만 지체되어도 모델의 안전성이 회복 불가능한 수준으로 망가질 수 있음을 시사합니다.
 
-| 비교 항목 | 일반적인 Task Loss 감소 | Alignment Loss 증가 (Collapse) | | :--- | :--- | :--- | | **시간 의존성** | 대략 $t^0$ ~ $t^{-1}$ (감소) | $t^4$ (급격히 증가) | | **최적화 방식** | 1차원 Gradient Descent로 충분 | 2차원(이차 도함수) 정보 필수 | | **기하학적 구조** | 완만한 곡률 (Broad Valley) | 날카로운 곡률 (Sharp Ridge) | | **안정성** | 상대적으로 안정적 | 구조적 불안정 (Structurally Unstable) |
+| 비교 항목 | 일반적인 Task Loss 감소 | Alignment Loss 증가 (Collapse) |
+| :--- | :--- | :--- |
+| **시간 의존성** | 대략 $t^0$ ~ $t^{-1}$ (감소) | $t^4$ (급격히 증가) |
+| **최적화 방식** | 1차원 Gradient Descent로 충분 | 2차원(이차 도함수) 정보 필수 |
+| **기하학적 구조** | 완만한 곡률 (Broad Valley) | 날카로운 곡률 (Sharp Ridge) |
+| **안정성** | 상대적으로 안정적 | 구조적 불안정 (Structurally Unstable) |
 
 ### 4. PyTorch를 이용한 시뮬레이션 및 구현 가이드
 
@@ -120,7 +125,9 @@ print(f"Final Safety Y: {ty[-1]:.4f} (Collapse detected if far from 0)")
 
 연구진은 안전성이 붕괴되기 위한 세 가지 기하학적 조건인 **Alignment Instability Condition**을 제안했습니다. 실무에서 모델을 안전하게 파인 튜닝하기 위해 다음을 점검해야 합니다.
 
-1.  **안전성의 집중 (Concentration):** 안전성이 저차원 부분 공간에 국한되어 있는가? 2.  **높은 곡률 (Sharpness):** 해당 부분 공간의 곡률이 매우 높은가? 3.  **곡률 결합 (Curvature Coupling):** 파인 튜닝 손실의 곡률이 안전성 파라미터와 강하게 결합되어 있는가?
+1.  **안전성의 집중 (Concentration):** 안전성이 저차원 부분 공간에 국한되어 있는가?
+2.  **높은 곡률 (Sharpness):** 해당 부분 공간의 곡률이 매우 높은가?
+3.  **곡률 결합 (Curvature Coupling):** 파인 튜닝 손실의 곡률이 안전성 파라미터와 강하게 결합되어 있는가?
 
 이 조건들이 만족될 때, 안전성 손실은 4차원 법칙을 따라 급격히 증가합니다. 따라서 단순한 Learning Rate 조절이나 Weight Decay로는 이를 막을 수 없습니다.
 
@@ -128,7 +135,9 @@ print(f"Final Safety Y: {ty[-1]:.4f} (Collapse detected if far from 0)")
 
 이 문제를 해결하기 위해서는 **2차 최적화(Second-order Optimization)** 기법이나 **곡률을 고려한 페널티**를 도入해야 합니다.
 
-1.  **헤시안(Hessian) 기반 정규화:** 파라미터 업데이트가 안전성 방향으로 곡률을 가속화하지 않도록, 헤시안 행렬의 고유벡터(Eigenvector)를 분석하여 업데이트를 제한합니다. 2.  **안전성 다양체(Safety Manifold) 제약 최적화:** 파라미터가 안전 영역 내에 머물도록 제약 조건(Constraint)을 거는 projected gradient descent를 수행합니다. 3.  **사전 진단(Diagnostics):** 파인 튜닝 전, 모델의 손실 함수 지형(Landscape)을 분석하여 "Alignment Collapse" 위험이 높은 날카로운 구조를 가지고 있는지 미리 확인합니다.
+1.  **헤시안(Hessian) 기반 정규화:** 파라미터 업데이트가 안전성 방향으로 곡률을 가속화하지 않도록, 헤시안 행렬의 고유벡터(Eigenvector)를 분석하여 업데이트를 제한합니다.
+2.  **안전성 다양체(Safety Manifold) 제약 최적화:** 파라미터가 안전 영역 내에 머물도록 제약 조건(Constraint)을 거는 projected gradient descent를 수행합니다.
+3.  **사전 진단(Diagnostics):** 파인 튜닝 전, 모델의 손실 함수 지형(Landscape)을 분석하여 "Alignment Collapse" 위험이 높은 날카로운 구조를 가지고 있는지 미리 확인합니다.
 
 ## 결론
 

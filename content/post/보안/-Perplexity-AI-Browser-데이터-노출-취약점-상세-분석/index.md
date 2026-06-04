@@ -112,7 +112,13 @@ for i in range(1000, 1010):  # 예시: 1000번대 스레드 스캔
 
 이러한 취약점을 방지하기 위해서는 어떠한 보안 통제가 필요한지, 현재 상태와 권장 상태를 비교해 보겠습니다.
 
-| 비교 항목 | 취약한 구조 (Vulnerable) | 권장 구조 (Secure) | | :--- | :--- | :--- | | **식별자 (ID) 형태** | 순차적 정수 (Sequential Integer)<br>예: `/thread/1234` | 불가측한 UUID (Universally Unique Identifier)<br>예: `/thread/a1b2-c3d4...` | | **접근 제어 (ACL)** | 프론트엔드 숨김 처리에 의존<br>API에서 소유권 검증 누락 | 백엔드 수준에서 Object Ownership 검증 필수<br>`if (thread.owner != user) return 403` | | **인증/인가 메커니즘** | 단순한 세션 쿠키만 확인 | JWT, OAuth2 Scope 등 강력한 인증 및 세션 검증 | | **데이터 노출 범위** | 전체 대화 내용(Prompt + Response) 노출 | 최소한의 데이터만 노출 또는 완전 격리 | | **로그 및 감사** | 접근 기록 미비 | 비정상적인 접근 시도 시도 실시간 탐지 및 차단 |
+| 비교 항목 | 취약한 구조 (Vulnerable) | 권장 구조 (Secure) |
+| :--- | :--- | :--- |
+| **식별자 (ID) 형태** | 순차적 정수 (Sequential Integer)<br>예: `/thread/1234` | 불가측한 UUID (Universally Unique Identifier)<br>예: `/thread/a1b2-c3d4...` |
+| **접근 제어 (ACL)** | 프론트엔드 숨김 처리에 의존<br>API에서 소유권 검증 누락 | 백엔드 수준에서 Object Ownership 검증 필수<br>`if (thread.owner != user) return 403` |
+| **인증/인가 메커니즘** | 단순한 세션 쿠키만 확인 | JWT, OAuth2 Scope 등 강력한 인증 및 세션 검증 |
+| **데이터 노출 범위** | 전체 대화 내용(Prompt + Response) 노출 | 최소한의 데이터만 노출 또는 완전 격리 |
+| **로그 및 감사** | 접근 기록 미비 | 비정상적인 접근 시도 시도 실시간 탐지 및 차단 |
 
 ### 단계별 완화 조치 가이드
 

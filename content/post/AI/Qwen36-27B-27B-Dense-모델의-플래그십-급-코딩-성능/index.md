@@ -39,7 +39,13 @@ graph TD
 
 Qwen3.6-27B는 경쟁 모델들 대비 탁월한 효율성을 보여줍니다. 아래 표는 일반적인 벤치마크 결과(HumanEval, MBPP 등)를 바탕으로 한 파라미터 수 대비 성능 비교입니다. (수치는 대략적인 범위를 나타냅니다)
 
-| 비교 항목 | Llama-3-70B (MoE/Dense Mix) | CodeLlama-34B | Qwen3.6-27B (Dense) | | :--- | :--- | :--- | :--- | | 파라미터 수 | 70 Billion | 34 Billion | 27 Billion | | 아키텍처 | Dense / MoE Hybrid | Dense | Dense | | VRAM 요구량 (FP16) | ~140 GB | ~70 GB | ~55 GB | | 코딩 성능 (HumanEval) | 매우 우수 | 우수 | **최상급 (Plagship level)** | | 추론 속도 (Token/sec) | 느림 | 보통 | 빠름 |
+| 비교 항목 | Llama-3-70B (MoE/Dense Mix) | CodeLlama-34B | Qwen3.6-27B (Dense) |
+| :--- | :--- | :--- | :--- |
+| 파라미터 수 | 70 Billion | 34 Billion | 27 Billion |
+| 아키텍처 | Dense / MoE Hybrid | Dense | Dense |
+| VRAM 요구량 (FP16) | ~140 GB | ~70 GB | ~55 GB |
+| 코딩 성능 (HumanEval) | 매우 우수 | 우수 | **최상급 (Plagship level)** |
+| 추론 속도 (Token/sec) | 느림 | 보통 | 빠름 |
 
 위 표에서 볼 수 있듯이, Qwen3.6-27B는 70B 모델에 근접하는 성능을 약 1/3 수준의 메모리 용량으로 구현했습니다. 이는 단일 A100(80GB)이나 A6000(48GB)级别的 GPU에서도 양자화(Quantization) 기술을 적용하면 충분히 구동할 수 있음을 의미합니다.
 

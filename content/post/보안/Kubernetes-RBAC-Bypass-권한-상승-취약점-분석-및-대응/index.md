@@ -109,7 +109,11 @@ spec:
 
 **공격자의 익스플로잇 단계:**
 
-1.  **준비**: 공격자는 위 YAML 파일을 작성합니다. 2.  **실행**: `kubectl apply -f malicious-pod.yaml` 명령어를 실행합니다. 공격자 계정에는 `create pods` 권한만 있으므로 API 서버는 이 요청을 승인합니다. 3.  **침투**: 파드가 실행되면 쿠버네티스는 자동으로 `serviceAccountName`으로 지정된 `cluster-admin`의 토큰을 파드 내부 `/var/run/secrets/kubernetes.io/serviceaccount/token`에 마운트합니다. 4.  **탈취**: 공격자는 `kubectl exec -it rce-bypass-pod -- sh`로 접속하여 토큰 값을 읽어냅니다. 5.  **권한 남용**: 이 토큰을 `.kube/config` 파일이나 환경 변수에 설정하여, 이제 `cluster-admin` 권한으로 클러스터의 모든 시크릿(Secrets)을 읽거나 마스터 노드를 장악할 수 있습니다.
+1.  **준비**: 공격자는 위 YAML 파일을 작성합니다.
+2.  **실행**: `kubectl apply -f malicious-pod.yaml` 명령어를 실행합니다. 공격자 계정에는 `create pods` 권한만 있으므로 API 서버는 이 요청을 승인합니다.
+3.  **침투**: 파드가 실행되면 쿠버네티스는 자동으로 `serviceAccountName`으로 지정된 `cluster-admin`의 토큰을 파드 내부 `/var/run/secrets/kubernetes.io/serviceaccount/token`에 마운트합니다.
+4.  **탈취**: 공격자는 `kubectl exec -it rce-bypass-pod -- sh`로 접속하여 토큰 값을 읽어냅니다.
+5.  **권한 남용**: 이 토큰을 `.kube/config` 파일이나 환경 변수에 설정하여, 이제 `cluster-admin` 권한으로 클러스터의 모든 시크릿(Secrets)을 읽거나 마스터 노드를 장악할 수 있습니다.
 
 ### 위험도 분석: 권한 조합 비교
 
@@ -158,7 +162,9 @@ kubectl label --overwrite ns production pod-security.kubernetes.io/enforce=restr
 
 ### 3. 감지 (Detection)
 
-RBAC 우회 공격은 보통 비정상적인 파드 생성 패턴을 보입니다. 1.  **Audit Log 모니터링**: Audit Log에서 `user.username`이 일반 사용자인데, `objectRef.resource`가 `pods`이고, `requestObject.spec.serviceAccountName`이 고권한 SA(예: `system:serviceaccount:kube-system:cluster-admin`)인 경우를 탐지하세요. 2.  **SIEM 룰 예시**:     *   Condition: `verb:create` AND `resource:pods` AND `serviceAccountName` contains `admin`     *   Action: Alert Security Team
+RBAC 우회 공격은 보통 비정상적인 파드 생성 패턴을 보입니다.
+1.  **Audit Log 모니터링**: Audit Log에서 `user.username`이 일반 사용자인데, `objectRef.resource`가 `pods`이고, `requestObject.spec.serviceAccountName`이 고권한 SA(예: `system:serviceaccount:kube-system:cluster-admin`)인 경우를 탐지하세요.
+2.  **SIEM 룰 예시**:     *   Condition: `verb:create` AND `resource:pods` AND `serviceAccountName` contains `admin`     *   Action: Alert Security Team
 
 ## 결론
 

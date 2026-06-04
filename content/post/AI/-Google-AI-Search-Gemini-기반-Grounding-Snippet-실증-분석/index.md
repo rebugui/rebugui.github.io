@@ -122,7 +122,13 @@ analyze_grounding_data(mock_gemini_response)
 
 생성형 AI 시대에 맞춰 콘텐츠 전략을 어떻게 수정해야 할까요? 아래 표는 전통적인 SEO와 AI Grounding 최적화의 차이점을 명확히 보여줍니다.
 
-| 비교 항목 | 기존 SEO (Blue Links) | AI Grounding 최적화 (AI Overviews) | | :--- | :--- | :--- | | **핵심 목표** | 검색 결과 상위 노출 (Top 10) | 답변 생성을 위한 '근거'로 선정 | | **주요 랭킹 요인** | 백링크, 도메인 권위, 키워드 빈도 | 문장의 의미적 명확성, 팩트 신뢰도, 구조화 | | **타겟 키워드** | 짧은 키워드 (Short-tail) | 구체적인 질의 (Conversational Query) | | **콘텐츠 형식** | 제목(H1), 메타 디스크립션 중심 | 본문 내의 정의(Definition), 목록(List), 데이터 테이블 | | **성과 지표** | CTR (클릭률), 이탈률 | Citation Count (인용 횟수), Zero-Click 노출 |
+| 비교 항목 | 기존 SEO (Blue Links) | AI Grounding 최적화 (AI Overviews) |
+| :--- | :--- | :--- |
+| **핵심 목표** | 검색 결과 상위 노출 (Top 10) | 답변 생성을 위한 '근거'로 선정 |
+| **주요 랭킹 요인** | 백링크, 도메인 권위, 키워드 빈도 | 문장의 의미적 명확성, 팩트 신뢰도, 구조화 |
+| **타겟 키워드** | 짧은 키워드 (Short-tail) | 구체적인 질의 (Conversational Query) |
+| **콘텐츠 형식** | 제목(H1), 메타 디스크립션 중심 | 본문 내의 정의(Definition), 목록(List), 데이터 테이블 |
+| **성과 지표** | CTR (클릭률), 이탈률 | Citation Count (인용 횟수), Zero-Click 노출 |
 
 ### 실무 적용 가이드: Grounding-friendly 콘텐츠 작성법
 

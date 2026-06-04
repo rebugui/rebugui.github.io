@@ -108,7 +108,13 @@ transpose(-2, -1)) * scale
 
 기존의 표준 Transformer(Decoder-only) 구조와 OpenMythos에서 재구성된 Hybrid 구조를 비교하면, 왜 최신 LLM들이 이러한 변형을 추구하는지 알 수 있습니다. 아래 표는 두 아키텍처의 이론적 특성을 비교한 것입니다.
 
-| 비교 항목 | Standard Dense Attention (GPT-style) | OpenMythos Hybrid Attention (Mythos-style) | | :--- | :--- | :--- | | **시간 복잡도** | $O(N^2)$ (Quadratic) | $O(N)$ (Linear - approximately) | | **메모리 사용량** | Context 길이에 따라 급격히 증가 | 윈도우 크기에 의해 제한됨 | | **장거리 의존성** | 완벽하게 보존 (Infinite theoretically) | Global 토큰을 통해 부분적으로 보존 | | **추론 속도** | 긴 Context에서 느려짐 | 긴 Context에서도 상대적으로 빠름 | | **주요 용도** | 범용적인 생성 작업 | 긴 문서 요약, RAG, 복잡한 추론 |
+| 비교 항목 | Standard Dense Attention (GPT-style) | OpenMythos Hybrid Attention (Mythos-style) |
+| :--- | :--- | :--- |
+| **시간 복잡도** | $O(N^2)$ (Quadratic) | $O(N)$ (Linear - approximately) |
+| **메모리 사용량** | Context 길이에 따라 급격히 증가 | 윈도우 크기에 의해 제한됨 |
+| **장거리 의존성** | 완벽하게 보존 (Infinite theoretically) | Global 토큰을 통해 부분적으로 보존 |
+| **추론 속도** | 긴 Context에서 느려짐 | 긴 Context에서도 상대적으로 빠름 |
+| **주요 용도** | 범용적인 생성 작업 | 긴 문서 요약, RAG, 복잡한 추론 |
 
 표에서 볼 수 있듯이, Hybrid Attention은 완벽한 전역 정보를 포기하는 대신 효율성을 극대화합니다. 특히 RAG(Retrieval-Augmented Generation) 시스템에서 긴 문서를 처리할 때, 모델이 문서 전체를 세밀하게 읽는 것보다, 핵심 문장(Global token)을 중심으로 주변 문맥(Local window)을 파악하는 것이 훨씬 효과적일 수 있습니다.
 
@@ -116,7 +122,9 @@ transpose(-2, -1)) * scale
 
 연구자로서 OpenMythos 아키텍처를 이해했다면, 이를 실제 서빙 환경에 적용하기 위한 단계별 가이드가 필요합니다. 단순히 모델 구조를 바꾸는 것을 넘어, 훈련과 추론 전략을 수정해야 합니다.
 
-1.  **데이터 전처리 (Data Packing)**     *   Hybrid Attention을 효율적으로 학습시키기 위해서는 문서를 긴 시퀀스로 패킹(Packing)할 때, Global 토큰으로 지정될 위치(예: 문단의 시작, 문장의 끝)를 미리 마킹해야 합니다. 2.  **훈련 전략 (Curriculum Learning)**     *   짧은 윈도우 사이즈로 시작하여 점차 Global 토큰의 비중을 늘려가는 Curricula Learning 방식을 적용하면 모델이 Local과 Global의 균형을 잡는 데 도움이 됩니다. 3.  **KV Cache 최적화**     *   추론 시, Global 토큰에 대한 KV Cache는 오래 유지되어야 하므로 캐시 관리 로직을 분리하여 구현해야 합니다. 이는 PagedAttention 기술(예: vLLM)과 결합할 때 메모리 절약 효과가 극대화됩니다.
+1.  **데이터 전처리 (Data Packing)**     *   Hybrid Attention을 효율적으로 학습시키기 위해서는 문서를 긴 시퀀스로 패킹(Packing)할 때, Global 토큰으로 지정될 위치(예: 문단의 시작, 문장의 끝)를 미리 마킹해야 합니다.
+2.  **훈련 전략 (Curriculum Learning)**     *   짧은 윈도우 사이즈로 시작하여 점차 Global 토큰의 비중을 늘려가는 Curricula Learning 방식을 적용하면 모델이 Local과 Global의 균형을 잡는 데 도움이 됩니다.
+3.  **KV Cache 최적화**     *   추론 시, Global 토큰에 대한 KV Cache는 오래 유지되어야 하므로 캐시 관리 로직을 분리하여 구현해야 합니다. 이는 PagedAttention 기술(예: vLLM)과 결합할 때 메모리 절약 효과가 극대화됩니다.
 
 ## 결론
 

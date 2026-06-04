@@ -90,7 +90,13 @@ print(anomalies.head())
 
 AI가 공격에 도입됨에 따라 보안 팀이 직면한 위협의 질이 어떻게 달라졌는지 비교해 보는 것이 중요합니다.
 
-| 비교 항목 | 전통적 스크립트 키디/해커 | AI 증강 위협 행위자 (AI-Augmented Actor) | | :--- | :--- | :--- | | **공격 속도** | 인간의 개입이 필요하여 느림 | 자동화된 스크립트와 AI가 초당 수천 건의 변이 생성 | | **탐지 회피(Evasion)** | 고정된 패턴 사용, 쉽게 차단됨 | 시그니처 매칭을 회피하기 위한 폴리모픽(Polymorphic) 코드 생성 | | **타겟팅 정밀도** | 무차별 대입 또는 알려진 공개 Exploit 사용 | LLM을 활용한 문맥 인지형 취약점 분석 및 맞춤형 Exploit 제작 | | **피드백 루프** | 실패 시 수동으로 재시도 필요 | 공격 결과를 즉시 분석하여 다음 페이로드를 실시간 최적화 | | **주요 기술** | Python 스크립트, Metasploit 프레임워크 | LLMs (GPT-4, Claude 등), Reinforcement Learning, Generative AI |
+| 비교 항목 | 전통적 스크립트 키디/해커 | AI 증강 위협 행위자 (AI-Augmented Actor) |
+| :--- | :--- | :--- |
+| **공격 속도** | 인간의 개입이 필요하여 느림 | 자동화된 스크립트와 AI가 초당 수천 건의 변이 생성 |
+| **탐지 회피(Evasion)** | 고정된 패턴 사용, 쉽게 차단됨 | 시그니처 매칭을 회피하기 위한 폴리모픽(Polymorphic) 코드 생성 |
+| **타겟팅 정밀도** | 무차별 대입 또는 알려진 공개 Exploit 사용 | LLM을 활용한 문맥 인지형 취약점 분석 및 맞춤형 Exploit 제작 |
+| **피드백 루프** | 실패 시 수동으로 재시도 필요 | 공격 결과를 즉시 분석하여 다음 페이로드를 실시간 최적화 |
+| **주요 기술** | Python 스크립트, Metasploit 프레임워크 | LLMs (GPT-4, Claude 등), Reinforcement Learning, Generative AI |
 
 ### 방어 가이드: FortiGate 및 MLOps 관점에서의 대응
 

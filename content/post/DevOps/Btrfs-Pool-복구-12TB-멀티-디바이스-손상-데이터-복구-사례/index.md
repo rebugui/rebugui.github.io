@@ -43,7 +43,11 @@ graph TD
 
 ### 청크 할당 방식
 
-| 청크 타입 | 크기 | RAID 레벨 | 역할 | | :--- | :--- | :--- | :--- | | Data | 1GB | RAID 5/6 | 실제 파일 데이터 저장 | | Metadata | 256MB | RAID 1/5/6 | 파일시스템 구조 정보 | | System | 8MB | RAID 1 | 장치 매핑 정보 |
+| 청크 타입 | 크기 | RAID 레벨 | 역할 |
+| :--- | :--- | :--- | :--- |
+| Data | 1GB | RAID 5/6 | 실제 파일 데이터 저장 |
+| Metadata | 256MB | RAID 1/5/6 | 파일시스템 구조 정보 |
+| System | 8MB | RAID 1 | 장치 매핑 정보 |
 
 ---
 
@@ -62,7 +66,9 @@ graph LR
 
 ### 손상 원인
 
-1. **물리적 섹터 오류**: 디스크 노화로 인한 배드 섹터 발생 2. **COW 연쇄 효과**: 메타데이터 갱신 중 전원 이슈로 인한 트랜잭션 미완료 3. **RAID 5 패리티 불일치**: 재구성 시도 중 추가 손상 발생
+1. **물리적 섹터 오류**: 디스크 노화로 인한 배드 섹터 발생
+2. **COW 연쇄 효과**: 메타데이터 갱신 중 전원 이슈로 인한 트랜잭션 미완료
+3. **RAID 5 패리티 불일치**: 재구성 시도 중 추가 손상 발생
 
 ---
 
@@ -128,7 +134,12 @@ echo "Assessment complete. Log saved to: $LOG_FILE"
 
 손상 범위에 따라 복구 전략이 달라진다.
 
-| 손상 유형 | 증상 | 복구 방법 | 데이터 손실 위험 | | :--- | :--- | :--- | :--- | | Data Chunk 손상 | 일부 파일 읽기 오류 | `btrfs scrub` + 복구 | 낮음 (해당 파일만) | | Metadata Chunk 손상 | 마운트 실패 | `btrfs check --repair` | 중간 | | Chunk Tree 손상 | 장치 인식 실패 | `btrfs rescue` | 높음 | | System Chunk 손상 | 풀 미인식 | superblock 복구 | 매우 높음 |
+| 손상 유형 | 증상 | 복구 방법 | 데이터 손실 위험 |
+| :--- | :--- | :--- | :--- |
+| Data Chunk 손상 | 일부 파일 읽기 오류 | `btrfs scrub` + 복구 | 낮음 (해당 파일만) |
+| Metadata Chunk 손상 | 마운트 실패 | `btrfs check --repair` | 중간 |
+| Chunk Tree 손상 | 장치 인식 실패 | `btrfs rescue` | 높음 |
+| System Chunk 손상 | 풀 미인식 | superblock 복구 | 매우 높음 |
 
 ### 우선순위 결정 트리
 

@@ -32,7 +32,9 @@ ntransformer의 핵심 혁신은 **GPU 메모리 스트리밍(GPU Memory Streami
 
 ntransformer가 높은 성능을 내는 비결은 **3단계 계층형 캐시 구조** 설계에 있습니다. 이 구조는 데이터 접근 빈도와 속도에 따라 메모리 계층을 동적으로 관리합니다.
 
-1.  **Tier 1: GPU VRAM (Hot Data)**     *   가장 빈번하게 접근하는 KV Cache(Knowledge Vector Cache)와 현재 추론 중인 Transformer Block의 가중치가 저장됩니다.     *   가장 빠른 대역폭(약 1TB/s)을 제공하지만 용량이 제한적(24GB)입니다. 2.  **Tier 2: System RAM (Warm Data)**     *   VRAM에 들어가지 못하지만, 곧 사용될 가능성이 높은 레이어들이나 중간 계층의 버퍼가 위치합니다.     *   중간 속도(약 50~100GB/s)와 중간 용량을 제공하는 NVMe와 VRAM 사이의 완충지대(Buffer) 역할을 합니다. 3.  **Tier 3: NVMe SSD (Cold Data)**     *   모델 전체 파라미터가 저장되는 거대한 창고입니다.     *   가장 느리지만 용량이 무한에 가깝습니다. ntransformer는 이곳에서 필요한 데이터를 직접 읽어 상위 계층으로 공급합니다.
+1.  **Tier 1: GPU VRAM (Hot Data)**     *   가장 빈번하게 접근하는 KV Cache(Knowledge Vector Cache)와 현재 추론 중인 Transformer Block의 가중치가 저장됩니다.     *   가장 빠른 대역폭(약 1TB/s)을 제공하지만 용량이 제한적(24GB)입니다.
+2.  **Tier 2: System RAM (Warm Data)**     *   VRAM에 들어가지 못하지만, 곧 사용될 가능성이 높은 레이어들이나 중간 계층의 버퍼가 위치합니다.     *   중간 속도(약 50~100GB/s)와 중간 용량을 제공하는 NVMe와 VRAM 사이의 완충지대(Buffer) 역할을 합니다.
+3.  **Tier 3: NVMe SSD (Cold Data)**     *   모델 전체 파라미터가 저장되는 거대한 창고입니다.     *   가장 느리지만 용량이 무한에 가깝습니다. ntransformer는 이곳에서 필요한 데이터를 직접 읽어 상위 계층으로 공급합니다.
 
 이 계층 간의 데이터 이동을 Mermaid 다이어그램으로 간소화하여 나타내면 다음과 같습니다.
 
@@ -93,7 +95,14 @@ dummy_input = torch.randn(1, 4096)
 
 기존 방식과 ntransformer 방식의 차이는 명확합니다. 아래 표는 RTX 3090(24GB) 환경에서 Llama 3.1 70B 모델을 구동할 때의 이론적 접근 방식 비교입니다.
 
-| 비교 항목 | 기존 CPU Offloading (llama.cpp standard) | ntransformer (NVMe Direct) | | :--- | :--- | :--- | | **데이터 경로** | NVMe -> RAM -> CPU -> PCIe -> GPU | NVMe -> (RAM Buffer) -> GPU | | **병목 지점** | PCIe 대역폭 및 CPU 오버헤드 | NVMe 랜덤 읽기 속도 / PCIe | | **토큰 생성 속도** | 매우 느림 (2~5 t/s) | 중간 ~ 빠름 (10~20 t/s 이상 목표) | | **주요 기술** | 양자화 + 캐싱 | 3단계 적응형 캐시 + Direct I/O | | **시스템 RAM 요구량** | 높음 (모델 전체 로드) | 중간 (스트리밍 버퍼) | | **설치 난이도** | 쉬움 | 높음 (C++ 빌드 및 CUDA 의존성) |
+| 비교 항목 | 기존 CPU Offloading (llama.cpp standard) | ntransformer (NVMe Direct) |
+| :--- | :--- | :--- |
+| **데이터 경로** | NVMe -> RAM -> CPU -> PCIe -> GPU | NVMe -> (RAM Buffer) -> GPU |
+| **병목 지점** | PCIe 대역폭 및 CPU 오버헤드 | NVMe 랜덤 읽기 속도 / PCIe |
+| **토큰 생성 속도** | 매우 느림 (2~5 t/s) | 중간 ~ 빠름 (10~20 t/s 이상 목표) |
+| **주요 기술** | 양자화 + 캐싱 | 3단계 적응형 캐시 + Direct I/O |
+| **시스템 RAM 요구량** | 높음 (모델 전체 로드) | 중간 (스트리밍 버퍼) |
+| **설치 난이도** | 쉬움 | 높음 (C++ 빌드 및 CUDA 의존성) |
 
 **참고**: ntransformer는 높은 NVMe 성능을 요구하므로, NVMe SSD가 없거나 SATA SSD를 사용할 경우 성능 향상을 기대하기 어렵습니다. 권장 사양은 PCIe 4.0 이상의 NVMe SSD와 빠른 DDR4/DDR5 시스템 메모리입니다.
 
@@ -101,7 +110,11 @@ dummy_input = torch.randn(1, 4096)
 
 RTX 3090에서 ntransformer를 사용하여 Llama 3.1 70B를 구동하기 위한 과정은 다음과 같습니다.
 
-1.  **환경 준비**: CUDA Toolkit(12.x 이상)과 최신 GCC 컴파일러가 설치된 Linux 환경을 준비합니다. 2.  **소스 코드 클론 및 빌드**: ntransformer 레포지토리를 클론하고 CMake를 사용하여 빌드합니다. 이 과정에서 GPU 아키텍처(Ampere - sm_86)에 맞춰 최적화된 커널 코드가 컴파일됩니다. 3.  **모델 변환**: Llama 3.1 70B의 원본 가중치(.safetensors 또는 .gguf)를 ntransformer가 이해할 수 있는 텐서 포맷으로 변환합니다.     ```bash     # 예시 명령어 (가상)     ./tools/convert_llama --input /models/Llama-3.1-70B --output /nvme_models/Llama-3.1-70B-ntransformer --quant q4_k     ``` 4.  **Config 설정**: 시스템의 VRAM 크기(24GB)와 RAM 크기를 고려하여 캐시 계층의 크기를 설정합니다. 예를 들어, KV Cache에 16GB, 모델 가중치 스트리밍에 나머지를 할당합니다. 5.  **추론 실행**: 엔진을 구동하면, 처음 몇 토큰은 Prefetching이 되지 않아 느릴 수 있지만, 파이프라인이 형성된 이후에는 NVMe에서 GPU로 데이터가 실시간으로 공급되며 부드럽게 생성됩니다.
+1.  **환경 준비**: CUDA Toolkit(12.x 이상)과 최신 GCC 컴파일러가 설치된 Linux 환경을 준비합니다.
+2.  **소스 코드 클론 및 빌드**: ntransformer 레포지토리를 클론하고 CMake를 사용하여 빌드합니다. 이 과정에서 GPU 아키텍처(Ampere - sm_86)에 맞춰 최적화된 커널 코드가 컴파일됩니다.
+3.  **모델 변환**: Llama 3.1 70B의 원본 가중치(.safetensors 또는 .gguf)를 ntransformer가 이해할 수 있는 텐서 포맷으로 변환합니다.     ```bash     # 예시 명령어 (가상)     ./tools/convert_llama --input /models/Llama-3.1-70B --output /nvme_models/Llama-3.1-70B-ntransformer --quant q4_k     ```
+4.  **Config 설정**: 시스템의 VRAM 크기(24GB)와 RAM 크기를 고려하여 캐시 계층의 크기를 설정합니다. 예를 들어, KV Cache에 16GB, 모델 가중치 스트리밍에 나머지를 할당합니다.
+5.  **추론 실행**: 엔진을 구동하면, 처음 몇 토큰은 Prefetching이 되지 않아 느릴 수 있지만, 파이프라인이 형성된 이후에는 NVMe에서 GPU로 데이터가 실시간으로 공급되며 부드럽게 생성됩니다.
 
 ## 결론
 

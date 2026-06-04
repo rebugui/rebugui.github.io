@@ -51,13 +51,22 @@ graph TD
 
 DevOps 관점에서 기존의 VPN 솔루션이나 단순 NAC(Network Access Control)와 비교했을 때, 이 새로운 접근 방식이 제공하는 이점은 명확합니다.
 
-| 비교 항목 | 기존 VPN / NAC 솔루션 | Boot-to-Login Zero Trust (Cloudflare) | | :--- | :--- | :--- | | **검증 시점** | 로그인 후 인증, 네트워크 접속 후 | 전원 켜짐(부팅) 즉시, 로그인 전 | | **신뢰 범위** | 네트워크 레벨(IP, 포트) | 디바이스 무결성(OS, Kernel, TPM) | | **공격 노출면** | 로그인 이후 사용자 세션 하이재킹 가능 | 부팅 시점 악성코드 감지 및 격리 | | **사용자 경험** | 연결될 때까지 대기, 인증 반복 | 백그라운드에서 자동 검증, 투명성 | | **장치 분실 시** | 계정 탈취 시 접속 가능 | 장치 신뢰 상실 즉시 접속 불가 |
+| 비교 항목 | 기존 VPN / NAC 솔루션 | Boot-to-Login Zero Trust (Cloudflare) |
+| :--- | :--- | :--- |
+| **검증 시점** | 로그인 후 인증, 네트워크 접속 후 | 전원 켜짐(부팅) 즉시, 로그인 전 |
+| **신뢰 범위** | 네트워크 레벨(IP, 포트) | 디바이스 무결성(OS, Kernel, TPM) |
+| **공격 노출면** | 로그인 이후 사용자 세션 하이재킹 가능 | 부팅 시점 악성코드 감지 및 격리 |
+| **사용자 경험** | 연결될 때까지 대기, 인증 반복 | 백그라운드에서 자동 검증, 투명성 |
+| **장치 분실 시** | 계정 탈취 시 접속 가능 | 장치 신뢰 상실 즉시 접속 불가 |
 
 ### 구현 가이드: Terraform으로 장치 신뢰 정책 구성하기
 
 이제 실무에서 이를 어떻게 적용하는지 살펴보겠습니다. Cloudflare One과 Terraform을 사용하여, "장치가 최신 보안 패치가 적용되어 있지 않으면 내부 K8s 대시보드에 접속하지 못하게 하는" 시나리오를 구축해 보겠습니다.
 
-#### 전제 조건 1. Cloudflare Account 및 Zero Trust 활성화 2. 대상 장치에 Cloudflare WARP Agent 설치 3. Terraform 설치 및 Cloudflare Provider 설정
+#### 전제 조건
+1. Cloudflare Account 및 Zero Trust 활성화
+2. 대상 장치에 Cloudflare WARP Agent 설치
+3. Terraform 설치 및 Cloudflare Provider 설정
 
 #### Step 1: 장치 포스처(Device Posture) 규칙 생성
 
@@ -138,7 +147,9 @@ resource "cloudflare_zero_trust_access_policy" "secure_app_policy" {
 
 실제 운영 환경에 적용할 때는 다음 사항을 반드시 고려해야 합니다.
 
-1.  **Fallback 및 예외 처리**: 긴급 상황이나 특정 레거시 장치를 위해 "일회용 액세스 코드(One-time code)"나 "예외 그룹"을 운영 정책에 포함하여 완전한 작업 중단(Lockout)을 방지해야 합니다. 2.  **그라데이션 적용(Rollout)**: 모든 사용자에게 한 번에 적용하지 마세요. DevOps 팀 → 인사팀 → 전사 순서로 단계적으로 적용하며 False Positive(오탐지)를 모니터링해야 합니다. 3.  **모니터링과 로깅**: 장치 신뢰성 검증 실패 로그는 SIEM(Splunk, Datadog 등)으로 전송해야 합니다. 특정 기기에서 반복적으로 검증이 실패한다면 이는 보안 사고의 징후일 수 있습니다.     ```hcl     # 로그 전송 예시 (Cloudflare Logpush)     resource "cloudflare_logpush_job" "access_logs" {       account_id     = var.account_id       enabled        = true       name           = "zero-trust-access-logs"       logpull_options = "fields=EventResult,DevicePosture,Action,Email"       destination_conf = "s3://my-s3-bucket/logs?region=us-east-1"     }     ```
+1.  **Fallback 및 예외 처리**: 긴급 상황이나 특정 레거시 장치를 위해 "일회용 액세스 코드(One-time code)"나 "예외 그룹"을 운영 정책에 포함하여 완전한 작업 중단(Lockout)을 방지해야 합니다.
+2.  **그라데이션 적용(Rollout)**: 모든 사용자에게 한 번에 적용하지 마세요. DevOps 팀 → 인사팀 → 전사 순서로 단계적으로 적용하며 False Positive(오탐지)를 모니터링해야 합니다.
+3.  **모니터링과 로깅**: 장치 신뢰성 검증 실패 로그는 SIEM(Splunk, Datadog 등)으로 전송해야 합니다. 특정 기기에서 반복적으로 검증이 실패한다면 이는 보안 사고의 징후일 수 있습니다.     ```hcl     # 로그 전송 예시 (Cloudflare Logpush)     resource "cloudflare_logpush_job" "access_logs" {       account_id     = var.account_id       enabled        = true       name           = "zero-trust-access-logs"       logpull_options = "fields=EventResult,DevicePosture,Action,Email"       destination_conf = "s3://my-s3-bucket/logs?region=us-east-1"     }     ```
 
 ## 결론
 

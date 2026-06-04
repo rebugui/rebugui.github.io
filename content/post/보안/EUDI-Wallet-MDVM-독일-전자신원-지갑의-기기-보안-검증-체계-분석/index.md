@@ -39,7 +39,13 @@ MDVM의 검증 대상은 크게 두 가지입니다. 첫째, 운영체제의 무
 
 ### 기기 보안 검증 비교
 
-| 검증 항목 | iOS (Secure Enclave) | Android (Titan M2) | 검증 실패 시 조치 | | :--- | :--- | :--- | :--- | | 부팅 로더 무결성 | Secure Boot 검증 | Verified Boot 검증 | 인증 차단 | | OS 변조 탐지 | 탈옥 탐지 | 루팅/매직 마운트 탐지 | 인증 차단 | | 보안 패치 레벨 | iOS 버전 확인 | Security Patch Level | 경고 또는 차단 | | HKS 하드웨어 | App Attest | SafetyNet/Play Integrity | 인증 차단 | | 키 추출 시도 | Secure Enclave 상태 | Keymaster 상태 | 인증 차단 |
+| 검증 항목 | iOS (Secure Enclave) | Android (Titan M2) | 검증 실패 시 조치 |
+| :--- | :--- | :--- | :--- |
+| 부팅 로더 무결성 | Secure Boot 검증 | Verified Boot 검증 | 인증 차단 |
+| OS 변조 탐지 | 탈옥 탐지 | 루팅/매직 마운트 탐지 | 인증 차단 |
+| 보안 패치 레벨 | iOS 버전 확인 | Security Patch Level | 경고 또는 차단 |
+| HKS 하드웨어 | App Attest | SafetyNet/Play Integrity | 인증 차단 |
+| 키 추출 시도 | Secure Enclave 상태 | Keymaster 상태 | 인증 차단 |
 
 ### Apple App Attest 기반 검증 구현
 
@@ -285,7 +291,11 @@ class MDVMRiskEngine:
 
 공격자가 탈옥된 iPhone에서 EUDI Wallet의 키를 추출하려고 시도합니다. checkra1n 같은 탈옥 도구는 Secure Enclave 우회가 어렵지만, 메모리 덤프나 런타임 후킹을 통한 공격이 가능할 수 있습니다.
 
-MDVM 방어: 1. App Attest 요청 시 Apple 서버가 탈옥 상태 감지 2. 증명서 발급 거부 또는 "compromised" 플래그 포함 3. MDVM 서버가 증명서 검증 실패 시 즉시 인증 차단 4. 사용자에게 "기기 보안 문제로 인증 불가" 알림
+MDVM 방어:
+1. App Attest 요청 시 Apple 서버가 탈옥 상태 감지
+2. 증명서 발급 거부 또는 "compromised" 플래그 포함
+3. MDVM 서버가 증명서 검증 실패 시 즉시 인증 차단
+4. 사용자에게 "기기 보안 문제로 인증 불가" 알림
 
 ```javascript
 graph LR
@@ -304,7 +314,11 @@ graph LR
 
 공격자가 보안 패치가 적용되지 않은 Android 10 기기를 사용해 EUDI Wallet에 접근하려 합니다. 이 OS 버전은 알려진 원격 코드 실행 취약점이 존재합니다.
 
-MDVM 방어: 1. Play Integrity API가 OS 버전과 패치 레벨 보고 2. MDVM 데이터베이스에서 해당 버전의 알려진 취약점 조회 3. CVE 점수 기반 위험도 계산 4. "OS 업데이트 필요" 메시지와 함께 인증 제한
+MDVM 방어:
+1. Play Integrity API가 OS 버전과 패치 레벨 보고
+2. MDVM 데이터베이스에서 해당 버전의 알려진 취약점 조회
+3. CVE 점수 기반 위험도 계산
+4. "OS 업데이트 필요" 메시지와 함께 인증 제한
 
 ### Step-by-Step: MDVM 구현 가이드
 

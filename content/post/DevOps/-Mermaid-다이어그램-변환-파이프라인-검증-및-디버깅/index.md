@@ -188,7 +188,9 @@ scrape_configs:
       - targets: ['ci-runner:9090']
 ```
 
-**디버깅 팁**: 1.  **Puppeteer 타임아웃**: 복잡한 다이어그램은 렌더링 시간이 오래 걸립니다. CLI 실행 시 `-t` (timeout) 옵션을 충분히 늘려주세요 (기본값은 30초입니다). 2.  **폰트 깨짐 문제**: CI 환경(리눅스)에는 한글 폰트가 없을 수 있습니다. 렌더링 시 폰트가 깨진다면 Dockerfile 내부에 나눔고딕 등의 폰트를 사전에 설치해야 합니다.     ```dockerfile     RUN apt-get update && apt-get install -y fonts-nanum     ```
+**디버깅 팁**:
+1.  **Puppeteer 타임아웃**: 복잡한 다이어그램은 렌더링 시간이 오래 걸립니다. CLI 실행 시 `-t` (timeout) 옵션을 충분히 늘려주세요 (기본값은 30초입니다).
+2.  **폰트 깨짐 문제**: CI 환경(리눅스)에는 한글 폰트가 없을 수 있습니다. 렌더링 시 폰트가 깨진다면 Dockerfile 내부에 나눔고딕 등의 폰트를 사전에 설치해야 합니다.     ```dockerfile     RUN apt-get update && apt-get install -y fonts-nanum     ```
 
 ## 결론
 

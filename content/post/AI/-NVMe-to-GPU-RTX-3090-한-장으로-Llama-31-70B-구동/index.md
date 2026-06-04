@@ -46,7 +46,13 @@ graph TD
 
 이 접근 방식이 단순히 속도를 높이는 것을 넘어, 하드웨어 자원의 활용 방식을 근본적으로 변화시킵니다. 다음은 두 방식의 주요 차이점을 비교한 표입니다.
 
-| 비교 항목 | Traditional Offloading (CPU/RAM) | NVMe-to-GPU Direct | | :--- | :--- | :--- | | **데이터 경로** | SSD → RAM → CPU → GPU | SSD → GPU | | **주요 병목** | 시스템 RAM 대역폭, CPU 오버헤드 | PCIe 대역폭 (하지만 직접 전송) | | **메모리 복사** | 2회 이상 (Host to Device) | 0회 (Direct Mapping) | | **CPU 점유율** | 높음 (데이터 이동 관리) | 낮음 (초기 설정 이후 최소화) | | **지연 시간(Latency)** | 높음 (비동기 처리 난이도 상승) | 낮음 (예측 가능한 I/O) |
+| 비교 항목 | Traditional Offloading (CPU/RAM) | NVMe-to-GPU Direct |
+| :--- | :--- | :--- |
+| **데이터 경로** | SSD → RAM → CPU → GPU | SSD → GPU |
+| **주요 병목** | 시스템 RAM 대역폭, CPU 오버헤드 | PCIe 대역폭 (하지만 직접 전송) |
+| **메모리 복사** | 2회 이상 (Host to Device) | 0회 (Direct Mapping) |
+| **CPU 점유율** | 높음 (데이터 이동 관리) | 낮음 (초기 설정 이후 최소화) |
+| **지연 시간(Latency)** | 높음 (비동기 처리 난이도 상승) | 낮음 (예측 가능한 I/O) |
 
 기술적으로 더 깊이 들어가면, 이 과정은 리눅스의 `mmap` 시스템 콜과 NVIDIA의 `cuMemHostRegister` 혹은 CUDA Unified Memory 기능을 결합하여 구현됩니다. 특히 `nvidia-peermem` 커널 모듈을 통해 타사 장치(여기서는 NVMe 컨트롤러)의 메모리를 GPU가 액세스할 수 있도록 BAR(Base Address Register) 영역을 매핑하는 것이 핵심입니다.
 

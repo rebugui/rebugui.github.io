@@ -46,7 +46,13 @@ graph TD
 
 현대의 산업용 프로토콜과 LonTalk를 비교하면 왜 이 프로토콜이 위험한지 명확해집니다. 아래 표는 주요 프로토콜들의 보안 특성을 비교한 것입니다.
 
-| 비교 항목 | LonTalk (Legacy) | BACnet/IP (Modern) | Modbus TCP (Legacy/Plugged) | | :--- | :--- | :--- | :--- | | **인증 (Authentication)** | 지원 안 함 (주소 기반 신뢰) | 부분 지원 (BACnet SC 등) | 지원 안 함 | | **암호화 (Encryption)** | 지원 안 함 (평문) | 선택적 암호화 가능 | 지원 안 함 (일반적) | | **무결성 (Integrity)** | 기본 CRC만 사용 (오류 탐지용) | 메시지 무결성 검증 가능 | CRC/Checksum | | **물리적 접근 요구** | 낮음 (IP 네트워크 연결 시) | 중간 | 낮음 | | **주요 위협** | 패킷 위조, 도청, 재전송 공격 | 인증 우회, DoS | 릴레이 제어, 데이터 변조 |
+| 비교 항목 | LonTalk (Legacy) | BACnet/IP (Modern) | Modbus TCP (Legacy/Plugged) |
+| :--- | :--- | :--- | :--- |
+| **인증 (Authentication)** | 지원 안 함 (주소 기반 신뢰) | 부분 지원 (BACnet SC 등) | 지원 안 함 |
+| **암호화 (Encryption)** | 지원 안 함 (평문) | 선택적 암호화 가능 | 지원 안 함 (일반적) |
+| **무결성 (Integrity)** | 기본 CRC만 사용 (오류 탐지용) | 메시지 무결성 검증 가능 | CRC/Checksum |
+| **물리적 접근 요구** | 낮음 (IP 네트워크 연결 시) | 중간 | 낮음 |
+| **주요 위협** | 패킷 위조, 도청, 재전송 공격 | 인증 우회, DoS | 릴레이 제어, 데이터 변조 |
 
 ### 개념 증명(PoC) 코드 분석
 

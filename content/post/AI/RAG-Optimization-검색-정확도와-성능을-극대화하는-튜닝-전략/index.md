@@ -50,7 +50,7 @@ graph TD
     Candidate1 --> ReRanker{Cross-Encoder Re-ranking}
     ReRanker --> TopK[상위 K개 문서 선정]
     TopK --> Context[컨텍스트 프롬프트 구성]
-    Context --> LLM[(LLM 답변 생성)]
+    Context --> LLM["(LLM 답변 생성)"]
 ```
 
 이 아키텍처의 핵심은 두 가지 검색 엔진의 결과를 합쳐 후보군을 늘린 뒤(Candidate set), **Re-ranking 모델(Cross-Encoder)**을 통해 정밀도를 높이는 것입니다. 마치 보안 탐지 시스템에서 방화벽(1차 필터링)과 IDS/IPS(심분 분석)를 거치는 것과 유사한 원리입니다.
@@ -110,7 +110,8 @@ for i, doc in enumerate(docs):
 
 어떤 검색 방식을 채택할지 결정할 때, 아래의 표를 참조하여 운영 환경에 맞는 최적의 조합을 선택해야 합니다.
 
-| 검색 전략 | 원리 (Mechanism) | 장점 (Pros) | 단점 (Cons) | 추천 상황 | --- | --- | --- | --- | --- 
+| 검색 전략 | 원리 (Mechanism) | 장점 (Pros) | 단점 (Cons) | 추천 상황 |
+| --- | --- | --- | --- | --- |
 | **Vector Search** | Dense Embedding 유사도 계산 | 의미적 맥락 이해 (예: "해킹" vs "공격") | 구체적인 키워드(모델명, CVE 번호) 검색 시 약함 | 일반적인 질의 응답, 요약 
 | **Keyword Search (BM25)** | 단어 빈도 기반 정확 매칭 | 고유명사, 특정 용어 검색에 정확함 | 의미적 유의어(예: "지갑" vs "비트코인") 처리 불가 | 로그 검색, 기술 매뉴얼 탐색 
 | **Hybrid Search** | Vector + Keyword 가중 평균 | 정확도와 재현율(Recall)의 균형 | 리트리버 튜닝(Weight 설정)이 복잡함 | 대부분의 엔터프라이즈 RAG 시스템 

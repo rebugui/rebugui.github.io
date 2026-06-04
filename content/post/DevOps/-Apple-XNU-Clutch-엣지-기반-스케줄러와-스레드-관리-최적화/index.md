@@ -142,7 +142,9 @@ else:
 
 연구자나 엔지니어 관점에서 Clutch Scheduler의 동작을 이해하는 것은 성능 프로파일링에 큰 도움이 됩니다.
 
-1.  **QoS 클래스 명시적 사용**: 애플리케이션을 개발할 때, 백그라운드 작업에는 반드시 `QOS_CLASS_BACKGROUND`나 `QOS_CLASS_UTILITY`를 사용하여 Clutch가 이를 적절한 E-cores로 보내도록 유도해야 합니다. 반대로 메인 스레드 작업은 `QOS_CLASS_USER_INTERACTIVE`를 보장받아야 합니다. 2.  **스레드 우선순위 관리**: 너무 많은 스레드가 높은 우선순위를 선점하면 'Priority Inversion'이나 스레래싱(Thrashing)이 발생할 수 있습니다. Clutch 내의 Bucket 구조를 이해하고 적절한 계층을 할당해야 합니다. 3.  **모니터링 도구 활용**: `xnu`의 `sched` 명령어나 Instruments의 "System Trace"를 통해 현재 어떤 Clutch가 CPU 시간을 점유하고 있는지 확인할 수 있습니다.
+1.  **QoS 클래스 명시적 사용**: 애플리케이션을 개발할 때, 백그라운드 작업에는 반드시 `QOS_CLASS_BACKGROUND`나 `QOS_CLASS_UTILITY`를 사용하여 Clutch가 이를 적절한 E-cores로 보내도록 유도해야 합니다. 반대로 메인 스레드 작업은 `QOS_CLASS_USER_INTERACTIVE`를 보장받아야 합니다.
+2.  **스레드 우선순위 관리**: 너무 많은 스레드가 높은 우선순위를 선점하면 'Priority Inversion'이나 스레래싱(Thrashing)이 발생할 수 있습니다. Clutch 내의 Bucket 구조를 이해하고 적절한 계층을 할당해야 합니다.
+3.  **모니터링 도구 활용**: `xnu`의 `sched` 명령어나 Instruments의 "System Trace"를 통해 현재 어떤 Clutch가 CPU 시간을 점유하고 있는지 확인할 수 있습니다.
 
 ## 결론
 

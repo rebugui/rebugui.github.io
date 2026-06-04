@@ -50,7 +50,13 @@ graph TD
 
 Cord의 트리 구조가 가지는 이점을 명확히 이해하기 위해, 기존의 방식들과 기술적 특성을 비교해 보겠습니다.
 
-| 비교 항목 | Single LLM (CoT) | Linear Multi-Agent (AutoGPT 등) | Cord (Tree-based Orchestration) | | :--- | :--- | :--- | :--- | | **실행 흐름** | 선형 (Sequential) | 순차적 의존 (High Dependency) | 병렬 및 계층적 (Hierarchical) | | **확장성** | 낮음 (Context Limit) | 중간 (Loop stuck 문제) | 높음 (Sub-tree scaling) | | **오류 격리** | 어려움 (전체 재시도 필요) | 어려움 (Loop break 필요) | 용이 (Node 단위 재실행) | | **자원 효율성** | 단일 호출 | 장기 실행 지연(Latency) | 분산 병렬 처리로 최적화 | | **역할 분담** | 프롬프트 내 Role-play | 동적 Role switching | 정적/동적 Tree 구조 정의 |
+| 비교 항목 | Single LLM (CoT) | Linear Multi-Agent (AutoGPT 등) | Cord (Tree-based Orchestration) |
+| :--- | :--- | :--- | :--- |
+| **실행 흐름** | 선형 (Sequential) | 순차적 의존 (High Dependency) | 병렬 및 계층적 (Hierarchical) |
+| **확장성** | 낮음 (Context Limit) | 중간 (Loop stuck 문제) | 높음 (Sub-tree scaling) |
+| **오류 격리** | 어려움 (전체 재시도 필요) | 어려움 (Loop break 필요) | 용이 (Node 단위 재실행) |
+| **자원 효율성** | 단일 호출 | 장기 실행 지연(Latency) | 분산 병렬 처리로 최적화 |
+| **역할 분담** | 프롬프트 내 Role-play | 동적 Role switching | 정적/동적 Tree 구조 정의 |
 
 위 표에서 알 수 있듯이, Cord는 복잡한 작업을 처리함에 있어 **확장성(Scalability)**과 **효율성(Efficiency)** 측면에서 유리합니다. 특히, 자식 노드들이 서로 의존성이 없는 한 병렬로 실행될 수 있어 전체 수행 시간을 획기적으로 단축할 수 있습니다. 이는 최근 연구인 "Tree of Thoughts" 논문에서 제안한 사고의 탐색 과정을 실제 실행 시스템으로 구현한 형태와도 맥락을 같이합니다.
 

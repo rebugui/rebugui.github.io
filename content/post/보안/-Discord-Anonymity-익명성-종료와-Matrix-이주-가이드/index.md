@@ -28,15 +28,15 @@ Discord가 가진 근본적인 문제는 '중앙화(Centralization)'입니다. �
 ```mermaid
 graph LR
     subgraph Discord_Model
-        D1[User A] -->|All Data| DServer[(Discord Central Server)]
+        D1[User A] -->|All Data| DServer["(Discord Central Server)"]
         D2[User B] -->|All Data| DServer
         D3[User C] -->|All Data| DServer
     end
 
     subgraph Matrix_Model
-        M1[User A] --> MServer1[(Home Server 1)]
-        M2[User B] --> MServer2[(Home Server 2)]
-        M3[User C] --> MServer3[(Home Server 3)]
+        M1[User A] --> MServer1["(Home Server 1)"]
+        M2[User B] --> MServer2["(Home Server 2)"]
+        M3[User C] --> MServer3["(Home Server 3)"]
         MServer1 <-->|Federation Protocol| MServer2
         MServer2 <-->|Federation Protocol| MServer3
         MServer1 <-->|Federation Protocol| MServer3
@@ -55,7 +55,15 @@ Matrix의 핵심 강점은 **End-to-End Encryption (E2EE)**와 **Federation**입
 
 마이그레이션을 결정하기 위해, 두 플랫폼의 기술적 스펙을 비교해 보겠습니다.
 
-| 비교 항목 | Discord | Matrix (Synapse/Dendrite) | | :--- | :--- | :--- | | **아키텍처** | 중앙화 (Closed Source) | 탈중앙화 페더레이션 (Open Source) | | **암호화** | 전송 중 암호화 (TLS) | 전송 및 저장 암호화 (E2EE 지원) | | **데이터 주권** | Discord 소유 | 자체 서버 운영 시 완전 소유 | | **확장성** | 자동 확장 (Discord Cloud) | 수평 확장 가능 (Self-hosted) | | **봇(Bot) API** | WebSocket Gateway (Rate Limit 엄격) | Application Service (AS) (유연한 제어) | | **계정 연동** | OAuth2 제공 | OpenID Connect / Matrix SSO | | **비용** | 무료 (Nitro 구독형 부가 기능) | 서버 인프라 비용 발생 |
+| 비교 항목 | Discord | Matrix (Synapse/Dendrite) |
+| :--- | :--- | :--- |
+| **아키텍처** | 중앙화 (Closed Source) | 탈중앙화 페더레이션 (Open Source) |
+| **암호화** | 전송 중 암호화 (TLS) | 전송 및 저장 암호화 (E2EE 지원) |
+| **데이터 주권** | Discord 소유 | 자체 서버 운영 시 완전 소유 |
+| **확장성** | 자동 확장 (Discord Cloud) | 수평 확장 가능 (Self-hosted) |
+| **봇(Bot) API** | WebSocket Gateway (Rate Limit 엄격) | Application Service (AS) (유연한 제어) |
+| **계정 연동** | OAuth2 제공 | OpenID Connect / Matrix SSO |
+| **비용** | 무료 (Nitro 구독형 부가 기능) | 서버 인프라 비용 발생 |
 
 ### 4. Matrix 서버 구축 가이드 (Step-by-Step)
 

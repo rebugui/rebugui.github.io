@@ -42,7 +42,10 @@ graph LR
     H --> I[Next Token Prediction]
 ```
 
-1.  **Tokenizer**: 입력 텍스트를 정수(Integer) ID로 변환합니다. MicroGPT는 문자 수준(Character-level) 토크나이저를 주로 사용하여 복잡한 BPE(Byte Pair Encoding) 없이도 원리 파악에 집중하게 합니다. 2.  **Embedding & Positional Encoding**: 정수 ID를 고차원 벡터로 매핑하고, 순서 정보를 더해줍니다. 3.  **Transformer Block**: 핵심 연산이 수행되는 곳으로, Causal Self-Attention(Masked Self-Attention)과 Feed-Forward Network가 포함됩니다. 4.  **Output Head**: 최종 벡터를 어휘사전(Vocabulary) 크기의 로짓(Logit)으로 변환하고, 소프트맥스(Softmax)를 통해 확률 분포를 얻습니다.
+1.  **Tokenizer**: 입력 텍스트를 정수(Integer) ID로 변환합니다. MicroGPT는 문자 수준(Character-level) 토크나이저를 주로 사용하여 복잡한 BPE(Byte Pair Encoding) 없이도 원리 파악에 집중하게 합니다.
+2.  **Embedding & Positional Encoding**: 정수 ID를 고차원 벡터로 매핑하고, 순서 정보를 더해줍니다.
+3.  **Transformer Block**: 핵심 연산이 수행되는 곳으로, Causal Self-Attention(Masked Self-Attention)과 Feed-Forward Network가 포함됩니다.
+4.  **Output Head**: 최종 벡터를 어휘사전(Vocabulary) 크기의 로짓(Logit)으로 변환하고, 소프트맥스(Softmax)를 통해 확률 분포를 얻습니다.
 
 ### 코드로 보는 핵심 구조
 
@@ -131,7 +134,15 @@ class TransformerBlock(nn.Module):
 
 MicroGPT는 교육용 목적이 강하지만, 실제 상용 LLM과 구조적으로 어떤 차이가 있는지 이해하는 것이 중요합니다. 스케일(Scale)의 차이일 뿐, 근본적인 수학적 원리는 동일합니다.
 
-| 비교 항목 | MicroGPT (Minimal) | Production LLM (e.g., GPT-4, Llama 3) | | :--- | :--- | :--- | | **파라미터 수** | ~10K ~ 100K (수만 개) | ~7B ~ 1T+ (수십~수천억 개) | | **토크나이저** | Character-level (단순) | BPE/Byte-level (고효율) | | **아키텍처** | 단일 블록 또는 소수의 블록 | 수십~수백 개의 트랜스포머 블록 | | **정규화 위치** | Pre-Norm (기본) | Pre-Norm (Deep 네트워크 필수) | | **주요 용도** | 알고리즘 학습 및 디버깅 | 복잡한 추론, 멀티턴 대화 | | **학습 데이터** | names.txt (32k names) | 테라바이트 규모의 텍스트/코드 | | **위치 인코딩** | 학습 가능한 절대 위치 인코딩 | RoPE (Rotary Positional Embedding) 등 |
+| 비교 항목 | MicroGPT (Minimal) | Production LLM (e.g., GPT-4, Llama 3) |
+| :--- | :--- | :--- |
+| **파라미터 수** | ~10K ~ 100K (수만 개) | ~7B ~ 1T+ (수십~수천억 개) |
+| **토크나이저** | Character-level (단순) | BPE/Byte-level (고효율) |
+| **아키텍처** | 단일 블록 또는 소수의 블록 | 수십~수백 개의 트랜스포머 블록 |
+| **정규화 위치** | Pre-Norm (기본) | Pre-Norm (Deep 네트워크 필수) |
+| **주요 용도** | 알고리즘 학습 및 디버깅 | 복잡한 추론, 멀티턴 대화 |
+| **학습 데이터** | names.txt (32k names) | 테라바이트 규모의 텍스트/코드 |
+| **위치 인코딩** | 학습 가능한 절대 위치 인코딩 | RoPE (Rotary Positional Embedding) 등 |
 
 ### Step-by-Step 학습 및 추론 가이드
 

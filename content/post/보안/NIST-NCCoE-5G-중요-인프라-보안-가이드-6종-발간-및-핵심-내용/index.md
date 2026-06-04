@@ -87,7 +87,14 @@ else:
 
 NIST NCCoE가 발간한 6종의 가이드는 각기 다른 레이어(Layer)의 위협을 다룹니다. 이를 기존 보안 대응 방식과 비교하여 정리하면 다음과 같습니다.
 
-| 가이드 라인 분야 | 주요 취약점 (Threat) | 기존 대응 방식 (Legacy) | NIST 제안 방안 (5G Security) | | :--- | :--- | :--- | :--- | | **Device Identity & Authenticator** | 불법 단말기 도입, SIM 클로닝 | 단순 암호키 인증 (Pre-shared Key) | 하드웨어 기반 원격 증명, 디지털 인증서 기반 ID 관리 | | **Device Integrity Monitoring** | 루팅/탈옥, 펌웨어 변조 | 주기적인 안티바이러스 스캔 | 부팅 시점부터의 연속적 무결성 측정 (RIM) | | **Network Slice Isolation** | 슬라이스 간 트래픽 누출, 횡적 이동 (Lateral Movement) | VLAN 기반 물리적 분리 | 가상화 기반 논리적 격리, 슬라이스별 보안 정책 자동화 | | **Visibility & Orchestration** | 보이지 않는 트래픽 (Blind Spot), 설정 오류 | 수동 로그 분석 | AI 기반 트래픽 시각화, 정책 자화 기반 오류 방지 | | **Edge Computing Security** | 에지 서버 물리적 접근, API 공격 | 데이터 센터 보안 정책 적용 | MEC(Multi-access Edge Compute)용 하드웨어 보안 모듈 강화 | | **Interoperability** | 이기종 장비 간 보안 프로토콜 불일치 | 벤더 종속적 보안 솔루션 | 개방형 표준(Open RAN 등) 기반 상호운용성 보안 인증 |
+| 가이드 라인 분야 | 주요 취약점 (Threat) | 기존 대응 방식 (Legacy) | NIST 제안 방안 (5G Security) |
+| :--- | :--- | :--- | :--- |
+| **Device Identity & Authenticator** | 불법 단말기 도입, SIM 클로닝 | 단순 암호키 인증 (Pre-shared Key) | 하드웨어 기반 원격 증명, 디지털 인증서 기반 ID 관리 |
+| **Device Integrity Monitoring** | 루팅/탈옥, 펌웨어 변조 | 주기적인 안티바이러스 스캔 | 부팅 시점부터의 연속적 무결성 측정 (RIM) |
+| **Network Slice Isolation** | 슬라이스 간 트래픽 누출, 횡적 이동 (Lateral Movement) | VLAN 기반 물리적 분리 | 가상화 기반 논리적 격리, 슬라이스별 보안 정책 자동화 |
+| **Visibility & Orchestration** | 보이지 않는 트래픽 (Blind Spot), 설정 오류 | 수동 로그 분석 | AI 기반 트래픽 시각화, 정책 자화 기반 오류 방지 |
+| **Edge Computing Security** | 에지 서버 물리적 접근, API 공격 | 데이터 센터 보안 정책 적용 | MEC(Multi-access Edge Compute)용 하드웨어 보안 모듈 강화 |
+| **Interoperability** | 이기종 장비 간 보안 프로토콜 불일치 | 벤더 종속적 보안 솔루션 | 개방형 표준(Open RAN 등) 기반 상호운용성 보안 인증 |
 
 ### 실무 적용을 위한 단계별 가이드
 

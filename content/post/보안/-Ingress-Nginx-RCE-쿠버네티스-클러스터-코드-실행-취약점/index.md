@@ -39,7 +39,7 @@ Ingress-Nginx 컨트롤러의 핵심 기능은 `Ingress` 리소스를 감시하�
 ```mermaid
 graph LR
     subgraph "Attacker Workspace"
-        A[Attacker] -->|Generate Malicious YAML| B[K8s User Account<br/>(Dev Privileges)]
+        A[Attacker] -->|Generate Malicious YAML| B["K8s User Account<br/>(Dev Privileges)"]
     end
 
     subgraph "Kubernetes Cluster"

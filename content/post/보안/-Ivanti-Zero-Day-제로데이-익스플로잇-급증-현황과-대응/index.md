@@ -40,7 +40,12 @@ graph LR
 
 다음은 실제 현장에서 탐지해야 할 주요 IoC(Indicators of Compromise) 비교표입니다.
 
-| 구분 | 정상 트래픽 | 의심스러운 활동 (익스플로잇 징후) | | :--- | :--- | :--- | | **User-Agent** | Mozilla/5.0 (일반 브라우저) | python-requests/2.x, 특수하게 조작된 문자열 | | **요청 URI** | /dana-na/auth/, /dana-cached/ | /api/v1/..., /cgi-bin/, /por/login_config.lua 등 비정상적 경로 | | **응답 크기** | 가변적 (보통 10KB 이상) | 매우 작음 (200 Byte 미만) 또는 고정된 패턴 | | **요청 시간** | 업무 시간 대集中 | 불규칙적이거나 새벽 시간대 다수 발생 |
+| 구분 | 정상 트래픽 | 의심스러운 활동 (익스플로잇 징후) |
+| :--- | :--- | :--- |
+| **User-Agent** | Mozilla/5.0 (일반 브라우저) | python-requests/2.x, 특수하게 조작된 문자열 |
+| **요청 URI** | /dana-na/auth/, /dana-cached/ | /api/v1/..., /cgi-bin/, /por/login_config.lua 등 비정상적 경로 |
+| **응답 크기** | 가변적 (보통 10KB 이상) | 매우 작음 (200 Byte 미만) 또는 고정된 패턴 |
+| **요청 시간** | 업무 시간 대集中 | 불규칙적이거나 새벽 시간대 다수 발생 |
 
 ### 실무 대응: 로그 분석 자동화 스크립트
 

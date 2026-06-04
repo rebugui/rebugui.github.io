@@ -46,7 +46,12 @@ graph TD
 
 PQC는 양자컴퓨터의 공격에도 안전한 암호 알고리즘이다. 2024년 NIST가 최종 표준화한 주요 알고리즘은 다음과 같다:
 
-| 알고리즘 | 유형 | 용도 | 키 크기 (공개키) | NIST 표준명 | | :--- | :--- | :--- | :--- | :--- | | CRYSTALS-Kyber | 격자 기반 (Lattice) | 키 교환/KEM | 1,188 bytes | ML-KEM-768 | | CRYSTALS-Dilithium | 격자 기반 (Lattice) | 디지털 서명 | 1,952 bytes | ML-DSA-65 | | SPHINCS+ | 해시 기반 | 디지털 서명 | 32 bytes | SLH-DSA | | FALCON | 격자 기반 (NTRU) | 디지털 서명 | 897 bytes | fn-DSA |
+| 알고리즘 | 유형 | 용도 | 키 크기 (공개키) | NIST 표준명 |
+| :--- | :--- | :--- | :--- | :--- |
+| CRYSTALS-Kyber | 격자 기반 (Lattice) | 키 교환/KEM | 1,188 bytes | ML-KEM-768 |
+| CRYSTALS-Dilithium | 격자 기반 (Lattice) | 디지털 서명 | 1,952 bytes | ML-DSA-65 |
+| SPHINCS+ | 해시 기반 | 디지털 서명 | 32 bytes | SLH-DSA |
+| FALCON | 격자 기반 (NTRU) | 디지털 서명 | 897 bytes | fn-DSA |
 
 **격자 기반 암호(Lattice-based Cryptography)**의 핵심 원리는 다음과 같다:
 
@@ -419,7 +424,13 @@ graph TD
 
 ### 6. 성능 고려사항
 
-| 연산 | RSA-2048 | ECDSA P-256 | ML-KEM-768 | ML-DSA-65 | | :--- | :--- | :--- | :--- | :--- | | 키 생성 | ~50ms | ~5ms | ~1ms | ~0.5ms | | 암호화/서명 | ~10ms | ~5ms | ~0.5ms | ~3ms | | 복호화/검증 | ~1ms | ~10ms | ~0.5ms | ~1ms | | 공개키 크기 | 256 bytes | 64 bytes | 1,188 bytes | 1,952 bytes | | 서명 크기 | 256 bytes | 64 bytes | N/A | 3,293 bytes |
+| 연산 | RSA-2048 | ECDSA P-256 | ML-KEM-768 | ML-DSA-65 |
+| :--- | :--- | :--- | :--- | :--- |
+| 키 생성 | ~50ms | ~5ms | ~1ms | ~0.5ms |
+| 암호화/서명 | ~10ms | ~5ms | ~0.5ms | ~3ms |
+| 복호화/검증 | ~1ms | ~10ms | ~0.5ms | ~1ms |
+| 공개키 크기 | 256 bytes | 64 bytes | 1,188 bytes | 1,952 bytes |
+| 서명 크기 | 256 bytes | 64 bytes | N/A | 3,293 bytes |
 
 PQC는 키와 서명 크기가 크지만, 연산 속도는 오히려 기존 알고리즘보다 빠른 경우가 많다. 네트워크 대역폭이 제한적인 모바일 환경에서는 이를 고려해야 한다.
 

@@ -49,7 +49,8 @@ graph LR
 
 텍스트는 이산적(Discrete) 데이터이기 때문에, 이미지 생성의 디퓨전처럼 연속적인 가우시안 노이즈를 더하는 것은 직관적이지 않습니다. Mercury 2는 이 문제를 해결하기 위해 다음과 같은 전략을 취합니다.
 
-1.  **Logit Space Diffusion**: 원핫 인코딩(One-hot encoding)이나 토큰 ID가 아닌, 모델의 최종 Logit 출력에 노이즈를 주입하는 방식입니다. 혹은 임베딩 레이어의 연속적인 벡터값에 직접 노이즈를 추가하는 Embedding Space Diffusion을 사용할 수 있습니다. 2.  **Refinement Steps**: 생성 과정은 사전 정의된 스텝 수(예: 10~50회) 동안 반복됩니다. AR 모델이 토큰 수만큼의 스텝이 필요하다면, 디퓨전 모델은 상대적으로 적은 횟수의 전역적인 업데이트로 문장을 완성합니다.
+1.  **Logit Space Diffusion**: 원핫 인코딩(One-hot encoding)이나 토큰 ID가 아닌, 모델의 최종 Logit 출력에 노이즈를 주입하는 방식입니다. 혹은 임베딩 레이어의 연속적인 벡터값에 직접 노이즈를 추가하는 Embedding Space Diffusion을 사용할 수 있습니다.
+2.  **Refinement Steps**: 생성 과정은 사전 정의된 스텝 수(예: 10~50회) 동안 반복됩니다. AR 모델이 토큰 수만큼의 스텝이 필요하다면, 디퓨전 모델은 상대적으로 적은 횟수의 전역적인 업데이트로 문장을 완성합니다.
 
 다음은 PyTorch 스타일의 의사코드(Pseudo-code)로, AR 모델과 Diffusion 모델의 추론 루프 차이를 비교한 것입니다.
 
@@ -101,13 +102,22 @@ def diffusion_generate(model, prompt_embedding, num_steps):
 
 기존 AR 모델과 Mercury 2와 같은 Diffusion LLM을 비교했을 때, 특히 긴 Context와 긴 답변을 생성해야 하는 시나리오에서 큰 차이가 납니다.
 
-| 비교 항목 | Auto-regressive LLM (GPT-4o, Claude 3.5 등) | Mercury 2 (Diffusion LLM) | | :--- | :--- | :--- | | **추론 패턴** | Sequential (Token-by-Token) | Iterative Refinement (Parallel) | | **Latency 특성** | 생성 길이에 비례하여 선형적 증가 | 생성 길이와 무관하게 상수적(Constant)에 가까움 | | **Throughput** | 긴 시퀀스 생성 시 낮음 | 높음 (전체 배치를 한 번에 처리) | | **품질(Reasoning)** | 높은 수준의 CoT(Chain-of-Thought) 구현 가능 | 전체 문맥을 동시에 고려하여 논리적 일관성 우수 | | **주요 사용 Case** | 일반적인 챗봇, 코드 생성 | 실시간 시스템, 초고속 요약, 동시 다발적 생성 |
+| 비교 항목 | Auto-regressive LLM (GPT-4o, Claude 3.5 등) | Mercury 2 (Diffusion LLM) |
+| :--- | :--- | :--- |
+| **추론 패턴** | Sequential (Token-by-Token) | Iterative Refinement (Parallel) |
+| **Latency 특성** | 생성 길이에 비례하여 선형적 증가 | 생성 길이와 무관하게 상수적(Constant)에 가까움 |
+| **Throughput** | 긴 시퀀스 생성 시 낮음 | 높음 (전체 배치를 한 번에 처리) |
+| **품질(Reasoning)** | 높은 수준의 CoT(Chain-of-Thought) 구현 가능 | 전체 문맥을 동시에 고려하여 논리적 일관성 우수 |
+| **주요 사용 Case** | 일반적인 챗봇, 코드 생성 | 실시간 시스템, 초고속 요약, 동시 다발적 생성 |
 
 ### 5. Step-by-Step: Mercury 2 도입 가이드
 
 만약 여러분의 서비스에 Mercury 2나 유사한 Diffusion LLM을 도입하고자 한다면 다음의 단계를 고려해야 합니다.
 
-1.  **워크로드 분석 (Workload Analysis)**:     *   생성해야 하는 텍스트의 평균 길이가 500토큰 이상인가요?     *   사용자가 첫 번째 토큰(Time to First Token, TTFT)보다는 전체 완성 시간(Total Generation Time)에 민감한가요? 만약 그렇다면 Diffusion 모델이 적합합니다. 2.  **서빙 최적화 (Serving Optimization)**:     *   디퓨전 모델은 각 스텝에서 전체 시퀀스에 대한 KV Cache를 갱신하거나, 아니면 아예 KV Cache 방식이 다를 수 있습니다. Inception Labs의 추론 엔진이 제공하는 베스트 프랙티스를 따르되, GPU 메모리 사용량이 급격히 증가할 수 있으니 배치 사이즈(Batch Size) 조절에 유의해야 합니다. 3.  **스케줄러 튜닝 (Scheduler Tuning)**:     *   디퓨전의 품질과 속도는 '스케줄러(Scheduler)'가 결정합니다. 더 적은 스텝(예: 10단계)으로 빠르게 생성할 것인지, 더 많은 스텝(예: 50단계)을 거쳐 정교한 답변을 얻을 것인지 서비스 SLA에 맞춰 조절하세요. 4.  **프롬프트 엔지니어링**:     *   AR 모델은 "Think step by step"이라는 프롬프트가 추론 과정을 길게 늘려 성능을 높이는 데 도움을 줍니다. 하지만 Diffusion 모델은 이미 전체적인 맥락을 파악하므로, 너무 긴 프롬프트보다는 핵심적인 제약 조건(Constraints)을 명시하는 것이 더 효과적일 수 있습니다.
+1.  **워크로드 분석 (Workload Analysis)**:     *   생성해야 하는 텍스트의 평균 길이가 500토큰 이상인가요?     *   사용자가 첫 번째 토큰(Time to First Token, TTFT)보다는 전체 완성 시간(Total Generation Time)에 민감한가요? 만약 그렇다면 Diffusion 모델이 적합합니다.
+2.  **서빙 최적화 (Serving Optimization)**:     *   디퓨전 모델은 각 스텝에서 전체 시퀀스에 대한 KV Cache를 갱신하거나, 아니면 아예 KV Cache 방식이 다를 수 있습니다. Inception Labs의 추론 엔진이 제공하는 베스트 프랙티스를 따르되, GPU 메모리 사용량이 급격히 증가할 수 있으니 배치 사이즈(Batch Size) 조절에 유의해야 합니다.
+3.  **스케줄러 튜닝 (Scheduler Tuning)**:     *   디퓨전의 품질과 속도는 '스케줄러(Scheduler)'가 결정합니다. 더 적은 스텝(예: 10단계)으로 빠르게 생성할 것인지, 더 많은 스텝(예: 50단계)을 거쳐 정교한 답변을 얻을 것인지 서비스 SLA에 맞춰 조절하세요.
+4.  **프롬프트 엔지니어링**:     *   AR 모델은 "Think step by step"이라는 프롬프트가 추론 과정을 길게 늘려 성능을 높이는 데 도움을 줍니다. 하지만 Diffusion 모델은 이미 전체적인 맥락을 파악하므로, 너무 긴 프롬프트보다는 핵심적인 제약 조건(Constraints)을 명시하는 것이 더 효과적일 수 있습니다.
 
 ## 결론
 

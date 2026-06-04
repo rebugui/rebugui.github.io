@@ -48,7 +48,12 @@ graph LR
 
 이 다이어그램에서 볼 수 있듯이, 공격자는 LLM을 인간 언어로 구성된 '프록시(Proxy)'로 악용하여 방화벽 뒤에 있는 내부 리소스에 접근합니다. 이를 방어하기 위해서는 우선 기존 웹 보안과 AI 보안의 차이를 명확히 이해해야 합니다.
 
-| 비교 항목 | 기존 웹 보안 (Web Security) | AI 보안 (LLM Security) | | :--- | :--- | :--- | | **입력 형태** | 구조화된 데이터 (SQL, JSON, URL Param) | 비구조화된 자연어 (Natural Language) | | **공격 벡터** | SQLi, XSS, CSRF 등 문법적 오류 유도 | Prompt Injection, Jailbreak, Semantic 의미 조작 | | **탐지 난이도** | 패턴 매칭, 시그니처 기반 비교적 용이 | 의도(Intent) 파악 필요하여 탐지 매우 어려움 | | **실행 환경** | 명시적인 코드 실행 경로 | 확률적 생성 (Probabilistic Generation) |
+| 비교 항목 | 기존 웹 보안 (Web Security) | AI 보안 (LLM Security) |
+| :--- | :--- | :--- |
+| **입력 형태** | 구조화된 데이터 (SQL, JSON, URL Param) | 비구조화된 자연어 (Natural Language) |
+| **공격 벡터** | SQLi, XSS, CSRF 등 문법적 오류 유도 | Prompt Injection, Jailbreak, Semantic 의미 조작 |
+| **탐지 난이도** | 패턴 매칭, 시그니처 기반 비교적 용이 | 의도(Intent) 파악 필요하여 탐지 매우 어려움 |
+| **실행 환경** | 명시적인 코드 실행 경로 | 확률적 생성 (Probabilistic Generation) |
 
 ### 공격 시나리오 및 PoC (Proof of Concept)
 

@@ -52,7 +52,13 @@ ANE 하드웨어 내부는 Neural Engine Controller, several Neural Engines, and
 
 기존 CoreML 방식 대비 직접 제어 방식의 차이점은 다음과 같습니다.
 
-| 비교 항목 | CoreML (Standard) | _aneclient (Direct) | | :--- | :--- | :--- | | **추상화 계층** | 높음 (High-level) | 낮음 (Low-level / Metal) | | **컴파일러** | CoreML Compiler (Black-box) | 사용자 정의 바이너리 생성 | | **연산자 제어** | 제한적 (제공되는 Op에 의존) | 매우 높음 (ISA 수준 제어 가능) | | **디버깅 난이도** | 낮음 (Xcode 지원) | 매우 높음 (Crash 분석 필요) | | **성능 최적화** | 자동 최적화 의존 | 수동 최적화로 극한 달성 가능 |
+| 비교 항목 | CoreML (Standard) | _aneclient (Direct) |
+| :--- | :--- | :--- |
+| **추상화 계층** | 높음 (High-level) | 낮음 (Low-level / Metal) |
+| **컴파일러** | CoreML Compiler (Black-box) | 사용자 정의 바이너리 생성 |
+| **연산자 제어** | 제한적 (제공되는 Op에 의존) | 매우 높음 (ISA 수준 제어 가능) |
+| **디버깅 난이도** | 낮음 (Xcode 지원) | 매우 높음 (Crash 분석 필요) |
+| **성능 최적화** | 자동 최적화 의존 | 수동 최적화로 극한 달성 가능 |
 
 ### Step-by-Step: 모델 직접 실행하기
 

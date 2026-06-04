@@ -41,7 +41,14 @@ graph LR
 
 기존의 방식과 Llm9p 방식을 비교하면, 왜 이 접근 방식이 획기적인지 명확해집니다. 특히 MLOps나 파이프라인 구축 시 표준 도구와의 호환성은 엄청난 생산성 향상을 가져옵니다.
 
-| 비교 항목 | 기존 REST API (OpenAI 등) | Llm9p (File System) | | :--- | :--- | :--- | | **인터페이스** | HTTP Endpoint / JSON | 파일 경로 / I/O syscall | | **클라이언트 라이브러리** | Python SDK, Node.js 등 필요 | 별도 라이브러리 불필요 (os 모듈 등) | | **도구 통합** | curl, Postman (전문 도구 필요) | cat, echo, grep, tail (기본 Unix 도구) | | **스트리밍 처리** | SSE (Server-Sent Events) 구현 필요 | 파일 읽기 버퍼링으로 자동 해결 | | **권한 관리** | 별도의 API Key 시스템 | OS 파일 시스템 권한 (chmod, chown) | | **운영 모니터링** | 별도 메트릭 서비스 필요 | `ls -l`, `stat` 등으로 파일 상태 확인 |
+| 비교 항목 | 기존 REST API (OpenAI 등) | Llm9p (File System) |
+| :--- | :--- | :--- |
+| **인터페이스** | HTTP Endpoint / JSON | 파일 경로 / I/O syscall |
+| **클라이언트 라이브러리** | Python SDK, Node.js 등 필요 | 별도 라이브러리 불필요 (os 모듈 등) |
+| **도구 통합** | curl, Postman (전문 도구 필요) | cat, echo, grep, tail (기본 Unix 도구) |
+| **스트리밍 처리** | SSE (Server-Sent Events) 구현 필요 | 파일 읽기 버퍼링으로 자동 해결 |
+| **권한 관리** | 별도의 API Key 시스템 | OS 파일 시스템 권한 (chmod, chown) |
+| **운영 모니터링** | 별도 메트릭 서비스 필요 | `ls -l`, `stat` 등으로 파일 상태 확인 |
 
 ### 구현 및 사용 가이드
 

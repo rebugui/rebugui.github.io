@@ -90,7 +90,13 @@ print(summarize_document("Q3 Report", malicious_pdf_content))
 
 이 문제를 해결하기 위해서는 AI 모델 훈련에 의존하는 것만으로는 부족합니다. 전통적인 보안 기술인 샌드박싱, 파싱, 권한 분리가 AI 시스템에 적용되어야 합니다.
 
-| 비교 항목 | AI Safety (Anthropic 중심) | Cybersecurity (Infra 중심) | | :--- | :--- | :--- | | **주요 관심사** | 모델의 출력 품질 및 유해성 방지 | 시스템 무결성, 기밀성, 가용성 | | **주요 위협** | Jailbreak, 유해 콘텐츠 생성 | Prompt Injection, Data Exfiltration, API Abuse | | **완화 기술** | RLHF, Constitutional AI, Safety Filters | Input Sanitization, Sandboxing, Rate Limiting, RBAC | | **공격 지점** | 프롬프트 입력 (User Prompt) | 불신할 수 있는 데이터 스트림 (Web, Email, File) | | **책임 소재** | 모델 제공사 (Vendor) | 서비스 구축자 (Developer/DevOps) |
+| 비교 항목 | AI Safety (Anthropic 중심) | Cybersecurity (Infra 중심) |
+| :--- | :--- | :--- |
+| **주요 관심사** | 모델의 출력 품질 및 유해성 방지 | 시스템 무결성, 기밀성, 가용성 |
+| **주요 위협** | Jailbreak, 유해 콘텐츠 생성 | Prompt Injection, Data Exfiltration, API Abuse |
+| **완화 기술** | RLHF, Constitutional AI, Safety Filters | Input Sanitization, Sandboxing, Rate Limiting, RBAC |
+| **공격 지점** | 프롬프트 입력 (User Prompt) | 불신할 수 있는 데이터 스트림 (Web, Email, File) |
+| **책임 소재** | 모델 제공사 (Vendor) | 서비스 구축자 (Developer/DevOps) |
 
 ### 실무 적용 가이드: 방어 전략 수립
 

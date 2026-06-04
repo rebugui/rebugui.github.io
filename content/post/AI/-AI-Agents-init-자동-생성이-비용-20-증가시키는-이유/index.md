@@ -51,7 +51,13 @@ graph TD
 
 실제 벤치마킹에 따르면, 전체 코드베이스를 문서화하여 Context에 포함시키는 방식(A)과 핵심 아키텍처와 추상화된 규칙만 포함하는 방식(B) 사이에는 명확한 차이가 있습니다.
 
-| 비교 항목 | /init 자동 생성 방식 (All-in-One) | 추상화된 지식 제공 방식 (Abstracted) | | :--- | :--- | :--- | | **Context Token 수** | 매우 높음 (평균 8k~12k tokens) | 낮음 (평균 1k~2k tokens) | | **비용 (Cost)** | 높음 (기준 대비 +20%~30%) | 낮음 (기준 대비 -10%) | | **정확도 (Accuracy)** | 중간~하위 (Noise로 인한 오답 증가) | 높음 (Focused Attention) | | **유지보수** | 어려움 (코드 변경 시마다 /init 재실행 필요) | 쉬움 (고수준 설계는 잘 변하지 않음) | | **주요 실패 원인** | Context Window 초과, Hallucination | 정보 부족 (의도적으로 RAG로 해결) |
+| 비교 항목 | /init 자동 생성 방식 (All-in-One) | 추상화된 지식 제공 방식 (Abstracted) |
+| :--- | :--- | :--- |
+| **Context Token 수** | 매우 높음 (평균 8k~12k tokens) | 낮음 (평균 1k~2k tokens) |
+| **비용 (Cost)** | 높음 (기준 대비 +20%~30%) | 낮음 (기준 대비 -10%) |
+| **정확도 (Accuracy)** | 중간~하위 (Noise로 인한 오답 증가) | 높음 (Focused Attention) |
+| **유지보수** | 어려움 (코드 변경 시마다 /init 재실행 필요) | 쉬움 (고수준 설계는 잘 변하지 않음) |
+| **주요 실패 원인** | Context Window 초과, Hallucination | 정보 부족 (의도적으로 RAG로 해결) |
 
 ### Step-by-Step 가이드: 효율적인 Context 구성 방법
 

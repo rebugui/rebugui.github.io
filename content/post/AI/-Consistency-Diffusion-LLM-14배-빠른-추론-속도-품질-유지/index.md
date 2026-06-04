@@ -56,7 +56,13 @@ $$ f_{\theta}(x_{t_1}, t_1) \approx f_{\theta}(x_{t_2}, t_2) $$
 
 Consistency Diffusion Language Models가 제공하는 성능 향상은 단순한 벤치마크 수치를 넘어 MLOps 관점에서 큰 의미를 갖습니다. 아래 표는 기존 방식과의 주요 지표를 비교한 것입니다.
 
-| 비교 항목 | 기존 Diffusion LLM | Autoregressive (GPT류) | Consistency Diffusion LLM | | :--- | :--- | :--- | :--- | | 추론 스텝 (Steps) | 100 ~ 1000+ | Token 개수에 비례 | **2 ~ 4** | | 추론 속도 (Inference Speed) | 매우 느림 (High Latency) | 빠름 | **매우 빠름 (최대 14x 향상)** | | 생성 품질 (Quality) | 높음 (Global coherence) | 중간 ~ 높음 | **높음 (Diffusion 대비 유지)** | | 제어 가능성 (Controllability) | 우수함 | 제한적 (Prompt에 의존) | **우수함** | | 병렬 처리 (Parallelism) | 가능 (Step 별) | 불가능 (Sequential) | **가능** |
+| 비교 항목 | 기존 Diffusion LLM | Autoregressive (GPT류) | Consistency Diffusion LLM |
+| :--- | :--- | :--- | :--- |
+| 추론 스텝 (Steps) | 100 ~ 1000+ | Token 개수에 비례 | **2 ~ 4** |
+| 추론 속도 (Inference Speed) | 매우 느림 (High Latency) | 빠름 | **매우 빠름 (최대 14x 향상)** |
+| 생성 품질 (Quality) | 높음 (Global coherence) | 중간 ~ 높음 | **높음 (Diffusion 대비 유지)** |
+| 제어 가능성 (Controllability) | 우수함 | 제한적 (Prompt에 의존) | **우수함** |
+| 병렬 처리 (Parallelism) | 가능 (Step 별) | 불가능 (Sequential) | **가능** |
 
 기존 Autoregressive 모델은 토큰을 하나씩 생성해야 하므로 KV Cache 등의 기술로 최적화하더라도 생성 길이가 길어지면 지연 시간이 선형적으로 증가합니다. 반면, Consistency Diffusion은 적은 횟수의 스텝으로 전체 시퀀스를 병렬적으로 생성하거나 매우 빠르게 디노이징하므로, 긴 텍스트를 생성할수록 그 효율성이 극대화됩니다.
 
@@ -121,7 +127,10 @@ class ConsistencyLanguageModel:
 
 기존 서비스나 연구 환경에 이를 적용하기 위한 단계별 가이드는 다음과 같습니다.
 
-1.  **베이스 모델 선정**: 사전 학습된 Diffusion 기반 언어 모델(예: SSD-LM 등)을 선택합니다. 2.  **Consistency Distillation 수행**: 대규모 데이터셋에 대해 Consistency Training을 진행합니다. 이 단계에서 Teacher 모델의 지식이 Student 모델로 압축됩니다. (Together AI 등에서 이미 사전 학습된 가중치를 제공하는 경우 이 단계는 생략 가능합니다.) 3.  **추론 최적화**: KV Cache 삭제, FP16/INT8 양자화 등의 기법과 결합하여 메모리 사용량을 최소화합니다. 4.  **배포 및 테스트**: 생성 품질(Perplexity, BLEU, Human Eval)과 추론 속도(Tokens per Second)를 동시에 측정하여 Trade-off를 검증합니다.
+1.  **베이스 모델 선정**: 사전 학습된 Diffusion 기반 언어 모델(예: SSD-LM 등)을 선택합니다.
+2.  **Consistency Distillation 수행**: 대규모 데이터셋에 대해 Consistency Training을 진행합니다. 이 단계에서 Teacher 모델의 지식이 Student 모델로 압축됩니다. (Together AI 등에서 이미 사전 학습된 가중치를 제공하는 경우 이 단계는 생략 가능합니다.)
+3.  **추론 최적화**: KV Cache 삭제, FP16/INT8 양자화 등의 기법과 결합하여 메모리 사용량을 최소화합니다.
+4.  **배포 및 테스트**: 생성 품질(Perplexity, BLEU, Human Eval)과 추론 속도(Tokens per Second)를 동시에 측정하여 Trade-off를 검증합니다.
 
 ## 결론
 

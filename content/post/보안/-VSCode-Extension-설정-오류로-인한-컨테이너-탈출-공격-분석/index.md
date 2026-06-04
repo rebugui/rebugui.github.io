@@ -63,7 +63,12 @@ graph LR
 
 모든 Extension이 같은 위험 수준을 갖는 것은 아닙니다. Extension이 로컬(Local)에서 실행되는지, 원격(Remote/Workspace)에서 실행되는지에 따라 격리 수준이 달라집니다. 다음은 이에 대한 비교표입니다.
 
-| 비교 항목 | UI-Only Extension (Local) | Workspace Extension (Remote) | Misconfigured (Mixed) | | :--- | :--- | :--- | :--- | | **실행 위치** | 호스트 머신 (Host UI) | 컨테이너 / 원격 서버 | 로컬 및 원격 혼재 | | **파일 시스템 접근** | 호스트 전체 접근 가능 | 컨테이너 내부로 제한됨 | 설정에 따라 호스트 접근 가능 | | **주요 위험 요소** | Extension 자체가 악성일 경우 | 원격 코드 실행(RCE) | **격리 파괴(Escape)** | | **신뢰 경계** | Extension 개발자를 신뢰해야 함 | 호스트가 Extension을 신뢰해야 함 | **양방향 신뢰 필요** |
+| 비교 항목 | UI-Only Extension (Local) | Workspace Extension (Remote) | Misconfigured (Mixed) |
+| :--- | :--- | :--- | :--- |
+| **실행 위치** | 호스트 머신 (Host UI) | 컨테이너 / 원격 서버 | 로컬 및 원격 혼재 |
+| **파일 시스템 접근** | 호스트 전체 접근 가능 | 컨테이너 내부로 제한됨 | 설정에 따라 호스트 접근 가능 |
+| **주요 위험 요소** | Extension 자체가 악성일 경우 | 원격 코드 실행(RCE) | **격리 파괴(Escape)** |
+| **신뢰 경계** | Extension 개발자를 신뢰해야 함 | 호스트가 Extension을 신뢰해야 함 | **양방향 신뢰 필요** |
 
 ### 5. 실무 보안 가이드: 방어 및 완화 전략
 

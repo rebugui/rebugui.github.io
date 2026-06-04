@@ -40,7 +40,14 @@ graph TD
 
 기존 범용 Linux 배포판과 Lightwhale의 차이점은 명확합니다. 특히 컨테이너 오케스트레이션 관점에서 Lightwhale이 제공하는 이점은 단순한 편리함을 넘어 운영 안정성에 기여합니다.
 
-| 비교 항목 | 기존 Linux (Ubuntu/CentOS) | Lightwhale | | :--- | :--- | :--- | | **시스템 파일 시스템** | 읽기/쓰기 가능 (RW) | 읽기 전용 (Immutable Core) | | **Docker 설치** | 별도 설치 및 설정 필요 | 부팅 즉시 Docker Engine 기본 내장 | | **설정 관리 방식** | /etc 직접 수정, Ansible 등으로 관리 | 파티션 분리 및 외부 Config Mount 권장 | | **OS 업데이트** | 패키지 매니저로 부분 업데이트 (드리프트 위험) | 전체 ISO 스왑 (Atomic Update) | | **복잡도** | OS 관리 + App 관리 이중 부담 | App 관리(컨테이너)에만 집중 | | **보안성** | 라이브러리 충돌 가능성, 의존성 취약점 | 최소한의 Surface Area, 불변으로 인한 무결성 |
+| 비교 항목 | 기존 Linux (Ubuntu/CentOS) | Lightwhale |
+| :--- | :--- | :--- |
+| **시스템 파일 시스템** | 읽기/쓰기 가능 (RW) | 읽기 전용 (Immutable Core) |
+| **Docker 설치** | 별도 설치 및 설정 필요 | 부팅 즉시 Docker Engine 기본 내장 |
+| **설정 관리 방식** | /etc 직접 수정, Ansible 등으로 관리 | 파티션 분리 및 외부 Config Mount 권장 |
+| **OS 업데이트** | 패키지 매니저로 부분 업데이트 (드리프트 위험) | 전체 ISO 스왑 (Atomic Update) |
+| **복잡도** | OS 관리 + App 관리 이중 부담 | App 관리(컨테이너)에만 집중 |
+| **보안성** | 라이브러리 충돌 가능성, 의존성 취약점 | 최소한의 Surface Area, 불변으로 인한 무결성 |
 
 ### 실무 적용 가이드: Lightwhale로 서비스 구축하기
 

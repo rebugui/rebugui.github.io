@@ -57,7 +57,9 @@ graph TD
 
 LiteBox는 **Rust**로 작성되었습니다. 이는 단순한 언어 선택이 아니라 보안의 핵심 요소입니다. C/C++로 작성된 기존 커널이나 Hypervisor 코드는 메모리 안전성 취약점(Buffer Overflow, Use-after-free 등)에 취약합니다. LiteBox는 Rust의 소유권(Ownership) 및 차용(Borrowing) 시스템을 통해 이러한 메모리 관련 버그를 컴파일 타임에 원천 봉쇄합니다.
 
-LiteBox는 두 가지 모드를 지원합니다. 1.  **Seccomp Mode (User Mode):** Linux의 `seccomp` 필터를 활용하여 시스템 콜을 제한합니다. 2.  **Hyper-V Mode (Kernel Mode):** Hypervisor 위에서 직접 실행되어 하드웨어 수준의 격리를 제공합니다.
+LiteBox는 두 가지 모드를 지원합니다.
+1.  **Seccomp Mode (User Mode):** Linux의 `seccomp` 필터를 활용하여 시스템 콜을 제한합니다.
+2.  **Hyper-V Mode (Kernel Mode):** Hypervisor 위에서 직접 실행되어 하드웨어 수준의 격리를 제공합니다.
 
 #### 코드 예시: 제한된 환경에서의 실행
 

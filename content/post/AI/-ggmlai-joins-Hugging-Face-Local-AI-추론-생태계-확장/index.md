@@ -39,7 +39,12 @@ graph LR
 
 실제로 양자화가 얼마나 효율적인지 이해하기 위해, 일반적인 PyTorch 기반의 FP16 모델과 `llama.cpp`에서 주로 사용하는 Q4_K_M(4-bit) 양자화 모델을 비교해 보겠습니다. 아래 표는 Meta-Llama-3-8B 모델을 기준으로 한 대략적인 수치입니다.
 
-| 비교 항목 | PyTorch (FP16) | llama.cpp (Q4_K_M GGUF) | 설명 | | :--- | :--- | :--- | :--- | | 모델 크기 | 약 16 GB | 약 5.0 GB | 약 3~4배 이상의 압축 효과 | | VRAM 요구 사항 | 16 GB 이상 (GPU 필수) | 6 GB 미만 (CPU만 가능) | 일반 게이밍 노트북에서 구동 가능 | | 추론 속도 (tokens/s) | GPU 의존적 (높음) | CPU에서도 준수함 | Apple Silicon(M1/M2/M3)에서 특히 우수 | | 주요 사용처 | 연구, 미세 조정 | 서빙, 로컬 앱 배포 | 엣지 디바이스 최적화 |
+| 비교 항목 | PyTorch (FP16) | llama.cpp (Q4_K_M GGUF) | 설명 |
+| :--- | :--- | :--- | :--- |
+| 모델 크기 | 약 16 GB | 약 5.0 GB | 약 3~4배 이상의 압축 효과 |
+| VRAM 요구 사항 | 16 GB 이상 (GPU 필수) | 6 GB 미만 (CPU만 가능) | 일반 게이밍 노트북에서 구동 가능 |
+| 추론 속도 (tokens/s) | GPU 의존적 (높음) | CPU에서도 준수함 | Apple Silicon(M1/M2/M3)에서 특히 우수 |
+| 주요 사용처 | 연구, 미세 조정 | 서빙, 로컬 앱 배포 | 엣지 디바이스 최적화 |
 
 이처럼 GGUF 포맷은 성능의 큰 손실 없이 로컬 하드웨어의 제약을 극복하게 해줍니다. 특히 GGUF는 모델 구조와 사전 토크나이저 정보를 단일 파일 내에 캡슐화하여, 파일 하나만 있으면 즉시 로딩이 가능한 편리함을 제공합니다.
 
@@ -93,7 +98,10 @@ print(output['choices'][0]['text'])
 
 연구자이거나 엔지니어로서 직접 모델을 로컬에서 최적화하여 배포하고 싶다면 다음 단계를 따르십시오.
 
-1.  **모델 선택 및 다운로드**: Hugging Face Hub에서 원하는 기본 모델(예: Mistral, Llama 3)의 원본 가중치를 다운로드합니다. 2.  **변환 (Conversion)**: `llama.cpp` 리포지토리에 포함된 `convert-hf-to-gguf.py` 스크립트를 사용하여 Hugging Face 포맷을 GGUF 포맷으로 변환합니다.     ```bash     python convert-hf-to-gguf.py /path/to/model/ --outfile model-f16.gguf --outtype f16     ``` 3.  **양자화 (Quantization)**: 변환된 FP16 모델을 원하는 비트 수로 양자화합니다.     ```bash     ./llama-quantize model-f16.gguf model-q4_k_m.gguf q4_k_m     ``` 4.  **배포 (Serving)**: 양자화된 모델을 로컬 서버로 실행하여 API 형태로 제공합니다.     ```bash     ./llama-server --model model-q4_k_m.gguf --port 8080     ```
+1.  **모델 선택 및 다운로드**: Hugging Face Hub에서 원하는 기본 모델(예: Mistral, Llama 3)의 원본 가중치를 다운로드합니다.
+2.  **변환 (Conversion)**: `llama.cpp` 리포지토리에 포함된 `convert-hf-to-gguf.py` 스크립트를 사용하여 Hugging Face 포맷을 GGUF 포맷으로 변환합니다.     ```bash     python convert-hf-to-gguf.py /path/to/model/ --outfile model-f16.gguf --outtype f16     ```
+3.  **양자화 (Quantization)**: 변환된 FP16 모델을 원하는 비트 수로 양자화합니다.     ```bash     ./llama-quantize model-f16.gguf model-q4_k_m.gguf q4_k_m     ```
+4.  **배포 (Serving)**: 양자화된 모델을 로컬 서버로 실행하여 API 형태로 제공합니다.     ```bash     ./llama-server --model model-q4_k_m.gguf --port 8080     ```
 
 이 과정을 통해 연구실의 내부 데이터가 외부로 유출되지 않는 완전히 폐쇄된 네트워크 환경에서도 강력한 AI 어시스턴트를 구축할 수 있습니다.
 

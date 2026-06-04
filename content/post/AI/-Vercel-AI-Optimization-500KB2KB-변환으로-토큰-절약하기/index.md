@@ -124,7 +124,10 @@ print(cleaned_text)
 
 실제 서비스 환경에서 이를 적용하기 위해서는 단순한 스크래핑 라이브러리 사용을 넘어 시스템 레벨의 접근이 필요합니다.
 
-1.  **User-Agent 헤더 분석**: 요청 헤더의 `User-Agent`를 확인하여 `ChatGPT-User`, `Google-Extended`, `CCBot` 등 알려진 AI 에이전트인지 식별합니다. 2.  **미들웨어 레벨 처리**: Next.js Middleware나 Nginx 레벨에서 에이전트 요청을 감지하고, 별도의 렌더링 함수나 SSG(Static Site Generation) 출력물(plain.json 혹은 stripped.html)으로 라우팅합니다. 3.  **구조화된 데이터 제공 (JSON-LD)**: 가능하다면 단순 텍스트 제거를 넘어, 웹페이지의 핵심 정보를 `application/json` 형태나 `JSON-LD` 형식으로 제공하는 것이 가장 이상적입니다. 이는 LLM이 텍스트를 파싱하며 추론하는 수고를 덜어줍니다. 4.  **캐싱 전략**: AI 에이전트가 자주 방문하는 페이지에 대해 최적화된 버전을 캐싱하여 불필요한 파싱 연산을 반복하지 않도록 합니다.
+1.  **User-Agent 헤더 분석**: 요청 헤더의 `User-Agent`를 확인하여 `ChatGPT-User`, `Google-Extended`, `CCBot` 등 알려진 AI 에이전트인지 식별합니다.
+2.  **미들웨어 레벨 처리**: Next.js Middleware나 Nginx 레벨에서 에이전트 요청을 감지하고, 별도의 렌더링 함수나 SSG(Static Site Generation) 출력물(plain.json 혹은 stripped.html)으로 라우팅합니다.
+3.  **구조화된 데이터 제공 (JSON-LD)**: 가능하다면 단순 텍스트 제거를 넘어, 웹페이지의 핵심 정보를 `application/json` 형태나 `JSON-LD` 형식으로 제공하는 것이 가장 이상적입니다. 이는 LLM이 텍스트를 파싱하며 추론하는 수고를 덜어줍니다.
+4.  **캐싱 전략**: AI 에이전트가 자주 방문하는 페이지에 대해 최적화된 버전을 캐싱하여 불필요한 파싱 연산을 반복하지 않도록 합니다.
 
 ## 결론
 

@@ -74,7 +74,13 @@ theorem add_comm_manual (a b : Nat) : a + b = b + a := by
 
 AI 연구자나 엔지니어가 도구를 선택할 때 고려해야 할 현실적인 비교 지표를 정리했습니다. Lawrence Paulson의 관점을 반영하여, 단순히 "최신"이라는 이유만으로 Lean을 선택하는 것의 위험성과 기회비용을 분석했습니다.
 
-| 비교 항목 | Lean 4 (+ Mathlib) | Isabelle/HOL | | :--- | :--- | :--- | | **타입 시스템** | **의존 타입 (CIC)** - 매우 높은 표현력 | **Simple Types (HOL)** - 상대적으로 단순하고 안정적 | | **자동화 (Automation)** | Tactic 기반, 최근 AI 툴(Copilot 등)과의 연계성 강점 | **Sledgehammer** - 외부 강력한 ATP solvers (Vampire, E)와의 연계 최고 | | **학습 곡선** | 가파름 (의존 타입, 독특한 문법) | 상대적으로 완만 (Isar 언어가 인간에게 더 친숙함) | | **AI 데이터 활용** | **최상** (Mathlib의 규모와 통합성 덕분에 LLM 학습에 적합) | 제한적 (AFP는 있으나 분산되어 있음) | | **컴파일 속도** | 빠름 (Lean 4는 자체적으로 최적화된 컴파일러 사용) | 상대적으로 느림 (ML/TLI 인터프리터 방식) |
+| 비교 항목 | Lean 4 (+ Mathlib) | Isabelle/HOL |
+| :--- | :--- | :--- |
+| **타입 시스템** | **의존 타입 (CIC)** - 매우 높은 표현력 | **Simple Types (HOL)** - 상대적으로 단순하고 안정적 |
+| **자동화 (Automation)** | Tactic 기반, 최근 AI 툴(Copilot 등)과의 연계성 강점 | **Sledgehammer** - 외부 강력한 ATP solvers (Vampire, E)와의 연계 최고 |
+| **학습 곡선** | 가파름 (의존 타입, 독특한 문법) | 상대적으로 완만 (Isar 언어가 인간에게 더 친숙함) |
+| **AI 데이터 활용** | **최상** (Mathlib의 규모와 통합성 덕분에 LLM 학습에 적합) | 제한적 (AFP는 있으나 분산되어 있음) |
+| **컴파일 속도** | 빠름 (Lean 4는 자체적으로 최적화된 컴파일러 사용) | 상대적으로 느림 (ML/TLI 인터프리터 방식) |
 
 ### AI 기반 자동 증명을 위한 도구 선택 가이드
 

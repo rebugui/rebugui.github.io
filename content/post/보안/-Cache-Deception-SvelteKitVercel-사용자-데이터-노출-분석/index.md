@@ -23,7 +23,12 @@ Cache Deception 공격은 주로 CDN의 캐시 키(Cache Key) 생성 방식과 �
 
 문제는 애플리케이션이 쿠키(Cookie)나 인증 헤더를 통해 사용자를 식별하여 개인화된 데이터를 반환하는데, 동시에 `Cache-Control: public` 헤더를 반환하여 "이 내용은 CDN에 저장해도 좋습니다"라고 허용하는 경우에 발생합니다.
 
-공격자는 다음과 같은 단계를 거쳐 공격을 수행합니다: 1.  공격자는 자신의 계정으로 로그인한 상태에서 대상 URL(예: `/user/profile`)에 접근합니다. 2.  공격자는 URL 뒤에 임의의 쿼리 파라미터를 추가하여 캐시를 우회하거나 새로운 캐시 키를 생성하도록 유도합니다 (예: `/user/profile?victim=1`). 3.  서버는 공격자의 개인 정보(이름, 이메일, API 키 등)를 포함한 HTML을 반환합니다. 이때 개발자의 실수로 `Cache-Control: max-age=3600` 같은 퍼블릭 캐시 헤더가 포함됩니다. 4.  Vercel Edge Network는 이 응답을 `/user/profile?victim=1` 키로 저장합니다. 5.  피해자가 같은 URL(`/user/profile?victim=1`)로 접속하면, 서버까지 가지 않고 캐시된(공격자의) HTML을 받게 됩니다.
+공격자는 다음과 같은 단계를 거쳐 공격을 수행합니다:
+1.  공격자는 자신의 계정으로 로그인한 상태에서 대상 URL(예: `/user/profile`)에 접근합니다.
+2.  공격자는 URL 뒤에 임의의 쿼리 파라미터를 추가하여 캐시를 우회하거나 새로운 캐시 키를 생성하도록 유도합니다 (예: `/user/profile?victim=1`).
+3.  서버는 공격자의 개인 정보(이름, 이메일, API 키 등)를 포함한 HTML을 반환합니다. 이때 개발자의 실수로 `Cache-Control: max-age=3600` 같은 퍼블릭 캐시 헤더가 포함됩니다.
+4.  Vercel Edge Network는 이 응답을 `/user/profile?victim=1` 키로 저장합니다.
+5.  피해자가 같은 URL(`/user/profile?victim=1`)로 접속하면, 서버까지 가지 않고 캐시된(공격자의) HTML을 받게 됩니다.
 
 ### 공격 흐름도
 
@@ -147,11 +152,20 @@ export const handle = async ({ event, resolve }) => {
 
 모든 페이지를 동일하게 처리하는 것은 위험합니다. 페이지의 성격에 따른 캐싱 전략을 명확히 구분해야 합니다.
 
-| 캐시 전략 | Cache-Control 헤더 예시 | 적용 대상 | 보안 특성 | | :--- | :--- | :--- | :--- | | **Public Static** | `public, max-age=3600, s-maxage=86400` | 메인 페이지, 상품 소개, 블로그 포스트, CSS/JS | 모두에게 동일한 콘텐츠 제공. CDN 캐싱 적극 활용. | | **Public Dynamic** | `public, max-age=0, must-revalidate` | 실시간 상태가 필요하나 로그인이 없는 페이지 | 항상 서버에 검증 요청. 콘텐츠는 공개되나 오래된 데이터 표시 금지. | | **Private Personal** | `private, no-store, no-cache` | 대시보드, 마이페이지, 결제 페이지 | 사용자별로 다른 데이터. **CDN 캐싱 절대 금지**. 브라우저 메모리 외 저장 안 함. | | **Authenticated Static** | `private, max-age=60` | 로그인 후 보이는 공지사항, UI 리소스 | 인증된 사용자에게만 제공. 공유 CDN에는 저장 불가. |
+| 캐시 전략 | Cache-Control 헤더 예시 | 적용 대상 | 보안 특성 |
+| :--- | :--- | :--- | :--- |
+| **Public Static** | `public, max-age=3600, s-maxage=86400` | 메인 페이지, 상품 소개, 블로그 포스트, CSS/JS | 모두에게 동일한 콘텐츠 제공. CDN 캐싱 적극 활용. |
+| **Public Dynamic** | `public, max-age=0, must-revalidate` | 실시간 상태가 필요하나 로그인이 없는 페이지 | 항상 서버에 검증 요청. 콘텐츠는 공개되나 오래된 데이터 표시 금지. |
+| **Private Personal** | `private, no-store, no-cache` | 대시보드, 마이페이지, 결제 페이지 | 사용자별로 다른 데이터. **CDN 캐싱 절대 금지**. 브라우저 메모리 외 저장 안 함. |
+| **Authenticated Static** | `private, max-age=60` | 로그인 후 보이는 공지사항, UI 리소스 | 인증된 사용자에게만 제공. 공유 CDN에는 저장 불가. |
 
 ### 실무 적용 가이드 (Step-by-Step)
 
-1.  **감사 (Audit)**: SvelteKit 프로젝트의 모든 `+page.server.ts` 및 `+layout.server.ts` 파일을 스캔하여 `setHeaders`나 `headers` 함수를 확인합니다. 2.  **분류 (Classification)**: 각 경로가 "공개(Public)"인지 "인증 필요(Private)"인지 분류합니다. `locals.user`를 참조하는 모든 경로는 `Private`로 간주해야 합니다. 3.  **헤더 수정 (Fix Headers)**:     *   Private 경로: `Cache-Control`을 `private, no-store`로 설정합니다.     *   Public 경로: 필요한 경우에만 `s-maxage`를 설정하여 Vercel Edge 캐싱을 활성화합니다. 4.  **Vercel 구성 확인**: `vercel.json`이나_next.config_에서 전역적인 캐싱 규칙이 개인 경로를 덮어쓰지 않는지 확인합니다. 5.  **테스트 (Testing)**:     *   `curl`이나 Postman을 사용하여 요청을 보냅니다.     *   응답 헤더에 `x-vercel-cache: HIT`가 뜨는지 확인합니다. 개인 페이지에서는 반드시 `MISS` 또는 캐싱되지 않아야 합니다.     *   서로 다른 두 계정(Attacker, Victim)으로 같은 URL에 접속하여 응답 본문이 서로 다른지 확인합니다.
+1.  **감사 (Audit)**: SvelteKit 프로젝트의 모든 `+page.server.ts` 및 `+layout.server.ts` 파일을 스캔하여 `setHeaders`나 `headers` 함수를 확인합니다.
+2.  **분류 (Classification)**: 각 경로가 "공개(Public)"인지 "인증 필요(Private)"인지 분류합니다. `locals.user`를 참조하는 모든 경로는 `Private`로 간주해야 합니다.
+3.  **헤더 수정 (Fix Headers)**:     *   Private 경로: `Cache-Control`을 `private, no-store`로 설정합니다.     *   Public 경로: 필요한 경우에만 `s-maxage`를 설정하여 Vercel Edge 캐싱을 활성화합니다.
+4.  **Vercel 구성 확인**: `vercel.json`이나_next.config_에서 전역적인 캐싱 규칙이 개인 경로를 덮어쓰지 않는지 확인합니다.
+5.  **테스트 (Testing)**:     *   `curl`이나 Postman을 사용하여 요청을 보냅니다.     *   응답 헤더에 `x-vercel-cache: HIT`가 뜨는지 확인합니다. 개인 페이지에서는 반드시 `MISS` 또는 캐싱되지 않아야 합니다.     *   서로 다른 두 계정(Attacker, Victim)으로 같은 URL에 접속하여 응답 본문이 서로 다른지 확인합니다.
 
 ## 결론
 

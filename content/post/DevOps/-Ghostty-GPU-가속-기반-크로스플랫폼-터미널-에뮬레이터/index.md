@@ -42,7 +42,14 @@ graph LR
 
 시장에는 이미 iTerm2, Alacritty, WezTerm 등 강력한 터미널이 존재합니다. Ghostty가 이들 사이에서 선택될 수 있는 이유는 '설정 없는 경험(Zero-config)'과 '순수 성능'의 균형 때문입니다. 아래 표는 주요 터미널 에뮬레이터의 특징을 비교한 것입니다.
 
-| 비교 항목 | Ghostty | iTerm2 | Alacritty | WezTerm | | :--- | :--- | :--- | :--- | :--- | | **가속 방식** | GPU (OpenGL) | CPU (일부 GPU) | GPU (OpenGL) | GPU | | **코드베이스** | C (심플함) | Obj-C (무거움) | Rust | Rust & Lua | | **설정 난이도** | 매우 낮음 (Zero-config) | 높음 (GUI 제공) | 높음 (YAML 수동) | 중간 (Lua 스크립트) | | **플랫폼** | macOS, Linux | macOS | Cross-platform | Cross-platform | | **네이티브 UI** | 지원 (Native) | 자체 구현 | 자체 구현 | 자체 구현 | | **초기 로딩 속도** | 극도로 빠름 | 느림 | 매우 빠름 | 보통 |
+| 비교 항목 | Ghostty | iTerm2 | Alacritty | WezTerm |
+| :--- | :--- | :--- | :--- | :--- |
+| **가속 방식** | GPU (OpenGL) | CPU (일부 GPU) | GPU (OpenGL) | GPU |
+| **코드베이스** | C (심플함) | Obj-C (무거움) | Rust | Rust & Lua |
+| **설정 난이도** | 매우 낮음 (Zero-config) | 높음 (GUI 제공) | 높음 (YAML 수동) | 중간 (Lua 스크립트) |
+| **플랫폼** | macOS, Linux | macOS | Cross-platform | Cross-platform |
+| **네이티브 UI** | 지원 (Native) | 자체 구현 | 자체 구현 | 자체 구현 |
+| **초기 로딩 속도** | 극도로 빠름 | 느림 | 매우 빠름 | 보통 |
 
 Ghostty는 복잡한 설정 파일을 수정하지 않아도 설치 직전부터 최적의 폰트 렌더링과 색상 테마를 제공합니다. 보안 작업 중에는 도구 설정에 시간을 쓰는 것 자체가 손실이므로, 이러한 '즉시 사용 가능성(Ready-to-use)'은 큰 장점입니다.
 

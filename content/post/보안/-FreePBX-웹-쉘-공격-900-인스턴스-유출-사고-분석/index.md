@@ -68,7 +68,13 @@ if (isset($_REQUEST['cmd'])) {
 
 효과적인 탐지를 위해서는 정상적인 FreePBX 관리 트래픽과 웹 쉘 활동 트래픽의 차이를 이해해야 합니다. 아래 표는 로그 분석 시 주의 깊게 봐야 할 차이점을 정리한 것입니다.
 
-| 비교 항목 | 정상적인 관리자 접속 | 웹 쉘 공격 트래픽 | | :--- | :--- | :--- | | **User-Agent** | Mozilla/5.0 (Chrome, Firefox 등 일반 브라우저) | python-requests/2.x, curl/7.x (자동화 도구) 또는 비어있음 | | **URI 패턴** | `/admin/config.php`, `/recordings/` 등 관리 페이지 | `/admin/images/.cache.php`, `/tmp/up.php` 등 의심스러운 경로 | | **요청 메서드** | 주로 GET, 일반적인 POST | POST (명령어 전달용) 또는 HEAD (C2 Heartbeat) | | **파라미터** | `display`, `action`, `submit` 등 GUI 관련 변수 | `cmd`, `c`, `exec`, `0x...` 등 인자 전달 관련 변수 | | **응답 크기** | HTML 페이지 크기 (수 KB ~ 수십 KB) | 텍스트 출력 (매우 작음) 또는 대용량 데이터 전송 |
+| 비교 항목 | 정상적인 관리자 접속 | 웹 쉘 공격 트래픽 |
+| :--- | :--- | :--- |
+| **User-Agent** | Mozilla/5.0 (Chrome, Firefox 등 일반 브라우저) | python-requests/2.x, curl/7.x (자동화 도구) 또는 비어있음 |
+| **URI 패턴** | `/admin/config.php`, `/recordings/` 등 관리 페이지 | `/admin/images/.cache.php`, `/tmp/up.php` 등 의심스러운 경로 |
+| **요청 메서드** | 주로 GET, 일반적인 POST | POST (명령어 전달용) 또는 HEAD (C2 Heartbeat) |
+| **파라미터** | `display`, `action`, `submit` 등 GUI 관련 변수 | `cmd`, `c`, `exec`, `0x...` 등 인자 전달 관련 변수 |
+| **응답 크기** | HTML 페이지 크기 (수 KB ~ 수십 KB) | 텍스트 출력 (매우 작음) 또는 대용량 데이터 전송 |
 
 ### 4. 침해 탐지 및 대응 가이드 (Step-by-Step)
 
@@ -102,13 +108,20 @@ grep "wget\|curl" /var/log/httpd/access_log | grep ".php"
 grep "POST" /var/log/httpd/access_log | grep "cmd="
 ```
 
-#### Step 4: 격리 및 패치 탈취가 확인되면 즉시 시스템을 네트워크에서 분리(격리)해야 합니다. 1.  웹 쉘 파일 삭제 및 원본 소스 복구 2.  모든 관리자 및 DB 비밀번호 변경 3.  FreePBX 및 운영체제 패키지를 최신 버전으로 업데이트     ```bash     yum update freepbx     fwconsole ma upgradeall     fwconsole reload     ``` 4.  불필요한 서비스 포트 차단 (외부에서 관리자 페이지 접속 제한 권장)
+#### Step 4: 격리 및 패치 탈취가 확인되면 즉시 시스템을 네트워크에서 분리(격리)해야 합니다.
+1.  웹 쉘 파일 삭제 및 원본 소스 복구
+2.  모든 관리자 및 DB 비밀번호 변경
+3.  FreePBX 및 운영체제 패키지를 최신 버전으로 업데이트     ```bash     yum update freepbx     fwconsole ma upgradeall     fwconsole reload     ```
+4.  불필요한 서비스 포트 차단 (외부에서 관리자 페이지 접속 제한 권장)
 
 ## 결론
 
 이번 900여 개의 FreePBX 인스턴스 유출 사고는 우리에게 '구식' 취약점의 위험성을 다시 상기시킵니다. 공격자는 최신의 제로데이(0-day) 취약점이 아니라, 관리자가 패치를 게을리 한 '익스플로잇 가능한(Known)' 취약점을 노립니다.
 
-핵심 요약은 다음과 같습니다. 1.  **웹 쉘은 RCE의 끝판왕입니다:** 한 번 설치되면 탐지와 제거가 매우 어렵습니다. 2.  **로그 모니터링이 필수입니다:** 단순한 방화벽만으로는 막을 수 없으며, User-Agent와 URI 패턴 기반의 이상 징후 탐지가 필요합니다. 3.  **즉각적인 패치만이 살길입니다:** FreePBX와 같은 오픈소스 솔루션은 커뮤니티의 보안 업데이트를 즉시 반영해야 합니다.
+핵심 요약은 다음과 같습니다.
+1.  **웹 쉘은 RCE의 끝판왕입니다:** 한 번 설치되면 탐지와 제거가 매우 어렵습니다.
+2.  **로그 모니터링이 필수입니다:** 단순한 방화벽만으로는 막을 수 없으며, User-Agent와 URI 패턴 기반의 이상 징후 탐지가 필요합니다.
+3.  **즉각적인 패치만이 살길입니다:** FreePBX와 같은 오픈소스 솔루션은 커뮤니티의 보안 업데이트를 즉시 반영해야 합니다.
 
 보안의 끝은 없습니다. 오늘 밤 여러분의 서버가 안전하길 바라며, 항상 의심하고 검증하는 자세가 최고의 보안 솔루션임을 기억하십시오.
 

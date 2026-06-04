@@ -51,7 +51,12 @@ graph TD
 
 이 접근 방식은 특히 긴 문맥(Long Context)을 다룰 때 그 효과가 극대화됩니다. 다만, 캐시를 저장하기 위해 GPU 메모리(HBM) 사용량이 증가한다는 트레이드오프가 존재합니다. 이를 최적화하기 위해 PagedAttention(vLLM)과 같은 기술이 등장하기도 했습니다.
 
-| 비교 항목 | Standard Attention | KV Cache 사용 | | :--- | :--- | :--- | | **연산 복잡도** | $O(n^2)$ | $O(n)$ | | **메모리 사용량** | 낮음 (캐시 없음) | 높음 (과거 K,V 저장) | | **디코딩 속도** | 느림 (매번 중복 계산) | 빠름 (증분 계산만 수행) | | **주요 용도** | 훈련(Training) 단계 | 추론(Inference) 단계 |
+| 비교 항목 | Standard Attention | KV Cache 사용 |
+| :--- | :--- | :--- |
+| **연산 복잡도** | $O(n^2)$ | $O(n)$ |
+| **메모리 사용량** | 낮음 (캐시 없음) | 높음 (과거 K,V 저장) |
+| **디코딩 속도** | 느림 (매번 중복 계산) | 빠름 (증분 계산만 수행) |
+| **주요 용도** | 훈련(Training) 단계 | 추론(Inference) 단계 |
 
 ### 2. 병렬성 극대화: Speculative Decoding (추측적 디코딩)
 
@@ -128,7 +133,11 @@ def verify_draft(target_model, draft_model, prompt, draft_tokens, max_speculatio
 
 이러한 최적화 기법을 실제 서비스에 적용하기 위한 단계별 가이드는 다음과 같습니다.
 
-1.  **프로파일링(Profiling)**: 현재 병목이 메모리 대역폭인지, 연산량(Compute bound)인지 파악합니다. 보통 디코딩 단계는 메모리 대역폭에 민감합니다. 2.  **KV Cache 적용**: HuggingFace Transformers 등의 최신 라이브러리는 이미 `use_cache=True`가 기본값입니다. 이를 비활성화하지 않았는지 확인합니다. 3.  **Batch Size 튜닝**: KV Cache 사용 시 메모리 사용량이 급증합니다. 배치 크기와 시퀀스 길이 사이의 균형을 맞춰야 OOM(Out of Memory)을 방지할 수 있습니다. 4.  **Speculative Decoding 도입**:     *   현재 서비스 중인 모델(예: Llama-3-70B)과 호환되는 작은 모델(예: Llama-3-8B 또는 Quantized 버전)을 준비합니다.     *   Draft Model의 정확도가 너무 낮으면 검증을 자주 실패하여 효율이 떨어질 수 있으므로, 동일 계열의 작은 모델을 사용하는 것이 좋습니다. 5.  **프레임워크 활용**: vLLM, TGI(Text Generation Inference), TensorRT-LLM 등은 이러한 최적화가 내장되어 있습니다. 로우 레벨(PyTorch Native)로 구현하기보다는 검증된 서빙 프레임워크를 통해 간접적으로 활용하는 것을 권장합니다.
+1.  **프로파일링(Profiling)**: 현재 병목이 메모리 대역폭인지, 연산량(Compute bound)인지 파악합니다. 보통 디코딩 단계는 메모리 대역폭에 민감합니다.
+2.  **KV Cache 적용**: HuggingFace Transformers 등의 최신 라이브러리는 이미 `use_cache=True`가 기본값입니다. 이를 비활성화하지 않았는지 확인합니다.
+3.  **Batch Size 튜닝**: KV Cache 사용 시 메모리 사용량이 급증합니다. 배치 크기와 시퀀스 길이 사이의 균형을 맞춰야 OOM(Out of Memory)을 방지할 수 있습니다.
+4.  **Speculative Decoding 도입**:     *   현재 서비스 중인 모델(예: Llama-3-70B)과 호환되는 작은 모델(예: Llama-3-8B 또는 Quantized 버전)을 준비합니다.     *   Draft Model의 정확도가 너무 낮으면 검증을 자주 실패하여 효율이 떨어질 수 있으므로, 동일 계열의 작은 모델을 사용하는 것이 좋습니다.
+5.  **프레임워크 활용**: vLLM, TGI(Text Generation Inference), TensorRT-LLM 등은 이러한 최적화가 내장되어 있습니다. 로우 레벨(PyTorch Native)로 구현하기보다는 검증된 서빙 프레임워크를 통해 간접적으로 활용하는 것을 권장합니다.
 
 ## 결론
 

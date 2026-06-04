@@ -25,7 +25,13 @@ author: "Intelligence Agent"
 
 이메일 HTML 작성이 어려운 근본 원인은 **표준의 부재**가 아니다. HTML5와 CSS3 표준은 존재하지만, 이메일 클라이언트들이 이를 제각각 구현했기 때문이다.
 
-| 이메일 클라이언트 | 렌더링 엔진 | 주요 제약사항 | | :--- | :--- | :--- | | Gmail | WebKit 기반 | `<style>` 태그 지원 제한, `position: fixed` 미지원 | | Outlook (Windows) | Microsoft Word | Flexbox/Grid 미지원, `margin` 버그, `background-image` 제한 | | Outlook (Mac) | WebKit | 상대적으로 현대적이나 여전히 제약 존재 | | Apple Mail | WebKit | 가장 표준 준수적, 그러나 다크모드 대응 필요 | | Yahoo Mail | WebKit | `<style>` 태그 내 `@media` 쿼리 지원 불안정 |
+| 이메일 클라이언트 | 렌더링 엔진 | 주요 제약사항 |
+| :--- | :--- | :--- |
+| Gmail | WebKit 기반 | `<style>` 태그 지원 제한, `position: fixed` 미지원 |
+| Outlook (Windows) | Microsoft Word | Flexbox/Grid 미지원, `margin` 버그, `background-image` 제한 |
+| Outlook (Mac) | WebKit | 상대적으로 현대적이나 여전히 제약 존재 |
+| Apple Mail | WebKit | 가장 표준 준수적, 그러나 다크모드 대응 필요 |
+| Yahoo Mail | WebKit | `<style>` 태그 내 `@media` 쿼리 지원 불안정 |
 
 이런 파편화 때문에 **"Works in all email clients"**라는 문구는 개발자에게 있어 일종의 Holy Grail이다. notion-to-email은 이 문제를 **Notion API → 중간 표현 → 클라이언트별 최적화된 HTML** 파이프라인으로 접근한다.
 
@@ -45,7 +51,10 @@ graph LR
 
 **핵심 컴포넌트 분석:**
 
-1. **Notion API 클라이언트**: `@notionhq/client`를 래핑하여 페이지와 하위 블록을 순회 2. **Block Parser**: Notion의 50+ 블록 타입을 중간 추상 구문 트리(AST)로 변환 3. **HTML Generator**: AST를 테이블 기반 레이아웃의 레거시 HTML로 변환 4. **CSS Inliner**: `<style>` 태그의 스타일을 인라인 `style` 속성으로 변환
+1. **Notion API 클라이언트**: `@notionhq/client`를 래핑하여 페이지와 하위 블록을 순회
+2. **Block Parser**: Notion의 50+ 블록 타입을 중간 추상 구문 트리(AST)로 변환
+3. **HTML Generator**: AST를 테이블 기반 레이아웃의 레거시 HTML로 변환
+4. **CSS Inliner**: `<style>` 태그의 스타일을 인라인 `style` 속성으로 변환
 
 ### 설치 및 기본 사용법
 
@@ -97,7 +106,18 @@ main();
 
 notion-to-email은 Notion의 주요 블록 타입을 이메일 호환 HTML로 변환한다:
 
-| Notion 블록 | HTML 변환 결과 | 호환성 고려사항 | | :--- | :--- | :--- | | Paragraph | `<p>` + 인라인 스타일 | `line-height`, `margin` 명시적 설정 | | Heading 1-3 | `<h1>`~`<h3>` | 폰트 크기 `px` 단위 고정 | | Bulleted List | `<table>` 기반 리스트 | `<ul>` 대신 테이블로 Outlook 대응 | | Numbered List | `<table>` 기반 번호 매기기 | 카운터 CSS 대신 텍스트로 번호 삽입 | | Toggle | 펼쳐진 상태의 `<div>` | 인터랙션 제거 (이메일에서 JS 불가) | | Callout | `<table>` 박스 | 아이콘 + 텍스트 수평 정렬 | | Code | `<pre><code>` | 구문 강조 미지원, 모노스페이스 폰트 | | Image | `<img>` with `width` | 절대 URL 필요, Base64 권장 | | Divider | `<hr>` | `border` 스타일 인라인화 | | Quote | `<blockquote>` | 좌측 테두리 `border-left` 사용 |
+| Notion 블록 | HTML 변환 결과 | 호환성 고려사항 |
+| :--- | :--- | :--- |
+| Paragraph | `<p>` + 인라인 스타일 | `line-height`, `margin` 명시적 설정 |
+| Heading 1-3 | `<h1>`~`<h3>` | 폰트 크기 `px` 단위 고정 |
+| Bulleted List | `<table>` 기반 리스트 | `<ul>` 대신 테이블로 Outlook 대응 |
+| Numbered List | `<table>` 기반 번호 매기기 | 카운터 CSS 대신 텍스트로 번호 삽입 |
+| Toggle | 펼쳐진 상태의 `<div>` | 인터랙션 제거 (이메일에서 JS 불가) |
+| Callout | `<table>` 박스 | 아이콘 + 텍스트 수평 정렬 |
+| Code | `<pre><code>` | 구문 강조 미지원, 모노스페이스 폰트 |
+| Image | `<img>` with `width` | 절대 URL 필요, Base64 권장 |
+| Divider | `<hr>` | `border` 스타일 인라인화 |
+| Quote | `<blockquote>` | 좌측 테두리 `border-left` 사용 |
 
 ### 고급 설정 및 커스터마이징
 
@@ -295,7 +315,9 @@ async function getCachedHtml(pageId: string, notionToken: string) {
 
 **notion-to-email**은 Notion 콘텐츠를 이메일 호환 HTML로 변환하는 실용적인 오픈소스 도구다. 핵심 가치는 다음과 같다:
 
-1. **호환성 보장**: Gmail, Outlook, Apple Mail 등 주요 이메일 클라이언트에서 정상 렌더링 2. **간단한 API**: 페이지 ID 하나로 완전한 HTML 반환 3. **TypeScript 지원**: 타입 안전성과 IDE 자동완성
+1. **호환성 보장**: Gmail, Outlook, Apple Mail 등 주요 이메일 클라이언트에서 정상 렌더링
+2. **간단한 API**: 페이지 ID 하나로 완전한 HTML 반환
+3. **TypeScript 지원**: 타입 안전성과 IDE 자동완성
 
 ---
 

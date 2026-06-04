@@ -34,7 +34,11 @@ graph TD
 
 **핵심 취약점 세 가지:**
 
-| 취약점 유형 | 설명 | 위험도 | | :--- | :--- | :--- | | Direct Injection | 사용자 입력이 시스템 프롬프트를 직접 덮어씀 | 높음 | | Indirect Injection | 외부 데이터(RAG, 웹검색)를 통한 악성 프롬프트 주입 | 중간 | | Model-Level Bypass | ABLiterated 모델에서 거부 메커니즘 무력화 | 매우 높음 |
+| 취약점 유형 | 설명 | 위험도 |
+| :--- | :--- | :--- |
+| Direct Injection | 사용자 입력이 시스템 프롬프트를 직접 덮어씀 | 높음 |
+| Indirect Injection | 외부 데이터(RAG, 웹검색)를 통한 악성 프롬프트 주입 | 중간 |
+| Model-Level Bypass | ABLiterated 모델에서 거부 메커니즘 무력화 | 매우 높음 |
 
 ### 2. Soul Spec: 페르소나 표준화 접근법
 
@@ -230,7 +234,12 @@ graph TD
 
 **Soul Spec의 방어 계층:**
 
-| 계층 | 방식 | ABLiterated 모델에서 효과 | | :--- | :--- | :--- | | Input Filtering | 프롬프트 인젝션 패턴 탐지 | 부분적 | | Output Validation | 응답 트레이트 분석 | 높음 | | Immutable Traits | 핵심 정체성 잠금 | 매우 높음 | | Integrity Hash | 스펙 변조 탐지 | 매우 높음 |
+| 계층 | 방식 | ABLiterated 모델에서 효과 |
+| :--- | :--- | :--- |
+| Input Filtering | 프롬프트 인젝션 패턴 탐지 | 부분적 |
+| Output Validation | 응답 트레이트 분석 | 높음 |
+| Immutable Traits | 핵심 정체성 잠금 | 매우 높음 |
+| Integrity Hash | 스펙 변조 탐지 | 매우 높음 |
 
 ### 5. Step-by-Step: Soul Spec 도입 가이드
 
@@ -293,7 +302,12 @@ class AgentWithSoulSpec:
 
 Soul Spec은 단순한 명세를 넘어, **페르소나 마켓플레이스** 생태계를 목표로 한다.
 
-| 플랫폼 기능 | 설명 | 상태 | | :--- | :--- | :--- | | Persona Registry | 검증된 페르소나 저장소 | 개발중 | | Version Control | 페르소나 버전 관리 | 계획중 | | Rating System | 커뮤니티 기반 품질 평가 | 계획중 | | Fork & Modify | 페르소나 포크 및 커스터마이징 | 개발중 |
+| 플랫폼 기능 | 설명 | 상태 |
+| :--- | :--- | :--- |
+| Persona Registry | 검증된 페르소나 저장소 | 개발중 |
+| Version Control | 페르소나 버전 관리 | 계획중 |
+| Rating System | 커뮤니티 기반 품질 평가 | 계획중 |
+| Fork & Modify | 페르소나 포크 및 커스터마이징 | 개발중 |
 
 ```javascript
 graph LR
@@ -313,7 +327,10 @@ graph LR
 
 Soul Spec은 AI 에이전트의 정체성을 **코드처럼 다루는** 접근법이다. 시스템 프롬프트를 단순 텍스트가 아닌, 버전 관리되고 무결성이 검증되는 명세로 격상시킨다.
 
-1. **구조화된 페르소나**: YAML 기반의 명확한 정체성 정의 2. **불변 특성(Immutable Traits)**: 핵심 정체성의 변경 방지 3. **무결성 검증**: 해시 기반 변조 탐지 4. **응답 검증**: 생성 후 페르소나 준수 여부 확인
+1. **구조화된 페르소나**: YAML 기반의 명확한 정체성 정의
+2. **불변 특성(Immutable Traits)**: 핵심 정체성의 변경 방지
+3. **무결성 검증**: 해시 기반 변조 탐지
+4. **응답 검증**: 생성 후 페르소나 준수 여부 확인
 
 ### 전문가 인사이트
 

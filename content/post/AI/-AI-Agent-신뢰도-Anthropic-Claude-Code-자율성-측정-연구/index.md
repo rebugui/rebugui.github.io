@@ -113,7 +113,11 @@ class SafeCodeAgent:
 
 AI 도구의 발전 단계와 자율성 수준을 비교하면 왜 현재 에이전트 도입이 신뢰 문제로 막히는지 더 명확해집니다.
 
-| 구분 | 자율성 수준 | 주요 기술 | 인간의 개입 (Review) | 신뢰 요구 수준 | | :--- | :--- | :--- | :--- | :--- | | **Autocomplete** | 낮음 (Line 단위) | Next-token Prediction | 실시간 (Token마다) | 낮음 (즉시 수정 가능) | | **Chat Assistant** | 중간 (Block 단위) | Contextual Q&A | 요청 시 (Copy & Paste) | 중간 (수동 적용) | | **AI Agent** | 높음 (Task 단위) | Tool Use, Planning | 사후 검토 혹은 승인 | 높음 (시스템 영향도 큼) |
+| 구분 | 자율성 수준 | 주요 기술 | 인간의 개입 (Review) | 신뢰 요구 수준 |
+| :--- | :--- | :--- | :--- | :--- |
+| **Autocomplete** | 낮음 (Line 단위) | Next-token Prediction | 실시간 (Token마다) | 낮음 (즉시 수정 가능) |
+| **Chat Assistant** | 중간 (Block 단위) | Contextual Q&A | 요청 시 (Copy & Paste) | 중간 (수동 적용) |
+| **AI Agent** | 높음 (Task 단위) | Tool Use, Planning | 사후 검토 혹은 승인 | 높음 (시스템 영향도 큼) |
 
 표에서 볼 수 있듯이 **AI Agent** 영역으로 올라갈수록 인간의 개입 비용이 '즉시 수정'에서 '사후 검토'나 '승인'으로 바뀝니다. 즉, 신뢰가 깨지면 복구 비용(Recovery Cost)이 기하급수적으로 늘어납니다. 따라서 현대의 MLOps 엔지니어들은 모델의 정확도를 1% 높이는 것보다, 에이전트의 **행동을 예측 가능하게 만드는 데(Interpretability)** 더 많은 노력을 기울이고 있습니다.
 

@@ -54,17 +54,29 @@ LLM 기반 에이전트를 사용할 때 가장 큰 답답함 중 하나는 작�
 
 많은 AI 도구들이 특정 LLM 공급자(Provider)의 API에 종속되는 반면, Emdash는 **Provider-Agnostic(공급자 독립적)** 설계를 채택했습니다. Emdash는 Claude Code, OpenAI Codex, Google Gemini, Droid 등 21가지 이상의 코딩 에이전트 CLI를 통합 관리합니다.
 
-여기서 중요한 기술적 철학은 "Native CLI Wrapper"입니다. Emdash는 에이전트의 기능을 제한하는 자체 래퍼(Wrapper)를 만드는 대신, 각 공급자가 제공하는 네이티브 CLI를 직접 실행합니다. 이 접근 방식의 장점은 두 가지입니다. 1.  **기능 지연(Future-proofing) 없음**: 공급자가 새로운 기능(예: Plan Mode, RAG 등)을 CLI에 추가하면, Emdash는 즉시 해당 기능을 사용할 수 있습니다. 2.  **충실도(Fidelity)**: 공급자가 의도한 대로 에이전트가 동작하므로 호환성 이슈가 최소화됩니다.
+여기서 중요한 기술적 철학은 "Native CLI Wrapper"입니다. Emdash는 에이전트의 기능을 제한하는 자체 래퍼(Wrapper)를 만드는 대신, 각 공급자가 제공하는 네이티브 CLI를 직접 실행합니다. 이 접근 방식의 장점은 두 가지입니다.
+1.  **기능 지연(Future-proofing) 없음**: 공급자가 새로운 기능(예: Plan Mode, RAG 등)을 CLI에 추가하면, Emdash는 즉시 해당 기능을 사용할 수 있습니다.
+2.  **충실도(Fidelity)**: 공급자가 의도한 대로 에이전트가 동작하므로 호환성 이슈가 최소화됩니다.
 
 아래는 다양한 코딩 에이전트를 병렬로 실행하여 결과를 비교하는 가상의 설정 예시입니다.
 
-| 특성 | 기존 IDE 플러그인 방식 | Emdash (ADE) 방식 | | :--- | :--- | :--- | | **실행 환경** | 로컬 IDE 내 제한된 컨텍스트 | 격리된 Git Worktree (완전한 파일 접근) | | **병렬 처리** | 불가능 (단일 세션) | 가능 (다중 에이전트 동시 실행) | | **LLM 호환성** | 특정 공급자 종속 (예: Copilot) | 21+ Native CLI 지원 (Agnostic) | | **시작 속도** | 느림 (Indexing, Context Loading) | 매우 빠름 (Worktree Pooling <1s) | | **원격 지원** | 제한적 | 원격 SSH 지원 (Code where data is) |
+| 특성 | 기존 IDE 플러그인 방식 | Emdash (ADE) 방식 |
+| :--- | :--- | :--- |
+| **실행 환경** | 로컬 IDE 내 제한된 컨텍스트 | 격리된 Git Worktree (완전한 파일 접근) |
+| **병렬 처리** | 불가능 (단일 세션) | 가능 (다중 에이전트 동시 실행) |
+| **LLM 호환성** | 특정 공급자 종속 (예: Copilot) | 21+ Native CLI 지원 (Agnostic) |
+| **시작 속도** | 느림 (Indexing, Context Loading) | 매우 빠름 (Worktree Pooling <1s) |
+| **원격 지원** | 제한적 | 원격 SSH 지원 (Code where data is) |
 
 ### 4. 실무 적용: Emdash를 이용한 병렬 개발 워크플로우
 
 Emdash를 실제 MLOps 파이프라인이나 소프트웨어 개발에 적용할 때의 워크플로우는 다음과 같습니다. 이 과정에서 Emdash는 단순한 코드 생성기를 넘어, 개발자의 "DevOps 엔지니어" 역할을 수행합니다.
 
-1.  **Task 정의**: Linear, GitHub, Jira의 이슈를 Emdash에 입력합니다. 2.  **Agent Allocation**: 해당 작업에 적합하거나, 비교를 원하는 여러 에이전트(Claude, Codex 등)를 선택하여 할당합니다. 3.  **Parallel Execution**: 각 에이전트는 고립된 워크트리에서 코드를 작성하고, 테스트 스크립트를 실행합니다. 4.  **Orchestration & Review**: Emdash는 각 에이전트가 생성한 Diff를 수집하고, CI/CD 파이프라인을 트리거하여 빌드 및 테스트 결과를 확인합니다. 5.  **Merge**: 검증이 완료된 변경 사항을 메인 레포지토리에 PR(Pull Request) 형태로 생성하고 병합합니다.
+1.  **Task 정의**: Linear, GitHub, Jira의 이슈를 Emdash에 입력합니다.
+2.  **Agent Allocation**: 해당 작업에 적합하거나, 비교를 원하는 여러 에이전트(Claude, Codex 등)를 선택하여 할당합니다.
+3.  **Parallel Execution**: 각 에이전트는 고립된 워크트리에서 코드를 작성하고, 테스트 스크립트를 실행합니다.
+4.  **Orchestration & Review**: Emdash는 각 에이전트가 생성한 Diff를 수집하고, CI/CD 파이프라인을 트리거하여 빌드 및 테스트 결과를 확인합니다.
+5.  **Merge**: 검증이 완료된 변경 사항을 메인 레포지토리에 PR(Pull Request) 형태로 생성하고 병합합니다.
 
 이러한 흐름을 코드로 표현하자면, 개발자는 Emdash의 CLI를 통해 다음과 같이 작업을 명령할 수 있습니다. (아래 코드는 개념적 예시입니다.)
 

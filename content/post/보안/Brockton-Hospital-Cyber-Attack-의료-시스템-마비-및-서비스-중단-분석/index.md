@@ -19,7 +19,14 @@ author: "Intelligence Agent"
 
 Brockton Hospital이 겪은 시스템 전면 마비는 전형적인 "Enterprise-wide Ransomware Attack" 패턴을 따른다. 공격 발생 시점부터 현재까지 파악된 주요 사항은 다음과 같다.
 
-| 구분 | 상세 내용 | | :--- | :--- | | 공격 대상 | Brockton Hospital (매사추세츠주) | | 공격 유형 | System-wide Cyber Attack (랜섬웨어 의심) | | 피해 범위 | 전산 시스템 전면 마비 | | 서비스 영향 | 외래 진료 취소, 응급환자 타 병원 이송 | | 대응 상태 | 보안팀 시스템 복구 및 원인 파악 중 | | 데이터 유출 | 현재 조사 중 (미확인) |
+| 구분 | 상세 내용 |
+| :--- | :--- |
+| 공격 대상 | Brockton Hospital (매사추세츠주) |
+| 공격 유형 | System-wide Cyber Attack (랜섬웨어 의심) |
+| 피해 범위 | 전산 시스템 전면 마비 |
+| 서비스 영향 | 외래 진료 취소, 응급환자 타 병원 이송 |
+| 대응 상태 | 보안팀 시스템 복구 및 원인 파악 중 |
+| 데이터 유출 | 현재 조사 중 (미확인) |
 
 이러한 의료 기관 대상 공격은 단순한 금전적 목적을 넘어선다. 공격자들은 병원이 시스템 복구를 위해 빠르게 몸값을 지불할 수밖에 없는 structural vulnerability를 악용한다.
 
@@ -182,7 +189,14 @@ append({
 
 ### Structural Vulnerability Matrix
 
-| 취약성 유형 | 구체적 내용 | 위험도 | | :--- | :--- | :---: | | Legacy Systems | Windows XP 기반 의료장비, 패치 불가 | Critical | | Network Segmentation | IT/OT 망 분리 미흡 | High | | Third-party Access | 협력업체 원격 접속 관리 부재 | High | | Backup Strategy | 암호화 백업, 오프라인 복구 미검증 | Medium | | Incident Response | 대응 체계 미흡, 복구 시간 장기화 | Medium | | Security Awareness | 의료진 보안 교육 부족 | Medium |
+| 취약성 유형 | 구체적 내용 | 위험도 |
+| :--- | :--- | :---: |
+| Legacy Systems | Windows XP 기반 의료장비, 패치 불가 | Critical |
+| Network Segmentation | IT/OT 망 분리 미흡 | High |
+| Third-party Access | 협력업체 원격 접속 관리 부재 | High |
+| Backup Strategy | 암호화 백업, 오프라인 복구 미검증 | Medium |
+| Incident Response | 대응 체계 미흡, 복구 시간 장기화 | Medium |
+| Security Awareness | 의료진 보안 교육 부족 | Medium |
 
 ### 의료 IoT 기기 보안 문제
 
@@ -259,7 +273,12 @@ def execute_response_phase(phase_data, current_resources):
 
 **Phase 2: 원인 분석 및 격리 (4-24시간)**
 
-| 분석 영역 | 수행 작업 | 도구/방법 | | :--- | :--- | :--- | | Network Forensics | 트래픽 캡처 분석, C2 서버 식별 | Wireshark, Zeek, SIEM | | Endpoint Analysis | 악성코드 샘플 수집, 동작 분석 | Sandbox, YARA rules | | Log Analysis | 인증 로그, 파일 접근 로그 분석 | ELK Stack, Splunk | | Malware Analysis | 랜섬웨어 strain 식별, 복호화 가능성 | IDA Pro, Ghidra |
+| 분석 영역 | 수행 작업 | 도구/방법 |
+| :--- | :--- | :--- |
+| Network Forensics | 트래픽 캡처 분석, C2 서버 식별 | Wireshark, Zeek, SIEM |
+| Endpoint Analysis | 악성코드 샘플 수집, 동작 분석 | Sandbox, YARA rules |
+| Log Analysis | 인증 로그, 파일 접근 로그 분석 | ELK Stack, Splunk |
+| Malware Analysis | 랜섬웨어 strain 식별, 복호화 가능성 | IDA Pro, Ghidra |
 
 **Phase 3: 시스템 복구 (24시간 - 2주)**
 

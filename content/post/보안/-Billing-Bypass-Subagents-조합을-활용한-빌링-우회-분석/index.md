@@ -86,7 +86,11 @@ graph TD
 
 ### 단계별 침해 시나리오 (Step-by-step)
 
-1.  **정찰 (Reconnaissance)**: 공격자는 VS Code의 API 트래픽을 분석하여, 내부적으로 호출되는 Subagent들의 엔드포인트를 식별합니다. 2.  **에이전트 정의 (Definition)**: 식별된 Subagent를 호출 경로에 포함하는 커스텀 Agent Definition을 생성합니다. 3.  **요청 전송 (Exploitation)**: 유료 기능이 필요한 작업(예: 거대한 코드베이스 리팩토링)을 생성한 에이전트에 요청합니다. 4.  **우회 (Bypass)**: 요청이 Main Agent를 거치지만, 과금 체크 단계를 건너뛰고 내부 Subagent로 라우팅됩니다. 5.  **무료 사용 (Resource Consumption)**: 비용이 청구되지 않은 상태로 고가의 LLM 컴퓨팅 리소스를 소진합니다.
+1.  **정찰 (Reconnaissance)**: 공격자는 VS Code의 API 트래픽을 분석하여, 내부적으로 호출되는 Subagent들의 엔드포인트를 식별합니다.
+2.  **에이전트 정의 (Definition)**: 식별된 Subagent를 호출 경로에 포함하는 커스텀 Agent Definition을 생성합니다.
+3.  **요청 전송 (Exploitation)**: 유료 기능이 필요한 작업(예: 거대한 코드베이스 리팩토링)을 생성한 에이전트에 요청합니다.
+4.  **우회 (Bypass)**: 요청이 Main Agent를 거치지만, 과금 체크 단계를 건너뛰고 내부 Subagent로 라우팅됩니다.
+5.  **무료 사용 (Resource Consumption)**: 비용이 청구되지 않은 상태로 고가의 LLM 컴퓨팅 리소스를 소진합니다.
 
 ### 취약점 비교 분석
 

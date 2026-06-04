@@ -39,9 +39,9 @@ graph TD
     Assistant -->|3. 유효한 Session ID 발급| VictimSession[피해자 세션 객체]
 
     Attacker -->|4. 세션 ID 스니핑/추측| VictimSession
-    Attacker -->|5. WebSocket 연결 시도<br/>(자신의 JWT + 타인의 Session ID)| Assistant
+    Attacker -->|"5. WebSocket 연결 시도<br/>(자신의 JWT + 타인의 Session ID)"| Assistant
 
-    Assistant -.->|6. 세션 검증 로직 우회<br/>(소유권 확인 누락)| ValidationLogic[검증 로직]
+    Assistant -.->|"6. 세션 검증 로직 우회<br/>(소유권 확인 누락)"| ValidationLogic[검증 로직]
     Assistant -->|7. 하이재킹 승인| HijackedSession[탈취된 세션]
 
 ```
