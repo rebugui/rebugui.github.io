@@ -8,7 +8,7 @@ favicon        = "/img/avatar.png"
 
 [sidebar]
     emoji    = "🐢"
-    subtitle = "느리더라도 끝까지 — 정보보안·취약점 분석 기록"
+    subtitle = ""
     avatar   = "img/avatar.png"
 
 [article]

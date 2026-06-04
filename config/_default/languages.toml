@@ -2,5 +2,7 @@
     languageName = "한국어"
     title        = "코딩이 싫은 거북이"
     weight       = 1
+    [ko.params]
+        description = "정보보안·취약점 분석과 CTF 풀이를 기록하는 기술 블로그"
     [ko.params.sidebar]
-        subtitle = "느리더라도 끝까지 — 정보보안·취약점 분석 기록"
+        subtitle = ""
