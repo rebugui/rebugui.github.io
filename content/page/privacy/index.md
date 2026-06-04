@@ -3,11 +3,6 @@ title: 개인정보처리방침
 description: 본 블로그의 개인정보 수집·이용 및 쿠키·광고 관련 정책입니다.
 date: 2026-06-04
 lastmod: 2026-06-04
-menu:
-    main:
-        weight: -80
-        params:
-            icon: link
 ---
 
 본 개인정보처리방침은 **rebugui.github.io**(이하 "본 블로그")의 방문자 개인정보 보호 및 쿠키·광고 정책을 안내합니다.
