@@ -24,7 +24,23 @@ favicon        = "/img/avatar.png"
     page = [{ type = "toc" }]
 
 [comments]
-    enabled = false
+    enabled = true
+    provider = "giscus"
+
+    [comments.giscus]
+        repo = "rebugui/rebugui.github.io"
+        repoID = "R_kgDORI9vfg"
+        category = "Announcements"
+        categoryID = "DIC_kwDORI9vfs4C-epq"
+        mapping = "pathname"
+        strict = "0"
+        lightTheme = "light"
+        darkTheme = "dark"
+        reactionsEnabled = "1"
+        emitMetadata = "0"
+        inputPosition = "bottom"
+        lang = "ko"
+        loading = "lazy"
 
 [colorScheme]
     toggle = true

@@ -48,6 +48,16 @@
                 </time>
             </div>
         {{ end }}
+
+        {{/* 조회수 — 단일 글 페이지에서만 표시 (목록 카드 제외, busuanzi 호환 span) */}}
+        {{ if .IsPage }}
+            <div title="조회수">
+                {{ partial "helper/icon" "eye" }}
+                <span class="article-time--views" id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv">…</span>회
+                </span>
+            </div>
+        {{ end }}
     </footer>
     {{ end }}
 

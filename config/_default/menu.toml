@@ -4,3 +4,10 @@
     url        = "https://github.com/rebugui"
     [social.params]
         icon = "brand-github"
+
+[[social]]
+    identifier = "linkedin"
+    name       = "LinkedIn"
+    url        = "https://www.linkedin.com/in/%EC%9A%B0%ED%98%81-%EC%96%91-bb3722257/"
+    [social.params]
+        icon = "brand-linkedin"
