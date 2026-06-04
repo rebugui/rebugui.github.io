@@ -23,10 +23,11 @@
     var els = document.querySelectorAll("[data-gc-path]");
     els.forEach(function (el) {
       var path = el.getAttribute("data-gc-path");
+      // GoatCounter는 방문 0인 경로에 404 + {"count":"0"} 본문을 주므로 상태 무관하게 파싱
       fetch("https://" + code + ".goatcounter.com/counter/" + encodeURIComponent(path) + ".json")
-        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (r) { return r.json(); })
         .then(function (d) {
-          if (!d) return;
+          if (!d || d.count == null) return;
           var c = el.querySelector(".gc-views-count");
           if (c) c.textContent = d.count;
         })
