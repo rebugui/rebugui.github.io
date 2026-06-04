@@ -8,7 +8,7 @@ tags:
   - "스크립트"
   - "취약점 진단"
 
-categories: ["가이드라인"]
+categories: ["project/KISA-CIIP-2026"]
 ---
 
 ## 📋 개요
