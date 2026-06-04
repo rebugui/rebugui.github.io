@@ -2,6 +2,10 @@ mainSections   = ["post"]
 rssFullContent = true
 favicon        = "/img/avatar.png"
 
+# GoatCounter 조회수: goatcounter.com 가입 후 받은 코드(서브도메인). 예: "rebugui" → rebugui.goatcounter.com
+# 비워두면 조회수 기능 비활성. 설정 시 카드·글마다 실제 조회수 표시.
+goatCounter    = "rebugui"
+
 [footer]
     since = 2025
     customText = '<a href="/page/privacy/">개인정보 처리방침</a>'

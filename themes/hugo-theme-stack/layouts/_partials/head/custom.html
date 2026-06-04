@@ -11,5 +11,30 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7440869759073353"
      crossorigin="anonymous"></script>
 
-<!-- 조회수 카운터 (busuanzi 호환 API, Vercount 백엔드 — 원조 busuanzi보다 안정적) -->
-<script defer src="https://cn.vercount.one/js"></script>
+{{ with .Site.Params.goatCounter }}
+<!-- 조회수: GoatCounter (프라이버시 친화, 글별 정확 집계) -->
+<script data-goatcounter="https://{{ . }}.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<!-- 카드·글별 조회수 표시 — 글 경로를 읽기전용 counter API로 조회해 개별 채움 -->
+<script>
+(function () {
+  var code = "{{ . }}";
+  function fillViews() {
+    var els = document.querySelectorAll("[data-gc-path]");
+    els.forEach(function (el) {
+      var path = el.getAttribute("data-gc-path");
+      fetch("https://" + code + ".goatcounter.com/counter/" + encodeURIComponent(path) + ".json")
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (d) {
+          if (!d) return;
+          var c = el.querySelector(".gc-views-count");
+          if (c) c.textContent = d.count;
+        })
+        .catch(function () {});
+    });
+  }
+  if (document.readyState !== "loading") fillViews();
+  else document.addEventListener("DOMContentLoaded", fillViews);
+})();
+</script>
+{{ end }}

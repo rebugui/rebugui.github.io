@@ -48,6 +48,16 @@
                 </time>
             </div>
         {{ end }}
+
+        {{/* 조회수 — GoatCounter 글별 경로를 읽기전용 API로 조회(카드마다 개별 채움) */}}
+        {{ with .Site.Params.goatCounter }}
+            <div title="조회수">
+                {{ partial "helper/icon" "eye" }}
+                <span class="article-time--views" data-gc-path="{{ $.RelPermalink }}">
+                    <span class="gc-views-count">·</span>
+                </span>
+            </div>
+        {{ end }}
     </footer>
     {{ end }}
 

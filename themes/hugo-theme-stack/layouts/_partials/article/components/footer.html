@@ -1,12 +1,6 @@
 <footer class="article-footer">
     {{ partial "article/components/tags" . }}
 
-    {{/* 조회수 — 단일 글 페이지에서만 렌더(리스트 카드 미사용, busuanzi 호환 span 1개) */}}
-    <section class="article-views">
-        {{ partial "helper/icon" "eye" }}
-        <span id="busuanzi_container_page_pv">조회수 <span id="busuanzi_value_page_pv">…</span>회</span>
-    </section>
-
     {{ if and (.Site.Params.article.license.enabled) (not (eq .Params.license false)) }}
     <section class="article-copyright">
         {{ partial "helper/icon" "copyright" }}
