@@ -8,6 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Web
+draft: true
 ---
 
 # WEB-26 로그디렉터리및파일권한설정

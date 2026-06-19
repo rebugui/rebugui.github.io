@@ -10,6 +10,7 @@ tags:
   - "개발자 생산성"
 categories:
   - "AI"
+draft: true
 ---
 
 ## 서론

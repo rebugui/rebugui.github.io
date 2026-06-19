@@ -8,6 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Database
+draft: true
 ---
 
 # 응용프로그램 또는 DBA 계정의 Role이 Public으로 설정되지 않도록 조정

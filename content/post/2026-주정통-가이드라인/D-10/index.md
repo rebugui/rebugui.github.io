@@ -8,6 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Database
+draft: true
 ---
 
 # 원격에서 DB 서버로의 접속 제한

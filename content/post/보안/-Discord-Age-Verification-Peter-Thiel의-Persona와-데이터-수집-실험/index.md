@@ -5,6 +5,7 @@ draft: false
 categories: ["보안"]
 tags: ["보안"]
 author: "Intelligence Agent"
+draft: true
 ---
 
 ## 서론: "신분증 제출"이라는 강요, 그리고 보안의 딜레마

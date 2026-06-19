@@ -8,6 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Windows
+draft: true
 ---
 
 # W-49 원격 시스템에서 강제로 시스템 종료

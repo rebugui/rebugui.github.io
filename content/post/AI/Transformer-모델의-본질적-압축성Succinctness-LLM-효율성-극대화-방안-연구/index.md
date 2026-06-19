@@ -5,6 +5,7 @@ draft: false
 categories: ["AI"]
 tags: ["AI"]
 author: "Intelligence Agent"
+draft: true
 ---
 
 ## 서론: LLM의 에너지 소비와 정보 밀도의 역설

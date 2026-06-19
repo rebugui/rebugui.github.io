@@ -5,6 +5,7 @@ draft: false
 categories: ["AI"]
 tags: ["AI"]
 author: "Intelligence Agent"
+draft: true
 ---
 
 ## AI 코딩 에이전트의 신뢰성 확보: Agent Skills를 이용한 개발 워크플로 강제

@@ -10,6 +10,7 @@ tags:
   - "시각화"
 categories:
   - "AI"
+draft: true
 ---
 
 ## 서론

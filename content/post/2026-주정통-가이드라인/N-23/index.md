@@ -8,6 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Network
+draft: true
 ---
 
 # N-23: DDoS 공격 방어 설정 또는 DDoS 장비 사용

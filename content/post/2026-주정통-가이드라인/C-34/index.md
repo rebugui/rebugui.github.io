@@ -8,6 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Control
+draft: true
 ---
 
 # C-34 ~ C-42 제어시스템 복구대응 관련 항목

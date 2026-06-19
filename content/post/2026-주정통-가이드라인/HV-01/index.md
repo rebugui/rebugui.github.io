@@ -8,6 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Virtualization
+draft: true
 ---
 
 # 가상화장비 > 1. 계정관리

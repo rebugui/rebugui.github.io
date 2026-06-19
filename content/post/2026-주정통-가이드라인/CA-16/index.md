@@ -8,6 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Cloud
+draft: true
 ---
 
 # CA-16 오브젝트스토리지버킷로깅설정

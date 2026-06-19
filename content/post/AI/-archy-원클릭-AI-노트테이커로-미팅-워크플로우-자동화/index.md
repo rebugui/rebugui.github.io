@@ -10,6 +10,7 @@ tags:
   - "노트테이커"
 categories:
   - "AI"
+draft: true
 ---
 
 ## 서론

@@ -8,6 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Unix
+draft: true
 ---
 
 # U-23 SUID, SGID, Sticky bit 설정 파일 점검

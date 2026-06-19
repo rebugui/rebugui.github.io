@@ -8,6 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Unix
+draft: true
 ---
 
 # U-05 root 이외의 UID가 '0' 금지

@@ -8,6 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Virtualization
+draft: true
 ---
 
 # HV-22 가상 스위치 MAC 주소 변경 정책 비활성화

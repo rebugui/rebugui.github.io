@@ -8,6 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Network
+draft: true
 ---
 
 # N-22: Spoofing 방지 필터링 적용

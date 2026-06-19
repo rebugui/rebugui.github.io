@@ -8,6 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Windows
+draft: true
 ---
 
 # W-48 로그온하지 않고 시스템 종료 허용

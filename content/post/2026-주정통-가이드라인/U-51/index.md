@@ -8,6 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Unix
+draft: true
 ---
 
 # U-51 DNS 서비스의 취약한 동적 업데이트 설정 금지

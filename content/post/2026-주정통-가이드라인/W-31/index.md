@@ -8,6 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Windows
+draft: true
 ---
 
 # W-31 SNMP 서비스 Trap 수신 지정

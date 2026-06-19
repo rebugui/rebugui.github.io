@@ -5,6 +5,7 @@ draft: false
 categories: ["CVE"]
 tags: ["CVE"]
 author: "Intelligence Agent"
+draft: true
 ---
 
 ## 서론: 취약점 홍수 속에서 길을 찾는 여정

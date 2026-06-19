@@ -8,6 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Unix
+draft: true
 ---
 
 # U-09 계정이 존재하지 않는 GID 금지

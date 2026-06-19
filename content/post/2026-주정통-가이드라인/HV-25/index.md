@@ -8,6 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Virtualization
+draft: true
 ---
 
 # HV-25 주기적 보안 패치 및 벤더 권고사항 적용

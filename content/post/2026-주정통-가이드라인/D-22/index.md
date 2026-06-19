@@ -8,6 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Database
+draft: true
 ---
 
 # 데이터베이스의 자원 제한 기능을 TRUE로 설정

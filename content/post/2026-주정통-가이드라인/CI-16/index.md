@@ -8,6 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Web
+draft: true
 ---
 
 # 불충분한세션관리(Insufficient Session Management)

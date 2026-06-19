@@ -8,6 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Database
+draft: true
 ---
 
 # Windows 인증 모드 사용

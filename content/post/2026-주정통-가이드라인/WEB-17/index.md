@@ -8,6 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Web
+draft: true
 ---
 
 # WEB-17 웹서비스가상디렉터리삭제

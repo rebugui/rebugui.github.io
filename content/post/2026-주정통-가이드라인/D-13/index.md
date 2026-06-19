@@ -8,6 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Database
+draft: true
 ---
 
 # 불필요한 ODBC/OLE-DB 데이터소스와 드라이브를 제거하여 사용

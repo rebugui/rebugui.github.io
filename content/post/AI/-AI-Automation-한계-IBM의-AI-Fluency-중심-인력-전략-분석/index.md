@@ -10,6 +10,7 @@ tags:
   - "인력 재설계"
 categories:
   - "AI"
+draft: true
 ---
 
 ## 서론

@@ -8,6 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Security
+draft: true
 ---
 
 # S-02 비밀번호관리정책 설정

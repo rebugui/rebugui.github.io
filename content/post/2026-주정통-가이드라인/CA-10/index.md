@@ -8,6 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Cloud
+draft: true
 ---
 
 # CA-10 스토리지리소스퍼블릭접근관리

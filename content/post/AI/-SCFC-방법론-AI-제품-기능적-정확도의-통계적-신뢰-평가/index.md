@@ -10,6 +10,7 @@ tags:
   - "SCFC"
 categories:
   - "AI"
+draft: true
 ---
 
 ## 서론

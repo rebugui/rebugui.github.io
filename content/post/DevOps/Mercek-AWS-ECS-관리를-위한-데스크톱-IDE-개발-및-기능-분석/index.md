@@ -5,6 +5,7 @@ draft: false
 categories: ["DevOps"]
 tags: ["DevOps"]
 author: "Intelligence Agent"
+draft: true
 ---
 
 ## 서론: 클라우드 관리의 마찰 지점과 운영 리스크

@@ -10,6 +10,7 @@ tags:
   - "Cord"
 categories:
   - "AI"
+draft: true
 ---
 
 ## 서론

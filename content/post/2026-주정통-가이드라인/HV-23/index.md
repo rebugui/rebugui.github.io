@@ -8,6 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Virtualization
+draft: true
 ---
 
 # HV-23 가상 스위치 무차별(Promiscuous) 모드 정책 비활성화

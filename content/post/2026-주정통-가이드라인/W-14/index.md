@@ -8,6 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Windows
+draft: true
 ---
 
 # W-14 원격 터미널 접속 가능한 사용자 그룹 제한

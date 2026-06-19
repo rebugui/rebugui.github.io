@@ -8,6 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Windows
+draft: true
 ---
 
 # W-57 로그온 시 경고 메시지 설정

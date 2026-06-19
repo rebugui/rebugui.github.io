@@ -8,6 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Network
+draft: true
 ---
 
 # N-08 VTY 접속 시 안전한 프로토콜 사용

@@ -8,6 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Virtualization
+draft: true
 ---
 
 # HV-18 가상 머신의 장치 변경 제한 설정

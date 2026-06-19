@@ -8,6 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Network
+draft: true
 ---
 
 # N-09 불필요한 보조 입출력 포트 사용 금지

@@ -10,6 +10,7 @@ tags:
   - "평가"
 categories:
   - "AI"
+draft: true
 ---
 
 ## 서론

@@ -10,6 +10,7 @@ tags:
   - "취약점"
 categories:
   - "CVE"
+draft: true
 ---
 
 ## 서론

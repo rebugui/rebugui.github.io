@@ -10,6 +10,7 @@ tags:
   - "멀티모달"
 categories:
   - "AI"
+draft: true
 ---
 
 ## 서론

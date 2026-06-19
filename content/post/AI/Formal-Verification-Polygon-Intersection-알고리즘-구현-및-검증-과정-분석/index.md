@@ -5,6 +5,7 @@ draft: false
 categories: ["AI"]
 tags: ["AI"]
 author: "Intelligence Agent"
+draft: true
 ---
 
 ## 서론: 신뢰성 위기가 야기하는 공학적 난제

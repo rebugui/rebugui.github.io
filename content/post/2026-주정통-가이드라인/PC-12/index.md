@@ -8,6 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - PC
+draft: true
 ---
 
 # Windows 자동 로그인 점검

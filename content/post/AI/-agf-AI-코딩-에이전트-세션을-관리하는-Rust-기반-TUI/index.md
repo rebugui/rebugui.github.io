@@ -5,6 +5,7 @@ draft: false
 categories: ["AI"]
 tags: ["AI"]
 author: "Intelligence Agent"
+draft: true
 ---
 
 ## 서론

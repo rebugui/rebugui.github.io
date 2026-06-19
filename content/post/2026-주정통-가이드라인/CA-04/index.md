@@ -8,6 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Cloud
+draft: true
 ---
 
 # CA-04 클라우드계정비밀번호정책관리

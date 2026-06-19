@@ -5,6 +5,7 @@ draft: false
 categories: ["DevOps"]
 tags: ["DevOps"]
 author: "Intelligence Agent"
+draft: true
 ---
 
 ## 서론: 클라우드 거인의 변화가 운영 아키텍처에 미치는 영향

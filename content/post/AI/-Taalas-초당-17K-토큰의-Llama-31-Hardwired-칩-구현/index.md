@@ -10,6 +10,7 @@ tags:
   - "Custom Silicon"
 categories:
   - "AI"
+draft: true
 ---
 
 ## 서론

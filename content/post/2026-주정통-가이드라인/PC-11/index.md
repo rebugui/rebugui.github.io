@@ -8,6 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - PC
+draft: true
 ---
 
 # 지원이 종료되지 않은 Windows OS Build 적용

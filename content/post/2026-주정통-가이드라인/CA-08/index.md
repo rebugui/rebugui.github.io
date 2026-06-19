@@ -8,6 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Cloud
+draft: true
 ---
 
 # CA-08 가상네트워크리소스관리

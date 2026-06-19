@@ -10,6 +10,7 @@ tags:
   - "자연어 처리"
 categories:
   - "AI"
+draft: true
 ---
 
 ## 서론

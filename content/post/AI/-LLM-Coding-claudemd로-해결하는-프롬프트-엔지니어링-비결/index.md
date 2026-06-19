@@ -10,6 +10,7 @@ tags:
   - "AI 코딩"
 categories:
   - "AI"
+draft: true
 ---
 
 ## 서론

@@ -5,6 +5,7 @@ draft: false
 categories: ["AI"]
 tags: ["AI"]
 author: "Intelligence Agent"
+draft: true
 ---
 
 ## 서론: 언어 이해를 넘어선 '행동'의 영역으로

@@ -8,6 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Virtualization
+draft: true
 ---
 
 # HV-20 가상 머신 콘솔 클립보드 복사&붙여넣기 기능 비활성화

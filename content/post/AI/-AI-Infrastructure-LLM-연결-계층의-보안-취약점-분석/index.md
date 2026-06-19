@@ -10,6 +10,7 @@ tags:
   - "Cisco"
 categories:
   - "AI"
+draft: true
 ---
 
 ## 서론

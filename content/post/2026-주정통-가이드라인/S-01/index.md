@@ -8,6 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Security
+draft: true
 ---
 
 # S-01 보안장비 Default계정 변경

@@ -5,6 +5,7 @@ draft: false
 categories: ["Info Architecture"]
 tags: ["Info Architecture"]
 author: "Intelligence Agent"
+draft: true
 ---
 
 ## 서론: 정보 과부하 시대의 기술 커뮤니케이션 관리 문제
