@@ -9,7 +9,7 @@ menu:
     main:
         weight: -80
         params:
-            icon: shield
+            icon: hash
 draft: false
 ---
 
