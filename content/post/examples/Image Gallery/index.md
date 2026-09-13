@@ -1,4 +1,7 @@
 ---
+_build:
+  list: never
+robots: noindex
 title: Image Gallery
 description: Showcasing the built-in image gallery support
 date: 2026-01-26
@@ -10,7 +13,7 @@ tags:
     - Gallery
     - Photoswipe
 toc: false
-draft: false
+draft: true
 ---
 
 Stack theme has a built-in support for image galleries. It allows you to create a beautiful gallery by simply placing multiple images side-by-side.

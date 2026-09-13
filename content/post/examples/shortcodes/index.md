@@ -1,4 +1,7 @@
 ---
+_build:
+  list: never
+robots: noindex
 title: Shortcodes
 date: 2026-01-26
 description: Sample article showcasing various shortcodes supported by Stack theme.
@@ -7,7 +10,7 @@ categories:
 tags:
     - shortcodes
     - privacy
-draft: false
+draft: true
 ---
 
 Stack theme also provides some custom shortcodes to enhance your content.

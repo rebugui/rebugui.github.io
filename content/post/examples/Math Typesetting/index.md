@@ -1,4 +1,7 @@
 ---
+_build:
+  list: never
+robots: noindex
 title: Math Typesetting
 date: 2026-01-24
 description: Guide to enabling and using KaTeX in the Stack theme
@@ -6,7 +9,7 @@ math: true
 categories:
     - Documentation
 slug: math-typesetting
-draft: false
+draft: true
 ---
 
 The Stack theme supports rendering mathematical notation using [KaTeX](https://katex.org/).
