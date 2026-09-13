@@ -8,7 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - PC
-draft: true
+draft: false
 ---
 
 # 복구 콘솔에서 자동 로그온을 금지하도록 설정

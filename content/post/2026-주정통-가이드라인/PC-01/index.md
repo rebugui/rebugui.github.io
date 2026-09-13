@@ -8,7 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - PC
-draft: true
+draft: false
 ---
 
 # 비밀번호의 주기적 변경

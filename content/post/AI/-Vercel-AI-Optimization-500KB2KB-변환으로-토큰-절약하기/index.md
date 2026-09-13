@@ -10,7 +10,6 @@ tags:
   - "토큰 최적화"
 categories:
   - "AI"
-draft: true
 ---
 
 ## 서론

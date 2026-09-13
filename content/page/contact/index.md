@@ -8,6 +8,7 @@ menu:
         weight: -70
         params:
             icon: link
+draft: false
 ---
 
 본 블로그의 콘텐츠, 제휴, 오류 제보, 개인정보 관련 문의는 아래 이메일로 연락 주시기 바랍니다.

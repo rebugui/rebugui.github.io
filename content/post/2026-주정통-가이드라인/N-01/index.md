@@ -8,7 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Network
-draft: true
+draft: false
 ---
 
 # N-01 비밀번호 설정

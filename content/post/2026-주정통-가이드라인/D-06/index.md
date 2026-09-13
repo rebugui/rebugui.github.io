@@ -8,7 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Database
-draft: true
+draft: false
 ---
 
 # DB 사용자 계정을 개별적으로 부여하여 사용

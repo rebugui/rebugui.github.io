@@ -10,7 +10,6 @@ tags:
   - "Legacy Security"
 categories:
   - "보안"
-draft: true
 ---
 
 

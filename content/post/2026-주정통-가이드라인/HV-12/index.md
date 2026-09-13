@@ -8,7 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Virtualization
-draft: true
+draft: false
 ---
 
 # HV-12 ESXi Shell 비활성화

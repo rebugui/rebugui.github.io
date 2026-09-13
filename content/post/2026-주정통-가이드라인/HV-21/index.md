@@ -8,7 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Virtualization
-draft: true
+draft: false
 ---
 
 # HV-21 가상 머신 콘솔 드래그 앤 드롭 기능 비활성화

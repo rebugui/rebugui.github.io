@@ -8,7 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - PC
-draft: true
+draft: false
 ---
 
 # 불필요한 서비스 제거

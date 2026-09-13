@@ -15,6 +15,7 @@ menu:
         params:
             icon: link
 comments: false
+draft: false
 ---
 
 この機能を使用するには、フロントマターに `links` セクションを追加します。

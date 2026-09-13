@@ -10,7 +10,6 @@ tags:
   - "이론물리학"
 categories:
   - "AI"
-draft: true
 ---
 
 ## 서론

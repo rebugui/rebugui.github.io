@@ -7,6 +7,7 @@ categories:
 tags:
     - shortcodes
     - privacy
+draft: false
 ---
 
 Stack theme also provides some custom shortcodes to enhance your content.

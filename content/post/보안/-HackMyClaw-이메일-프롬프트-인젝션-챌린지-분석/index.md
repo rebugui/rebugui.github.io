@@ -9,7 +9,6 @@ tags:
   - "Security"
   - "CTF"
 categories: ["보안"]
-draft: true
 ---
 
 ## 서론

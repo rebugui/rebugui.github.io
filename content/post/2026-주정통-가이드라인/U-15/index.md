@@ -8,7 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Unix
-draft: true
+draft: false
 ---
 
 # U-15 파일 및 디렉터리 소유자 설정

@@ -15,6 +15,7 @@ menu:
         params:
             icon: link
 comments: false
+draft: false
 ---
 
 要使用此功能，請在 frontmatter 中添加 `links` 部分。

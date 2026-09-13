@@ -8,7 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Web
-draft: true
+draft: false
 ---
 
 # 관리자페이지노출(Exposed Admin Page)

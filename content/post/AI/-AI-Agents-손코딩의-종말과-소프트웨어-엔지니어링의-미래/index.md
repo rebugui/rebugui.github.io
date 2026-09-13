@@ -10,7 +10,6 @@ tags:
   - "미래 전망"
 categories:
   - "AI"
-draft: true
 ---
 
 ## 서론

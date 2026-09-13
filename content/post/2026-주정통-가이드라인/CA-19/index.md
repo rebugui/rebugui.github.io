@@ -8,7 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Cloud
-draft: true
+draft: false
 ---
 
 # CA-19 가상리소스이상징후알림설정

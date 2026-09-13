@@ -10,7 +10,6 @@ tags:
   - "생성형AI"
 categories:
   - "AI"
-draft: true
 ---
 
 ## 서론

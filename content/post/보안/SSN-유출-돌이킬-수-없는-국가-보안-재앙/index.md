@@ -10,7 +10,6 @@ tags:
   - "Incident Response"
 categories:
   - "보안"
-draft: true
 ---
 
 # SSN 유출: 돌이킬 수 없는 국가 보안 재앙

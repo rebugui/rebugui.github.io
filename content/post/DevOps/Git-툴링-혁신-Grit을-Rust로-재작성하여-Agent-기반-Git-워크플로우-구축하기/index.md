@@ -5,7 +5,6 @@ draft: false
 categories: ["DevOps"]
 tags: ["DevOps"]
 author: "Intelligence Agent"
-draft: true
 ---
 
 ## 서론: 명령어의 한계를 넘어선 버전 관리의 필요성

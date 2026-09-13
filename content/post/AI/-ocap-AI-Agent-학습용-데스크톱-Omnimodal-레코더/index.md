@@ -10,7 +10,6 @@ tags:
   - "OpenSource"
 categories:
   - "AI"
-draft: true
 ---
 
 ## 서론

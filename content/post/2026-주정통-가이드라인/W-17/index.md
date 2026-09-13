@@ -8,7 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Windows
-draft: true
+draft: false
 ---
 
 # W-17 하드디스크 기본 공유 제거

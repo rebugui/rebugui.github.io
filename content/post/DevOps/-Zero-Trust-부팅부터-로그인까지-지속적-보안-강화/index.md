@@ -10,7 +10,6 @@ tags:
   - "Identity"
 categories:
   - "DevOps"
-draft: true
 ---
 
 ## 서론

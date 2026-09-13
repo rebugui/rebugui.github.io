@@ -10,7 +10,6 @@ tags:
   - "Long Context"
 categories:
   - "AI"
-draft: true
 ---
 
 ## 서론

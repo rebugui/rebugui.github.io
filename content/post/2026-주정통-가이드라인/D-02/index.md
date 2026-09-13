@@ -8,7 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Database
-draft: true
+draft: false
 ---
 
 # 데이터베이스의 불필요 계정을 제거하거나, 잠금 설정 후 사용

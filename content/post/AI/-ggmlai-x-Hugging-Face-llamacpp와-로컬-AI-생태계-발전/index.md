@@ -10,7 +10,6 @@ tags:
   - "오픈소스"
 categories:
   - "AI"
-draft: true
 ---
 
 ## 서론

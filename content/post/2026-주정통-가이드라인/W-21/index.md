@@ -8,7 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Windows
-draft: true
+draft: false
 ---
 
 # W-21 암호화되지 않는 FTP 서비스 비활성화

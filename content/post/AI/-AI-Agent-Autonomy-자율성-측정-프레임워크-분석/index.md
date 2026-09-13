@@ -10,7 +10,6 @@ tags:
   - "AI Safety"
 categories:
   - "AI"
-draft: true
 ---
 
 ## 서론

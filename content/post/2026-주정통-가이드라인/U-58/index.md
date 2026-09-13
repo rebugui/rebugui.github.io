@@ -8,7 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Unix
-draft: true
+draft: false
 ---
 
 # U-58 불필요한 SNMP 서비스 구동 점검

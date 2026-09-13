@@ -10,7 +10,6 @@ tags:
   - "생성형 AI"
 categories:
   - "AI"
-draft: true
 ---
 
 ## 서론: 영화 제작의 '제2막' 문제와 AI의 한계

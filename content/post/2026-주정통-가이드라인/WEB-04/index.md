@@ -8,7 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Web
-draft: true
+draft: false
 ---
 
 # WEB-04 웹서비스디렉터리리스팅방지설정

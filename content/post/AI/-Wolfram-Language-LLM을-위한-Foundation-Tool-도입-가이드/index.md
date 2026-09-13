@@ -10,7 +10,6 @@ tags:
   - "AI"
 categories:
   - "AI"
-draft: true
 ---
 
 ## 서론

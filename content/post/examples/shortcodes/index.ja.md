@@ -6,7 +6,7 @@ categories:
     - Documentation
 tags:
     - 隐私
-draft: true
+draft: false
 ---
 
 Stack テーマには、コンテンツを強化するためのカスタムショートコードがいくつか用意されています。

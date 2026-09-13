@@ -10,7 +10,6 @@ tags:
   - "Deep Learning"
 categories:
   - "AI"
-draft: true
 ---
 
 ## 서론

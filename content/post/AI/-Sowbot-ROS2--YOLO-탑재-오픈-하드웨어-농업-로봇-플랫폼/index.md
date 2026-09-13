@@ -10,7 +10,6 @@ tags:
   - "RTK GPS"
 categories:
   - "AI"
-draft: true
 ---
 
 ## 서론

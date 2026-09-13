@@ -8,7 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Virtualization
-draft: true
+draft: false
 ---
 
 # HV-11 MOB(Managed Object Browser) 서비스 비활성화

@@ -8,7 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Windows
-draft: true
+draft: false
 ---
 
 # W-62 시작 프로그램 목록 분석

@@ -8,7 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Security
-draft: true
+draft: false
 ---
 
 # S-20 장비 사용량 검토

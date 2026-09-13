@@ -8,7 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Control
-draft: true
+draft: false
 ---
 
 # C-43 ~ C-50 제어시스템 보안관리 관련 항목

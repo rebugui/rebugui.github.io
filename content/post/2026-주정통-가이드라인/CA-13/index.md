@@ -8,7 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Cloud
-draft: true
+draft: false
 ---
 
 # CA-13 클라우드서비스사용자계정로깅설정

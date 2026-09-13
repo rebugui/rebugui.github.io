@@ -10,7 +10,6 @@ tags:
   - "OS"
 categories:
   - "DevOps"
-draft: true
 ---
 
 ## 서론

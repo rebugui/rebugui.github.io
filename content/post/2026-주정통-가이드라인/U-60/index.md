@@ -8,7 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Unix
-draft: true
+draft: false
 ---
 
 # U-60 SNMP Community String 복잡성 설정

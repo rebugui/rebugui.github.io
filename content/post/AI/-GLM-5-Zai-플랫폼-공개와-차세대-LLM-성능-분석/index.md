@@ -10,7 +10,6 @@ tags:
   - "Generative AI"
 categories:
   - "AI"
-draft: true
 ---
 
 ## 서론

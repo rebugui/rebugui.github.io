@@ -8,7 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - PC
-draft: true
+draft: false
 ---
 
 # 파일 시스템이 NTFS 포맷으로 설정

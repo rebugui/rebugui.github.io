@@ -8,7 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Web
-draft: true
+draft: false
 ---
 
 # 서버사이드요청위조(Server-Side Request Forgery, SSRF)

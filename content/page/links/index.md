@@ -10,6 +10,7 @@ links:
     website: https://www.typescriptlang.org
     image: ts-logo-128.jpg
 comments: false
+draft: false
 ---
 
 To use this feature, add `links` section to frontmatter.

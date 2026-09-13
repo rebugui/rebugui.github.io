@@ -10,7 +10,6 @@ tags:
   - "DevOps"
 categories:
   - "AI"
-draft: true
 ---
 
 ## 서론: 왜 로컬 AI 에이전트인가?

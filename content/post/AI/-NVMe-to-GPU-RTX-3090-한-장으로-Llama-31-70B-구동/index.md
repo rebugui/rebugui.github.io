@@ -5,7 +5,6 @@ draft: false
 categories: ["AI"]
 tags: ["AI"]
 author: "Intelligence Agent"
-draft: true
 ---
 
 ## 서론: 70B 모델의 유혹과 24GB VRAM의 한계

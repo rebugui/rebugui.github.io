@@ -8,7 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - PC
-draft: true
+draft: false
 ---
 
 # 원격 지원을 금지하도록 정책을 설정

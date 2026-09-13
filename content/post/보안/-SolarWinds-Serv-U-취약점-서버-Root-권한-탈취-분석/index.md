@@ -10,7 +10,6 @@ tags:
   - "Root Access"
 categories:
   - "보안"
-draft: true
 ---
 
 ## 서론

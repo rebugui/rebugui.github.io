@@ -10,7 +10,6 @@ tags:
   - "커스텀 모델"
 categories:
   - "AI"
-draft: true
 ---
 
 ## 서론

@@ -10,7 +10,6 @@ tags:
   - "해석가능성"
 categories:
   - "AI"
-draft: true
 ---
 
 ## 서론

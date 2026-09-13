@@ -8,7 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Cloud
-draft: true
+draft: false
 ---
 
 # CA-11 관계형데이터베이스암호화설정

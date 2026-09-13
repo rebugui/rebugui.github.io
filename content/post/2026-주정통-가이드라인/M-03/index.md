@@ -8,7 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Mobile
-draft: true
+draft: false
 ---
 
 # M-03 이동통신망 장비 및 SW 제조사 등과 보안정책을 마련하여 운영

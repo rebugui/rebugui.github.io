@@ -8,6 +8,7 @@ menu:
         weight: -90
         params:
             icon: user
+draft: false
 ---
 
 ## 這是給誰看的？

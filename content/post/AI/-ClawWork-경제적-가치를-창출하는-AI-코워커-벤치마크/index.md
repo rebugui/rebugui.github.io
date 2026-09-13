@@ -10,7 +10,6 @@ tags:
   - "AI 코워커"
 categories:
   - "AI"
-draft: true
 ---
 
 ## 서론

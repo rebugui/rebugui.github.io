@@ -10,7 +10,6 @@ tags:
   - "Automation"
 categories:
   - "AI"
-draft: true
 ---
 
 ## 서론

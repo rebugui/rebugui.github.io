@@ -10,7 +10,6 @@ tags:
   - "MLOps"
 categories:
   - "AI"
-draft: true
 ---
 
 ## 서론

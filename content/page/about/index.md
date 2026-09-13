@@ -8,6 +8,7 @@ menu:
         weight: -90
         params:
             icon: user
+draft: false
 ---
 
 ## 이 블로그에 대하여

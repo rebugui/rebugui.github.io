@@ -8,7 +8,7 @@ categories: ["2026 주정통 가이드라인"]
 tags:
   - 2026 주정통 가이드라인
   - Virtualization
-draft: true
+draft: false
 ---
 
 # HV-19 가상 머신의 불필요한 장치 제거

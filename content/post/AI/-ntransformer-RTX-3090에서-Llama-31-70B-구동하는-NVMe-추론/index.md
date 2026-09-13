@@ -10,7 +10,6 @@ tags:
   - "Llama 3.1"
 categories:
   - "AI"
-draft: true
 ---
 
 ## 서론
