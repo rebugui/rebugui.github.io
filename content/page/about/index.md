@@ -2,7 +2,9 @@
 title: About
 description: 고려대학교 SW·AI융합대학원 석사과정 | 취약점 진단 전문가
 date: 2026-02-04
-lastmod: 2026-06-19
+lastmod: 2026-09-13
+aliases:
+  - /about/
 menu:
     main:
         weight: -90

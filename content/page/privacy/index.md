@@ -2,7 +2,14 @@
 title: 개인정보처리방침
 description: 본 블로그의 개인정보 수집·이용 및 쿠키·광고 관련 정책입니다.
 date: 2026-06-04
-lastmod: 2026-06-04
+lastmod: 2026-09-13
+aliases:
+  - /privacy/
+menu:
+    main:
+        weight: -80
+        params:
+            icon: shield
 draft: false
 ---
 
