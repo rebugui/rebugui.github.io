@@ -1,7 +1,8 @@
 ---
 draft: true
-_build:
+build:
   list: never
+  render: never
 robots: noindex
 title: Markdown Syntax Guide
 date: 2026-01-25
@@ -14,7 +15,6 @@ tags:
 categories:
     - Documentation
 image: pawel-czerwinski-8uZPynIu-rQ-unsplash.jpg
-draft: false
 ---
 
 This article offers a sample of basic Markdown syntax that can be used in Hugo content files, also it shows whether basic HTML elements are decorated with CSS in a Hugo theme.

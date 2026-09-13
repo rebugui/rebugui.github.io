@@ -1,6 +1,8 @@
 ---
-_build:
+draft: true
+build:
   list: never
+  render: never
 robots: noindex
 title: Math Typesetting
 date: 2026-01-24
@@ -9,7 +11,6 @@ math: true
 categories:
     - Documentation
 slug: math-typesetting
-draft: true
 ---
 
 The Stack theme supports rendering mathematical notation using [KaTeX](https://katex.org/).

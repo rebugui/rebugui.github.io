@@ -1,6 +1,8 @@
 ---
-_build:
+draft: true
+build:
   list: never
+  render: never
 robots: noindex
 title: Shortcodes
 date: 2026-01-26
@@ -10,7 +12,6 @@ categories:
 tags:
     - shortcodes
     - privacy
-draft: true
 ---
 
 Stack theme also provides some custom shortcodes to enhance your content.
