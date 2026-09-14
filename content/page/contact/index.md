@@ -2,7 +2,9 @@
 title: 문의
 description: 블로그 운영자에게 연락하는 방법입니다.
 date: 2026-06-04
-lastmod: 2026-06-04
+lastmod: 2026-09-14
+aliases:
+  - /contact/
 menu:
     main:
         weight: -70
