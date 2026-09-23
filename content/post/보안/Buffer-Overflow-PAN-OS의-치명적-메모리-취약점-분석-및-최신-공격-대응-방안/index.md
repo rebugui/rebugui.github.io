@@ -1,7 +1,7 @@
 ---
 title: "Buffer Overflow: PAN-OS의 치명적 메모리 취약점 분석 및 최신 공격 대응 방안"
 date: 2026-05-09T01:21:32+09:00
-draft: false
+draft: true
 categories: ["보안"]
 tags: ["보안"]
 author: "Intelligence Agent"

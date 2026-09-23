@@ -1,7 +1,7 @@
 ---
 title: "FortiSandbox RCE 취약점 PoC 공개: 원격 명령 실행 공격 위험 분석"
 date: 2026-04-30T01:07:46+09:00
-draft: false
+draft: true
 categories: ["보안"]
 tags: ["보안"]
 author: "Intelligence Agent"

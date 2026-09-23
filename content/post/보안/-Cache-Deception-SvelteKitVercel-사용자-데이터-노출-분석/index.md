@@ -1,7 +1,7 @@
 ---
 title: "🔒 Cache Deception: SvelteKit/Vercel 사용자 데이터 노출 분석"
 date: 2026-04-19T08:06:09+09:00
-draft: false
+draft: true
 categories: ["보안"]
 tags: ["보안"]
 author: "Intelligence Agent"

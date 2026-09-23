@@ -1,7 +1,7 @@
 ---
 title: "Fortinet VPN 취약점 분석: 7만 3천 대 장치 인증 정보 유출 사건 보고서"
 date: 2026-06-22T12:17:37+09:00
-draft: false
+draft: true
 categories: ["보안"]
 tags: ["보안"]
 author: "Intelligence Agent"

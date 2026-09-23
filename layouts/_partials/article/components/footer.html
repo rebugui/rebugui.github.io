@@ -1,0 +1,25 @@
+<footer class="article-footer">
+    {{ partial "article/components/tags" . }}
+
+    {{ if and (.Site.Params.article.license.enabled) (not (eq .Params.license false)) }}
+    <section class="article-copyright">
+        {{ partial "helper/icon" "copyright" }}
+        <span>{{ default .Site.Params.article.license.default .Params.license | markdownify }}</span>
+    </section>
+    {{ end }}
+
+    {{- if ne .Lastmod .Date -}}
+    <section class="article-lastmod">
+        {{ partial "helper/icon" "clock" }}
+        <span>
+            {{ T "article.lastUpdatedOn" }} {{ .Lastmod | time.Format .Site.Params.dateFormat.lastUpdated }}
+        </span>
+    </section>
+    {{- end -}}
+
+    {{ if and (eq .Section "post") (or .Params.ai_generated (eq .Params.author "Intelligence Agent") (and (not (isset .Params "ai_generated")) (ne .Params.author "Rebugui"))) }}
+    <section class="article-copyright ai-disclosure" aria-label="AI 생성 콘텐츠 알림">
+        <span>이 글은 AI를 사용해 생성 또는 보조 작성되었습니다. 보안·기술 정보는 인용된 원문과 공식 자료에서 다시 확인하세요.</span>
+    </section>
+    {{ end }}
+</footer>

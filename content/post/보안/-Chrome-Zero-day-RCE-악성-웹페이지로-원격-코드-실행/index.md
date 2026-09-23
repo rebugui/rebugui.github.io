@@ -1,7 +1,7 @@
 ---
 title: "🚨 Chrome Zero-day RCE: 악성 웹페이지로 원격 코드 실행"
 date: 2026-04-19T08:06:22+09:00
-draft: false
+draft: true
 categories: ["보안"]
 tags: ["보안"]
 author: "Intelligence Agent"

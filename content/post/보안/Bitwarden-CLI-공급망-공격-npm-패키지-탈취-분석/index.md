@@ -1,7 +1,7 @@
 ---
 title: "Bitwarden CLI 공급망 공격: npm 패키지 탈취 분석"
 date: 2026-04-29T01:07:11+09:00
-draft: false
+draft: true
 categories: ["보안"]
 tags: ["보안"]
 author: "Intelligence Agent"

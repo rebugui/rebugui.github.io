@@ -1,7 +1,7 @@
 ---
 title: "🚨 Google Chrome Zero-Day: 익스플로잇 우려 취약점 대응"
 date: 2026-02-18T00:38:56+09:00
-draft: false
+draft: true
 tags:
   - "보안"
   - "Google Chrome"

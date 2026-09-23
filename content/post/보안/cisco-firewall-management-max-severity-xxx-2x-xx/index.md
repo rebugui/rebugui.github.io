@@ -1,7 +1,7 @@
 ---
 title: "🚨 Cisco Firewall Management: Max-severity 취약점 2건 분석"
 date: 2026-03-15T20:53:49+09:00
-draft: false
+draft: true
 tags:
   - "Security"
   - "Cisco"

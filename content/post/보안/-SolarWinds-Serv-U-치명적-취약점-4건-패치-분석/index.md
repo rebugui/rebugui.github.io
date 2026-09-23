@@ -1,7 +1,7 @@
 ---
 title: "🔒 SolarWinds Serv-U: 치명적 취약점 4건 패치 분석"
 date: 2026-02-26T10:06:34+09:00
-draft: false
+draft: true
 tags:
   - "Security"
   - "SolarWinds"
