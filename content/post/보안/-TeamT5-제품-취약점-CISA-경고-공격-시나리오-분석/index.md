@@ -25,7 +25,7 @@ CISA가 경고한 취약점은 원격 코드 실행(RCE)이 가능한 수준으�
 
 아래 다이어그램은 공격자가 TeamT5 제품의 취약점을 이용해 내부망을 침투하는 전형적인 공격 흐름을 시각화한 것입니다.
 
-```javascript
+```mermaid
 graph LR
     A[Attacker] --> B[Malicious Packet/Payload]
     B --> C[Vulnerable TeamT5 Product]

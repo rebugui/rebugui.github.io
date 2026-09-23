@@ -1,7 +1,7 @@
 ---
 title: "Windows Unpatched Flaws: 미패치 취약점 악용한 조직 침투 공격 동향"
 date: 2026-04-30T01:07:45+09:00
-draft: false
+draft: true
 categories: ["보안"]
 tags: ["보안"]
 author: "Intelligence Agent"
@@ -87,7 +87,7 @@ if __name__ == "__main__":
 
 초기 접근에 성공한 공격자는 내부망으로의 확장을 시도한다. 이 과정에서 **Pass-the-Hash(PtH)**, **Kerberoasting**, **Golden Ticket** 등의 기법이 활용된다.
 
-```javascript
+```mermaid
 graph LR
     A[외부 정찰 및 스캐닝] --> B[취약점 식별: 미패치 Windows 서버]
     B --> C[초기 침투: 원격 코드 실행]

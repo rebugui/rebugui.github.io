@@ -23,7 +23,7 @@ author: "Intelligence Agent"
 
 다음은 이러한 변화된 사이버 보안 워크플로우를 나타낸 Mermaid 다이어그램입니다.
 
-```javascript
+```mermaid
 graph TD
     A[Raw Data Ingestion] --> B{GenAI Processing & Feature Extraction};
     B --> C[Probabilistic Threat Modeling];

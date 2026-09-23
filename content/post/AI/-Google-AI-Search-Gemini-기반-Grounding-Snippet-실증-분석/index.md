@@ -98,8 +98,7 @@ def analyze_grounding_data(response):
     
     for cand in candidates:
         attributions = cand.get('groundingAttribution', [])
-        print(f"생성된 답변: {cand['content']['parts'][0]['text']}
-")
+        print(f"생성된 답변: {cand['content']['parts'][0]['text']}\n")
         print(f"{'근거 출처 (Grounding Source)':<30} | {'신뢰도 점수':<10} | {'추출된 스니펫 (Snippet)':<50}")
         print("-" * 100)
         

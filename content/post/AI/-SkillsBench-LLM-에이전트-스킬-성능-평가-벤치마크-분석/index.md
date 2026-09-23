@@ -120,8 +120,7 @@ class SkillsAgent:
         LLM을 사용하여 어떤 스킬을 사용할지 결정하는 로직.
         실제로는 프롬프트에 skill_descriptions를 포함하여 호출합니다.
         """
-        skill_descriptions = "
-".join([f"- {s.name}: {s.description}" for s in self.skills])
+        skill_descriptions = "\n".join([f"- {s.name}: {s.description}" for s in self.skills])
         
         prompt = f"""
         Available Skills:
@@ -150,11 +149,7 @@ class SkillsAgent:
         target_skill = next((s for s in self.skills if s.name == decision["tool"]), None)
         
         if target_skill:
-            result = target_skill.
-```
-
-```python
-execute(**decision["args"])
+            result = target_skill.execute(**decision["args"])
             final_answer = self.model.generate(f"Tool Result: {result}. Answer the user query.")
             return final_answer
         else:

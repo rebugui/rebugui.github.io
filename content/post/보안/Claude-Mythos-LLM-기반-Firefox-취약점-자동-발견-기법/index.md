@@ -25,7 +25,7 @@ Claude Mythos는 이러한 LLM의 능력을 **'Neuro-Symbolic Fuzzing'** 아키�
 
 Claude Mythos의 핵심은 피드백 루프(Feedback Loop)에 LLM을 통합한 것입니다. 퍼징 과정에서 발생한 크래시 로그나 실행 경로 정보를 다시 LLM에게 제공하여, 다음번 공격 시도를 더욱 정교하게 만드는 과정을 반복합니다.
 
-```javascript
+```mermaid
 graph LR
     A[Source Code] --> B[LLM Agent]
     B --> C[Initial Seed Generation]
@@ -86,8 +86,7 @@ target = "DOMParser.parseFromString"
 context = "Parsing malformed SVG images in a loop."
 
 fuzz_seed = generator.generate_fuzz_input(target, context)
-print(f"Generated Fuzz Seed:
-{fuzz_seed}")
+print(f"Generated Fuzz Seed:\n{fuzz_seed}")
 ```
 
 이 코드는 실제 운영 환경에서는 훨씬 더 복잡한 프롬프트 엔지니어링과 래핑(Wrapping) 과정을 거치게 됩니다. 특히 `temperature`와 같은 파라미터는 탐색(Exploration)과 이용(Exploitation) 사이의 균형을 맞추는 중요한 하이퍼파라미터로 작용합니다.

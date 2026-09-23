@@ -75,7 +75,7 @@ OpenAPI 스펙은 일반적인 자연어 문서와 근본적으로 다릅니다.
 
 OpenAPI 스펙을 활용한 AI 프론트엔드 자동 생성의 전체 흐름은 다음과 같습니다.
 
-```javascript
+```mermaid
 graph LR
     A[OpenAPI JSON/YAML] --> B[스펙 파서]
     B --> C[컨텍스트 템플릿]
@@ -146,11 +146,7 @@ class OpenAPIParser:
         """200 응답의 스키마를 추출합니다"""
         responses = details.get("responses", {})
         success_response = responses.get("200", responses.get("201", {}))
-        content = success_response.
-```
-
-```python
-get("content", {})
+        content = success_response.get("content", {})
         
         for content_type, schema_info in content.items():
             if "schema" in schema_info:
@@ -276,9 +272,7 @@ class FrontendGenerator:
         ]
         
         # 3. 컨텍스트 결합
-        combined_context = "
-
-".join([
+        combined_context = "\n\n".join([
             self.parser.generate_context_for_endpoint(ep) 
             for ep in resource_endpoints
         ])
@@ -308,19 +302,13 @@ class FrontendGenerator:
         current_file = None
         current_content = []
         
-        for line in code.split("
-"):
+        for line in code.split("\n"):
             # 파일명 패턴 감지
             if line.strip().startswith("// 파일:") or \
                line.strip().startswith("```") and \
                any(ext in line for ext in [".ts", ".tsx"]):
                 if current_file and current_content:
-                    files[current_file] = "
-".
-```
-
-```python
-join(current_content)
+                    files[current_file] = "\n".join(current_content)
                 # 새 파일 시작
                 current_file = line.split(":")[-1].strip() if ":" in line else "unknown"
                 current_content = []
@@ -328,8 +316,7 @@ join(current_content)
                 current_content.append(line)
         
         if current_file and current_content:
-            files[current_file] = "
-".join(current_content)
+            files[current_file] = "\n".join(current_content)
         
         return files
 
@@ -341,8 +328,7 @@ files = generator.generate_for_resource(
 )
 
 for filename, code in files.items():
-    print(f"
-{'='*60}")
+    print(f"\n{'='*60}")
     print(f"파일: {filename}")
     print(f"{'='*60}")
     print(code[:500] + "..." if len(code) > 500 else code)
@@ -352,24 +338,7 @@ for filename, code in files.items():
 
 AI가 생성한 코드라고 해서 무조건 신뢰할 수는 없습니다. 스펙과의 일치성을 검증하는 단계가 필요합니다.
 
-```python
-import subprocess
-import os
-
-class CodeValidator:
-    """생성된 코드의 스펙 준수 여부를 검증합니다"""
-    
-    def __init__(self, output_dir: str, spec: dict):
-        self.output_dir = output_dir
-        self.spec = spec
-    
-    def validate_types(self) -> List[str]:
-        """TypeScript 타입이 스펙과 일치하는지 검사합니다"""
-        errors = []
-        
-        # api.ts 파일에서 타입 정의 추출
-        types_file = os.path.join(self
-```
+생성된 TypeScript 코드는 응답의 파일명을 확인한 뒤 실제 파일로 저장하고, TypeScript 타입 검사와 API 스펙의 필수 필드·enum·응답 스키마를 대조해야 합니다. 검증 로직이 생략된 코드 조각을 완성된 검증기로 취급해서는 안 됩니다.
 
 ---
 

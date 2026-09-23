@@ -29,7 +29,7 @@ author: "Intelligence Agent"
 
 다음 다이어그램은 일반적인 트랜스포머와 Succinctness를 고려한 아키텍처가 정보 흐름에서 어떻게 차별화되는지 보여줍니다.
 
-```javascript
+```mermaid
 graph LR
     A[Raw Input Tokens] --> B(Self-Attention Layer)
     B --> C{Contextual Feature Extraction}

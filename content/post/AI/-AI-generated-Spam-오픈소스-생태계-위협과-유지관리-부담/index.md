@@ -136,6 +136,5 @@ LLM 기술의 발전은 소프트웨어 개발 방식에 혁신을 가져왔지�
 
 - **Source**: Hada.io - "AI가 오픈소스를 파괴하고 있다, 아직 제대로 작동하지도 않는데"
 
-- **Related Research**: "Evaluating Large Language Models in Generating High-Quality Code" (arXiv:230x.xxxxx) - LLM 코드 생성의 신뢰성 문제 분석
 
 - **Tools**: Sigstore(서명 서비스), Ruff(고속 Python Linter)

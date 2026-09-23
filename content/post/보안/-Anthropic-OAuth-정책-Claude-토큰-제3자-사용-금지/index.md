@@ -33,7 +33,7 @@ API Key는 일반적으로 애플리케이션(비사용자)을 위한 것입니�
 
 해커가 만든 "Claude Pro 무료 사용기"라는 가상의 앱을 생각해 봅시다. 사용자는 이 앱에 정상적으로 로그인합니다. 이 과정에서 앱은 사용자의 OAuth 토큰을 가로채거나, 사용자의 동의를 받아(사용자는 인지하지 못함) 해당 토큰을 자사 서버에 저장합니다.
 
-```javascript
+```mermaid
 graph LR
     A[Victim User] -->|Login| B[Malicious 3rd Party App]
     B -->|Request Token| C[Anthropic OAuth Server]

@@ -25,7 +25,7 @@ Arch Linux 팀은 이 문제를 해결하기 위해 빌드 과정에서 발생�
 
 다음은 일반적인 빌드 프로세스와 재현 가능한 빌드 프로세스의 차이를 보여주는 다이어그램입니다.
 
-```javascript
+```mermaid
 graph LR
     A[Source Code] --> B[Build Process]
     B -->|Include Time/Random| C[Non-Deterministic Artifact A<br/>SHA: A1B2]

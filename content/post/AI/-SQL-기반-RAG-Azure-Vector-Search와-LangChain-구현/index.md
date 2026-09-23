@@ -31,7 +31,7 @@ Azure SQL의 네이티브 벡터 검색은 이 과정을 데이터베이스 계�
 
 LangChain과 Azure SQL을 통합한 RAG 파이프라인은 다음과 같은 단계로 데이터가 처리됩니다. 아래 다이어그램은 문서 수집부터 질의응답까지의 전체 흐름을 보여줍니다.
 
-```javascript
+```mermaid
 graph LR
     A[Raw Documents] --> B[LangChain Text Splitter]
     B --> C[Azure OpenAI Embedding Model]
@@ -117,9 +117,7 @@ query = "해리 포터는 호그와트에서 어떤 마법을 배우나요?"
 results = vector_store.similarity_search(query, k=4)
 
 for res in results:
-    print(f"Content: {res.page_content}
-Metadata: {res.metadata}
-")
+    print(f"Content: {res.page_content}\nMetadata: {res.metadata}\n")
 ```
 
 ### 비교 분석: 전용 Vector DB vs. Azure SQL Native Vector

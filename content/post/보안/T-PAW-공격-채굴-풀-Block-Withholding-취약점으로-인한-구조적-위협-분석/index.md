@@ -22,7 +22,7 @@ author: "Intelligence Agent"
 
 채굴 풀에 대한 공격은 꽤 오랜 역사를 가지고 있습니다. 각 세대별로 공격의 정교함이 어떻게 발전했는지 살펴보겠습니다.
 
-```javascript
+```mermaid
 graph TD
     A[BWH 공격] --> B[FAW 공격]
     B --> C[PAW 공격]
@@ -54,7 +54,7 @@ T-PAW 공격은 PAW의 약점을 "시간 제한"으로 해결합니다. 핵심 �
 
 T-PAW 공격의 작동 원리를 단계별로 살펴보겠습니다.
 
-```javascript
+```mermaid
 graph LR
     A[공격자가 풀에서 fPoW 발견] --> B{다른 블록이 채굴되었는가?}
     B -->|Yes| C[보류 중인 블록 폐기]
@@ -170,15 +170,11 @@ class TPoWSimulator:
         self.orphan_blocks = 0
         self.withheld_released = 0
         
-    def mine_round(self, duration: float) -> Optional[Block]:
+    def mine_round(self, duration: float) -> tuple[Block, Miner]:
         """한 라운드의 채굴 시뮬레이션"""
         # 채굴자 선택 (해시 파워에 비례)
         all_miners = [self.attacker] + self.pool_miners + self.network_miners
-        weights = [m.
-```
-
-```python
-hash_power for m in all_miners]
+        weights = [m.hash_power for m in all_miners]
         
         miner = random.choices(all_miners, weights=weights, k=1)[0]
         
@@ -233,11 +229,7 @@ hash_power for m in all_miners]
                             self.honest_blocks += 1
                     else:
                         # T 시간 초과 시 폐기
-                        self.
-```
-
-```python
-orphan_blocks += 1
+                        self.orphan_blocks += 1
                         results["expired_count"] += 1
                     
                     self.attacker.withheld_block = None
@@ -252,14 +244,6 @@ orphan_blocks += 1
         results["total_blocks"] = num_blocks
         
         return results
-    
-    def compare_strategies(self) -> dict:
-        """공격 전략 비교"""
-        # 정상 채굴 시뮬레이션
-        honest_sim = TPoWSimulator(self.alpha, self.beta, self.gamma, t_limit=0)
-        honest_results = honest_sim.simulate(5000)
-        
-        # T-PAW 시
 ```
 
 ---

@@ -21,7 +21,7 @@ author: "Intelligence Agent"
 
 MDVM은 Mobile Device Vulnerability Management의 약자로, 모바일 기기의 보안 상태를 지속적으로 모니터링하고 평가하는 체계입니다. 핵심은 전자신원 인증 요청이 발생할 때마다 해당 기기가 "신뢰할 수 있는 상태"인지 실시간으로 확인하는 것입니다.
 
-```javascript
+```mermaid
 graph TD
     A[사용자 인증 요청] --> B[EUDI Wallet App]
     B --> C[MDVM Client 모듈]
@@ -251,10 +251,6 @@ class MDVMRiskEngine:
             recommended_action=self._get_action(risk_score)
         )
     
-
-```
-
-```python
     def _calculate_patch_delay(self, patch_level: str) -> int:
         patch_date = datetime.strptime(patch_level, "%Y-%m-%d")
         return (datetime.now() - patch_date).days
@@ -297,7 +293,7 @@ MDVM 방어:
 3. MDVM 서버가 증명서 검증 실패 시 즉시 인증 차단
 4. 사용자에게 "기기 보안 문제로 인증 불가" 알림
 
-```javascript
+```mermaid
 graph LR
     A[공격자] --> B[탈옥된 기기]
     B --> C[EUDI Wallet 실행]

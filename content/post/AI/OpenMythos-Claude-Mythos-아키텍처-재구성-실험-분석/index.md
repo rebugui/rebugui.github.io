@@ -23,7 +23,7 @@ Mythos 아키텍처로 추정되는 구조는 이를 해결하기 위해 **Local
 
 아래 다이어그램은 이론적으로 재구성된 OpenMythos의 데이터 흐름을 간단화하여 나타낸 것입니다.
 
-```javascript
+```mermaid
 graph TD
     Input[Input Sequence] --> Split[Context Splitter]
     Split --> LocalStream[Local Window Attention]
@@ -90,9 +90,6 @@ class MythosHybridAttention(nn.Module):
         
         # 4. Attention Scores & Softmax
         attn = (q @ k.
-```
-
-```python
 transpose(-2, -1)) * scale
         attn = attn + combined_mask # Apply mask
         attn = F.softmax(attn, dim=-1)

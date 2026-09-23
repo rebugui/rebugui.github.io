@@ -1,7 +1,7 @@
 ---
 title: "🚨 Chrome Zero-Day: 2026년 첫 익스플로잇 긴급 패치"
 date: 2026-02-19T09:23:43+09:00
-draft: false
+draft: true
 tags:
   - "Chrome"
   - "Zero-Day"

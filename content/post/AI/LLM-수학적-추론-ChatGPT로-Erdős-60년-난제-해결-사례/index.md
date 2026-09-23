@@ -23,7 +23,7 @@ LLM이 수학 문제에 약하다는 것은 잘 알려진 사실입니다. LLM�
 
 이 과정을 시각화하면 다음과 같은 인간-LLM 협업 루프가 형성됩니다.
 
-```javascript
+```mermaid
 graph TD
     A[Human: 문제 정의 및 제약 조건 설정] --> B[LLM: 가설 수립 및 수식 생성]
     B --> C[LLM: 가설 검증을 위한 Python 코드 작성]

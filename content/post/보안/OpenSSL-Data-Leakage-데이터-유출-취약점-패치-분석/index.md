@@ -37,7 +37,7 @@ OpenSSL의 데이터 유출 취약점은 본질적으로 **메모리 경계 검�
 - 암호화되지 않은 평문 데이터
 - 내부 애플리케이션 상태
 
-```javascript
+```mermaid
 graph TD
     A[프로세스 메모리 공간] --> B[Code Segment]
     A --> C[Data Segment]
@@ -83,7 +83,7 @@ int process_extension(const unsigned char *data, size_t len) {
 
 이 취약점은 **Out-of-Bounds Read (OOB Read)** 유형이다. 공격 흐름을 단순화하면:
 
-```javascript
+```mermaid
 graph LR
     A[공격자] --> B[특수 조작된 TLS 메시지]
     B --> C[취약한 OpenSSL 서버]

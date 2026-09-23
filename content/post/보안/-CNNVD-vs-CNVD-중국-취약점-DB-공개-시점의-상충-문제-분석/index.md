@@ -22,7 +22,7 @@ author: "Intelligence Agent"
 
 이러한 구조적 차이는 취약점이 발견되었을 때의 흐름을 다르게 만듭니다. 아래 다이어그램은 동일한 취약점 보고서가 두 기관을 거치며 서로 다른 시점과 형태로 공개되는 과정을 단순화한 것입니다.
 
-```javascript
+```mermaid
 graph TD
     A[취약점 발견 및 보고] --> B[공급사 확인 및 패치 개발]
     B --> C{보고 경로 분기}
@@ -126,11 +126,7 @@ def check_priority_conflicts(target_list):
                 conflict_detected = True
                 action = "Patch Immediately (Early Disclosure)"
         
-        # 3.
-```
-
-```python
- 결과 출력 및 조치 권고
+        # 3. 결과 출력 및 조치 권고
         status_icon = "⚠️" if conflict_detected else "✅"
         print(f"{status_icon} ID: {target_id} | CVE: {cve_id or 'N/A'}")
         print(f"   - CNNVD Severity: {cnnvd_data['severity']} (Pub: {cnnvd_data['publish_date']})")

@@ -25,7 +25,7 @@ Qwen3.6-27B의 성능 비결은 크게 세 가지로 요약할 수 있습니다:
 
 아래는 Qwen3.6-27B가 코드 생성 과정에서 수행하는 추론 과정을 간소화한 다이어그램입니다.
 
-```javascript
+```mermaid
 graph TD
     A[User Prompt: 복잡한 알고리즘 요청] --> B[Input Preprocessing]
     B --> C[Qwen3.6-27B Dense Layer Inference]

@@ -47,7 +47,7 @@ CVSS는 공격자가 취약점을 이용하는 데 필요한 세 가지 핵심 �
 
 ### 2.2 CVSS Scoring 흐름도 (Mermaid)
 
-```javascript
+```mermaid
 graph TD
     A[취약점 식별] --> B{CVSS Base Metrics 분석};
     B --> C1[AV: 공격 경로];

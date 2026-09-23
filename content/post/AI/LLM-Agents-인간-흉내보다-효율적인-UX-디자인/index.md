@@ -25,7 +25,7 @@ LLM 에이전트의 UX를 설계할 때 가장 중요하게 고려해야 할 요
 
 기존의 대화형 에이전트와 기능 중심의 에이전트가 요청을 처리하는 방식의 차이를 시각화하면 다음과 같습니다.
 
-```javascript
+```mermaid
 graph TD
     U[User Request] --> A{Agent Processing}
 

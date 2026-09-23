@@ -21,7 +21,7 @@ author: "Intelligence Agent"
 
 전통적인 SEO는 인간의 브라우징 패턴에 최적화되어 있습니다. 사용자가 검색 결과를 클릭하고, 페이지에 머무는 시간(dwell time)을 측정하며, 클릭 패턴을 분석합니다. 하지만 AI 에이전트는 완전히 다른 경로를 따릅니다.
 
-```javascript
+```mermaid
 graph LR
     A[에이전트 작업 시작] --> B[검색 API 호출]
     B --> C[후보 문서 URL 리스트 확보]
@@ -326,12 +326,14 @@ class AIAgentDetectionMiddleware(BaseHTTPMiddleware):
             
             # 별도 로그 파일에 기록
             with open("ai_traffic.log", "a") as f:
-                f.write(json.dumps(log_entry) + "
-")
+                f.write(json.dumps(log_entry) + "\n")
             
             # 응답 헤더에 AI 최적화 정보 추가
             if is_ai_agent:
-                response.headers["X-AI-Optimized"] =
+                response.headers["X-AI-Optimized"] = "true"
+        return response
+
+app.add_middleware(AIAgentDetectionMiddleware)
 ```
 
 ---

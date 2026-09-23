@@ -21,7 +21,7 @@ author: "Intelligence Agent"
 
 Browser Fingerprinting은 사용자의 브라우저와 디바이스가 가진 고유한 특성들을 수집해 이를 조합, 하나의 식별자를 생성하는 기술이다. 2010년 EFF(Electronic Frontier Foundation)의 연구에서 처음 체계적으로 제시되었으며, 당시 연구에서 **83.6%의 브라우저가 고유하게 식별 가능**하다는 결과를 보여줬다[^1].
 
-```javascript
+```mermaid
 graph TD
     A[사용자 접속] --> B[Browser 특성 수집]
     B --> C[User Agent]
@@ -192,7 +192,7 @@ async function sendToAnalytics(data) {
 
 ### Step-by-Step: 정적 사이트에 적용하기
 
-```javascript
+```mermaid
 graph LR
     A[1. 라이브러리 설치] --> B[2. Fingerprint 모듈 작성]
     B --> C[3. AI Agent 탐지 로직 추가]

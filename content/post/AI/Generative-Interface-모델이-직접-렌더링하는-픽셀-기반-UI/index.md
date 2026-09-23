@@ -23,7 +23,7 @@ Generative Interface의 핵심은 HTML/CSS와 같은 선언적 언어를 거치�
 
 아래는 이러한 Generative Interface의 데이터 흐름을 간단화한 다이어그램입니다.
 
-```javascript
+```mermaid
 graph LR
     A[User Click Action] --> B[Coordinate Encoder]
     B --> C[Conditioning Vector]

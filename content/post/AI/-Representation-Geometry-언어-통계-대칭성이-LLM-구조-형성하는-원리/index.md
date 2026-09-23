@@ -23,7 +23,7 @@ author: "Intelligence Agent"
 
 이 과정을 개념적으로 도식화하면 다음과 같습니다.
 
-```javascript
+```mermaid
 graph LR
     A[Underlying Latent Variable] --> B[Word Generation]
     B --> C[Language Statistics]

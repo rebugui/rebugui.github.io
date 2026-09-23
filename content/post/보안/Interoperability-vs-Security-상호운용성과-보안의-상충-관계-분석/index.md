@@ -37,7 +37,7 @@ author: "Intelligence Agent"
 - 공격 표면 최소화
 - 깊은 가시성과 제어
 
-```javascript
+```mermaid
 graph TD
     A[상호운용성 요구] --> B[표준 프로토콜]
     A --> C[느슨한 결합]
@@ -121,7 +121,7 @@ file_transfer:
 
 Lawfare 기사에서 지적했듯, 많은 조직이 "보안 vs 상호운용성"을 흑백 논리로 프레이밍한다. 하지만 실제로는 **잘못된 설계**가 문제인 경우가 많다.
 
-```javascript
+```mermaid
 graph LR
     A[전통적 접근] --> B[보안 OR 상호운용성]
     
@@ -260,7 +260,7 @@ spec:
 
 다음은 FHIR 표준을 사용하면서도 Zero Trust를 구현한 아키텍처이다.
 
-```javascript
+```mermaid
 graph TD
     A[파트너 병원 EHR] --> B[API Gateway]
     B --> C{인증/인가 레이어}

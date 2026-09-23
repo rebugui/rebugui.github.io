@@ -59,7 +59,7 @@ def perform_system_backup(user_input, config):
 
 AI가 코드를 어떻게 스캔하고 취약점을 보고하는지, 그 프로세스를 간단하게 도식화하면 다음과 같습니다.
 
-```javascript
+```mermaid
 graph LR
     A[Git Commit] --> B[CI/CD Trigger]
     B --> C[Diff Extraction]

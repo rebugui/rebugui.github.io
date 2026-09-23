@@ -27,7 +27,7 @@ Ivanti EPMM 환경에서 주로 발견되는 이 Sleeper Shell은 `403.jsp`라�
 
 아래 다이어그램은 공격자가 익스플로잇을 통해 Sleeper Shell을 심고, 이를 통해 지속적으로 시스템을 장악하는 과정을 도식화한 것입니다.
 
-```javascript
+```mermaid
 graph TD
     A[공격자] -->|CVE 익스플로잇| B[Ivanti EPMM 서버]
     B -->|웹 쉘 업로드| C[403.jsp Sleeper Shell]

@@ -39,7 +39,7 @@ author: "Intelligence Agent"
 
 라이브러리의 핵심 동작 원리를 다이어그램으로 살펴보자:
 
-```javascript
+```mermaid
 graph LR
     A[Notion Page ID] --> B[Notion API]
     B --> C[Block Parser]

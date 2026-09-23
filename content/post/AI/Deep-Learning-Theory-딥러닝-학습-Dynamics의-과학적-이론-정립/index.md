@@ -23,7 +23,7 @@ author: "Intelligence Agent"
 
 다음은 딥러닝 학습 동역학을 구성하는 핵심 요소들의 상호작용을 개념적으로 도식화한 것입니다.
 
-```javascript
+```mermaid
 graph LR
     A[Parameter Initialization] --> D[Learning Dynamics]
     B[Data Distribution] --> D

@@ -42,16 +42,14 @@ graph LR
 
 Claude Sonnet 4.6의 가장 큰 개선점은 소프트웨어 엔지니어링 태스크에서의 성능입니다. Anthropic이 공개한 System Card에 따르면, SWE-bench Verified와 같은 실제 오픈소스 GitHub 이슈 해결 벤치마크에서 전작 대비 유의미한 점수 상승을 기록했습니다. 이는 단순한 문법 완성을 넘어, 코드의 의미를 이해하고 비즈니스 로직에 맞는 수정을 제안할 수 있음을 의미합니다.
 
-다음은 주요 벤치마크에서의 Claude 3.5 Sonnet과 4.6의 성능 비교 표입니다.
+Anthropic의 [Sonnet 4.6 System Card](https://www.anthropic.com/claude-sonnet-4-6-system-card)에 기록된 동일한 평가의 비교 수치는 다음과 같습니다. SWE-bench Verified는 adaptive thinking·max effort로 10회 실행한 평균이며, MMMLU 역시 동일한 설정으로 10회 실행한 평균입니다.
 
-| 평가 지표 (Metric) | Claude 3.5 Sonnet | Claude Sonnet 4.6 | 변화량 |
-| :--- | :---: | :---: | :---: |
-| SWE-bench Verified | 49.0% | 54.2% | +5.2% |
-| HumanEval (Python) | 92.0% | 94.5% | +2.5% |
-| Math Vista (Reasoning) | 58.1% | 63.8% | +5.7% |
-| MLU (General Knowledge) | 88.7% | 89.2% | +0.5% |
+| 평가 지표 | Claude Sonnet 4.5 | Claude Sonnet 4.6 |
+| :--- | :---: | :---: |
+| SWE-bench Verified | 77.2% | 79.6% |
+| MMMLU | 89.5% | 89.3% |
 
-위 표에서 알 수 있듯이, 코딩 및 수학적 추론과 관련된 지표에서는 큰 폭의 향상이 있었으나, 일반 상식 지식(GK) 영역에서는 미세한 개선만 이루어졌습니다. 이는 이번 업데이트가 '지식의 양'보다는 '지식의 활용 능력(Reasoning)'에 집중되었음을 시사합니다.
+이 설정에서 SWE-bench Verified 점수는 상승했지만 MMMLU 점수는 소폭 낮습니다. 두 지표만으로 전반적인 추론 능력의 변화까지 단정할 수는 없습니다.
 
 ### 3. 실무 적용: API를 통한 활용 가이드
 
@@ -84,7 +82,7 @@ Suggest a refactored version using pandas vectorization to improve performance.
 try:
     # Claude Sonnet 4.6 모델 호출
     message = client.messages.create(
-        model="claude-sonnet-4-6-20250101",  # 모델 버전 식별자 (가상의 예시)
+        model="claude-sonnet-4-6",  # 공식 Claude API 모델 ID
         max_tokens=4096,
         temperature=0.3,  # 창의성보다는 정확성을 위해 낮게 설정
         system=system_prompt,

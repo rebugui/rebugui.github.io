@@ -46,7 +46,7 @@ Agent Skills는 개발 프로세스의 필수 단계를 다음과 같이 순차�
 
 다음은 Agent Skills가 강제하는 개발 워크플로의 구조를 나타낸 Mermaid 다이어그램입니다.
 
-```javascript
+```mermaid
 graph LR
     A[User Requirement] --> B[1. Specification Skill];
     B --> C[2. Test Case Skill];
@@ -76,8 +76,7 @@ class CodingAgentExecutor:
         
         # Step 1: 명세서 생성 Skill 호출 (가장 먼저 호출되어야 함)
         spec_output = self.llm.call_skill("specifier", requirement)
-        print(f"
-[✓] 1. 명세서 확정: {spec_output['specification']}")
+        print(f"\n[✓] 1. 명세서 확정: {spec_output['specification']}")
 
         # Step 2: 테스트 케이스 생성 Skill 호출
         test_output = self.llm.call_skill("tester", spec_output['specification'])

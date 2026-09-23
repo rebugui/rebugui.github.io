@@ -28,7 +28,7 @@ author: "Intelligence Agent"
 
 다음은 기존 방식과 Utilyze의 측정 프로세스를 비교한 간단한 다이어그램입니다.
 
-```javascript
+```mermaid
 graph TD
     A[워크로드 실행] --> B[기존 방식 nvidia-smi]
     A --> C[Utilyze 방식]
@@ -93,8 +93,7 @@ def scenario_compute_bound():
     복잡한 행렬 연산 수행 (데이터 크기는 상대적으로 작음)
     연산 유닛을 많이 사용하지만 메모리 이동은 적음
     """
-    print("
-[Scenario 1] Compute-bound Workload Start")
+    print("\n[Scenario 1] Compute-bound Workload Start")
     x = torch.randn(4096, 4096, device=device)
     
     for _ in range(100):
@@ -112,8 +111,7 @@ def scenario_memory_bound():
     단순한 연산이지만 매우 큰 데이터를 메모리에서 로드 및 저장
     메모리 대역폭이 병목이 됨
     """
-    print("
-[Scenario 2] Memory-bound Workload Start")
+    print("\n[Scenario 2] Memory-bound Workload Start")
     # 매우 큰 텐서 생성 (메모리 사용량 증가)
     size = 20000
     x = torch.randn(size, size, device=device)

@@ -21,7 +21,7 @@ Meta와 UBC(University of British Columbia)가 공동으로 발표한 **HyperAge
 
 전통적인 LLM 에이전트 프레임워크(ReAct, AutoGPT, LangChain 기반 에이전트 등)는 다음과 같은 구조를 가진다:
 
-```javascript
+```mermaid
 graph TD
     A[Task Input] --> B[LLM Reasoning]
     B --> C[Action Execution]
@@ -38,7 +38,7 @@ HyperAgents는 이 문제를 **메타 프로그래밍(meta-programming)** 관점
 - **Task-Level Code**: 실제 작업(코딩, 리뷰, 수학 문제 해결 등)을 수행하는 코드
 - **Meta-Level Code**: 에이전트가 어떻게 작업을 수행하고, 어떻게 개선할지를 정의하는 코드
 
-```javascript
+```mermaid
 graph TD
     A[Task] --> B[Task Agent]
     B --> C[Task Result]
@@ -148,11 +148,7 @@ class HyperAgent:
         """
         
         response = self.llm.generate(meta_prompt)
-        improvements = json.
-```
-
-```python
-loads(response)
+        improvements = json.loads(response)
         
         # 메타 코드 업데이트
         new_meta_code = MetaCode(
@@ -202,16 +198,11 @@ if __name__ == "__main__":
             if "improved meta code" in prompt.lower():
                 return json.dumps({
                     "prompt_template": (
-                        "Analyze and solve step-by-step: {task}
-"
+                        "Analyze and solve step-by-step: {task}\n"
                         "Show your reasoning process."
                     ),
                     "strategy": "chain_of_thought",
-                    "rationale":
-```
-
-```python
- "Adding explicit reasoning improves accuracy"
+                    "rationale": "Adding explicit reasoning improves accuracy"
                 })
             return "Sample solution"
     
@@ -219,8 +210,7 @@ if __name__ == "__main__":
     
     # 작업 수행 → 메타 개선 반복
     for iteration in range(3):
-        print(f"
-=== Iteration {iteration + 1} ===")
+        print(f"\n=== Iteration {iteration + 1} ===")
         result = agent.execute_task("Solve: 2x + 5 = 13")
         agent.meta_improve()
         print(f"Current version: v{agent.meta_code.version}")

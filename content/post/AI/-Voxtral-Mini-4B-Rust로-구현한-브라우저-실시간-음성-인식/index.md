@@ -25,7 +25,7 @@ Voxtral Mini 4B Realtime은 실시간 음성 인식을 위해 설계된 Transfor
 
 아래 다이어그램은 브라우저 환경에서 사용자의 음성이 텍스트로 변환되기까지의 전체적인 데이터 흐름을 간소화하여 나타낸 것입니다. Rust로 작성된 Wasm 모듈이 브라우저의 메인 스레드와 어떻게 상호작용하는지 확인할 수 있습니다.
 
-```javascript
+```mermaid
 graph LR
     A[User Audio Input] --> B[Audio Capture API]
     B --> C[Audio Preprocessing]

@@ -23,7 +23,7 @@ Claude Code와 Codex는 근본적으로 다른 접근 방식을 취한다. Claud
 
 반면 Codex는 **비동기 배치 처리** 모델이다. 클라우드 샌드박스에서 실행되며, 작업을 큐에 제출하면 백그라운드에서 완료된다. 사용자는 다른 작업을 수행하다가 결과를 받아볼 수 있다. 이 차이는 대규모 프로젝트에서 치명적인 트레이드오프를 만든다.
 
-```javascript
+```mermaid
 graph LR
     A[사용자 작업 지시] --> B[Claude Code]
     A --> C[Codex]
@@ -149,11 +149,7 @@ class AgentWorkspace:
         
         snapshot = self.snapshots[abs_path]
         current_content = Path(abs_path).read_text(encoding='utf-8')
-        current_hash = hashlib.
-```
-
-```python
-sha256(
+        current_hash = hashlib.sha256(
             current_content.encode()
         ).hexdigest()
         
@@ -221,11 +217,7 @@ sha256(
             # 4. 실행 후 무결성 검증
             integrity_report = {}
             for f in target_files:
-                integrity_report[f] = self.
-```
-
-```python
-verify_integrity(f)
+                integrity_report[f] = self.verify_integrity(f)
             
             # 5. 보호 파일 변경 감지 시 자동 롤백
             violations = [
@@ -283,7 +275,7 @@ if __name__ == "__main__":
 
 ### 에이전트 선택 의사결정 프레임워크
 
-```javascript
+```mermaid
 graph TD
     A[작업 요청] --> B{작업 복잡도}
     B -->|단순 반복| C[Claude Code]

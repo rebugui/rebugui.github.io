@@ -32,7 +32,7 @@ Cloudflare가 발표한 통합 CLI 프로젝트는 바로 이 문제를 해결�
 
 ### Wrangler의 진화: Workers CLI에서 통합 IaC 도구로
 
-```javascript
+```mermaid
 graph LR
     A[Wrangler v1] --> B[Workers 전용 배포]
     C[Wrangler v2] --> D[Workers + Pages + KV]

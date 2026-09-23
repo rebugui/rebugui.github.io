@@ -36,7 +36,7 @@ OpenSSL의 버전 번호는 단순한 라벨이 아니다. 메이저 버전 업�
 
 가장 중요한 변화는 TLS 구현체의 정리다. 구형 프로토콜이 지원되면 공격자는 클라이언트와 서버가 가장 안전한 버전을 협상하는 과정을 방해할 수 있다. 이를 **프로토콜 다운그레이드 공격**이라 부른다.
 
-```javascript
+```mermaid
 graph LR
     A[Client Hello] --> B{Server: OpenSSL 4.0.0}
     B --> C[TLS 1.3 Only]
@@ -97,8 +97,7 @@ class TLSScanner:
         }
         
         print(f"[*] Scanning {self.hostname}:{self.port}")
-        print(f"[*] Protocol Support Check
-")
+        print("[*] Protocol Support Check\n")
         
         for name, version in protocols.items():
             try:
@@ -119,11 +118,7 @@ class TLSScanner:
                         print(f"  [+] {name}: SUPPORTED ({cipher[0]})")
                         
             except (ssl.SSLError, socket.error) as e:
-                self.results.
-```
-
-```python
-append({
+                self.results.append({
                     'protocol': name,
                     'status': 'REJECTED',
                     'cipher': 'N/A'
@@ -132,9 +127,7 @@ append({
     
     def check_v4_compatibility(self):
         """OpenSSL 4.0.0 호환성 평가"""
-        print(f"
-[*] OpenSSL 4.0.0 Compatibility Assessment
-")
+        print("\n[*] OpenSSL 4.0.0 Compatibility Assessment\n")
         
         issues = []
         for result in self.results:

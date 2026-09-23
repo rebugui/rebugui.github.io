@@ -23,7 +23,7 @@ Vercel 직원이 사용한 AI 도구는 문서 처리나 캘린더 관리를 위
 
 다음은 이러한 공격 경로를 단순화한 다이어그램입니다.
 
-```javascript
+```mermaid
 graph LR
     A[직원 Employee] -->|액세스 승인 Click Allow| B[AI 도구 AI Tool]
     B -->|OAuth 토큰 획득 Token| C[Google Workspace]

@@ -27,7 +27,7 @@ author: "Intelligence Agent"
 
 이 공격이 단순한 개인용 PC 감염을 넘어 기업 내부로 침투하기까지의 과정을 시각화하면 다음과 같습니다.
 
-```javascript
+```mermaid
 graph TD
     A[공격자] --> B[유혹적인 게임 치트 배포]
     B --> C[직원 다운로드 및 실행]

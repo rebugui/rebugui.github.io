@@ -40,7 +40,7 @@ Mythos는 이러한 맥락적 이해를 통해 "이 코드는 단순히 버퍼 �
 
 이러한 작동 원리는 다음과 같은 흐름으로 시각화할 수 있습니다. 입력된 위협 정보(Threat Input)가 모델 내부에서 맥락적 안전성을 검증받고, 최종적으로 방어 액션(Defense Action)을 도출하는 과정입니다.
 
-```javascript
+```mermaid
 graph TD
     A[위협/코드 입력] --> B{LLM Contextual Safety Check};
     B -- 성공 (맥락 이해됨) --> C[심층 추론 및 위험 점수 산정];
@@ -78,10 +78,7 @@ llm_model = AutoModelForCausalLM.from_pretrained(model_name)
 
 def analyze_malware_snippet(code_snippet: str):
     """악성코드 조각을 LLM에 넣어 위험도를 분석하는 함수."""
-    prompt = f"다음 코드 스니펫의 Contextual Safety를 평가하고, 위험도와 취약점 유형을 JSON으로 반환하시오:
-
-CODE:
-{code_snippet}"
+    prompt = f"다음 코드 스니펫의 Contextual Safety를 평가하고, 위험도와 취약점 유형을 JSON으로 반환하시오:\n\nCODE:\n{code_snippet}"
     
     inputs = tokenizer(prompt, return_tensors="pt")
     outputs = llm_model(**inputs)

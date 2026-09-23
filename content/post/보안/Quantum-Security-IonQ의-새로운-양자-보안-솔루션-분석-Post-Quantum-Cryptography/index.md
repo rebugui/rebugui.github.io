@@ -31,7 +31,7 @@ IonQ의 솔루션은 이 PQC 알고리즘들을 양자 프로세서 위에서 �
 
 **Mermaid 다이어그램: 양자 공격 vs. PQC 방어 흐름도 (IonQ 기반)**
 
-```javascript
+```mermaid
 graph TD
     A["데이터 수집 (Harvest)"] --> B{기존 RSA/ECC}
     B --> C[양자 컴퓨터 작동]

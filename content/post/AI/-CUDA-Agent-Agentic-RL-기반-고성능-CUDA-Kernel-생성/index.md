@@ -111,8 +111,7 @@ success, reward, exec_time = env.compile_and_execute("naive_kernel", 4096)
 print(f"Success: {success}, Reward: {reward:.4f}, Time: {exec_time:.6f}s")
 
 # 가상의 Agent가 학습 후 생성한 "좋은" 커널 (더 빠른 연산 가정)
-print("
-Step 2: Optimized Kernel Execution")
+print("\nStep 2: Optimized Kernel Execution")
 # 간단히 input_size를 줄여 속도 향상을 시뮬레이션 (실제로는 알고리즘 개선)
 success, reward, exec_time = env.compile_and_execute("optimized_kernel", 2048) 
 print(f"Success: {success}, Reward: {reward:.4f}, Time: {exec_time:.6f}s")

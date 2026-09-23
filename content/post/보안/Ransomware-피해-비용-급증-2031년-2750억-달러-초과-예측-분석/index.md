@@ -34,7 +34,7 @@ author: "Intelligence Agent"
 
 ### 현대 랜섬웨어 공격 체인
 
-```javascript
+```mermaid
 graph LR
     A[초기 침투] --> B[권한 상승]
     B --> C[측면 이동]
@@ -56,7 +56,7 @@ graph LR
 
 2031년 2,750억 달러 예측의 핵심 요인 중 하나는 RaaS 모델의 확산입니다. RaaS는 랜섬웨어 개발자와 운영자를 분리한 프랜차이즈 모델입니다:
 
-```javascript
+```mermaid
 graph LR
     A[개발자 Developer] --> B[암호화 엔진 제공]
     A --> C[C2 인프라 제공]
@@ -82,185 +82,7 @@ graph LR
 
 랜섬웨어 탐지 모델의 핵심은 효과적인 특징 추출입니다. 주요 특징 그룹은 다음과 같습니다:
 
-```python
-import numpy as np
-import pandas as pd
-from sklearn.ensemble import RandomForestClassifier, IsolationForest
-from sklearn.preprocessing import StandardScaler
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report, confusion_matrix
-import joblib
-
-class RansomwareFeatureExtractor:
-    """
-    랜섬웨어 탐지를 위한 특징 추출 클래스
-    파일 시스템 활동 기반 특징들을 추출
-    """
-    
-    def __init__(self):
-        self.feature_names = [
-            'file_ops_per_second',      # 초당 파일 작업 수
-            'entropy_mean',             # 파일 엔트로피 평균
-            'entropy_std',              # 파일 엔트로피 표준편차
-            'extension_change_rate',    # 확장자 변경 비율
-            'rename_ratio',             # 파일명 변경 비율
-            'delete_ratio',             # 파일 삭제 비율
-            'write_read_ratio',         # 쓰기/읽기 비율
-            'unique_dirs_accessed',     # 접근한 고유 디렉토리 수
-            'file_type_diversity',      # 파일 타입 다양성
-            'rapid_sequence_score',     # 연속 작업 점수
-            'backup_delete_flag',       # 백업 파일 삭제 여부
-            'shadow_copy_access',       # 섀도우 카피 접근
-            'time_anomaly_score'        # 시간 기반 이상 점수
-        ]
-    
-    def extract_features(self, file_events):
-        """
-        파일 이벤트 로그에서 특징 벡터 추출
-        
-        Parameters:
-        -----------
-        file_events : list of dict
-            파일 시스템 이벤트 리스트
-            [{'timestamp': ..., 'operation': 'write', 'path': ..., 'size': ...}, ...]
-        
-        Returns:
-        --------
-        np.array : 특징 벡터
-        """
-        features = []
-        
-        # 1. 초당 파일 작업 수 (랜섬웨어는 매우 높음)
-        if len(file_events) > 1:
-            time_span = file_events[-1]['timestamp'] - file_events[0]['timestamp']
-            ops_per_second = len(file_events) / max(time_span, 0.001)
-        else:
-            ops_per_second = 0
-        features.append(min(ops_per_second, 1000))  # Cap at 1000
-        
-        # 2-3. 엔트로피 계산 (암호화된 파일은 높은 엔트로피)
-        entropies = [self._calculate_entropy(e.
-```
-
-```python
-get('content_sample', b'')) 
-                     for e in file_events if e.get('content_sample')]
-        features.append(np.mean(entropies) if entropies else 0)
-        features.append(np.std(entropies) if len(entropies) > 1 else 0)
-        
-        # 4. 확장자 변경 비율
-        extension_changes = sum(1 for e in file_events 
-                               if self._check_extension_change(e))
-        features.append(extension_changes / max(len(file_events), 1))
-        
-        # 5-6. 이름 변경 및 삭제 비율
-        renames = sum(1 for e in file_events if e.get('operation') == 'rename')
-        deletes = sum(1 for e in file_events if e.get('operation') == 'delete')
-        features.append(renames / max(len(file_events), 1))
-        features.append(deletes / max(len(file_events), 1))
-        
-        # 7. 쓰기/읽기 비율 (랜섬웨어는 쓰기 비율이 매우 높음)
-        writes = sum(1 for e in file_events if e.get('operation') == 'write')
-        reads = sum(1 for e in file_events if e.get('operation') == 'read')
-        features.append(writes / max(reads, 1))
-        
-        # 8. 접근한 고유 디렉토리 수
-        unique_dirs = len(set(self._get_directory(e.get('path', '')) 
-                             for e in file_events))
-        features.append(unique_dirs)
-        
-        # 9. 파일 타입 다양성
-        extensions = set(self._get_extension(e.get('path', '')) 
-                        for e in file_events)
-        features.append(len(extensions))
-        
-        # 10. 연속 작업 점수 (랜섬웨어는 패턴화된 연속 작업)
-        rapid_score = self._calculate_rapid_sequence(file_events)
-        features.append(rapid_score)
-        
-        # 11. 백업 파일 삭제 플래그
-        backup_deleted = any(self._is_backup_file(e.get('path', '')) 
-                            and e.get('operation') == 'delete' 
-                            for e in file_events)
-        features.append(1 if backup_deleted else 0)
-        
-        # 12. 섀도우 카피 접근
-        shadow_access = any('shadow' in e.get('path', '').lower() 
-                           or 'vss' in e.get('path', '').
-```
-
-```python
-lower() 
-                           for e in file_events)
-        features.append(1 if shadow_access else 0)
-        
-        # 13. 시간 기반 이상 점수
-        time_anomaly = self._calculate_time_anomaly(file_events)
-        features.append(time_anomaly)
-        
-        return np.array(features)
-    
-    def _calculate_entropy(self, data):
-        """Shannon 엔트로피 계산"""
-        if not data:
-            return 0
-        _, counts = np.unique(list(data), return_counts=True)
-        probs = counts / len(data)
-        return -np.sum(probs * np.log2(probs + 1e-10))
-    
-    def _check_extension_change(self, event):
-        """확장자 변경 확인"""
-        if event.get('operation') != 'rename':
-            return False
-        old_ext = self._get_extension(event.get('old_path', ''))
-        new_ext = self._get_extension(event.get('path', ''))
-        return old_ext != new_ext and old_ext != ''
-    
-    def _get_directory(self, path):
-        """경로에서 디렉토리 추출"""
-        import os
-        return os.path.dirname(path)
-    
-    def _get_extension(self, path):
-        """경로에서 확장자 추출"""
-        import os
-        return os.path.splitext(path)[1].lower()
-    
-    def _is_backup_file(self, path):
-        """백업 파일 여부 확인"""
-        backup_indicators = ['.bak', '.backup', '.vhd', '.vhdx', 
-                           '.vss', '.wbcat', 'backup', 'shadow']
-        path_lower = path.lower()
-        return any(ind in path_lower for ind in backup_indicators)
-    
-    def _calculate_rapid_sequence(self, events):
-        """연속 작업 패턴 점수 계산"""
-        if len(events) < 3:
-            return 0
-        # 짧은 시간 내 유사한 작업 반복 점수
-        intervals = []
-        for i in range(1, len(events)):
-            interval = events[i]['timestamp'] - events[i-1]['timestamp']
-            intervals.append(interval)
-        if not intervals:
-            return 0
-        mean_interval = np.mean(intervals)
-        std_interval = np.
-```
-
-```python
-std(intervals)
-        # 일관된 간격 = 자동화된 작업 = 높은 점수
-        if mean_interval > 0 and std_interval < mean_interval * 0.3:
-            return 1.0
-        return 0.5
-    
-    def _calculate_time_anomaly(self, events):
-        """비정상 시간대 활동 점수"""
-        if not events:
-            return 0
-        # 새벽 시간(0-6시) 활동은 의심스러�
-```
+방어 분석에는 파일 작업 빈도, 이름·확장자 변경 비율, 파일 내용의 엔트로피, 백업 삭제 이벤트 등의 특징을 활용할 수 있다. 시간대 이상 점수는 이벤트의 타임스탬프 형식과 기준 시간대를 정의한 후에 계산해야 한다. 원래 특징 추출기는 마지막 계산 함수 도중 잘려 있어 실행 가능한 탐지 모델로 제시하지 않는다.
 
 ---
 

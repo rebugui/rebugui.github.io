@@ -36,7 +36,7 @@ Claude Mythos 프로젝트의 핵심은 "자율적 취약점 발견"이었다. �
 
 LLM이 코드에서 취약점을 탐지하는 과정은 단순한 패턴 인식이 아니다. 다음 다이어그램은 전체 파이프라인을 보여준다:
 
-```javascript
+```mermaid
 graph TD
     A[소스 코드 입력] --> B[코드 전처리 및 AST 생성]
     B --> C[컨텍스트 윈도우 내 함수 단위 분할]
@@ -99,11 +99,9 @@ For each vulnerability found, provide:
 - Exploitation scenario: [how it could be abused]
 
 Code:
-```
 
 {code}
 
-```plain text
 
 [/INST]"""
 
@@ -163,12 +161,7 @@ Code:
     def _parse_response(self, response):
         """LLM 응답에서 취약점 정보 파싱"""
         vulnerabilities = []
-        lines = response.
-```
-
-```plain text
-split('
-')
+        lines = response.split('\n')
         
         current_vuln = {}
         for line in lines:
@@ -309,12 +302,7 @@ model = get_peft_model(base_model, lora_config)
 
 #### Step 4: 추론 최적화
 
-```python
-# GGUF 양자화로 CPU에서도 실행 가능
-# llama.cpp 사용 시
-"""
-./llama-cli -m security-model-3.6b-Q4_K_M.gg
-```
+GGUF 모델을 로컬에서 구동하려면 해당 모델 파일과 실행 환경이 별도로 필요하다. 원래 명령은 파일명에서 잘려 있어 실행 예시로 제시하지 않는다.
 
 ---
 

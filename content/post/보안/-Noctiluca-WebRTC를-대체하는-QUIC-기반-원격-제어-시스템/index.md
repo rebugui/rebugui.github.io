@@ -23,7 +23,7 @@ author: "Intelligence Agent"
 
 다음은 Noctiluca의 연결 설정 과정을 간소화하여 도식화한 다이어그램입니다.
 
-```javascript
+```mermaid
 graph LR
     A[Client] -->|QUIC Packet| B[UDP Socket]
     B --> C[Connection ID]

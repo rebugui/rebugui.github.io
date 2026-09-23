@@ -35,7 +35,7 @@ Anthropic이 'Mythos Preview'라는 강력한 모델을 구실 있게 제한한 
 
 **Glasswing Project(글래스윙 프로젝트)**는 유리 날개처럼 투명하고 투명한 가시성을 확보한다는 의미를 담고 있다. 이 프로젝트는 사이버 보안 전문가들이 AI를 활용해 시스템의 취약점을 조기에 발견하고, 침해 사고 대응(IR) 속도를 극적으로 높일 수 있도록 돕는 생태계 구축을 목표로 한다.
 
-```javascript
+```mermaid
 graph TD
     A[보안 위협 탐지] --> B[Claude Opus 4.7 API 요청]
     B --> C{안전성 및 인텐트 평가}
@@ -80,7 +80,7 @@ Code:
 
 # Claude Opus 4.7 모델 호출
 response = client.messages.create(
-    model="claude-opus-4-7-20240529", # 예시 모델 버전
+    model="claude-opus-4-7",  # 공식 Claude API 모델 ID
     max_tokens=1024,
     messages=[
         {"role": "user", "content": prompt_text}

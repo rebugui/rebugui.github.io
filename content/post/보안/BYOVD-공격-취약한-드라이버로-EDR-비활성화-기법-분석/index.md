@@ -28,7 +28,7 @@ BYOVD는 "취약한 드라이버를 당신이 직접 가져오라"는 뜻입니�
 
 아래는 BYOVD 공격의 전체적인 흐름을 간단하게 도식화한 것입니다.
 
-```javascript
+```mermaid
 graph TD
     A[Attacker] --> B[Deploy Vulnerable Driver]
     B --> C{Check Driver Signature}

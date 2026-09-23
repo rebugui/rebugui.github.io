@@ -23,7 +23,7 @@ author: "Intelligence Agent"
 
 아래 다이어그램은 이번 공격이 진행된 단계적인 경로를 시각화한 것입니다.
 
-```javascript
+```mermaid
 graph LR
     A[Context.ai Employee Device] --> B[Lumma Stealer Infection]
     B --> C[Google Workspace OAuth Token Theft]
@@ -55,42 +55,9 @@ graph LR
 - **세션 바인딩(Session Binding):** OAuth 토큰 발급 시 특정 디바이스나 인증서에 바인딩하여, 토큰이 탈취되더라도 다른 기기에서는 사용할 수 없도록 설정합니다.
 - **최소 권한 원칙(Least Privilege):** 지원 도구나 내부 시스템에 부여되는 권한을 고객 데이터에 접근할 수 없는 수준으로 엄격히 제한해야 합니다. Vercel의 경우 지원 도구가 일부 프로젝트의 환경 변수를 읽을 수 있었던 점이 취약점이었습니다.
 
-#### 2. 환경 변수 관리 자동화 운영 환경에서는 수동으로 키를 관리해서는 안 됩니다. 아래는 Python을 사용하여 환경 변수의 존재 여부와 길이를 검증하는 간단한 보안 감사 스크립트 예시입니다. 이를 CI/CD 파이프라인에 통합하여, 실수로 민감한 정보가 Hardcoding되거나 누락되는 것을 방지할 수 있습니다.
+#### 2. 환경 변수 관리 자동화 운영 환경에서는 수동으로 키를 관리해서는 안 됩니다. CI/CD에서 필수 변수의 누락 여부를 점검하고, 비밀 값의 노출이나 하드코딩은 별도로 검사해야 합니다.
 
-```python
-import os
-import sys
-from dotenv import load_dotenv
-
-# 필수 환경 변수 목록 정의 (예시)
-REQUIRED_ENV_VARS = [
-    "OPENAI_API_KEY",
-    "DATABASE_URL",
-    "SECRET_KEY_BASE"
-]
-
-def audit_environment_variables():
-    """
-    환경 변수의 존재 여부와 기본적인 형식을 검증하는 함수
-    """
-    load_dotenv()  # .env 파일 로드 (개발 환경용)
-    missing_vars = []
-    insecure_vars = []
-
-    print(f"[*] Security Audit: Environment Variables Check")
-    print("-" * 30)
-
-    for var_name in REQUIRED_ENV_VARS:
-        value = os.getenv(var_name)
-        
-        # 1. 존재 여부 확인
-        if not value:
-            missing_vars.append(var_name)
-            continue
-        
-        # 2. 간단한 안전성 검사 (예: 너무 짧은 키)
-        if len(value) <
-```
+CI/CD에서는 필수 환경 변수가 존재하는지 확인하고, 비밀 값 자체는 로그에 출력하지 않아야 한다. 키 길이만으로 유출 여부나 안전성을 판정할 수 없으며, 원래 스크립트는 검사 조건 중간에 끊겨 실행 가능한 감사 도구가 아니다.
 
 ---
 

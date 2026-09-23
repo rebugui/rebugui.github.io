@@ -22,7 +22,7 @@ author: "Intelligence Agent"
 
 기존 취약점 탐지 도구들은 본질적으로 **패턴 매칭**에 의존한다. 알려진 취약점 패턴 데이터베이스를 구축하고, 대상 코드나 바이너리에서 해당 패턴을 검색하는 방식이다.
 
-```javascript
+```mermaid
 graph TD
     A[소스코드 입력] --> B[패턴 매칭 엔진]
     B --> C{알려진 취약점 패턴?}
@@ -67,7 +67,7 @@ class PaymentProcessor:
 
 Mythos의 핵심 혁신은 코드를 "패턴의 집합"이 아닌 **"의미를 가진 텍스트"**로 이해한다는 점이다. LLM의 자연어 이해 능력을 코드 분석에 적용한 것이다.
 
-```javascript
+```mermaid
 graph LR
     A[타겟 코드베이스] --> B[Mythos 분석 엔진]
     B --> C[코드 파싱 및 AST 생성]
@@ -251,9 +251,6 @@ For each finding, provide:
 
 Respond in JSON format only."""
 
-```
-
-```python
         response = self.client.messages.create(
             model="claude-3-5-sonnet-20241022",
             max_tokens=2000,
@@ -269,38 +266,33 @@ Respond in JSON format only."""
         """코드에서 함수 단위 추출"""
         # 단순화된 구현 - 실제로는 tree-sitter 사용
         functions = []
-        lines = code.split('
-')
+        lines = code.split('\n')
         current_func = []
         in_function = False
         
         for line in lines:
             if line.strip().startswith('def '):
                 if current_func:
-                    functions.append('
-'.join(current_func))
+                    functions.append('\n'.join(current_func))
                 current_func = [line]
                 in_function = True
             elif in_function:
                 if line and not line[0].isspace():
-                    functions.append('
-'.join(current_func))
+                    functions.append('\n'.join(current_func))
                     current_func = []
                     in_function = False
                 else:
                     current_func.append(line)
         
         if current_func:
-            functions.append('
-'.join(current_func))
+            functions.append('\n'.join(current_func))
         
         return functions
     
     def _extract_imports(self, code):
         """임포트 문 추출"""
         imports = []
-        for line in code.split('
-'):
+        for line in code.split('\n'):
             if line.strip().startswith(('import ', 'from ')):
                 imports.append(line.strip())
         return imports

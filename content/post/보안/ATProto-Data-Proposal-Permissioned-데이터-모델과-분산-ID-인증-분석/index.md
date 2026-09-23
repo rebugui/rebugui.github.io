@@ -25,7 +25,7 @@ Permissioned 모델은 여기에 **읽기 권한 (Read Permission)**과 **쓰기
 
 다음 다이어그램은 새로운 권한 부여 모델이 데이터 접근 요청을 처리하는 흐름을 시각적으로 보여줍니다. 모든 요청은 리소스에 도달하기 전에 **권한 검증 단계**를 거칩니다.
 
-```javascript
+```mermaid
 graph TD
     A["Actor (요청자)"] --> B{"Resource (데이터 객체)"};
     B --> C{Permission Check};

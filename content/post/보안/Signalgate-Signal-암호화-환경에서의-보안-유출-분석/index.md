@@ -29,7 +29,7 @@ author: "Intelligence Agent"
 
 Signalgate 사건의 기술적 핵심은 "권력 불균형에 의한 강제적 공유"와 "스크린샷/전달"과 같은 엔드포인트 취약점이었습니다. 아래 다이어그램은 기술적으로 암호화된 채널이 어떻게 사회공학적 압박에 의해 우회되는지를 나타냅니다.
 
-```javascript
+```mermaid
 graph TD
     A[상급 관리자 A] -->|암호화된 메시지| Signal[Signal 서버/E2EE 채널]
     Signal -->|암호 해제 및 평문 표시| B[하급 직원 B]

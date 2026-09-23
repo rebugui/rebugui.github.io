@@ -29,7 +29,7 @@ Git 같은 시스템 도구는 성능, 메모리 안전성(Memory Safety), 그�
 
 Grit의 핵심은 '자연어 입력'을 '실행 가능한 Git 스텝 시퀀스'로 변환하는 과정입니다. 이 과정을 Mermaid 다이어그램으로 살펴보겠습니다.
 
-```javascript
+```mermaid
 graph TD
     A[사용자 자연어 명령 입력] --> B{LLM 에이전트 계획 모듈};
     B --> C["작업 의도 분석 (Intent Analysis)"];
@@ -79,8 +79,7 @@ def execute_grit_workflow(natural_language_intent: str) -> bool:
     for step in planned_steps:
         command = step['command']
         description = step['description']
-        print(f"
-[STEP] {description} -> 실행 명령어: {command}")
+        print(f"\n[STEP] {description} -> 실행 명령어: {command}")
         try:
             # 실제 환경에서는 subprocess.run()을 사용하여 Git 명령어를 호출합니다.
             # subprocess.run(command, shell=True, check=True) 
@@ -89,8 +88,7 @@ def execute_grit_workflow(natural_language_intent: str) -> bool:
             print(f"❌ 오류 발생: {e}. 이전 스텝으로 돌아가 재계획이 필요합니다.")
             return False
 
-    print("
-=============================================")
+    print("\n=============================================")
     print("[SUCCESS] 모든 Git 워크플로우가 성공적으로 완료되었습니다.")
     return True
 

@@ -23,7 +23,7 @@ Langflow는 LLM 기반 애플리케이션을 시각적으로 구축할 수 있�
 
 아래는 공격자가 취약점을 악용하여 악성 Python 코드를 실행하는 과정을 간략화한 흐름도입니다.
 
-```javascript
+```mermaid
 graph TD
     A[Attacker] -->|Scan Internet| B[Find Langflow Instance]
     B -->|Send Malicious API Request| C[Auth Bypass Logic]

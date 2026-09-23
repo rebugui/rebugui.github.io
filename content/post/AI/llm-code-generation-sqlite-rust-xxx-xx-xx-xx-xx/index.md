@@ -39,7 +39,7 @@ LLM이 작성한 Rust 코드에서 문제가 된 부분은 바로 이 **페이�
 이러한 결함들이 누적되어 $O(N)$에 가까운 비용이 들어야 할 작업이 수행되면서, 전체적인 조회 성능이 20,000배나 느려지는 결과를 낳았습니다.
 다음은 효율적인 B-Tree 탐색과 비효율적인 탐색의 과정을 비교한 다이어그램입니다.
 
-```javascript
+```mermaid
 graph TD
     A[Query Request] --> B{Target Page Loaded?}
     B -->|No| C[Disk I/O Load Page]

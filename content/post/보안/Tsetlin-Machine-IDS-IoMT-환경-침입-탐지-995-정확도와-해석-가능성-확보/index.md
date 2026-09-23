@@ -23,7 +23,7 @@ author: "Intelligence Agent"
 
 IoMT 환경은 일반 IoT와 달리 **생명 직결형 서비스**라는 특수성이 있다. 공격자가 인슐린 펌프의 투여량을 조작하거나, 환자 모니터링 데이터를 변조할 경우 실제 환자 사망으로 이어질 수 있다.
 
-```javascript
+```mermaid
 graph TD
     A[IoMT 네트워크] --> B[의료 영상 장비]
     A --> C[환자 모니터링]
@@ -133,9 +133,6 @@ class SimpleTsetlinIDS:
         """투표 기반 예측"""
         class_votes = []
         for class_idx in range(self.
-```
-
-```python
 num_classes):
             votes = sum([c.evaluate(X) for c in self.clauses[class_idx]])
             class_votes.append(votes)
@@ -163,7 +160,7 @@ num_classes):
 
 ### 전체 파이프라인
 
-```javascript
+```mermaid
 graph LR
     A[IoMT 트래픽] --> B[패킷 캡처]
     B --> C[특징 추출]
@@ -248,7 +245,7 @@ def explain_prediction(tm_model, sample_features, feature_names):
 
 Tsetlin Machine의 가장 큰 장점은 **clause activation heatmap**을 통해 어떤 규칙이 활성화되었는지 시각화할 수 있다는 점이다.
 
-```javascript
+```mermaid
 graph TD
     A[입력 트래픽] --> B[Clause 1: Large Packet + DICOM]
     A --> C[Clause 2: Unencrypted + External IP]
@@ -293,16 +290,7 @@ wget https://www.unb.ca/cic/datasets/iomt-dataset-2024.html
 
 Tsetlin Machine은 **이진화된 입력**이 필요하다. 연속형 특징은 임계값 기반으로 변환한다.
 
-```python
-import pandas as pd
-from sklearn.preprocessing import Binarizer
-
-def preprocess_iomt_data(df):
-    """IoMT 트래픽 데이터 전처리"""
-    
-    # 수치형 특징 추출
-    numeric_cols = df.select_dtypes(include=['float64',
-```
+전처리에서는 수치형 트래픽 특징을 선택하고 학습 데이터에서 정한 임계값으로 이진화한 뒤, 동일한 변환을 평가 데이터에 적용해야 한다. 원래 코드 예시는 특징 선택 도중 잘려 있어 실행 가능한 전처리 함수로 제시하지 않는다.
 
 ---
 

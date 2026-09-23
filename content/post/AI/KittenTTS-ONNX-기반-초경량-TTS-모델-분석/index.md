@@ -31,7 +31,7 @@ KittenTTS의 음성 합성 과정은 전통적인 TTS 파이프라인을 따르�
 
 다음은 이러한 과정을 간단화하여 도식화한 것입니다.
 
-```javascript
+```mermaid
 graph LR
     A[Input Text] --> B[Text Normalization]
     B --> C[ONNX Acoustic Model]

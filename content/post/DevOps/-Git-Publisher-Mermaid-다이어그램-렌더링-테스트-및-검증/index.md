@@ -72,8 +72,7 @@ def test_mermaid_rendering(target_url, mermaid_code):
             if "mermaid" in response.text or "svg" in response.text:
                 print("[+] Success: Mermaid content detected in response.")
                 # 개행 문자나 특수문자 처리 확인
-                clean_code = re.sub(r'[
-\r\t]', '', mermaid_code)
+                clean_code = re.sub(r'[\n\r\t]', '', mermaid_code)
                 if clean_code in response.text:
                     print("[+] Warning: Raw code exposed (Potential Source Leak).")
                 else:

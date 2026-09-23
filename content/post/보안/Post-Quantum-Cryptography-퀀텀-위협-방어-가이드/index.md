@@ -34,7 +34,7 @@ author: "Intelligence Agent"
 
 공격자가 현재 시점에서 어떻게 데이터를 수집하는지 시각화해 보겠습니다. 이는 단순한 이론이 아니라, 국가 차원의 해킹 그룹들이 이미 수행 중인 것으로 평가됩니다.
 
-```javascript
+```mermaid
 graph LR
     A[Origin Server] -->|Encrypted Traffic (TLS 1.2)| B[Attacker / Surveillance Node]
     A --> C[Legitimate User]

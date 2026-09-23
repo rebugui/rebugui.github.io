@@ -34,7 +34,7 @@ Brockton Hospital이 겪은 시스템 전면 마비는 전형적인 "Enterprise-
 
 ### 공격 생명주기 (Kill Chain)
 
-```javascript
+```mermaid
 graph TD
     A[Initial Access] --> B[Privilege Escalation]
     B --> C[Lateral Movement]
@@ -89,7 +89,7 @@ def analyze_email_headers(email_path):
 
 한번 내부망에 침투한 공격자는 의료 기관의 네트워크 구조적 특성을 악용한다.
 
-```javascript
+```mermaid
 graph LR
     A[Compromised Workstation] --> B[Clinical Network]
     B --> C[PACS Server]
@@ -166,11 +166,7 @@ def detect_encryption_activity(directory, baseline_hash):
                 
                 if file_path in baseline_hash:
                     if current_hash != baseline_hash[file_path]:
-                        anomalies.
-```
-
-```python
-append({
+                        anomalies.append({
                             'file': file_path,
                             'type': 'modified',
                             'baseline': baseline_hash[file_path],
@@ -202,7 +198,7 @@ append({
 
 현대 병원은 수백 대의 연결된 의료 기기를 운영한다. CT 스캐너, MRI, 환자 모니터링 시스템, 조제 로봇 등이 모두 네트워크에 연결되어 있다.
 
-```javascript
+```mermaid
 graph TD
     A[Medical IoT Devices] --> B[Legacy OS Windows XP 7]
     B --> C[No Security Patches]
@@ -330,7 +326,7 @@ class RecoveryPrioritizer:
 
 Brockton Hospital 사태는 백업 전략의 중요성을 재확인시켰다.
 
-```javascript
+```mermaid
 graph TD
     A[3-2-1 Backup Strategy] --> B[3 Copies of Data]
     A --> C[2 Different Media Types]

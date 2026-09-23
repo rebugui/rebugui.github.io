@@ -27,7 +27,7 @@ Autoresearch의 핵심은 **LLM을 중심으로 한 '계획(Plan) -> 실행(Exec
 이 과정은 인간 연구자가 수행하는 방식과 유사합니다. 인간은 "Loss가 너무 높으니 학습률을 낮춰야겠다"라고 판단하고 코드를 수정합니다. Autoresearch의 에이전트는 로그를 텍스트로 읽어들여 "Current loss is stagnating at 2.5. Consider reducing learning rate by factor of 0.1."이라는 사고 과정을 거쳐 실제 파이썬 코드를 생성하여 실행합니다.
 다음은 자동화된 연구 루프의 간단한 아키텍처를 나타낸 다이어그램입니다.
 
-```javascript
+```mermaid
 graph TD
     A[User Objective] --> B[LLM Agent]
     B --> C[Generate Plan & Code]

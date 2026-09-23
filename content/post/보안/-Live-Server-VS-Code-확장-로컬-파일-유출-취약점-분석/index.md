@@ -25,7 +25,7 @@ Live Server는 정적 파일을 서비스하는 간단한 HTTP 서버입니다. 
 
 아래는 이러한 공격 흐름을 간소화하여 도식화한 것입니다.
 
-```javascript
+```mermaid
 graph LR
     A[Attacker Website] --> B[Victim Browser]
     B --> C[VS Code Live Server]

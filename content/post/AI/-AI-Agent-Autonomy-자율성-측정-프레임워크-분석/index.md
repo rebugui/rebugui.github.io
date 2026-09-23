@@ -132,8 +132,7 @@ evaluator.log_task("TASK_003", LevelOfIntervention.PLAN_CORRECTION, "Wrong libra
 
 # 결과 분석
 score = evaluator.calculate_autonomy_score()
-print(f"
->>> Final Autonomy Score: {score:.2f} (1.0 is Best)")
+print(f"\n>>> Final Autonomy Score: {score:.2f} (1.0 is Best)")
 ```
 
 이 코드는 에이전트의 각 작업 단계에서 어떤 수준의 도움이 필요했는지 기록하고, 이를 종합하여 전체적인 자율성 점수를 산출합니다. 이러한 데이터는 향후 프롬프트 엔지니어링이나 모델 파인 튜닝의 우선순위를 결정하는 중요한 피드백 루프의 일부가 됩니다.

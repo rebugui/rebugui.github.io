@@ -35,7 +35,7 @@ author: "Intelligence Agent"
 
 이 흐름을 시각화하면 다음과 같습니다.
 
-```javascript
+```mermaid
 graph LR
     A[Attacker] --> B[Vulnerable BeyondTrust Endpoint]
     B --> C[Authentication Bypass]

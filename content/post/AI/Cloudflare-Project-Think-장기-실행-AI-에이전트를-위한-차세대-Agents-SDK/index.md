@@ -25,7 +25,7 @@ Cloudflare가 발표한 **Project Think**는 바로 이 지점을 공략한다. 
 
 문제는 복잡한 작업일수록 이 사이클이 깨지기 쉽다는 점이다.
 
-```javascript
+```mermaid
 graph TD
     A[사용자 요청] --> B[에이전트 시작]
     B --> C[코드 분석]

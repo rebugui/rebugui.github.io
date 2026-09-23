@@ -25,7 +25,7 @@ C언어에서 문자열은 종결자(null terminator, `\0`)를 통해 끝이 정
 
 다음 다이어그램은 `strncpy()`가 어떻게 작동하며, 어떤 상황에서 버그를 유발하는지 시각적으로 보여줍니다.
 
-```javascript
+```mermaid
 graph TD
     A["함수 호출: strncpy(dest, src, N)"] --> B{소스 길이 < N 인가?};
     B -- Yes (짧음) --> C[N 바이트 복사 완료];

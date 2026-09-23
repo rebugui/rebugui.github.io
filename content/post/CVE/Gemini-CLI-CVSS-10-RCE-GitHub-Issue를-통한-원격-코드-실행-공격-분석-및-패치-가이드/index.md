@@ -29,7 +29,7 @@ author: "Intelligence Agent"
 
 아래 Mermaid 다이어그램은 공격자가 취약점을 악용하여 RCE를 수행하는 논리적 흐름을 시각화한 것입니다.
 
-```javascript
+```mermaid
 graph TD
     A[공격자: 조작된 GitHub Issue 내용 작성] --> B(Gemini CLI가 Input 수신);
     B --> C{Input Sanitization Bypass?};

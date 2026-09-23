@@ -29,7 +29,7 @@ LonTalk(Local Operating Network)은 Echelon 사가 개발한 프로토콜로, �
 
 아래는 공격자가 내부 네트워크를 장악하여 HVAC 시스템을 조작하는 흐름을 간단화한 다이어그램입니다.
 
-```javascript
+```mermaid
 graph TD
     A[Attacker PC] --> B[Network Interface]
     B --> C[Packet Crafting Tool]

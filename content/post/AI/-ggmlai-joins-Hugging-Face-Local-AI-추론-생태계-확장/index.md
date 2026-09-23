@@ -23,7 +23,7 @@ author: "Intelligence Agent"
 
 아래 다이어그램은 Hugging Face Hub의 모델이 로컬 디바이스에서 실행되기까지의 최적화된 파이프라인을 간략하게 보여줍니다.
 
-```javascript
+```mermaid
 graph LR
     A[Hugging Face Hub] --> B[Raw Weights Download]
     B --> C[GGUF Conversion]
@@ -84,8 +84,7 @@ prompt = "Explain the significance of the partnership between Hugging Face and g
 output = llm(
     f"Q: {prompt} A:",
     max_tokens=256,
-    stop=["Q:", "
-"],
+    stop=["Q:", "\n"],
     echo=False
 )
 

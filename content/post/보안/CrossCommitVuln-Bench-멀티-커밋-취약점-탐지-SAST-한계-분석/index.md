@@ -31,7 +31,7 @@ CI/CD 파이프라인의 초록색 불빛을 보며 안심한 적이 있으신�
 
 이해를 돕기 위해, Cross-Commit 취약점이 어떻게 형성되는지 흐름도로 간단히 표현해 보겠습니다. 전형적인 SQL 인젝션 시나리오라고 가정해 봅시다.
 
-```javascript
+```mermaid
 graph LR
     A[Commit 1: DB Helper 생성] -->|SAST: 정상| B[Commit 2: Raw Query 옵션 추가]
     B -->|SAST: 정상| C[Commit 3: 사용자 입력 연결]

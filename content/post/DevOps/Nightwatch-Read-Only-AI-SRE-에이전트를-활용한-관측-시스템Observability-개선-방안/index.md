@@ -27,7 +27,7 @@ Nightwatch는 바로 이 지점에서 등장하는, '읽기 전용(Read-Only)' �
 
 Nightwatch는 단순한 경고 수집을 넘어, 알림 폭주를 하나의 '인시던트(Incident)'로 그룹화하고, 시스템의 근본적인 문제 원인을 추론하는 에이전트를 제공합니다. 이 과정은 다음과 같은 흐름으로 진행됩니다.
 
-```javascript
+```mermaid
 graph TD
     A["프로덕션 환경 (Prod)"] --> B{오울 Agent};
     B --> C[읽기 전용 스킬 실행];

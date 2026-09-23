@@ -21,7 +21,7 @@ Spring AI Playground는 이 지점을 정확히 공략한다. MCP 툴 코드를 
 
 본격적인 논의에 앞서 MCP의 핵심 아키텍처를 간단히 짚고 넘어가자. MCP는 Anthropic이 2024년 11월에 발표한 오픈 프로토콜로, LLM이 외부 도구 및 데이터 소스와 상호작용할 수 있도록 표준화된 인터페이스를 제공한다.
 
-```javascript
+```mermaid
 graph LR
     A[MCP Host] --> B[MCP Client]
     B --> C[MCP Server]
@@ -41,7 +41,7 @@ graph LR
 
 Spring AI Playground가 이 생태계에서 차지하는 위치를 이해하는 것이 중요하다. 이 도구는 단순한 코드 에디터가 아니라 **MCP 툴 개발의 전체 라이프사이클을 지원하는 통합 환경**이다.
 
-```javascript
+```mermaid
 graph TD
     A[Spring AI Playground] --> B[Code Editor]
     A --> C[Test Runner]
@@ -217,7 +217,7 @@ void testWeatherTool_FahrenheitUnit() {
 
 툴이 개별 테스트를 통과했다면, 실제 MCP 프로토콜을 통해 클라이언트와 연동되는지 확인해야 한다. Spring AI Playground는 **내장 MCP 클라이언트 에뮬레이터**를 제공하여, 별도의 Claude Desktop이나 다른 호스트 애플리케이션 없이도 end-to-end 테스트가 가능하다.
 
-```javascript
+```mermaid
 graph LR
     A[Playground MCP Emulator] --> B[JSON-RPC Request]
     B --> C[MCP Server]

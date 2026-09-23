@@ -23,7 +23,7 @@ SharePoint는 전 세계 수십만 개 기업이 문서 관리와 협업에 사�
 
 이번 0-Day 취약점은 SharePoint의 웹 애플리케이션 레이어에서 발생한다. 공격자는 특수하게 조작된 HTTP 요청을 통해 서버 측에서 임의 코드를 실행할 수 있다. 인증이 필요 없다는 점이 핵심이다.
 
-```javascript
+```mermaid
 graph LR
     A[공격자] --> B[특수 조작된 HTTP 요청]
     B --> C[SharePoint 서버]
@@ -50,161 +50,9 @@ graph LR
 
 **5단계: 데이터 수집 및 유출** SharePoint 데이터베이스에 접근하여 문서를 수색하고 외부로 유출한다.
 
-### PoC (개념 증명) 코드
-> ⚠️ **윤리적 경고**: 다음 코드는 학습 및 방어 목적으로만 작성되었습니다. 실제 시스템에 무단으로 실행하는 것은 범죄행위입니다. 반드시 자체 테스트 환경에서만 사용하세요.
+### 방어적 점검 시 고려 사항
 
-```python
-#!/usr/bin/env python3
-"""
-SharePoint 0-Day Vulnerability Detection PoC
-Purpose: Educational and defensive testing only
-Author: Security Research Team
-"""
-
-import requests
-import sys
-from urllib.parse import urljoin
-
-class SharePointVulnChecker:
-    def __init__(self, target_url):
-        self.target = target_url.rstrip('/')
-        self.headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
-            'Content-Type': 'application/json'
-        }
-        self.indicators = []
-    
-    def check_sp_version(self):
-        """SharePoint 버전 정보 확인"""
-        try:
-            # _api/endpoint는 버전 정보를 노출할 수 있음
-            resp = requests.get(
-                f"{self.target}/_api/web",
-                headers=self.headers,
-                timeout=10,
-                verify=False
-            )
-            
-            if resp.status_code == 200:
-                # 응답에서 버전 정보 추출
-                if 'Microsoft.SharePoint' in resp.text:
-                    print("[+] SharePoint instance detected")
-                    self._extract_version(resp.text)
-                    return True
-            return False
-        except requests.RequestException as e:
-            print(f"[-] Connection error: {e}")
-            return False
-    
-    def check_vulnerability_indicator(self):
-        """취약점 간접 지표 확인"""
-        # 취약한 엔드포인트에 대한 안전한 테스트
-        test_paths = [
-            '/_api/web/GetFolderByServerRelativeUrl',
-            '/_api/web/GetFileByServerRelativeUrl',
-            '/_layouts/15/Upload.aspx'
-        ]
-        
-        results = {
-            'accessible_endpoints': [],
-            'auth_required': [],
-            'potential_risk': 'LOW'
-        }
-        
-        for path in test_paths:
-            try:
-                url = urljoin(self.target, path)
-                resp = requests.get(
-                    url,
-                    headers=self.
-```
-
-```python
-headers,
-                    timeout=10,
-                    verify=False
-                )
-                
-                if resp.status_code == 200:
-                    results['accessible_endpoints'].append(path)
-                    self.indicators.append(f"Open endpoint: {path}")
-                elif resp.status_code == 401:
-                    results['auth_required'].append(path)
-                    
-            except requests.RequestException:
-                continue
-        
-        # 위험도 평가
-        if len(results['accessible_endpoints']) > 1:
-            results['potential_risk'] = 'MEDIUM'
-        
-        return results
-    
-    def generate_report(self, check_results):
-        """보안 점검 보고서 생성"""
-        report = f"""
-========================================
-SharePoint Security Assessment Report
-========================================
-Target: {self.target}
-Status: {'Vulnerable' if check_results.get('potential_risk') != 'LOW' else 'Needs Review'}
-
-Findings:
-"""
-        for indicator in self.indicators:
-            report += f"  [!] {indicator}
-"
-        
-        report += f"""
-Risk Level: {check_results.get('potential_risk', 'UNKNOWN')}
-
-Recommendations:
-1. Apply latest SharePoint security updates immediately
-2. Review and restrict API endpoint access
-3. Implement WAF rules for SharePoint-specific attacks
-4. Enable detailed logging for _api requests
-5. Monitor for suspicious process creation from w3wp.exe
-
-========================================
-"""
-        return report
-
-def main():
-    if len(sys.argv) != 2:
-        print(f"Usage: {sys.argv[0]} <target_url>")
-        print(f"Example: {sys.argv[0]} https://sharepoint.company.local")
-        sys.exit(1)
-    
-    target = sys.
-```
-
-```python
-argv[1]
-    
-    print("[*] SharePoint Vulnerability Assessment Tool")
-    print(f"[*] Target: {target}")
-    print("[*] This tool performs NON-INTRUSIVE checks only
-")
-    
-    checker = SharePointVulnChecker(target)
-    
-    # Step 1: SharePoint 감지
-    print("[*] Checking for SharePoint instance...")
-    if not checker.check_sp_version():
-        print("[-] SharePoint not detected or inaccessible")
-        sys.exit(1)
-    
-    # Step 2: 취약점 지표 확인
-    print("[*] Checking vulnerability indicators...")
-    results = checker.check_vulnerability_indicator()
-    
-    # Step 3: 보고서 생성
-    report = checker.generate_report(results)
-    print(report)
-
-if __name__ == '__main__':
-    main()
-```
+승인된 SharePoint 환경에서는 설치된 제품 버전과 보안 업데이트 적용 여부를 관리 콘솔 및 공식 패치 정보로 확인하고, 접근 로그에서 비정상 요청을 조사해야 한다. 일부 API 경로가 응답한다는 사실만으로 특정 제로데이 취약점이나 침해 성공을 판정할 수 없다. 원래 스크립트에는 미구현 버전 추출과 잘린 코드가 있어 탐지 도구로 제시하지 않는다.
 
 ### 취약점 영향 범위 비교
 

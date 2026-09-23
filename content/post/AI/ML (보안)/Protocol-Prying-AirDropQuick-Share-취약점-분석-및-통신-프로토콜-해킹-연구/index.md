@@ -23,7 +23,7 @@ Protocol Prying은 이름 그대로 '프로토콜 속을 엿보는 행위'를 �
 
 다음 다이어그램은 근거리 통신 환경에서 Protocol Prying이 발생하는 과정을 시각적으로 보여줍니다. 공격자(Attacker)는 송수신기 간에 전송되는 패킷 스트림을 가로채어 분석함으로써, 내부 프로토콜의 상태 머신을 재구성합니다.
 
-```javascript
+```mermaid
 graph LR
     A[Device A: Sender] -->|"Data Packet 1 (Auth Request)"| B(Wireless Channel);
     B --> C[Attacker: Prying];
@@ -112,8 +112,7 @@ class ProximityProtocol:
 protocol = ProximityProtocol()
 
 # Case 1: 성공적인 인증 요청 처리
-print("
-[CASE 1] Successful Auth Request:")
+print("\n[CASE 1] Successful Auth Request:")
 success_auth = protocol.process_packet("AUTH_REQUEST", {"peer_id": "A-456"})
 print(f"Result: {success_auth}")
 
@@ -121,14 +120,12 @@ print(f"Result: {success_auth}")
 
 ```python
 # Case 2: 로직 결함 공격 시도 (인증 전 데이터 패킷 주입)
-print("
-[CASE 2] Logic Flaw Attack Attempt:")
+print("\n[CASE 2] Logic Flaw Attack Attempt:")
 fail_logic = protocol.process_packet("DATA_PAYLOAD", {"data": "Secret Data"}) # 상태는 AUTHENTICATED가 아님!
 print(f"Result: {fail_logic}")
 
 # Case 3: 인증된 후 패킷 변조 공격 시도 (HMAC 조작)
-print("
-[CASE 3] Payload Tampering Attack Attempt:")
+print("\n[CASE 3] Payload Tampering Attack Attempt:")
 tampered_payload = {"data": "Secret Data", "hmac": 999} # 실제 HMAC은 1000%로 가정
 fail_tamper = protocol.process_packet("DATA_PAYLOAD", tampered_payload)
 print(f"Result: {fail_tamper}")

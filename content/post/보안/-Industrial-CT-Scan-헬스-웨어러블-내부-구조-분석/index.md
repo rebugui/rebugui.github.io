@@ -27,7 +27,7 @@ CT 스캔은 X선을 이용해 기기 내부의 단면을 이미지화하는 기
 
 이러한 비파괴 분석 과정을 시각화하면 다음과 같습니다.
 
-```javascript
+```mermaid
 graph LR
     A[Target Device] --> B[Industrial CT Scan]
     B --> C[3D Volumetric Data]

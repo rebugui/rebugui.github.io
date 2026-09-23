@@ -35,7 +35,7 @@ ADT는 미국의 대표적인 홈 시큐리티 및 물리 보안 기업입니다
 
 아래는 공격자가 SMS 블라스팅을 수행하는 일반적인 흐름도입니다.
 
-```javascript
+```mermaid
 graph LR
     A[Attacker] --> B[Scripting Tool]
     B --> C[VoIP Gateway API]

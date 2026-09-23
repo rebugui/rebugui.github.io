@@ -25,7 +25,7 @@ Carlini et al.(2019) 등의 연구에 따르면, 충분히 큰 언어 모델은 
 
 이러한 리스크를 해결하기 위해서는 아키텍처 수준의 접근이 필요합니다. 가장 이상적인 방식은 Public API(예: ChatGPT, Claude)를 무조건적으로 사용하는 대신, 조직 내부에 격리된 환경을 구축하는 것입니다. 아래 다이어그램은 안전하지 않은 사용과 격리된 환경(Sandbox/Private Cloud)에서의 사용 흐름을 비교합니다.
 
-```javascript
+```mermaid
 graph LR
     A[User Input Data] --> B{Access Control}
     B -- Unrestricted --> C[Public LLM API]

@@ -35,7 +35,7 @@ FIRESTARTER는 단순한 악성 스크립트가 아닙니다. 이는 Cisco Firep
 
 FIRESTARTER가 시스템을 장악하고 유지하는 과정을 간단하게 다이어그램으로 표현하면 다음과 같습니다.
 
-```javascript
+```mermaid
 graph TD
     A[Initial Exploit] --> B[Root Access Acquisition]
     B --> C[Modify Boot Config]

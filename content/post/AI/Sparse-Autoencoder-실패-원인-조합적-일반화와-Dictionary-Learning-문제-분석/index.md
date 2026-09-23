@@ -23,7 +23,7 @@ author: "Intelligence Agent"
 
 신경망의 표현 공간에서 **superposition**은 고차원 개념 공간이 저차원 활성화 공간으로 투영될 때 발생한다. $d$차원 개념 공간의 feature들이 $m$차원 활성화 공간 ($m < d$)에 압축되면, 선형 결정 경계가 비선형이 된다.
 
-```javascript
+```mermaid
 graph TD
     A[고차원 개념 공간 d차원] --> B[선형 분리 가능]
     B --> C[저차원 활성화 공간 m차원으로 투영]
@@ -104,11 +104,7 @@ def fista_iteration(
     latent_dim = dictionary.shape[0]
     
     # Initialize
-    z = torch.
-```
-
-```python
-zeros(batch_size, latent_dim, device=x.device)
+    z = torch.zeros(batch_size, latent_dim, device=x.device)
     z_prev = z.clone()
     t = 1.0
     
@@ -168,7 +164,7 @@ $$\min_{D, Z} \|X - DZ\|_F^2 + \lambda \|Z\|_1$$
 
 여기서 $D$는 dictionary, $Z$는 sparse code이다. 문제는 **학습 데이터의 분포에 편향된 dictionary가 학습된다**는 점이다.
 
-```javascript
+```mermaid
 graph LR
     A[Training Distribution] --> B[SAE Dictionary Learning]
     B --> C[편향된 Dictionary D]
@@ -239,11 +235,7 @@ def demonstrate_non_identifiability(dim: int = 64, n_features: int = 256):
     
     # True dictionary (unknown)
     true_dict = np.random.randn(n_features, dim)
-    true_dict = true_dict / np.linalg.
-```
-
-```python
-norm(true_dict, axis=1, keepdims=True)
+    true_dict = true_dict / np.linalg.norm(true_dict, axis=1, keepdims=True)
     
     # Observed activations (superposition)
     activations = true_codes @ true_dict
@@ -269,7 +261,7 @@ norm(true_dict, axis=1, keepdims=True)
 
 연구진의 가장 강력한 증거는 **oracle baseline** 실험이다. True dictionary에 접근할 수 있다고 가정하면:
 
-```javascript
+```mermaid
 graph TD
     A[Oracle Dictionary 제공] --> B[SAE Encoder 사용]
     A --> C[FISTA 사용]

@@ -2,7 +2,7 @@
 title: "[2026 주요정보통신기반시설] C-21 제어네트워크는 업무망, 인터넷, CCTV망 등 외부망과 물리적으로 분리하여 사용"
 slug: "2026-주정통/C-21"
 date: 2026-02-05T09:56:13+09:00
-lastmod: 2026-02-05T09:56:13+09:00
+lastmod: 2026-09-23
 description: "제어시스템을 감시, 통제하는 네트워크 구성에서 제어망(Production Control System Network)의 업무망(Business Network),인터넷망등으로물리적분리여부점검"
 categories: ["2026 주정통 가이드라인"]
 tags:
@@ -47,9 +47,9 @@ draft: false
    - 제어망과 CCTV 망 연결
    - CCTV 다수 트래픽으로 인한 제어망 가용성 침해
 
-3. **쇼단(Shodan) 노출**
-   - 미국: 5만 7천 개의 ICS가 인터넷에 연결되어 있다는 보고
-   - 독일 제철소 용광로 제어시스템 해킹 공격 사례
+3. **인터넷 노출과 산업설비 사고**
+   - Kaspersky의 2016년 Shodan·Censys 기반 수동 조사에서는 미국에서 인터넷 접근이 가능한 ICS 구성요소가 식별된 **호스트 57,417개**를 집계했습니다. 이는 당시의 호스트 추정치이지 현재의 전체 ICS 시설 수가 아닙니다.
+   - 독일 BSI의 2014년 보고서 §3.3.1은 제철소의 산업설비를 대상으로 한 공격과 운영상 피해를 기록했습니다. 위의 노출 호스트 수와 별개 사건입니다.
 
 ### 3. 점검 대상
 
@@ -102,6 +102,8 @@ draft: false
 
 - NIST SP 800-82: Guide to Industrial Control Systems Security
 - IEC 62443: Industrial Communication Networks - Network and System Security
+- [Kaspersky Lab, *Industrial Control Systems and Their Online Availability* (2016), §3.5, p. 7](https://media.kasperskycontenthub.com/wp-content/uploads/sites/43/2016/07/07190427/KL_REPORT_ICS_Availability_Statistics.pdf)
+- [독일 BSI, *The State of IT Security in Germany 2014*, §3.3.1, p. 31](https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Publications/Securitysituation/IT-Security-Situation-in-Germany-2014.pdf?__blob=publicationFile&v=3)
 
 ## 요약
 

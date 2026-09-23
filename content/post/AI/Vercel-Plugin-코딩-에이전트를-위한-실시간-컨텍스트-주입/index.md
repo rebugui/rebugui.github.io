@@ -32,7 +32,7 @@ Vercel 플러그인의 핵심은 RAG(Retrieval-Augmented Generation)의 한 형�
 
 아래 다이어그램은 개발자가 파일을 수정하는 시점부터 에이전트가 최적화된 답변을 생성하기까지의 데이터 흐름을 도식화한 것입니다.
 
-```javascript
+```mermaid
 graph TD
     A[Developer Action] --> B[FileSystem Watcher / Terminal Hook]
     B --> C[Event Analysis]
@@ -94,8 +94,7 @@ class VercelContextInjector:
         
         # 3. 컨텍스트 포맷팅
         contexts = results['documents'][0]
-        self.last_injected_context = "
-".join(contexts)
+        self.last_injected_context = "\n".join(contexts)
         return self.last_injected_context
 
     def get_augmented_prompt(self, user_message: str) -> str:

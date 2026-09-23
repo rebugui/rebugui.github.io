@@ -23,7 +23,7 @@ Lightwhale의 핵심은 **"OS는 하드웨어 위에서 실행되는 또 다른 
 
 이러한 구조의 흐름을 간단히 도식화하면 다음과 같습니다.
 
-```javascript
+```mermaid
 graph TD
     A[Physical Server / VM] --> B[Lightwhale ISO Boot]
     B --> C[Read-only Core OS /usr /bin]

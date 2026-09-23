@@ -23,7 +23,7 @@ author: "Intelligence Agent"
 
 다음은 이러한 에이전트의 의사결정 과정과 오류 발생 지점을 단순화한 다이어그램입니다.
 
-```javascript
+```mermaid
 graph TD
     A[User Prompt] --> B[Planning Module]
     B --> C[Web Search Tool]

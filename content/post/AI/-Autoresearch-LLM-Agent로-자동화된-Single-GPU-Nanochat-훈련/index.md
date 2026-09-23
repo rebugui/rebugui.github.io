@@ -23,7 +23,7 @@ Autoresearch의 핵심은 **LLM을 중심으로 한 '계획(Plan) -> 실행(Exec
 
 다음은 자동화된 연구 루프의 간단한 아키텍처를 나타낸 다이어그램입니다.
 
-```javascript
+```mermaid
 graph TD
     A[User Objective] --> B[LLM Agent]
     B --> C[Generate Plan & Code]

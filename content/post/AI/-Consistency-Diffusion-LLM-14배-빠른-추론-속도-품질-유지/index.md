@@ -23,7 +23,7 @@ Consistency Models(CM)은 이 궤적을 따라가는 과정 자체를 "학습"�
 
 아래 다이어그램은 기존 Diffusion 모델과 Consistency Diffusion 모델의 추론 과정에서의 데이터 흐름 차이를 시각적으로 보여줍니다.
 
-```javascript
+```mermaid
 graph LR
     subgraph Standard_Diffusion
         A1[Noise] --> S1[Step 1]

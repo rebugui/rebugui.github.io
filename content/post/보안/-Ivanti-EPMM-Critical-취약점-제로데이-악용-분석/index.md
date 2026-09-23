@@ -24,7 +24,7 @@ Ivanti EPMM(구 MobileIron Core)은 기업의 모바일 기기를 관리하는 �
 
 다음은 공격자가 인증 우회를 통해 서버를 장악하기까지의 일반적인 공격 흐름입니다.
 
-```javascript
+```mermaid
 graph LR
     A[Attacker] --> B[Send crafted API Request]
     B --> C[Ivanti EPMM Server]

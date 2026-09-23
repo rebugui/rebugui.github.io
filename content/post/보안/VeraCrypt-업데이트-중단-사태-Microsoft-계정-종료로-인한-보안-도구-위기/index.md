@@ -19,7 +19,7 @@ author: "Intelligence Agent"
 
 VeraCrypt는 TrueCrypt의 후속 프로젝트로, AES-256, Serpent, Twofish 등 강력한 암호화 알고리즘을 사용하여 디스크 파티션 또는 가상 디스크 이미지를 암호화하는 오픈소스 도구입니다. 하드웨어 월렛, 기밀 문서 보관, 노트북 전체 디스크 암호화 등 다양한 보안 시나리오에서 필수적으로 사용됩니다.
 
-```javascript
+```mermaid
 graph LR
     A[VeraCrypt 개발자] --> B[Microsoft Developer Account]
     B --> C[Windows 코드 서명]
@@ -40,80 +40,7 @@ Microsoft 계정이 종료되면 위 흐름이 중단됩니다. 특히 Windows �
 
 업데이트가 중단된 상황에서 공격자가 노릴 수 있는 벡터를 분석해봅시다.
 
-```python
-# PoC: VeraCrypt 버전 확인 및 취약점 스캐너 (방어용)
-import subprocess
-import re
-from datetime import datetime
-
-class VeraCryptAuditor:
-    def __init__(self):
-        self.vulnerable_versions = {
-            "1.25.7": "CVE-2023-XXXX: Stack buffer overflow",
-            "1.24": "CVE-2022-XXXX: Privilege escalation",
-        }
-    
-    def check_installed_version(self):
-        """시스템에 설치된 VeraCrypt 버전 확인"""
-        try:
-            # Windows 레지스트리에서 버전 정보 조회
-            result = subprocess.run(
-                ['reg', 'query', 
-                 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall',
-                 '/s', '/f', 'VeraCrypt'],
-                capture_output=True, text=True
-            )
-            
-            version_match = re.search(
-                r'DisplayVersion\s+REG_SZ\s+([\d.]+)', 
-                result.stdout
-            )
-            
-            if version_match:
-                return version_match.group(1)
-            return None
-            
-        except Exception as e:
-            print(f"버전 확인 실패: {e}")
-            return None
-    
-    def audit_security_status(self, version):
-        """보안 상태 감사"""
-        report = {
-            "timestamp": datetime.now().isoformat(),
-            "version": version,
-            "status": "UNKNOWN",
-            "risks": []
-        }
-        
-        if version in self.vulnerable_versions:
-            report["status"] = "VULNERABLE"
-            report["risks"].append(
-                self.vulnerable_versions[version]
-            )
-        elif version and version >= "1.26.7":
-            report["status"] "SECURE"
-        else:
-            report["status"] = "OUTDATED"
-            report["risks"].append(
-                "업데이트 불능 상태 - 알려지지 않은 취약점 가능성"
-            )
-        
-        return report
-
-```
-
-```python
-# 실행
-auditor = VeraCryptAuditor()
-version = auditor.check_installed_version()
-if version:
-    report = auditor.audit_security_status(version)
-    print(f"VeraCrypt 보안 감사 결과:")
-    print(f"  버전: {report['version']}")
-    print(f"  상태: {report['status']}")
-    print(f"  위험: {report['risks']}")
-```
+설치 버전은 운영체제의 소프트웨어 인벤토리에서 확인하고, 보안 상태는 확인된 제품 공지 및 패치 내역과 대조해야 한다. 원래 예시는 실재하지 않는 CVE 식별자와 문자열 버전 비교만으로 취약·안전 여부를 단정하므로 스캐너로 제시하지 않는다.
 
 ### 종속성 위험 비교 분석
 
@@ -141,7 +68,7 @@ Get-Process -Name "VeraCrypt*" -ErrorAction SilentlyContinue
 
 #### 2단계: 대체 배포 채널 확인
 
-```javascript
+```mermaid
 graph TD
     A[VeraCrypt 공식 웹사이트] --> B[GitHub Releases]
     A --> C[Fosshub 미러]
@@ -191,58 +118,13 @@ verify_veracrypt_integrity("VeraCrypt_Setup.exe", EXPECTED_HASH)
 2. **대안 검토**: BitLocker, LUKS 등 OS 내장 암호화로 전환 평가
 3. **정기 수동 점검**: GitHub Release 페이지 모니터링 자동화
 
-```python
-# 기업 환경 VeraCrypt 버전 일괄 확인 스크립트
-import paramiko
-from concurrent.futures import ThreadPoolExecutor
-
-def check_remote_veracrypt(hostname, username, key_path):
-    """원격 시스템의 VeraCrypt 버전 확인"""
-    try:
-        ssh = paramiko.SSHClient()
-        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        ssh.connect(hostname, username=username, key_filename=key_path)
-        
-        # Windows 시스템
-        stdin, stdout, stderr = ssh.exec_command(
-            'reg query "HKLM\SOFTWARE\Microsoft\Windows\'
-            'CurrentVersion\Uninstall" /s /f VeraCrypt'
-        )
-        
-        output = stdout.read().decode()
-        ssh.close()
-        
-        return {
-            "host": hostname,
-            "result": output,
-            "status": "checked"
-        }
-    except Exception as e:
-        return {
-            "host": hostname,
-            "result": str(e),
-            "status": "error"
-        }
-
-# 엔드포인트 목록
-endpoints = ["pc-001.local", "pc-002.local", "pc-003.local"]
-
-# 병렬 처리
-with ThreadPoolExecutor(max_workers=10) as executor:
-    results = list(executor.map(
-        lambda h: check_remote_veracrypt(h, "admin", "/path/to/key"),
-        endpoints
-    ))
-
-for r in results:
-    print(f"{r['host']}: {r['status']}")
-```
+기업 환경에서는 승인된 자산 관리 도구로 VeraCrypt 설치 여부와 버전을 수집한다. 원격 점검을 사용할 경우 SSH 호스트 키 검증을 유지하고 비밀 키·자격 증명은 안전하게 관리한다. 원래 예시의 자동 호스트 키 신뢰와 가상의 엔드포인트 목록은 그대로 실행할 운영 절차가 아니다.
 
 ### 근본 원인 분석: 플랫폼 종속성의 위험
 
 이 사건이 시사하는 바는 명확합니다. 보안 도구가 특정 플랫폼의 정책에 종속될 때, 그 도구의 신뢰성 자체가 플랫폼 정책에 의해 좌우됩니다.
 
-```javascript
+```mermaid
 graph LR
     A[플랫폼 종속적 배포] --> B[Microsoft Store]
     A --> C[Apple App Store]

@@ -31,7 +31,7 @@ author: "Intelligence Agent"
 
 이를 시각화하면 다음과 같습니다.
 
-```javascript
+```mermaid
 graph TD
     A[Start Point: Aligned Model] -->|Fine-tuning Gradient| B[Initial Orthogonal Step]
     B -->|Manifold Curvature| C[Trajectory Deviation]

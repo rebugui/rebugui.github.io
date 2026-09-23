@@ -25,7 +25,7 @@ Dirac의 성과는 "모델이 전부가 아니다"라는 명제를 증명합니�
 
 Dirac의 핵심은 효율적인 상태 관리와 피드백 루프입니다. 아래 다이어그램은 Dirac이 터미널 명령을 수행하고 학습하는 단순화된 프로세스를 보여줍니다.
 
-```javascript
+```mermaid
 graph TD
     A[User Task] --> B[Dirac Harness]
     B --> C[LLM Reasoning]
@@ -108,10 +108,6 @@ class TerminalAgent:
             
             action = self.think(task, observation)
             print(f"Action: {action}")
-
-```
-
-```python
             if action == "DONE":
                 print("Task Completed Successfully.")
                 break

@@ -25,7 +25,7 @@ pvm의 핵심 동작 원리는 **"경로의 추상화"**입니다. 사용자는 
 
 다음은 pvm을 통해 가상환경을 활성화하고 관리하는 전체 흐름을 간단화한 다이어그램입니다.
 
-```javascript
+```mermaid
 graph LR
     A[User Command] --> B[pvm CLI]
     B --> C[Config File YAML]

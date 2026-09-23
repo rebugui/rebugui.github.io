@@ -27,7 +27,7 @@ MeshCore 사태의 핵심은 Claude Code와 같은 LLM(Large Language Model) 기
 
 다음은 전통적인 개발 워크플로우와 AI 에이전트 기반 개발 워크플로우의 차이를 나타낸 다이어그램입니다.
 
-```javascript
+```mermaid
 graph TD
     A[Developer Intent] --> B[Traditional Workflow]
     A --> C[AI Agentic Workflow]

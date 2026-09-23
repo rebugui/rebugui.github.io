@@ -147,11 +147,6 @@ Observation: 도구 실행 결과
 ... (이 과정을 반복)
 Thought: 최종 답변을 낼 준비가 됨
 Final Answer: 사용자에게 전달할 최종 답변
-
-
-```
-
-```python
 Question: {input}
 Thought: {agent_scratchpad}"""
         )
@@ -222,9 +217,6 @@ class CodeAwareRAG:
                         "name": self._extract_name(node, code),
                         "start_line": node.start_point[0],
                         "end_line": node.
-```
-
-```python
 end_point[0]
                     }
                 ))
@@ -424,8 +416,7 @@ async def slack_command(command: SlackCommand):
     if command.text.startswith("!fix"):
         task = command.text[4:].strip()
         result = await agent.solve(task)
-        return {"text": f"✅ 완료!
-{result.summary}"}
+        return {"text": f"✅ 완료!\n{result.summary}"}
 ```
 
 ## 성능 최적화 및 모범 사례

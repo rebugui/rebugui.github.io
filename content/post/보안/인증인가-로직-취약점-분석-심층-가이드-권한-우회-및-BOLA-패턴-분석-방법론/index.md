@@ -43,7 +43,7 @@ API 요청은 일반적으로 `[Resource Type] / [ID]` 형태입니다. BOLA는 
 
 #### 공격 흐름도 (Mermaid)
 
-```javascript
+```mermaid
 sequenceDiagram
     participant Attacker as 공격자
     participant Client as 클라이언트

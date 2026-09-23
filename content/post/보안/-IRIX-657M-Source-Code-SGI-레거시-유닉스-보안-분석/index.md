@@ -25,7 +25,7 @@ IRIX는 System V 기반의 유닉스 계열이지만, SGI만의 고유한 그래
 
 아래는 외부 공격자가 IRIX 시스템의 취약점을 이용해 권한을 상승시키는 일반적인 공격 흐름도입니다.
 
-```javascript
+```mermaid
 graph LR
     A[External Attacker] --> B[Initial Access]
     B --> C[User Shell Access]

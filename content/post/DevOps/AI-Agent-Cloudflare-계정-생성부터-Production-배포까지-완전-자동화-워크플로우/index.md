@@ -33,7 +33,7 @@ AI Agent가 CloudOps를 자동화한다는 것은 단순히 스크립트를 짜�
 
 다음은 AI Agent가 Cloudflare 환경을 초기 설정하는 전체 자동화 워크플로우를 나타낸 다이어그램입니다.
 
-```javascript
+```mermaid
 graph TD
     A[User Input: Target Domain & Service Plan] --> B{Agent Orchestrator};
     B --> C[Tool: Cloudflare Account Creation API];
@@ -101,21 +101,17 @@ def get_api_token(account_id: str) -> str:
 
 # 메인 워크플로우 실행
 def run_cloudops_workflow(email, domain):
-    print("
-=============================================")
+    print("\n=============================================")
     print("✨ CI/CD 파이프라인이 CloudOps를 자동화합니다.")
-    print("=============================================
-")
+    print("=============================================\n")
     
     if setup_cloudflare_account(email):
         if register_domain(domain, AGENT_STATE["account_id"]):
             get_api_token(AGENT_STATE["account_id"])
-            print("
-[COMPLETE] 모든 CloudOps 단계가 성공적으로 완료되었습니다.")
+            print("\n[COMPLETE] 모든 CloudOps 단계가 성공적으로 완료되었습니다.")
             return AGENT_STATE
     
-    print("
-[ABORT] CloudOps 워크플로우가 중단되었습니다. 로그를 확인하세요.")
+    print("\n[ABORT] CloudOps 워크플로우가 중단되었습니다. 로그를 확인하세요.")
     return None
 
 ```

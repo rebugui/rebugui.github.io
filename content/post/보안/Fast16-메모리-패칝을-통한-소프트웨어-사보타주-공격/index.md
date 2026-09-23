@@ -25,7 +25,7 @@ Fast16의 핵심은 디스크 상의 파일 변조를 최소화하고, 실행 �
 
 Fast16의 실행 흐름은 아래와 같이 매우 체계적이고 은폐적입니다.
 
-```javascript
+```mermaid
 graph LR
     A[User executes svcmgmt.exe] --> B[Initialize Embedded Lua 5.0 VM]
     B --> C[Identify Target Process PID]

@@ -26,7 +26,7 @@ Ethan Mollick이 최근 지적한 것처럼, AI의 진짜 게임 체인저는 **
 
 Claude Dispatch의 핵심은 단순하다. 사용자가 Claude에게 무엇을 물어야 할지 모르는 상황에서, **시스템이 먼저 다양한 페르소나(에이전트)를 제안**하고 사용자가 이를 선택하게 한다.
 
-```javascript
+```mermaid
 graph TD
     A[사용자 입력] --> B[Dispatch Orchestrator]
     B --> C{의도 분류}
@@ -121,11 +121,7 @@ Provide specific, actionable feedback."""
         }
         
         user_lower = user_input.lower()
-        for intent, words in keywords.
-```
-
-```python
-items():
+        for intent, words in keywords.items():
             if any(word in user_lower for word in words):
                 return intent
         
@@ -170,7 +166,7 @@ if __name__ == "__main__":
 
 #### Step 1: 사용자 의도 사전 정의
 
-```javascript
+```mermaid
 graph LR
     A[사용자 진입] --> B[카테고리 선택]
     B --> C[세부 태스크 선택]
@@ -251,10 +247,6 @@ Language: {data.programming_language or 'Not specified'}
 
 Context:
 {data.context}
-
-```
-
-```python
 Constraints:
 {chr(10).join(f'- {c}' for c in data.constraints) if data.constraints else 'None specified'}
 

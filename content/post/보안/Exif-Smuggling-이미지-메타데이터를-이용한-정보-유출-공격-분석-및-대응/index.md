@@ -25,7 +25,7 @@ Exif Smuggling의 핵심 원리는 **'신뢰성 오용(Misuse of Trust)'**입니
 
 다음 다이어그램은 일반적인 데이터 흐름과 Exif Smuggling을 통한 악용 경로를 비교하여 보여줍니다.
 
-```javascript
+```mermaid
 graph TD
     A[원본 이미지 파일] --> B{메타데이터 추출 및 검증};
     B --> C[정상 처리: 정보만 사용];

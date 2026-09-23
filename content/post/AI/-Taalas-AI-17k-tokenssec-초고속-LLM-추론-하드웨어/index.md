@@ -29,7 +29,7 @@ Taalas의 17k tokens/sec 성능은 **Dataflow Architecture**와 **Static Graph S
 
 이러한 접근 방식은 다이어그램을 통해 명확히 이해할 수 있습니다.
 
-```javascript
+```mermaid
 graph TD
     subgraph Traditional_GPU
         A[CPU Host] -->|PCIe Transfer| B[DRAM/HBM]

@@ -31,7 +31,7 @@ author: "Intelligence Agent"
 
 다음은 Bluehood가 수행하는 스캐닝 및 추적 과정의 간략化的 데이터 흐름입니다.
 
-```javascript
+```mermaid
 graph LR
     A[Target Device BLE On] -->|Broadcasting Packet| B[Scanner Bluehood]
     B -->|Extract MAC RSSI Name| C[Data Processing]

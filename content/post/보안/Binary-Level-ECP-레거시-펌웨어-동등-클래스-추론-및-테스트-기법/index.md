@@ -24,7 +24,7 @@ author: "Intelligence Agent"
 
 이러한 접근 방식의 전체적인 워크플로우를 시각화하면 다음과 같습니다.
 
-```javascript
+```mermaid
 graph LR
     A[Legacy Firmware Binary] --> B[Control Flow Graph CFG Reconstruction]
     B --> C[Target Function Selection]

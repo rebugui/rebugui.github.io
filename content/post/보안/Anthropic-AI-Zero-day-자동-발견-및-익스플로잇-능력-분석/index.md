@@ -24,7 +24,7 @@ Anthropic이 최근 발표한 연구 결과에 따르면, 그들의 새로운 AI
 
 AI 모델이 Zero-day를 발견하는 과정은 크게 세 단계로 구성된다:
 
-```javascript
+```mermaid
 graph TD
     A[타겟 바이너리/소스코드 수집] --> B[AI 모델의 정적/동적 분석]
     B --> C[취약점 패턴 매칭 및 변형 탐지]
@@ -160,7 +160,7 @@ Anthropic 연구의 가장 인상적인 부분은 AI가 **단일 플랫폼에 �
 
 전통적인 Fuzzing 접근법과 AI 기반 접근법의 차이를 이해하는 것이 중요하다.
 
-```javascript
+```mermaid
 graph LR
     subgraph 기존_Fuzzing
         A[랜덤 입력 생성] --> B[실행 및 크래시 모니터링]

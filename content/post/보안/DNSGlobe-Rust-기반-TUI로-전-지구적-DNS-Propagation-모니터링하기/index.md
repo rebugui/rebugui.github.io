@@ -39,7 +39,7 @@ DNSGlobe이 단순한 온라인 도구 이상의 가치를 갖는 이유는 그 
 
 DNSGlobe이 모니터링하는 글로벌 Propagation 과정은 다음과 같은 흐름으로 이루어집니다. 이는 특정 도메인 레코드가 Authoritative Server에서 최종 사용자까지 전달되는 과정을 간략히 보여줍니다.
 
-```javascript
+```mermaid
 graph TD
     A[Authoritative DNS Server] --> B(Root/TLD Servers);
     B --> C{Global Cache Resolver};

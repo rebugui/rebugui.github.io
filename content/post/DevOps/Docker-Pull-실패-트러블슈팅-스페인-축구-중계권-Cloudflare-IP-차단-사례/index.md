@@ -27,7 +27,7 @@ tls: failed to verify certificate: x509: certificate is not valid for any names
 
 GitLab CI/CD 파이프라인이 실패하는 과정을 다이어그램으로 확인해보자:
 
-```javascript
+```mermaid
 graph TD
     A[Git Push] --> B[GitLab Runner 실행]
     B --> C[Docker Pull 시도]
@@ -196,7 +196,7 @@ TLS 오류가 발생하면 보통 인증서 만료, DNS 문제, 네트워크 설
 
 Docker 이미지 pull 하나에 얽힌 의존성 체인을 파악하고 있어야 빠르게 원인을 좁힐 수 있다:
 
-```javascript
+```mermaid
 graph LR
     A[docker pull] --> B[Docker Hub API]
     B --> C[이미지 메타데이터]

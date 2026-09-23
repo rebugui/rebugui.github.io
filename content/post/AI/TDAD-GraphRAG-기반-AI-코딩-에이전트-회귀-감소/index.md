@@ -23,7 +23,7 @@ TDAD의 핵심은 **코드-테스트 그래프(Code-Test Graph)**를 구축하�
 
 다음은 TDAD 워크플로우가 어떻게 회귀를 방지하는지 보여주는 간단한 아키텍처입니다.
 
-```javascript
+```mermaid
 graph TD
     A[Issue Report] --> B[Code Change Plan]
     B --> C[AST Parser]

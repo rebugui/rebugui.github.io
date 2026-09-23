@@ -28,29 +28,6 @@ Google Cloud의 고위 임원이 Microsoft의 보안 총괄으로 복귀하는 �
 
 기술적으로 신원 연계는 서비스 제공자(SP)와 신원 제공자(IdP) 간의 신뢰 관계를 기반으로 작동합니다. 공격자는 이 신뢰 관계를 악용하여 **"혼동된 부하(Confused Deputy)"** 문제를 일으키거나, 서명되지 않은 취약한 SAML 어설션(Assertion)을 재전송(Replay)하여 인증을 우회하려 합니다. 특히, 여러 클라우드 환경을 통합 관리하는 시스템에서 IdP의 검증 로직이 느슨하거나, `Assertion`의 유효기간(`NotOnOrAfter`, `NotBefore`) 검증이 미흡할 경우 심각한 보안 구멍이 발생합니다.
 
-Microsoft가 Google 클라우드의 전문가를 영입한 것은 바로 이러한 **복잡한 멀티 클라우드 인증 환경**에서 발생할 수 있는 보안 허점을 기술적으로 메우기 위함일 가능성이 높습니다. 공격자는 주로 XML 서명 검증을 우회하거나, SAML Response의 암호화 알고리즘을 취약한 것(예: SHA-1)으로 강제 변경시키는 방식을 시도합니다. 아래 다이어그램은 이러한 신원 연계 공격의 전형적인 흐름을 시각화한 것입니다.
+Microsoft가 Google 클라우드의 전문가를 영입한 것은 바로 이러한 **복잡한 멀티 클라우드 인증 환경**에서 발생할 수 있는 보안 허점을 기술적으로 메우기 위함일 가능성이 높습니다. 공격자는 주로 XML 서명 검증을 우회하거나, SAML Response의 암호화 알고리즘을 취약한 것(예: SHA-1)으로 강제 변경시키는 방식을 시도합니다.
 
-````mermaid`
-
-sequenceDiagram
-    participant Attacker as 공격자
-    participant User as 사용자 브라우저
-    participant SP as 서비스 제공자 (Azure App)
-    participant IdP as 신원 제공자 (IdP)
-
-    Note over Attacker, SP: 1. 공격자는 사용자를 가장하여 SP에 접근 시도
-    Attacker->>SP: 악성적인 SAML Request 전송 (Issuer 조작)
-
-    Note over SP, IdP: 2. SP는 요청을 IdP로 리다이렉트
-    SP->>IdP: 리다이렉트 (SAML Request)
-
-    Note over Attacker, IdP: 3. 공격자가 중간에서 가로채거나<br>직접 위조된 SAML Response 생성
-    Attacker->>IdP: [MITM] 트래픽 감청 또는 Response 위조
-    IdP-->>Attacker: 정상 SAML Response (획득 또는 위조)
-
-    Note over Attacker, SP: 4. 위조된 SAML Response를 SP로 재전송 (Replay Attack)
-    Attacker->>SP: SAML Assertion (유효기간 우회 시도)
-
-    alt 서명 검증 실패 시
-        SP-->>Attacker: 접근 거부
-    else 서명 검증 우회 성공 시 (�
+공격 모델은 IdP의 서명과 발급자·수신자·유효기간 검증 실패를 가정한다. 기존 시퀀스 다이어그램은 분기 중간에 잘려 있어 완료된 공격 흐름으로 제시하지 않는다.

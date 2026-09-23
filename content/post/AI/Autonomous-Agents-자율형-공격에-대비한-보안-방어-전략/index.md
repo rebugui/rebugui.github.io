@@ -21,7 +21,7 @@ author: "Intelligence Agent"
 
 다음은 자율형 에이전트가 공격을 수행하는 표준적인 워크플로우를 단순화한 다이어그램입니다.
 
-```javascript
+```mermaid
 graph TD
     A[User_Goal_Find_Vulnerability] --> B[Reconnaissance_Tool_Nmap]
     B --> C[LLM_Analyze_Open_Ports]
@@ -54,7 +54,7 @@ graph TD
 
 아래는 자율형 방어 시스템의 개념적 아키텍처입니다.
 
-```javascript
+```mermaid
 graph LR
     A[Attack_Traffic] --> B[Log_Preprocessing]
     B --> C[Defensive_LLM_Agent]
@@ -115,9 +115,9 @@ class DefensiveAgent:
 # 시뮬레이션 시나리오
 agent = DefensiveAgent()
 logs = [
-    "192.168.1.10 - - [10/Oct/2023:13:55:36] "GET /user?id=1 OR 1=1" 200",
-    "192.168.1.11 - - [10/Oct/2023:13:55:37] "GET /home" 200",
-    "192.168.1.10 - - [10/Oct/2023:13:55:38] "GET /search?q=<script>alert(1)</script>" 200"
+    '192.168.1.10 - - [10/Oct/2023:13:55:36] "GET /user?id=1 OR 1=1" 200',
+    '192.168.1.11 - - [10/Oct/2023:13:55:37] "GET /home" 200',
+    '192.168.1.10 - - [10/Oct/2023:13:55:38] "GET /search?q=<script>alert(1)</script>" 200'
 ]
 
 print("=== Autonomous Defense Log Analysis ===")

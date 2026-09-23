@@ -27,7 +27,7 @@ author: "Intelligence Agent"
 
 이 과정을 흐름도로 정리하면 다음과 같습니다.
 
-```javascript
+```mermaid
 graph TD
     A[사용자: AI 챗봇 대화 시작] --> B[AI 챗봇: 수상한 사이트 추천];
     B --> C[사용자: 추천 사이트 접속];
@@ -79,14 +79,12 @@ def execute_command_from_clipboard(user_input_payload: str):
             capture_output=True, 
             text=True
         )
-        print("
-[--- 실행 결과 ---]")
+        print("\n[--- 실행 결과 ---]")
         print(result.stdout)
         print("[-----------------]")
         return result.stdout
     except subprocess.CalledProcessError as e:
-        print(f"
-[!!! 오류 발생 !!!] 명령어 실행 실패: {e}")
+        print(f"\n[!!! 오류 발생 !!!] 명령어 실행 실패: {e}")
         return None
 
 # 시나리오: 클립보드에 악성 명령이 주입되었다고 가정

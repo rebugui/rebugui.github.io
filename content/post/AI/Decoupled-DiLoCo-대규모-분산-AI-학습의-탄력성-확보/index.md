@@ -23,7 +23,7 @@ Decoupled DiLoCo의 핵심 혁신은 이 동기화 과정을 "탈결합"했다�
 
 다음은 기존 방식과 Decoupled DiLoCo의 학습 흐름을 비교한 간단한 다이어그램입니다.
 
-```javascript
+```mermaid
 graph LR
     subgraph Standard_DDP
         W1[Worker 1] -->|매 스텝 동기화| Sync[Barrier Sync]
@@ -53,25 +53,11 @@ Decoupled DiLoCo를 도입했을 때 얻을 수 있는 이점은 명확합니다
 | **결함 허용 (Fault Tolerance)** | 낮음 (하나의 노드 장애로 전체 중단) | 중간 (동기화 시점까지 영향 없음) | 높음 (장애 노드 무시 및 자동 재합류) |
 | **주요 사용 사례** | 단일 클러스터 내 고속 학습 | 대역폭이 제한된 분산 환경 | 공용 클라우드, 스팟 인스턴스, 지리적 분산 학습 |
 
-### PyTorch를 활용한 개념적 구현
+### 로컬 학습과 동기화 설계
 
-Decoupled DiLoCo는 아직 PyTorch의 `torch.distributed` 코어에 기본 내장된 기능은 아니지만, 커스텀 로직을 통해 구현할 수 있습니다. 아래 코드는 간단한 Local SGD와 옵티마이저 상태 공유를 시뮬레이션한 개념적 예시입니다.
+Decoupled DiLoCo는 PyTorch의 `torch.distributed` 코어에 기본 내장된 기능이 아니므로, 로컬 학습과 주기적 동기화 로직을 별도로 설계해야 합니다.
 
-```python
-import torch
-import torch.distributed as dist
-from torch.nn.parallel import DistributedDataParallel as DDP
-
-def train_diloco_step(model, optimizer, dataloader, steps_to_communicate=100):
-    """
-    DiLoCo 스타일의 학습 루프 예시
-    :param steps_to_communicate: 로컬 학습 스텝 수 (H)
-    """
-    model.train()
-    local_step_count = 0
-    
-    for inputs, targets in dataloader:
-```
+로컬 SGD에서는 각 워커가 일정 수의 배치를 독립적으로 학습하고 주기적으로 파라미터 또는 업데이트를 집계합니다. 동기화 주기, 옵티마이저 상태의 처리 방식, 장애 시 복구 규칙이 정해져야 구현할 수 있으며, 반복문만 시작한 코드를 완성된 학습 루프로 취급해서는 안 됩니다.
 
 ---
 

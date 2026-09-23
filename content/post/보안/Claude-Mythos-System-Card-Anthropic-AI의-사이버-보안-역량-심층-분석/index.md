@@ -21,7 +21,7 @@ author: "Intelligence Agent"
 
 Anthropic의 System Card는 모델의 능력과 위험성을 투명하게 공개하는 독특한 관행을 따른다. Claude Mythos Preview의 경우, 특히 사이버 보안 영역에서의 역량이 집중 조명된다.
 
-```javascript
+```mermaid
 graph TD
     A[Model Release] --> B[System Card Publishing]
     B --> C[Red Teaming Results]
@@ -58,7 +58,7 @@ System Card에서 가장 흥미로운 부분은 실제 보안 평가 결과다. 
 
 **평가 방법론:**
 
-```javascript
+```mermaid
 graph LR
     A[보안 과제 데이터셋] --> B[Human Red Team]
     A --> C[Automated Evaluation]
@@ -139,11 +139,9 @@ Focus on OWASP Top 10 categories and provide actionable remediation advice.
 Context: {context}
 
 Code:
-```
 
 {code_snippet}
 
-```plain text
 
 Provide your analysis in JSON format with the following structure:
 {{
@@ -184,30 +182,18 @@ Provide your analysis in JSON format with the following structure:
     def generate_report(self, output_format: str = 'markdown') -> str:
         """분석 결과 보고서 생성"""
         if output_format == 'markdown':
-            report = "# Security Code Review Report
-
-"
-            report += "## Summary
-
-"
-            report += f"- Total Findings: {len(self.findings)}
-"
+            report = "# Security Code Review Report\n\n"
+            report += "## Summary\n\n"
+            report += f"- Total Findings: {len(self.findings)}\n"
             
             severity_counts = {}
             for f in self.findings:
                 severity_counts[f.severity] = severity_counts.get(f.severity, 0) + 1
             
-            report += "
-## Findings by Severity
-
-```
-
-```plain text
-"
+            report += "\n## Findings by Severity\n\n"
             for sev in ['CRITICAL', 'HIGH', 'MEDIUM', 'LOW', 'INFO']:
                 if sev in severity_counts:
-                    report += f"- {sev}: {severity_counts[sev]}
-"
+                    report += f"- {sev}: {severity_counts[sev]}\n"
             
             return report
         
@@ -245,7 +231,7 @@ Claude Mythos의 System Card는 광범위한 Red Teaming 결과를 포함한다.
 
 **공격 시나리오 대응 흐름:**
 
-```javascript
+```mermaid
 graph TD
     A[User Query] --> B{Intent Classification}
     B --> C[Benevolent/Neutral]

@@ -103,10 +103,8 @@ class TreeNode:
                 child_results.append(res)
             
             # 2. 결과 합성 (Aggregation)
-            combined_input = "
-".join(child_results)
-            synthesis_prompt = f"Synthesize the following results:
-{combined_input}"
+            combined_input = "\n".join(child_results)
+            synthesis_prompt = f"Synthesize the following results:\n{combined_input}"
             self.result = self.llm.call(synthesis_prompt, self.role)
             
         else: 
@@ -137,8 +135,7 @@ if __name__ == "__main__":
     
     # 실행 (병렬 처리는 asyncio 등을 통해 구현 가능)
     final_output = root.execute("Create a technical report about Cord")
-    print("
-=== Final Output ===")
+    print("\n=== Final Output ===")
     print(final_output)
 ```
 

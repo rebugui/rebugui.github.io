@@ -27,7 +27,7 @@ Transformer 기반 LLM은 입력 시퀀스를 개별적인 '토큰(Token)'으로
 
 토큰 임베딩이 입력되어 클러스터 중심을 찾는 과정은 다음과 같은 순서로 진행됩니다.
 
-```javascript
+```mermaid
 graph TD
     A["Input Sequence Tokens (L)"] --> B{Semantic Embedding Layer};
     B --> C[Token Embeddings Vector Space];

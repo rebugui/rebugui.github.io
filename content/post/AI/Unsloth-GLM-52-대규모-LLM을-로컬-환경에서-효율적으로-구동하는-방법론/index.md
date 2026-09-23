@@ -33,7 +33,7 @@ Unsloth는 이 두 가지 문제, 즉 **계산 복잡도**와 **메모리 접근
 
 다음 다이어그램은 표준 LLM 구동 방식과 Unsloth를 사용할 때 발생하는 메모리 및 속도 흐름의 차이를 시각적으로 보여줍니다.
 
-```javascript
+```mermaid
 graph TD
     A[Standard PyTorch/HF Model] --> B{High VRAM Usage & Compute Overhead}
     B --> C1(Inefficient Data Layout)
@@ -126,11 +126,9 @@ outputs = model.generate(**inputs, max_new_tokens=256, do_sample=True)
 # 결과 디코딩
 generated_text = tokenizer.decode(outputs[0], skip_special_tokens=True)
 
-print("
---- 추론 결과 ---")
+print("\n--- 추론 결과 ---")
 print(f"입력 프롬프트: {prompt}")
-print(f"생성된 텍스트: 
-{generated_text}")
+print(f"생성된 텍스트: \n{generated_text}")
 ```
 
 ## 결론

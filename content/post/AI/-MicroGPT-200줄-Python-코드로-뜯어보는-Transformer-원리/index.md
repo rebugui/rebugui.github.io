@@ -92,11 +92,7 @@ class CausalSelfAttention(nn.Module):
         # Causal Mask 적용 (미래의 토큰을 보지 못하게 마스킹)
         att = att.masked_fill(self.bias[:,:,:T,:T] == 0, float('-inf'))
         att = F.softmax(att, dim=-1)
-        att = self.
-```
-
-```python
-attn_dropout(att)
+        att = self.attn_dropout(att)
         
         # Weighted sum of values
         y = att @ v # (B, nh, T, T) x (B, nh, T, hs) -> (B, nh, T, hs)

@@ -25,7 +25,7 @@ RPC(Remote Procedure Call)는 클라이언트가 서버의 프로그램을 로�
 
 이 공격이 어떻게 네트워크 상에서 이루어지는지 시각화하면 다음과 같습니다. 공격자는 내부 네트워크의 일반 사용자 권한으로 시작하여, 취약한 RPC 엔드포인트를 찾아내고 궁극적으로 시스템 장악 권한을 얻게 됩니다.
 
-```javascript
+```mermaid
 graph LR
     A[Low Priv User Attacker] --> B[Enumerate RPC Endpoints]
     B --> C[Identify Vulnerable Interface UUID]

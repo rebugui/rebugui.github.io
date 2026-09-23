@@ -92,8 +92,7 @@ def autonomous_agent_loop(query: str):
     
     max_iterations = 5
     
-    print(f"🚀 에이전트 시작: {query}
-")
+    print(f"🚀 에이전트 시작: {query}\n")
     
     for i in range(max_iterations):
         # 1. Thought 단계: 현재 상태를 바탕으로 다음 행동을 추론
@@ -112,8 +111,7 @@ def autonomous_agent_loop(query: str):
             
         state['tool_results'].append({"tool": tool_name, "result": action_result})
         print(f"🔧 행동: {tool_name} 호출")
-        print(f"👁️ 관찰: {action_result}
-")
+        print(f"👁️ 관찰: {action_result}\n")
         
         # 3. 종료 조건 확인 (충분한 정보가 모였다고 판단)
         if i == 1:

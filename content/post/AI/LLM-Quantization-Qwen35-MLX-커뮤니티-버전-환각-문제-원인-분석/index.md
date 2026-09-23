@@ -55,7 +55,7 @@ Unsloth의 보고서에 따르면, 커뮤니티 MLX 버전 Qwen3.5 모델에서 
 
 ### 양자화 오차의 전파 메커니즘
 
-```javascript
+```mermaid
 graph TD
     A[FP16 원본 모델] --> B[양자화 과정 INT4/NF4]
     B --> C[Attention Layer 오차 누적]
@@ -231,42 +231,9 @@ def classify_layers_by_sensitivity(sensitivities: Dict[str, float],
 
 ### Step 3: MLX 포맷으로 안전하게 변환
 
-Apple MLX 프레임워크의 양자화 도구를 사용할 때, 민감도 분석 결과를 반영하여 혼합 정밀도 양자화를 적용한다.
+Apple MLX 프레임워크의 양자화 도구에 민감도 분석 결과를 반영하려면 사용 중인 버전의 설정 옵션과 지원 범위를 먼저 확인해야 한다.
 
-```python
-# mlx-lm 라이브러리를 사용한 안전한 변환 예시
-# 주의: 실제 실행은 Apple Silicon 환경에서만 가능합니다
-
-import mlx.core as mx
-import mlx.nn as nn
-from mlx_lm import load, generate
-from mlx_lm.utils import quantize_model
-
-def safe_mlx_quantization(
-    model_path: str,
-    output_path: str,
-    sensitive_layers: list,
-    default_bits: int = 4,
-    sensitive_bits: int = 8
-):
-    """
-    민감도 분석 결과를 반영한 MLX 양자화
-    """
-    # 모델 로드
-    model, tokenizer = load(model_path)
-    
-    # 레이어별 양자화 비트 수 설정
-    def get_quantization_bits(layer_name: str) -> int:
-        for sensitive_layer in sensitive_layers:
-            if sensitive_layer in layer_name:
-                return sensitive_bits
-        return default_bits
-    
-    # 혼합 정밀도 양자화 적용
-    # MLX의 groupwise quantization 사용
-    config = {
-        "group_size": 64,  # 작을수록 정밀도 향상 but 메모
-```
+민감도 분석 결과에 따라 레이어별 목표 정밀도를 결정한 다음, 현재 사용하는 MLX/mlx-lm 버전이 해당 레이어별 양자화 설정을 실제로 지원하는지 확인해야 한다. 기본 양자화 옵션만으로 혼합 정밀도가 적용된다고 가정하면 안 된다.
 
 ---
 

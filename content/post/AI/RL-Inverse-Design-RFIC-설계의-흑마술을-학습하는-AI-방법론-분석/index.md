@@ -31,7 +31,7 @@ RFIC 설계의 주요 어려움은 단순히 주파수 응답을 맞추는 것�
 
 다음은 이 결합된 방법론의 작동 흐름을 나타낸 Mermaid 다이어그램입니다.
 
-```javascript
+```mermaid
 graph TD
     A[Target Performance 정의] --> B(Inverse Design: 최적화 목표 설정);
     B --> C{RL Agent};
@@ -123,8 +123,7 @@ print(action_distribution.detach().numpy())
 
 # 가장 높은 확률의 액션을 선택했다고 가정
 chosen_action = torch.argmax(action_distribution).item()
-print(f"
--> 에이전트가 제안한 다음 행동 (Action Index): {chosen_action}")
+print(f"\n-> 에이전트가 제안한 다음 행동 (Action Index): {chosen_action}")
 ```
 
 ## 결론: 물리적 AI 시대의 새로운 지평

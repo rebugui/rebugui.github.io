@@ -120,11 +120,7 @@ class SparseMoE(nn.Module):
                 mask = (expert_idx == expert_id)
                 if mask.sum() > 0:
                     expert_input = x_flat[mask]
-                    expert_output = self.
-```
-
-```python
-experts[expert_id](expert_input)
+                    expert_output = self.experts[expert_id](expert_input)
                     final_hidden_states[mask] += weight[mask] * expert_output
 
         return final_hidden_states.view(batch_size, seq_len, input_dim)

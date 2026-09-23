@@ -25,7 +25,7 @@ SWE-CI는 기존 벤치마크와 달리 "실제 환경(Real-world Environment)"�
 
 다음은 SWE-CI 평가 과정의 전체적인 워크플로우를 도식화한 것입니다.
 
-```javascript
+```mermaid
 graph TD
     A[실제 GitHub 저장소 선택] --> B[문제 시나리오 생성]
     B --> C[CI 실패 유도]
@@ -115,10 +115,6 @@ class SWECIAgent:
             # 의존성 설치 시뮬레이션
             print("의존성 설치 시뮬레이션 수행 중...")
             # subprocess.run(["pip", "install", "missing_package"])
-
-```
-
-```python
     def run_loop(self, max_attempts=3):
         for i in range(max_attempts):
             result = self.run_ci()

@@ -23,7 +23,7 @@ Contexty는 바로 이 지점에서 출발합니다. 개발자가 AI의 컨텍�
 
 Transformer 기반 LLM에서 컨텍스트는 단순히 "대화 기록"이 아닙니다. 매 추론 시점마다 전체 시퀀스에 대해 Self-Attention을 계산하는 비용이 발생하며, KV Cache 메모리는 시퀀스 길이에 선형적으로 증가합니다.
 
-```javascript
+```mermaid
 graph TD
     A[사용자 질문 + 전체 컨텍스트] --> B[Self-Attention 계산]
     B --> C{컨텍스트 길이}
@@ -112,11 +112,7 @@ class ContextManager:
         for node in reversed(unpinned):  # 가장 최근 것부터
             if available_tokens >= node.token_count:
                 active_unpinned.insert(0, node)
-                available_tokens -= node.
-```
-
-```python
-token_count
+                available_tokens -= node.token_count
             else:
                 break
                 
@@ -168,11 +164,7 @@ if __name__ == "__main__":
         tags=["architecture", "convention"]
     )
     manager.add_node(arch_node)
-    manager.
-```
-
-```python
-pin_node("arch_001")  # 핵심 맥락 고정!
+    manager.pin_node("arch_001")  # 핵심 맥락 고정!
     
     # 일반 디버깅 대화 (여러 턴)
     for i in range(15):

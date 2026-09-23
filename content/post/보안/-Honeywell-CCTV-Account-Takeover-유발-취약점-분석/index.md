@@ -27,7 +27,7 @@ CISA가 경고한 Honeywell CCTV 시스템의 취약점은 주로 웹 인터페�
 
 아래 다이어그램은 공격자가 취약점을 악용하여 관리자 계정을 탈취하는 과정을 간략화한 것입니다.
 
-```javascript
+```mermaid
 graph LR
     A[Attacker] --> B[Network Scan & Recon]
     B --> C[Access CCTV Web Interface]
@@ -102,7 +102,7 @@ Account Takeover를 방어하기 위해서는 API 설계 단계에서의 철저�
 
 3.  **네트워크 분리 (Network Segmentation)**     *   **[중요]** CCTV 시스템을 사내办公 네트워크와 직접 연결하지 말고, 별도의 VLAN이나 DMZ로 격리해야 합니다. 만약 CCTV가 공격당하더라도 공격자가 내부 네트워크로 횡적 이동(Lateral Movement)하는 것을 차단하기 위함입니다.
 
-```javascript
+```mermaid
 graph TD
     A[Internet] --> B[External Firewall]
     B --> C[DMZ Network]

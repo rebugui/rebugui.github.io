@@ -44,7 +44,7 @@ static struct key *find_key_by_id(struct key *keyring, key_serial_t id) {
 
 ### LLM이 성공한 이유: 맥락 이해能力
 
-```javascript
+```mermaid
 graph TD
     A[Source Code Input] --> B[Tokenization & Parsing]
     B --> C[Contextual Embedding]
@@ -115,13 +115,7 @@ def analyze_code_for_vulnerabilities(source_code: str, file_path: str):
         system=system_prompt,
         messages=[{
             "role": "user",
-            "content": f"파일: {file_path}
-
-```
-
-{source_code}
-
-```plain text
+            "content": f"파일: {file_path}\n\n{source_code}"
         }]
     )
     
@@ -140,7 +134,7 @@ if __name__ == "__main__":
 
 Claude가 코드를 분석할 때 내부적으로 수행하는 추론 단계:
 
-```javascript
+```mermaid
 graph LR
     A[Code Tokens] --> B[Self-Attention]
     B --> C[Cross-Reference Resolution]
@@ -255,11 +249,11 @@ class LLMVulnerabilityScanner:
 
 파일 경로: {file_path}
 
-```
+~~~c
 
 {code}
 
-```plain text
+~~~
 
 분석 요구사항:
 1. 메모리 안전성: Use-after-free, Double-free, Buffer overflow
@@ -317,11 +311,7 @@ class LLMVulnerabilityScanner:
             for file_path in root_path.rglob(f'*{ext}'):
                 print(f"스캔 중: {file_path}")
                 findings = self.scan_file(file_path)
-                all_findings.
-```
-
-```plain text
-extend(findings)
+                all_findings.extend(findings)
                 
                 # Rate limiting
                 import time

@@ -30,7 +30,7 @@ ReproRepo의 가장 독창적인 기여는 재현성 장애 요소를 식별하�
 
 ReproRepo 프레임워크는 논문과 코드 간의 복잡한 관계를 효율적으로 추적하며, LLM 에이전트가 문제 영역을 식별하도록 유도합니다. 아래 다이어그램은 이 데이터 흐름을 시각화한 것입니다.
 
-```javascript
+```mermaid
 graph TD
     A["ML Paper (논문)"] --> B{Repository Pairing};
     B --> C[GitHub Issues Collection];

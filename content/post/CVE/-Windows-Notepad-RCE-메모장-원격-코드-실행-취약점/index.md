@@ -1,7 +1,7 @@
 ---
 title: "🚨 Windows Notepad RCE: 메모장 원격 코드 실행 취약점"
 date: 2026-02-12T06:12:07+09:00
-draft: false
+draft: true
 tags:
   - "Security"
   - "Windows"

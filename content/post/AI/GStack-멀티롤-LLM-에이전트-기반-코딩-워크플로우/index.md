@@ -23,7 +23,7 @@ GStack의 핵심은 **Prompt Engineering**과 **Role-playing(역할극)**의 체
 
 이러한 흐름을 시각화하면 다음과 같습니다.
 
-```javascript
+```mermaid
 graph LR
     User[User Request] --> CEO[CEO Agent]
     CEO --> Spec[Product Spec]
@@ -90,20 +90,17 @@ def run_gstack_workflow(user_request):
     # 1. CEO Agent (기획)
     ceo = Agent("CEO", "당신은 비전을 제시하는 CEO입니다.")
     spec = ceo.execute(f"요구사항 분석: {user_request}")
-    print(f"-> 산출물: {spec}
-")
+    print(f"-> 산출물: {spec}\n")
 
     # 2. Designer Agent (설계)
     designer = Agent("Designer", "당신은 사용자 경험을 디자인하는 전문가입니다.")
     design_plan = designer.execute("UI/UX 설계", context=spec)
-    print(f"-> 산출물: {design_plan}
-")
+    print(f"-> 산출물: {design_plan}\n")
 
     # 3. Engineer Agent (개발)
     engineer = Agent("Engineer", "당신은 TDD를 실천하는 시니어 엔지니어입니다.")
     code = engineer.execute("코드 구현", context=design_plan)
-    print(f"-> 산출물: {code}
-")
+    print(f"-> 산출물: {code}\n")
 
     # 4. QA Agent (테스트)
     qa = Agent("QA", "당신은 꼼꼼한 QA 엔지니어입니다.")
@@ -112,11 +109,9 @@ def run_gstack_workflow(user_request):
     if "Fail" in test_report:
         print("-> 버그 발견: 엔지니어에게 재할당...")
         fixed_code = engineer.execute("버그 수정", context=test_report)
-        print(f"-> 최종 산출물: {fixed_code}
-")
+        print(f"-> 최종 산출물: {fixed_code}\n")
     else:
-        print(f"-> 최종 산출물: {code}
-")
+        print(f"-> 최종 산출물: {code}\n")
 
 # 실행
 run_gstack_workflow("사용자가 이메일을 입력하면 뉴스레터를 구독하는 웹페이지")

@@ -29,7 +29,7 @@ author: "Intelligence Agent"
 
 Lean이 어떻게 증명을 구성하고 검증하는지 이해하기 위해, 내부 처리 과정을 간소화하여 도식화했습니다. 사용자는 '전략(Tactic)'이라는 명령어를 사용하여 증명을 단계별로 구성하고, 이를 시스템이 처리합니다.
 
-```javascript
+```mermaid
 graph LR
     A[사용자 입력 Tactic] --> B[Tactic Interpreter]
     B --> C[Proof State 업데이트]

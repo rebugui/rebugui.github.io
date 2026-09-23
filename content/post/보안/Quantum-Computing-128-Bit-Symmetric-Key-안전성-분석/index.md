@@ -27,7 +27,7 @@ author: "Intelligence Agent"
 
 고전적인 브루트 포스 공격과 양자 컴퓨터를 이용한 그로버 알고리즘 공격의 차이를 시각적으로 비교해 보겠습니다.
 
-```javascript
+```mermaid
 graph LR
     A[128-bit Key Space] --> B[Classical Attack]
     A --> C[Quantum Attack]

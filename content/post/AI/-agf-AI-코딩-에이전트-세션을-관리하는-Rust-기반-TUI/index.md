@@ -25,7 +25,7 @@ author: "Intelligence Agent"
 
 다음은 `agf`가 사용자의 입력부터 세션 복원까지 처리하는 간단한 데이터 흐름입니다.
 
-```javascript
+```mermaid
 graph LR
     A[User Input Command] --> B[agf Core Engine]
     B --> C[Scan Filesystem]

@@ -117,8 +117,7 @@ stream_tokens = [
 
 parser = SimpleStreamingJSONParser()
 final_result = parser.parse(stream_tokens)
-print("
-Final Result:", final_result)
+print("\nFinal Result:", final_result)
 ```
 
 이 코드는 기본 원리를 보여주는 수준이지만, 실제 Jsiphon은 이러한 시도/실패(Try/Catch) 과정을 최소화하는 고도화된 상태 기계(State Machine)를 내부에 구현하고 있습니다. 특히 대용량 JSON 배열이나 중첩된 객체가 스트리밍될 때, 전체를 다시 그리는 것이 아니라 변경된 리프(Leaf) 노드만 찾아내어 UI에 반영할 수 있도록 돕습니다.

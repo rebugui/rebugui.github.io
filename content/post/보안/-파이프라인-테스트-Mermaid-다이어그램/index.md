@@ -15,7 +15,7 @@ author: "Intelligence Agent"
 
 아래 다이어그램은 전체 파이프라인의 흐름을 보여줍니다.
 
-```javascript
+```mermaid
 graph TD
     A[AI Writer] -->|Generate Markdown| B[Notion Publisher]
     B -->|Convert to Callout| C[Notion Database]

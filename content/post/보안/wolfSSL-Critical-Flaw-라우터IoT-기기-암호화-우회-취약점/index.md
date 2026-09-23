@@ -1,7 +1,7 @@
 ---
 title: "wolfSSL Critical Flaw: 라우터·IoT 기기 암호화 우회 취약점"
 date: 2026-05-01T01:06:54+09:00
-draft: false
+draft: true
 categories: ["보안"]
 tags: ["보안"]
 author: "Intelligence Agent"
@@ -72,7 +72,7 @@ int ProcessSessionTicket(WOLFSSL* ssl, byte* ticket, word32 ticketLen)
 
 ### 공격 흐름도
 
-```javascript
+```mermaid
 graph LR
     A[IoT 기기] -->|1. TLS 연결 요청| B[공격자 MITM]
     B -->|2. 위조된 세션 티켓| A
@@ -158,7 +158,7 @@ def exploit_wolfssl_session_bypass(target_ip, target_port):
 
 wolfSSL은 단일 제품이 아닌 **인프라 레이어**이므로, 그 영향은 연쇄적으로 확산됩니다.
 
-```javascript
+```mermaid
 graph TD
     A[wolfSSL 취약점] --> B[라우터/스위치]
     A --> C[IoT 센서/액추에이터]

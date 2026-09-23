@@ -36,7 +36,7 @@ author: "Intelligence Agent"
 
 **[윤리적 경고]** 아래에 제시된 코드는 오직 개념 증명(PoC) 및 학술적 방어 목적을 위해서만 작성되었으며, 실제 공격에 사용되어서는 안 됩니다.
 
-```javascript
+```mermaid
 graph LR
     A[사용자 입력 (Untrusted Code)] --> B(vm2 Sandbox 실행);
     B --> C{샌드박스 경계 검사};

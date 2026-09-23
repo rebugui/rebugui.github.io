@@ -25,7 +25,7 @@ Windows RPC(원격 프로시저 호출)는 프로세스 간 통신(IPC)의 핵�
 
 **[방어 목적의 공격 시나리오 분석]** 공격자는 이미 로컬 사용자 권한(Low-privilege User)을 획득한 상태라고 가정할 때, 취약한 RPC 엔드포인트를 식별하고 악의적인 패킷을 전송하여 시스템 권한을 얻습니다.
 
-```javascript
+```mermaid
 graph TD
     A[Low-priv User] --> B[Malicious RPC Client]
     B --> C[Bind to Vulnerable Interface]

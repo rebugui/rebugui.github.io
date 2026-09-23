@@ -38,7 +38,7 @@ Ravenclaw는 바로 이 문제를 해결하는 오픈소스 시스템입니다. 
 
 각 에이전트는 **자신만의 세션과 컨텍스트**를 가집니다. 이는 보안과 격리 측면에서는 장점이지만, **개발자가 여러 에이전트를 병행 사용할 때는 치명적인 단점**이 됩니다.
 
-```javascript
+```mermaid
 graph TD
     subgraph 기존 방식
         A[개발자] --> B[Claude Code]
@@ -61,7 +61,7 @@ graph TD
 
 Ravenclaw는 **중앙 집중식 컨텍스트 저장소**를 통해 이 문제를 해결합니다.
 
-```javascript
+```mermaid
 graph LR
     subgraph Ravenclaw 시스템
         A[Claude Code] --> E[중앙 컨텍스트 저장소]
@@ -242,16 +242,11 @@ class AgentManager:
     
     def _get_recent_files_summary(self) -> str:
         """최근 수정된 파일 요약 생성"""
-        recent = self.current_context.
-```
-
-```python
-recent_tasks[-3:]  # 최근 3개
+        recent = self.current_context.recent_tasks[-3:]  # 최근 3개
         summary = []
         for task in recent:
             summary.append(f"- {task['task']} ({task['files_modified']})")
-        return "
-".join(summary)
+        return "\n".join(summary)
     
     def _save_context(self):
         """컨텍스트를 영속화"""
@@ -282,7 +277,7 @@ ravenclaw switch gemini-cli
 
 Ravenclaw의 가장 흥미로운 점은 **단방향이 아닌 양방향 동기화**를 지원한다는 것입니다.
 
-```javascript
+```mermaid
 graph TD
     A[Git Repository] --> B[Ravenclaw Context]
     B --> C[Agent Session]

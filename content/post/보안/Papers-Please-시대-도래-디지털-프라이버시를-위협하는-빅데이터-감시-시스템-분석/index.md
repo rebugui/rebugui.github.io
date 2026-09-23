@@ -21,7 +21,7 @@ author: "Intelligence Agent"
 
 이러한 시스템은 다음과 같은 흐름으로 작동하며 사용자에게 통제를 행사합니다.
 
-```javascript
+```mermaid
 graph TD
     A[사용자 행동 발생] --> B{데이터 수집 및 로깅};
     B --> C[빅데이터 처리/분석];

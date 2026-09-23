@@ -26,7 +26,7 @@ NIST 가이드의 핵심은 **신뢰할 수 있는 단말기(Trusted UE)** 확�
 
 아래는 NIST가 제안하는 보안 아키텍처의 핵심 흐름을 간단화한 다이어그램입니다.
 
-```javascript
+```mermaid
 graph LR
     A[User Equipment] --> B[Integrity Check]
     B --> C{Verified?}

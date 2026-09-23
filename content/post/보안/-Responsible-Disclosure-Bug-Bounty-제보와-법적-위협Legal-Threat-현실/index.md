@@ -23,7 +23,7 @@ author: "Intelligence Agent"
 
 먼저, 전형적인 법적 위협(Legal Threat)으로 이어지는 경로를 시각화해 보겠습니다. 아래 다이어그램은 연구원의 행동이 기업의 법적 대응 메커니즘을 어떻게 트리거하는지 보여줍니다.
 
-```javascript
+```mermaid
 graph TD
     A[보안 연구원] --> B[취약점 탐지 시작]
     B --> C{범위 내 테스트 여부 확인}
@@ -63,8 +63,7 @@ print("Data:", response.json())
 
 # 2. IDOR 테스트 (다른 사용자의 정보 조회 시도)
 # 만약 ID가 1002인 사용자(관리자 등)의 정보가 열린다면 취약점입니다.
-print("
-[*] Testing IDOR vulnerability on user 1002...")
+print("\n[*] Testing IDOR vulnerability on user 1002...")
 target_id = "1002"
 response_vuln = requests.get(base_url + target_id, cookies=session_cookie)
 

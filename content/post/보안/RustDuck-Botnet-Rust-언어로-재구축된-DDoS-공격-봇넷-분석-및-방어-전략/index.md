@@ -23,7 +23,7 @@ RustDuck은 메모리 안전성(Memory Safety)을 핵심 강점으로 내세웁�
 
 RustDuck의 공격 흐름은 다음과 같이 진행됩니다.
 
-```javascript
+```mermaid
 graph TD
     A[Scanner/Probe] --> B{Vulnerable Target Found}
     B -- Success --> C["Infection & Hijacking (Router/Server)"]

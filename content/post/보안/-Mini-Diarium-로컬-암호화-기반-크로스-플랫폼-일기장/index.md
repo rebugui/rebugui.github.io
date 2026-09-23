@@ -23,7 +23,7 @@ Mini-Diarium의 핵심은 'Client-Side Encryption'입니다. 데이터가 디스
 
 일반적인 클라우드 앱과 Mini-Diarium의 데이터 처리 흐름을 비교하면 보안상의 차이가 명확해집니다.
 
-```javascript
+```mermaid
 graph TD
     subgraph Cloud_App_Scenario
         A[User Input] --> B[Plain Text Upload]

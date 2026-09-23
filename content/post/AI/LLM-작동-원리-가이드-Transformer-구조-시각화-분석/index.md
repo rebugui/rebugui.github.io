@@ -27,7 +27,7 @@ LLM의 심장은 바로 Transformer 구조입니다. 기존의 RNN이나 LSTM이
 
 아래 다이어그램은 사용자가 입력한 텍스트가 Transformer 모델을 통과하여 다음 단어를 예측하기까지의 단순화된 흐름을 보여줍니다. 복잡한 수학적 연산을 제외하고 데이터의 흐름에 집중하면 구조를 훨씬 쉽게 파악할 수 있습니다.
 
-```javascript
+```mermaid
 graph TD
     A[Input Text] --> B[Tokenizer]
     B --> C[Token IDs]
@@ -87,8 +87,7 @@ V = torch.matmul(x, W_v)
 result, weights = scaled_dot_product_attention(Q, K, V)
 
 print("Output Shape:", result.shape)
-print("Attention Weights:
-", weights[0])
+print("Attention Weights:\n", weights[0])
 ```
 
 이 코드를 실행하면 `attention_weights` 텐서를 통해 모델이 현재 단어를 예측할 때 입력 시퀀스의 어떤 부분에 집중하고 있는지 수치적으로 확인할 수 있습니다. 인터랙티브 시각화 도구는 이러한 텐서 값을 시각적 히트맵(Heatmap)으로 제공하여 직관적인 해석을 돕습니다.

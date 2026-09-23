@@ -27,7 +27,7 @@ author: "Intelligence Agent"
 
 일반 사용자와 숙련 사용자의 흐름이 어떻게 갈리는지, 그리고 우회 절차가 기술적으로 어떻게 처리되는지 보여주는 흐름도입니다.
 
-```javascript
+```mermaid
 graph LR
     A[APK Download] --> B{Developer Verified?}
     B -- Yes --> C[Install Immediately]

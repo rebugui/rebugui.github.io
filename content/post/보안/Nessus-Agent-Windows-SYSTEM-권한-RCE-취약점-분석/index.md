@@ -27,7 +27,7 @@ Nessus Agent는 Windows 서비스(Service) 형태로 실행되며, 기본적으�
 
 다음 다이어그램은 공격자가 권한이 없는 상태에서 Nessus Agent의 취약점을 악용하여 SYSTEM 권한을 획득하는 과정을 시각화한 것입니다.
 
-```javascript
+```mermaid
 graph LR
     A[Attacker Low Priv User] --> B[Reconnaissance]
     B --> C[Identify Nessus Agent Path]
@@ -100,8 +100,7 @@ def wait_for_service_trigger(service_name):
 if __name__ == "__main__":
     # Nessus Agent 기본 설치 경로 (Windows)
     # 공격자는 타겟 시스템에서 정확한 경로를 먼저 파악해야 함 (Recon 단계)
-    nessus_path = r"C:\Program Files\Tenable\Nessus Agent
-essus"
+    nessus_path = r"C:\Program Files\Tenable\Nessus Agent\nessus"
     
     if os.path.exists(nessus_path):
         print(f"[*] Target directory found: {nessus_path}")

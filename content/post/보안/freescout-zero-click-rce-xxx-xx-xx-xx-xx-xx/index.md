@@ -31,7 +31,7 @@ CVE-2026-28289는 인증되지 않은 공격자가 특수하게 조작된 이메
 
 아래 다이어그램은 공격자가 악성 이메일을 발송한 시점부터 서버가 장악당하기까지의 기술적 흐름을 시각화한 것입니다.
 
-```javascript
+```mermaid
 graph TD
     A[Attacker] -->|Sends Malicious Email| B[SMTP Server]
     B -->|Store in Inbox| C[FreeScout Application]

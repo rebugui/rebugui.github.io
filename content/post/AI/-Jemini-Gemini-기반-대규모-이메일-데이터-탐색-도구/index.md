@@ -77,9 +77,7 @@ def search_emails(query: str) -> str:
     # 6. 관련 문서 검색 (Retrieval)
     # 유사도 점수가 높은 상위 4개의 문서 청크를 가져옴
     docs = db.similarity_search(query, k=4)
-    context_text = "
-
-".join([doc.page_content for doc in docs])
+    context_text = "\n\n".join([doc.page_content for doc in docs])
 
     # 7. 프롬프트 구성 및 답변 생성 (Generation)
     prompt = f"""
@@ -101,8 +99,7 @@ def search_emails(query: str) -> str:
 if __name__ == "__main__":
     user_question = "Who discussed the island plan most frequently in June?"
     answer = search_emails(user_question)
-    print(f"Q: {user_question}
-A: {answer}")
+    print(f"Q: {user_question}\nA: {answer}")
 ```
 
 ### 기존 검색 방식 vs LLM 기반 탐색 (Jemini) 비교

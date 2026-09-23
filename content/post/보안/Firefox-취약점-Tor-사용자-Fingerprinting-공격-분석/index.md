@@ -25,7 +25,7 @@ author: "Intelligence Agent"
 
 이러한 공격 흐름은 다음과 같이 단순화할 수 있습니다.
 
-```javascript
+```mermaid
 graph LR
     A[공격자 웹사이트 방문] --> B[JS Fingerprinting 스크립트 실행]
     B --> C[브라우저 특정 동작 유도]

@@ -2,7 +2,7 @@
 title: "[2026 주요정보통신기반시설] CI-02 SQL 인젝션(SQL Injection)"
 slug: "2026-주정통/CI-02"
 date: 2026-02-05T09:56:13+09:00
-lastmod: 2026-02-05T09:56:13+09:00
+lastmod: 2026-09-23
 description: "웹애플리케이션내 입력값이 SQL 쿼리에 삽입되어 비인가된 데이터베이스 접근과 조작 가능 여부 점검"
 categories: ["2026 주정통 가이드라인"]
 tags:
@@ -35,12 +35,12 @@ draft: false
 - **취약**: 임의로 작성된 SQL 쿼리 입력에 대한 검증이 이루어지지 않아 비정상적인 쿼리가 실행되는 경우
 
 #### 경계 케이스 (Edge Case) 처리 방법
-- 웹 서비스에서 사용하고 있는 명령어 및 특수문자가 필터링되어 장애가 발생될 수 있으므로 사전 영향도 및 코드 분석 필요
+- 사용자 입력의 허용 길이·형식은 업무 목적에 맞게 검증하되, SQL 문법 문자 제거를 인젝션 방어로 사용하지 않음
 - SQL 매퍼에서 `${}` 구문은 사용자 입력값이 SQL 구문으로 해석되므로 반드시 파라미터 바인딩(`#{}`) 사용
 
 #### 권장 설정값
-- Prepared Statement 또는 파라미터 바인딩 방식 사용
-- 필터링 대상 특수문자: `'`, `;`, `--`, `#`, `/*`, `*/`
+- 모든 값은 Prepared Statement/파라미터 바인딩 사용
+- 컬럼·정렬 방향처럼 바인딩할 수 없는 SQL 구조는 사전에 정의한 허용 목록에서만 선택
 
 ### 2. 점검 방법
 
@@ -115,19 +115,9 @@ public List<Item> findItemsByUserInput(String userInput) {
 </select>
 ```
 
-#### 3. 입력값 필터링
+#### 3. 입력값 검증의 역할
 
-**SQL 키워드 및 특수문자 필터링:**
-```java
-public static String sanitize(String input) {
-    if (input == null) return null;
-    String[] sqlKeywords = {"SELECT", "UNION", "INSERT", "UPDATE", "DELETE", "DROP", "--"};
-    String pattern = "(?i)\\b(" + String.join("|", sqlKeywords) + ")\\b|['\"\\\\;()<>#/*!]";
-    Pattern regex = Pattern.compile(pattern);
-    Matcher matcher = regex.matcher(input);
-    return matcher.replaceAll(" ");
-}
-```
+입력 길이·형식 등 업무 규칙을 검증하되, SQL 키워드나 특수문자를 제거하는 블랙리스트를 SQL 인젝션 방어로 사용하지 마세요. 정상 입력을 훼손하고 우회될 수 있습니다. 값은 위와 같이 파라미터에 바인딩하고, SQL 구조를 선택해야 할 때만 고정된 허용 목록을 사용합니다.
 
 #### 4. 에러 메시지 처리
 - 시스템에서 제공하는 에러 메시지 및 DBMS에서 제공하는 에러코드가 노출되지 않도록 예외처리
@@ -145,19 +135,15 @@ catch (SQLException e) {
 
 ### 4. 참고 자료
 
-**주요 특수문자 필터링 대상:**
+**입력 검증과 쿼리 바인딩:**
 
-| 문자 | 상세설명 |
-|------|---------|
-| `'` | 문자데이터 구분기호 |
-| `;` | 쿼리 구분기호 |
-| `--`, `#` | 해당 라인 주석 구분기호 |
-| `/* */` | /*와 */ 사이 구문 주석 |
+입력 형식 검증은 업무 요구사항을 위한 것이며, 쿼리 바인딩을 대체하지 않습니다. 화면에 결과를 표시할 때의 출력 인코딩도 SQL 인젝션 방어와 별개의 조치입니다.
 
 **파라미터 바인딩이란?**
 - 쿼리를 실행할 때, 쿼리 문자열과 사용자 입력값(파라미터)을 분리하여 처리하는 기법
 - 데이터베이스는 쿼리 문자열을 미리 파싱하고 컴파일하며, 쿼리 실행 시점에 파싱된 쿼리 문자열에 파라미터를 바인딩하여 데이터를 전달
 - 데이터베이스는 파라미터를 데이터로만 인식
+- [OWASP SQL Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)
 
 ### 5. 스크립트
 - [취약점 점검 스크립트](https://rebugui.tistory.com/1192)

@@ -27,7 +27,7 @@ Windows Remote Desktop Services(RDS)는 사용자가 원격으로 Windows 시스
 
 공격자는 외부에서 바로 관리자 권한을 얻는 것이 아니라, '내부 침투 -> 권한 상승 -> 횡적 이동'의 단계를 밟습니다. 아래는 이번 RDS 0-Day를 악용한 일반적인 공격 체인입니다.
 
-```javascript
+```mermaid
 graph LR
     A[초기 침투<br>Phishing/Exposed Service] --> B[낮은 권한 획득<br>Low Priv User]
     B --> C[RDS 0-Day Exploit Trigger<br>Privilege Escalation]

@@ -28,7 +28,7 @@ author: "Intelligence Agent"
 
 먼저, 해당 공격 시나리오에서 의도했던 아키텍처와 우리가 수정하여 테스트할 아키텍처의 흐름을 시각화해 보겠습니다.
 
-```javascript
+```mermaid
 graph TD
     A[Attacker / Researcher] --> B[Construct Circuit]
     B --> C[Oracle Function]
@@ -47,63 +47,9 @@ graph TD
 
 ### 취약점 분석: 백엔드 대체 실험
 
-문제가 된 `projecteleven.py` 코드에서는 IBM Quantum의 SDK를 통해 회로를 실행합니다. 우리는 이 부분을 로컬 의사 난수 생성기(PRNG)로 대체하는 모의(Mock) 코드를 작성해 보겠습니다.
+문제가 된 `projecteleven.py`의 양자 백엔드 호출을 운영체제 난수로 치환하는 개념을 검토한다. 다음은 코드가 아니라 해당 비교의 한계에 대한 설명이다.
 
-#### PoC: 백엔드 모의 코드 (Python)
-
-```python
-import os
-import numpy as np
-
-# 원래의 IBM Qiskit Runtime 실행 부분을 대체하는 Mock 클래스
-class MockQuantumBackend:
-    def run(self, circuit):
-        """
-        실제 양자 회로를 실행하는 대신,
-        /dev/urandom(혹은 os.urandom)을 통해 난수 바이트를 생성하여 반환.
-        """
-        # 회로에 필요한 측정 비트 수에 따라 더미 데이터 생성
-        num_qubits = circuit.num_qubits
-        # os.urandom은 암호학적으로 안전한 의사 난수 생성기 (CSPRNG)
-        random_bytes = os.urandom(num_qubits // 8 + 1)
-        
-        # 이 난수를 바이너리 결과로 변환 (실제 QPU 결과와 형태 맞춤)
-        # 여기서 중요한 것은 '물리적 양자 중첩'이 아니라 '랜덤성'만 제공함
-        result_counts = {}
-        simulated_hex = random_bytes.hex()
-        
-        # 공격 스크립트가 기대하는 형식으로 데이터 반환
-        return {"data": {"counts": {simulated_hex: 1}}}
-
-# 공격 루프 예시
-def attack_simulation(target_public_key):
-    mock_backend = MockQuantumBackend()
-    
-    print(f"[*] Target Public Key: {target_public_key}")
-    print("[*] Starting attack loop with Mock Backend (/dev/urandom)...")
-    
-    # 실제 공격 코드에서는 circuit을 매번 수정하며 실행함
-    for i in range(100):
-        # 가상의 회로 생성 (실제 로직 대신 간소화)
-        # circuit = construct_circuit(...)
-        
-        # 백엔드 실행 부분을 /dev/urandom mock으로 교체
-        result = mock_backend.run(None) 
-        raw_measurement = result["data"]["counts"]
-        
-        # 복구된 후보키 추출 (가정)
-        candidate_key = int.from_bytes(os.urandom(32), byteorder='big')
-        
-        # 검증기: d * g == q ?
-        if validate_key(candidate_key, target_public_key):
-            print(f"[+] SUCCESS! Key found at iteration {i}: {candidate_key}")
-            return candidate_key
-            
-    return None
-
-def validate_key(private_key, public_key):
-    # 실제
-```
+양자 백엔드 호출을 `os.urandom`으로 대체하면 양자 측정 결과 대신 운영체제가 생성한 난수를 받는다는 점만 비교할 수 있다. 이는 공개키에서 개인키를 복구하는 검증이 아니다. 원래 예시에는 회로 대신 `None`을 전달하고 검증 함수가 구현되지 않아 실행 가능한 키 복구 실험으로 제시할 수 없다.
 
 ---
 

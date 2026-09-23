@@ -32,7 +32,7 @@ Anthropic의 연구는 `Claude Code` 도구를 통해 사용자와 AI가 상호�
 에이전트가 자율적으로 행동하기 위해서는 **Tool Use(도구 사용)** 능력이 필수적입니다. LLM은 단순히 텍스트를 생성하는 것을 넘어, 웹 검색, 파일 시스템 접근, 코드 실행 등의 도구를 호출할 수 있습니다. 하지만 이 과정에서 인간 개입(Human-in-the-loop)이 발생하면 자율성은 급격히 떨어집니다.
 아래 다이어그램은 이상적인 에이전트의 자율적 실행 흐름과 신뢰가 부족할 때 발생하는 병목 구간을 시각화한 것입니다.
 
-```javascript
+```mermaid
 graph TD
     A[User Request] --> B[Agent Reasoning]
     B --> C[Tool Generation]

@@ -28,7 +28,7 @@ Cisco의 보고서는 'Shadow AI'를 2026년의 가장 큰 리스크로 꼽고 �
 
 다음은 공격자가 사용자의 입력을 통해 AI 서비스를 조작하는 과정을 시각화한 것입니다.
 
-```javascript
+```mermaid
 graph LR
     A[Attacker] --> B[Malicious Prompt]
     B --> C[User Input Interface]
@@ -60,10 +60,7 @@ def ai_chatbot_simulation(user_input):
     
     # LLM의 추론 과정을 시뮬레이션 (문맥 결합)
     # 실제 LLM은 확률적 토큰 생성을 하지만, 여기서는 단순화하여 로직 처리
-    full_context = f"{system_instruction}
-
-User: {user_input}
-AI:"
+    full_context = f"{system_instruction}\n\nUser: {user_input}\nAI:"
     
     # 간단한 탐지 로직 (현실의 AI는 이보다 훨씬 복잡하지만 우회 가능성 있음)
     if "ignore instructions" in user_input.lower() and "password" in user_input.lower():

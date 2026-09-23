@@ -23,7 +23,7 @@ CVE-2026-5760은 핵심적으로 **"역직렬화(Deserialization) 취약점"** �
 
 다음은 공격자가 악성 GGUF 파일을 통해 SGLang 서버를 장악하는 과정을 간단화한 흐름도입니다.
 
-```javascript
+```mermaid
 graph LR
     A[Attacker] --> B[Create Malicious GGUF]
     B --> C[Upload to Web Repository]

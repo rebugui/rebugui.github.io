@@ -60,14 +60,9 @@ class VulnerableAIAssistant:
     def process_email(self, email_body):
         # 취약점: 시스템 프롬프트와 사용자 입력을 단순히 연결하여 처리
         # 실제 LLM에서는 이러한 텍스트 concatenation이 토큰화되어 추론됨
-        full_context = f"{self.system_prompt}
-
-User Email:
-{email_body}"
+        full_context = f"{self.system_prompt}\n\nUser Email:\n{email_body}"
         
-        print(f"[DEBUG] Full Context sent to LLM:
-{full_context}
-")
+        print(f"[DEBUG] Full Context sent to LLM:\n{full_context}\n")
         
         response = self.generate_response(full_context)
         return response

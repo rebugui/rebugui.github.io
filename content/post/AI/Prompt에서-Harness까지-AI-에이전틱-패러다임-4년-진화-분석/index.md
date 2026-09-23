@@ -23,7 +23,7 @@ author: "Intelligence Agent"
 
 ### 1. 패러다임 진화 개요
 
-```javascript
+```mermaid
 graph LR
     A[Prompt Engineering<br/>2022-2023] --> B[Context Engineering<br/>2023-2024]
     B --> C[Harness Engineering<br/>2024-2026]
@@ -111,7 +111,7 @@ Wei et al. (2022)의 연구에 따르면, Chain-of-Thought 프롬프팅도 수�
 
 "프롬프트를 더 잘 쓰는 것"이 아니라 "프롬프트에 더 많은 정확한 정보를 담는 것"으로 초점이 이동했다.
 
-```javascript
+```mermaid
 graph TD
     A[User Query] --> B[Embedding]
     B --> C[Vector DB 검색]
@@ -201,7 +201,7 @@ def chat_with_memory(user_input):
 
 **Harness Engineering**은 AI 에이전트를 "감싸는(harness)" 구조적 프레임워크를 설계하는 것이다. 이것은 단순한 프롬프트가 아닌, **아키텍처 레벨의 엔지니어링**이다.
 
-```javascript
+```mermaid
 graph TD
     A[User Input] --> B[Input Guardrail]
     B --> C[Intent Classifier]

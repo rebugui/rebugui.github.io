@@ -118,11 +118,6 @@ def run_agent(user_message):
         tools=tools,
         tool_choice="auto"
     )
-
-
-```
-
-```python
     response_message = response.choices[0].message
     tool_calls = response_message.tool_calls
 

@@ -105,8 +105,7 @@ def hunt_malicious_powershell(log_file):
         print(f"[!] {len(findings)} potential threats found.")
         for finding in findings:
             print(f"Host: {finding['Host']}, Keyword: {finding['Keyword']}")
-            print(f"Cmd: {finding['Command']}
-")
+            print(f"Cmd: {finding['Command']}\n")
     else:
         print("[+] No suspicious PowerShell activity detected.")
 

@@ -1,7 +1,7 @@
 ---
 title: "🤖 AI Agents: /init 자동 생성이 비용 20% 증가시키는 이유"
 date: 2026-02-25T08:24:39+09:00
-draft: false
+draft: true
 tags:
   - "AI"
   - "Coding Agents"

@@ -25,7 +25,7 @@ author: "Intelligence Agent"
 
 다음은 이번 공격의 전형적인 흐름을 단순화한 다이어그램입니다.
 
-```javascript
+```mermaid
 graph TD
     A[Internal Reconnaissance] --> B[Identify Dell Device]
     B --> C[Trigger 0-Day Vulnerability]

@@ -29,7 +29,7 @@ author: "Intelligence Agent"
 
 PCAS의 작동 방식은 크게 컴파일 타임과 런타임으로 나뉩니다. 다음은 PCAS가 기존 에이전트 코드를 어떻게 보안 강화된 시스템으로 변환하는지 보여주는 간단한 아키텍처입니다.
 
-```javascript
+```mermaid
 graph LR
     A[User Agent Code] --> B[PCAS Compiler]
     C[Security Policy Datalog] --> B
@@ -50,7 +50,7 @@ PCAS의 강력함은 Datalog 기반의 정책 정의에 있습니다. 개발자�
 
 아래는 "민감한 데이터(Sensitive Data)가 승인되지 않은 외부 채널로 유출되는 것을 차단"하는 간단한 Datalog 정책 예시입니다.
 
-```python
+```datalog
 # pcas_policy.dl 예시
 
 # 1. 민감한 데이터를 다루는 툴 결과를 정의

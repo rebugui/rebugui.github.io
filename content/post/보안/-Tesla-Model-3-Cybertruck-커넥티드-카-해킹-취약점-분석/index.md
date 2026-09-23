@@ -25,7 +25,7 @@ author: "Intelligence Agent"
 
 이 과정을 시각화하면 다음과 같습니다.
 
-```javascript
+```mermaid
 graph LR
     A[External Attacker] -->|Bluetooth / WiFi Exploit| B[Infotainment System]
     B -->|Privilege Escalation| C[Root Access]

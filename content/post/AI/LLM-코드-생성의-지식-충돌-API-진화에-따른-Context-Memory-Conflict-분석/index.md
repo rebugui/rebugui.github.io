@@ -34,7 +34,7 @@ author: "Intelligence Agent"
 
 ### API 진화의 세 가지 형태와 지식 충돌 패턴
 
-```javascript
+```mermaid
 graph TD
     A[API Evolution] --> B[Deprecation]
     A --> C[Modification]
@@ -275,7 +275,7 @@ Self-Reflection 적용 결과:
 
 **Step 1: RAG 파이프라인 구성**
 
-```javascript
+```mermaid
 graph LR
     A[코드 생성 요청] --> B[API 버전 감지]
     B --> C[버전별 문서 검색]

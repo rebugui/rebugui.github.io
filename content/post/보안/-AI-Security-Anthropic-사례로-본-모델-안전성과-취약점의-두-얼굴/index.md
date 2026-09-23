@@ -62,12 +62,7 @@ def summarize_document(user_context, document_content):
     
     # 사용자 컨텍스트와 문서 내용이 단순히 연결됨
     # 여기서 document_content에 공격자의 악의적인 프롬프트가 포함되어 있다면?
-    full_input = f"{system_prompt}
-
-User Context: {user_context}
-
-Content to Summarize:
-{document_content}"
+    full_input = f"{system_prompt}\n\nUser Context: {user_context}\n\nContent to Summarize:\n{document_content}"
     
     # LLM API 호출
     response = llm_client.generate(full_input)

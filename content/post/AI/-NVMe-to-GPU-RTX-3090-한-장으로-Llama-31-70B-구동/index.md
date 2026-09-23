@@ -29,7 +29,7 @@ author: "Intelligence Agent"
 
 아래 다이어그램은 기존 방식과 NVMe-to-GPU 방식의 데이터 흐름 차이를 시각적으로 보여줍니다.
 
-```javascript
+```mermaid
 graph TD
     subgraph Traditional
         D1[NVMe SSD] --> R1[System RAM]

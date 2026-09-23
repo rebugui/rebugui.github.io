@@ -72,7 +72,7 @@ print(f"KV Cache 메모리: {memory / (1024**3):.2f} GB")
 
 CASK는 토큰을 단순히 "중요함/안 중요함"으로 나누는 대신, 토큰이 문장 내에서 수행하는 **구조적 역할(structural role)**에 따라 분류한다.
 
-```javascript
+```mermaid
 graph TD
     A[입력 토큰 시퀀스] --> B[Role 분류기]
     B --> C[Cell Tokens: 문장의 핵심 정보]
@@ -161,11 +161,7 @@ class CASKCompressor:
         # 1. 각 토큰의 역할 분류
         keep_masks = []
         for pos in range(seq_len):
-            role = self.
-```
-
-```python
-classify_token_role(
+            role = self.classify_token_role(
                 key_cache[:, :, pos, :],
                 pos,
                 attention_weights[:, :, pos, :]
@@ -285,7 +281,7 @@ def cask_attention_forward(
 
 #### Step 4: 서빙 파이프라인 통합
 
-```javascript
+```mermaid
 graph LR
     A[사용자 요청] --> B[Tokenization]
     B --> C[Role 분류]

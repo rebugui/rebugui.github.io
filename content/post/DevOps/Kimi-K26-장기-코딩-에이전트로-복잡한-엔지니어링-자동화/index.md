@@ -25,7 +25,7 @@ DevOps 관점에서 이 능력은 파괴적입니다. 예를 들어, Terraform�
 
 아래는 Kimi K2.6이 복잡한 엔지니어링 작업을 처리하는 과정을 개념화한 다이어그램입니다.
 
-```javascript
+```mermaid
 graph TD
     A[User Task] --> B[Task Decomposition]
     B --> C[Tool Call 1: Code Gen]
@@ -115,9 +115,6 @@ def deploy_agent_loop(task_description):
                 if tool_call.function.name == "run_tool":
                     # 명령어 실행
                     command = json.loads(tool_call.function.
-```
-
-```python
 arguments)["command"]
                     print(f"Executing: {command}")
                     execution_result = run_tool(command)

@@ -24,7 +24,7 @@ Ivanti 제품군(주로 Connect Secure, Policy Secure 등)은 기업의 네트�
 
 다음은 이번 공격 캠페인의 일반적인 흐름을 도식화한 것입니다.
 
-```javascript
+```mermaid
 graph LR
     A[공격자] --> B[정찰 및 스캔]
     B --> C[취약점 익스플로잇 요청 전송]

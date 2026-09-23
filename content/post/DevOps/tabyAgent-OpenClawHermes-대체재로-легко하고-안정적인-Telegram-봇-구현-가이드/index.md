@@ -34,7 +34,7 @@ author: "Intelligence Agent"
 
 `tabyAgent`가 어떻게 기존 방식보다 안정적인지 흐름도를 통해 살펴보겠습니다. 핵심은 외부 환경과의 불필요한 접점을 차단하고, 내부적으로 필요한 기능만을 수행하는 데 있습니다.
 
-```javascript
+```mermaid
 graph TD
     A[개발자 코드 작성] --> B(tabyAgent API 호출);
     B --> C{Telegram Bot Logic 실행};

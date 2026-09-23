@@ -25,7 +25,7 @@ Skillify 방법론은 이를 **"실패 케이스를 고품질의 학습 데이�
 
 Skillify는 단발성 수정이 아니라 지속적인 개선 사이클입니다. 아래 다이어그램은 에이전트의 실패가 시스템의 구조적 개선으로 이어지는 피드백 루프를 시각화한 것입니다.
 
-```javascript
+```mermaid
 graph TD
     A[User Input] --> B[Agent Execution]
     B --> C{Result Check}

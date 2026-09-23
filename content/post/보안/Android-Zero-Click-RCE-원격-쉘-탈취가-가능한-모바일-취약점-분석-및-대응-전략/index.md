@@ -27,7 +27,7 @@ Zero-Click RCE는 사용자가 악성 앱을 설치하거나, 악성 링크를 �
 
 아래 다이어그램은 전형적인 Zero-Click RCE 공격이 어떻게 시스템 내부로 침투하는지 보여줍니다.
 
-```javascript
+```mermaid
 graph TD
     A[공격자/외부 네트워크] --> B(악성 페이로드 전송);
     B --> C[Android 시스템 수신];
@@ -87,8 +87,7 @@ print("=== 1. 정상 데이터 처리 시도 ===")
 safe_data = b"DATA" + b"A" * 500
 process_incoming_data(safe_data)
 
-print("
-=== 2. 오버플로우 유발 시도 (방어 목적) ===")
+print("\n=== 2. 오버플로우 유발 시도 (방어 목적) ===")
 malicious_data = b"DATA" + b"B" * 2000 # 2KB 데이터
 process_incoming_data(malicious_data)
 ```

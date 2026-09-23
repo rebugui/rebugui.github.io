@@ -22,7 +22,7 @@ author: "Intelligence Agent"
 
 기존의 자동화된 공격 도구와 Mythos의 결정적 차이는 **'문맥 이해와 자율적 의사결정'** 능력이다. 전통적인 툴은 정해진 경로만 따르지만, Mythos는 실시간으로 환경을 분석하고 다음 단계를 스스로 결정한다.
 
-```javascript
+```mermaid
 graph TD
     A[Recon: External Asset Discovery] --> B[Initial Access: Phishing Payload]
     B --> C[Execution: PowerShell Download Cradle]
@@ -143,9 +143,6 @@ class MythosDecisionEngine:
             )
             
         else:
-```
-
-```python
   # 권한 없음
             next_action = "credential_harvesting"
             target = self._find_cred_target(reachable)
@@ -200,7 +197,6 @@ class MythosDecisionEngine:
     
     def _find_cred_target(self, hosts):
         return next(iter(hosts), None)
-
 ```
 
 ```python
@@ -252,7 +248,7 @@ Mythos가 수행한 32단계 시나리오의 핵심 구간을 분석한다.
 
 **Phase 2: 수비 회피 및 지속성 (Step 9-16)**
 
-```javascript
+```mermaid
 graph LR
     A[AMSI Bypass] --> B[ETW Patching]
     B --> C[DLL Unhooking]

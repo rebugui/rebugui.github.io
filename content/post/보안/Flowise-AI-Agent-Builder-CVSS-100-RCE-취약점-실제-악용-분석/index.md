@@ -103,7 +103,7 @@ app.listen(8080);
 
 이미 공격을 받았다는 의심이 든다면 다음 절차를 따르라:
 
-```javascript
+```mermaid
 graph TD
     A[침해 의심 탐지] --> B[서버 격리]
     B --> C[메모리 덤프 확보]

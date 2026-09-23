@@ -32,7 +32,7 @@ Rust의 `async fn`은 사실 `Future` 트레이트를 구현하는 구조체(Str
 
 이 과정을 시각화하면 다음과 같습니다.
 
-```javascript
+```mermaid
 graph TD
     A[Start Execution] --> B{await Point 1?};
     B -- Yes --> C[Save State 1];

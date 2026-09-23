@@ -27,7 +27,7 @@ DPC는 일반적인 BFS나 DFS와 같은 탐색 알고리즘을 사용하지만,
 
 이러한 과정은 시스템 검증 분야에서 사용되는 **모델 체크(Model Checking)**의 개념을 실시간 실행 환경으로 끌어들인 형태라고 볼 수 있습니다.
 
-```javascript
+```mermaid
 graph TD
     A[Game State Initialization] --> B{Crawler Traversal};
     B --> C[State Node Reached];
@@ -102,8 +102,7 @@ class ProofCrawler:
         is_true, proof = self.check_invariant("Potion")
         self.proof_log.append((False, proof))
 
-        print("
---- Proof Log ---")
+        print("\n--- Proof Log ---")
         for success, p in self.proof_log:
             status = "✅ PROVEN (TRUE)" if success else "❌ FAILED (FALSE)"
             print(f"[{status}]: {p}")

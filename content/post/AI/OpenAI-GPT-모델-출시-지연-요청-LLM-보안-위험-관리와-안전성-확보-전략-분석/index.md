@@ -29,7 +29,7 @@ LLM이 지닌 보안 위협은 전통적인 소프트웨어 버그 수준을 넘
 
 단계적 출시는 단순히 '천천히 내보내는 것'을 넘어, 통제된 환경에서 모델의 성능과 안전성을 체계적으로 검증하며 위험도를 점진적으로 높여가는 전략입니다. 이 과정은 일반적으로 다음과 같은 단계로 이루어집니다.
 
-```javascript
+```mermaid
 graph TD
     A[Pre-Training & Fine-Tuning] --> B{Safety Validation};
     B -- Pass --> C["Controlled Environment Testing (Red Teaming)"];

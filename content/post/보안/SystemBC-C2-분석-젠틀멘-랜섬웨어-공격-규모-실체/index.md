@@ -25,7 +25,7 @@ SystemBC는 단순한 원격 제어 도구가 아닌, 공격자가 피해자 네
 
 젠틀멘 랜섬웨어 조직은 SystemBC를 이용해 다음과 같은 킬체인(Kill Chain)을 구성합니다.
 
-```javascript
+```mermaid
 graph LR
     A[피싱 이메일 / 익스플로잇] --> B[SystemBC 다운로드 및 설치]
     B --> C[C2 서버 핸드셰이크]
@@ -119,8 +119,7 @@ def analyze_logs(log_file_path):
         for ip, count in sorted(connection_counts.items(), key=lambda x: x[1], reverse=True):
             print(f"- {ip}: {count}회")
         
-        print("
-상세 로그 (
+        print("상세 로그는 SIEM에서 확인하세요.")
 ```
 
 ---

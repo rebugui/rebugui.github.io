@@ -40,7 +40,7 @@ Cyberduck이나 Transmit 같은 GUI 클라이언트가 있지만, 이들은 범�
 
 S3V는 로컬 데스크톱 애플리케이션으로, S3 호환 API를 표준 인터페이스로 사용하여 다양한 백엔드 스토리지에 연결한다.
 
-```javascript
+```mermaid
 graph LR
     A[S3V GUI Client] --> B[Connection Profile 1]
     A --> C[Connection Profile 2]

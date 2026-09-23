@@ -27,7 +27,7 @@ DLL 하이재킹(Dynamic Link Library Hijacking)은 윈도우 운영체제의 �
 
 다음은 DLL 하이재킹을 통한 권한 상승 공격 흐름을 간략화한 다이어그램입니다.
 
-```javascript
+```mermaid
 graph LR
     A[Low-priv User] -->|Places Malicious DLL| B[Weak Directory Path]
     B --> C[Splunk Service]

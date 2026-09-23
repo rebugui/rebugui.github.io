@@ -29,7 +29,7 @@ GPT-5.6 Sol은 보안 데이터(취약점 보고서, 패치 노트), 코드 저�
 
 이러한 흐름은 LLM의 강력한 시퀀스 예측 능력이 보안 문제 해결에 어떻게 적용되는지를 명확히 보여줍니다.
 
-```javascript
+```mermaid
 graph TD
     A[보안 데이터 입력] --> B{GPT-5.6 Sol: Contextual Encoding};
     B --> C[위협 추론 엔진];
@@ -67,47 +67,11 @@ GPT-5.6 Sol은 기존 AI 솔루션들이 제공하던 '탐지' 수준을 넘어,
 - 모델이 제시한 패치 코드를 실제 개발 환경에 적용합니다.
 - GPT-5.6 Sol은 단순히 코드를 제공하는 것에서 끝나지 않고, 해당 **패치가 기존 코드의 기능적 무결성(Functional Integrity)을 해치는지**를 자체적으로 시뮬레이션하고 검증 결과를 보고해줍니다.
 
-#### 💡 개념 설명용 코드 예시 (Python/PyTorch 기반)
+#### 취약점 분석 절차
 
-다음은 GPT-5.6 Sol이 취약점을 감지하고 패치를 제안하는 과정을 간략화한 Python 함수 예시입니다.
+취약점 후보를 식별하고 근거를 검증한 뒤 패치를 검토하는 절차가 필요합니다.
 
-```python
-import torch
-
-# 가상의 LLM 모델 로드 및 초기화 가정
-class GptSolModel(torch.nn.Module):
-    def __init__(self):
-        super().__init__()
-        # 실제로는 수십억 개의 파라미터를 가진 트랜스포머 구조가 여기에 들어감
-        self.transformer_layer = torch.nn.TransformerEncoderLayer(d_model=512, nhead=8)
-
-    def forward(self, code_tokens):
-        # 추론 과정을 시뮬레이션하여 결과를 반환한다고 가정
-        return {
-            "vulnerability": "SQL Injection (Time-Based)",
-            "location": "user_input -> db_query line 42",
-            "severity": "High",
-            "suggested_patch": """# Original: cursor.execute("SELECT * FROM users WHERE name = '{}'".format(user_name))
-# Suggested Patch (Parameterized Query):
-cursor.execute("SELECT * FROM users WHERE name = %s", (user_name,))"""
-        }
-
-def analyze_and_patch(code_tokens):
-    model = GptSolModel()
-    results = model(code_tokens)
-    print("="*50)
-    print("[✅ GPT-5.6 Sol Security Analysis Report]")
-    print(f"🔍 탐지된 취약점: {results['vulnerability']}")
-    print(f"📍 발생 위치: {results['location']} (Severity: {results['severity']})")
-    print("
---- 🛠️ 자동 제안 패치 코드 ---")
-    print(results['suggested_patch'])
-    return results
-
-# 개념 설명용 입력 토큰 시뮬레이션
-sample_code = ["def", "get_user", "(", "name", "):", "cursor.", "execute(", ""SELECT*", "..." ]
-analysis_result = analyze_and_patch(torch.tensor([i for i in range(len(sample_code))]))
-```
+실제 취약점 분석은 소스 코드와 실행 경로를 검토하고, 탐지 근거를 사람이 재현·검증한 뒤 패치를 제안해야 합니다. 정해진 취약점 문자열을 반환하는 가상 클래스는 모델 분석 결과를 보여주지 않으므로 실행 예시로 제시하지 않습니다.
 
 ## 결론: 보안 AI의 미래, 추론과 자동화로 완성되다
 

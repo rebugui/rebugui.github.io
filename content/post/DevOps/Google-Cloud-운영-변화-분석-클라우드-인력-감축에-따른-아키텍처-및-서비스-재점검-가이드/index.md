@@ -27,7 +27,7 @@ DevOps/SRE 관점에서 이러한 '변화'는 곧 **기술 부채(Technical Debt
 
 이를 구조적으로 표현하면 다음과 같습니다.
 
-```javascript
+```mermaid
 graph LR
     A[서비스 A] --> B{API Gateway};
     C[서비스 B] --> B;

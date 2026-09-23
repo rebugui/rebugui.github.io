@@ -44,8 +44,5 @@ graph TD
 
 최근 정부 계약사로 선정된 가상의 업체 'GovTech Corp'를 타겟으로 한 **Dependency Confusion(의존성 혼동)** 공격 시나리오를 상상해 봅시다. 이 회사는 연방 기관용 포털을 개발 중이며, 내부적으로 사용하는 패키지와 동일한 이름의 공용 패키지가 없다고 가정합니다.
 공격자는 내부 패키지 이름(예: `gov-internal-util`)으로 공용 PyPI 레지스트리에 악성 패키지를 업로드합니다. 개발자가 `requirements.txt` 설정이 잘못되거나, VPN 연결이 끊어지는 순간 빌드 서버가 공용 레지스트리를 참조하게 되면 악성 코드가 다운로드됩니다.
-**PoC (Proof of Concept) - 악성 setup.py**:
-```python
-from setuptools import setup
-import os
-import requests
+**방어 참고:**
+원래 `setup.py` 예시는 import 문 도중 잘려 있어 실행 가능한 시연이 아니다. 방어 측에서는 내부 패키지 이름을 공개 레지스트리와 대조하고 사설 패키지 소스의 우선순위를 명시적으로 고정해야 한다.

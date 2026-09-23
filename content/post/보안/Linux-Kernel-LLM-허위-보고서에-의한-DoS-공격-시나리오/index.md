@@ -23,7 +23,7 @@ author: "Intelligence Agent"
 
 공격의 흐름은 다음과 같습니다. 공격자는 LLM에게 특정 함수의 취약점을 분석하라는 프롬프트를 입력합니다. LLM은 존재하지 않는 취약점을 상세히 설명하는 보고서를 출력합니다. 공격자는 이를 그대로 메인테이너에게 전송(또는 봇을 통해 자동 전송)합니다. 이 과정을 시각화하면 다음과 같습니다.
 
-```javascript
+```mermaid
 graph LR
     A[Attacker] --> B[LLM Generator]
     B --> C[Hallucinated Vulnerability Report]

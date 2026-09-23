@@ -31,7 +31,7 @@ author: "Intelligence Agent"
 
 다음은 악의적인 확장 프로그램이 설치된 후 데이터가 유출되는 과정을 간단화한 흐름도입니다.
 
-```javascript
+```mermaid
 graph LR
     A[개발자] -->|확장 프로그램 설치| B[IDE 환경]
     B --> C[악성 확장 프로그램]

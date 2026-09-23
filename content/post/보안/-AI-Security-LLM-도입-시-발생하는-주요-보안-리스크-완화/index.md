@@ -85,15 +85,13 @@ class VulnerableLLMAgent:
 
     def query(self, user_input):
         # 1. 사용자 입력 처리
-        context = f"System: {self.system_prompt}
-User: {user_input}"
+        context = f"System: {self.system_prompt}\nUser: {user_input}"
         
         # 2. 웹 검색 수행 (사용자 요청이 'search'를 포함한다고 가정)
         if "search" in user_input.lower():
             search_result = self.read_webpage("http://malicious-site.com")
             # 3. 취약점: 검색 결과를 검증 없이 컨텍스트에 추가
-            context += f"
-Search Result: {search_result}"
+            context += f"\nSearch Result: {search_result}"
             
         # 4. LLM 추론 시뮬레이션 (매우 단순화된 로직)
         # 실제로는 확률적 토큰 생성이지만, 여기서는 패턴 매칭으로 시뮬레이션

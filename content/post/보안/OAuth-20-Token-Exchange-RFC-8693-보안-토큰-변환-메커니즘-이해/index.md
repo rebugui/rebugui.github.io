@@ -34,7 +34,7 @@ OAuth 2.0 Token Exchange는 기본적으로 "토큰을 토큰으로 교환"하�
 
 다음은 Token Exchange의 기본 흐름을 나타낸 다이어그램입니다.
 
-```javascript
+```mermaid
 sequenceDiagram
     participant Client
     participant STS as Security Token Service

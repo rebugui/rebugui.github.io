@@ -25,7 +25,7 @@ author: "Intelligence Agent"
 
 기존 공개키 암호 시스템(RSA, ECC)의 보안성은 특정 수학적 문제의 난이도에 기반한다. RSA는 큰 정수의 소인수분해, ECC는 타원곡선 이산대수 문제다. 이들은 고전 컴퓨터로는 다항 시간 내에 풀 수 없지만, 양자컴퓨터에서는 **Shor 알고리즘**을 통해 지수적 가속이 가능하다.
 
-```javascript
+```mermaid
 graph TD
     A[기존 공개키 암호] --> B[수학적 난제 의존]
     B --> C[소인수분해 RSA]
@@ -279,7 +279,7 @@ data class SigningKeyPair(
 
 PQC 알고리즘은 비교적 새롭고, 구현 버그나 사이드채널 공격에 대한 검증이 부족하다. 따라서 실무에서는 **기존 알고리즘과 PQC를 결합한 하이브리드 방식**을 권장한다.
 
-```javascript
+```mermaid
 graph TD
     A[하이브리드 키 교환] --> B[ECDH 키 교환]
     A --> C[ML-KEM 키 교환]
@@ -398,7 +398,7 @@ data class HybridKeyResult(
 
 ### 5. Android 권장 아키텍처
 
-```javascript
+```mermaid
 graph TD
     A[Android App] --> B[PQC Module]
     

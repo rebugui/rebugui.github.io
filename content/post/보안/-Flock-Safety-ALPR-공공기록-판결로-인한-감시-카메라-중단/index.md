@@ -102,8 +102,7 @@ target = "ABC-1234"
 identified_risk = analyze_target_movement(leaked_alpr_data, target)
 
 if identified_risk:
-    print(f"
-[ALERT] Potential Sensitive Location Identified for {target}: {identified_risk}")
+    print(f"\n[ALERT] Potential Sensitive Location Identified for {target}: {identified_risk}")
 ```
 
 위 코드에서 볼 수 있듯이, 번호판, 시간, 위치 데이터만으로도 개인을 식별하고 추적하는 것은 기술적으로 매우 간단합니다. 에버렛 시의 결정은 이러한 기술적 현실을 법적으로 인정한 것이라고 볼 수 있습니다.

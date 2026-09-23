@@ -12,6 +12,8 @@ categories:
   - "DevOps"
 ---
 
+> **정정 (2026-09-23):** Notion의 Mermaid 저장 방식과 데이터베이스 속성 예시를 현재 구현에 맞게 고쳤고, 깨진 코드 펜스를 복구했습니다. 아래의 구축기 본문과 당시 성과 수치는 작성 시점의 기록입니다.
+
 ## 서론
 
 블로그 운영은 단순한 글쓰기가 아닙니다. 최신 기술 동향을 파악하고, 독자들에게 가치 있는 정보를 제공하며, 지속적으로 콘텐츠를 생산하는 것이 중요합니다. 하지만 매일 기사를 검색하고, 분석하고, 글을 쓰는 것은 시간이 많이 걸리는 반복적인 작업입니다.
@@ -148,7 +150,7 @@ PERSONAS = {
 
 ## 해결한 핵심 문제
 
-### 문제 1: Mermaid 다이어그램 렌더링�
+### 문제 1: Mermaid 다이어그램 렌더링
 
 **현상**: Hugo 블로그에서 Mermaid 다이어그램이 다크모드에서 보이지 않음
 
@@ -180,41 +182,16 @@ mermaid.initialize({
 
 ### 문제 2: Notion API에서의 Mermaid 처리
 
-**현상**: Notion API가 `mermaid` 언어를 지원하지만 코드 블록으로만 저장됨
+**현상**: Notion은 Mermaid 코드 블록을 저장할 수 있지만, 블로그 발행 단계에서는 코드 블록의 언어와 원문을 다시 Markdown으로 복원해야 합니다.
 
-**해결**: JavaScript 코드 블록으로 저장 후 Git Publisher에서 변환
-
-```python
-# Notion Publisher
-if lang == 'mermaid':
-    blocks.append({
-        'type': 'code',
-        'code': {
-            'rich_text': [{'text': {'content': code_text}}],
-            'language': 'javascript'  # Notion에선 javascript로 저장
-        }
-    })
-
-# Git Publisher
-if language == 'javascript' and is_mermaid(content):
-    return f"
-
-```text
+**현재 구현**: 작성 단계에서 Notion 코드 블록의 `language`를 `mermaid`로 저장합니다. 검토가 끝난 글을 읽어올 때도 언어를 유지해 Hugo의 Mermaid 코드 펜스로 출력합니다. 예전에 JavaScript 블록에 다이어그램을 저장하던 글만 기존 변환 로직으로 읽습니다. 새 글에 JavaScript로 저장하는 우회 방식은 사용하지 않습니다.
 
 ### 문제 3: Notion 데이터베이스 속성 매핑
 
-**현상**: Notion API 호출 시 "Invalid property" 에러
+**현상**: Notion API 호출 시 데이터베이스에 없는 속성 이름이나 다른 속성 유형을 사용하면 요청이 거부됩니다.
 
-**원인**: Notion 데이터베이스 스키마와 코드의 속성 이름 불일치
+**현재 구현**: 실제 데이터베이스의 `내용`(title), `카테고리`(select), `테그`(multi_select), `상태`(status), `작성 방식`(select)을 각각의 Notion 유형에 맞게 보냅니다. 화면에 보이는 표기와 API 속성 이름이 일치해야 하므로 `태그`로 임의 변경하지 않습니다.
 
-**해결**:
-```
-
-# properties/index.py
-
-PROPERTY_MAPPING = {     '내용': 'title',     '카테고리': 'category',     '테그': 'tags',     '상태': 'status' }
-
-```text
 
 ## 성과물
 
@@ -234,5 +211,3 @@ PROPERTY_MAPPING = {     '내용': 'title',     '카테고리': 'category',     
 2. **주제 클러스터링**: 연관 기사를 그룹화하여 "주간 트렌드 리포트" 발행
 3. **Slack 알림**: 배포 완료 시 알림 발송
 4. **영문 블로그**: 다국어 지원 확장
-
-```

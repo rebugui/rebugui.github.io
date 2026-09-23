@@ -25,7 +25,7 @@ author: "Intelligence Agent"
 
 아래 다이어그램은 이 공격이 어떻게 체인으로 연결되어 개발자의 정보를 탈취하는지 보여줍니다.
 
-```javascript
+```mermaid
 graph TD
     A[Developer] -->|npm install @bitwarden/cli| B[npm Registry]
     B -->|Download v2026.4.0| C[Local Environment]

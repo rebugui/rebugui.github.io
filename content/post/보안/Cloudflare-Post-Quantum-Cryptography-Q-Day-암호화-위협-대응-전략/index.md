@@ -23,7 +23,7 @@ Cloudflare가 Q-Day 대응 계획을 앞당긴 이유가 여기에 있다. 이 �
 
 Q-Day는 양자 컴퓨터가 현재 사용 중인 공개키 암호화 시스템(RSA, ECC)을 깨뜨릴 수 있게 되는 시점을 말한다. 핵심은 **Shor 알고리즘**이다.
 
-```javascript
+```mermaid
 graph TD
     A[현재 암호화] --> B{양자 컴퓨터}
     B --> C[Shor 알고리즘]
@@ -53,7 +53,7 @@ PQC는 양자 컴퓨터로도 풀기 어려운 수학적 문제를 기반으로 
 
 Cloudflare는 TLS 1.3 연결에 하이브리드 키 교환을 적용했다. 기존 X25519과 Kyber-768을 병렬로 수행하여, 둘 중 하나만 안전해도 연결이 보호된다.
 
-```javascript
+```mermaid
 graph LR
     A[Client Hello] --> B[Server Hello]
     B --> C[하이브리드 키 교환]
@@ -175,7 +175,7 @@ sum by (tls_version) (
 
 ### Harvest Now, Decrypt Later 방어 전략
 
-```javascript
+```mermaid
 graph TD
     A[공격자] --> B[암호화 트래픽 수집]
     B --> C[저장소 보관]

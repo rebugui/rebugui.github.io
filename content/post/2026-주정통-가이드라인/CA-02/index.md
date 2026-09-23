@@ -2,7 +2,7 @@
 title: "[2026 주요정보통신기반시설] CA-02 사용자정책관리"
 slug: "2026-주정통/CA-02"
 date: 2026-02-05T09:56:13+09:00
-lastmod: 2026-02-05T09:56:13+09:00
+lastmod: 2026-09-23
 description: "사용자 계정에 적절한 권한 부여 여부 점검"
 categories: ["2026 주정통 가이드라인"]
 tags:
@@ -82,7 +82,7 @@ az role assignment list --assignee user@domain.com
 
 | 사용자 유형 | 예상 권한 범위 |
 |------------|--------------|
-| 시스템 관리자 | 모든 리소스 관리 권한 |
+| 시스템 관리자 | 담당 업무와 리소스 범위에 한정된 관리자 권한 |
 | 개발자 | 개발/테스트 환경 리소스 접근 권한 |
 | 운영자 | 프로덕션 환경 리소스 모니터링 및 제어 권한 |
 | 일반 사용자 | 자신의 데이터에만 접근 권한 |
@@ -91,8 +91,9 @@ az role assignment list --assignee user@domain.com
 
 #### Step 1: 계정 및 그룹 확인 후 불필요한 권한 제거
 
-```yaml
-# AWS IAM 정책 예시 (최소 권한 부여)
+다음 정책은 객체 읽기·쓰기 작업의 예시입니다. `<bucket-name>`을 승인된 실제 버킷 이름으로 바꾸고 업무상 쓰기 권한이 필요한지도 검토한 뒤에만 적용하세요.
+
+```json
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -102,7 +103,7 @@ az role assignment list --assignee user@domain.com
         "s3:GetObject",
         "s3:PutObject"
       ],
-      "Resource": "arn:aws:s3:::my-bucket/*"
+      "Resource": "arn:aws:s3:::<bucket-name>/*"
     }
   ]
 }
@@ -117,12 +118,11 @@ az role assignment list --assignee user@domain.com
    - 일상적인 운영 작업에는 사용하지 않음
    - MFA 필수 활성화
 
-2. **운영용 관리자 계정 생성**
-   ```bash
-   # AWS에서 운영용 관리자 계정 생성
-   aws iam create-user --user-name admin-user
-   aws iam attach-user-policy --user-name admin-user --policy-arn arn:aws:iam::aws:policy/AdministratorAccess
-   ```
+2. **운영자 접근은 업무 범위별 역할로 분리**
+   - 사람의 AWS 접근은 IAM Identity Center 또는 연동된 IdP를 통해 임시 자격 증명으로 부여
+   - 운영 작업별 권한 집합/역할을 만들고 필요한 작업·리소스·조건만 허용
+   - 전체 계정에 모든 작업을 허용하는 `AdministratorAccess` 정책을 일상 운영 계정에 부여하지 않음
+   - 관리 역할에도 MFA와 승인 절차를 적용하고 사용 이력을 검토
 
 3. **1인 1계정 원칙 준수**
    - 공용 계정 사용 지양
@@ -131,25 +131,12 @@ az role assignment list --assignee user@domain.com
 
 #### Step 3: 역할(Role) 기반 권한 관리
 
-```yaml
-# 역할 기반 접근 제어(RBAC) 구성 예시
-# 개발자 역할
-DeveloperRole:
-  Permissions:
-    - s3:ReadWrite
-    - ec2:StartStopInstances
-  Scope:
-    - Environment: Development
-    - Region: ap-northeast-2
+아래는 **권한 설계 예시**이며 IAM 정책 문법이나 그대로 적용 가능한 YAML이 아닙니다. 실제 정책은 업무별 API 작업·리소스 ARN·조건을 식별하고 IAM Access Analyzer로 검증하세요.
 
-# 운영자 역할
-OperatorRole:
-  Permissions:
-    - ec2:DescribeInstances
-    - cloudwatch:*
-  Scope:
-    - Environment: Production
-```
+| 역할 | 필요한 접근 예시 | 제한 |
+|------|------------------|------|
+| 개발자 | 승인된 개발 환경의 객체 읽기·쓰기 및 인스턴스 상태 변경 | 지정한 개발 리소스와 작업에 한정 |
+| 운영자 | 운영 인스턴스·모니터링 지표 조회 | 운영 리소스의 조회 권한만 기본 부여, 변경은 별도 승인 |
 
 ### 7. 조치 시 주의사항
 
@@ -166,13 +153,15 @@ OperatorRole:
 - **NIST SP 800-53**: AC-6 (Least Privilege)
 - **CIS Controls**: 4.3 (Authorize, Monitor, and Audit All Remote Access)
 - **AWS Well-Architected Framework**: Security Pillar - IAM Best Practices
+- [AWS IAM 보안 모범 사례: 연동 인증, MFA, 최소 권한](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html)
+- [AWS `AdministratorAccess` 정책의 전체 범위](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AdministratorAccess.html)
 - **Azure Security Benchmark**: Identity and Access Management
 
 ---
 
 ## 요약
 
-**사용자정책관리**는 클라우드 보안에서 가장 중요한 항목 중 하나입니다. 최소 권한의 원칙에 따라 각 사용자에게 필요한 권한만 부여하고, 정기적인 권한 검토를 통해 불필요한 권한을 제거해야 합니다. 특히 최상위 관리자 계정은 비상시에만 사용하고, 일상적인 운영은 별도로 생성한 계정으로 수행해야 합니다.
+**사용자정책관리**는 클라우드 보안에서 가장 중요한 항목 중 하나입니다. 최소 권한의 원칙에 따라 각 사용자에게 필요한 권한만 부여하고, 정기적인 권한 검토를 통해 불필요한 권한을 제거해야 합니다. 특히 최상위 관리자 계정은 비상시에만 사용하고, 일상적인 운영은 연동 인증과 업무 범위별 역할을 사용해야 합니다.
 
 **핵심 액션 아이템**
 1. 모든 사용자의 권한 현황 정기적으로 검토 (연 2회 이상 권장)

@@ -152,13 +152,7 @@ Docker는 강력하지만, AI 에이전트가 매번 새로운 작업을 수행�
 
 **Step 3: 도구(Tool) 래핑** 에이전트 프레임워크에서 제공하는 `Shell` 도구를 Matchlock 래퍼로 교체합니다.
 
-```python
-# LangChain 예시
-from langchain.tools import ShellTool
-# 기존 ShellTool을 Matchlock이 적용된 커스텀 툴로 대체
-secure_shell = SecureMatchlockTool()
-agent = initialize_agent(tools=[secure_shell], llm=llm, ...)
-```
+도구 래퍼는 셸 명령을 실행하기 전에 정책에 따른 격리 환경을 구성하고, 종료 상태·표준 출력·오류를 에이전트에 전달하도록 구현해야 합니다. 구체적인 래퍼 클래스와 프레임워크 초기화 인자는 사용하는 버전의 공식 인터페이스에 맞춰 확인해야 합니다.
 
 **Step 4: 로그 및 모니터링** 샌드박스 내부에서 발생한 에러나 차단된 명령어에 대한 로그를 기록합니다. 이는 에이전트의 행동 패턴을 분석하고, 프롬프트 주입 공격 시도가 있었는지 사후 분석( Forensics)하는 데 중요한 데이터가 됩니다.
 

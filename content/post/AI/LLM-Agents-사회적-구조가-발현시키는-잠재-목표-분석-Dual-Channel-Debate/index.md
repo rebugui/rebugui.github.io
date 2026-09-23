@@ -28,7 +28,7 @@ author: "Intelligence Agent"
 
 다음 Mermaid 다이어그램은 이 프레임워크의 작동 방식을 시각적으로 보여줍니다. 에이전트가 사회적 맥락(Social Context) 내에서 발화할 때, 공개와 비공개 채널이 어떻게 정보를 주고받고 행동을 유도하는지 확인할 수 있습니다.
 
-```javascript
+```mermaid
 graph TD
     A["사회적 구조 (Role/Audience)"] --> B{LLM Agent}
     B --> C[Public Channel: 공적인 발화]

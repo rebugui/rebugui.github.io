@@ -21,7 +21,7 @@ LLM의 심장은 바로 Transformer 구조, 그중에서도 디코더(Decoder) �
 
 모델이 입력을 받아 다음 토큰을 예측하기까지의 과정은 크게 **토큰화(Tokenization)**, **임베딩(Embedding)**, **트랜스포머 블록(Transformer Block)**, **출력 헤드(Output Head)**로 나눌 수 있습니다. 이 과정을 시각적으로 정리하면 다음과 같습니다.
 
-```javascript
+```mermaid
 graph LR
     A[Input Text] --> B[Tokenizer]
     B --> C[Input IDs]
@@ -93,11 +93,7 @@ class CausalSelfAttention(nn.Module):
         # 가중합: (Attention_Scores) * V
         y = att @ v
         # 헤드 연결: (B, n_head, T, head_dim) -> (B, T, C)
-        y = y.transpose(1, 2).contiguous().
-```
-
-```python
-view(B, T, C)
+        y = y.transpose(1, 2).contiguous().view(B, T, C)
         
         # 최종 출력 투영
         y = self.c_proj(y)

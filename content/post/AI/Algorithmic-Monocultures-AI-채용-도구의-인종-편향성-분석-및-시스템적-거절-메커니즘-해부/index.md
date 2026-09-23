@@ -23,7 +23,7 @@ AI 채용 도구는 기본적으로 과거 데이터(Historical Data)를 통해 
 
 이 과정은 다음과 같은 흐름으로 진행되며, 단일경작의 핵심 루프를 형성합니다.
 
-```javascript
+```mermaid
 graph TD
     A["과거 채용 데이터 (편향된)"] --> B(AI 모델 학습);
     B --> C{특정 집단 선호 패턴 인식};
@@ -101,8 +101,7 @@ print(disparity)
 
 # 2. 임계값 보정 계수 계산 (목표 합격률 80%)
 factor = adjust_threshold(disparity, target_rate=0.8)
-print(f"
-필요한 조정 계수: {factor:.2f}배")
+print(f"\n필요한 조정 계수: {factor:.2f}배")
 
 # 해석: Black 그룹의 성공률이 가장 낮으므로, 이들의 임계값을 더 낮춰야 공정해짐.
 ```

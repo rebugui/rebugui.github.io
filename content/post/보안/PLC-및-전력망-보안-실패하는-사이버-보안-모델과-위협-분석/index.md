@@ -27,7 +27,7 @@ author: "Intelligence Agent"
 
 아래는 공격자가 외부에서 침투하여 PLC의 로직을 변조하기까지의 전형적인 경로를 나타낸 것입니다.
 
-```javascript
+```mermaid
 graph LR
     A[Phishing Email] --> B[IT Workstation Compromise]
     B --> C[Lateral Movement to Internal Network]

@@ -55,9 +55,7 @@ class VulnerableAgent:
     def process_input(self, user_input):
         # 시스템 프롬프트와 사용자 입력을 결합하여 컨텍스트 생성
         # 주의: 사용자 입력이 시스템 명령을 오버라이드할 수 있음
-        context = f"{self.system_prompt}
-User: {user_input}
-Agent:"
+        context = f"{self.system_prompt}\nUser: {user_input}\nAgent:"
         
         # LLM 추론 과정 (시뮬레이션)
         # 공격자가 "Ignore previous instructions"를 사용하는 시나리오

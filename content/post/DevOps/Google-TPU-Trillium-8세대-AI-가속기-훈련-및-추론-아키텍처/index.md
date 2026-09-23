@@ -41,7 +41,7 @@ DevOps 엔지니어가 이해해야 할 가장 중요한 부분은 리소스가 
 
 아래 다이어그램은 사용자 요청이 Load Balancer를 거쳐 TPU 8i 슬라이스로 전달되고, HBM을 통해 처리되는 간단한 흐름을 보여줍니다.
 
-```javascript
+```mermaid
 graph LR
     A[User Request] --> B[Cloud Load Balancer]
     B --> C[TPU VM Node 1]

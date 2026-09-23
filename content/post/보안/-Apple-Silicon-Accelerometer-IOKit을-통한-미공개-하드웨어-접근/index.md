@@ -29,7 +29,7 @@ Apple Silicon MacBooks에 내장된 가속도계는 보통 I2C나 SPI와 같은 
 
 다음은 사용자 공간 애플리케이션이 IOKit을 통해 하드웨어 센서에 도달하는 과정을 간단화한 다이어그램입니다.
 
-```javascript
+```mermaid
 graph TD
     A[User Application] --> B[IOKit Framework]
     B --> C[IOServiceGetMatchingService]

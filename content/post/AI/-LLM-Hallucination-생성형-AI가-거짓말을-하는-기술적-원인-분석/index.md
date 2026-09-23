@@ -21,7 +21,7 @@ LLM의 핵심은 방대한 텍스트 데이터를 학습하여, 주어진 문맥
 
 다음은 Transformer 모델이 토큰을 생성하는 과정을 단순화하여 나타낸 것입니다. 모델은 과거의 토큰들을 바탕으로 다음 토큰의 확률 분포를 계산하고, 여기서 샘플링하여 결과를 냅니다.
 
-```javascript
+```mermaid
 graph LR
     A[Input Context] --> B[Transformer Model]
     B --> C[Logit Vectors]

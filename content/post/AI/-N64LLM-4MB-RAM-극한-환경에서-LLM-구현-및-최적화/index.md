@@ -31,7 +31,7 @@ N64의 MIPS R4300i CPU는 부동 소수점 연산을 지원하지만, 현대 GPU
 
 다음은 N64LLM이 메모리 제약을 극복하며 추론을 수행하는 간소화된 아키텍처 다이어그램입니다.
 
-```javascript
+```mermaid
 graph LR
     A[User Input] --> B[Tokenizer]
     B --> C[Input Embedding]
@@ -77,11 +77,9 @@ print(f"Quantized sample: {q_weight[0][:5]}")
 # N64 C 코드로 변환을 위한 더미 데이터 생성 과정
 c_array_name = "layer0_weights"
 with open("n64_weights.c", "w") as f:
-    f.write(f"const int8_t {c_array_name}[] = {{
-")
+    f.write(f"const int8_t {c_array_name}[] = {{\n")
     f.write(", ".join(map(str, q_weight.flatten().tolist())))
-    f.write("
-};")
+    f.write("\n};")
 print("Weight file exported to n64_weights.c")
 ```
 

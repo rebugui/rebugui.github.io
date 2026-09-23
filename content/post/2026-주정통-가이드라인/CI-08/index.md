@@ -2,7 +2,7 @@
 title: "[2026 주요정보통신기반시설] CI-08 서버사이드요청위조(Server-Side Request Forgery, SSRF)"
 slug: "2026-주정통/CI-08"
 date: 2026-02-05T09:56:13+09:00
-lastmod: 2026-02-05T09:56:13+09:00
+lastmod: 2026-09-23
 description: "입력값을 통해 외부에서 직접적인 접근이 제한된 내부 서버 자원에 접근하여 악의적인 요청을 처리하거나 중요정보의 유출 여부 점검"
 categories: ["2026 주정통 가이드라인"]
 tags:
@@ -40,10 +40,9 @@ draft: false
 - 내부 서비스 간 통신에도 동일한 검증 적용
 
 #### 권장 설정값
-- HTTP와 HTTPS 스키마만 허용
-- 사설 IP 대역 차단: 192.168.x.x, 10.x.x.x, 172.16-31.x.x
-- localhost, 127.0.0.1 차단
-- 클라우드 메타데이터 IP 차단: 169.254.169.254 (AWS), metadata.google.internal (GCP)
+- 서버가 요청할 대상은 가능한 한 사전에 승인된 호스트·포트·프로토콜로 제한
+- IP는 검증된 IPv4/IPv6 파서로 정규화해 허용 목록과 비교하고, DNS 응답·리다이렉트·실제 연결 대상도 정책과 일치하는지 확인
+- 링크 로컬 및 클라우드 메타데이터, 루프백, 내부 주소에 대한 비인가 egress 차단
 
 ### 2. 점검 방법
 
@@ -68,54 +67,13 @@ http://metadata.google.internal  // GCP
 
 ### 3. 조치 방법
 
-#### 1. 화이트리스트 방식 URL 검증
+#### 1. 허용 대상 검증과 네트워크 차단
 
-**Java 예시:**
-```java
-public boolean isUrlAllowed(String urlString) {
-    try {
-        URL url = new URL(urlString);
-        String protocol = url.getProtocol();
+외부 입력을 URL 전체로 받아 그대로 요청하지 마세요. 가능한 경우 서비스가 승인한 호스트·포트·프로토콜을 내부 설정에서 선택하고 경로를 직접 구성합니다. 불가피하게 사용자 입력을 받는다면 검증된 URL/IP 라이브러리로 IPv4·IPv6와 대체 표기를 정규화하고, DNS 조회 결과와 실제 연결 IP가 승인된 대상으로 유지되는지 확인해야 합니다. 리다이렉트는 비활성화하거나 매 단계에서 같은 검증을 반복해야 합니다. 문자열 접두어만 비교하는 사설 IP 필터는 우회가 가능하므로 방어책이 아닙니다.
 
-        // HTTP와 HTTPS 스키마만 허용
-        if (!("http".equalsIgnoreCase(protocol) || "https".equalsIgnoreCase(protocol))) {
-            return false;
-        }
+애플리케이션의 요청 대상 제한과 별개로 방화벽/네트워크 정책에서 내부 서비스와 메타데이터 엔드포인트로의 비인가 발신을 차단하세요.
 
-        String host = url.getHost();
-        int port = url.getPort() == -1 ? url.getDefaultPort() : url.getPort();
-
-        // 화이트리스트 확인
-        return allowedDomains.contains(host) ||
-               (allowedIPsAndPorts.containsKey(host) &&
-                allowedIPsAndPorts.get(host).contains(port));
-    } catch (Exception e) {
-        return false;
-    }
-}
-```
-
-#### 2. 내부 네트워크 대역 차단
-
-```java
-// 사설 IP 대역 차단
-private boolean isPrivateIP(String ip) {
-    return ip.startsWith("192.168.") ||
-           ip.startsWith("10.") ||
-           ip.startsWith("172.16.") ||
-           ip.equals("127.0.0.1") ||
-           ip.equals("localhost") ||
-           ip.startsWith("169.254.");  // 링크 로컬
-}
-
-// AWS/GCP 메타데이터 IP 차단
-private boolean isMetadataEndpoint(String host) {
-    return host.equals("169.254.169.254") ||  // AWS
-           host.equals("metadata.google.internal");  // GCP
-}
-```
-
-#### 3. 프로토콜 제한
+#### 2. 프로토콜 제한
 
 **차단해야 할 프로토콜:**
 - `file://` - 로컬 파일 접근
@@ -124,7 +82,7 @@ private boolean isMetadataEndpoint(String host) {
 - `dict://` - 사전 프로토콜
 - `http://` 내부 IP - 내부 네트워크 접근
 
-#### 4. PHP 설정
+#### 3. PHP 설정
 
 **php.ini 설정:**
 ```ini
@@ -132,7 +90,7 @@ allow_url_fopen=Off      ; 원격 URL 파일 접근 비활성화
 allow_url_include=Off    ; 원격 URL include 비활성화
 ```
 
-#### 5. 네트워크 분리
+#### 4. 네트워크 분리
 
 - 웹 서버와 데이터베이스 서버를 별도 네트워크에 배치
 - DMZ 구성으로 인터넷과 내부망 분리
@@ -155,6 +113,7 @@ allow_url_include=Off    ; 원격 URL include 비활성화
 3. 프로토콜 제한 (HTTP/HTTPS만 허용)
 4. 네트워크 분리
 5. DNS 리바인딩 방지
+- [OWASP SSRF Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html)
 
 ### 5. 스크립트
 - [취약점 점검 스크립트](https://rebugui.tistory.com/1192)

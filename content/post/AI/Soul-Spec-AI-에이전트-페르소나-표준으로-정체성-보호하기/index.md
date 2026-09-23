@@ -19,7 +19,7 @@ author: "Intelligence Agent"
 
 현대 AI 에이전트 아키텍처에서 시스템 프롬프트는 에이전트의 "영혼" 역할을 한다. 그러나 이 영혼은 놀라울 정도로 취약하다.
 
-```javascript
+```mermaid
 graph TD
     A[User Input] --> B[Context Window]
     C[System Prompt] --> B
@@ -44,7 +44,7 @@ graph TD
 
 Soul Spec은 AI 에이전트의 정체성을 **구조화된 명세(Specification)**로 정의한다. 단순 텍스트 프롬프트가 아닌, 검증 가능한 형식이다.
 
-```javascript
+```mermaid
 graph LR
     A[Soul Spec YAML] --> B[Parser]
     B --> C[Validated Persona]
@@ -165,9 +165,6 @@ class SoulSpec:
         
         canonical = json.dumps(spec_copy, sort_keys=True, ensure_ascii=False)
         return f"sha256:{hashlib.
-```
-
-```python
 sha256(canonical.encode()).hexdigest()[:16]}"
     
     def verify_integrity(self) -> bool:
@@ -218,7 +215,7 @@ if __name__ == "__main__":
 
 abliterated LLM은 모델의 거부(refusal) 메커니즘을 제거한 변형 모델이다. 이는 연구 목적으로 유용하지만, 에이전트 보안 관점에서는 심각한 위협이다.
 
-```javascript
+```mermaid
 graph TD
     A[Standard LLM] --> B[Refusal Mechanism]
     B --> C[Harmful Request Blocked]
@@ -309,7 +306,7 @@ Soul Spec은 단순한 명세를 넘어, **페르소나 마켓플레이스** 생
 | Rating System | 커뮤니티 기반 품질 평가 | 계획중 |
 | Fork & Modify | 페르소나 포크 및 커스터마이징 | 개발중 |
 
-```javascript
+```mermaid
 graph LR
     A[Creator] --> B[Publish Persona]
     B --> C[Soul Spec Registry]

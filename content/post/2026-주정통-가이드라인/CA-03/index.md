@@ -2,7 +2,7 @@
 title: "[2026 주요정보통신기반시설] CA-03 MFA(Multi-Factor Authentication)설정"
 slug: "2026-주정통/CA-03"
 date: 2026-02-05T09:56:13+09:00
-lastmod: 2026-02-05T09:56:13+09:00
+lastmod: 2026-09-23
 description: "2차 인증을 통해 사용자 계정의 보안을 강화 여부 점검"
 categories: ["2026 주정통 가이드라인"]
 tags:
@@ -43,12 +43,11 @@ draft: false
 | **키로깅** | 키보드 입력 정보를 몰래 수집 | 중 |
 
 **MFA의 보안 효과**
-- 비밀번호가 탈취되어도 2차 인증이 없으면 접근 불가
-- 해커가 물리적인 2차 인증 수단을 가질 확률은 극히 낮음
-- 99.9% 이상의 자동화된 공격 차단 가능
+- 비밀번호가 노출되더라도 추가 인증 요소가 접근 시도를 막는 데 도움이 됨
+- MFA 종류와 구현에 따라 피싱 저항성에 차이가 있으므로 보안 키·패스키 등 피싱 저항성 수단을 우선 검토
 
-**실제 사례**
-Microsoft에 따르면 MFA를 활성화하면 계정 탈취 위험이 **99.9% 감소**한다고 합니다.
+**근거가 있는 통계(실제)**
+Microsoft는 **탈취된 계정의 99.9% 이상에서 MFA가 설정되지 않았다**고 보고합니다. 이는 관찰된 탈취 계정의 구성 비율이며 MFA 도입 시 모든 공격이나 계정 탈취 위험이 99.9% 감소한다는 뜻은 아닙니다.
 
 ### 3. 점검 대상
 
@@ -164,12 +163,13 @@ aws iam enable-mfa-device --user-name admin-user --serial-number arn:aws:iam::12
 - **CIS Controls**: 16.12 (Use Multi-Factor Authentication for All Accounts)
 - **AWS IAM Best Practices**: Use MFA for the AWS account root user and IAM users
 - **Microsoft Security**: Multi-factor authentication
+- [Microsoft Learn: Security at your organization — MFA statistics](https://learn.microsoft.com/en-us/partner-center/security/security-at-your-organization)
 
 ---
 
 ## 요약
 
-**MFA 설정**은 클라우드 계정 보안을 위한 가장 효과적인 조치입니다. 비밀번호만으로는 충분하지 않으며, 2차 인증을 통해 계정 탈취 위험을 99.9% 이상 감소시킬 수 있습니다. 특히 관리자 권한을 가진 계정에는 MFA가 필수적이며, 가능한 한 보안성이 높은 OTP 앱이나 하드웨어 토큰을 사용하는 것이 좋습니다.
+**MFA 설정**은 클라우드 계정 보안을 위한 중요한 조치입니다. 비밀번호만으로는 충분하지 않으며, MFA 적용 범위와 인증 수단의 피싱 저항성을 함께 점검해야 합니다. 특히 관리자 권한을 가진 계정에는 MFA를 적용하고, 가능한 한 보안 키·패스키 등 피싱 저항성 수단을 우선 검토하세요.
 
 **핵심 액션 아이템**
 1. 루트 계정 및 모든 관리자 계정에 MHA 필수 설정

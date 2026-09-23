@@ -23,7 +23,7 @@ Princeton과 Stanford 연구진이 개발한 `mini-swe-agent`는 이러한 "복�
 
 다음은 `mini-swe-agent`의 단순화된 실행 흐름을 보여주는 다이어그램입니다.
 
-```javascript
+```mermaid
 graph LR
     A[GitHub Issue] --> B[LLM Context Setup]
     B --> C[LLM Reasoning]
@@ -69,8 +69,7 @@ def solve_issue(issue_description, model="gpt-4o"):
         },
         {
             "role": "user", 
-            "content": f"Issue: {issue_description}
-Start by listing files."
+            "content": f"Issue: {issue_description}\nStart by listing files."
         }
     ]
 
@@ -101,9 +100,7 @@ Start by listing files."
         observation = run_command(command)
         
         # 4. 실행 결과를 기록하여 LLM에게 다시 피드백
-        step_log = f"
-User: run {command}
-Assistant: {observation}"
+        step_log = f"\nUser: run {command}\nAssistant: {observation}"
         messages.append({"role": "assistant", "content": thought_and_action})
         messages.append({"role": "user", "content": f"Observation: {observation}"})
         

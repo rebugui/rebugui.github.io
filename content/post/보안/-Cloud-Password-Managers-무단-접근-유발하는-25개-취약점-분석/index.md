@@ -29,7 +29,7 @@ author: "Intelligence Agent"
 
 아래 다이어그램은 공격자가 웹 브라우저의 확장 프로그램 취약점을 이용해 IPC를 통해 최종적으로 비밀번호 저장소에 도달하는 과정을 시각화한 것이다.
 
-```javascript
+```mermaid
 graph LR
     A[Attacker Website] --> B[Victim Browser]
     B --> C[Malicious JS Script]

@@ -31,7 +31,7 @@ LLM을 게임 AI로 활용하는 과정은 크게 세 단계의 정보 변환 �
 
 **Mermaid 다이어그램: LLM 기반 에이전트의 의사결정 루프**
 
-```javascript
+```mermaid
 graph TD
     A["환경 관찰 (Observation)"] --> B(상태 인코딩 및 파싱);
     B --> C{LLM 추론 엔진};

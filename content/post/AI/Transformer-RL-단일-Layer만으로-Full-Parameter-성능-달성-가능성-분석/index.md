@@ -31,7 +31,7 @@ $$ \text{Layer Contribution}_l = \frac{\text{Performance}(\text{Model with } l \
 
 다음 다이어그램은 일반적인 트랜스포머 스택에서의 정보 흐름과 해당 레이어에 집중되는 RL 적응 이득($\Delta \text{RL}$)의 경향성을 보여줍니다.
 
-```javascript
+```mermaid
 graph LR
     A[Input Embedding] --> B(Layer 1: Boundary)
     B --> C(Middle Layer k-2: Core Feature Extraction)

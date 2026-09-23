@@ -106,11 +106,7 @@ def scan_file(file_path):
             print(f"[-] Upload failed: {upload_response.text}")
             return None
     else:
-        print(f"[-] Error checking hash:
-```
-
-```python
- {response.text}")
+        print(f"[-] Error checking hash: {response.text}")
         return None
 
 def parse_report(report_json):
@@ -126,8 +122,7 @@ def parse_report(report_json):
     malicious_count = stats.get('malicious', 0)
     suspicious_count = stats.get('suspicious', 0)
     
-    print(f"
---- Scan Result ---")
+    print("\n--- Scan Result ---")
     print(f"Malicious: {malicious_count}")
     print(f"Suspicious: {suspicious_count}")
     
@@ -141,8 +136,7 @@ def parse_report(report_json):
 # 실행 예시 (방어 목적의 시뮬레이션)
 # result = scan_file("example_skill.py")
 # verdict = parse_report(result)
-# print(f"
-Final Verdict: {verdict}")
+# print(f"\nFinal Verdict: {verdict}")
 ```
 
 이 코드는 파일의 해시를 먼저 조회하여 불필요한 업로드를 줄이고, 필요한 경우 파일을 전송한 뒤 분석이 완료될 때까지 폴링(Polling)하는 과정을 거칩니다. 실제 OpenClaw 플랫폼에서는 이 로직이 웹훅(Webhook)이나 메시지 큐(RabbitMQ, Kafka 등)를 통해 비동기적으로 처리되어 사용자 경험을 저해하지 않습니다.

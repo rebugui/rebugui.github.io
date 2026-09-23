@@ -27,7 +27,7 @@ Paragon Solutions는 자사의 첨단 스파이웨어 기술을 과시하기 위
 
 Paragon의 스파이웨어 'Graphite'로 추정되는 이 시스템은 일반적인 웹 애플리케이션과 유사한 구조를 가지고 있으나, 그 뒤에는 매우 복잡한 C2(Command & Control) 인프라가 숨어 있습니다. 아래 다이어그램은 타겟 데이터가 수집되어 대시보드에 도달하고, 이것이 소셜 미디어를 통해 유출되는 전체적인 흐름을 간소화하여 보여줍니다.
 
-```javascript
+```mermaid
 graph LR
     A[Target Device] --> B[Implant Agent]
     B --> C[Exfiltration Server]

@@ -81,15 +81,11 @@ def agent_loop(task, max_iterations=5):
         else:
             code = code_content
 
-        print(f"--- Agent generated code ---
-{code}
-")
+        print(f"--- Agent generated code ---\n{code}\n")
         
         # 2. 코드 실행 및 결과 관찰 (Observation)
         exec_output = run_python_code(code)
-        print(f"--- Execution Output ---
-{exec_output}
-")
+        print(f"--- Execution Output ---\n{exec_output}\n")
         
         # 결과가 만족스러우면 종료 (실제로는 LLM이 판단하거나 특정 키워드 확인)
         if "error" not in exec_output.lower() and exec_output.strip():

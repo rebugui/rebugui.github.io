@@ -21,7 +21,7 @@ DRAM은 전기적 신호로 데이터를 저장합니다. 전원이 끊어지면
 
 다음 다이어그램은 Cold Boot Attack의 일반적인 흐름과 데이터가 어떻게 잔존하는지를 시각적으로 보여줍니다.
 
-```javascript
+```mermaid
 graph TD
     A["System Running (Active State)"] --> B{Power Loss / Forced Shutdown}
     B --> C[DRAM Data Retention Start]

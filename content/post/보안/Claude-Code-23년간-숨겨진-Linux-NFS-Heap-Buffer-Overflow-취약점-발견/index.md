@@ -25,7 +25,7 @@ author: "Intelligence Agent"
 
 발견된 취약점은 Linux 커널의 NFS 클라이언트 구현체에 존재하는 **Heap Buffer Overflow**다. NFS는 네트워크를 통해 원격 파일 시스템을 마운트하는 프로토콜로, 2002년부터 해당 코드가 존재했으나 23년간 발견되지 않았다.
 
-```javascript
+```mermaid
 graph TD
     A[공격자 시스템] --> B[악의적인 NFS 서버]
     B --> C[네트워크 통신]
@@ -53,7 +53,7 @@ Heap Buffer Overflow는 힙 영역(동적 할당 메모리)에서 할당된 버�
 
 NFS 드라이버에서의 취약점 발생 메커니즘:
 
-```javascript
+```mermaid
 graph LR
     A[NFS 서버 응답] --> B[데이터 길이 필드]
     B --> C[커널 버퍼 할당]
@@ -119,7 +119,7 @@ int nfs_process_response_safe(struct nfs_response *resp) {
 
 Claude Code가 이 취약점을 발견한 방식은 기존 도구들과 근본적으로 다르다. 정적 분석 도구는 미리 정의된 패턴과 규칙에 의존하지만, Claude Code는 **컨텍스트 이해와 논리적 추론**을 통해 취약점을 식별한다.
 
-```javascript
+```mermaid
 graph TD
     A[사용자 프롬프트] --> B[Claude Code]
     B --> C[커널 소스 코드 분석]
@@ -147,7 +147,7 @@ NFS 드라이버의 취약점은 네트워크에서 수신된 데이터의 길�
 
 **공격 시나리오:**
 
-```javascript
+```mermaid
 graph TD
     A[공격자가 악의적 NFS 서버 구성] --> B[대상 시스템이 NFS 마운트 시도]
     B --> C[서버가 조작된 응답 전송]
@@ -302,7 +302,7 @@ sudo setsebool -P nfs_export_all_rw 0
 
 **보안 팀을 위한 권장사항:**
 
-```javascript
+```mermaid
 graph LR
     A[기존 도구] --> B[정적 분석]
     A --> C[동적 분석]

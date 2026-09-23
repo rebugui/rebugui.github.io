@@ -28,7 +28,7 @@ IRIX는 System V 기반의 유닉스 계열이지만, SGI만의 고유한 그래
 특히 주목해야 할 부분은 **커널 모드 드라이버와 사용자 공간 간의 상호작용(IOCTL)**입니다. 당시에는 보안보다는 성능 최적화가 우선시되었기 때문, 사용자가 전달하는 입력값에 대한 검증(Validation)이 충분하지 않은 경우가 많습니다.
 아래는 외부 공격자가 IRIX 시스템의 취약점을 이용해 권한을 상승시키는 일반적인 공격 흐름도입니다.
 
-```javascript
+```mermaid
 graph LR
     A[External Attacker] --> B[Initial Access]
     B --> C[User Shell Access]

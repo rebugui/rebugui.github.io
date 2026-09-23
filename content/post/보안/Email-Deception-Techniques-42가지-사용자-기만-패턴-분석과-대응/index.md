@@ -23,7 +23,7 @@ author: "Intelligence Agent"
 
 연구진은 42가지 기법을 크게 네 가지 카테고리로 분류했다:
 
-```javascript
+```mermaid
 graph TD
     A[이메일 기만 기법 42종] --> B[발신자 정보 조작]
     A --> C[링크 기만]
@@ -123,11 +123,7 @@ class SenderSpoofDetector:
                 results['risks'].append('From and Reply-To addresses differ')
                 results['risk_score'] += 25
         
-        # 4.
-```
-
-```python
- SPF/DKIM/DMARC 확인 (실제 환경에서)
+        # 4. SPF 레코드 확인 (실제 환경에서)
         spf_status = self._check_spf(domain)
         if spf_status == 'fail':
             results['risks'].append('SPF validation failed')
@@ -160,7 +156,7 @@ print(f"Risks: {result['risks']}")
 
 링크는 피싱 공격의 핵심 진입점이다. 사용자가 클릭하기 전까지 악의적인지 판단하기 어렵게 만드는 다양한 기법이 존재한다.
 
-```javascript
+```mermaid
 graph LR
     A[사용자 클릭] --> B{URL 분석}
     B -->|정상| C[목적지 도달]
@@ -243,11 +239,7 @@ class LinkDeceptionDetector:
         
         # 3. 리다이렉트 파라미터 검사
         query_params = urllib.parse.parse_qs(urllib.parse.urlparse(url).query)
-        for param in self.
-```
-
-```python
-redirect_params:
+        for param in self.redirect_params:
             if param in query_params:
                 results['risks'].append(f'Redirect parameter found: {param}')
                 results['risk_score'] += 25
@@ -264,8 +256,7 @@ test_urls = [
 
 for url in test_urls:
     result = detector.analyze_url(url)
-    print(f"
-URL: {url}")
+    print(f"\nURL: {url}")
     print(f"Risk Score: {result['risk_score']}")
     for risk in result['risks']:
         print(f"  - {risk}")
@@ -283,7 +274,7 @@ URL: {url}")
 | Encrypted Archive | 검사 우회 | 암호 걸린 ZIP 파일 |
 | Macro Embedded | 문서 내 매크로 | `.docm`, `.xlsm` |
 
-```javascript
+```mermaid
 graph TD
     A[첨부파일 수신] --> B{확장자 검사}
     B -->|위험 확장자| C[차단]
@@ -343,7 +334,7 @@ graph TD
 
 ### 1. 기술적 대책
 
-```javascript
+```mermaid
 graph LR
     A[이메일 수신] --> B[Gateway 필터링]
     B --> C[SPF/DKIM/DMARC]

@@ -23,7 +23,7 @@ author: "Intelligence Agent"
 
 이 과정에서의 시스템 흐름은 다음과 같이 단순화할 수 있습니다.
 
-```javascript
+```mermaid
 graph LR
     A[개발자 요청] --> B[코딩 에이전트]
     B --> C[agents-cli 명령 생성]
@@ -50,80 +50,19 @@ graph LR
 
 그렇다면 실제로 이 도구를 사용하여 에이전트를 빌드하는 과정은 어떻게 진행될까요? 다음은 Python 개발 환경과 `agents-cli`를 가정한 시나리오입니다.
 
-**1단계: 환경 설정 및 인증** 먼저 Google Cloud 프로젝트가 설정되어 있어야 하며, `agents-cli` 패키지가 설치되어 있어야 합니다.
+**1단계: 환경 설정 및 인증** [공식 저장소](https://github.com/google/agents-cli)의 요구 사항인 Python 3.11+, `uv`, Node.js를 준비하고, 다음 설치·초기 설정 명령을 실행합니다. Google Cloud에 배포한다면 해당 프로젝트의 인증도 별도로 구성해야 합니다.
 
 ```bash
-pip install google-agents-cli
+uvx google-agents-cli setup
 gcloud auth application-default login
 ```
 
 **2단계: 코딩 에이전트를 통한 명령어 생성** 개발자는 IDE(예: VS Code with Claude Code)에 다음과 같이 입력합니다.
 > "Google Cloud Vertex AI를 사용하여, 날씨 API를 호출할 수 있는 '날씨 도우미' 에이전트를 배포해 줘."
 
-**3단계: 에이전트의 CLI 호출 및 코드 생성** 코딩 에이전트는 이 요청을 이해하고, 내부적으로 `agents-cli`의 명령 세트를 참조하여 필요한 구성 파일(YAML or Python)을 작성하고 실행 명령어를 생성합니다. 이때 실제로 코딩 에이전트가 생성할 수 있는 Python 코드 예시는 다음과 같습니다.
+**3단계: 에이전트 생성 및 배포** 코딩 에이전트에 요구사항을 설명하고 `agents-cli create <name>`으로 프로젝트를 생성한 뒤, 생성된 에이전트의 설정과 도구 구현을 검토합니다. 배포 환경의 인증·권한을 확인하고 `agents-cli deploy`를 사용합니다. 구체적인 명령 인자는 [공식 CLI 문서](https://github.com/google/agents-cli)의 현재 버전에 맞춰 확인해야 합니다.
 
-```python
-import subprocess
-import json
-
-def deploy_weather_agent(project_id: str, region: str, display_name: str):
-    """
-    agents-cli를 사용하여 Vertex AI Agent Engine에 에이전트를 배포하는 함수입니다.
-    코딩 에이전트가 자동으로 생성한 스크립트라고 가정합니다.
-    """
-    
-    # 1. 에이전트 정의 (Agent Specification)
-    agent_spec = {
-        "name": display_name,
-        "model": "gemini-1.5-pro",
-        "instruction": "You are a helpful weather assistant. Use the get_weather tool.",
-        "tools": [
-            {
-                "type": "function_declaration",
-                "function": {
-                    "name": "get_weather",
-                    "description": "Get the current weather for a specific location",
-                    "parameters": {
-                        "type": "object",
-                        "properties": {
-                            "location": {"type": "string", "description": "City name"}
-                        },
-                        "required": ["location"]
-                    }
-                }
-            }
-        ]
-    }
-
-    # 2. CLI 명령어 조립
-    # agents-cli deploy 명령어는 JSON spec을 입력받아 배포를 자동화한다고 가정
-    cmd = [
-        "agents-cli", "deploy",
-        "--project", project_id,
-        "--region", region,
-        "--spec", json.dumps(agent_spec)
-    ]
-
-    # 3. 배포 실행
-    try:
-        print(f"Deploying agent {display_name}...")
-        result = subprocess.run(cmd, check=True, capture_output=True, text=True)
-        print("Deployment successful:")
-        print(result.stdout)
-    except subprocess.CalledProcessError as e:
-        print("Deployment failed:")
-        print(e.stderr)
-
-# 예시 실행
-if __name__ == "__main__":
-    deploy_weather_agent(
-        project_id="my-gcp-project-id",
-        region="us-central1",
-        display_name="weather-assistant-v1"
-    )
-```
-
-이 코드는 코딩 에이전트가 작성한 것으로, 실제로는 `agents-cli`가 제공하는 래퍼 라이브러리를 통해 더욱 간결해질 수 있습니다. 중요한 점은 개발자가 Vertex AI의 복잡한 API 스펙을 공부하지 않아도, 코딩 에이전트가 `agents-cli`의 스키마를 참조하여 올바른 JSON 구조를 생성하고 배포 명령을 실행한다는 것입니다.
+위 절차는 코딩 에이전트가 도구와 배포 구성을 검토하도록 안내하는 흐름입니다. CLI가 JSON 사양을 `--spec` 인자로 받아 바로 배포한다는 가정은 공식 명령으로 확인되지 않았으므로 실행 예제에서 제외합니다.
 
 ### 기술적 깊이: Meta-Agent와 Recursive Automation
 

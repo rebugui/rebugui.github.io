@@ -21,7 +21,7 @@ Cursor는 이를 평가하기 위해 자체적으로 **CursorBench**를 구축�
 
 이 모델의 아키텍처는 대규모 코드베이스를 효율적으로 처리하기 위해 RAG(Retrieval-Augmented Generation)와 긴 컨텍스트 윈도우를 최적화한 형태로 추론됩니다. 다음은 Composer 2가 IDE 내에서 사용자의 요청을 처리하여 코드를 생성하는 과정을 간소화한 워크플로우입니다.
 
-```javascript
+```mermaid
 graph LR
     A[User Request] --> B[Context Analyzer]
     B --> C[Retrieval System]

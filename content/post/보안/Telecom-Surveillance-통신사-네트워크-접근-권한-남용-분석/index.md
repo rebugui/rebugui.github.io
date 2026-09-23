@@ -29,7 +29,7 @@ author: "Intelligence Agent"
 
 다음은 공격자가 통신사 네트워크의 신뢰 관계를 악용하여 타겟의 위치를 추적하는 흐름도입니다.
 
-```javascript
+```mermaid
 graph LR
     A[Target User] --> B[Visited Network VLR]
     B --> C[Home Network HLR]

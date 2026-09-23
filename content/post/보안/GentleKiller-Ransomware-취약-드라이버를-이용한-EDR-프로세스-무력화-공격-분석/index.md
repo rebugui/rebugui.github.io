@@ -27,7 +27,7 @@ GentleKiller는 다음과 같은 단계를 거쳐 EDR 프로세스를 무력화�
 
 다음 Mermaid 다이어그램은 GentleKiller가 시스템에 침투하여 EDR을 무력화하는 과정을 간결하게 보여줍니다.
 
-```javascript
+```mermaid
 graph TD
     A[랜섬웨어 실행] --> B(취약 드라이버 식별 및 타겟팅);
     B --> C{IOCTL/페이로드 전달};

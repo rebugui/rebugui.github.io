@@ -34,7 +34,7 @@ DNS-PERSIST-01의 핵심은 ACME 계정의 공개키(Account Key)와 특정 CA�
 
 다음은 기존 방식과 지속적 검증 방식의 흐름을 비교한 다이어그램입니다.
 
-```javascript
+```mermaid
 graph TD
     subgraph Legacy_dns-01
         A1[Client] -->|API Call| B1[DNS Provider]
@@ -102,8 +102,7 @@ print(f"[+] DNS Record Name: _acme-persist.example.com")
 print(f"[+] DNS Record Value: {fingerprint_b64}")
 
 # 3. 시나리오: 공격자가 웹서버에 접근했지만 DNS를 변경할 수 없는 경우
-print("
-[!] Security Scenario Check:")
+print("\n[!] Security Scenario Check:")
 print("[!] Attacker compromised web server files.")
 print("[!] Attacker attempts to issue a new certificate.")
 print("[*] CA queries _acme-persist.example.com...")

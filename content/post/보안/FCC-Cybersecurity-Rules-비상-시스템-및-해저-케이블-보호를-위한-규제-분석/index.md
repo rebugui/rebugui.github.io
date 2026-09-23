@@ -27,7 +27,7 @@ FCC 규칙이 집중적으로 다루는 대상은 크게 두 가지입니다. �
 
 FCC 규칙은 기존의 자율적인 보안 관리 프로세스를 규제 준수(Compliance)라는 강력한 틀 안에 가두어 넣습니다. 아래 다이어그램은 해당 규제가 인프라에 적용되는 메커니즘을 보여줍니다.
 
-```javascript
+```mermaid
 graph TD
     A["핵심 기반 시설 (CI Asset)"] --> B{FCC 의무 기준 적용}
     B --> C[최소 보안 표준 정의 및 구현]
@@ -84,8 +84,7 @@ def check_fcc_compliance(asset_name, has_mfa=False, is_networked=True, reports_i
     compliance_status = {}
     is_compliant = True
     
-    print(f"
---- [ {asset_name} ] FCC 규제 준수 검사 결과 ---")
+    print(f"\n--- [ {asset_name} ] FCC 규제 준수 검사 결과 ---")
 
     for check, status in required_checks.items():
         if status:
@@ -94,15 +93,12 @@ def check_fcc_compliance(asset_name, has_mfa=False, is_networked=True, reports_i
             compliance_status[check] = "❌ 미충족 (FAIL)"
             is_compliant = False
             
-    print("
-".join([f" - {k}: {v}" for k, v in compliance_status.items()]))
+    print("\n".join([f" - {k}: {v}" for k, v in compliance_status.items()]))
 
     if is_compliant:
-        print(f"
->>> 최종 판정: '{asset_name}'은/는 FCC 최소 기준을 충족합니다.")
+        print(f"\n>>> 최종 판정: '{asset_name}'은/는 FCC 최소 기준을 충족합니다.")
     else:
-        print(f"
->>> 최종 판정: '{asset_name}'은/는 개선이 필요하며, 미충족 항목을 즉시 조치해야 합니다.")
+        print(f"\n>>> 최종 판정: '{asset_name}'은/는 개선이 필요하며, 미충족 항목을 즉시 조치해야 합니다.")
 
 # 예시 1: 모든 기준 충족 (이상적인 상태)
 check_fcc_compliance("Undersea Cable Node A", has_mfa=True, is_networked=True, reports_incident=True)

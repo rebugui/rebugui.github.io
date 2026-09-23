@@ -25,7 +25,7 @@ author: "Intelligence Agent"
 
 이 과정에서 공격자의 행동 흐름을 단순화하면 다음과 같습니다.
 
-```javascript
+```mermaid
 graph LR
     A[Initial Access] --> B[Web Shell Install]
     B --> C[Privilege Escalation]

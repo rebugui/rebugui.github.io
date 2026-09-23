@@ -29,7 +29,7 @@ SpecKV의 핵심 아이디어는 **Draft 모델의 출력 통계(Draft Statistic
 
 SpecKV는 매 추론 스텝마다 다음과 같은 과정을 거쳐 최적의 $\gamma$를 결정합니다. 이 과정은 매우 가볍기 때문에 전체 추론 시간에 미치는 오버헤드는 0.34ms 미만입니다.
 
-```javascript
+```mermaid
 graph TD
     A[Input Prompt] --> B[Draft Model]
     B --> C[Collect Draft Statistics]
@@ -113,11 +113,7 @@ def inference_step_with_speckv(target_model, draft_model, controller, input_ids,
     quant_map = {'FP16': [1.0, 0.0, 0.0], 'INT8': [0.0, 1.0, 0.0], 'NF4': [0.0, 0.0, 1.0]}
     quant_feat = torch.tensor([quant_map[quant_type]]).unsqueeze(0) # (1, 3)
     
-    # 3.
-```
-
-```python
- Decide Gamma dynamically
+    # 3. Decide Gamma dynamically
     gamma = controller(draft_logits[:, -1, :], quant_feat).item() # Use last token's logits
     
     # 4. Speculative Decoding Step with decided Gamma

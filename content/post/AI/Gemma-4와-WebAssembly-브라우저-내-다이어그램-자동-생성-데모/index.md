@@ -27,7 +27,7 @@ Gemma 4 모델은 FP16(16비트 부동소수점)으로 학습되었지만, 이�
 
 다음은 브라우저 내에서 사용자 입력이 Excalidraw 다이어그램으로 렌더링되기까지의 전체 데이터 흐름을 보여주는 다이어그램입니다. 이 과정은 서버를 전혀 거치지 않는 클라이언트 사이드(Client-side) 아키텍처의 전형입니다.
 
-```javascript
+```mermaid
 graph LR
     A[User Input Prompt] --> B[Tokenizer JS]
     B --> C[WebAssembly Runtime]

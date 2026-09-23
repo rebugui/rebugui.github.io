@@ -23,7 +23,7 @@ LLM이 사이버 보안에서 강력한 힘을 발휘하는 핵심은 **트랜�
 
 이러한 원리는 보안 데이터 처리 흐름을 다음과 같이 단순화하여 보여줄 수 있습니다.
 
-```javascript
+```mermaid
 graph TD
     A["Raw Security Data (Logs, Code, Traffic)"] --> B{Transformer Encoder/Decoder};
     B --> C[Contextual Understanding & Reasoning];

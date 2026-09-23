@@ -26,7 +26,7 @@ author: "Intelligence Agent"
 
 UNKN으로 알려진 이 인물은 두 개의 전설적인 랜섬웨어 갱단을 이끌었습니다. 먼저 두 그룹의 관계를 이해해야 합니다.
 
-```javascript
+```mermaid
 graph LR
     A[GandCrab] --> B[RaaS 출시 2018]
     B --> C[2년간 20억 원 수익]
@@ -65,7 +65,7 @@ GandCrab은 2018년 등장하여 **Ransomware-as-a-Service(RaaS)** 모델을 정
 
 이 정보는 어디서 왔을까요? 공개되지 않은 내부 사항을 포함해 다음과 같은 기법들이 사용되었을 것으로 추정됩니다.
 
-```javascript
+```mermaid
 graph TD
     A[암호화폐 추적] --> D[신원 식별]
     B[포럼 OPSEC 실패] --> D
@@ -203,7 +203,7 @@ UNKN은 여러 포럼에서 서로 다른 ID를 사용했지만, **다음과 같
 
 독일의 Doxing 이후, 관찰된 변화입니다.
 
-```javascript
+```mermaid
 graph LR
     A[Doxing 공개] --> B[REvil 인프라 다운]
     B --> C[연계 멤버 잠적]

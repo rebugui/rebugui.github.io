@@ -23,7 +23,7 @@ Claude Code가 어떻게 다중 모델을 지원할 수 있었는지 이해하�
 
 Claude Code는 처음부터 확장 가능한 구조로 설계되었습니다. 핵심 컴포넌트는 다음과 같습니다:
 
-```javascript
+```mermaid
 graph TD
     A[CLI Interface] --> B[Prompt Manager]
     B --> C[Context Handler]
@@ -254,7 +254,7 @@ OpenClaude가 200개 이상의 모델을 지원할 수 있는 이유는 **OpenAI
 
 ### 주요 호환성 이슈와 해결책
 
-```javascript
+```mermaid
 graph LR
     A[Claude Code Request] --> B[Provider Shim]
     B --> C{API Type Detection}

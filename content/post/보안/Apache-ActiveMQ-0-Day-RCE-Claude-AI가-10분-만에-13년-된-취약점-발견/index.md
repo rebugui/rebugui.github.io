@@ -22,7 +22,7 @@ Apache ActiveMQ는 Java 기반 오픈소스 메시지 브로커다. 기업 환�
 
 문제의 핵심은 OpenWire 프로토콜에 있다. ActiveMQ의 네이티브 통신 프로토콜로, Java 객체를 직렬화하여 네트워크로 전송한다. 이 직렬화 과정에서 입력값 검증이 부족하면, 공격자가 악의적인 객체를 주입할 수 있다.
 
-```javascript
+```mermaid
 graph LR
     A[Attacker] --> B[Malicious Serialized Object]
     B --> C[ActiveMQ OpenWire Port 61616]
@@ -82,7 +82,7 @@ public class MaliciousPayload implements Serializable {
 
 실제 공격 시나리오를 단계별로 살펴보자.
 
-```javascript
+```mermaid
 graph TD
     A[Reconnaissance: ActiveMQ 탐지] --> B[Port 61616 스캔]
     B --> C[OpenWire 프로토콜 핑거프린팅]
@@ -249,7 +249,7 @@ alert tcp any any -> any 61616 (
 
 Claude의 발견은 보안 업계에 근본적인 질문을 던진다.
 
-```javascript
+```mermaid
 graph TD
     A[소스 코드] --> B[AI 모델 분석]
     B --> C{취약점 패턴 매칭}

@@ -27,7 +27,7 @@ AI Caregiving 시스템의 맥락에서 이는 센서 데이터(움직임, 음�
 
 AI 돌봄 시스템은 크게 **데이터 수집(Data Ingestion)**, **LLM 처리(Reasoning)**, **서비스 전달(Action)**의 세 단계로 나뉩니다. 가정 내의 IoT 센서가 수집한 비정형 데이터를 LLM이 이해하기 쉬운 프롬프트로 변환하고, LLM은 이를 바탕으로 적절한 행동을 결정합니다.
 
-```javascript
+```mermaid
 graph TD
     A[IoT Sensors] --> B[Data Ingestion Layer]
     C[Voice Input] --> B

@@ -146,10 +146,8 @@ def run_coding_agent(user_message, max_iterations=5):
             break
             
         # 시뮬레이션: 실행 결과(에러 또는 성공 로그)를 사용자 입장에서 전달
-        simulated_output = "Running tests...
-[ERROR] tests/test_api.py:42: AssertionError"
-        conversation_history.append({"role": "user", "content": f"Tool Execution Result:
-{simulated_output}"})
+        simulated_output = "Running tests...\n[ERROR] tests/test_api.py:42: AssertionError"
+        conversation_history.append({"role": "user", "content": f"Tool Execution Result:\n{simulated_output}"})
 
 # 실행 예시
 run_coding_agent("Add a new endpoint /health that returns JSON status 200.")

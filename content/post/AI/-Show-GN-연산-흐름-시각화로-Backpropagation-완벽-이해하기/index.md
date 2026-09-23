@@ -81,8 +81,7 @@ print(f"Loss = {loss.item()}")  # 예상: 25.0
 # 3. 역전파 (Backward Pass)
 loss.backward()
 
-print(f"
-Backward Pass 결과 (Gradients):")
+print(f"\nBackward Pass 결과 (Gradients):")
 # dL/dz = 2z = 2 * 5.0 = 10.0
 print(f"dL/dz (z.grad) = {z.grad.item()}") # 주의: 중간 변수 z의 grad는 보통 None이거나 retain_graph 필요
 

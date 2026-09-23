@@ -29,7 +29,7 @@ MARS의 핵심 철학은 **"모델이 확신하지 못하는 곳에서 학습하
 
 MARS의 전체 작동 과정은 아래와 같이 요약할 수 있습니다. 초기 데이터로부터 보상 모델을 학습시킨 후, 예측이 불확실한 샘플을 필터링하고 이를 증강하여 다시 학습셋에 합치는 순환 구조를 가집니다.
 
-```javascript
+```mermaid
 graph TD
     A[Raw Preference Data] --> B[Initial Reward Model Training]
     B --> C[Margin Calculation on Training Set]

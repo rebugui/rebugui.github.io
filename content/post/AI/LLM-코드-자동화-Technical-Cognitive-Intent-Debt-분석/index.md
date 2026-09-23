@@ -27,7 +27,7 @@ LLM을 활용한 코드 생성은 기본적으로 'Next Token Prediction' 확률
 
 다음은 LLM을 활용한 개발 과정에서 이 세 가지 부채가 어떻게 축적되는지를 나타낸 간단한 다이어그램입니다.
 
-```javascript
+```mermaid
 graph TD
     A[개발자 요청 및 프롬프트] --> B[LLM 코드 생성]
     B --> C[코드 리뷰 및 수동 수정]

@@ -25,7 +25,7 @@ LLM은 이러한 복합적인 정보를 바탕으로 다음과 같은 핵심 기
 
 이러한 LLM의 역할은 전체 사이버 보안 생태계에서 중앙 지능 역할을 수행하며 유기적인 흐름을 만들어냅니다.
 
-```javascript
+```mermaid
 graph LR
     A["Raw Data Ingestion (Logs/PCAP)"] --> B{LLM Core Engine}
     B --> C1[Threat Detection & Scoring]
@@ -105,8 +105,7 @@ log2 = "2024-10-27T14:35:22Z | SRC=203.0.113.10 | DST=API-GATEWAY | METHOD=GET |
 print("--- Log 1 분석 결과 ---")
 print(classify_threat_with_llm(log1))
 
-print("
---- Log 2 분석 결과 (고위험 시나리오) ---")
+print("\n--- Log 2 분석 결과 (고위험 시나리오) ---")
 print(classify_threat_with_llm(log2))
 ```
 

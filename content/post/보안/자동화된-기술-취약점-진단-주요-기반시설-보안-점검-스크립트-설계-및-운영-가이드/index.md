@@ -33,7 +33,7 @@ author: "Intelligence Agent"
 
 Mermaid를 사용하여 일반적인 수동 점검 과정을 자동화된 프레임워크로 전환하는 개념적 흐름을 제시합니다.
 
-```javascript
+```mermaid
 graph TD
     A[자산 식별 및 인벤토리 구축] --> B{위협 모델링 및 위험도 평가};
     B --> C[핵심 체크리스트 정의 (CVE/정책 기반)];

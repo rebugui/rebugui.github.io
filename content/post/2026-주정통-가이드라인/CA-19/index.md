@@ -2,7 +2,7 @@
 title: "[2026 주요정보통신기반시설] CA-19 가상리소스이상징후알림설정"
 slug: "2026-주정통/CA-19"
 date: 2026-02-05T09:56:13+09:00
-lastmod: 2026-02-05T09:56:13+09:00
+lastmod: 2026-09-23T00:00:00+09:00
 description: "가상 리소스 이상 징후 알림 설정 여부 점검"
 categories: ["2026 주정통 가이드라인"]
 tags:
@@ -40,9 +40,9 @@ draft: false
 4. **데이터 유출**: 대량의 S3 다운로드 시도 감지
 5. **비인가 변경**: 보안 그룹, IAM 정책 변경 탐지
 
-**실제 사례**
-- 암호화폐화 채굴 악성코드가 2주간 실행되었는데 알림이 없어 비용 5천만 원 발생
-- 관리자 계정 탈취 후 데이터 유출이 3일간 지속되었는데 탐지 못함
+**점검 시나리오 (가상 예시)**
+- 암호화폐 채굴 프로세스로 CPU 사용량이 급증해도 알림이 없다면 과금과 탐지가 지연될 수 있음
+- 관리자 계정이 탈취된 뒤 대량의 데이터가 내려받아져도 경보가 없다면 대응 시점을 놓칠 수 있음
 
 ### 3. 점검 대상
 
@@ -73,8 +73,7 @@ aws cloudwatch describe-alarms \
   --state-value ALARM
 
 # 특정 리소스의 알람 확인
-aws cloudwatch describe-alarms \
-  --alarm-names prefix/*
+aws cloudwatch describe-alarms --alarm-name-prefix prefix
 
 # 알람의 알림 대상 확인
 aws cloudwatch describe-alarms \
@@ -415,6 +414,7 @@ aws cloudwatch put-dashboard \
 ### 10. 참고 자료
 
 - **AWS CloudWatch Alarms**: https://docs.aws.amazon.com/AmazonCloudWatch/latest/UserGuide/AlarmThatSendsEmail.html
+- **AWS CLI describe-alarms 옵션**: https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/describe-alarms.html
 - **AWS GuardDuty Documentation**: https://docs.aws.amazon.com/guardduty/
 - **AWS Security Hub**: https://docs.aws.amazon.com/security-hub/
 

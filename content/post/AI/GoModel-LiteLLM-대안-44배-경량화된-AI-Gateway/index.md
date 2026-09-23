@@ -23,7 +23,7 @@ GoModel은 이러한 게이트웨이 기능을 Go 언어로 구현하여, 경량
 
 다음은 GoModel이 요청을 처리하는 전체적인 흐름을 간소화한 다이어그램입니다.
 
-```javascript
+```mermaid
 graph LR
     A[Client App] --> B[GoModel Gateway]
     B --> C{Cache Check}

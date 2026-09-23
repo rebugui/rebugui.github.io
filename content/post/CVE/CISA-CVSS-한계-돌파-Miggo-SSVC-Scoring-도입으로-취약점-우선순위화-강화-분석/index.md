@@ -29,7 +29,7 @@ SSVC는 CVSS가 제공하는 '심각도' 위에 조직 고유의 비즈니스 �
 
 다음 다이어그램은 전통적인 CVSS 지표가 어떻게 SSVC로 확장되어 최종 위험 점수(Risk Score)를 산출하는지 보여줍니다.
 
-```javascript
+```mermaid
 graph TD
     A[CVSS Base Metrics] --> B{Severity Level}
     B --> C["Asset Criticality (자산 중요도)"]

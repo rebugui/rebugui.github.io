@@ -24,7 +24,7 @@ Apache ActiveMQ Classic은 Java 기반의 오픈소스 메시지 브로커로, �
 
 하지만 이 "널리 사용됨"이 양날의 검이 되었다. 많은 조직이 ActiveMQ를 핵심 인프라로 사용하면서도, 정작 그 내부 코드에 대한 보안 감사는 소홀했다.
 
-```javascript
+```mermaid
 graph TD
     A[Producer App] --> B[ActiveMQ Broker]
     B --> C[Consumer App 1]
@@ -61,7 +61,7 @@ public class VulnerableDeserializer {
 
 #### 공격 시나리오 상세 분석
 
-```javascript
+```mermaid
 graph LR
     A[공격자] --> B[ActiveMQ Broker :61616]
     B --> C[역직렬화 수행]
@@ -169,7 +169,7 @@ if __name__ == "__main__":
 
 많은 보안 전문가와 개발자가 "오래된 오픈소스 프로젝트는 커뮤니티 검증을 거쳤으니 안전할 것"이라고 가정했다. 하지만 이는 위험한 오해다.
 
-```javascript
+```mermaid
 graph TD
     A[코드 복잡도 증가] --> B[전체 코드 검증 불가능]
     B --> C[심층 경로 무시]
@@ -278,22 +278,7 @@ sudo iptables-save > /etc/iptables/rules.v4
 
 **4단계: 모니터링 및 탐지 강화**
 
-```python
-#!/usr/bin/env python3
-"""
-ActiveMQ 비정상 트래픽 탐지 스크립트
-방어자를 위한 SIEM 연동 예시
-"""
-import re
-from datetime import datetime
-
-# 의심스러운 패턴 정의
-SUSPICIOUS_PATTERNS = [
-    b'ysoserial',
-    b'CommonsCollections',
-    b'Runtime.exec',
-    b'
-```
+방어 측에서는 승인된 로그와 네트워크 텔레메트리에서 비정상 요청 패턴을 수집하고, 확인된 침해 지표를 기준으로 경보를 구성해야 한다. 원래 탐지 스크립트는 패턴 목록 도중 잘려 있어 실행 가능한 예시가 아니다.
 
 ---
 

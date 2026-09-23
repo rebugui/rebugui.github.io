@@ -23,7 +23,7 @@ author: "Intelligence Agent"
 
 Multi-Agent LLM 시스템은 본질적으로 분산 시스템의 특성을 모두 갖추고 있다. 각 에이전트는 독립적인 computation node이며, 네트워크(프롬프트/응답)를 통해 통신한다. 결정적으로, LLM의 비결정적 특성 때문에 동일 입력에도 다른 출력이 발생하는 **비결정론적 분산 시스템**이다.
 
-```javascript
+```mermaid
 graph TD
     A[User Request] --> B[Orchestrator]
     B --> C[Agent 1: Code Generator]
@@ -68,7 +68,7 @@ LLM API는 실패한다. Rate limit, 타임아웃, hallucination, 그리고 의�
 
 이러한 문제를 해결하기 위해, 분산 시스템의 **Event Sourcing** 패턴을 적용한 아키텍처를 제안한다.
 
-```javascript
+```mermaid
 graph LR
     A[Agent Action] --> B[Event Bus]
     B --> C[Event Store]
@@ -148,11 +148,7 @@ class EventStore:
         # 실제로는 LLM 기반 의미적 병합 수행
         return Event(
             event_id=str(uuid.uuid4()),
-            event_type=EventType.
-```
-
-```python
-CONFLICT_DETECTED,
+            event_type=EventType.CONFLICT_DETECTED,
             agent_id="system",
             timestamp=datetime.now(),
             payload={
@@ -208,11 +204,7 @@ class Agent:
             event_id=str(uuid.uuid4()),
             event_type=self._get_event_type(),
             agent_id=self.agent_id,
-            timestamp=datetime.
-```
-
-```python
-now(),
+            timestamp=datetime.now(),
             payload={
                 "file_path": task.get("file_path"),
                 "content": result,
@@ -342,9 +334,7 @@ class CircuitBreaker:
 # LLM 호출에 Circuit Breaker 적용
 llm_breaker = CircuitBreaker(failure_threshold=3, recovery_timeout=30)
 
-def safe_llm_call(prompt: str) -> str:
-    try:
-        return llm_breaker.call(call_openai_api,
+# Pass an actual model-call function and its prompt to llm_breaker.call(prompt_function, prompt).
 ```
 
 ---

@@ -1,7 +1,7 @@
 ---
 title: "React2Shell: 트래픽 탈취 위협"
 date: 2026-02-07T09:01:59+09:00
-draft: false
+draft: true
 tags:
   - "Security"
   - "Cybersecurity"

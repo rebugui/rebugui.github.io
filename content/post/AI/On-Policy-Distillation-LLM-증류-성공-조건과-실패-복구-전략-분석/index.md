@@ -21,7 +21,7 @@ author: "Intelligence Agent"
 
 전통적인 knowledge distillation이 정적 데이터셋에서 교사의 출력 분포를 모방하는 것이라면, OPD는 동적이다. 학생 모델이 스스로 생성한 시퀀스 위에서 교사 모델의 피드백을 받는 방식이다. 이 차이가 왜 중요할까?
 
-```javascript
+```mermaid
 graph TD
     A[학생 모델 샘플링] --> B[시퀀스 생성]
     B --> C[교사 모델 평가]
@@ -119,11 +119,7 @@ class OnPolicyDistillator:
         ).sum(dim=-1).mean().item()
         shared_mass_student = (
             student_probs * shared_mask
-        ).sum(dim=-1).mean().
-```
-
-```python
-item()
+        ).sum(dim=-1).mean().item()
         
         return {
             "shared_mass_teacher": shared_mass_teacher,
@@ -175,7 +171,7 @@ item()
 
 ### 실패 복구 전략 1: Off-Policy Cold Start
 
-```javascript
+```mermaid
 graph LR
     A[Cold Start 실패 상태] --> B[Off-Policy 데이터로 초기화]
     B --> C[교사 시퀀스로 예열]
@@ -298,7 +294,7 @@ def select_teacher_aligned_prompts(
 
 연구의 마지막 부분은 다소 우울한, 하지만 반드시 직면해야 할 통찰을 제공한다. OPD의 "공짜 점심" 같은 dense token-level reward에는 숨겨진 비용이 있다.
 
-```javascript
+```mermaid
 graph TD
     A[OPD 시작] --> B{시퀀스 길이}
     B -->|짧은 시퀀스| C[안정적 학습]

@@ -25,7 +25,7 @@ OpenAI Codex가 GitHub와 연동될 때, OAuth 2.0 흐름을 통해 Access Token
 
 취약점의 핵심은 **신뢰 경계(Trust Boundary)의 붕괴**다. Codex는 사용자 프롬프트를 처리하기 위해 권한이 부여된 코드 실행 환경을 제공하는데, 악의적으로 조작된 프롬프트나 코드가 이 환경 내에서 토큰에 접근할 수 있다.
 
-```javascript
+```mermaid
 graph TD
     A[사용자 인증 요청] --> B[GitHub OAuth Flow]
     B --> C[Access Token 발급]
@@ -115,11 +115,7 @@ class TokenExfiltrationPoC:
         
         # 실제 전송 없이 로깅만 수행
         print(f"[SIMULATION] Would send payload: {payload}")
-        print(f"[SIMULATION] Target webhook:
-```
-
-```python
- {webhook_url}")
+        print(f"[SIMULATION] Target webhook: {webhook_url}")
         print("[WARNING] This is a simulation. No data was sent.")
 
 # 실행 예시
@@ -157,7 +153,7 @@ if __name__ == "__main__":
 
 토큰 탈취는 시작점이다. 공격자는 탈취한 토큰을 이용해 다음과 같은 공격을 확장한다.
 
-```javascript
+```mermaid
 graph LR
     A[Token 탈취] --> B[소스코드 유출]
     A --> C[CI/CD 파이프라인 조작]

@@ -27,7 +27,7 @@ LoRA Redux에서 제안하는 SVD 기반 초기화는 학습하려는 데이터�
 
 다음은 LoRA의 업데이트 메커니즘과 SVD를 이용한 최적화 과정을 간단히 도식화한 것입니다.
 
-```javascript
+```mermaid
 graph LR
     A[Input x] --> B[Frozen Pretrained W]
     A --> C[LoRA Adapter Path]

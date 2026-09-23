@@ -23,7 +23,7 @@ Btrfs 멀티 디바이스 풀 손상은 단순한 기술적 문제가 아니다.
 
 ### 핵심 구조
 
-```javascript
+```mermaid
 graph TD
     A[Btrfs Pool] --> B[Device 1]
     A --> C[Device 2]
@@ -55,7 +55,7 @@ graph TD
 
 우리 사례에서는 3디스크 RAID 5 구성에서 다음과 같은 손상이 발생했다.
 
-```javascript
+```mermaid
 graph LR
     A[정상 상태] --> B[Disk 2 섹터 오류]
     B --> C[Metadata Chunk 손상]
@@ -143,7 +143,7 @@ echo "Assessment complete. Log saved to: $LOG_FILE"
 
 ### 우선순위 결정 트리
 
-```javascript
+```mermaid
 graph TD
     A[Mount 실패] --> B{ro,recovery 마운트 가능?}
     B -->|가능| C[데이터 백업 우선]
@@ -268,7 +268,7 @@ fi
 
 ### 4. 백업 전략 (3-2-1 원칙)
 
-```javascript
+```mermaid
 graph LR
     A[원본 데이터] --> B[로컬 백업]
     A --> C[외장 드라이브]

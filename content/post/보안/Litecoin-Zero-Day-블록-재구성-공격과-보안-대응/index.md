@@ -27,7 +27,7 @@ author: "Intelligence Agent"
 
 이번 Zero-Day 공격이 어떻게 블록 재구성을 유도했는지 그 흐름을 간단하게 도식화하면 다음과 같습니다.
 
-```javascript
+```mermaid
 graph TD
     A[공격자 취약점 탐지] --> B[악의적인 블록 생성 시작]
     B --> C[합의 로직 결함 악용]
@@ -112,8 +112,7 @@ litecoin_chain.add_block(block1)
 ```python
 # 2. 공격자가 Zero-Day를 악용한 블록 생성
 # 실제로는 난이도가 낮지만, 코드상 우회를 통해 누적 난이도를 속임
-print("
->>> 공격자의 블록 재구성 시도")
+print("\n>>> 공격자의 블록 재구성 시도")
 attacker_block = Block(1, litecoin_chain.chain[0].hash, "TX: Double Spending Attempt", 10, is_malicious=True) 
 
 # 노드가 속임수에 넘어가 체인을 교체함

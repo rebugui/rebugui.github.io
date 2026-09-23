@@ -37,7 +37,7 @@ author: "Intelligence Agent"
 
 **Mermaid 다이어그램: AdamW와 Corridor 메커니즘 흐름** 다음은 Heavy-Tailed 경사가 AdamW를 통해 처리되어 Corridor 내에 갇히는 과정을 나타낸 심플한 흐름도입니다.
 
-```javascript
+```mermaid
 graph TD
     A[Heavy-Tailed Gradient g_t] --> B{AdamW Update};
     B --> C["Update m_t (Momentum)"];

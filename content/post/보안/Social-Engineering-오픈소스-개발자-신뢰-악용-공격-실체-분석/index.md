@@ -36,7 +36,7 @@ author: "Intelligence Agent"
 
 이 공격은 정교한 사전 조사 위에서 성립한다. 공격자는 단순히 메시지를 보내는 것이 아니라, 타겟에 대한 심층적인 정보를 수집한 뒤에 접근한다.
 
-```javascript
+```mermaid
 graph TD
     A[표적 오픈소스 프로젝트 선정] --> B[핵심 기여자 프로파일링]
     B --> C[Linux Foundation 임원 정보 수집]
@@ -69,23 +69,13 @@ fake_message_template = {
     "channel": "Slack DM",
     "subject": "Urgent: Security Advisory for {project_name}",
     "body": (
-        "Hi {contributor_name},
-
-"
-        "I'm reaching out regarding a privately reported vulnerability in {project_name}.
-"
-        "We've been coordinating with the CVE board, and your module is directly affected.
-
-"
-        "Could you review the attached patch file and confirm the fix?
-"
-        "We'd like to ship this by EOD to stay ahead of public disclosure.
-
-"
-        "Best regards,
-"
-        "Sarah Chen
-"
+        "Hi {contributor_name},\n\n"
+        "I'm reaching out regarding a privately reported vulnerability in {project_name}.\n"
+        "We've been coordinating with the CVE board, and your module is directly affected.\n\n"
+        "Could you review the attached patch file and confirm the fix?\n"
+        "We'd like to ship this by EOD to stay ahead of public disclosure.\n\n"
+        "Best regards,\n"
+        "Sarah Chen\n"
         "Linux Foundation, Security Team"
     ),
     "attachment": "security_patch_2024_08_15.tar.gz",  # 실제는 악성 파일
@@ -222,7 +212,7 @@ def analyze_downloaded_file(file_path: str) -> dict:
 - 정식 보안 취약점 보고 프로세스 이해
 - 실제 시뮬레이션 훈련 (피싱 시뮬레이션의 소셜 엔지니어링 버전)
 
-```javascript
+```mermaid
 graph LR
     A[의심스러운 메시지 수신] --> B[첨부 파일 실행 금지]
     B --> C[발신자 공식 채널로 검증]

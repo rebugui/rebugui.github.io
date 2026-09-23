@@ -27,7 +27,7 @@ Multi-Agent Orchestration은 여러 LLM 에이전트가 각각의 역할을 수�
 
 가장 널리 알려진 패턴은 계층형(Hierarchical) 구조다:
 
-```javascript
+```mermaid
 graph TD
     A[CEO Agent] --> B[Product Manager]
     A --> C[Marketing Lead]
@@ -86,7 +86,7 @@ class ManagerAgent:
 
 이것은 **다목적 최적화(Pareto Optimization)** 문제와 유사하지만, LLM 에이전트들은 서로의 제약조건을 명시적으로 알지 못한다.
 
-```javascript
+```mermaid
 graph LR
     A[User Request] --> B[Agent 1: Speed]
     A --> C[Agent 2: Quality]
@@ -136,7 +136,7 @@ print(analyzer.estimate_cost(num_agents=10))
 
 Multi-Agent 시스템에서 한 에이전트의 실수는 **연쇄적으로 증폭**된다.
 
-```javascript
+```mermaid
 graph TD
     A[Agent 1: 잘못된 데이터 수집] --> B[Agent 2: 오류 기반 분석]
     B --> C[Agent 3: 잘못된 인사이트 도출]
@@ -250,7 +250,7 @@ class ObservableAgent:
 
 완전한 Multi-Agent 대신 **Hybrid 접근**을 고려하라:
 
-```javascript
+```mermaid
 graph TD
     A[User Input] --> B[Router LLM]
     B --> C{Task Complexity}

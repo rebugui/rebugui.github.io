@@ -25,7 +25,7 @@ Tendril은 단순히 LLM(거대 언어 모델)에게 답변을 생성하게 하�
 
 Tendril이 요청을 처리하고 스스로 진화하는 과정은 다음과 같은 순환 구조를 가집니다.
 
-```javascript
+```mermaid
 graph TD
     A[User Task Request] --> B[Agent Planner]
     B --> C{Available Tools?}

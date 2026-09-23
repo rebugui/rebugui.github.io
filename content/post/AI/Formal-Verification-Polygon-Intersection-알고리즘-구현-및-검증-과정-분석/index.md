@@ -25,7 +25,7 @@ author: "Intelligence Agent"
 
 다음 Mermaid 다이어그램은 일반적인 다각형 교차점 계산의 개념적 흐름을 보여줍니다.
 
-```javascript
+```mermaid
 graph TD
     A[Input Polygons P1, P2] --> B{Initialize Sweep Line};
     B --> C[Identify Intersecting Edges];

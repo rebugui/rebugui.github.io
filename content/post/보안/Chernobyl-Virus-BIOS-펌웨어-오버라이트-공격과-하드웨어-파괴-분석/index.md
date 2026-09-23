@@ -22,7 +22,7 @@ author: "Intelligence Agent"
 
 당시의 많은 메인보드는 Flash EEPROM(Electrically Erasable Programmable Read-Only Memory)을 사용하여 BIOS를 저장했습니다. 이 메모리는 전기적으로 재작성이 가능하지만, 기본적으로는 쓰기 방지(Write Protect)되어 있습니다. CIH는 이 쓰기 방지 락을 푸는 과정(Ring 0 권한 탈취 및 I/O 포트 조작)이 핵심입니다. 공격 흐름은 다음과 같습니다.
 
-```javascript
+```mermaid
 graph TD
     A[감염된 EXE 실행] --> B[메모리 상주]
     B --> C[PE 파일 감염 시도]

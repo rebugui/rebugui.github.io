@@ -23,7 +23,7 @@ author: "Intelligence Agent"
 
 Qwen3.6-Plus는 기존 Qwen 시리즈의 장점을 계승하면서도, 에이전트 워크플로우에 특화된 세 가지 핵심 개선사항을 도입했다.
 
-```javascript
+```mermaid
 graph TD
     A[User Input] --> B[Intent Analysis]
     B --> C{Reasoning Required?}
@@ -118,9 +118,6 @@ tools = [
                     },
                     "subject": {"type": "string"},
                     "body": {"type":
-```
-
-```python
  "string"}
                 },
                 "required": ["to", "subject", "body"]
@@ -179,7 +176,7 @@ After getting the results, I will send an email to all active Engineering employ
 
 ReAct(Reasoning + Acting) 패턴은 현대적 에이전트 아키텍처의 표준이다. Qwen3.6-Plus로 실제 ReAct 에이전트를 구축해보자.
 
-```javascript
+```mermaid
 graph LR
     A[Query] --> B[Thought]
     B --> C[Action]
@@ -226,8 +223,7 @@ class QwenReActAgent:
         
     def _build_prompt(self, query: str) -> str:
         """ReAct 프롬프트 구성"""
-        tool_descriptions = "
-".join([
+        tool_descriptions = "\n".join([
             f"- {name}: {func.__doc__ or 'No description'}"
             for name, func in self.tools.items()
         ])
@@ -251,34 +247,19 @@ Previous steps:
         
         # 이전 스텝 추가
         for step in self.history:
-            prompt += f"
-Thought: {step.thought}"
-            prompt += f"
-Action: {step.action}"
-            prompt += f"
-Action Input: {step.action_input}"
-            prompt += f"
-Observation: {step.observation}
-"
+            prompt += f"\nThought: {step.thought}"
+            prompt += f"\nAction: {step.action}"
+            prompt += f"\nAction Input: {step.action_input}"
+            prompt += f"\nObservation: {step.observation}\n"
         
-        prompt += f"
-Question: {query}
-"
+        prompt += f"\nQuestion: {query}\n"
         return prompt
     
     def _parse_response(self, response: str) -> AgentStep:
         """모델 응답 파싱"""
-        thought_match = re.search(r"Thought:\s*(.+?)(?=
-|$)", response)
-        action_match = re.
-```
-
-```python
-search(r"Action:\s*(\w+)", response)
-        action_input_match = re.search(r"Action Input:\s*(.+?)(?=
-Observation|
-Thought|
-Final|$)", response, re.DOTALL)
+        thought_match = re.search(r"Thought:\s*(.+?)(?=\n|$)", response)
+        action_match = re.search(r"Action:\s*(\w+)", response)
+        action_input_match = re.search(r"Action Input:\s*(.+?)(?=\nObservation|\nThought|\nFinal|$)", response, re.DOTALL)
         
         return AgentStep(
             thought=thought_match.group(1) if thought_match else "",
@@ -322,11 +303,7 @@ Final|$)", response, re.DOTALL)
                     observation = f"Error executing {step.action}: {str(e)}"
                 
                 step.observation = observation
-                self.history.
-```
-
-```python
-append(step)
+                self.history.append(step)
             else:
                 # 도구가 없거나 잘못된 액션
                 step.observation = f"Unknown tool: {step.action}"
@@ -424,8 +401,7 @@ class ConversationMemory:
         if len(self.messages) < 5:
             return ""
         
-        conversation_text = "
-".join([
+        conversation_text = "\n".join([
             f"{m['role']}: {m['content']}" 
             for m in self.messages[1:]  # 시스템 메시지 제외
         ])
@@ -491,8 +467,7 @@ outputs = llm.generate(prompts, sampling_params)
 
 for output in outputs:
     print(f"Prompt: {output.prompt}")
-    print(f"Response: {output.outputs[0].text}
-")
+    print(f"Response: {output.outputs[0].text}\n")
 ```
 
 **프로덕션 체크리스트:**

@@ -29,7 +29,7 @@ Anthropic의 연구는 `Claude Code` 도구를 통해 사용자와 AI가 상호�
 
 아래 다이어그램은 이상적인 에이전트의 자율적 실행 흐름과 신뢰가 부족할 때 발생하는 병목 구간을 시각화한 것입니다.
 
-```javascript
+```mermaid
 graph TD
     A[User Request] --> B[Agent Reasoning]
     B --> C[Tool Generation]

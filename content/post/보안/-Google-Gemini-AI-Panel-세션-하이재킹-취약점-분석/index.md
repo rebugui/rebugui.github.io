@@ -77,7 +77,7 @@ TARGET_URL = "http://localhost:3000/api/chat"
 xss_payloads = [
     "<script>alert('XSS')</script>",
     "<img src=x onerror=alert('XSS')>",
-    ""'><script>alert(String.fromCharCode(88,83,83))</script>"
+    "\"'><script>alert(String.fromCharCode(88,83,83))</script>"
 ]
 
 headers = {"Content-Type": "application/json"}

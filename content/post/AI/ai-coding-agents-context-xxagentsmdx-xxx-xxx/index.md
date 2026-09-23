@@ -30,7 +30,7 @@ LLM(Large Language Model)의 성능은 모델의 파라미터 크기뿐만 아�
 
 컨텍스트 파일이 에이전트의 추론 과정에 어떻게 통합되는지 아래의 다이어그램으로 살펴보겠습니다.
 
-```javascript
+```mermaid
 graph LR
     A[User Request] --> B[Agent Orchestrator]
     B --> C[Context Loader]

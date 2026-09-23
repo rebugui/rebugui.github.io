@@ -36,7 +36,7 @@ OOB Read 취약점을 활용한 공격의 일반적인 흐름은 다음과 같�
 
 이러한 공격 흐름을 Mermaid 다이어그램으로 정리하면 다음과 같습니다.
 
-```javascript
+```mermaid
 graph TD
     A[공격자: 경계 초과 입력 데이터 전송] --> B{Ollama 서비스 백엔드};
     B --> C[메모리 버퍼 읽기 함수 호출];
@@ -95,8 +95,7 @@ except Exception as e:
 
 # 테스트 케이스 2: 경계를 초과하는 공격 입력 (OOB 시도)
 try:
-    print("
---- Test 2 (Attempted OOB) ---")
+    print("\n--- Test 2 (Attempted OOB) ---")
     # 1025자 길이의 더미 문자열 생성
     long_input = "A" * (MAX_BUFFER_SIZE + 1)
     print(safe_read_memory(long_input))

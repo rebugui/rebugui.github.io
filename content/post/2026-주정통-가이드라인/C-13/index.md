@@ -2,7 +2,7 @@
 title: "[2026 주요정보통신기반시설] C-13 제어시스템 내 전달되는 제어명령 및 파라미터의 정상범위를 식별하고 관리"
 slug: "2026-주정통/C-13"
 date: 2026-02-05T09:56:13+09:00
-lastmod: 2026-02-05T09:56:13+09:00
+lastmod: 2026-09-23
 description: "제어시스템을통해설비에전달되는제어명령의문자열이운영목적에맞는최소권한으로전달되도록 불필요한파라미터사용제한여부점검"
 categories: ["2026 주정통 가이드라인"]
 tags:
@@ -50,10 +50,10 @@ HMI, PLC 등의 소프트웨어는 제어시스템의 운전정보를 조회하�
    - 악성코드에 의한 악의적인 운전명령 전달
    - 과도한 파라미터값 전달을 통한 제어설비 오작동 유발
 
-4. **스턱스넷(Stuxnet) 공격 사례**
-   - PLC 시스템의 Profibus 메시지 버스 시스템을 감시하는 D8890 블록에 악성코드 설치
-   - 특정 조건 만족 시 모터 회전수를 1410Hz, 2Hz, 1064Hz로 변경하여 모터에 과부하 유발
-   - PLC 시스템에 루트킷 설치하여 악성코드 은폐
+4. **스턱스넷(Stuxnet) 분석 사례**
+   - Symantec의 기술 분석에 따르면 감염된 Siemens PLC는 Profibus 통신을 가로채고 데이터 블록 `DB890` 등을 이용해 공격 동작을 조율했습니다.
+   - 해당 분석의 특정 공격 시퀀스에서는 주파수 변환기 설정을 1410 Hz, 2 Hz, 1064 Hz로 바꾸는 동작이 확인되었습니다. 이는 모든 설비에 일반화되는 정상 운전 한계치가 아닙니다.
+   - 자세한 블록 및 시퀀스는 아래 Symantec 원문 분석을 참고하세요.
 
 ### 3. 점검 대상
 
@@ -120,7 +120,8 @@ HMI, PLC 등을 통해 사용 가능한 제어명령어와 제어 명령별 파�
 
 - NIST SP 800-82: Guide to Industrial Control Systems Security
 - IEC 62443: Industrial Communication Networks - Network and System Security
-- Stuxnet Analysis: https://www.cisa.gov/news-events/news/stuxnet
+- [Symantec, *W32.Stuxnet Dossier* v1.4 (2011), “Modifying PLCs”, pp. 36–50](https://nsarchive2.gwu.edu/NSAEBB/NSAEBB424/docs/Cyber-044.pdf) — `DB890`와 주파수 시퀀스
+- [CISA, Primary Stuxnet Advisory (ICSA-10-272-01)](https://www.cisa.gov/news-events/ics-advisories/icsa-10-272-01) — 확산 경로와 Siemens 소프트웨어 관련 개요
 
 ## 요약
 

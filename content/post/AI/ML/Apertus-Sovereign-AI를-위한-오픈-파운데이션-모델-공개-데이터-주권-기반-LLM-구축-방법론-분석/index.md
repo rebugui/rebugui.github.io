@@ -31,7 +31,7 @@ Apertus는 단일 거대 모델로 존재하는 것이 아니라, 다양한 기�
 
 다음 다이어그램은 이 Apertus 기반 LLM이 어떻게 독립적인 주권형 AI 시스템으로 작동하는지 보여줍니다.
 
-```javascript
+```mermaid
 graph TD
     A["기업/국가 데이터 (Private Cloud)"] --> B(Apertus Base Foundation Model);
     B --> C{모듈 A: 금융 특화};
@@ -78,8 +78,7 @@ print(f"✅ Module '{finance_module.name}' Loaded Successfully.")
 prompt = "최근 금융 규제 변화에 따른 위험 노출도는 어느 정도인가요?"
 output = finance_module.generate(base_model, prompt)
 
-print("
---- 推論 결과 ---")
+print("\n--- 推論 결과 ---")
 print(f"Prompt: {prompt}")
 print(f"Output: {output}")
 ```

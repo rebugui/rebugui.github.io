@@ -56,7 +56,7 @@ Chollet은 2019년 논문 "On the Measure of Intelligence"에서 이 문제를 �
 
 ARC-AGI-3의 가장 큰 혁신은 **에이전트가 환경과 상호작용할 수 있다**는 점이다. 더 이상 입력→출력의 단방향 구조가 아니다.
 
-```javascript
+```mermaid
 graph LR
     A[Agent] -->|Action| B[Environment]
     B -->|Observation| A
@@ -95,7 +95,7 @@ class ARCAGI3Task:
 
 필자가 가장 흥미롭게 본 기능이다. ARC-AGI-3은 에이전트가 **시간이 지남에 따라 성능이 향상되는지**를 측정한다.
 
-```javascript
+```mermaid
 graph TD
     A[Episode 1] --> B[Random Exploration]
     B --> C[Episode 10]
@@ -177,7 +177,7 @@ ARC-AGI-3 과제에서 성공하려면 에이전트는 다음 단계를 거쳐�
 4. **Refinement Phase**: 실패 시 가설 수정
 5. **Application Phase**: 학습된 규칙을 새로운 상황에 적용
 
-```javascript
+```mermaid
 graph TD
     A[Exploration] --> B[Observation Collection]
     B --> C[Hypothesis Generation]
@@ -266,11 +266,7 @@ class ARCAGI3Agent(nn.Module):
     def _grid_to_description(self, grid):
         """그리드를 자연어 설명으로 변환"""
         lines = []
-        lines.
-```
-
-```python
-append(f"Grid size: {grid.shape[0]}x{grid.shape[1]}")
+        lines.append(f"Grid size: {grid.shape[0]}x{grid.shape[1]}")
         
         # 색상 분포
         unique, counts = np.unique(grid, return_counts=True)
@@ -288,8 +284,7 @@ append(f"Grid size: {grid.shape[0]}x{grid.shape[1]}")
         for p in patterns:
             lines.append(f"Pattern: {p}")
         
-        return "
-".join(lines)
+        return "\n".join(lines)
     
     def _build_hypothesis_prompt(self, observations):
         """가설 생성을 위한 프롬프트 구성"""
@@ -400,16 +395,11 @@ def verify_rule(env, rule, num_tests=5):
 
 ## 성능 비교 및 분석
 
-### 현재 SOTA 모델들의 ARC-AGI-3 성능
+### 공식 출시 시점의 ARC-AGI-3 평가
 
-| 모델 | ARC-AGI-1 | ARC-AGI-2 | ARC-AGI-3 (초기) | 특징 |
-| :--- | :---: | :---: | :---: | :--- |
-| GPT-4o | ~5% | ~12% | ~3% | 정적 추론에 강점 |
-| Claude 3.5 Sonnet | ~21% | ~18% | ~7% | 코드 생성 능력 활용 |
-| o1-preview | ~25% | ~21% | ~11% | Chain-of-thought 강화 |
-| 인간 평균 | ~85% | ~78% | ~72% | 탐색적 학습 능력 |
+[ARC Prize의 2026년 3월 출시 발표](https://arcprize.org/blog/arc-agi-3-launch)는 ARC-AGI-3에서 인간 점수 100%, 당시 프런티어 AI 점수 0.51%를 제시합니다. 이 수치는 발표 시점의 평가이며, 모델별 비교 결과나 ARC-AGI-1·2와 동일한 척도로 해석해서는 안 됩니다. 이전의 모델별 추정 점수는 확인 가능한 평가 설정과 근거가 없어 제외했습니다.
 
-필자의 분석에 따르면, ARC-AGI-3에서 모델 간 격차가 더 벌어지는 이유는 **"탐색 효율성"** 때문이다. 인간은 10-20회의 시도만으로 규칙을 파악하지만, 현재 AI는 수백 회의 무작위 탐색을 필요로 한다.
+상호작용형 환경에서는 에이전트가 목표와 규칙을 직접 탐색하고, 경험에서 배운 내용을 후속 단계에 적용해야 합니다. 탐색 효율성을 평가하려면 사용한 환경, 행동 예산, 성공 기준을 함께 공개해야 합니다.
 
 ### 핵심 도전 과제
 
@@ -424,7 +414,7 @@ def verify_rule(env, rule, num_tests=5):
 
 ARC-AGI-3는 단순한 또 다른 벤치마크가 아니다. 이것은 **"AI가 얼마나 똑똑한가"라는 질문을 "AI가 얼마나 잘 배울 수 있는가"로 재정의한다.**
 
-필자가 연구실 동료들과 자주 토론하는 주제가 있다. "2025년의 AI는 2019년의 AI보다 똑똑한가, 아니면 그저 더 많이 알고 있는가?" ARC-AGI-3는 이 질문에 대한 객관적 답을 제공한다. 정적 지식이 아닌, 동적 학습 능력을 측정하기 때문이다.
+ARC-AGI-3는 모델이 이미 학습한 정적 지식을 얼마나 재현하는지만이 아니라, 새로운 환경에서 규칙을 발견하고 적용하는 능력을 평가하려는 시도입니다. 단일 벤치마크 점수만으로 모델의 전반적 지능이나 실제 업무 성능을 확정할 수는 없습니다.
 
 ### 핵심 요약
 

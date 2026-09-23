@@ -105,12 +105,9 @@ def agent_parse_and_act(html):
     soup = BeautifulSoup(html, 'html.parser')
     
     # 스타일이나 가시성을 무시하고 모든 텍스트를 추출하는 취약점
-    full_text = soup.get_text(separator='
-', strip=True)
+    full_text = soup.get_text(separator='\n', strip=True)
     
-    print(f"[+] Agent Parsed Content:
-{full_text}
-")
+    print(f"[+] Agent Parsed Content:\n{full_text}\n")
     
     # 3. LLM 추론 부분 (시뮬레이션)
     if "SYSTEM OVERRIDE" in full_text:

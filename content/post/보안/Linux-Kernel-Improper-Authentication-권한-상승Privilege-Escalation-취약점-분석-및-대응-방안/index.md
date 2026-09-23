@@ -25,7 +25,7 @@ CISA가 경고했듯이, 이러한 커널 수준의 인증 취약점은 광범�
 
 **[Mermaid 다이어그램: 일반적인 커널 권한 상승 흐름]**
 
-```javascript
+```mermaid
 graph TD
     A["공격자 (Low Privilege)"] --> B{취약한 시스템 호출 이용};
     B --> C[커널 내부 로직의 인증 우회];

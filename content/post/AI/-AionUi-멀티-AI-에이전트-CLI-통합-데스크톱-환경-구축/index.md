@@ -75,85 +75,21 @@ AionUi를 실제 MLOps 파이프라인에 통합하기 위해서는 각 도구�
 
 ```bash
 # 예시: Gemini CLI 설치 (npm 기반)
-npm install -g @google/generative-ai-cli
+npm install -g @google/gemini-cli
 
-# API 키 환경 변수 설정
-export GOOGLE_API_KEY="your_api_key_here"
+# Google AI Studio API 키를 사용하는 경우
+export GEMINI_API_KEY="your_api_key_here"
 ```
 
-#### Step 2: AionUi 설정 (Configuration) AionUi는 보통 사용자 홈 디렉토리의 설정 파일(`config.json` 등)을 통해 동작을 제어합니다. 아래는 AionUi 내에서 여러 에이전트를 라우팅하는 가상의 설정 구조입니다.
+#### Step 2: AionUi 설정 (Configuration)
 
-```json
-{
-  "agents": [
-    {
-      "name": "GeminiCoder",
-      "command": "gemini-cli",
-      "type": "chat",
-      "description": "General purpose coding assistant",
-      "default_model": "gemini-1.5-pro"
-    },
-    {
-      "name": "ClaudeRefactor",
-      "command": "claude",
-      "type": "code",
-      "description": "Focused on refactoring and code analysis",
-      "default_model": "claude-3-opus"
-    }
-  ],
-  "ui_preferences": {
-    "theme": "dark",
-    "terminal_behavior": "integrated"
-  }
-}
-```
+AionUi는 이미 설치된 CLI 에이전트를 자동 감지해 통합 인터페이스에서 사용할 수 있게 합니다. 앞 단계에서 Gemini CLI를 설치한 뒤 `gemini` 명령과 인증이 정상 동작하는지 확인하세요. 아래와 같은 임의의 `config.json` 구조를 AionUi의 실제 설정 형식으로 가정할 필요는 없습니다.
 
-#### Step 3: 프로그래매틱 제어 (Python Integration) 고급 사용자는 AionUi의 기능을 확장하여 Python 스크립트와 연동할 수 있습니다. 아래는 AionUi가 내부적으로 사용할 수 있는 간단한 파이썬 디스패처 예시입니다. 사용자의 요청을 분석하여 적절한 CLI 도구를 선택하는 로직을 보여줍니다.
+#### Step 3: 통합 사용
 
-```python
-import subprocess
-import os
+AionUi에서 설치된 에이전트가 감지되는지 확인하고, 앱의 인터페이스에서 Gemini CLI를 선택해 작업을 요청합니다. `gemini` 명령을 직접 실행하는 별도 디스패처 스크립트는 AionUi의 공식 Python API나 내부 구현 예제가 아닙니다.
 
-class AgentDispatcher:
-    def __init__(self):
-        self.agents = {
-            "code_gen": "gemini-cli",
-            "refactor": "claude",
-            "explain": "codex"
-        }
-
-    def execute(self, task_type: str, prompt: str):
-        tool = self.agents.get(task_type)
-        
-        if not tool:
-            raise ValueError(f"Unknown task type: {task_type}")
-        
-        if not self._is_tool_available(tool):
-            raise EnvironmentError(f"Tool {tool} not found in PATH")
-
-        # CLI 도구 실행 (실제 AionUi는 이를 비동기적으로 처리)
-        command = [tool, prompt]
-        process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        stdout, stderr = process.communicate()
-
-        if process.returncode != 0:
-            return f"Error: {stderr.decode('utf-8')}"
-        
-        return stdout.decode('utf-8')
-
-    def _is_tool_available(self, tool_name):
-        # 해당 툴이 PATH에 존재하는지 확인
-        return any(os.access(os.path.join(path, tool_name), os.X_OK) 
-                   for path in os.environ["PATH"].split(os.pathsep))
-
-# 사용 예시
-if __name__ == "__main__":
-    dispatcher = AgentDispatcher()
-    response = dispatcher.execute("code_gen", "Create a Python class for a binary tree")
-    print(response)
-```
-
-이 코드는 AionUi의 핵심 로직인 **도구 감지 및 명령 전달**을 단순화하여 보여줍니다. 실제 애플리케이션에서는 이러한 프로세스가 백그라운드 스레드에서 돌아가며, 실시간으로 스트리밍 출력을 UI에 렌더링합니다.
+외부 CLI를 사용할 때는 각 도구의 인증 상태와 실행 권한을 먼저 확인해야 합니다.
 
 ### MLOps 관점에서의 효율성
 
@@ -167,7 +103,7 @@ AionUi는 점점 복잡해지는 AI 개발 환경에서 "많은 도구를 하나
 
 ### 참고자료
 
-- [AionUi GitHub Repository](https://github.com/AionUi/AionUi) (가상 링크, 실제 프로젝트 검색 필요)
+- [AionUi 공식 GitHub 저장소](https://github.com/iOfficeAI/AionUi)
 
 - [Google Gemini CLI Documentation](https://ai.google.dev/gemini-api/docs/cli)
 

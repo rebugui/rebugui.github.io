@@ -28,7 +28,7 @@ OpenWiki는 기본적인 LLM-based Code Documenter와 달리, 단순히 함수 �
 
 이러한 과정은 OpenWiki가 단순한 텍스트 생성기가 아닌, '코드베이스를 해석하는 지능형 에이전트'임을 명확히 보여줍니다. 이 과정을 시각적으로 표현하면 다음과 같습니다.
 
-```javascript
+```mermaid
 graph TD
     A[Source Codebase] --> B(OpenWiki Agent Execution)
     B --> C{Code Parser / AST}

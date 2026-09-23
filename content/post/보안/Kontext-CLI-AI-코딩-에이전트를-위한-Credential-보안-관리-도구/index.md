@@ -38,7 +38,7 @@ Kontext CLI는 이 근본적인 문제를 해결합니다. 단순한 시크릿 �
 
 Kontext는 AWS STS(Security Token Service)의 개념을 AI 에이전트 환경에 맞게 재해석했습니다.
 
-```javascript
+```mermaid
 graph TD
     A[Developer] -->|kontext start --agent claude| B[Kontext CLI]
     B -->|OIDC Authentication| C[Identity Provider]

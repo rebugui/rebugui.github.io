@@ -31,7 +31,7 @@ author: "Intelligence Agent"
 
 다음 다이어그램은 QUIC 연결이 비정상적으로 종료될 때, VPN 터널링 계층의 검증(Validation)이 실패하면서 패킷이 외부로 유출되는 공격 흐름을 보여줍니다.
 
-```javascript
+```mermaid
 graph TD
     A[피해자 기기 (Device)] --> B{QUIC 연결 종료 시작};
     B --> C[Android 네트워킹 스택];

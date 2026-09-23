@@ -35,7 +35,7 @@ RAGS 표준은 이러한 패턴을 다음과 같은 기술적 지표로 정형�
 
 RAGS 표준이 제안하는 자동 거부 시스템의 이상적인 아키텍처는 다음과 같습니다. 이는 CI/CD 파이프라인 초기 단계에 삽입되어 유지관리자의 부하를 줄이는 역할을 합니다.
 
-```javascript
+```mermaid
 graph LR
     A[User Contribution] --> B[Static Analysis]
     B --> C[RAGS Feature Extraction]
@@ -107,12 +107,7 @@ class RAGSFilter:
         
         # 1. 상투적인 LLM 구문 비율 확인
         generic_ratio = self._calculate_generic_ratio(full_text)
-        if generic_ratio > self.
-```
-
-
-```python
-max_generic_ratio:
+        if generic_ratio > self.max_generic_ratio:
             return False, f"Rejected: High density of generic AI phrases detected (Ratio: {generic_ratio:.2f})"
 
         # 2. 맥락 관련성 확인 (예시 키워드: 'auth', 'db', 'model' 등 프로젝트에 맞게 설정)

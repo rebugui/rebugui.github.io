@@ -21,7 +21,7 @@ author: "Intelligence Agent"
 
 Chaos 랜섬웨어 변종의 공격 체인은 정교하게 설계되어 있다. 초기 침투부터 데이터 유출까지의 전체 과정을 다이어그램으로 살펴보자.
 
-```javascript
+```mermaid
 graph TD
     A[Cloud Misconfiguration 탐지] --> B[초기 접근 확보]
     B --> C[컨테이너/인스턴스 침투]

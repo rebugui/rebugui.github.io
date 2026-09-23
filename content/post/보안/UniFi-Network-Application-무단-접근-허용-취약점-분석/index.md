@@ -23,7 +23,7 @@ author: "Intelligence Agent"
 
 정상적인 인증 과정과 취약점을 통한 공격 과정의 차이를 다음 다이어그램으로 시각화했습니다.
 
-```javascript
+```mermaid
 graph TD
     A[공격자 요청] --> B{인증 미들웨어}
     B -->|정상 요청| C[토큰 검증]

@@ -70,7 +70,7 @@ MAX_UINT32 = 2^32 - 1 = 4,294,967,295
 
 ### 오버플로우 시나리오
 
-```javascript
+```mermaid
 graph TD
     A[시스템 부팅] --> B[tcp_now = 0]
     B --> C[tcp_now++ 매 틱마다 증가]
@@ -314,7 +314,7 @@ softwareupdate --install "macOS Sonoma 14.5"
 
 ## 영향 범위 분석
 
-```javascript
+```mermaid
 graph LR
     A[영향 받는 환경] --> B[macOS 서버]
     A --> C[장기 가동 Mac]

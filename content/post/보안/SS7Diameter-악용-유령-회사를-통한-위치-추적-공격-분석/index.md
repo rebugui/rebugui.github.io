@@ -30,7 +30,7 @@ SS7와 Diameter는 이동통신망에서 기지국, 교환기, 홈 위치 레지
 
 다음은 이 공격 흐름을 시각화한 다이어그램입니다.
 
-```javascript
+```mermaid
 graph TD
     A[Attacker System] --> B[Ghost Telecom Node]
     B --> C[Global Roaming Hub]

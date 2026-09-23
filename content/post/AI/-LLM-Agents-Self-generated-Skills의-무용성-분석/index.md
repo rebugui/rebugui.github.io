@@ -116,8 +116,7 @@ static_ips, static_time = static_tool_approach(LOG_DATA)
 gen_ips, gen_time = self_generated_skill_approach(LOG_DATA)
 
 print(f"Static Approach Result: {static_ips}")
-print(f"Static Approach Time:   {static_time:.6f}s
-")
+print(f"Static Approach Time:   {static_time:.6f}s\n")
 
 print(f"Self-generated Result:  {gen_ips}")
 print(f"Self-generated Time:    {gen_time:.6f}s")

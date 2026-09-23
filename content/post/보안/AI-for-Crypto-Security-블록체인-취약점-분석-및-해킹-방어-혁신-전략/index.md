@@ -25,7 +25,7 @@ AI는 이 두 가지 방식을 결합하거나, 심층 학습(Deep Learning)을 
 
 다음은 AI가 스마트 컨트랙트를 분석하고 취약점을 식별하는 일반적인 흐름도입니다.
 
-```javascript
+```mermaid
 graph TD
     A[스마트 컨트랙트 코드 입력] --> B{"AI 모델 (LLM/DL)"};
     B --> C1[정적 패턴 검색];

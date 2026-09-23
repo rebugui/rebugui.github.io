@@ -23,7 +23,7 @@ LLM의 성능은 단순히 모델 크기(파라미터 수)만으로 결정되지
 
 이러한 접근 방식의 차이는 곧 운영 주체와 통제권의 분배로 이어지며, LLM 생태계의 핵심적인 기술적 격차를 형성합니다.
 
-```javascript
+```mermaid
 graph TD
     A[Closed Source Model] --> B(API Gateway)
     B --> C{Proprietary Inference Engine}

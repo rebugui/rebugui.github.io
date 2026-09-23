@@ -23,7 +23,7 @@ Google Stitch가 제안한 **Design.MD**는 이 문제에 대한 우아한 해�
 
 Design.MD는 AI 에이전트를 1차 타겟으로 설계된 텍스트 기반 디자인 시스템 명세서다. 인간이 읽기에도 직관적이지만, 더 중요한 것은 LLM이 이를 파싱하여 UI 생성 시 일관된 디자인 결정을 내릴 수 있다는 점이다.
 
-```javascript
+```mermaid
 graph LR
     A[Design.MD 파일] --> B[AI 에이전트]
     B --> C[일관된 UI 컴포넌트]
@@ -207,7 +207,7 @@ if __name__ == "__main__":
 
 기존 웹사이트에서 Design.MD를 자동으로 생성하는 파이프라인을 구축할 수 있다:
 
-```javascript
+```mermaid
 graph TD
     A[타겟 웹사이트 URL] --> B[HTML/CSS 크롤링]
     B --> C[Design Token 추출]
@@ -288,9 +288,6 @@ class DesignMDExtractor:
 ### Typography
 {self._format_typography(typography)}
 
-```
-
-```python
 ## Components
 <!-- 수동으로 컴포넌트 패턴 추가 필요 -->
 """
@@ -304,15 +301,13 @@ class DesignMDExtractor:
         formatted = []
         for color in colors[:10]:  # 상위 10개만
             formatted.append(f"- {color}")
-        return "
-".join(formatted)
+        return "\n".join(formatted)
     
     def _format_typography(self, typography: Dict) -> str:
         formatted = []
         for key, value in typography.items():
             formatted.append(f"- {key}: {value}")
-        return "
-".join(formatted)
+        return "\n".join(formatted)
 ```
 
 ### Step-by-Step: 프로젝트에 Design.MD 적용하기

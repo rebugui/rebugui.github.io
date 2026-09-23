@@ -37,7 +37,7 @@ $$\text{Score}_{ij} = s_{ij} = -\frac{\|\log(g_i^{-1} g_j)\|_{\lambda}^2}{\tau}$
 
 #### Lie-Algebra Attention 작동 흐름 (Mermaid Diagram) 다음 다이어그램은 일반적인 트랜스포머와 Lie-Algebra Attention의 스코어 계산 과정을 비교하여 보여줍니다.
 
-```javascript
+```mermaid
 graph TD
     A[Token $g_i$] --> B{Relative Pose: $g_{ij} = g_i^{-1} g_j$}
     B --> C["Log Map: $w_{ij} = \log(g_{ij})$"]

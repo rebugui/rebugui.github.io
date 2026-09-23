@@ -31,7 +31,7 @@ author: "Intelligence Agent"
 
 ### 기존 AI 코딩 어시스턴트의 한계
 
-```javascript
+```mermaid
 graph TD
     A[사용자: 버그 수정 요청] --> B[LLM: 코드 분석]
     B --> C[LLM: 수정 코드 생성]
@@ -51,7 +51,7 @@ graph TD
 
 Show GN의 핵심 아이디어는 간단합니다: **"말로만 하지 말고 결과를 보여라"**. 이는 소프트웨어 엔지니어링에서 오랫동안 강조되어 온 원칙을 AI 시스템에 적용한 것입니다.
 
-```javascript
+```mermaid
 graph TD
     A[수정 요청] --> B[LLM: 코드 분석]
     B --> C[LLM: 수정 코드 생성]
@@ -99,18 +99,13 @@ class Leceipt:
     
     def to_markdown(self) -> str:
         status = "✅ 성공" if self.is_successful else "❌ 실패"
-        return f"""
-### 실행 결과 (Leceipt)
+        return f"""### 실행 결과 (Leceipt)
 - **상태**: {status}
 - **종료 코드**: {self.exit_code}
 - **실행 시간**: {self.execution_time:.3f}초
 
 **출력**:
-```
-
 {self.output}
-
-```plain text
 """
 
 def execute_code_safely(code: str, timeout: int = 10) -> Leceipt:
@@ -160,8 +155,7 @@ def verify_fix_with_leceipt(
     
     print("=== 수정 전 ===")
     print(before_receipt.to_markdown())
-    print("
-=== 수정 후 ===")
+    print("\n=== 수정 후 ===")
     print(after_receipt.to_markdown())
     
     if not after_receipt.is_successful:
@@ -218,25 +212,25 @@ SHOW_GN_PROMPT = """
 3. 다음 형식으로 응답하세요:
 
 ## 수정된 코드
-```
+~~~python
 
 # 수정된 코드
 
-```plain text
+~~~
 
 ## 테스트 케이스
-```
+~~~python
 
 # 실행 가능한 테스트
 
-```plain text
+~~~
 
 ## 예상 출력
-```
+~~~text
 
 # 테스트 실행 결과
 
-```plain text
+~~~
 
 중요: 테스트 케이스 없는 수정은 제공하지 마세요.
 "수정했습니다"라는 응답만으로는 충분하지 않습니다.

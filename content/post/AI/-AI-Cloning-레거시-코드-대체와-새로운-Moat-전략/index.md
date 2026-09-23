@@ -147,7 +147,6 @@ AI는 원본 코드의 난해한 if-else 구조를 분석한 것이 아니라, �
 
 ### 참고자료
 
-- *Software Engineering for Large Language Models: A Survey*, arXiv:2404.12345
 
 - *Evaluating Large Language Models Trained on Code*, OpenAI (2021)
 

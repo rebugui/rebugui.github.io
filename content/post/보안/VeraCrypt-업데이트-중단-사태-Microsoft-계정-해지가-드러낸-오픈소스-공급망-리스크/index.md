@@ -21,7 +21,7 @@ author: "Intelligence Agent"
 
 VeraCrypt는 TrueCrypt의 후속 프로젝트로, 전 세계 수백만 명이 사용하는 오픈소스 디스크 암호화 도구입니다. Windows, macOS, Linux를 모두 지원하며, 특히 Windows 환경에서는 코드 서명 인증서와 Microsoft의 배포 인프라에 크게 의존하고 있었습니다.
 
-```javascript
+```mermaid
 graph TD
     A[VeraCrypt 개발자] --> B[Microsoft Developer Account]
     B --> C[Code Signing Certificate]
@@ -101,7 +101,7 @@ if (Test-Path $veracryptPath) {
 ### 4. 공격 시나리오: 이 취약점이 악용될 수 있는 방법
 > **⚠️ 윤리적 경고**: 다음 시나리오는 순수하게 방어 관점에서의 위협 모델링입니다. 실제 공격 시도는 불법입니다.
 
-```javascript
+```mermaid
 graph LR
     A[공격자] --> B[Microsoft 인프라 취약점]
     A --> C[내부자 위협]
@@ -197,11 +197,7 @@ def verify_binary_signature(binary_path: str) -> dict:
         $sig = Get-AuthenticodeSignature "{binary_path}"
         ConvertTo-Json @{{
             Status = $sig.Status.ToString()
-            Subject = $sig.SignerCertificate.
-```
-
-```python
-Subject
+            Subject = $sig.SignerCertificate.Subject
             Issuer = $sig.SignerCertificate.Issuer
             NotAfter = $sig.SignerCertificate.NotAfter.ToString()
         }}
@@ -220,8 +216,7 @@ Subject
         return {"error": str(e)}
 
 if __name__ == "__main__":
-    print("=== VeraCrypt 공급망 상태 점검 ===
-")
+    print("=== VeraCrypt 공급망 상태 점검 ===\n")
     status = check_veracrypt_status()
     
     if status:
@@ -335,8 +330,7 @@ class SignatureVerifier:
             )
             
             chain = []
-            for line in result.stdout.split('
-'):
+            for line in result.stdout.split('\n'):
                 if "CN=" in line:
                     chain.append(line.strip())
             

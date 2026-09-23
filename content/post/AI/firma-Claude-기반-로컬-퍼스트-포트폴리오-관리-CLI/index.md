@@ -27,7 +27,7 @@ firma는 기본적으로 Python 기반의 CLI 어플리케이션으로 설계되
 
 아래 다이어그램은 사용자가 터미널에 명령어를 입력했을 때, 데이터가 로컬 저장소에서 외부 API를 거쳐 최종적으로 AI 응답으로 돌아오는 과정을 도식화한 것입니다.
 
-```javascript
+```mermaid
 graph TD
     A[User CLI Input] --> B[Command Parser]
     B --> C{Command Type}

@@ -21,7 +21,7 @@ author: "Intelligence Agent"
 
 다음은 협력업체를 경유하여 정부 네트워크로 침투하는 일반적인 공격 경로를 도식화한 것입니다.
 
-```javascript
+```mermaid
 graph LR
     A[External Attacker] --> B[Phishing / Exploit]
     B --> C[Contractor System]

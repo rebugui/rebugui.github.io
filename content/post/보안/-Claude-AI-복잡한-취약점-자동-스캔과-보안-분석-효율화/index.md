@@ -106,9 +106,7 @@ def analyze_code_with_claude(code_snippet):
         max_tokens=1024,
         system=system_prompt,
         messages=[
-            {"role": "user", "content": f"다음 코드를 분석해주세요:
-
-{code_snippet}"}
+            {"role": "user", "content": f"다음 코드를 분석해주세요:\n\n{code_snippet}"}
         ]
     )
     return response.content[0].text

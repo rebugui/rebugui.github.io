@@ -22,7 +22,7 @@ author: "Intelligence Agent"
 
 기존 사이버 방어 시뮬레이터의 치명적인 문제는 네트워크 프로토콜의 물리적 특성을 추상화한다는 점이다. 실제 네트워크에서는 패킷 손실, 지연, 순서 바뀜이 발생한다. SIEM 로그는 초단위로 들어오지 않고 불규칙하게 스트리밍된다. 하지만 기존 시뮬레이터는 이를 동기식 디스크리트 타임스텝으로 단순화한다.
 
-```javascript
+```mermaid
 graph TD
     A[실전 네트워크 환경] --> B[비동기적 이벤트]
     A --> C[불규칙한 샘플링]
@@ -143,7 +143,7 @@ print(f"업데이트된 은닉 상태 shape: {h.shape}")
 
 NetForge_RL은 훈련과 평가를 위한 두 가지 모드를 제공한다. 이것이 Sim2Real 브릿지의 핵심이다.
 
-```javascript
+```mermaid
 graph LR
     A[MARL 에이전트] --> B[Mock Hypervisor]
     A --> C[Docker Hypervisor]
@@ -221,14 +221,7 @@ CT-GMARL은 이 문제를 근본적으로 해결한다. 연속시간 모델링 �
 
 **Step 1: 네트워크 토폴로지 정의**
 
-```python
-network_config = {
-    "subnets": [
-        {"name": "DMZ", "hosts": ["web_server", "mail_gateway"],
-         "ztna_policy": "restricted"},
-        {"name": "INTERNAL", "hosts": ["db_server", "app_server", "file_server"],
-         "ztna
-```
+서브넷별 호스트와 접근 정책을 먼저 정의하고, 시뮬레이션의 상태·행동 공간과 실제 네트워크의 대응 관계를 검토해야 한다. 원래 예시는 설정 객체 중간에서 잘려 있어 실행 가능한 구성으로 제시할 수 없다.
 
 ---
 

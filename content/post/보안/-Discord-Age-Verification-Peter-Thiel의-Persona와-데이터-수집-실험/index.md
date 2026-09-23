@@ -30,7 +30,7 @@ Discord가 도입한 나이 인증 시스템은 일명 'KYC(Know Your Customer)'
 
 이러한 아웃소싱 구조는 데이터 유출 벡터가 늘어난다는 것을 의미합니다. 사용자 정보가 이동하는 흐름을 시각화하면 다음과 같습니다.
 
-```javascript
+```mermaid
 graph TD
     A[Discord User] --> B[Upload ID and Selfie]
     B --> C[Discord Frontend Client]

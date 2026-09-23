@@ -65,7 +65,7 @@ if __name__ == "__main__":
 
 다음은 Zero Trust IAM 접근 흐름을 간소화한 다이어그램입니다.
 
-```javascript
+```mermaid
 graph LR
     A[사용자/기기 접속 요청] --> B[인증 및 MFA 검증]
     B --> C[디바이스 신뢰 상태 확인]

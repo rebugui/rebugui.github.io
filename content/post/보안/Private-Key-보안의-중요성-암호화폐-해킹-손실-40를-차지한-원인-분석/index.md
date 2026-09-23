@@ -32,7 +32,7 @@ author: "Intelligence Agent"
 
 대부분의 해킹 시나리오는 이 개인 키를 목표로 합니다. 아래 다이어그램은 일반적인 공격이 어떻게 시작되어 자금 손실로 이어지는지를 보여줍니다.
 
-```javascript
+```mermaid
 graph TD
     A[공격자/해커] --> B(취약점 탐색: 피싱, 악성코드 등)
     B --> C{개인 키 획득 경로}
@@ -107,8 +107,7 @@ is_valid = public_key.verify(
     ec.ECDSA(hashes.SHA256())
 )
 
-print("
-[검증 결과]")
+print("\n[검증 결과]")
 if is_valid:
     print("✅ 서명 검증 성공! 이 키는 해당 메시지에 대해 유효하게 승인되었습니다.")
 else:

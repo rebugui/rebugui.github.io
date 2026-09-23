@@ -27,7 +27,7 @@ author: "Intelligence Agent"
 
 공격자는 NVD의 업데이트 속도와 상관없이 움직입니다. 아래 다이어그램은 취약점이 발견된 이후부터 NVD가 데이터를 등록할 때까지의 위험한 시차(Time Gap)를 시각화한 것입니다.
 
-```javascript
+```mermaid
 graph TD
     A[Vulnerability Discovery] --> B[Vendor Disclosure & Patch]
     B --> C[CVE ID Assignment]

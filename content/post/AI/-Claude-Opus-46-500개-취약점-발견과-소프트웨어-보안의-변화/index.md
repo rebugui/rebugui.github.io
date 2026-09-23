@@ -118,8 +118,7 @@ def login(user, password):
 
 diff = get_security_diff(original, modified)
 report = audit_code_with_llm(diff)
-print("Security Audit Report:
-", report)
+print("Security Audit Report:\n", report)
 ```
 
 이 코드는 변경된 부분만을 선택적으로 분석하므로, 전체 코드베이스를 스캔할 때 발생하는 막대한 비용과 지연 시간을 최소화합니다.

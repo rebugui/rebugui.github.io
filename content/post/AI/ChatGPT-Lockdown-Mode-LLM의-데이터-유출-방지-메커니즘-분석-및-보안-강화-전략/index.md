@@ -23,7 +23,7 @@ LLM 기반 에이전트는 일반적으로 다음과 같은 순환 구조를 가
 
 **[Mermaid 다이어그램: Tool Use 기반 Data Exfiltration 흐름]**
 
-```javascript
+```mermaid
 graph TD
     A["사용자 요청 (Prompt)"] --> B{LLM 에이전트};
     B --> C[도구 호출 결정];

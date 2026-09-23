@@ -34,7 +34,7 @@ author: "Intelligence Agent"
 
 앞서 언급한 레스토랑 시나리오를 구현하기 위해, 주방 에이전트가 MCP를 통해 공급업체 데이터베이스에 접근하고, A2A를 통해 협상 에이전트와 통신하는 과정을 시각화하면 다음과 같습니다. 이 아키텍처는 Google ADK가 제공하는 오케스트레이션 환경 위에서 구동됩니다.
 
-```javascript
+```mermaid
 graph LR
     A[User Request] --> B[Kitchen Agent]
     B -->|Need Supply Info| C[MCP Server]

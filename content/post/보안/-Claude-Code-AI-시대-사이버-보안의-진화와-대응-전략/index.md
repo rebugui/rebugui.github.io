@@ -169,11 +169,8 @@ def get_user_info(user_id):
     if findings:
         print(f"⚠️  [CRITICAL] {findings[0]['type']} found at line {findings[0]['line']}")
         print(f"    Detail: {findings[0]['message']}")
-        print("
-" + "="*40 + "
-")
-        print("🛡️  AI Suggested Secure Code:
-")
+        print("\n" + "="*40 + "\n")
+        print("🛡️  AI Suggested Secure Code:\n")
         print(agent.generate_patch(vulnerable_snippet))
 ```
 

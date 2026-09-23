@@ -36,7 +36,7 @@ echo -e "\033]0;새로운 창 제목\007"
 
 iTerm2의 SSH Integration은 "conductor"라는 내부 프로토콜을 사용하여 원격 셸과 통신한다. 이 프로토콜은 터미널 escape sequence를 전송 채널로 사용한다.
 
-```javascript
+```mermaid
 graph LR
     A[원격 서버] --> B[SSH 연결]
     B --> C[iTerm2 터미널]
@@ -80,7 +80,7 @@ cat readme.txt
 
 ### 시나리오 2: MITM을 통한 공격
 
-```javascript
+```mermaid
 graph TD
     A[사용자] --> B[SSH 연결 시도]
     B --> C{중간자 공격}

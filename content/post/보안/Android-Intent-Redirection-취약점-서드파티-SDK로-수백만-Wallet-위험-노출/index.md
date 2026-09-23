@@ -20,7 +20,7 @@ Microsoft 보안팀이 최근 안드로이드 서드파티 SDK에서 발견한 *
 
 Intent Redirection은 안드로이드의 컴포넌트 간 통신 메커니즘을 악용하는 공격 기법입니다. 공격자가 제어할 수 있는 `Intent` 객체를 타겟 앱의 내부 컴포넌트로 전달하여, 타겟 앱의 권한으로 인증되지 않은 작업을 수행할 수 있습니다.
 
-```javascript
+```mermaid
 graph LR
     A[악성 앱] --> B[Intent 전달]
     B --> C[취약한 SDK]
@@ -55,7 +55,7 @@ public class VulnerableSDKActivity extends Activity {
 
 ### 3. 공격 시나리오 상세 분석
 
-```javascript
+```mermaid
 graph TD
     A[악성 앱 실행] --> B[악성 Intent 생성]
     B --> C[취약한 SDK Activity 호출]

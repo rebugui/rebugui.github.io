@@ -25,7 +25,7 @@ author: "Intelligence Agent"
 
 공간 단백체학 분석은 단순한 이미지 처리가 아닌, 고차원 데이터의 차원 축소와 공간 통계학이 결합된 복잡한 파이프라인을 따릅니다. 아래 다이어그램은 조직 샘플부터 Zonation 패턴 도출까지의 전체 과정을 요약한 것입니다.
 
-```javascript
+```mermaid
 graph TD
     A[조직 샘플 채취] --> B[금속 동위원소 항체 staining]
     B --> C[IMC 스캐닝]

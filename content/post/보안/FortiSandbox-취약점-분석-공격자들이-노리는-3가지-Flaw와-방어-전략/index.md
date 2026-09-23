@@ -35,7 +35,7 @@ FortiSandbox는 기본적으로 '격리(Isolation)'라는 강력한 개념 위�
 
 공격자가 Flaw 1(RCE 취약점)을 악용하여 FortiSandbox를 장악하는 일반적인 과정을 다이어그램으로 표현했습니다.
 
-```javascript
+```mermaid
 graph TD
     A[외부 네트워크 트래픽/파일 전송] --> B{FortiSandbox 수신 및 분석 시작}
     B --> C["특수 조작된 페이로드 주입 (Flaw Trigger)"]

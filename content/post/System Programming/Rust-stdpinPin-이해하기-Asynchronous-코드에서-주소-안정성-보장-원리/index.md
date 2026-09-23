@@ -31,7 +31,7 @@ Rust에서 대부분의 데이터는 값(Value)으로 취급되며, 함수가 �
 
 **Mermaid 다이어그램: Pinning 메커니즘 흐름도**
 
-```javascript
+```mermaid
 graph TD
     A["Data T (Unpinned)"] --> B{Move Operation};
     B --> C[New Location];

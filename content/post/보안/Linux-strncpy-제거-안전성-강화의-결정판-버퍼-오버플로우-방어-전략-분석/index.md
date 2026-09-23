@@ -29,7 +29,7 @@ author: "Intelligence Agent"
 
 다음 다이어그램은 취약한 `strncpy` 호출이 어떻게 메모리 영역을 침범하여 공격자가 원하는 코드를 실행할 수 있게 만드는지 보여줍니다.
 
-```javascript
+```mermaid
 graph TD
     A[공격자 입력 데이터] --> B{"strncpy() 함수 호출"};
     B --> C(대상 버퍼: dest[N]);

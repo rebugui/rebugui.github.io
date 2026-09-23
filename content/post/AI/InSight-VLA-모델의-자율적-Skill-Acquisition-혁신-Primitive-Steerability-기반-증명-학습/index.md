@@ -23,7 +23,7 @@ author: "Intelligence Agent"
 
 다음 다이어그램은 InSight가 추구하는 Primitive Steerability의 개념적 흐름을 보여줍니다.
 
-```javascript
+```mermaid
 graph TD
     A[High-Level Task: Pouring] --> B{VLA Policy};
     B --> C1[Primitive A: Move Gripper to Bottle];

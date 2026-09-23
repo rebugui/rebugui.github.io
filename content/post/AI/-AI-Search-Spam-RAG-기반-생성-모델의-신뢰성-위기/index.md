@@ -25,7 +25,7 @@ RAG는 대규모 언어 모델(LLM)의 지식 한계를 극복하고 실시간 �
 
 다음은 공격자가 AI 검색의 결과를 조작하는 과정을 간략화한 다이어그램입니다.
 
-```javascript
+```mermaid
 graph LR
     A[Attacker] -->|Create Content| B[Target Webpage]
     B -->|Indexing| C[Web Index]

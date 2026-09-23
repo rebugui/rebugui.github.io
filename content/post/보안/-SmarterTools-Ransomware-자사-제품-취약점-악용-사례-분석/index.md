@@ -23,7 +23,7 @@ SmarterTools를 겨냥한 이번 공격은 외부에서의 무작위 공격이 �
 
 다음은 공격자가 취약점을 악용해 랜섬웨어를 실행하는 전반적인 흐름도다.
 
-```javascript
+```mermaid
 graph LR
     A[공격자] --> B[정찰: 포트 스캔 및 버전 확인]
     B --> C[취약점 악용: SmarterTools Auth Bypass]

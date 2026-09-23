@@ -28,7 +28,7 @@ SWE-CI는 기존 벤치마크와 달리 "실제 환경(Real-world Environment)"�
 이 과정에서 에이전트는 단순히 코드만 수정하면 됩니다. 파이프라인의 로그를 읽고, 실패 원인을 진단하며, 의존성을 업데이트하고, 때로는 타임아웃 설정을 조정해야 할 수도 있습니다. 즉, 에이전트는 **'코드 수정'**과 **'환경 이해'**라는 두 가지 과제를 동시에 수행해야 합니다.
 다음은 SWE-CI 평가 과정의 전체적인 워크플로우를 도식화한 것입니다.
 
-```javascript
+```mermaid
 graph TD
     A[실제 GitHub 저장소 선택] --> B[문제 시나리오 생성]
     B --> C[CI 실패 유도]
@@ -116,12 +116,6 @@ class SWECIAgent:
             # 의존성 설치 시뮬레이션
             print("의존성 설치 시뮬레이션 수행 중...")
             # subprocess.run(["pip", "install", "missing_package"])
-
-
-```
-
-
-```python
     def run_loop(self, max_attempts=3):
         for i in range(max_attempts):
             result = self.run_ci()

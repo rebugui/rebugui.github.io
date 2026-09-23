@@ -31,7 +31,7 @@ author: "Intelligence Agent"
 
 이러한 취약점이 어떻게 악용될 수 있는지, 이상적인 흐름과 취약한 흐름을 비교해 보겠습니다.
 
-```javascript
+```mermaid
 graph TD
     A[사용자 입력: 마스터 비밀번호] --> B{클라이언트 처리}
     B -->|이상적인 흐름| C[안전한 키 파생 KDF]

@@ -2,7 +2,7 @@
 title: "[2026 주요정보통신기반시설] CA-12 통신구간암호화설정"
 slug: "2026-주정통/CA-12"
 date: 2026-02-05T09:56:13+09:00
-lastmod: 2026-02-05T09:56:13+09:00
+lastmod: 2026-09-23
 description: "클라우드 시스템 간 암호화 통신 여부 점검"
 categories: ["2026 주정통 가이드라인"]
 tags:
@@ -39,9 +39,9 @@ draft: false
 3. **세션 하이재킹**: 암호화되지 않은 세션 쿠키 탈취
 4. **크리덼셜 유출**: 데이터베이스 접속 정보가 평문으로 전송되어 유출
 
-**실제 사례**
-- 2018년: 호텔 WiFi 네트워크에서 암호화되지 않은 통신을 스니핑하여 고객 정보 대규모 유출
-- 클라우드 환경에서 데이터베이스 연결이 암호화되지 않아 접속 정보 유출
+**점검 시나리오(가상)**
+- 암호화하지 않은 무선 네트워크 통신을 제삼자가 수집하면 고객 정보가 노출될 수 있습니다.
+- 데이터베이스 연결에 TLS가 적용되지 않으면 통신 경로에서 접속 정보가 노출될 수 있습니다.
 
 ### 3. 점검 대상
 
@@ -84,8 +84,8 @@ mysql -h db.example.com -u username -p --ssl --ssl-mode=REQUIRED
 # MySQL 서버 SSL 설정 확인
 mysql -e "SHOW VARIABLES LIKE '%ssl%';"
 
-# PostgreSQL - SSL 연결 확인
-psql "host=db.example.com user=username dbname=mydb sslmode=require"
+# PostgreSQL - 서버 인증까지 수행할 수 있도록 신뢰된 CA 파일 지정(환경별로 수정)
+psql "host=db.example.com user=username dbname=mydb sslmode=verify-full sslrootcert=/path/to/ca.crt"
 
 # PostgreSQL SSL 설정 확인
 psql -c "SHOW ssl;"
@@ -199,10 +199,11 @@ ssl_min_protocol_version = 'TLSv1.2'
 ```
 
 ```ini
-# /var/lib/pgsql/data/pg_hba.conf
-# SSL 연결만 허용
-hostssl all all 0.0.0.0/0 md5
+# /var/lib/pgsql/data/pg_hba.conf (환경에 맞게 데이터베이스·역할·허용 IP 변경)
+# 지정한 애플리케이션 호스트에서 TLS와 SCRAM-SHA-256 인증만 허용
+hostssl appdb app_user 192.0.2.10/32 scram-sha-256
 ```
+`192.0.2.10/32`는 문서용 예시 주소이므로 실제 허용 호스트의 CIDR로 교체하고, 보안 그룹/방화벽에서도 해당 출발지만 허용하세요. `hostssl`은 TLS 연결을 요구하지만 클라이언트가 서버를 인증하려면 신뢰할 수 있는 CA를 설정하고 `sslmode=verify-full`을 사용해야 합니다. 적용 전 기존 HBA 규칙 순서와 SCRAM 비밀번호·클라이언트 호환성을 확인하세요. [PostgreSQL `pg_hba.conf` 문서](https://www.postgresql.org/docs/18/auth-pg-hba-conf.html)
 
 #### Step 3: 로드 밸런서 HTTPS 설정
 

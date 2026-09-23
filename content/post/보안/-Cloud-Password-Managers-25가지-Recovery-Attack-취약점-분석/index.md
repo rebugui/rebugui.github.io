@@ -28,7 +28,7 @@ DevOps와 SRE 관점에서 이는 단순한 개인정보 유출을 넘어선 문
 
 이러한 공격 흐름을 간단히 도식화하면 다음과 같습니다.
 
-```javascript
+```mermaid
 graph LR
     A[Attacker] --> B[Trigger Recovery]
     B --> C[Email Server]

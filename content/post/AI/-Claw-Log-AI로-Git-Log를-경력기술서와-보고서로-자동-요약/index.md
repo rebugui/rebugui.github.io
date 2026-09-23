@@ -72,39 +72,9 @@ export CLAW_LOG_MODEL="gpt-4o" # 또는 gemini-pro
 claw-log --days 7 --format resume
 ```
 
-이 명령어는 내부적으로 다음과 같은 논리로 작동합니다. (개념적 Python 코드)
+이 명령어의 내부 처리 흐름은 다음과 같이 설명할 수 있습니다.
 
-```python
-import subprocess
-import openai
-
-def get_git_diff(days_ago):
-    # git log와 diff를 추출하는 커맨드 생성
-    cmd = f"git log --since="{days_ago} days ago" --pretty=format:"%h %s" --stat -p"
-    result = subprocess.run(cmd, shell=True, capture_output=True, text=True)
-    return result.stdout
-
-def generate_summary(git_data, model="gpt-4o"):
-    system_prompt = """
-    당신은 Senior Software Engineer입니다. 
-    아래의 Git Diff와 Log를 분석하여, 사용자의 기술적 성과를 강조하는 경력기술서 항목으로 작성하세요.
-    기술적인 세부 사항과 해결한 문제의 난이도를 반드시 포함해야 합니다.
-    """
-    
-    response = openai.ChatCompletion.create(
-        model=model,
-        messages=[
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": git_data}
-        ]
-    )
-    return response.choices[0].message.content
-
-# 실행 흐름
-diff_data = get_git_diff(7)
-report = generate_summary(diff_data)
-print(report)
-```
+최근 변경 내역을 요약할 때는 기간을 지정해 `git log`와 변경 diff를 수집하고, 민감 정보가 없는지 검토한 뒤 승인된 모델 인터페이스로 전달합니다. CLI 명령의 인자는 셸 문자열 연결 대신 분리된 인자 목록으로 전달하고, 응답은 개발자가 원본 변경 사항과 대조해 검증해야 합니다.
 
 이 과정을 통해 수백 줄의 코드 변경이 담긴 Diff가 "사용자 인증 모듈의 보안 취약점을 개선하기 위해 JWT 토큰 검증 로직을 리팩토링하고, 인가 서버와의 통신 프로토콜을 OAuth 2.0으로 업그레이드함"과 같이 깔끔한 문장으로 변환됩니다.
 

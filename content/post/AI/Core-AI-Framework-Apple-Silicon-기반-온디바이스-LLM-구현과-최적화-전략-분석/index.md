@@ -23,7 +23,7 @@ LLM은 수많은 행렬 곱셈(Matrix Multiplication) 연산으로 구성됩니�
 
 이는 추론 과정이 다음과 같은 흐름으로 최적화됨을 의미합니다.
 
-```javascript
+```mermaid
 graph TD
     A[Core AI 프레임워크] --> B{모델 로딩 및 분석};
     B --> C[하드웨어 가속기 식별];

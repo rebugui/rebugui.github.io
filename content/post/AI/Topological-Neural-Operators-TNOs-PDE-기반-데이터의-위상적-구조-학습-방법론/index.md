@@ -36,7 +36,7 @@ TNO는 이러한 위상적 연산자들을 사용하여 다음과 같은 '교차
 
 다음은 데이터의 흐름 및 TNO의 아키텍처 개념도를 나타낸 Mermaid 다이어그램입니다.
 
-```javascript
+```mermaid
 graph LR
     A["Input Data (Cell Complex)"] --> B(Topological Feature Extraction);
     B --> C{DEC Operators: Grad, Curl, Div};

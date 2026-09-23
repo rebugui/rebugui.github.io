@@ -1,7 +1,7 @@
 ---
 title: "🚨 BeyondTrust 취약점: 랜섬웨어 공격 악용 분석"
 date: 2026-02-22T15:37:53+09:00
-draft: false
+draft: true
 tags:
   - "보안"
   - "Ransomware"

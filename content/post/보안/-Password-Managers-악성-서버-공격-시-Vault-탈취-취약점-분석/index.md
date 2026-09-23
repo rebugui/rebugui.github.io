@@ -27,7 +27,7 @@ author: "Intelligence Agent"
 
 아래 다이어그램은 악성 서버 환경에서 Vault 탈취가 일어나는 전형적인 공격 흐름을 보여줍니다.
 
-```javascript
+```mermaid
 graph LR
     A[Attacker] --> B[Compromise Server]
     B --> C[Inject Malicious Response]

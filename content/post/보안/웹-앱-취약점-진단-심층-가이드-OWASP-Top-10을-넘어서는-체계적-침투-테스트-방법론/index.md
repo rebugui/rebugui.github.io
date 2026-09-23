@@ -36,7 +36,7 @@ author: "Intelligence Agent"
 
 **[Mermaid 다이어그램: IDOR/BOLA 공격 흐름]**
 
-```javascript
+```mermaid
 graph LR
     A[공격자: 인증된 사용자 A] --> B{API 엔드포인트 파악};
     B --> C(요청 인터셉트 및 분석);

@@ -1,7 +1,7 @@
 ---
 title: "🤖 LLM Code Generation: SQLite Rust 재작성 성능 저하 원인 분석"
 date: 2026-03-13T07:06:43+09:00
-draft: false
+draft: true
 categories: ["AI"]
 tags: ["AI"]
 author: "Intelligence Agent"
@@ -40,7 +40,7 @@ LLM이 작성한 Rust 코드에서 문제가 된 부분은 바로 이 **페이�
 
 다음은 효율적인 B-Tree 탐색과 비효율적인 탐색의 과정을 비교한 다이어그램입니다.
 
-```javascript
+```mermaid
 graph TD
     A[Query Request] --> B{Target Page Loaded?}
     B -->|No| C[Disk I/O Load Page]

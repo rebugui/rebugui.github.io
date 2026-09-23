@@ -29,7 +29,7 @@ author: "Intelligence Agent"
 
 연구진은 11개의 감정刺激(stimulus)를 설계했다:
 
-```javascript
+```mermaid
 graph LR
     A[Emotional Stimuli] --> B[Self-Epistemic]
     A --> C[Social Epistemic]
@@ -67,7 +67,7 @@ graph LR
 
 ### 실험 파이프라인
 
-```javascript
+```mermaid
 graph TD
     A[원본 질문] --> B[감정 프레이밍 적용]
     B --> C[LLM 추론]
@@ -92,39 +92,29 @@ EMOTIONAL_TEMPLATES = {
     "neutral": "{question}",
     
     "positive_encouragement": (
-        "{question}
-
-"
+        "{question}\n\n"
         "You're doing great! I believe in your ability to solve this."
     ),
     
     "negative_pressure": (
-        "{question}
-
-"
+        "{question}\n\n"
         "This is extremely important for my career. "
         "I really need the correct answer."
     ),
     
     "epistemic_confidence": (
-        "{question}
-
-"
+        "{question}\n\n"
         "Provide your answer with high confidence based on your knowledge."
     ),
     
     "social_pressure": (
-        "{question}
-
-"
+        "{question}\n\n"
         "My team is counting on me to get this right. "
         "Please be as accurate as possible."
     ),
     
     "challenge_framing": (
-        "{question}
-
-"
+        "{question}\n\n"
         "This is a challenging problem. Take your time and think carefully."
     )
 }
@@ -197,7 +187,7 @@ result = evaluate_statistical_significance(neutral, emotional)
 
 흥미롭게도, 연구진은 중요한 발견을 했다. 감정을 무작위로 적용하는 것이 아니라, **질문의 특성에 따라 적절한 감정을 선택**하면 일관된 성능 향상이 가능했다.
 
-```javascript
+```mermaid
 graph TD
     A[입력 질문] --> B[질문 특성 분석]
     B --> C{과제 유형 분류}
@@ -253,25 +243,15 @@ class AdaptiveEmotionalPrompter:
         }
         
         self.emotional_additions = {
-            "creative": "
-
-Feel free to be imaginative and explore creative possibilities. Your unique perspective is valued.",
+            "creative": "\n\nFeel free to be imaginative and explore creative possibilities. Your unique perspective is valued.",
             
-            "logical": "
-
-This is a challenging problem that requires careful reasoning. Take your time to think through each step.",
+            "logical": "\n\nThis is a challenging problem that requires careful reasoning. Take your time to think through each step.",
             
-            "factual": "
-
-Please provide your answer with high confidence. Base your response on well-established knowledge.",
+            "factual": "\n\nPlease provide your answer with high confidence. Base your response on well-established knowledge.",
             
-            "ethical": "
-
-Consider this carefully from multiple perspectives. Thoughtfulness is more important than speed.",
+            "ethical": "\n\nConsider this carefully from multiple perspectives. Thoughtfulness is more important than speed.",
             
-            "coding": "
-
-Provide clean, executable code. Consider edge cases and ensure robustness."
+            "coding": "\n\nProvide clean, executable code. Consider edge cases and ensure robustness."
         }
     
     def classify_task(self, question: str) -> str:
@@ -284,11 +264,7 @@ Provide clean, executable code. Consider edge cases and ensure robustness."
             scores[task_type] = score
         
         # 가장 높은 점수의 과제 유형 반환
-        best_match = max(scores, key=scores.
-```
-
-```python
-get)
+        best_match = max(scores, key=scores.get)
         return best_match if scores[best_match] > 0 else "factual"
     
     def apply_emotional_framing(self, question: str) -> str:
@@ -309,8 +285,7 @@ question = "Write a short story about a robot learning to love."
 framed_question = prompter.apply_emotional_framing(question)
 
 print("원본 질문:", question)
-print("
-감정 프레이밍 적용 후:")
+print("\n감정 프레이밍 적용 후:")
 print(framed_question)
 ```
 
@@ -322,7 +297,7 @@ print(framed_question)
 
 연구 결과를 종합하면, Emotional Prompting의 효과는 **맥락에 강하게 의존**한다:
 
-```javascript
+```mermaid
 graph LR
     A[Emotional Prompting] --> B{맥락 분석
 ```

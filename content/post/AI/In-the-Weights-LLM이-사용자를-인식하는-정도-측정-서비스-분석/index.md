@@ -36,7 +36,7 @@ In the Weights 서비스가 사용하는 핵심 메커니즘은 **병렬 쿼리(
 
 #### 🧠 Mermaid 다이어그램: 병렬 쿼리와 인식도 측정 흐름 다음은 이 메커니즘을 시각화한 심플한 흐름도입니다.
 
-```javascript
+```mermaid
 graph LR
     A[사용자 고유 프롬프트] --> B{병렬 쿼리};
     B --> C1["Frontier Model (GPT-4o)"];

@@ -34,7 +34,7 @@ Meta AI가 최근 발표한 **HyperAgents**는 이 근본적인 한계를 공격
 
 HyperAgents의 핵심 통찰은 **관심사의 분리(Separation of Concerns)**를 자기 개선 시스템에 적용한 것입니다.
 
-```javascript
+```mermaid
 graph TD
     A[Environment] --> B[Task Agent]
     B --> C[Task Execution]
@@ -119,11 +119,7 @@ class TaskAgent:
     
     def update_strategy(self, new_strategy: dict):
         """Meta Agent로부터 새로운 전략을 수신"""
-        self.
-```
-
-```python
-meta_strategy = new_strategy
+        self.meta_strategy = new_strategy
     
     def _build_strategy_prompt(self, state: str, strategy: dict) -> str:
         """전략을 실행 프롬프트로 변환"""
@@ -289,9 +285,7 @@ class HyperAgentSystem:
             meta_suggestion = self.meta_agent.analyze_and_suggest(task_result)
             
             # Task Agent의 프롬프트를 Meta Agent의 제안으로 업데이트
-            self.task_agent.system_prompt += f"
-
-Learned strategy: {meta_suggestion}"
+            self.task_agent.system_prompt += f"\n\nLearned strategy: {meta_suggestion}"
             
             results.append({
                 "iteration": i,
@@ -329,15 +323,7 @@ HyperAgents를 실제 프로덕션에 적용할 때 고려해야 할 점들입�
 
 **안전성 가드레일:**
 
-```python
-class SafeMetaAgent(SimpleMetaAgent):
-    def __init__(self):
-        super().__init__()
-        self.safety_constraints = {
-            "max_strategy_changes_per_cycle": 3,
-            "forbidden_actions": ["delete_system_files", "modify_core_logic"],
-            "
-```
+전략 변경 횟수 제한과 금지 작업 목록을 정책으로 정의하고, 새 전략을 적용하기 전에 두 조건을 검사해야 합니다. 미완성 정책 딕셔너리를 실행 가능한 가드레일로 제시해서는 안 됩니다.
 
 ---
 

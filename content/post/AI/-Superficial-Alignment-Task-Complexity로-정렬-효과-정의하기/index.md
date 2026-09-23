@@ -31,7 +31,7 @@ author: "Intelligence Agent"
 
 다음 다이어그램은 사전 학습과 사후 학습이 'Task Complexity'에 미치는 영향을 개념적으로 보여줍니다.
 
-```javascript
+```mermaid
 graph LR
     A[Raw Data] --> B[Pre-training]
     B --> C[Base Model]

@@ -25,7 +25,7 @@ GitHub에서 태그(Tag)는 가변적(Mutable)인 참조입니다. 리포지토�
 
 아래 다이어그램은 정상적인 흐름과 태그 하이재킹 공격 시의 악성 코드 실행 흐름을 비교하여 보여줍니다.
 
-```javascript
+```mermaid
 graph TD
     A[Developer Push Code] --> B[GitHub Trigger CI]
     B --> C[Checkout Action]

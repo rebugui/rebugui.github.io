@@ -138,20 +138,15 @@ def main():
     red_vulns = find_red_vulns(mock_nvd, mock_cnnvd)
 
 
-```
-
-```python
     if red_vulns:
-        print(f"
-!!! ALERT: {len(red_vulns)} Potential Red Vulns Found !!!")
+        print(f"\n!!! ALERT: {len(red_vulns)} Potential Red Vulns Found !!!")
         for vuln in red_vulns:
             print(f"ID: {vuln['cve_id']} | Product: {vuln['affected_product']}")
             print(f"Risk: HIGH (Score: {vuln['cnnvd_score']})")
             print(f"Reason: {vuln['description']}")
             print("-" * 40)
     else:
-        print("
-[+] No critical Red Vulns detected.")
+        print("\n[+] No critical Red Vulns detected.")
 
 if __name__ == "__main__":
     main()

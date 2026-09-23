@@ -29,7 +29,7 @@ KD는 여기에 **Temperature Scaling ($\tau$)**이라는 기법을 적용하여
 
 **Mermaid 다이어그램: KD 프로세스 흐름도**
 
-```javascript
+```mermaid
 graph LR
     A[Input Prompt] --> B{"Teacher LLM (Black Box)"}
     B --> C(Soft Target Distribution)

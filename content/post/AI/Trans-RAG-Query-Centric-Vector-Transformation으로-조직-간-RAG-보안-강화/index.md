@@ -51,7 +51,7 @@ $$\text{Trans}(\mathbf{v}) = R \cdot S \cdot \mathbf{v} + \mathbf{b} + \epsilon$
 
 ### Trans-RAG 아키텍처
 
-```javascript
+```mermaid
 graph TD
     A[User Query] --> B[Source Embedding]
     B --> C[vector2Trans Encoder]

@@ -21,7 +21,7 @@ Anthropic이 최근 공개한 **Claude Mythos Preview**는 이 패러다임을 �
 
 Zero-day 취약점은 개발자나 보안 커뮤니티에 알려지지 않은 상태에서 공격자가 악용할 수 있는 소프트웨어 결함이다. 'Zero-day'라는 명칭은 개발사가 패치를 준비할 시간이 '0일'이라는 의미에서 유래했다.
 
-```javascript
+```mermaid
 graph LR
     A[취약점 발생] --> B[공격자 발견]
     B --> C[악용 시작]
@@ -62,7 +62,7 @@ LLM이 코드를 이해할 수 있는 이유는 프로그래밍 언어도 결국
 
 Anthropic은 Claude Mythos의 구체적 아키텍처를 공개하지 않았지만, 최신 연구 동향과 성능 특성을 바탕으로 다음과 같은 구조를 추정할 수 있다.
 
-```javascript
+```mermaid
 graph TD
     A[소스 코드 입력] --> B[토크나이저]
     B --> C[Claude Mythos LLM]
@@ -153,71 +153,13 @@ int parse_profile(const char* input, UserProfile* profile) {
 }
 ```
 
-LLM 기반 분석은 각 취약점을 탐지하고 수정 방안을 제시한다.
+다음 C 코드의 위험 신호는 사람이 원본 코드와 실행 경로를 확인해 분석해야 합니다. [Project Glasswing 발표](https://www.anthropic.com/glasswing)에 따르면 Mythos Preview는 미출시 모델이며 참여 기관에 한정해 제공되었습니다. 따라서 공개 Claude API에서 호출 가능한 모델 ID나 재현 가능한 분석 결과로 제시할 수 없습니다.
 
-```python
-# Claude Mythos 스타일 분석 결과 (Python 구현)
-import re
-from dataclasses import dataclass
-from typing import List, Optional
+일반적인 방어적 검토에서는 입력 길이 검사, 동적 메모리 수명, NULL 검사 여부를 점검하고 확인된 문제만 보고서에 기록합니다.
 
-@dataclass
-class Vulnerability:
-    line: int
-    severity: str  # CRITICAL, HIGH, MEDIUM, LOW
-    category: str
-    description: str
-    fix_suggestion: str
+### 탐지 결과 해석
 
-class CodeAnalyzer:
-    def __init__(self, model_client):
-        self.client = model_client
-    
-    def analyze_c_code(self, code: str) -> List[Vulnerability]:
-        prompt = f"""
-        Analyze the following C code for security vulnerabilities.
-        For each vulnerability found, provide:
-        1. Line number
-        2. Severity (CRITICAL/HIGH/MEDIUM/LOW)
-        3. Category (Buffer Overflow, Integer Overflow, UAF, etc.)
-        4. Description
-        5. Fix suggestion
-        
-        Code:
-        ```
-        {code}
-        ```
-        
-        Output in JSON format.
-        """
-        
-        response = self.client.messages.create(
-            model="claude-mythos-preview",
-            max_tokens=4096,
-            messages=[{"role": "user", "content": prompt}]
-        )
-        
-        return self._parse_response(response.content)
-
-# 실제 분석 수행
-analyzer = CodeAnalyzer(anthropic_client)
-vulns = analyzer.analyze_c_code(c_code)
-
-for v in vulns:
-    print(f"[{v.severity}] Line {v.line}: {v.category}")
-    print(f"  Description: {v.description}")
-    print(f"  Fix: {v.fix_suggestion}
-")
-```
-
-### 탐지 결과 예시
-
-| 라인 | 심각도 | 카테고리 | 설명 |
-| :--- | :--- | :--- | :--- |
-| 15 | CRITICAL | Buffer Overflow | name_len이 32를 초과할 경우 버퍼 오버플로우 발생 |
-| 19 | HIGH | Memory Leak | malloc 실패 시 NULL 포인터 역참조 가능 |
-| 22 | CRITICAL | Double Free | 지역 변수 buffer는 free하면 안 됨 |
-| 8 | MEDIUM | Stack Overflow | 64바이트 고정 버퍼, 입력 길이 무제한 |
+위 C 조각의 예시 취약점을 실제 모델의 탐지 출력이나 검증된 행 번호로 오해해서는 안 됩니다. 분석 결과는 빌드·테스트 및 사람이 확인한 근거에 따라 별도로 작성해야 합니다.
 
 ## Claude Mythos의 대규모 탐지 성과
 
@@ -225,7 +167,7 @@ for v in vulns:
 
 Tom's Hardware 보도에 따르면, Claude Mythos Preview는 다음 환경에서 취약점을 탐지했다.
 
-```javascript
+```mermaid
 graph LR
     A[Claude Mythos] --> B[Windows]
     A --> C[Linux]
@@ -272,40 +214,7 @@ cd vuln-detector
 
 ### Step 2: 코드 파싱 및 전처리
 
-```python
-import tree_sitter_python as tspython
-from tree_sitter import Language, Parser
-
-class CodeParser:
-    def __init__(self):
-        self.PY_LANGUAGE = Language(tspython.language())
-        self.parser = Parser(self.PY_LANGUAGE)
-    
-    def parse_file(self, code: str) -> dict:
-        tree = self.parser.parse(bytes(code, "utf8"))
-        
-        return {
-            "functions": self._extract_functions(tree.root_node, code),
-            "classes": self._extract_classes(tree.root_node, code),
-            "imports": self._extract_imports(tree.root_node, code),
-            "variables": self._extract_variables(tree.root_node, code)
-        }
-    
-    def _extract_functions(self, node, code: str) -> list:
-        functions = []
-        for child in node.children:
-            if child.type == "function_definition":
-                func_code = code[child.start_byte:child.end_byte]
-                functions.append({
-                    "name": self._get_function_name(child),
-                    "code": func_code,
-                    "start_line": child.start_point[0] + 1,
-                    "end_line": child.end_point[0] + 1
-                })
-        return functions
-    
-    def _get_function_name(self, node) ->
-```
+Tree-sitter로 소스 파일을 구문 트리로 변환한 뒤 함수·클래스·import 노드를 순회해 분석 대상을 추출할 수 있습니다. 언어별 노드 유형과 바이트 오프셋을 확인하고, 추출한 코드의 위치를 원본 파일의 행 번호와 함께 보관해야 합니다.
 
 ---
 

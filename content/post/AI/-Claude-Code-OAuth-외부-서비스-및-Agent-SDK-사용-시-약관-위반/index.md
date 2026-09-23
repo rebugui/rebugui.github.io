@@ -25,7 +25,7 @@ Anthropic이 이러한 제한을 둔 데에는 기술적, 정책적 이유가 �
 
 다음은 인증 흐름에서 허용되는 경로와 차단되는 경로를 시각적으로 나타낸 것입니다.
 
-```javascript
+```mermaid
 graph LR
     A[개발자/사용자] -->|로그인| B[Claude 계정 인증]
     B -->|OAuth 토큰 발급| C[Claude Code / claude.ai 공식 클라이언트]

@@ -30,7 +30,7 @@ Roach PI는 이 문제에 대한 근본적인 해결책을 제시한다. AI 코�
 
 문제는 이 과정에서 **사용자가 알 수 있는 것이 거의 없다**는 점이다. 어떤 파일이 읽혔는지, 어떤 추가 지시사항이 주입되었는지, 왜 특정 결정이 내려졌는지—모든 것이 불투명하다.
 
-```javascript
+```mermaid
 graph TD
     A[사용자 요청] --> B[에이전트 블랙박스]
     B --> C[시스템 프롬프트 주입]
@@ -69,7 +69,7 @@ Roach PI는 기존 AI 코딩 에이전트(현재는 Claude Code 지원)와 사�
 
 사용자가 정의한 규칙에 따라 에이전트의 동작을 제한하거나 수정할 수 있다.
 
-```javascript
+```mermaid
 graph LR
     A[사용자] --> B[Roach PI]
     B --> C[투명성 계층]
@@ -217,7 +217,7 @@ python roach-pi.py --report --last-session
 
 Roach PI가 어떻게 에이전트의 내부 동작을 가로챌 수 있을까? 핵심은 **API 프록시 패턴**과 **프로세스 후킹**의 조합이다.
 
-```javascript
+```mermaid
 graph TD
     A[AI 에이전트 프로세스] --> B[API 호출]
     B --> C[Roach PI 프록시]

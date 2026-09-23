@@ -29,7 +29,7 @@ LLM(Large Language Model) 기반의 코드 리뷰 시스템이 가진 근본적�
 
 다음은 실제 운영 환경에서 적용한 평가 및 개선 사이클의 다이어그램입니다.
 
-```javascript
+```mermaid
 graph TD
     A[New Pull Request] --> B[Static Analysis]
     B --> C[LLM Reviewer]
@@ -61,28 +61,11 @@ graph TD
 
 표에서 볼 수 있듯이, 재현율(실제 버그를 잡아내는 비율)은 소폭 상승에 그쳤지만, 정밀도(리뷰가 얼마나 정확한가)는 약 35%p나 상승했습니다. 이는 개발자가 리뷰를 읽을 때 "이건 또 틀린 소리겠지"라고 생각할 확률이 절반 이하로 줄어들었음을 의미합니다. 결과적으로 실제 프로덕션 코드에 배포되는 AI 생성 코드의 잠재적 버그 비율을 1.7배 수준에서 1.2배 수준으로 낮추는 데 기여했습니다.
 
-### 4. 구현: 평가 지표 계산 자동화
+### 4. 평가 지표 집계 원칙
 
-이러한 지표를 매번 수동으로 계산하는 것은 불가능에 가깝습니다. 우리는 GitHub Actions와 내부 로깅 시스템을 연동하여, PR이 머지(Merge)되는 시점에 자동으로 성능 지표를 갱신하는 파이썬 스크립트를 작성했습니다. 아래는 혼동 행렬(Confusion Matrix)을 기반으로 정밀도와 재현율을 계산하는 간단한 예제 코드입니다.
+혼동 행렬을 기반으로 정밀도와 재현율을 집계하려면 AI의 지적 여부와 후행 검증에서 확인된 실제 문제 여부를 함께 기록해야 합니다.
 
-```python
-import numpy as np
-
-class ReviewMetrics:
-    def __init__(self):
-        # True Positive (AI가 문제라고 지적했고, 실제 문제인 경우)
-        self.tp = 0
-        # False Positive (AI가 문제라고 지적했으나, 실제 문제가 아닌 경우)
-        self.fp = 0
-        # False Negative (AI가 문제라고 지적하지 않았으나, 실제 문제인 경우)
-        self.fn = 0
-        
-    def update(self, ai_reviewed: bool, is_actual_issue: bool):
-        """
-        개발자의 피드백(후행 검증)을 바탕으로 지표 업데이트
-        ai_reviewed: AI가 코멘트를 달았는지 여부
-        is_actual_issue: 실제로 버그 또는 이
-```
+정밀도는 `TP / (TP + FP)`, 재현율은 `TP / (TP + FN)`으로 계산합니다. 분모가 0인 경우에는 지표를 미정의로 처리하거나 평가 기준에 맞는 정책을 별도로 정해야 합니다.
 
 ---
 

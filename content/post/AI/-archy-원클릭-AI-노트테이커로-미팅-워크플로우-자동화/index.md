@@ -137,8 +137,7 @@ def save_to_db_and_notify(summary_data):
     *Action Items:*
     """
     for item in summary_data['action_items']:
-        slack_message += f"- {item}
-"
+        slack_message += f"- {item}\n"
         
     print(f"[Slack] Sending notification: {slack_message}")
 

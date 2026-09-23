@@ -36,7 +36,7 @@ async def auto_research(topic: str):
 
 **작동 원리**: LLM 기반 에이전트가 자신의 출력을 평가하고, 피드백 루프를 통해 지속적으로 개선한다. 이는 RLHF(Reward Modeling from Human Feedback)의 연장선에 있지만, 훨씬 더 자율적이다.
 
-```javascript
+```mermaid
 graph TD
     A[초기 코드 생성] --> B[자동 테스트 실행]
     B --> C{결과 평가}
@@ -176,7 +176,7 @@ intent = Intent(
 
 AI 시스템이 "블랙박스"에서 "글래스박스"로 진화하고 있다. 2026년의 AI 엔지니어링에서는 설명 가능성이 선택이 아닌 필수다.
 
-```javascript
+```mermaid
 graph LR
     A[입력] --> B[AI 시스템]
     B --> C[출력]
@@ -294,10 +294,8 @@ class PromptScaffold(Scaffold[str]):
         self.adaptation_history = []
     
     def build(self, task: str) -> str:
-        examples_text = "
-".join([
-            f"예시 {i+1}:
-{ex}" 
+        examples_text = "\n".join([
+            f"예시 {i+1}:\n{ex}"
             for i, ex in enumerate(self.examples)
         ])
         
@@ -335,11 +333,7 @@ class DynamicScaffoldOptimizer:
             self.performance_window.append(score)
             
             # 적응적 조정
-            if len(self.
-```
-
-```python
-performance_window) >= 3:
+            if len(self.performance_window) >= 3:
                 avg = sum(self.performance_window[-3:]) / 3
                 self.scaffold = self.scaffold.adapt(avg)
         
@@ -352,7 +346,7 @@ performance_window) >= 3:
 
 가장 중요하고도 과소평가되는 변화. AI가 전문지식의 진입장벽을 낮추고 있다.
 
-```javascript
+```mermaid
 graph TD
     A[전문지식] --> B[AI 시스템]
     B --> C[자연어 인터페이스]

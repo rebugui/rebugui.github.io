@@ -25,7 +25,7 @@ NanoEuler는 이 모든 추상화 계층을 제거하고, 모델의 심장부인
 
 다음은 NanoEuler의 핵심 작동 흐름을 나타내는 심플한 아키텍처 다이어그램입니다.
 
-```javascript
+```mermaid
 graph LR
     A[Input Token] --> B(Embedding Layer: C/CUDA Kernel)
     B --> C{Transformer Blocks: Self-Attention & FFN}

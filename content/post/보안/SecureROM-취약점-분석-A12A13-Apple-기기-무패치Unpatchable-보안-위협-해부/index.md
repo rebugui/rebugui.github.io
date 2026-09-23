@@ -23,7 +23,7 @@ SecureROM은 하드웨어 자체에 깊숙이 박혀 있기 때문에, 일반적
 
 다음은 SecureROM 취약점이 시스템에 침투하는 과정을 시각화한 다이어그램입니다.
 
-```javascript
+```mermaid
 graph TD
     A[전원 On / 부팅 시작] --> B(SecureROM 실행);
     B --> C{무결성 검증 로직};
@@ -91,12 +91,10 @@ def secure_boot_check(firmware_data: bytes) -> bool:
 clean_firmware = b"AppleFirmwareData..."
 malicious_payload = b"MaliciousInjectionPayload!!!"
 
-print("
---- 정상 부팅 테스트 ---")
+print("\n--- 정상 부팅 테스트 ---")
 secure_boot_check(clean_firmware)
 
-print("
---- 공격 시도 테스트 (취약점 악용) ---")
+print("\n--- 공격 시도 테스트 (취약점 악용) ---")
 try:
     secure_boot_check(malicious_payload)
 except PermissionError as e:

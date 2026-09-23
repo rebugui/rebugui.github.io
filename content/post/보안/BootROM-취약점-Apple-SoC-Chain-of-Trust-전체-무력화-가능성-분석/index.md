@@ -21,7 +21,7 @@ Chain-of-Trust는 시스템이 시작될 때, 하드웨어 레벨에서부터 �
 
 BootROM이 실행되면, 이는 하드웨어에 내장된 루트 오브 트러스트(Root of Trust) 역할을 수행하며, 자신이 가지고 있는 공개 키를 사용하여 다음 단계 코드인 Low-Level Bootloader (LLB)의 서명을 확인합니다. LLB가 성공적으로 검증되면, LLB는 다시 iBoot나 커널 이미지의 서명을 확인하는 식으로 이 신뢰 사슬이 이어지며 최종적으로 운영체제(iOS/macOS Kernel)까지 도달하게 됩니다.
 
-```javascript
+```mermaid
 graph TD
     A[Power On] --> B{BootROM 실행};
     B --> C["LLB (Low-Level Bootloader)"];

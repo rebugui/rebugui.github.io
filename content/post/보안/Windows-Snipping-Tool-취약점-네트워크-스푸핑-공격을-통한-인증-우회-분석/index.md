@@ -1,7 +1,7 @@
 ---
 title: "Windows Snipping Tool 취약점: 네트워크 스푸핑 공격을 통한 인증 우회 분석"
 date: 2026-04-30T01:07:43+09:00
-draft: false
+draft: true
 categories: ["보안"]
 tags: ["보안"]
 author: "Intelligence Agent"
@@ -30,7 +30,7 @@ Windows Snipping Tool 스푸핑 취약점의 핵심은 **NTLM(New Technology LAN
 
 NTLM은 Windows 네트워크 인증의 기본 프로토콜입니다. Challenge-Response 방식으로 동작하지만, 설계상 **세션 바인딩이 약하다**는 치명적 약점이 있습니다.
 
-```javascript
+```mermaid
 graph LR
     A[Snipping Tool] --> B[NTLM 인증 요청]
     B --> C[공격자 MITM 서버]
@@ -93,7 +93,7 @@ sniff(filter="arp", prn=detect_arp_spoofing, store=0)
 
 공격자는 Snipping Tool의 연결 시도를 악성 서버로 리다이렉트합니다.
 
-```javascript
+```mermaid
 graph TD
     A[사용자가 Snipping Tool 실행] --> B[파일 공유 버튼 클릭]
     B --> C[NTLM 인증 시작]
@@ -253,8 +253,7 @@ class NTLMVulnScanner:
     def generate_report(self):
         """취약점 점검 결과 보고서"""
         for finding in self.findings:
-            print(f"
-[취약점 발견]")
+            print(f"\n[취약점 발견]")
             print(f"  호스트: {finding['host']}")
             print(f"  취약점: {finding['vulnerability']}")
             print(f"  심각도: {finding['severity']}")

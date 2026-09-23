@@ -25,7 +25,7 @@ LLM 기반 검색 시스템은 RAG(Retrieval-Augmented Generation) 아키텍처�
 
 서버 로그를 통한 AI 크롤러 모니터링은 단순한 텍스트 검색이 아닌, 정형화된 데이터 파이프라인을 통해 이루어져야 합니다. 아래 다이어그램은 원시 로그 데이터에서 AI 크롤러의 통찰(Insight)을 추출해 내는 과정을 개괄적으로 보여줍니다.
 
-```javascript
+```mermaid
 graph TD
     A[Web Server Access Log] --> B[Log Preprocessing]
     B --> C[User-Agent Filtering]
@@ -97,14 +97,12 @@ def analyze_ai_crawlers(log_path):
 
     # 상태 코드별 요청 수 집계
     status_counts = ai_df.groupby(['crawler', 'status']).size().unstack(fill_value=0)
-    print("
-[AI 크롤러별 상태 코드 분석]")
+    print("\n[AI 크롤러별 상태 코드 분석]")
     print(status_counts)
     
     # 가장 많이 방문한 URL (Top 5)
     top_paths = ai_df['path'].value_counts().head(5)
-    print("
-[AI 크롤러가 가장 많이 방문한 페이지 Top 5]")
+    print("\n[AI 크롤러가 가장 많이 방문한 페이지 Top 5]")
     print(top_paths)
 
 # 함수 실행 (실제 로그 파일이 있을 때)

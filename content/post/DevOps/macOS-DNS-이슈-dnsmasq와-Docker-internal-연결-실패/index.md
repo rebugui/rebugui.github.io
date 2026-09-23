@@ -25,7 +25,7 @@ macOS는 기본적으로 `mDNSResponder`라는 DNS 서비스를 사용하여 이
 
 아래는 정상적인 상황과 문제 발생 상황의 DNS 쿼리 흐름을 비교한 다이어그램입니다.
 
-```javascript
+```mermaid
 graph TD
     A[Browser/Curl] --> B[macOS Resolver Stack]
     B --> C{Check /etc/resolver}

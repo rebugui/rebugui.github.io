@@ -31,7 +31,7 @@ Llm9p는 이 9P 프로토콜을 구현한 사용자 공간 파일 시스템(FUSE
 
 이 구조는 기존의 클라이언트-서버 모델과 유사하지만, 인터페이스 계층이 파일 시스템으로 추상화된다는 점이 결정적으로 다릅니다.
 
-```javascript
+```mermaid
 graph LR
     A[User / App] --> B[Standard File Ops]
     B --> C[Plan 9 Filesystem]
@@ -109,7 +109,7 @@ if __name__ == "__main__":
 
 단순한 질의응답을 넘어, Llm9p는 파일 시스템의 구조적 장점을 활용하여 파라미터 제어를 세분화합니다. 보통 다음과 같은 파일 구조를 가질 수 있습니다.
 
-```javascript
+```mermaid
 graph TD
     A[/mnt/llm] --> B[prompt]
     A --> C[output]

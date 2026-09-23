@@ -31,7 +31,7 @@ Dirtyfrag를 이용한 공격은 단순히 데이터를 덮어쓰는 것을 넘�
 
 **공격 흐름도:**
 
-```javascript
+```mermaid
 graph TD
     A[공격자(Low Privilege)] --> B(Dirtyfrag 트리거: 메모리 오염 유발);
     B --> C[커널 메모리 구조 오염];
@@ -68,13 +68,11 @@ def simulate_dirtyfrag_exploit():
 
     # 획득된 Root 권한을 이용한 시스템 명령어 실행 시뮬레이션
     try:
-        print("
-[+] 성공적으로 Root 권한을 획득했습니다.")
+        print("\n[+] 성공적으로 Root 권한을 획득했습니다.")
         print("    (현재 사용자 ID: " + str(os.getuid()) + ")")
 
         # 실제 환경에서는 이 시점에서 /bin/sh 등을 root 권한으로 실행함
-        print("
-[+] Root 권한으로 시스템 명령 실행 (예: 'whoami')")
+        print("\n[+] Root 권한으로 시스템 명령 실행 (예: 'whoami')")
         
         # 성공적인 LPE 시뮬레이션 출력
         print("    $ whoami")

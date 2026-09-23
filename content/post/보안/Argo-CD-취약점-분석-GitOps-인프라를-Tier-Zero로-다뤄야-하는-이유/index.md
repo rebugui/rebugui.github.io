@@ -36,7 +36,7 @@ Argo CD의 특정 취약점은 주로 인증 및 권한 부여(Authorization and
 
 #### 🛡️ 공격 흐름도 (Mermaid Diagram) 다음 다이어그램은 Argo CD 취약점을 이용한 통제권 탈취 과정을 시각적으로 보여줍니다.
 
-```javascript
+```mermaid
 graph TD
     A[공격자 접근] --> B(Argo CD API Endpoint);
     B --> C{Vulnerability Trigger};
