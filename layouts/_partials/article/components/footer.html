@@ -17,9 +17,19 @@
     </section>
     {{- end -}}
 
-    {{ if and (eq .Section "post") (or .Params.ai_generated (eq .Params.author "Intelligence Agent") (and (not (isset .Params "ai_generated")) (ne .Params.author "Rebugui"))) }}
+    {{ if eq .Section "post" }}
+    {{- $aiAuthored := or .Params.ai_generated (eq .Params.author "Intelligence Agent") (and (not (isset .Params "ai_generated")) (ne .Params.author "Rebugui")) -}}
+    {{- $authorName := .Params.author | default "Intelligence Agent" -}}
+    {{- if and $aiAuthored (eq $authorName "Rebugui") -}}
+        {{- $authorName = "Intelligence Agent" -}}
+    {{- end -}}
+    <section class="article-copyright article-author">
+        <span>작성: {{ if and (eq .Params.author "Rebugui") (not $aiAuthored) }}<a href="{{ "page/about/" | absURL }}">양우혁 (Rebugui)</a>{{ else }}{{ $authorName }}{{ end }}</span>
+    </section>
+    {{ if $aiAuthored }}
     <section class="article-copyright ai-disclosure" aria-label="AI 생성 콘텐츠 알림">
         <span>이 글은 AI를 사용해 생성 또는 보조 작성되었습니다. 보안·기술 정보는 인용된 원문과 공식 자료에서 다시 확인하세요.</span>
     </section>
+    {{ end }}
     {{ end }}
 </footer>
