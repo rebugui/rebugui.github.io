@@ -333,7 +333,9 @@ graph TD
     A --> D[1 Offsite Location]
     
     B --> B1[Production]
-    B --> B2[Local Backup
+    B --> B2[Local Backup]
+    B --> B3[Offsite Backup]
+    D --> B3
 ```
 
 ---

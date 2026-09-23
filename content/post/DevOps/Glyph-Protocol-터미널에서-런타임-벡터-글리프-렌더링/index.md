@@ -39,7 +39,7 @@ graph LR
     B -->|2. Parse & Register| C[Glyph Cache]
     A -->|3. Print Character Code| B
     B -->|4. Lookup Cache| C
-    C -->|5. Vector Path| D[Renderer]
+    C -->|5. Registered glyph outline| D[Renderer]
     D --> E[Screen Display]
 ```
 

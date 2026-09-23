@@ -1,7 +1,7 @@
 ---
 title: "🔒 OpenAI Codex: 120만 커밋에서 발견된 1만 취약점 분석"
 date: 2026-03-13T07:06:43+09:00
-draft: false
+draft: true
 categories: ["보안"]
 tags: ["보안"]
 author: "Intelligence Agent"

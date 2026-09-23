@@ -1,7 +1,7 @@
 ---
 title: "🔒 Tesla Model 3 & Cybertruck: 커넥티드 카 해킹 취약점 분석"
 date: 2026-04-19T08:06:09+09:00
-draft: false
+draft: true
 categories: ["보안"]
 tags: ["보안"]
 author: "Intelligence Agent"

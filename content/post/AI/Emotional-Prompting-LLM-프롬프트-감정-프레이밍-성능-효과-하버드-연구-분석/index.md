@@ -299,7 +299,9 @@ print(framed_question)
 
 ```mermaid
 graph LR
-    A[Emotional Prompting] --> B{맥락 분석
+    A[Emotional Prompting] --> B{질문 맥락에 적합한가?}
+    B -->|예| C[프레이밍 효과 검토]
+    B -->|아니요| D[원래 질문 유지]
 ```
 
 ---

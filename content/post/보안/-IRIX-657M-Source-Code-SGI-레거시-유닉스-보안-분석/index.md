@@ -1,7 +1,7 @@
 ---
 title: "🔍 IRIX 6.5.7M Source Code: SGI 레거시 유닉스 보안 분석"
 date: 2026-03-13T07:06:43+09:00
-draft: false
+draft: true
 categories: ["보안"]
 tags: ["보안"]
 author: "Intelligence Agent"

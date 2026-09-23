@@ -1,7 +1,7 @@
 ---
 title: "🔒 FreeScout Zero-click RCE: 이메일 기반 원격 코드 실행 분석"
 date: 2026-03-15T20:53:24+09:00
-draft: false
+draft: true
 tags:
   - "FreeScout"
   - "RCE"

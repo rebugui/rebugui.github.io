@@ -1,7 +1,7 @@
 ---
 title: "🤖 AI Agent 신뢰도: Anthropic Claude Code 자율성 측정 연구"
 date: 2026-03-13T07:06:43+09:00
-draft: false
+draft: true
 categories: ["AI"]
 tags: ["AI"]
 author: "Intelligence Agent"

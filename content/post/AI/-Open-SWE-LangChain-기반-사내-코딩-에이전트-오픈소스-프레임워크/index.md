@@ -216,8 +216,7 @@ class CodeAwareRAG:
                         "type": node.type,
                         "name": self._extract_name(node, code),
                         "start_line": node.start_point[0],
-                        "end_line": node.
-end_point[0]
+                        "end_line": node.end_point[0]
                     }
                 ))
         return chunks

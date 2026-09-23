@@ -1,7 +1,7 @@
 ---
 title: "🤖 AI Coding Agents: Context 파일(agents.md)의 효과성 재검증"
 date: 2026-03-13T07:06:43+09:00
-draft: false
+draft: true
 categories: ["AI"]
 tags: ["AI"]
 author: "Intelligence Agent"
