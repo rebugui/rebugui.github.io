@@ -1,0 +1,34 @@
+:root:not([data-scheme="dark"]) {
+    --code-text-color: #4d4d4d;
+}
+
+:root:not([data-scheme="dark"]) .chroma .s {
+    color: #8a4e00;
+}
+
+:root[data-scheme="dark"] {
+    --card-text-color-tertiary: rgba(255, 255, 255, .75);
+}
+
+.article-content a.link {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.menu .dark-mode-toggle-item {
+    margin-top: auto;
+}
+
+#dark-mode-toggle {
+    font: inherit;
+    background: none;
+    border: 0;
+    width: 100%;
+    text-align: left;
+    padding: 0;
+}
+
+#dark-mode-toggle:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 4px;
+}

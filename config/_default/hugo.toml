@@ -1,5 +1,5 @@
 baseURL      = "https://rebugui.github.io/"
-languageCode = "ko-kr"
+locale       = "ko-KR"
 title        = "코딩이 싫은 거북이"
 
 # Theme i18n support

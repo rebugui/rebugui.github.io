@@ -8,7 +8,7 @@
   "name": {{ .Site.Title | jsonify | safeJS }},
   "url": {{ .Site.BaseURL | jsonify | safeJS }},
   "description": {{ (.Site.Params.description | default .Site.Title) | jsonify | safeJS }},
-  "inLanguage": {{ .Site.LanguageCode | jsonify | safeJS }},
+  "inLanguage": {{ .Site.Language.Locale | jsonify | safeJS }},
   "publisher": {
     "@type": "Person",
     "name": "양우혁 (Rebugui)",
