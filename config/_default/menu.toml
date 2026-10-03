@@ -11,3 +11,30 @@
     url        = "https://www.linkedin.com/in/%EC%9A%B0%ED%98%81-%EC%96%91-bb3722257/"
     [social.params]
         icon = "brand-linkedin"
+
+[[main]]
+    identifier = "app-netgraph"
+    name       = "NetGraph · 네트워크 구성도"
+    url        = "https://rebugui.github.io/netgraph/"
+    weight     = -50
+    [main.params]
+        icon   = "app-netgraph"
+        newTab = true
+
+[[main]]
+    identifier = "app-infoflow"
+    name       = "InfoFlow · 정보 흐름도"
+    url        = "https://rebugui.github.io/infoflow/"
+    weight     = -45
+    [main.params]
+        icon   = "app-infoflow"
+        newTab = true
+
+[[main]]
+    identifier = "app-privacyflow"
+    name       = "PrivacyFlow · 개인정보 처리 흐름도"
+    url        = "https://rebugui.github.io/privacyflow/"
+    weight     = -40
+    [main.params]
+        icon   = "app-privacyflow"
+        newTab = true
