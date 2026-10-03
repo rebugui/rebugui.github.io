@@ -33,9 +33,10 @@
     outline-offset: 4px;
 }
 
-/* 데스크톱 왼쪽 사이드바 메뉴(#main-menu)는 flex-grow:1 + overflow-y:auto라
-   창 높이가 메뉴 내용보다 작으면 스크롤바가 드러난다. 스크롤 막대 표시만 숨긴다. */
-@media (min-width: 1280px) {
+/* 왼쪽 사이드바 메뉴(#main-menu)는 ≥768px(md)부터 flex 카드로 표시되며
+   flex-grow:1 + overflow-y:auto를 쓴다. 창이 짧으면 스크롤이 필요하므로
+   기능은 두되 막대 표시만 숨긴다. */
+@media (min-width: 768px) {
     #main-menu {
         scrollbar-width: none;
 
@@ -44,10 +45,10 @@
         }
     }
 
-    /* 테마는 다크모드 토글을 margin-top:auto로 카드 하단에 고정하는데,
-       Blink는 이 auto 마진을 스크롤 영역에 포함시켜 실제로 넘침이 없어도
-       3px 가량의 유령 스크롤을 만든다. 데스크톱에서는 고정을 풀어
-       메뉴 항목 바로 아래에 배치해 스크롤 기능 자체가 발동하지 않게 한다. */
+    /* 테마는 다크모드 토글(li.menu-bottom-section)을 margin-top:auto로
+       카드 하단에 고정한다. Blink는 해시 auto 마진을 스크롤 영역에 포함해
+       넘칠 게 없어도 유령 스크롤을 만든다(3px 실험 확인). 고정을 풀어
+       토글을 마지막 항목 바로 아래 두면 스크롤 기능이 발동하지 않는다. */
     #main-menu li.menu-bottom-section {
         margin-top: 0;
     }
