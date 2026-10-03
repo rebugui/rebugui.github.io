@@ -14,7 +14,7 @@
 
 [[main]]
     identifier = "app-netgraph"
-    name       = "NetGraph · 네트워크 구성도"
+    name       = "NetGraph"
     url        = "https://rebugui.github.io/netgraph/"
     weight     = -50
     [main.params]
@@ -23,7 +23,7 @@
 
 [[main]]
     identifier = "app-infoflow"
-    name       = "InfoFlow · 정보 흐름도"
+    name       = "InfoFlow"
     url        = "https://rebugui.github.io/infoflow/"
     weight     = -45
     [main.params]
@@ -32,7 +32,7 @@
 
 [[main]]
     identifier = "app-privacyflow"
-    name       = "PrivacyFlow · 개인정보 처리 흐름도"
+    name       = "PrivacyFlow"
     url        = "https://rebugui.github.io/privacyflow/"
     weight     = -40
     [main.params]
